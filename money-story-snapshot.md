@@ -1,0 +1,114 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - heading "The Mother's War" [level=1] [ref=e3]
+    - generic [ref=e4]: Frances Hubbell sent four sons to the Civil War and waited at home in Champlain, New York, learning what befell them only when their letters arrived — days or weeks after the fact. This visualization maps the gap between events and the news that reached her.
+    - generic [ref=e5]: "\"Two or three letters a day have come from the boys but nothing from Henry.\" — Mother Hubbell, October 2, 1862"
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - generic [ref=e8]: "81"
+      - generic [ref=e9]: Letters to Mother
+    - generic [ref=e10]:
+      - generic [ref=e11]: "4"
+      - generic [ref=e12]: Sons at War
+    - generic [ref=e13]:
+      - generic [ref=e14]: "13"
+      - generic [ref=e15]: Key Events
+    - generic [ref=e16]:
+      - generic [ref=e17]: ~7 days
+      - generic [ref=e18]: Avg. Mail Delay
+  - generic [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]: Sons
+      - generic [ref=e22]: Henry
+      - generic [ref=e24]: Alexander
+      - generic [ref=e26]: James
+      - generic [ref=e28]: Charles
+      - generic [ref=e30]: Mother
+    - generic [ref=e32]:
+      - generic [ref=e33]: Events
+      - generic [ref=e34]: Battle
+      - generic [ref=e36]: Personal
+      - generic [ref=e38]: Movement
+    - generic [ref=e40]:
+      - generic [ref=e41]: Delay lines
+      - generic [ref=e42]: Event → News arrives
+  - img [ref=e46]:
+    - generic [ref=e48]: Jun
+    - generic [ref=e49]: Jul
+    - generic [ref=e50]: Aug
+    - generic [ref=e51]: Sep
+    - generic [ref=e52]: Oct
+    - generic [ref=e53]: Nov
+    - generic [ref=e54]: Dec
+    - generic [ref=e55]: Jan 1862
+    - generic [ref=e56]: Feb
+    - generic [ref=e57]: Mar
+    - generic [ref=e58]: Apr
+    - generic [ref=e59]: May
+    - generic [ref=e60]: Jun
+    - generic [ref=e61]: Jul
+    - generic [ref=e62]: Aug
+    - generic [ref=e63]: Sep
+    - generic [ref=e64]: Oct
+    - generic [ref=e65]: Nov
+    - generic [ref=e66]: Events
+    - generic [ref=e67]: as they happened
+    - generic [ref=e68]: Letters Home
+    - generic [ref=e69]: when Mother learned
+    - generic [ref=e72] [cursor=pointer]: First Bull Run
+    - generic [ref=e75] [cursor=pointer]: Alexander enlists
+    - generic [ref=e78] [cursor=pointer]: 60th NY to Baltimore
+    - generic [ref=e81] [cursor=pointer]: 34th NY to Harpers Ferry
+    - generic [ref=e84] [cursor=pointer]: Siege of Yorktown begins
+    - generic [ref=e87] [cursor=pointer]: Yorktown evacuated
+    - generic [ref=e90] [cursor=pointer]: Battle of Fair Oaks
+    - generic [ref=e93] [cursor=pointer]: Seven Days begin
+    - generic [ref=e96] [cursor=pointer]: Battle of Malvern Hill
+    - generic [ref=e99] [cursor=pointer]: Second Bull Run
+    - generic [ref=e102] [cursor=pointer]: Charles enlists
+    - generic [ref=e105] [cursor=pointer]: Battle of Antietam
+    - generic [ref=e108] [cursor=pointer]: Alexander hospitalized
+  - generic [ref=e315]:
+    - 'heading "Dramatic Irony: What Mother Didn''t Know" [level=3] [ref=e316]'
+    - generic [ref=e317]:
+      - generic [ref=e318] [cursor=pointer]:
+        - generic [ref=e319]: September 17, 1862
+        - generic [ref=e320]: "Antietam: The Bloodiest Day"
+        - generic [ref=e321]: Henry is wounded and goes missing at Antietam. Alexander survives with a bruise. Mother will not learn of this for 4 to 11 days — first through newspaper casualty lists, then through Alexander's letter written two days after the battle.
+        - generic [ref=e322]: 4–11 days of silence
+      - generic [ref=e323] [cursor=pointer]:
+        - generic [ref=e324]: September 21, 1862
+        - generic [ref=e325]: James Writes About Bible Class
+        - generic [ref=e326]: While Mother is desperately scanning casualty lists for Henry's name, James writes from West Point about Charles's enlistment and Bible class. He has no idea his brother was wounded four days ago.
+        - generic [ref=e327]: James unaware for weeks
+      - generic [ref=e328] [cursor=pointer]:
+        - generic [ref=e329]: October 2, 1862
+        - generic [ref=e330]: "\"Two or Three Letters a Day\""
+        - generic [ref=e331]: Mother writes that letters come from the boys constantly — but nothing from Henry. She has Alexander's Sept. 19 letter saying Henry is missing. She does not know if her son is alive or dead.
+        - generic [ref=e332]: 15 days since Antietam
+      - generic [ref=e333] [cursor=pointer]:
+        - generic [ref=e334]: June 30, 1862
+        - generic [ref=e335]: Alexander Reports Richmond Captured
+        - generic [ref=e336]: Alexander relays a false report that Richmond has fallen after three days of fighting. In reality, the Seven Days Battles have begun and Henry's regiment is in desperate combat near the city.
+        - generic [ref=e337]: False news, opposite reality
+      - generic [ref=e338] [cursor=pointer]:
+        - generic [ref=e339]: July 21, 1861
+        - generic [ref=e340]: Hearing the Cannons of Bull Run
+        - generic [ref=e341]: "Henry writes a calm letter about chapel service while the cannons of First Bull Run echo across 28 miles. By evening, he adds a frantic postscript: \"We are ordered off.\" Mother reads both at once."
+        - generic [ref=e342]: ~7 days to Champlain
+      - generic [ref=e343] [cursor=pointer]:
+        - generic [ref=e344]: June 13, 1862
+        - generic [ref=e345]: "Fair Oaks: \"You Can Have No Conception\""
+        - generic [ref=e346]: Henry writes 13 days after the Battle of Fair Oaks that the regiment lost 123 men. His letter reaches Mother roughly 20 days after the battle itself. For nearly three weeks, she did not know if he survived.
+        - generic [ref=e347]: ~20 days total delay
+      - generic [ref=e348] [cursor=pointer]:
+        - generic [ref=e349]: September 27–28, 1862
+        - generic [ref=e350]: Alexander in Hospital, Mother in Despair
+        - generic [ref=e351]: "On the same day Alexander enters the hospital at Harpers Ferry with exhausting diarrhea, Mother writes to him: \"Henry's name appeared on the wounded list.\" Neither knows the other's crisis."
+        - generic [ref=e352]: Simultaneous, unknown
+      - generic [ref=e353] [cursor=pointer]:
+        - generic [ref=e354]: October 6, 1862
+        - generic [ref=e355]: "Last Letter: \"Henry Was Seen to Fall\""
+        - generic [ref=e356]: "The final letter in the collection. Mother relays an eyewitness account: \"Henry was seen to fall, the rebels were within two rods of them, they fled, and know nothing more.\" The family never learns Henry's fate from these letters."
+        - generic [ref=e357]: 19 days since Antietam
+  - generic [ref=e358]: Hubbell Civil War Ancestry Project · Reconstructed from 116 family letters, 1861–1862

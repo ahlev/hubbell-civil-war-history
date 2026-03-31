@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Mother's War — Information Delay in the Hubbell Letters</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --henry: #2D5F8A;
+  --alexander: #B8860B;
+  --james: #4A7C59;
+  --charles: #8B3A3A;
+  --mother: #6B4C8A;
+  --battle: #C44E52;
+  --personal: #B8860B;
+  --movement: #5A7D9A;
+  --bg: #FAF8F5;
+  --card: #FFFFFF;
+  --text: #2C2C2C;
+  --text-secondary: #6B6B6B;
+  --text-muted: #9B9B9B;
+  --border: #E8E4DF;
+  --border-light: #F0ECE7;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: auto;
+}
+
+.page-header {
+  text-align: center;
+  padding: 48px 24px 32px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.page-header .subtitle {
+  font-family: 'Source Serif 4', serif;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.page-header .epigraph {
+  font-family: 'Source Serif 4', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-light);
+}
+
+/* Legend */
+.legend-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 16px 24px;
+  margin: 0 auto 8px;
+  max-width: 1100px;
+}
+
+.legend-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.legend-group-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-line {
+  width: 20px;
+  height: 2px;
+  flex-shrink: 0;
+}
+
+.legend-diamond {
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* Viz container */
+.viz-container {
+  padding: 0 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.viz-scroll {
+  overflow-x: auto;
+  position: relative;
+}
+
+/* SVG styling */
+.event-marker { cursor: pointer; }
+.event-marker:hover .event-diamond { filter: brightness(1.2); }
+.letter-marker { cursor: pointer; }
+.letter-marker:hover .letter-dot { filter: brightness(1.2); }
+
+.delay-line {
+  fill: none;
+  stroke-width: 1.2;
+  opacity: 0.2;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.delay-line.highlighted {
+  opacity: 0.7;
+  stroke-width: 2;
+}
+
+.axis-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  fill: var(--text-muted);
+}
+
+.axis-tick {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.month-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  fill: var(--text-secondary);
+  font-weight: 500;
+}
+
+.layer-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  fill: var(--text-secondary);
+  font-weight: 600;
+}
+
+.layer-sublabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  fill: var(--text-muted);
+}
+
+/* Tooltip */
+.tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  max-width: 340px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.15s;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.tooltip.visible { opacity: 1; }
+
+.tooltip-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.tooltip-date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.tooltip-body {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.tooltip-delay {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-light);
+  font-weight: 500;
+  color: var(--battle);
+  font-size: 0.8rem;
+}
+
+.tooltip-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.tooltip-tag {
+  font-size: 0.68rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+/* Knowledge panel */
+.knowledge-panel {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 24px;
+}
+
+.knowledge-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 28px;
+}
+
+.knowledge-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 16px;
+}
+
+.irony-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.irony-item {
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.irony-item:hover {
+  border-color: var(--border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.irony-date {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.irony-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.irony-body {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.irony-delay {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--battle);
+  background: rgba(196,78,82,0.08);
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+/* Stats row */
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto 8px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--text);
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+/* Footer */
+.page-footer {
+  text-align: center;
+  padding: 32px 24px 48px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Active/selection states */
+.event-marker.dimmed .event-diamond { opacity: 0.2; }
+.event-marker.dimmed text { opacity: 0.2; }
+.letter-marker.dimmed .letter-dot { opacity: 0.15; }
+.letter-marker.dimmed text { opacity: 0.15; }
+
+@media (max-width: 1000px) {
+  .page-header h1 { font-size: 1.8rem; }
+  .stats-row { gap: 20px; }
+  .stat-value { font-size: 1.4rem; }
+}
+
+@media (max-width: 700px) {
+  .page-header { padding: 24px 16px 20px; }
+  .page-header h1 { font-size: 1.5rem; }
+  .page-header .subtitle { font-size: 0.95rem; }
+  .stats-row { flex-wrap: wrap; gap: 12px 24px; padding: 16px; }
+  .stat-value { font-size: 1.2rem; }
+  .legend-bar { gap: 12px; padding: 12px 16px; }
+  .legend-group { flex-wrap: wrap; gap: 8px; }
+  .irony-grid { grid-template-columns: 1fr; }
+  .knowledge-panel { padding: 0 16px; }
+  .knowledge-card { padding: 16px; }
+  .viz-container { padding: 0 8px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>The Mother's War</h1>
+  <div class="subtitle">
+    Frances Hubbell sent four sons to the Civil War and waited at home in Champlain, New York,
+    learning what befell them only when their letters arrived — days or weeks after the fact.
+    This visualization maps the gap between events and the news that reached her.
+  </div>
+  <div class="epigraph">
+    "Two or three letters a day have come from the boys but nothing from Henry."
+    — Mother Hubbell, October 2, 1862
+  </div>
+</div>
+
+<div class="stats-row">
+  <div class="stat">
+    <div class="stat-value" id="stat-letters">90</div>
+    <div class="stat-label">Letters to &amp; from Mother</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">4</div>
+    <div class="stat-label">Sons at War</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">13</div>
+    <div class="stat-label">Key Events</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value" id="stat-delay">~7 days</div>
+    <div class="stat-label">Avg. Mail Delay</div>
+  </div>
+</div>
+
+<div class="legend-bar">
+  <div class="legend-group">
+    <span class="legend-group-label">Sons</span>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--henry)"></span> Henry</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--alexander)"></span> Alexander</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--james)"></span> James</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--charles)"></span> Charles</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--mother)"></span> Mother</div>
+  </div>
+  <div class="legend-group">
+    <span class="legend-group-label">Events</span>
+    <div class="legend-item"><span class="legend-diamond" style="background:var(--battle)"></span> Battle</div>
+    <div class="legend-item"><span class="legend-diamond" style="background:var(--personal)"></span> Personal</div>
+    <div class="legend-item"><span class="legend-diamond" style="background:var(--movement)"></span> Movement</div>
+  </div>
+  <div class="legend-group">
+    <span class="legend-group-label">Delay lines</span>
+    <div class="legend-item"><span class="legend-line" style="background: linear-gradient(90deg, var(--battle), var(--text-muted))"></span> Event &rarr; News arrives</div>
+  </div>
+</div>
+
+<div class="viz-container">
+  <div class="viz-scroll">
+    <svg id="main-svg"></svg>
+  </div>
+</div>
+
+<div class="knowledge-panel">
+  <div class="knowledge-card">
+    <h3>Dramatic Irony: What Mother Didn't Know</h3>
+    <div class="irony-grid" id="irony-grid"></div>
+  </div>
+</div>
+
+<div class="page-footer">
+  Hubbell Civil War Ancestry Project &middot; Reconstructed from 116 family letters, 1861&ndash;1862
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+// =====================================================================
+// EMBEDDED DATA
+// =====================================================================
+const RAW_DATA = {"l":[{"id":"LTR-1861-06-06-001","d":"1861-06-06","a":"henry","an":"Henry","r":"Mother","loc":"Washington, D.C.","bat":0,"ill":0,"dth":1,"wnd":0,"sig":"First letter in the collection. Documents the 34th NY's journey from Albany to Washington in the opening weeks of the war, including passage through B"},{"id":"LTR-1861-07-21-001","d":"1861-07-21","a":"henry","an":"Henry","r":"Mother","loc":"Washington, D.C.","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"Henry is writing from Washington while hearing the cannons of the First Battle of Bull Run (Manassas) \u2014 the first major battle of the Civil War, fough"},{"id":"LTR-1861-07-21-003","d":"1861-07-21","a":"henry","an":"Henry","r":"Frances","loc":"Washington, D.C.","bat":1,"ill":1,"dth":0,"wnd":0,"sig":"The \"Later\" postscript is written as news of the Union defeat at First Bull Run reaches Washington. Henry's regiment is ordered to move \u2014 the capital "},{"id":"LTR-1861-08-06-001","d":"1861-08-06","a":"james","an":"James","r":"Frances","loc":"Camp ?, West Point","bat":0,"ill":0,"dth":1,"wnd":0,"sig":"First letter from James in the collection. Documents his time at West Point. DATING CORRECTION: Martin Van Buren died July 24, 1862, not 1861. The obs"},{"id":"LTR-1861-09-05-001","d":"1861-09-05","a":"henry","an":"Henry","r":"Frances Hubbell","loc":"Washington, D.C.","bat":0,"ill":1,"dth":1,"wnd":0,"sig":"Camp life update with details on guard duty along the Potomac and accidental death in regiment."},{"id":"LTR-1861-09-11-001","d":"1861-09-11","a":"henry","an":"Henry","r":"Mother","loc":"Washington, D.C. area","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"References Battle of Hatteras Inlet (Aug 28-29, 1861), Henry's advice against Alexander enlisting, cannon fire into Virginia, and rumor of wintering i"},{"id":"LTR-1861-09-20-001","d":"1861-09-20","a":"alexander","an":"Alexander F.","r":"Mother","loc":"Ogdensburgh, NY (barracks)","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Alexander's first letter in the collection \u2014 documents his arrival at military barracks in Ogdensburgh. Vivid arrival scene with sensory detail."},{"id":"LTR-1861-09-21-001","d":"1861-09-21","a":"henry","an":"Henry","r":"Frances Hubbell","loc":"Near Washington, D.C.","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Brief update with interesting detail of Confederate signal flare observed from picket duty."},{"id":"LTR-1861-09-22-001","d":"1861-09-22","a":"henry","an":"Henry","r":"Mother","loc":"Washington, D.C. area","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"Confirms Alexander has officially enlisted (\"in for the war\"). False alarm incident at camp. Money being sent home via Reich."},{"id":"LTR-1861-09-23-001","d":"1861-09-23","a":"alexander","an":"Alexander F.","r":"Frances Hubbell","loc":"Camp Wheeler, Ogdensburg, NY","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Detailed daily schedule at Camp Wheeler. Company sworn into state service on Saturday (Sept 21). Regiment over 700 men. Election of officers \u2014 Capt. R"},{"id":"LTR-1861-09-26-001","d":"1861-09-26","a":"alexander","an":"Alexander F.","r":"James Hubbell","loc":"Camp Wheeler, Ogdensburg, New York","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Vivid guard duty narrative \u2014 watch word compromised, guards doubled, Colonel's response. Rich detail on camp security procedures. Daily prayer meeting"},{"id":"LTR-1861-09-27-001","d":"1861-09-27","a":"henry","an":"Henry","r":"Charles Hubbell","loc":"Washington, D.C. area","bat":1,"ill":1,"dth":0,"wnd":0,"sig":"Detailed camp life: tent improvements, guard duty, rations, card-playing ban. Corrects exaggerated report of a skirmish."},{"id":"LTR-1861-09-27-002","d":"1861-09-27","a":"alexander","an":"Alexander F.","r":"Mother","loc":"Ogdensburgh, N.Y., Camp Wheeler","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Documents the \"Brother Craftsmen\" mutual aid society \u2014 soldier fraternal organization with headquarters at Watertown, NY. Detailed description of camp"},{"id":"LTR-1861-10-03-001","d":"1861-10-03","a":"alexander","an":"Alexander F.","r":"Mother","loc":"Camp Wheeler, Ogdensburgh","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Brief logistics letter \u2014 uniforms arriving, furlough promised, travel pass needed."},{"id":"LTR-1861-10-03-002","d":"1861-10-03","a":"alexander","an":"Alexander F.","r":"Brother","loc":"Camp Wheeler, Ogdensburgh","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Camp description, regiment numbers, company strength. Mentions possible corporal's berth for Alexander."},{"id":"LTR-1861-10-06-001","d":"1861-10-06","a":"henry","an":"Henry","r":"Mother","loc":"Washington, D.C. area","bat":0,"ill":1,"dth":0,"wnd":0,"sig":"Entire company under arrest over rope-cutting incident. Lt. Scott conflict. Military punishment details. Charles considering enlistment \u2014 Henry says j"},{"id":"LTR-1861-10-17-001","d":"1861-10-17","a":"henry","an":"Henry","r":"Mother","loc":"Washington, D.C. area","bat":0,"ill":0,"dth":1,"wnd":0,"sig":"Brigadier General Gormon's inspection; regiment called \"sharp shooters\" in press. POW escape narrative \u2014 Kellogg confirmed prisoner in Richmond. Murde"},{"id":"LTR-1861-10-19-001","d":"1861-10-19","a":"henry","an":"Henry","r":"Frances Hubbell","loc":"Washington, D.C. area","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Receipt of handmade portfolio from Frances. Mentions Brink (family connection). Nellie correspondence."},{"id":"LTR-1861-11-13-001","d":"1861-11-13","a":"alexander","an":"Alexander F.","r":"Mother","loc":"Camp Jackson, 3 miles from Baltimore, MD","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Alexander's regiment confirmed: 60th NY Infantry (\"Sixtieth Regt.\"). Detailed journey narrative: Camp Wheeler \u2192 Rouses Point \u2192 Whitehall \u2192 Albany \u2192 Hu"},{"id":"LTR-1861-11-15-001","d":"1861-11-15","a":"henry","an":"Henry","r":"Charles Hubbell","loc":"Camp McClellan","bat":1,"ill":0,"dth":1,"wnd":0,"sig":"Henry now at Camp McClellan \u2014 regiment has moved from Washington defenses. Battle formation false alarm (rebels crossing river). $20 sent home. Albert"},{"id":"LTR-1861-11-30-001","d":"1861-11-30","a":"henry","an":"Henry","r":"James Hubbell","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Confederate deserter crossing Potomac at night \u2014 vivid eyewitness account. Describes visible enemy (fires along river, visible in daytime). Informal c"},{"id":"LTR-1861-11-30-002","d":"1861-11-30","a":"henry","an":"Henry","r":"Frances Hubbell","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Brigade composition confirmed: Gorman is General. Brigade includes three NY regiments (including 2nd NY), Minnesota regiment, and 34th NY. This places"},{"id":"LTR-1861-11-30-003","d":"1861-11-30","a":"henry","an":"Henry","r":"Mother","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Winter conditions, furlough queue, Thanksgiving on picket, picture taken, farm concerns, tax willingness."},{"id":"LTR-1861-12-08-001","d":"1861-12-08","a":"alexander","an":"Alexander F.","r":"Mother","loc":"Camp Jackson, near Baltimore, MD","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Alexander's unit definitively confirmed: Co. H, 60th NY Volunteers (\"Sixtieth Regt. N.Y. S. A. Co. H, care of Capt. Ransom\"). First pay: $17.33 (to No"},{"id":"LTR-1861-12-08-002","d":"1861-12-08","a":"alexander","an":"Alexander F.","r":"James Hubbell","loc":"Camp Jackson, near Baltimore, MD","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"James had Orderly Sergeant offer (needed 5 men) \u2014 turned it down. James has chance at West Point \u2014 Alexander strongly encourages education over enlist"},{"id":"LTR-1861-12-11-001","d":"1861-12-11","a":"alexander","an":"Alexander F.","r":"Mother","loc":"Camp Jackson","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Photography details \u2014 two pictures taken in Baltimore (one with Luther, one solo). Shows photographic economy of Civil War soldiers."},{"id":"LTR-1861-12-16-001","d":"1861-12-16","a":"alexander","an":"Alexander F.","r":"Frances Hubbell","loc":"Camp Jackson, near Baltimore, MD","bat":0,"ill":1,"dth":1,"wnd":0,"sig":"Eyewitness account of freight train boiler explosion \u2014 one of the most detailed civilian/military incident narratives in the collection. Capt. Ransom'"},{"id":"LTR-1861-12-19-001","d":"1861-12-19","a":"henry","an":"Henry","r":"Charles Hubbell","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Winter quarters forming \u2014 Minnesota regiments building log houses, 34th NY building hospital. Tent mates identified (E. Graves from Chazy, John Green,"},{"id":"LTR-1861-12-20-001","d":"1861-12-20","a":"henry","an":"Henry","r":"Frances Hubbell","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"B. Miner carrying letters to Champlain (private mail carrier). Accordion lessons from Bill Robers. Journal discontinued due to cold \u2014 Henry regrets th"},{"id":"LTR-1861-12-20-002","d":"1861-12-20","a":"henry","an":"Henry","r":"Mother","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Brigade drill \u2014 Gen. Gorman complimented 34th NY (\"did the best of them all\"). Henry still can't reach Alexander \u2014 directed to Washington but that's w"},{"id":"LTR-1861-12-22-001","d":"1861-12-22","a":"alexander","an":"Alexander F.","r":"James Hubbell","loc":"Baltimore","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Company H moved to Baltimore proper \u2014 ordered to replace Company C at Camden Station (B&O Railroad depot). Quartered in 3-story brick building on city"},{"id":"LTR-1861-12-23-001","d":"1861-12-23","a":"alexander","an":"Alexander F.","r":"Mother","loc":"Baltimore","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Preston King in Baltimore \u2014 U.S. Senator from NY, reportedly trying to have 60th NY sent north to guard frontiers (Trent Affair context). Christmas 18"},{"id":"LTR-1861-12-26-001","d":"1861-12-26","a":"henry","an":"Henry","r":"Mother","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Henry finally received a letter from Alexander \u2014 direction \"not quite correct\" but it arrived. Alexander wrote about Capt. Ransom's narrow escape (boi"},{"id":"LTR-1861-12-29-001","d":"1861-12-29","a":"alexander","an":"Alexander F.","r":"Brother (Charles)","loc":"Baltimore","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Most detailed guard duty description in entire collection \u2014 sentinel orders verbatim, corporal relief procedures, 2-hour rotation, night firing protoc"},{"id":"LTR-1862-01-01-001","d":"1862-01-01","a":"alexander","an":"Alexander F.","r":"Family","loc":"Baltimore","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"NCO warrant received \u2014 formal appointment as Corporal, with commission language quoted verbatim (\"Know Ye That reposing special trust and confidence i"},{"id":"LTR-1862-01-09-001","d":"1862-01-09","a":"henry","an":"Henry","r":"Mother","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"New Year's 1862 at Camp McClellan: Beer from Captain, some boys drunk. Company presented Capt. Reich with sword ($125) \u2014 Henry contributed $1. Minneso"},{"id":"LTR-1862-01-09-002","d":"1862-01-09","a":"henry","an":"Henry","r":"Frances Hubbell","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Henry burned all home letters \u2014 knapsack space and anticipation of moving into Virginia. P.S. \"Please burn all my letters\" \u2014 if obeyed, this would h"},{"id":"LTR-1862-01-13-001","d":"1862-01-13","a":"alexander","an":"Alexander F.","r":"Mother","loc":"Baltimore","bat":0,"ill":0,"dth":1,"wnd":0,"sig":"Picket from Co. H killed January 9 \u2014 Alexander helped recover the body (\"screwed up\" courage). Quotes Henry's letter (mailed Jan 6): \"who knows whethe"},{"id":"LTR-1862-01-15-001","d":"1862-01-15","a":"alexander","an":"Alexander F.","r":"Mother","loc":"Camden Station, Baltimore","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Moved to first platoon / headquarters \u2014 replacing Corporal Myers (sick). Now \"at head quarters.\" Pay: $26 (up from $17.33 first pay in Dec \u2014 reflects "},{"id":"LTR-1862-01-17-001","d":"1862-01-17","a":"alexander","an":"Alexander F.","r":"James Hubbell","loc":"Camden Station, Baltimore","bat":0,"ill":1,"dth":1,"wnd":0,"sig":"Lt. Porter (Edwin Porter) killed by train on railroad track \u2014 graphic eyewitness account. Alexander helped recover body. Detailed description: body cu"},{"id":"LTR-1862-01-24-001","d":"1862-01-24","a":"alexander","an":"Alexander F.","r":"Mother","loc":"Baltimore","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Union Relief Association described \u2014 private/government funded, feeds soldiers passing through Baltimore; seating for 800+, sleeping room for a regime"},{"id":"LTR-1862-01-24-002","d":"1862-01-24","a":"henry","an":"Henry","r":"Mother","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Pay day accounting: $15 sent home; sutler bill $5.20 (boots $4.50); owes band 50\u00a2, cook 50\u00a2, sword $1. Barracks burnt for firewood \u2014 considered unheal"},{"id":"LTR-1862-01-25-001","d":"1862-01-25","a":"alexander","an":"Alexander F.","r":"Frances Hubbell","loc":"Baltimore, Md.","bat":0,"ill":0,"dth":1,"wnd":0,"sig":"Alexander's near-miss with train \u2014 passenger train \"hardly ten feet from me,\" one desperate jump to safety. Edwin Porter confirmed killed by cars (sam"},{"id":"LTR-1862-01-28-001","d":"1862-01-28","a":"alexander","an":"Alexander F.","r":"Brother (Charles)","loc":"Baltimore","bat":0,"ill":1,"dth":1,"wnd":0,"sig":"Colonel Hayward resigned \u2014 60th NY now \"Orphan Regiment.\" New Colonel Green expected. Measles epidemic: deaths in regiment (not Co. H); red measles, n"},{"id":"LTR-1862-02-04-001","d":"1862-02-04","a":"henry","an":"Henry","r":"Mother","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Two desertions from Co. D \u2014 one from drunken scrape/guard house, one while cutting wood (when Captain was in Champlain). Photographs: two taken with t"},{"id":"LTR-1862-02-05-001","d":"1862-02-05","a":"henry","an":"Henry","r":"Frances Hubbell","loc":"Camp Gormon, Bolivar Heights","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"34th NY and Gorman's Brigade marched to Harpers Ferry. Departed Camp McClellan \u2192 20-mile march \u2192 camped overnight (cold, no shelter) \u2192 Adams Town \u2192 30"},{"id":"LTR-1862-02-05-002","d":"1862-02-05","a":"henry","an":"Henry","r":"Charles Hubbell","loc":"Camp Bolivar Heights, Harpers Ferry","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Detailed march narrative \u2014 parallel account to LTR-1862-02-05-001 with additional details: passed through Barnesville; \"very short notice\" to march; C"},{"id":"LTR-1862-02-05-003","d":"1862-02-05","a":"henry","an":"Henry","r":"Mother","loc":"Camp Gorman, Bolivar Heights","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Routine morale letter from winter quarters. Documents camp conditions, religious provisions (Testament and Psalms), and clarifies a false rumor about "},{"id":"LTR-1862-02-07-001","d":"1862-02-07","a":"alexander","an":"Alexander","r":"Mother","loc":"Baltimore, Maryland","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Shows inter-regimental communication: Alexander (60th NY, Baltimore) exchanges letters with Henry (34th NY, likely at different location), indicates f"},{"id":"LTR-1862-02-11-001","d":"1862-02-11","a":"alexander","an":"Alexander","r":"James Hubbell","loc":"Baltimore, Maryland","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"CRITICAL SOURCE: West Point appointment for James Hubbell CONFIRMED as of Feb. 11, 1862. This is a major turning point in the Hubbell family narrative"},{"id":"LTR-1862-02-11-002","d":"1862-02-11","a":"henry","an":"Henry","r":"Charles Hubbell","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"CRITICAL CHRONOLOGICAL ANCHOR: Henry's presence at Camp McClellan on Feb. 11\u201313, 1862, directly contradicts the Feb. 5 \"Camp Gorman, Bolivar Heights\" "},{"id":"LTR-1862-02-12-001","d":"1862-02-12","a":"henry","an":"Henry","r":"Frances Hubbell","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Eyewitness reporting of major Civil War victory: Henry documents the Burnside Expedition's victory in South Carolina (Battle of Roanoke Island, Feb. 7"},{"id":"LTR-1862-02-12-002","d":"1862-02-12","a":"henry","an":"Henry","r":"Mother","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Brief morale letter from Camp McClellan. Provides snapshot of soldier experience: guard duty as most difficult aspect, drunkenness and fighting in com"},{"id":"LTR-1862-02-17-001","d":"1862-02-17","a":"alexander","an":"Alexander","r":"Mother","loc":"Baltimore, Maryland","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"MULTI-FACETED MAJOR SOURCE: (1) Alexander's college decision: He declines college at this moment, preferring to stay in service and work farm/family b"},{"id":"LTR-1862-02-23-001","d":"1862-02-23","a":"alexander","an":"Alexander","r":"Mother","loc":"Baltimore, Maryland","bat":0,"ill":0,"dth":1,"wnd":0,"sig":"Documents soldier's sabbath observance, religious life, and church attendance in occupied Baltimore. Shows postal economics of war period and family p"},{"id":"LTR-1862-02-24-001","d":"1862-02-24","a":"henry","an":"Henry","r":"Mother","loc":"Camp McClellan","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Orders to march \u2014 knapsacks packed, ready at a moment's notice. Read at dress parade. Excess clothes sent to Poolesville in boxes. Chaplain predicts t"},{"id":"LTR-1862-02-28-001","d":"1862-02-28","a":"henry","an":"Henry","r":"Mother","loc":"Harpers Ferry","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"RESOLVES DATING DISCREPANCY: \"Our Regt. Left Camp McClellan on the 26th.\" This definitively establishes the march date as February 26, 1862 \u2014 provin"},{"id":"LTR-1862-03-01-001","d":"1862-03-01","a":"henry","an":"Henry","r":"Mother","loc":"Harpers Ferry (implied)","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Short addendum. Confirms Henry's regiment is in a grist mill building (previously described as cotton factory in LTR-1862-02-05-002). Rebels took whea"},{"id":"LTR-1862-03-03-001","d":"1862-03-03","a":"alexander","an":"Alexander","r":"Frances","loc":"Baltimore","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Duck hunting adventure \u2014 vivid narrative of soldiers hunting in Chesapeake Bay with rifles; fog, leaking boat, broken oarlock. Next day Lt. Fitch and "},{"id":"LTR-1862-03-06-001","d":"1862-03-06","a":"alexander","an":"Alexander","r":"Mother","loc":"Baltimore","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"James's War Department appointment confirmed \u2014 studying under Everest. Alexander wishes he could send $60. Farm accounting: hens, heifer, \"old whity,\""},{"id":"LTR-1862-03-11-001","d":"1862-03-11","a":"alexander","an":"Alexander","r":"Mother","loc":"Baltimore","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Massive troop movements through Baltimore: 3-4,000 on Sunday alone; thousands more coming. 30 steamers for Fortress Monroe. Malone and Potsdam NY regi"},{"id":"LTR-1862-03-16-001","d":"1862-03-16","a":"henry","an":"Henry","r":"Mother","loc":"Harpers Ferry","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"March to Winchester and back \u2014 34th NY and two brigades marched 30 miles from Harpers Ferry toward Winchester, found 25,000 Union troops already there"},{"id":"LTR-1862-03-17-001","d":"1862-03-17","a":"alexander","an":"Alexander","r":"Mother","loc":"Baltimore","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Refuses to burn letters \u2014 \"No \u2014 no \u2014 I cannot do that.\" Has kept all letters since enlistment (except some from Ogdensburg). This is WHY THE COLLECTIO"},{"id":"LTR-1862-03-21-001","d":"1862-03-21","a":"henry","an":"Henry","r":"James","loc":"Harpers Ferry, Bolivar Heights, Camp Gorman","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Bell tents detailed: 16 men, bell-shaped stove in center, pole in middle, open top for smoke. Roads to Winchester: macadamized (small stone), very goo"},{"id":"LTR-1862-03-23-001","d":"1862-03-23","a":"henry","an":"Henry","r":"Mother","loc":"Washington","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"34th NY moves from Harpers Ferry to Washington \u2014 83 miles by freight train in 24 hours. Arrived ~2 AM, marched 1+ mile to brick barracks. Harpers Ferr"},{"id":"LTR-1862-03-26-001","d":"1862-03-26","a":"alexander","an":"Alexander","r":"Mother","loc":"Camp Preston King, near Baltimore","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"60th NY \"struck tents\" \u2014 moved from Eutaw St. quarters to Camp Preston King near Baltimore. Company at headquarters. Colonel described: \"savage lookin"},{"id":"LTR-1862-03-30-001","d":"1862-03-30","a":"alexander","an":"Alexander","r":"Mother","loc":"Relay House","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Alexander's 18th birthday \u2014 March 28, 1862 (writing March 30, reflecting on it). \"I feel old. I have begun life's battle for myself.\" Day of \"exceedin"},{"id":"LTR-1862-04-01-001","d":"1862-04-01","a":"alexander","an":"Alexander","r":"Mother & Brothers","loc":"Relay House","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"COMPLETE DAILY SCHEDULE: 6 AM roll call \u2192 7 breakfast \u2192 8 guard mounting \u2192 9 NCO drill \u2192 10 squad drill \u2192 11:30 inspection \u2192 12:30 dinner \u2192 2:30 compa"},{"id":"LTR-1862-04-02-001","d":"1862-04-02","a":"henry","an":"Henry","r":"Mother","loc":"Hampton, Va.","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"34th NY moves to the Peninsula \u2014 Alexandria \u2192 steamboat \u2192 Fortress Monroe \u2192 Hampton, VA. ~200 miles in 2 days. Hampton \"worse than Harpers Ferry\" \u2014 ev"},{"id":"LTR-1862-04-02-002","d":"1862-04-02","a":"henry","an":"Henry","r":"Mother","loc":"Hampton \u2014 Near Fortress Monroe","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Henry keeping a journal \u2014 \"I have been keeping a Journal some time.\" Plans to copy and send home. (This journal may or may not survive.) Henry Cooper "},{"id":"LTR-1862-04-02-003","d":"1862-04-02","a":"henry","an":"Henry","r":"Charles","loc":"Hampton, Va.","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"25,000 troops at Hampton with one brigade. Steamer ran aground \u2014 had to transfer. Bayonet drill emphasized \u2014 \"I pity the rebels.\" Newspapers 5\u00a2 \u2014 Henr"},{"id":"LTR-1862-04-06-001","d":"1862-04-06","a":"henry","an":"Henry","r":"James","loc":"Camp in field","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"Pocket diary confirmed \u2014 \"I have been keeping a pocket diary, write down everything that transpires from day to day. I have 28 dates.\" (28 entries = s"},{"id":"LTR-1862-04-06-002","d":"1862-04-06","a":"henry","an":"Henry","r":"Mother","loc":"Camp in field, ~16 miles from Hampton","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"Pioneer duty at Yorktown \u2014 detailed as pioneers with axes, picks, shovels; building roads through woods for artillery. Rebels blocked roads. Gen. Gorm"},{"id":"LTR-1862-04-09-001","d":"1862-04-09","a":"henry","an":"Henry","r":"Aunt","loc":"Camp of the 34th Regt.","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Rebels at York Town \"pretty well surrounded.\" Rebel slave reported they left on double quick. Hampton destruction noted. 16 miles from Fortress Monroe"},{"id":"LTR-1862-04-11-001","d":"1862-04-11","a":"alexander","an":"Alexander","r":"Brother & Mother","loc":"Camp Niles, Relay House","bat":0,"ill":0,"dth":1,"wnd":0,"sig":"\"The little Corporal\" \u2014 Alexander's nickname (smallest Corporal in company, positioned on extreme left). DeRochambeau/Yorktown comparison \u2014 second sie"},{"id":"LTR-1862-04-18-001","d":"1862-04-18","a":"henry","an":"Henry","r":"Charles","loc":"In Camp within three miles of York Town","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"Siege of Yorktown firsthand \u2014 3 miles from rebel lines. Called into line for expected skirmish. Vermont Regt. in fight \u2014 one company reduced to ~20 me"},{"id":"LTR-1862-04-21-001","d":"1862-04-21","a":"henry","an":"Henry","r":"James","loc":"Camp near York Town","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"Siege of Yorktown operations: Drums silenced and band doesn't play \u2014 fear of rebel shelling. NY 2nd Regt. attacked on picket \u2014 night before last, heav"},{"id":"LTR-1862-04-21-002","d":"1862-04-21","a":"henry","an":"Henry","r":"Mother","loc":"Camp of the 34th Near York Town","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"Sedgwick's Division, Gorman Brigade \u2014 unit identification confirmed. McClellan described: \"Splendid looking fellow, smiling countenance, rides a fine "},{"id":"LTR-1862-05-01-001","d":"1862-05-01","a":"alexander","an":"Alexander","r":"Mother & Brothers","loc":"Camp Niles, Relay House","bat":0,"ill":0,"dth":1,"wnd":0,"sig":"Col. promoted to Brig. Gen. \u2014 General Green, \"desendent of old revolutionary hero General Green.\" New Orleans captured \u2014 \"heaviest blow struck at the "},{"id":"LTR-1862-05-01-002","d":"1862-05-01","a":"henry","an":"Henry","r":"Mother","loc":"Fortress Monroe / Camp Windfield Scott","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Pay and financial accounting: 2 months' pay; $20 home; boots $1 (Peter Guyan); sutler $1; cook 50\u00a2; $3.50 remaining. Emerson Smith used all wages. 15,"},{"id":"LTR-1862-05-01-003","d":"1862-05-01","a":"henry","an":"Henry","r":"Mother","loc":"Camp near York Town","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"$20 enclosed by express. Heavy cannonading at 4 AM. Rebel fort visible from camp. On picket."},{"id":"LTR-1862-05-06-001","d":"1862-05-06","a":"henry","an":"Henry","r":"Mother","loc":"In the Rebels Camp Ground, York Town, Va.","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"Yorktown evacuated by rebels \u2014 Henry inside fortifications. \"Immense and very strong.\" Sandbags \"as high as a man's head.\" Writing from rebel tent. Ni"},{"id":"LTR-1862-05-09-001","d":"1862-05-09","a":"henry","an":"Henry","r":"Frances","loc":"West Point, Camp Windfield Scott","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"West Point, VA \u2014 on York River, NOT the academy. 20-30 miles from Yorktown, ~30 from Richmond. Left Yorktown May 7 by boat (whole regiment, one boat, "},{"id":"LTR-1862-05-09-002","d":"1862-05-09","a":"henry","an":"Henry","r":"Mother","loc":"West Point on York River","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"Cornwallis surrender spot \u2014 \"pointed out to me. It was a great sight.\" Yorktown 1781 connection. 16th Regt. skirmish \u2014 one company lost 16; several wo"},{"id":"LTR-1862-05-10-001","d":"1862-05-10","a":"alexander","an":"Alexander","r":"Mother","loc":"Camp Niles, Relay House","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Railroad given up to company by 15th-20th \u2014 regiment no longer needed. Lieut. wagers $25 to $1 discharged within a month. McClellan pressing hard. Cou"},{"id":"LTR-1862-05-12-001","d":"1862-05-12","a":"henry","an":"Henry","r":"Mother","loc":"Camp Alton, West Point, Va. \u2014 34th Regt.","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Camp Alton, West Point, VA \u2014 34th Regt. header. Moved 3 miles. Near unnamed river emptying into York River (likely Pamunkey or Mattaponi). ~100,000 tr"},{"id":"LTR-1862-05-27-001","d":"1862-05-27","a":"alexander","an":"Alexander","r":"Mother","loc":"Harpers Ferry","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Alexander crosses into Virginia \u2014 \"for the first time planted our feet on the sacred soil of Virginia.\" Harpers Ferry \u2014 60th NY now deployed there. Ba"},{"id":"LTR-1862-05-31-001","d":"1862-05-31","a":"alexander","an":"Alexander","r":"Mother","loc":"Harpers Ferry","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"Alexander's first combat experience. Slept on arms every night since arrival. Batteries opened on rebels \u2014 scattered them from heights. Regiment calle"},{"id":"LTR-1862-06-06-001","d":"1862-06-06","a":"henry","an":"Henry","r":"Mother","loc":"Unknown \u2014 likely near Richmond or in transit","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"George Dodds in hospital, \"run down so you would not know him\" \u2014 applying for discharge. Henry stood march despite being sick. Furlough difficult. Ins"},{"id":"LTR-1862-06-08-001","d":"1862-06-08","a":"alexander","an":"Alexander","r":"Mother","loc":"Winchester, Virginia","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"60th NY marches ~40 miles from Harpers Ferry to Winchester. \"F.F.V. (Free Footed Virginians)\" \u2014 mocking Confederate retreat. Provost guard of Winchest"},{"id":"LTR-1862-06-13-001","d":"1862-06-13","a":"henry","an":"Henry","r":"Mother","loc":"Camp within five miles of Richmond","bat":1,"ill":1,"dth":1,"wnd":0,"sig":"Battle of Fair Oaks aftermath \u2014 regiment lost 123 wounded and killed (papers said 150). Co. D lost 2 killed and 10 wounded. Henry survived uninjured. "},{"id":"LTR-1862-06-13-002","d":"1862-06-13","a":"henry","an":"Henry","r":"Charles","loc":"Camp within five miles of Richmond","bat":1,"ill":1,"dth":1,"wnd":0,"sig":"BATTLE OF FAIR OAKS \u2014 FIRSTHAND COMBAT ACCOUNT. \"You can have no conception of how exciting it is to be in a battle.\" Perfect streak of fire along the"},{"id":"LTR-1862-06-16-001","d":"1862-06-16","a":"henry","an":"Henry","r":"Aunt","loc":"Camp within five miles of Richmond","bat":1,"ill":1,"dth":0,"wnd":0,"sig":"One year of service \u2014 \"A long year it has been to me. Twelve more months.\" Regiment reduced: not over 500 men doing duty (from ~1,000 original). Gen. "},{"id":"LTR-1862-06-17-001","d":"1862-06-17","a":"alexander","an":"Alexander","r":"Mother","loc":"Onikers Ferry","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Detailed foraging account \u2014 cherries, chickens, milk, sheep, pig. \"Are you not horrified to think you have a hen roost robbing son?\" Foraging rules: a"},{"id":"LTR-1862-06-22-001","d":"1862-06-22","a":"henry","an":"Henry","r":"Mother","loc":"Camp within Five miles of Richmond","bat":0,"ill":1,"dth":0,"wnd":0,"sig":"Henry's health in serious decline \u2014 dysentery \"very bad,\" unable to do duty for over a week, Dr. every morning, quinine and pills. Many in regiment si"},{"id":"LTR-1862-06-22-002","d":"1862-06-22","a":"henry","an":"Henry","r":"Charles","loc":"Camp near Richmond, Va.","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"FAIR OAKS \u2014 BAYONET CHARGE DETAIL: \"pushed right in head first.\" Came to bayonet charge at woods edge. Rebels on knees, intending to fire at close ran"},{"id":"LTR-1862-06-30-001","d":"1862-06-30","a":"alexander","an":"Alexander","r":"Mother","loc":"Camp near Sharpsburgh (?)","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"FALSE REPORT of Richmond's capture \u2014 \"capture of Richmond has just been reported.\" Dispatch to Sigel and Slow: Richmond captured after 3 days fighting"},{"id":"LTR-1862-07-04-001","d":"1862-07-04","a":"alexander","an":"Alexander","r":"Mother","loc":"Camp Goodrich, Near Strausburgh, Va.","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Fourth of July 1862 \u2014 batteries firing, brigade harangued by Gen. Cooper. Orders to move at moment's notice \u2014 leave tomorrow. Orderly thinks Richmond."},{"id":"LTR-1862-07-08-001","d":"1862-07-08","a":"alexander","an":"Alexander","r":"Mother","loc":"Fort Royal, Va.","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Fort Royal, VA \u2014 left Camp Goodrich July 5 at 5 PM, arrived 10 AM next day. Delayed by baggage trains. Manassas Gap tomorrow at 4 AM \u2014 heading toward "},{"id":"LTR-1862-07-08-002","d":"1862-07-08","a":"henry","an":"Henry","r":"Frances","loc":"Camp near James River","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"SEVEN DAYS RETREAT firsthand. \"Our Regt. was in a battle the last of June.\" Threw knapsack on double quick \u2014 all company lost theirs except Peter Guga"},{"id":"LTR-1862-07-12-001","d":"1862-07-12","a":"henry","an":"Henry","r":"Mother","loc":"Camp near Harrison's Landing, James River","bat":1,"ill":1,"dth":0,"wnd":0,"sig":"SEVEN DAYS RETREAT \u2014 extended detail. Sick ordered to hospital; McDonald came twice urging Henry to go; Henry stayed with the men. Battle \"last of Jun"},{"id":"LTR-1862-07-14-001","d":"1862-07-14","a":"alexander","an":"Alexander","r":"Frances","loc":"Camp on Pine Mountain, near Warrenton, Va.","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Literary landscape description \u2014 Virginia from Pine Mountain summit: \"green fields, meadows, large farms, patches of woods, roads winding here and the"},{"id":"LTR-1862-07-26-001","d":"1862-07-26","a":"alexander","an":"Alexander","r":"Mother, Sister & Brother","loc":"Camp near Washington, Va.","bat":0,"ill":1,"dth":1,"wnd":0,"sig":"\"FIRESIDE PATRIOTS\" \u2014 Silas and Sid: \"brave enough at home.\" \"The idea of men at home finding fault while we are doing the fighting!\" Hopes drafting \u2014"},{"id":"LTR-1862-07-27-001","d":"1862-07-27","a":"james","an":"James","r":"Charles","loc":"West Point Military Academy","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"JAMES AT WEST POINT \u2014 first extended description. Camp McRae on the plain. Six sentinels day and night \u2014 hours called off in succession, \"all is well."},{"id":"LTR-1862-07-28-001","d":"1862-07-28","a":"henry","an":"Henry","r":"Frances","loc":"Camp, near Harrison's Landing, James River","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"GRAND REVIEW of Army of the Potomac at Harrison's Landing \u2014 \"last Tuesday\" (July 22). Near James River, within sight of gunboats. Marched in line of b"},{"id":"LTR-1862-09-09-001","d":"1862-09-09","a":"charles","an":"Charles F.","r":"Mother","loc":"U.S. Barracks, Plattsburgh, N.Y.","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"CHARLES HUBBELL'S FIRST LETTER IN COLLECTION. Third brother to enter service. U.S. Barracks, Plattsburgh \u2014 the family's own county seat. EYE EXAMINATI"},{"id":"LTR-1862-09-19-001","d":"1862-09-19","a":"alexander","an":"Alexander","r":"Mother","loc":"Camp on the battle field, Near Antietam","bat":1,"ill":0,"dth":0,"wnd":1,"sig":"BATTLE OF ANTIETAM \u2014 September 17, 1862. The bloodiest single day in American history. Alexander came through \"safe and sound.\" Bruise below right kne"},{"id":"LTR-1862-09-21-001","d":"1862-09-21","a":"james","an":"James","r":"Mother","loc":"West Point Academy","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"CHARLES ENLISTED \u2014 James just learned, wants details. Hopes not as private; advises promotion-seeking. Mother \"very lonely\" \u2014 now all four sons gone. "},{"id":"LTR-1862-09-21-002","d":"1862-09-21","a":"unknown","an":"Mother","r":"Henry","loc":"Champlain, NY","bat":1,"ill":0,"dth":1,"wnd":0,"sig":"FIRST HOME-FRONT LETTER IN THE COLLECTION. Mother writes Henry four days after Antietam, reading casualty lists with trembling, thanking God his name "},{"id":"LTR-1862-09-27-001","d":"1862-09-27","a":"alexander","an":"Alexander","r":"Mother","loc":"Hospital at Harpers Ferry","bat":0,"ill":1,"dth":0,"wnd":0,"sig":"ALEXANDER HOSPITALIZED at Harpers Ferry. \"Exhausting diarrhea for several weeks\" combined with \"severest military duty\" \u2014 has \"brought me pretty low.\""},{"id":"LTR-1862-09-28-001","d":"1862-09-28","a":"unknown","an":"Mother","r":"Alexander","loc":"Champlain, NY","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"THE MOMENT MOTHER LEARNS. Between Sept 21 and Sept 28, Henry's name appeared on the published wounded list. Mother's world has cracked open. She doesn"},{"id":"LTR-1862-09-30-001","d":"1862-09-30","a":"charles","an":"Charles","r":"Mother","loc":"Plattsburgh Barracks, NY","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Charles's first response to Henry's wounding. His theory \u2014 Henry is a prisoner at Richmond because the leg wound prevented escape \u2014 is a reasonable in"},{"id":"LTR-1862-09-30-002","d":"1862-09-30","a":"charles","an":"Charles","r":"Alexander","loc":"U.S. Plattsburgh Barracks, NY","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"Most detailed description of training camp life in the collection. Charles describes Plattsburgh Barracks in architectural detail: stone buildings, tw"},{"id":"LTR-1862-10-01-001","d":"1862-10-01","a":"unknown","an":"R.W. McDonald","r":"Mrs. Hubbell","loc":"Camp on Bolivar Heights","bat":1,"ill":1,"dth":0,"wnd":0,"sig":"THE ONLY OUTSIDE VOICE IN THE COLLECTION. R.W. McDonald, Henry's tentmate in the 34th NY, writes Mother Hubbell to report what he knows of Henry after"},{"id":"LTR-1862-10-02-001","d":"1862-10-02","a":"unknown","an":"Mother","r":"Alexander","loc":"Champlain, NY","bat":0,"ill":0,"dth":0,"wnd":0,"sig":"MOTHER APPROACHES DESPAIR. She has received Alexander's Sept 19 letter (Henry missing after Antietam). \"Two or three letters a day\" have come from the"},{"id":"LTR-1862-10-06-001","d":"1862-10-06","a":"unknown","an":"Mother","r":"Alexander","loc":"Champlain, NY","bat":1,"ill":0,"dth":0,"wnd":0,"sig":"NEW EYEWITNESS REPORT ON HENRY. Young Fiser says: \"Henry was seen to fall, that the rebels were within two rods of them, they fled, and know nothing m"}
+]};
+
+const EVENTS = [
+  {"date":"1861-07-21","label":"First Bull Run","type":"battle"},
+  {"date":"1861-09-20","label":"Alexander enlists","type":"personal"},
+  {"date":"1861-11-13","label":"60th NY to Baltimore","type":"movement"},
+  {"date":"1862-02-26","label":"34th NY to Harpers Ferry","type":"movement"},
+  {"date":"1862-04-05","label":"Siege of Yorktown begins","type":"battle"},
+  {"date":"1862-05-05","label":"Yorktown evacuated","type":"battle"},
+  {"date":"1862-05-31","label":"Battle of Fair Oaks","type":"battle"},
+  {"date":"1862-06-25","label":"Seven Days begin","type":"battle"},
+  {"date":"1862-07-01","label":"Battle of Malvern Hill","type":"battle"},
+  {"date":"1862-08-28","label":"Second Bull Run","type":"battle"},
+  {"date":"1862-09-09","label":"Charles enlists","type":"personal"},
+  {"date":"1862-09-17","label":"Battle of Antietam","type":"battle"},
+  {"date":"1862-09-27","label":"Alexander hospitalized","type":"personal"}
+];
+
+// Curated event-to-letter mappings (manually verified)
+// Maps event label -> array of letter IDs that carry news of that event to Mother
+const EVENT_LETTER_MAP = {
+  "First Bull Run": [
+    "LTR-1861-07-21-001", // Henry hearing the cannons, same day
+    "LTR-1861-07-21-003", // Henry "Later" postscript, same day
+  ],
+  "Alexander enlists": [
+    "LTR-1861-09-20-001", // Alexander's first letter from barracks
+    "LTR-1861-09-22-001", // Henry confirms Alexander "in for the war"
+    "LTR-1861-09-27-002", // Alexander writing from Camp Wheeler
+  ],
+  "60th NY to Baltimore": [
+    "LTR-1861-11-13-001", // Alexander: journey to Camp Jackson near Baltimore
+    "LTR-1861-12-08-001", // Alexander: unit confirmed at Camp Jackson
+    "LTR-1861-12-23-001", // Alexander: moved into Baltimore proper
+  ],
+  "34th NY to Harpers Ferry": [
+    "LTR-1862-02-28-001", // Henry: "Our Regt. Left Camp McClellan on the 26th"
+    "LTR-1862-03-01-001", // Henry: addendum confirming regiment in grist mill near Harpers Ferry
+  ],
+  "Siege of Yorktown begins": [
+    "LTR-1862-04-06-002", // Henry: pioneer duty at Yorktown
+    "LTR-1862-04-21-002", // Henry: Siege of Yorktown from camp
+  ],
+  "Yorktown evacuated": [
+    "LTR-1862-05-06-001", // Henry: inside rebel fortifications
+    "LTR-1862-05-09-002", // Henry: moved to West Point on York River
+  ],
+  "Battle of Fair Oaks": [
+    "LTR-1862-06-13-001", // Henry: Fair Oaks aftermath, regiment lost 123
+  ],
+  "Seven Days begin": [
+    "LTR-1862-07-08-002", // Henry: Seven Days Retreat firsthand (to Frances)
+    "LTR-1862-07-12-001", // Henry: Seven Days extended detail
+  ],
+  "Battle of Malvern Hill": [
+    "LTR-1862-07-12-001", // Henry: covers the retreat including Malvern Hill
+  ],
+  "Second Bull Run": [
+    // No direct letter from the Hubbell brothers about this battle to Mother
+    // (Henry's last letter before Antietam is July 28; gap of letters Aug-Sep)
+  ],
+  "Charles enlists": [
+    "LTR-1862-09-09-001", // Charles's first letter from Plattsburgh
+    "LTR-1862-09-21-001", // James learns Charles enlisted
+  ],
+  "Battle of Antietam": [
+    "LTR-1862-09-19-001", // Alexander: from the battlefield, 2 days after
+    "LTR-1862-09-21-002", // Mother: reading casualty lists, 4 days after
+    "LTR-1862-10-01-001", // McDonald: writes Mother about Henry missing
+    "LTR-1862-10-06-001", // Mother: Young Fiser eyewitness report
+  ],
+  "Alexander hospitalized": [
+    "LTR-1862-09-27-001", // Alexander from hospital at Harpers Ferry
+  ],
+};
+
+// =====================================================================
+// PROCESSING
+// =====================================================================
+const LETTERS = RAW_DATA.l;
+
+// Filter: letters addressed to Mother/Frances/Frances Hubbell/Mrs. Hubbell
+const MOTHER_RECIPIENTS = new Set(['Mother', 'Frances', 'Frances Hubbell', 'Mrs. Hubbell', 'Mother & Brothers', 'Mother, Sister & Brother']);
+// Letters TO Mother + letters FROM Mother + letters to Mrs. Hubbell
+const motherLetters = LETTERS.filter(l =>
+  l.r === 'Mother' || l.r === 'Frances' || l.r === 'Frances Hubbell' ||
+  l.r === 'Mrs. Hubbell' || l.r.includes('Mother') ||
+  l.an === 'Mother' || l.an === 'R.W. McDonald'
+);
+
+const allLetters = LETTERS;
+
+function parseDate(s) {
+  const [y, m, d] = s.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+
+function daysBetween(d1, d2) {
+  return Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
+}
+
+function formatDate(s) {
+  const d = parseDate(s);
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+}
+
+const authorColor = {
+  henry: '#2D5F8A',
+  alexander: '#B8860B',
+  james: '#4A7C59',
+  charles: '#8B3A3A',
+  unknown: '#6B4C8A',
+};
+
+const eventTypeColor = {
+  battle: '#C44E52',
+  personal: '#B8860B',
+  movement: '#5A7D9A',
+};
+
+// =====================================================================
+// SVG RENDERING
+// =====================================================================
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+function buildViz() {
+  const svg = document.getElementById('main-svg');
+  const tooltip = document.getElementById('tooltip');
+
+  // Timeline bounds
+  const startDate = new Date(1861, 4, 1);  // May 1861
+  const endDate = new Date(1862, 10, 1);   // Nov 1862
+
+  // Dimensions
+  const margin = { top: 80, right: 40, bottom: 40, left: 160 };
+  const width = 1340;
+  const eventY = 130;
+  const letterY = 360;
+  const svgHeight = 520;
+  const chartWidth = width - margin.left - margin.right;
+
+  svg.setAttribute('width', width);
+  svg.setAttribute('height', svgHeight);
+  svg.setAttribute('viewBox', `0 0 ${width} ${svgHeight}`);
+  svg.style.display = 'block';
+  svg.style.margin = '0 auto';
+
+  function xScale(dateStr) {
+    const d = typeof dateStr === 'string' ? parseDate(dateStr) : dateStr;
+    const t = (d - startDate) / (endDate - startDate);
+    return margin.left + t * chartWidth;
+  }
+
+  // Background
+  const bgRect = document.createElementNS(SVG_NS, 'rect');
+  bgRect.setAttribute('width', width);
+  bgRect.setAttribute('height', svgHeight);
+  bgRect.setAttribute('fill', '#FAF8F5');
+  svg.appendChild(bgRect);
+
+  // Month grid lines and labels
+  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  let d = new Date(1861, 5, 1); // June 1861
+  while (d <= endDate) {
+    const x = xScale(d);
+    if (x >= margin.left && x <= margin.left + chartWidth) {
+      const line = document.createElementNS(SVG_NS, 'line');
+      line.setAttribute('x1', x);
+      line.setAttribute('x2', x);
+      line.setAttribute('y1', eventY - 40);
+      line.setAttribute('y2', letterY + 80);
+      line.setAttribute('stroke', '#E8E4DF');
+      line.setAttribute('stroke-width', 0.5);
+      line.setAttribute('stroke-dasharray', '4,4');
+      svg.appendChild(line);
+
+      const label = document.createElementNS(SVG_NS, 'text');
+      label.setAttribute('x', x);
+      label.setAttribute('y', eventY - 50);
+      label.setAttribute('text-anchor', 'middle');
+      label.setAttribute('class', 'month-label');
+      const yr = d.getFullYear() === 1862 ? '' : '';
+      label.textContent = monthNames[d.getMonth()] + (d.getMonth() === 0 ? ' ' + d.getFullYear() : '');
+      svg.appendChild(label);
+    }
+    d = new Date(d.getFullYear(), d.getMonth() + 1, 1);
+  }
+
+  // Year divider
+  const jan1862x = xScale(new Date(1862, 0, 1));
+  const yearLine = document.createElementNS(SVG_NS, 'line');
+  yearLine.setAttribute('x1', jan1862x);
+  yearLine.setAttribute('x2', jan1862x);
+  yearLine.setAttribute('y1', eventY - 45);
+  yearLine.setAttribute('y2', letterY + 80);
+  yearLine.setAttribute('stroke', '#D0CCC7');
+  yearLine.setAttribute('stroke-width', 1);
+  svg.appendChild(yearLine);
+
+  // Horizontal axis lines for each layer
+  for (const y of [eventY, letterY]) {
+    const axis = document.createElementNS(SVG_NS, 'line');
+    axis.setAttribute('x1', margin.left);
+    axis.setAttribute('x2', margin.left + chartWidth);
+    axis.setAttribute('y1', y);
+    axis.setAttribute('y2', y);
+    axis.setAttribute('stroke', '#E8E4DF');
+    axis.setAttribute('stroke-width', 1);
+    svg.appendChild(axis);
+  }
+
+  // Layer labels
+  const evtLabel = document.createElementNS(SVG_NS, 'text');
+  evtLabel.setAttribute('x', margin.left - 16);
+  evtLabel.setAttribute('y', eventY - 8);
+  evtLabel.setAttribute('text-anchor', 'end');
+  evtLabel.setAttribute('class', 'layer-label');
+  evtLabel.textContent = 'Events';
+  svg.appendChild(evtLabel);
+
+  const evtSub = document.createElementNS(SVG_NS, 'text');
+  evtSub.setAttribute('x', margin.left - 16);
+  evtSub.setAttribute('y', eventY + 8);
+  evtSub.setAttribute('text-anchor', 'end');
+  evtSub.setAttribute('class', 'layer-sublabel');
+  evtSub.textContent = 'as they happened';
+  svg.appendChild(evtSub);
+
+  const ltrLabel = document.createElementNS(SVG_NS, 'text');
+  ltrLabel.setAttribute('x', margin.left - 16);
+  ltrLabel.setAttribute('y', letterY - 8);
+  ltrLabel.setAttribute('text-anchor', 'end');
+  ltrLabel.setAttribute('class', 'layer-label');
+  ltrLabel.textContent = 'Letters Home';
+  svg.appendChild(ltrLabel);
+
+  const ltrSub = document.createElementNS(SVG_NS, 'text');
+  ltrSub.setAttribute('x', margin.left - 16);
+  ltrSub.setAttribute('y', letterY + 8);
+  ltrSub.setAttribute('text-anchor', 'end');
+  ltrSub.setAttribute('class', 'layer-sublabel');
+  ltrSub.textContent = 'when Mother learned';
+  svg.appendChild(ltrSub);
+
+  // "~7 day mail delay" annotation between layers
+  const midY = (eventY + letterY) / 2;
+  const annotX = margin.left + chartWidth + 8;
+
+  // Store markers for interactivity
+  const eventMarkers = [];
+  const letterMarkers = [];
+  const delayLines = [];
+
+  // --- DELAY LINES (drawn after letters so we know their positions) ---
+  // Placeholder: we'll draw these after computing letter positions
+  const pendingDelayLines = [];
+  for (const [evtLabel, letterIds] of Object.entries(EVENT_LETTER_MAP)) {
+    const evt = EVENTS.find(e => e.label === evtLabel);
+    if (!evt) continue;
+    for (const lid of letterIds) {
+      const letter = motherLetters.find(l => l.id === lid) || allLetters.find(l => l.id === lid);
+      if (!letter) continue;
+      pendingDelayLines.push({ evtLabel, evt, lid, letter });
+    }
+  }
+
+  // --- EVENT MARKERS ---
+  EVENTS.forEach((evt, i) => {
+    const x = xScale(evt.date);
+    const g = document.createElementNS(SVG_NS, 'g');
+    g.setAttribute('class', 'event-marker');
+    g.dataset.label = evt.label;
+    g.dataset.date = evt.date;
+    g.dataset.type = evt.type;
+
+    // Diamond
+    const diamond = document.createElementNS(SVG_NS, 'rect');
+    diamond.setAttribute('x', x - 6);
+    diamond.setAttribute('y', eventY - 6);
+    diamond.setAttribute('width', 12);
+    diamond.setAttribute('height', 12);
+    diamond.setAttribute('transform', `rotate(45 ${x} ${eventY})`);
+    diamond.setAttribute('fill', eventTypeColor[evt.type] || '#999');
+    diamond.setAttribute('class', 'event-diamond');
+    diamond.setAttribute('rx', 1);
+    g.appendChild(diamond);
+
+    // Label with staggered vertical offsets to avoid overlaps
+    // Use 3 tiers: above, below, further below
+    // Events: 0-Bull Run, 1-Alex enlists, 2-60th Baltimore, 3-34th HF,
+    //   4-Yorktown siege, 5-Yorktown evac, 6-Fair Oaks, 7-Seven Days,
+    //   8-Malvern Hill, 9-2nd Bull Run, 10-Charles, 11-Antietam, 12-Alex hosp
+    const tierPattern = [0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 0, 2, 1];
+    const tier = tierPattern[i] || 0;
+    const tierYOffsets = [eventY - 20, eventY + 26, eventY + 42, eventY + 56];
+    const labelYPos = tierYOffsets[tier];
+
+    const text = document.createElementNS(SVG_NS, 'text');
+    text.setAttribute('x', x);
+    text.setAttribute('y', labelYPos);
+    text.setAttribute('text-anchor', 'middle');
+    text.setAttribute('font-family', 'Inter, sans-serif');
+    text.setAttribute('font-size', '9');
+    text.setAttribute('font-weight', '500');
+    text.setAttribute('fill', eventTypeColor[evt.type] || '#666');
+    text.textContent = evt.label;
+    g.appendChild(text);
+
+    // Hover/click
+    g.addEventListener('mouseenter', (e) => showEventTooltip(e, evt));
+    g.addEventListener('mouseleave', hideTooltip);
+    g.addEventListener('click', () => selectEvent(evt.label));
+
+    svg.appendChild(g);
+    eventMarkers.push(g);
+  });
+
+  // --- ESTIMATED DELIVERY BAND ---
+  // Show a faint band ~7 days after each event to indicate when news might arrive
+  // (Subtle, not for every event -- just battles)
+  // Rendered before letter markers so bands appear underneath dots
+  EVENTS.filter(e => e.type === 'battle').forEach(evt => {
+    const x1 = xScale(evt.date);
+    const deliveryDate = new Date(parseDate(evt.date).getTime() + 7 * 24 * 60 * 60 * 1000);
+    const x2 = xScale(deliveryDate);
+
+    const rect = document.createElementNS(SVG_NS, 'rect');
+    rect.setAttribute('x', x1);
+    rect.setAttribute('y', letterY - 4);
+    rect.setAttribute('width', Math.max(x2 - x1, 2));
+    rect.setAttribute('height', 8);
+    rect.setAttribute('fill', eventTypeColor[evt.type]);
+    rect.setAttribute('opacity', 0.06);
+    rect.setAttribute('rx', 2);
+    rect.setAttribute('pointer-events', 'none');
+    svg.appendChild(rect);
+  });
+
+  // --- LETTER MARKERS ---
+  // Only show letters to Mother
+  const sortedMotherLetters = [...motherLetters].sort((a, b) => a.d.localeCompare(b.d));
+
+  // Stack overlapping letters
+  const letterPositions = [];
+  sortedMotherLetters.forEach((letter, i) => {
+    const x = xScale(letter.d);
+    let yOffset = 0;
+    // Check for overlapping x positions
+    for (const prev of letterPositions) {
+      if (Math.abs(prev.x - x) < 8) {
+        yOffset = Math.max(yOffset, prev.yOffset + 10);
+      }
+    }
+    letterPositions.push({ x, yOffset, letter });
+
+    const g = document.createElementNS(SVG_NS, 'g');
+    g.setAttribute('class', 'letter-marker');
+    g.dataset.id = letter.id;
+    g.dataset.author = letter.a;
+
+    const dot = document.createElementNS(SVG_NS, 'circle');
+    dot.setAttribute('cx', x);
+    dot.setAttribute('cy', letterY + yOffset);
+    dot.setAttribute('r', 4);
+    dot.setAttribute('fill', authorColor[letter.a] || '#999');
+    dot.setAttribute('class', 'letter-dot');
+    dot.setAttribute('stroke', '#fff');
+    dot.setAttribute('stroke-width', 1);
+    g.appendChild(dot);
+
+    // Flags as subtle indicators
+    if (letter.bat) {
+      const ring = document.createElementNS(SVG_NS, 'circle');
+      ring.setAttribute('cx', x);
+      ring.setAttribute('cy', letterY + yOffset);
+      ring.setAttribute('r', 7);
+      ring.setAttribute('fill', 'none');
+      ring.setAttribute('stroke', '#C44E52');
+      ring.setAttribute('stroke-width', 1);
+      ring.setAttribute('opacity', 0.5);
+      g.appendChild(ring);
+    }
+
+    g.addEventListener('mouseenter', (e) => showLetterTooltip(e, letter, yOffset));
+    g.addEventListener('mouseleave', hideTooltip);
+    g.addEventListener('click', () => selectLetter(letter.id));
+
+    svg.appendChild(g);
+    letterMarkers.push(g);
+  });
+
+  // --- NOW DRAW DELAY LINES (with correct letter y-positions) ---
+  const letterPosMap = {};
+  letterPositions.forEach(lp => {
+    letterPosMap[lp.letter.id] = { x: lp.x, y: letterY + lp.yOffset };
+  });
+
+  for (const { evtLabel, evt, lid, letter } of pendingDelayLines) {
+    const evtX = xScale(evt.date);
+    const lpos = letterPosMap[lid];
+    const letterX = lpos ? lpos.x : xScale(letter.d);
+    const letterEndY = lpos ? lpos.y : letterY;
+    const delay = daysBetween(parseDate(evt.date), parseDate(letter.d));
+
+    const path = document.createElementNS(SVG_NS, 'path');
+    const ctrlY = (eventY + letterEndY) / 2;
+    const d = `M ${evtX} ${eventY + 8} C ${evtX} ${ctrlY}, ${letterX} ${ctrlY}, ${letterX} ${letterEndY - 4}`;
+    path.setAttribute('d', d);
+    path.setAttribute('class', 'delay-line');
+    path.setAttribute('stroke', eventTypeColor[evt.type] || '#999');
+    path.dataset.event = evtLabel;
+    path.dataset.letter = lid;
+    path.dataset.delay = delay;
+    svg.appendChild(path);
+    delayLines.push(path);
+  }
+
+  // --- INTERACTIVITY ---
+  let selectedEvent = null;
+  let selectedLetter = null;
+
+  function selectEvent(label) {
+    if (selectedEvent === label) {
+      clearSelection();
+      return;
+    }
+    selectedEvent = label;
+    selectedLetter = null;
+
+    const linkedLetterIds = new Set(EVENT_LETTER_MAP[label] || []);
+
+    eventMarkers.forEach(m => {
+      m.classList.toggle('dimmed', m.dataset.label !== label);
+    });
+    letterMarkers.forEach(m => {
+      m.classList.toggle('dimmed', !linkedLetterIds.has(m.dataset.id));
+    });
+    delayLines.forEach(line => {
+      line.classList.toggle('highlighted', line.dataset.event === label);
+      if (line.dataset.event !== label) {
+        line.style.opacity = '0.05';
+      } else {
+        line.style.opacity = '';
+      }
+    });
+  }
+
+  function selectLetter(id) {
+    if (selectedLetter === id) {
+      clearSelection();
+      return;
+    }
+    selectedLetter = id;
+    selectedEvent = null;
+
+    // Find which events this letter references
+    const linkedEvents = new Set();
+    for (const [evtLabel, letterIds] of Object.entries(EVENT_LETTER_MAP)) {
+      if (letterIds.includes(id)) linkedEvents.add(evtLabel);
+    }
+
+    // Only dim events if this letter is linked to at least one event;
+    // otherwise leave events un-dimmed so the view isn't confusingly empty
+    const hasLinks = linkedEvents.size > 0;
+    eventMarkers.forEach(m => {
+      m.classList.toggle('dimmed', hasLinks && !linkedEvents.has(m.dataset.label));
+    });
+    letterMarkers.forEach(m => {
+      m.classList.toggle('dimmed', m.dataset.id !== id);
+    });
+    delayLines.forEach(line => {
+      const isLinked = line.dataset.letter === id;
+      line.classList.toggle('highlighted', isLinked);
+      if (!isLinked) {
+        line.style.opacity = '0.05';
+      } else {
+        line.style.opacity = '';
+      }
+    });
+  }
+
+  function clearSelection() {
+    selectedEvent = null;
+    selectedLetter = null;
+    eventMarkers.forEach(m => m.classList.remove('dimmed'));
+    letterMarkers.forEach(m => m.classList.remove('dimmed'));
+    delayLines.forEach(line => {
+      line.classList.remove('highlighted');
+      line.style.opacity = '';
+    });
+  }
+
+  // Click on background to clear
+  bgRect.addEventListener('click', clearSelection);
+
+  // --- TOOLTIPS ---
+  function showEventTooltip(e, evt) {
+    const linkedLetters = EVENT_LETTER_MAP[evt.label] || [];
+    let delays = [];
+    for (const lid of linkedLetters) {
+      const letter = allLetters.find(l => l.id === lid);
+      if (letter) {
+        const d = daysBetween(parseDate(evt.date), parseDate(letter.d));
+        delays.push({ letter, delay: d });
+      }
+    }
+
+    let html = `<div class="tooltip-title" style="color:${eventTypeColor[evt.type]}">${evt.label}</div>`;
+    html += `<div class="tooltip-date">${formatDate(evt.date)} &middot; ${evt.type}</div>`;
+
+    if (delays.length > 0) {
+      html += `<div class="tooltip-body">News carried by ${delays.length} letter${delays.length > 1 ? 's' : ''}:</div>`;
+      for (const { letter, delay } of delays) {
+        const col = authorColor[letter.a] || '#666';
+        html += `<div class="tooltip-delay" style="color:${col};background:${col}11">`;
+        html += `${letter.an} &mdash; ${formatDate(letter.d)}`;
+        if (delay >= 0) html += ` (${delay} day${delay !== 1 ? 's' : ''} later)`;
+        html += `</div>`;
+      }
+    } else {
+      html += `<div class="tooltip-body" style="font-style:italic">No surviving letter carries this news directly to Mother.</div>`;
+    }
+
+    html += `<div style="font-size:0.7rem;color:#9B9B9B;margin-top:6px">Click to highlight connected letters</div>`;
+
+    tooltip.innerHTML = html;
+    positionTooltip(e);
+    tooltip.classList.add('visible');
+  }
+
+  function showLetterTooltip(e, letter, yOffset) {
+    const col = authorColor[letter.a] || '#666';
+
+    // Find connected events
+    const connectedEvents = [];
+    for (const [evtLabel, letterIds] of Object.entries(EVENT_LETTER_MAP)) {
+      if (letterIds.includes(letter.id)) {
+        const evt = EVENTS.find(ev => ev.label === evtLabel);
+        if (evt) {
+          const delay = daysBetween(parseDate(evt.date), parseDate(letter.d));
+          connectedEvents.push({ evt, delay });
+        }
+      }
+    }
+
+    let html = `<div class="tooltip-title" style="color:${col}">${letter.an} to ${letter.r}</div>`;
+    html += `<div class="tooltip-date">${formatDate(letter.d)} &middot; ${letter.loc}</div>`;
+    html += `<div class="tooltip-body">${letter.sig}</div>`;
+
+    // Tags
+    let tags = '';
+    if (letter.bat) tags += `<span class="tooltip-tag" style="background:#C44E5215;color:#C44E52">Battle</span>`;
+    if (letter.ill) tags += `<span class="tooltip-tag" style="background:#B8860B15;color:#B8860B">Illness</span>`;
+    if (letter.dth) tags += `<span class="tooltip-tag" style="background:#2C2C2C15;color:#2C2C2C">Death</span>`;
+    if (letter.wnd) tags += `<span class="tooltip-tag" style="background:#8B3A3A15;color:#8B3A3A">Wound</span>`;
+    if (tags) html += `<div class="tooltip-tags">${tags}</div>`;
+
+    if (connectedEvents.length > 0) {
+      for (const { evt, delay } of connectedEvents) {
+        html += `<div class="tooltip-delay">`;
+        html += `Carries news of: ${evt.label}`;
+        if (delay >= 0) html += ` (${delay} day delay)`;
+        html += `</div>`;
+      }
+    }
+
+    // Estimated delivery to Champlain
+    const deliveryDays = 7;
+    const writeDate = parseDate(letter.d);
+    const arriveDate = new Date(writeDate.getTime() + deliveryDays * 24 * 60 * 60 * 1000);
+    const arriveStr = formatDate(arriveDate.toISOString().split('T')[0]);
+    html += `<div style="font-size:0.72rem;color:#9B9B9B;margin-top:6px">Est. delivery to Champlain: ~${arriveStr}</div>`;
+
+    html += `<div style="font-size:0.7rem;color:#9B9B9B;margin-top:2px">Click to highlight connected events</div>`;
+
+    tooltip.innerHTML = html;
+    positionTooltip(e);
+    tooltip.classList.add('visible');
+  }
+
+  function positionTooltip(e) {
+    const rect = tooltip.getBoundingClientRect();
+    let x = e.clientX + 14;
+    let y = e.clientY - 10;
+    if (x + 350 > window.innerWidth) x = e.clientX - 360;
+    if (x < 10) x = 10;
+    if (y + 300 > window.innerHeight) y = window.innerHeight - 320;
+    if (y < 10) y = 10;
+    tooltip.style.left = x + 'px';
+    tooltip.style.top = y + 'px';
+  }
+
+  function hideTooltip() {
+    tooltip.classList.remove('visible');
+  }
+}
+
+// =====================================================================
+// DRAMATIC IRONY PANEL
+// =====================================================================
+function buildIronyPanel() {
+  const grid = document.getElementById('irony-grid');
+
+  const ironies = [
+    {
+      date: 'September 17, 1862',
+      title: 'Antietam: The Bloodiest Day',
+      body: 'Henry is wounded and goes missing at Antietam. Alexander survives with a bruise. Mother will not learn of this for 4 to 11 days \u2014 first through newspaper casualty lists, then through Alexander\'s letter written two days after the battle.',
+      delay: '4\u201311 days of silence',
+    },
+    {
+      date: 'September 21, 1862',
+      title: 'James Writes About Bible Class',
+      body: 'While Mother is desperately scanning casualty lists for Henry\'s name, James writes from West Point about Charles\'s enlistment and Bible class. He has no idea his brother was wounded four days ago.',
+      delay: 'James unaware for weeks',
+    },
+    {
+      date: 'October 2, 1862',
+      title: '"Two or Three Letters a Day"',
+      body: 'Mother writes that letters come from the boys constantly \u2014 but nothing from Henry. She has Alexander\'s Sept. 19 letter saying Henry is missing. She does not know if her son is alive or dead.',
+      delay: '15 days since Antietam',
+    },
+    {
+      date: 'June 30, 1862',
+      title: 'Alexander Reports Richmond Captured',
+      body: 'Alexander relays a false report that Richmond has fallen after three days of fighting. In reality, the Seven Days Battles have begun and Henry\'s regiment is in desperate combat near the city.',
+      delay: 'False news, opposite reality',
+    },
+    {
+      date: 'July 21, 1861',
+      title: 'Hearing the Cannons of Bull Run',
+      body: 'Henry writes a calm letter about chapel service while the cannons of First Bull Run echo across 28 miles. By evening, he adds a frantic postscript: "We are ordered off." Mother reads both at once.',
+      delay: '~7 days to Champlain',
+    },
+    {
+      date: 'June 13, 1862',
+      title: 'Fair Oaks: "You Can Have No Conception"',
+      body: 'Henry writes 13 days after the Battle of Fair Oaks that the regiment lost 123 men. His letter reaches Mother roughly 20 days after the battle itself. For nearly three weeks, she did not know if he survived.',
+      delay: '~20 days total delay',
+    },
+    {
+      date: 'September 27\u201328, 1862',
+      title: 'Alexander in Hospital, Mother in Despair',
+      body: 'On the same day Alexander enters the hospital at Harpers Ferry with exhausting diarrhea, Mother writes to him: "Henry\'s name appeared on the wounded list." Neither knows the other\'s crisis.',
+      delay: 'Simultaneous, unknown',
+    },
+    {
+      date: 'October 6, 1862',
+      title: 'Last Letter: "Henry Was Seen to Fall"',
+      body: 'The final letter in the collection. Mother relays an eyewitness account: "Henry was seen to fall, the rebels were within two rods of them, they fled, and know nothing more." The family never learns Henry\'s fate from these letters.',
+      delay: '19 days since Antietam',
+    },
+  ];
+
+  ironies.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'irony-item';
+    div.innerHTML = `
+      <div class="irony-date">${item.date}</div>
+      <div class="irony-title">${item.title}</div>
+      <div class="irony-body">${item.body}</div>
+      <span class="irony-delay">${item.delay}</span>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+// =====================================================================
+// INIT
+// =====================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  buildViz();
+  buildIronyPanel();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Map That Moves — Full War, 1861–1865</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="03-data/map-movements.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #FAF8F5;
+  color: #2C2C2C;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Nav Bar ── */
+.viz-nav {
+  background: #2C2C2C;
+  padding: 6px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+.viz-nav-label {
+  color: #9B9B9B;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.viz-nav-link {
+  color: #B8B2AA;
+  text-decoration: none;
+  padding: 2px 0;
+  transition: color 0.15s;
+}
+.viz-nav-link:hover { color: #FFFFFF; }
+.viz-nav-link.active {
+  color: #FFFFFF;
+  font-weight: 600;
+  cursor: default;
+}
+
+/* ── Header ── */
+.header {
+  text-align: center;
+  padding: 10px 24px 6px;
+  border-bottom: 1px solid #E8E4DF;
+  background: #FFFFFF;
+  flex-shrink: 0;
+}
+.header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2C2C2C;
+  margin-bottom: 1px;
+}
+.header .subtitle {
+  font-size: 0.8rem;
+  color: #6B6B6B;
+  font-weight: 300;
+}
+
+/* ── Status Bar ── */
+.status-bar {
+  display: flex;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E8E4DF;
+  flex-shrink: 0;
+}
+.status-panel {
+  flex: 1;
+  min-width: 180px;
+  padding: 10px 16px;
+  border-right: 1px solid #F0ECE7;
+  cursor: pointer;
+  transition: opacity 0.3s, background 0.3s;
+}
+.status-panel:last-child { border-right: none; }
+.status-panel:hover { background: #FAF8F5; }
+.status-panel.inactive { opacity: 0.35; }
+.status-panel.memorial {
+  background: #F8F4F0;
+  opacity: 0.5;
+  cursor: default;
+}
+.status-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.15);
+}
+.status-regiment {
+  font-size: 0.65rem;
+  color: #9B9B9B;
+  margin-bottom: 4px;
+}
+.status-location {
+  font-size: 0.8rem;
+  color: #2C2C2C;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.status-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+.badge-letter {
+  background: #E8F5E8;
+  color: #2D6B2D;
+  border: 1px solid #C8E6C8;
+}
+.badge-estimated {
+  background: #F0ECE7;
+  color: #9B9B9B;
+}
+.badge-kia {
+  background: #F0E0D8;
+  color: #8B3A3A;
+}
+.badge-not-enlisted {
+  background: #F0ECE7;
+  color: #B8B2AA;
+}
+.status-context {
+  font-size: 0.7rem;
+  color: #6B6B6B;
+  line-height: 1.4;
+  margin-top: 3px;
+  max-height: 2.8em;
+  overflow: hidden;
+  font-style: italic;
+}
+
+/* ── Main Layout ── */
+.main-container {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.map-container {
+  flex: 1;
+  position: relative;
+}
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Info Panel (right side) ── */
+.info-panel {
+  width: 360px;
+  background: #FFFFFF;
+  border-left: 1px solid #E8E4DF;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width 0.3s, padding 0.3s;
+}
+.info-panel.collapsed {
+  width: 0;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+}
+.info-toggle {
+  position: absolute;
+  right: 368px;
+  top: 10px;
+  z-index: 1000;
+  background: #FFFFFF;
+  border: 1px solid #E8E4DF;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  transition: right 0.3s;
+}
+.info-panel.collapsed ~ .info-toggle { right: 8px; }
+
+.info-header {
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid #F0ECE7;
+}
+.info-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: #2C2C2C;
+}
+.info-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+}
+.info-empty {
+  color: #9B9B9B;
+  font-size: 0.85rem;
+  font-style: italic;
+  padding-top: 20px;
+  text-align: center;
+}
+.info-letter-id {
+  font-size: 0.7rem;
+  color: #9B9B9B;
+  font-family: monospace;
+}
+.info-meta {
+  font-size: 0.8rem;
+  color: #6B6B6B;
+  margin: 8px 0;
+  line-height: 1.6;
+}
+.info-excerpt {
+  font-size: 0.85rem;
+  color: #2C2C2C;
+  line-height: 1.65;
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: #FAF8F5;
+  border-left: 3px solid #B8860B;
+  border-radius: 2px;
+  font-style: italic;
+}
+.info-source {
+  font-size: 0.75rem;
+  color: #6B6B6B;
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: #F8F6F3;
+  border-radius: 4px;
+  line-height: 1.5;
+}
+.info-source a {
+  color: #2D5F8A;
+  text-decoration: none;
+  border-bottom: 1px dotted #2D5F8A;
+}
+.info-source a:hover {
+  color: #1A3D5C;
+  border-bottom-style: solid;
+}
+.info-flags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.info-flag {
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+.flag-battle { background: #FDE8E8; color: #C44E52; }
+.flag-illness { background: #FFF3CD; color: #856404; }
+.flag-death { background: #2C2C2C; color: #FFFFFF; }
+.flag-wound { background: #F8D7DA; color: #721C24; }
+
+.info-section {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #F0ECE7;
+}
+.info-section h4 {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #9B9B9B;
+  margin-bottom: 6px;
+}
+.info-recent-item {
+  font-size: 0.75rem;
+  padding: 4px 0;
+  color: #6B6B6B;
+  border-bottom: 1px solid #F8F6F3;
+  line-height: 1.4;
+}
+.info-recent-item .date { font-weight: 600; color: #2C2C2C; }
+
+/* ── Legend (on map) ── */
+.map-legend {
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+  z-index: 1000;
+  background: rgba(255,255,255,0.95);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 0.7rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  line-height: 2;
+}
+.map-legend-title {
+  font-weight: 600;
+  font-size: 0.75rem;
+  margin-bottom: 4px;
+}
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.legend-node {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
+  flex-shrink: 0;
+}
+.legend-trail {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+/* ── Narrative Caption ── */
+.narrative-caption {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: rgba(44, 44, 44, 0.92);
+  color: #FAF8F5;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  max-width: 500px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+.narrative-caption.visible { opacity: 1; }
+
+/* ── Controls Bar (slider only) ── */
+.controls {
+  background: #FFFFFF;
+  border-top: 1px solid #E8E4DF;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+.timeline-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.date-display {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2C2C2C;
+  text-align: center;
+}
+.timeline-slider {
+  width: 100%;
+  cursor: pointer;
+  accent-color: #2C2C2C;
+  height: 6px;
+}
+.keyboard-hint {
+  font-size: 0.65rem;
+  color: #9B9B9B;
+  white-space: nowrap;
+}
+
+/* ── Leaflet Overrides ── */
+.leaflet-control-attribution { font-size: 0.6rem !important; }
+.leaflet-popup-content-wrapper {
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+}
+.leaflet-popup-content { margin: 10px 12px; line-height: 1.5; }
+
+/* ── Map Node Markers ── */
+.node-current {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.node-current:hover { transform: scale(1.1); }
+.node-pin {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+}
+.node-pin.verified {
+  box-shadow: 0 0 0 3px rgba(45, 107, 45, 0.4), 0 2px 6px rgba(0,0,0,0.35);
+}
+.node-label {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  white-space: nowrap;
+  margin-top: 3px;
+  letter-spacing: 0.2px;
+}
+.node-label.verified {
+  background: rgba(232, 245, 232, 0.95);
+  border: 1px solid #C8E6C8;
+}
+.node-label .verified-star {
+  color: #B8860B;
+  font-size: 0.65rem;
+  margin-left: 2px;
+}
+
+/* Trail markers — small, fading, clickable */
+.node-trail {
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.7);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.node-trail:hover {
+  transform: scale(1.6);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+/* Memorial marker — permanent */
+.node-memorial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.memorial-icon {
+  font-size: 20px;
+  color: #2D5F8A;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.3));
+}
+.memorial-label {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: #8B3A3A;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+/* ── Recenter Button ── */
+.recenter-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  background: #FFFFFF;
+  border: 1px solid #E8E4DF;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #6B6B6B;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.recenter-btn:hover { background: #FAF8F5; color: #2C2C2C; }
+
+/* Event feed in info panel */
+.event-feed {
+  border-top: 1px solid #F0ECE7;
+  padding: 10px 16px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.event-feed h4 {
+  font-size: 0.7rem;
+  color: #9B9B9B;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+}
+.event-item {
+  font-size: 0.75rem;
+  padding: 4px 0;
+  border-bottom: 1px solid #F8F6F3;
+  color: #6B6B6B;
+}
+.event-item .event-date { font-weight: 600; color: #2C2C2C; }
+.event-item .event-battle { color: #C44E52; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .info-panel { display: none; }
+  .info-toggle { display: none; }
+  .status-bar { overflow-x: auto; }
+  .status-panel { min-width: 140px; padding: 8px 10px; }
+  .controls { padding: 10px 12px; }
+  .keyboard-hint { display: none; }
+  .narrative-caption { max-width: 85vw; font-size: 0.85rem; padding: 6px 14px; }
+  .header h1 { font-size: 1.2rem; }
+  .map-legend { font-size: 0.6rem; padding: 6px 10px; }
+}
+@media (max-width: 600px) {
+  .status-panel { min-width: 110px; }
+  .status-name { font-size: 0.75rem; }
+  .status-regiment { display: none; }
+  .status-context { display: none; }
+  .header { padding: 6px 12px 4px; }
+  .controls { padding: 8px 8px; }
+  .date-display { font-size: 0.9rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="viz-nav">
+  <span class="viz-nav-label">Explore:</span>
+  <a href="hubbell-dashboard.html" class="viz-nav-link">Parallel Lives</a>
+  <a href="viz-emotional-arcs.html" class="viz-nav-link">Emotional Arcs</a>
+  <a href="viz-map-fullwar.html" class="viz-nav-link active">Map That Moves</a>
+  <a href="viz-health-ledger.html" class="viz-nav-link">Health Ledger</a>
+  <a href="viz-money-story.html" class="viz-nav-link">Money Story</a>
+  <a href="viz-people-web.html" class="viz-nav-link">People Web</a>
+  <a href="viz-what-they-didnt-know.html" class="viz-nav-link">What They Didn't Know</a>
+</nav>
+
+<div class="header">
+  <h1>The Map That Moves</h1>
+  <div class="subtitle">Four brothers, four years, a thousand miles of war — 1861 to 1865</div>
+</div>
+
+<!-- Status Bar: 4 brother panels -->
+<div class="status-bar" id="statusBar">
+  <div class="status-panel" id="status-henry" data-brother="henry">
+    <div class="status-name"><span class="status-dot" style="background:#2D5F8A"></span> Henry</div>
+    <div class="status-regiment">34th NY Infantry</div>
+    <div class="status-location" id="loc-henry">Not yet enlisted</div>
+    <div><span class="status-badge badge-not-enlisted" id="badge-henry">Not enlisted</span></div>
+    <div class="status-context" id="ctx-henry"></div>
+  </div>
+  <div class="status-panel" id="status-alexander" data-brother="alexander">
+    <div class="status-name"><span class="status-dot" style="background:#B8860B"></span> Alexander</div>
+    <div class="status-regiment">60th NY Infantry</div>
+    <div class="status-location" id="loc-alexander">Not yet enlisted</div>
+    <div><span class="status-badge badge-not-enlisted" id="badge-alexander">Not enlisted</span></div>
+    <div class="status-context" id="ctx-alexander"></div>
+  </div>
+  <div class="status-panel" id="status-charles" data-brother="charles">
+    <div class="status-name"><span class="status-dot" style="background:#8B3A3A"></span> Charles</div>
+    <div class="status-regiment">153rd NY Infantry</div>
+    <div class="status-location" id="loc-charles">Not yet enlisted</div>
+    <div><span class="status-badge badge-not-enlisted" id="badge-charles">Not enlisted</span></div>
+    <div class="status-context" id="ctx-charles"></div>
+  </div>
+  <div class="status-panel" id="status-james" data-brother="james">
+    <div class="status-name"><span class="status-dot" style="background:#4A7C59"></span> James</div>
+    <div class="status-regiment">West Point / 153rd NY</div>
+    <div class="status-location" id="loc-james">Not yet enlisted</div>
+    <div><span class="status-badge badge-not-enlisted" id="badge-james">Not enlisted</span></div>
+    <div class="status-context" id="ctx-james"></div>
+  </div>
+</div>
+
+<div class="main-container">
+  <div class="map-container" id="mapContainer">
+    <div id="map"></div>
+
+    <!-- Narrative caption overlay -->
+    <div id="narrativeCaption" class="narrative-caption"></div>
+
+    <!-- Map legend -->
+    <div class="map-legend">
+      <div class="map-legend-title">Legend</div>
+      <div class="legend-row"><span class="legend-node" style="background:#2D5F8A"></span> Henry (34th NY)</div>
+      <div class="legend-row"><span class="legend-node" style="background:#B8860B"></span> Alexander (60th NY)</div>
+      <div class="legend-row"><span class="legend-node" style="background:#8B3A3A"></span> Charles (153rd NY)</div>
+      <div class="legend-row"><span class="legend-node" style="background:#4A7C59"></span> James (153rd NY)</div>
+      <div class="legend-row" style="margin-top:4px;padding-top:4px;border-top:1px solid #E8E4DF">
+        <span class="legend-node" style="background:#3A6B3A;box-shadow:0 0 0 2px rgba(45,107,45,0.4),0 0 0 1px rgba(0,0,0,0.2)"></span> Letter-verified
+      </div>
+      <div class="legend-row"><span class="legend-trail" style="background:#9B9B9B"></span> 30-day trail</div>
+      <div class="legend-row"><span style="font-size:0.85rem">&#10013;</span> Memorial (KIA)</div>
+    </div>
+
+    <!-- Recenter button -->
+    <button class="recenter-btn" id="recenterBtn" onclick="recenterMap()">Re-center</button>
+
+    <!-- Info panel toggle -->
+    <button class="info-toggle" id="infoToggle" onclick="toggleInfoPanel()">&#9664; Info</button>
+  </div>
+
+  <!-- Info Panel (right side) -->
+  <div class="info-panel" id="infoPanel">
+    <div class="info-header">
+      <h3 id="infoPanelTitle">Selected Location</h3>
+    </div>
+    <div class="info-body" id="infoPanelBody">
+      <div class="info-empty">Click a node on the map to explore details</div>
+    </div>
+    <div class="event-feed" id="eventFeed">
+      <h4>Recent Events</h4>
+      <div id="eventFeedContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Controls Bar: slider only -->
+<div class="controls">
+  <div class="timeline-container">
+    <div class="date-display" id="dateDisplay">June 15, 1861</div>
+    <input type="range" class="timeline-slider" id="timelineSlider" min="0" max="1000" value="0" oninput="scrubTimeline(this.value)">
+  </div>
+  <span class="keyboard-hint">&#8592;&#8594; arrow keys to step</span>
+</div>
+
+<script>
+// ============================================================
+// DATA + STATE
+// ============================================================
+let DATA = null;
+let map, trailLayers = {}, markerLayers = {}, memorialMarker = null;
+
+const COLORS = {
+  henry: '#2D5F8A',
+  alexander: '#B8860B',
+  charles: '#8B3A3A',
+  james: '#4A7C59'
+};
+
+const NAMES = {
+  henry: 'Henry',
+  alexander: 'Alexander',
+  charles: 'Charles',
+  james: 'James'
+};
+
+const START_DATE = new Date('1861-06-15');
+const END_DATE = new Date('1865-08-01');
+const TOTAL_DAYS = Math.floor((END_DATE - START_DATE) / 86400000);
+let currentDay = 0;
+
+// ============================================================
+// SOURCE URLS — hyperlinked citations
+// ============================================================
+const SOURCE_URLS = {
+  "Dyer's Compendium": "https://archive.org/details/compendiumofwarr03dyer",
+  "NY AG Report": "https://dmna.ny.gov/historic/reghist/civil/infantry/34thInf/34thInfMain.htm",
+  "34th NY": "https://dmna.ny.gov/historic/reghist/civil/infantry/34thInf/34thInfMain.htm",
+  "60th NY": "https://dmna.ny.gov/historic/reghist/civil/infantry/60thInf/60thInfMain.htm",
+  "153rd NY": "https://dmna.ny.gov/historic/reghist/civil/infantry/153rdInf/153rdInfMain.htm",
+  "NPS": "https://www.nps.gov/civilwar/search-battles.htm",
+  "NPS Battle": "https://www.nps.gov/civilwar/search-battles.htm",
+  "USMA": "https://www.westpoint.edu/about/history-of-west-point",
+  "Antietam": "https://www.nps.gov/anti/index.htm",
+  "Gettysburg": "https://www.nps.gov/gett/index.htm",
+  "Fredericksburg": "https://www.nps.gov/frsp/index.htm",
+  "Chickamauga": "https://www.nps.gov/chch/index.htm",
+  "Cedar Creek": "https://www.nps.gov/cebe/index.htm",
+  "Sabine Cross Roads": "https://www.nps.gov/places/battle-of-mansfield.htm",
+  "regimental history": "https://dmna.ny.gov/historic/reghist/civil/infantry/"
+};
+
+// ============================================================
+// INITIALIZATION
+// ============================================================
+async function init() {
+  // Use script-loaded global (works with file://) or fetch (works with http://)
+  if (window.__MAP_MOVEMENTS__) {
+    DATA = window.__MAP_MOVEMENTS__;
+  } else {
+    try {
+      const resp = await fetch('03-data/map-movements.json');
+      DATA = await resp.json();
+    } catch (e) {
+      document.getElementById('map').innerHTML = '<div style="padding:40px;text-align:center;color:#C44E52">Error loading data: ' + e.message + '</div>';
+      return;
+    }
+  }
+
+  initMap();
+  initTimeline();
+  updateToDate(0);
+
+  document.addEventListener('keydown', handleKeyboard);
+}
+
+function initMap() {
+  map = L.map('map', {
+    center: [38.5, -78.5],
+    zoom: 7,
+    zoomControl: true,
+    attributionControl: true
+  });
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(map);
+
+  for (const b of Object.keys(COLORS)) {
+    trailLayers[b] = L.layerGroup().addTo(map);
+    markerLayers[b] = L.layerGroup().addTo(map);
+  }
+}
+
+function initTimeline() {
+  const slider = document.getElementById('timelineSlider');
+  slider.max = TOTAL_DAYS;
+  slider.value = 0;
+}
+
+// ============================================================
+// CORE: UPDATE MAP TO DATE
+// ============================================================
+function dayToDate(day) {
+  const d = new Date(START_DATE);
+  d.setDate(d.getDate() + day);
+  return d;
+}
+
+function dateStr(d) {
+  return d.toISOString().slice(0, 10);
+}
+
+function formatDate(d) {
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+}
+
+function updateToDate(day) {
+  currentDay = day;
+  const currentDate = dayToDate(day);
+  const currentDateStr = dateStr(currentDate);
+  const thirtyDaysAgo = dateStr(dayToDate(Math.max(0, day - 30)));
+
+  document.getElementById('dateDisplay').textContent = formatDate(currentDate);
+  document.getElementById('timelineSlider').value = day;
+
+  // Clear all layers
+  for (const b of Object.keys(COLORS)) {
+    trailLayers[b].clearLayers();
+    markerLayers[b].clearLayers();
+  }
+  if (memorialMarker) { map.removeLayer(memorialMarker); memorialMarker = null; }
+
+  const activeBounds = [];
+  const isHenryDead = currentDateStr >= '1862-09-17';
+
+  // Always show Henry's memorial after Antietam
+  if (isHenryDead) {
+    addMemorialMarker();
+  }
+
+  for (const [brotherId, brotherInfo] of Object.entries(DATA.brothers)) {
+    const panel = document.getElementById(`status-${brotherId}`);
+    const locEl = document.getElementById(`loc-${brotherId}`);
+    const badgeEl = document.getElementById(`badge-${brotherId}`);
+    const ctxEl = document.getElementById(`ctx-${brotherId}`);
+
+    // Not yet enlisted
+    if (currentDateStr < brotherInfo.serviceStart) {
+      panel.className = 'status-panel inactive';
+      locEl.textContent = 'Not yet enlisted';
+      badgeEl.textContent = 'Not enlisted';
+      badgeEl.className = 'status-badge badge-not-enlisted';
+      ctxEl.textContent = '';
+      continue;
+    }
+
+    // Henry KIA
+    if (brotherId === 'henry' && isHenryDead) {
+      panel.className = 'status-panel memorial';
+      locEl.textContent = 'Killed at Antietam';
+      badgeEl.textContent = 'KIA Sept 17, 1862';
+      badgeEl.className = 'status-badge badge-kia';
+      ctxEl.textContent = '34th NY suffered 48% casualties. Henry was among 150 killed or wounded.';
+      continue;
+    }
+
+    // Mustered out
+    if (currentDateStr > brotherInfo.serviceEnd) {
+      panel.className = 'status-panel inactive';
+      locEl.textContent = 'Mustered out';
+      badgeEl.textContent = 'Mustered out';
+      badgeEl.className = 'status-badge badge-not-enlisted';
+      ctxEl.textContent = '';
+      continue;
+    }
+
+    // Active brother
+    panel.className = 'status-panel';
+
+    const allMovements = DATA.movements.filter(m => m.brother === brotherId && m.date <= currentDateStr);
+    if (allMovements.length === 0) {
+      locEl.textContent = 'En route...';
+      badgeEl.textContent = 'Active';
+      badgeEl.className = 'status-badge badge-estimated';
+      ctxEl.textContent = '';
+      continue;
+    }
+
+    // Find current position (prefer endDate spans)
+    let current = allMovements[allMovements.length - 1];
+    for (let i = allMovements.length - 1; i >= 0; i--) {
+      const m = allMovements[i];
+      if ((m.endDate || m.date) >= currentDateStr) { current = m; break; }
+    }
+
+    // Update status panel
+    locEl.textContent = current.placeName;
+    const isVerified = current.source === 'letter';
+    badgeEl.textContent = isVerified ? '★ Letter verified' : 'Estimated position';
+    badgeEl.className = isVerified ? 'status-badge badge-letter' : 'status-badge badge-estimated';
+
+    // Context: recent letter or notable event
+    ctxEl.textContent = getContextText(brotherId, currentDateStr, current);
+
+    // Draw 30-day trail (smaller fading markers)
+    const trailMovements = allMovements.filter(m => m.date >= thirtyDaysAgo && m !== current);
+    const totalTrail = trailMovements.length;
+    for (let i = 0; i < totalTrail; i++) {
+      const m = trailMovements[i];
+      const age = (new Date(currentDateStr) - new Date(m.date)) / 86400000;
+      const opacity = Math.max(0.15, 1 - (age / 30));
+      addTrailNode(m, brotherId, opacity);
+    }
+
+    // Draw trail lines (fading)
+    if (trailMovements.length > 0) {
+      const trailWithCurrent = [...trailMovements, current];
+      for (let i = 0; i < trailWithCurrent.length - 1; i++) {
+        const age = (new Date(currentDateStr) - new Date(trailWithCurrent[i].date)) / 86400000;
+        const opacity = Math.max(0.1, 0.4 * (1 - age / 30));
+        L.polyline(
+          [[trailWithCurrent[i].lat, trailWithCurrent[i].lon], [trailWithCurrent[i+1].lat, trailWithCurrent[i+1].lon]],
+          { color: COLORS[brotherId], weight: 1.5, opacity, dashArray: '4 4' }
+        ).addTo(trailLayers[brotherId]);
+      }
+    }
+
+    // Draw current position node (labeled) — offset if co-located with another brother
+    const pxOffset = getCoLocationPixelOffset(brotherId, current, currentDateStr);
+    addCurrentNode(current, brotherId, pxOffset);
+    activeBounds.push([current.lat, current.lon]);
+  }
+
+  // Always include memorial in bounds if active
+  if (isHenryDead) {
+    activeBounds.push([39.4747, -77.7447]);
+  }
+
+  // Update event feed + narrative
+  updateEventFeed(currentDateStr);
+  updateNarrative(currentDateStr);
+
+  // Auto-zoom to keep all active brothers visible
+  if (activeBounds.length > 0) {
+    if (activeBounds.length === 1) {
+      map.setView(activeBounds[0], 9, { animate: true, duration: 0.3 });
+    } else {
+      const bounds = L.latLngBounds(activeBounds).pad(0.15);
+      map.fitBounds(bounds, { animate: true, duration: 0.3, maxZoom: 10 });
+    }
+  }
+}
+
+// ============================================================
+// MAP NODES
+// ============================================================
+// Pixel offset for co-located brothers so labels don't stack
+function getCoLocationPixelOffset(brotherId, movement, currentDateStr) {
+  const brotherOrder = ['henry', 'alexander', 'charles', 'james'];
+  let coLocated = [brotherId];
+
+  for (const bid of brotherOrder) {
+    if (bid === brotherId) continue;
+    const bi = DATA.brothers[bid];
+    if (!bi || currentDateStr < bi.serviceStart) continue;
+    if (bid === 'henry' && currentDateStr >= '1862-09-17') continue;
+    if (currentDateStr > bi.serviceEnd) continue;
+
+    const moves = DATA.movements.filter(m => m.brother === bid && m.date <= currentDateStr);
+    if (moves.length === 0) continue;
+    let cur = moves[moves.length - 1];
+    for (let i = moves.length - 1; i >= 0; i--) {
+      if ((moves[i].endDate || moves[i].date) >= currentDateStr) { cur = moves[i]; break; }
+    }
+    if (Math.abs(cur.lat - movement.lat) < 0.01 && Math.abs(cur.lon - movement.lon) < 0.01) {
+      coLocated.push(bid);
+    }
+  }
+
+  if (coLocated.length <= 1) return 0;
+  // Sort to get consistent ordering
+  coLocated.sort((a, b) => brotherOrder.indexOf(a) - brotherOrder.indexOf(b));
+  const myIdx = coLocated.indexOf(brotherId);
+  const spread = 50; // pixels
+  return (myIdx - (coLocated.length - 1) / 2) * spread;
+}
+
+function addCurrentNode(movement, brotherId, pixelOffsetX) {
+  pixelOffsetX = pixelOffsetX || 0;
+  const color = COLORS[brotherId];
+  const name = NAMES[brotherId];
+  const isVerified = movement.source === 'letter';
+  const verifiedClass = isVerified ? ' verified' : '';
+  const starHtml = isVerified ? '<span class="verified-star">★</span>' : '';
+
+  const icon = L.divIcon({
+    html: `<div class="node-current">
+      <div class="node-pin${verifiedClass}" style="background:${color}"></div>
+      <div class="node-label${verifiedClass}">${name}${starHtml}</div>
+    </div>`,
+    className: '',
+    iconSize: [80, 40],
+    iconAnchor: [40 - pixelOffsetX, 10]
+  });
+
+  L.marker([movement.lat, movement.lon], { icon, zIndexOffset: 1000 })
+    .on('click', () => showInfoPanel(movement, brotherId))
+    .addTo(markerLayers[brotherId]);
+}
+
+function addTrailNode(movement, brotherId, opacity) {
+  const color = COLORS[brotherId];
+  const size = 8;
+
+  const icon = L.divIcon({
+    html: `<div class="node-trail" style="width:${size}px;height:${size}px;background:${color};opacity:${opacity}"></div>`,
+    className: '',
+    iconSize: [size, size],
+    iconAnchor: [size/2, size/2]
+  });
+
+  L.marker([movement.lat, movement.lon], { icon })
+    .on('click', () => showInfoPanel(movement, brotherId))
+    .addTo(trailLayers[brotherId]);
+}
+
+function addMemorialMarker() {
+  const icon = L.divIcon({
+    html: `<div class="node-memorial">
+      <div class="memorial-icon">&#10013;</div>
+      <div class="memorial-label">Henry Hubbell — KIA</div>
+    </div>`,
+    className: '',
+    iconSize: [120, 45],
+    iconAnchor: [60, 12]
+  });
+
+  memorialMarker = L.marker([39.4747, -77.7447], { icon, zIndexOffset: 500 })
+    .on('click', () => {
+      showMemorialPanel();
+    })
+    .addTo(map);
+}
+
+// ============================================================
+// CONTEXT TEXT (for status panels)
+// ============================================================
+function getContextText(brotherId, currentDateStr, currentMovement) {
+  // Find most recent letter within 14 days
+  const recentLetters = DATA.movements.filter(m =>
+    m.brother === brotherId &&
+    m.source === 'letter' &&
+    m.date <= currentDateStr &&
+    daysBetween(m.date, currentDateStr) <= 14
+  );
+
+  if (recentLetters.length > 0) {
+    const letter = recentLetters[recentLetters.length - 1];
+    if (letter.letterExcerpt) {
+      const excerpt = letter.letterExcerpt.slice(0, 80);
+      return `"${excerpt}${letter.letterExcerpt.length > 80 ? '...' : ''}"`;
+    }
+  }
+
+  // Find recent battle event for this brother
+  const recentBattle = DATA.events.find(e =>
+    e.brothers && e.brothers.includes(brotherId) &&
+    e.date <= currentDateStr &&
+    daysBetween(e.date, currentDateStr) <= 14
+  );
+
+  if (recentBattle) {
+    return recentBattle.label;
+  }
+
+  // Fall back to status
+  const status = currentMovement.status ? currentMovement.status.replace(/_/g, ' ') : '';
+  if (status && status !== 'active') return status.charAt(0).toUpperCase() + status.slice(1);
+  return '';
+}
+
+function daysBetween(dateStr1, dateStr2) {
+  return Math.abs(Math.floor((new Date(dateStr2) - new Date(dateStr1)) / 86400000));
+}
+
+// ============================================================
+// INFO PANEL
+// ============================================================
+function showInfoPanel(movement, brotherId) {
+  const brotherInfo = DATA.brothers[brotherId];
+  const title = document.getElementById('infoPanelTitle');
+  const body = document.getElementById('infoPanelBody');
+
+  title.textContent = `${brotherInfo.name} — ${movement.placeName}`;
+  title.style.color = COLORS[brotherId];
+
+  let html = '';
+
+  // Letter ID if present
+  if (movement.letterId) {
+    html += `<div class="info-letter-id">${movement.letterId}</div>`;
+  }
+
+  // Core metadata
+  const sourceLabel = movement.source === 'letter'
+    ? '<strong style="color:#2D6B2D">★ Letter verified</strong>'
+    : 'Unit history (estimated)';
+
+  html += `<div class="info-meta">
+    <strong>Date:</strong> ${formatDate(new Date(movement.date))}${movement.endDate ? ' – ' + formatDate(new Date(movement.endDate)) : ''}<br>
+    <strong>Location:</strong> ${movement.placeName}<br>
+    <strong>Status:</strong> ${(movement.status || 'active').replace(/_/g, ' ')}<br>
+    <strong>Source:</strong> ${sourceLabel}
+  </div>`;
+
+  // Letter excerpt (emphasized for verified sources)
+  if (movement.letterExcerpt) {
+    html += `<div class="info-excerpt">"${movement.letterExcerpt}"</div>`;
+  }
+
+  // Full letter text if available
+  if (movement.letterText) {
+    const preview = movement.letterText.slice(0, 300);
+    html += `<div style="font-size:0.78rem;color:#4A4A4A;line-height:1.6;margin-top:8px;padding:8px;background:#FAFAFA;border-radius:3px">${preview}${movement.letterText.length > 300 ? '...' : ''}</div>`;
+  }
+
+  // Citation with hyperlinks
+  if (movement.citation) {
+    html += `<div class="info-source">${linkifyCitation(movement.citation)}</div>`;
+  }
+
+  // Flags
+  const flags = [];
+  if (movement.hasBattle) flags.push('<span class="info-flag flag-battle">Battle</span>');
+  if (movement.hasIllness) flags.push('<span class="info-flag flag-illness">Illness</span>');
+  if (movement.hasDeath) flags.push('<span class="info-flag flag-death">Death mentioned</span>');
+  if (movement.hasWound) flags.push('<span class="info-flag flag-wound">Wound</span>');
+  if (flags.length > 0) {
+    html += `<div class="info-flags">${flags.join('')}</div>`;
+  }
+
+  // Notes
+  if (movement.notes) {
+    html += `<div style="font-size:0.75rem;color:#9B9B9B;margin-top:10px;font-style:italic">${movement.notes}</div>`;
+  }
+
+  // Recent activity for this brother (nearby dates)
+  const currentDateStr = dateStr(dayToDate(currentDay));
+  const nearby = DATA.movements.filter(m =>
+    m.brother === brotherId &&
+    daysBetween(m.date, currentDateStr) <= 30 &&
+    m.date <= currentDateStr &&
+    m !== movement
+  ).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
+
+  if (nearby.length > 0) {
+    html += `<div class="info-section"><h4>Recent Activity</h4>`;
+    nearby.forEach(m => {
+      const icon = m.source === 'letter' ? '★ ' : '';
+      html += `<div class="info-recent-item"><span class="date">${m.date}</span> ${icon}${m.placeName}</div>`;
+    });
+    html += `</div>`;
+  }
+
+  body.innerHTML = html;
+
+  // Ensure panel is open
+  const panel = document.getElementById('infoPanel');
+  if (panel.classList.contains('collapsed')) {
+    toggleInfoPanel();
+  }
+}
+
+function showMemorialPanel() {
+  const title = document.getElementById('infoPanelTitle');
+  const body = document.getElementById('infoPanelBody');
+
+  title.textContent = 'Henry Hubbell — Memorial';
+  title.style.color = '#2D5F8A';
+
+  body.innerHTML = `
+    <div class="info-meta">
+      <strong>Killed in Action</strong><br>
+      Battle of Antietam, September 17, 1862<br>
+      Sharpsburg, Maryland
+    </div>
+    <div class="info-excerpt">"The 34th New York suffered 150 casualties out of 311 engaged — a 48.2% loss rate, among the highest of any Union regiment that day."</div>
+    <div class="info-source">
+      ${linkifyCitation("Dyer's Compendium, 34th NY Infantry")} ·
+      ${linkifyCitation("NPS: Antietam National Battlefield")}
+    </div>
+    <div class="info-section">
+      <h4>Henry's Service</h4>
+      <div class="info-recent-item"><span class="date">1861-06-15</span> Mustered in at Albany, NY</div>
+      <div class="info-recent-item"><span class="date">1861-07</span> Seneca Mills, MD — picketing the Potomac</div>
+      <div class="info-recent-item"><span class="date">1862-04</span> Peninsula Campaign — Yorktown to Fair Oaks</div>
+      <div class="info-recent-item"><span class="date">1862-06</span> Seven Days Battles — retreat to Harrison's Landing</div>
+      <div class="info-recent-item"><span class="date">1862-09-14</span> Crampton's Gap — storming South Mountain</div>
+      <div class="info-recent-item"><span class="date">1862-09-17</span> <strong style="color:#8B3A3A">Killed at Antietam</strong></div>
+    </div>
+  `;
+
+  const panel = document.getElementById('infoPanel');
+  if (panel.classList.contains('collapsed')) toggleInfoPanel();
+}
+
+// ============================================================
+// CITATION LINKER
+// ============================================================
+function linkifyCitation(text) {
+  let result = text;
+  // Sort keys by length (longest first) to avoid partial matches
+  const keys = Object.keys(SOURCE_URLS).sort((a, b) => b.length - a.length);
+  for (const key of keys) {
+    if (result.includes(key)) {
+      result = result.replace(key, `<a href="${SOURCE_URLS[key]}" target="_blank" rel="noopener">${key}</a>`);
+      break; // Only link the first/most specific match per citation
+    }
+  }
+  return result;
+}
+
+// ============================================================
+// EVENT FEED
+// ============================================================
+function updateEventFeed(currentDateStr) {
+  const recent = DATA.events.filter(e => e.date <= currentDateStr)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 8);
+
+  const container = document.getElementById('eventFeedContent');
+  if (recent.length === 0) {
+    container.innerHTML = '<div style="font-size:0.75rem;color:#9B9B9B;font-style:italic">No events yet</div>';
+    return;
+  }
+
+  container.innerHTML = recent.map(e => {
+    const cls = e.type === 'battle' ? 'event-battle' : '';
+    return `<div class="event-item"><span class="event-date">${e.date}</span> <span class="${cls}">${e.label}</span></div>`;
+  }).join('');
+}
+
+// ============================================================
+// NARRATIVE CAPTIONS
+// ============================================================
+const NARRATIVES = [
+  { start: '1861-06-15', end: '1861-07-10', text: 'Henry musters into the 34th New York — the first Hubbell to go' },
+  { start: '1861-07-21', end: '1861-07-25', text: 'Henry hears the guns of Bull Run from Washington' },
+  { start: '1861-07-28', end: '1861-08-05', text: 'The 34th NY moves to Seneca Mills — picketing 17 miles of the Potomac' },
+  { start: '1861-09-15', end: '1861-10-01', text: 'Alexander enlists in the 60th New York at Ogdensburg' },
+  { start: '1862-02-05', end: '1862-02-15', text: 'Henry moves to Harpers Ferry — the war draws closer' },
+  { start: '1862-04-05', end: '1862-04-25', text: 'The Peninsula Campaign: Henry besieges Yorktown' },
+  { start: '1862-05-31', end: '1862-06-05', text: 'Battle of Fair Oaks — Henry in the thick of it' },
+  { start: '1862-06-25', end: '1862-07-02', text: 'The Seven Days: fighting and retreating toward the James River' },
+  { start: '1862-08-15', end: '1862-08-25', text: 'Henry marches north — the Peninsula is abandoned. Antietam awaits.' },
+  { start: '1862-09-01', end: '1862-09-12', text: 'Charles enlists in the 153rd New York' },
+  { start: '1862-09-14', end: '1862-09-14', text: 'Crampton\'s Gap — the 34th NY storms South Mountain' },
+  { start: '1862-09-15', end: '1862-09-20', text: 'Antietam — the bloodiest single day. Henry is killed. 48% of the 34th NY falls.' },
+  { start: '1862-12-13', end: '1862-12-16', text: 'Fredericksburg — a disastrous assault across the Rappahannock' },
+  { start: '1863-01-20', end: '1863-01-24', text: 'The Mud March — Burnside\'s army mired in Virginia clay' },
+  { start: '1863-05-01', end: '1863-05-06', text: 'Chancellorsville. Alexander\'s 60th NY sees heavy fighting.' },
+  { start: '1863-07-01', end: '1863-07-05', text: 'Gettysburg. Alexander is there. The tide turns.' },
+  { start: '1863-10-01', end: '1863-10-15', text: 'Alexander heads west by rail — to Tennessee, a different war entirely' },
+  { start: '1863-10-28', end: '1863-10-30', text: 'Night battle at Wauhatchie — the 60th NY secures the Cracker Line' },
+  { start: '1863-11-23', end: '1863-11-30', text: 'Lookout Mountain and Missionary Ridge — Alexander fights above the clouds' },
+  { start: '1864-03-01', end: '1864-03-10', text: 'Charles reaches Louisiana. Alexander in Alabama. A thousand miles apart.' },
+  { start: '1864-04-08', end: '1864-04-10', text: 'Sabine Cross Roads and Pleasant Hill — the 153rd NY bloodied in Louisiana' },
+  { start: '1864-05-06', end: '1864-05-12', text: 'Sherman begins the March — Alexander advances into Georgia' },
+  { start: '1864-07-12', end: '1864-07-14', text: 'Early raids Washington! The 153rd NY arrives from Louisiana just in time.' },
+  { start: '1864-07-20', end: '1864-07-25', text: 'The gates of Atlanta. Alexander in the trenches.' },
+  { start: '1864-09-19', end: '1864-09-22', text: 'Winchester and Fisher\'s Hill — Sheridan routs Early in the Shenandoah' },
+  { start: '1864-10-19', end: '1864-10-25', text: 'Cedar Creek — surprise attack, then Sheridan\'s famous counterattack. The 153rd loses 81 men.' },
+  { start: '1864-12-15', end: '1864-12-20', text: 'Nashville. Alexander\'s last major battle.' },
+  { start: '1865-04-09', end: '1865-04-12', text: 'Lee surrenders at Appomattox. After four years, it is over.' },
+  { start: '1865-05-23', end: '1865-05-25', text: 'The Grand Review — the armies march through Washington one last time' },
+  { start: '1865-06-15', end: '1865-07-01', text: 'The brothers begin the long journey home.' },
+  { start: '1865-07-27', end: '1865-08-01', text: 'Alexander musters out at Ogdensburg — where it all began.' },
+];
+
+function updateNarrative(currentDateStr) {
+  const caption = document.getElementById('narrativeCaption');
+  const active = NARRATIVES.find(n => currentDateStr >= n.start && currentDateStr <= n.end);
+  if (active) {
+    caption.textContent = active.text;
+    caption.classList.add('visible');
+  } else {
+    caption.classList.remove('visible');
+  }
+}
+
+// ============================================================
+// CONTROLS
+// ============================================================
+function scrubTimeline(val) {
+  if (!DATA || !map) return; // Guard against pre-init slider interaction
+  updateToDate(parseInt(val));
+}
+
+function recenterMap() {
+  updateToDate(currentDay); // Re-triggers fitBounds
+}
+
+function toggleInfoPanel() {
+  const panel = document.getElementById('infoPanel');
+  const btn = document.getElementById('infoToggle');
+  panel.classList.toggle('collapsed');
+  btn.innerHTML = panel.classList.contains('collapsed') ? '&#9654; Info' : '&#9664; Info';
+}
+
+// ============================================================
+// KEYBOARD SHORTCUTS
+// ============================================================
+function handleKeyboard(e) {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+  switch (e.key) {
+    case 'ArrowRight':
+      e.preventDefault();
+      currentDay = Math.min(currentDay + 1, TOTAL_DAYS);
+      updateToDate(currentDay);
+      break;
+    case 'ArrowLeft':
+      e.preventDefault();
+      currentDay = Math.max(currentDay - 1, 0);
+      updateToDate(currentDay);
+      break;
+  }
+}
+
+// ============================================================
+// STATUS PANEL CLICK → FLY TO BROTHER
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  init();
+
+  document.querySelectorAll('.status-panel').forEach(panel => {
+    panel.addEventListener('click', () => {
+      const brotherId = panel.dataset.brother;
+      const currentDateStr = dateStr(dayToDate(currentDay));
+
+      // Henry after KIA → fly to memorial
+      if (brotherId === 'henry' && currentDateStr >= '1862-09-17') {
+        map.flyTo([39.4747, -77.7447], 10, { duration: 0.6 });
+        showMemorialPanel();
+        return;
+      }
+
+      const movements = DATA.movements.filter(m => m.brother === brotherId && m.date <= currentDateStr);
+      if (movements.length > 0) {
+        const latest = movements[movements.length - 1];
+        map.flyTo([latest.lat, latest.lon], 9, { duration: 0.6 });
+        showInfoPanel(latest, brotherId);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

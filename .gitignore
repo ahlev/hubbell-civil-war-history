@@ -1,0 +1,17 @@
+# Screenshots (development artifacts)
+*.png
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tasks (local workflow)
+tasks/
+
+# Tool artifacts
+.claude/
+.playwright-mcp/
