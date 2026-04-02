@@ -55,10 +55,13 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 
 .highlights{max-width:1000px;margin:0 auto 36px;padding:0 24px}
 .highlights h2{font-size:1.45rem;margin-bottom:14px;text-align:center}
-.highlight-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:12px}
+.highlight-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:12px;cursor:pointer;transition:transform 0.15s, box-shadow 0.15s}
+.highlight-card:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.06)}
 .highlight-card .hq{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.93rem;color:var(--text);line-height:1.7;margin-bottom:8px}
 .highlight-card .hm{font-size:0.79rem;color:var(--text-mid)}
 .highlight-card .hm strong{color:var(--text)}
+.highlight-card .h-cite{cursor:pointer}
+.highlight-card .h-cite:hover{text-decoration:underline}
 
 .timeline-section{max-width:1200px;margin:0 auto 36px;padding:0 24px}
 .timeline-section h2{font-size:1.45rem;margin-bottom:4px;text-align:center}
@@ -122,6 +125,17 @@ table.ref-table tr{cursor:pointer}
 .source-context .src-text{font-family:'Source Serif 4',serif;font-size:0.88rem;line-height:1.8;color:var(--text)}
 .source-context .src-cite{font-size:0.72rem;color:var(--text-light);margin-top:8px;font-style:italic}
 
+.dp-full-letter{background:var(--bg);border-radius:8px;padding:14px;margin-top:12px;font-family:'Source Serif 4',serif;font-size:0.88rem;line-height:1.8;color:var(--text);white-space:pre-wrap;max-height:300px;overflow-y:auto;border:1px solid var(--border-light)}
+.dp-full-letter .hl-money{font-weight:700;background:rgba(255,220,100,0.25);padding:1px 2px;border-radius:2px}
+.dp-section-label{font-size:0.78rem;font-weight:600;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.5px;margin:14px 0 6px}
+.dp-other-refs{margin-top:8px}
+.dp-other-ref{display:flex;justify-content:space-between;align-items:center;padding:5px 8px;font-size:0.79rem;border-bottom:1px solid var(--border-light);cursor:pointer;border-radius:4px;transition:background 0.1s}
+.dp-other-ref:hover{background:var(--border-light)}
+.dp-other-ref:last-child{border-bottom:none}
+
+.stat-line.clickable{cursor:pointer;border-radius:4px;padding:3px 4px;transition:background 0.1s}
+.stat-line.clickable:hover{background:var(--border-light)}
+
 .hero .caveat{font-size:0.76rem;color:var(--text-light);margin-top:6px;font-style:italic;max-width:600px;margin-left:auto;margin-right:auto}
 .hero .stat-sub{font-size:0.7rem;color:var(--text-light);margin-top:2px}
 
@@ -180,7 +194,6 @@ table.ref-table tr{cursor:pointer}
 <nav class="viz-nav">
   <span class="viz-nav-label">Explore:</span>
   <a href="hubbell-dashboard.html" class="viz-nav-link">Parallel Lives</a>
-  <a href="viz-emotional-arcs.html" class="viz-nav-link">Emotional Arcs</a>
   <a href="viz-map-fullwar.html" class="viz-nav-link">Map That Moves</a>
   <a href="viz-health-ledger.html" class="viz-nav-link">Health Ledger</a>
   <a href="viz-money-story.html" class="viz-nav-link active">Money Story</a>
@@ -411,16 +424,19 @@ function trunc(s, n) { return s.length > n ? s.substring(0, n) + '...' : s; }
 
 /* ===== HERO STATS ===== */
 function renderHero() {
-  var letters = new Set(allRefs.map(function(r){ return r.letterId; })).size;
-  var withAmt = allRefs.filter(function(r){ return r.amount > 0; });
-  var keywordOnly = allRefs.filter(function(r){ return r.confidence === 'keyword'; });
+  var refs = filtered();
+  var letters = new Set(refs.map(function(r){ return r.letterId; })).size;
+  var withAmt = refs.filter(function(r){ return r.amount > 0; });
+  var keywordOnly = refs.filter(function(r){ return r.confidence === 'keyword'; });
   var total = withAmt.reduce(function(s, r){ return s + r.amount; }, 0);
   var el = document.getElementById('heroStats');
+  var isFiltered = activeAuthors.size < 4 || activeCategories.size < 7;
+  var filterNote = isFiltered ? ' <span style="font-size:0.68rem;color:var(--text-light)">(filtered)</span>' : '';
   el.innerHTML =
-    '<div class="stat"><span class="num">' + letters + '</span><span class="lbl">Letters with financial refs</span></div>' +
+    '<div class="stat"><span class="num">' + letters + '</span><span class="lbl">Letters with financial refs' + filterNote + '</span></div>' +
     '<div class="stat"><span class="num">' + withAmt.length + '</span><span class="lbl">Dollar amounts referenced</span>' +
       '<div class="stat-sub">+ ' + keywordOnly.length + ' keyword-only mentions</div></div>' +
-    '<div class="stat"><span class="num">$' + total.toFixed(2) + '</span><span class="lbl">Dollar amounts referenced in letters</span></div>' +
+    '<div class="stat"><span class="num">$' + total.toFixed(2) + '</span><span class="lbl">Total dollars cited</span></div>' +
     '<div class="stat"><span class="num">$' + toModernDollars(total, 1862).toLocaleString() + '</span><span class="lbl">In 2024 dollars <span style="font-size:0.62rem">(BLS CPI est.)</span></span></div>';
   document.getElementById('heroCaveat').textContent = 'Some amounts are calculations or hypotheticals, not confirmed transactions. Modern equivalents based on Bureau of Labor Statistics CPI data.';
 }
@@ -472,76 +488,110 @@ function renderCards() {
   var grid = document.getElementById('cardsGrid');
   var names = {henry:'Henry Hubbell',alexander:'Alexander F. Hubbell',james:'James Hubbell',charles:'Charles Hubbell'};
   var units = {henry:'Co. D, 34th NY Infantry',alexander:'Co. H, 60th NY Infantry',james:'West Point / 153rd NY',charles:'Co. I, 153rd NY Volunteers'};
+  var filt = filtered();
   var html = '';
   ['henry','alexander','james','charles'].forEach(function(b) {
-    var bRefs = allRefs.filter(function(r){ return r.author === b; });
+    var bRefs = filt.filter(function(r){ return r.author === b; });
     var bLetterTotal = RAW_LETTERS.filter(function(l){ return l.a === b; }).length;
     var withAmt = bRefs.filter(function(r){ return r.amount > 0; });
     var total = withAmt.reduce(function(s, r){ return s + r.amount; }, 0);
-    var bycat = {};
-    bRefs.forEach(function(r) { bycat[r.category] = (bycat[r.category] || 0) + r.amount; });
     var letterCt = new Set(bRefs.map(function(r){ return r.letterId; })).size;
+    var dimmed = !activeAuthors.has(b) ? ' style="opacity:0.35"' : '';
 
-    html += '<div class="brother-card ' + b + '">' +
+    html += '<div class="brother-card ' + b + '"' + dimmed + '>' +
       '<div class="bname ' + b + '">' + names[b] + '</div>' +
       '<div style="font-size:0.73rem;color:var(--text-light);margin-bottom:8px">' + units[b] + '</div>';
     if (bRefs.length === 0) {
-      html += '<div style="font-size:0.82rem;color:var(--text-light);font-style:italic;padding:8px 0">No financial references in ' + bLetterTotal + ' surviving letter' + (bLetterTotal !== 1 ? 's' : '') + '.</div>';
+      html += '<div style="font-size:0.82rem;color:var(--text-light);font-style:italic;padding:8px 0">' +
+        (activeAuthors.has(b) ? 'No matching references' + (activeCategories.size < 7 ? ' in selected categories' : '') + '.' : 'Filtered out.') +
+        '</div>';
     } else {
       html += '<div class="stat-line"><span class="sl">Letters with $ refs</span><span class="sv">' + letterCt + '</span></div>' +
         '<div class="stat-line"><span class="sl">Total references</span><span class="sv">' + bRefs.length + '</span></div>' +
         '<div class="stat-line"><span class="sl">Total dollars cited</span><span class="sv">$' + total.toFixed(2) + ' <small>(~$' + toModernDollars(total, 1862).toLocaleString() + ' today)</small></span></div>';
-      ['PAY','REMITTANCE','EXPENSE','BOUNTY','REQUEST','DEBT'].forEach(function(c) {
+      ['PAY','REMITTANCE','EXPENSE','BOUNTY','REQUEST','DEBT','GENERAL'].forEach(function(c) {
         var catRefs = bRefs.filter(function(r){ return r.category === c; });
         if (catRefs.length > 0) {
           var catTotal = catRefs.reduce(function(s,r){ return s + r.amount; }, 0);
-          html += '<div class="stat-line"><span class="sl"><span class="cat-badge cat-' + c + '">' + c + '</span></span><span class="sv">' +
-            catRefs.length + (catRefs.length === 1 ? ' ref' : ' refs') + (catTotal > 0 ? ', $' + catTotal.toFixed(2) : '') + '</span></div>';
+          html += '<div class="stat-line clickable" data-author="' + b + '" data-cat="' + c + '"><span class="sl"><span class="cat-badge cat-' + c + '">' + (CAT_LABELS[c] || c) + '</span></span><span class="sv">' +
+            catRefs.length + (catRefs.length === 1 ? ' ref' : ' refs') + (catTotal > 0 ? ', $' + catTotal.toFixed(2) : '') + ' &#8250;</span></div>';
         }
       });
     }
     html += '</div>';
   });
   grid.innerHTML = html;
+
+  // Clickable category stat lines → open first matching ref in detail
+  grid.querySelectorAll('.stat-line.clickable').forEach(function(line) {
+    line.addEventListener('click', function() {
+      var author = this.dataset.author;
+      var cat = this.dataset.cat;
+      var matching = filt.filter(function(r) { return r.author === author && r.category === cat; });
+      if (matching.length === 1) {
+        showDetail(matching[0]);
+      } else if (matching.length > 1) {
+        showCategoryDetail(author, cat, matching);
+      }
+    });
+  });
 }
 
 /* ===== HIGHLIGHTS ===== */
+var HIGHLIGHTS = [
+  {
+    q: 'I will give you an account of what I have spent since I have been in the army: Sutler &mdash; $5.00, Luther &mdash; $3.00, Washing &mdash; 40&cent;, Ayes &mdash; 50&cent;... That is every cent I have spent or loaned in six months. I should not have spent a cent at the sutler&rsquo;s if the rations had been sufficient but they were not.',
+    m: '<strong style="color:var(--alexander)">Alexander</strong> itemizing every penny spent or loaned in six months of service &mdash; totaling roughly $10. A vivid accounting of a private soldier\'s tiny economy.',
+    date: 'May 1, 1862',
+    lid: 'LTR-1862-05-01',
+    author: 'alexander',
+    highlight: 'what I have spent since I have been in the army'
+  },
+  {
+    q: 'I hope when you write you will let me know whether you received that money, was eight dollars... he said it would cost me twelve dollars, thought it would not pay. If I had known it would have cost only five dollars I would have gone. I know you will need the money at home.',
+    m: '<strong style="color:var(--henry)">Henry</strong>, in his very first letter from Washington. Already calculating whether a $5 vs. $12 trip home was worth it, while sending $8 to his widowed mother.',
+    date: 'June 6, 1861',
+    lid: 'LTR-1861-06-06-001',
+    author: 'henry',
+    highlight: 'whether you received that money'
+  },
+  {
+    q: 'If you would send me one dollar I should like it... I want to get a shirt washed. &mdash; <em>Later:</em> You need not send any money now, till I write.',
+    m: '<strong style="color:var(--henry)">Henry</strong> asks Frances for $1 for laundry, then cancels the request in a hasty postscript as the Union defeat at Bull Run changes everything.',
+    date: 'July 21, 1861',
+    lid: 'LTR-1861-07-21',
+    author: 'henry',
+    highlight: 'send me one dollar'
+  },
+  {
+    q: 'You know, Mother, what it is to be away from home, sick among strangers and to be without money. I will not try to describe my feelings when I ask for this... We shall have four months pay due us the first of Nov. ($52) and I shall be able to return it to you ten fold. Do you suppose you could spare me five dollars, if not, less will do.',
+    m: '<strong style="color:var(--alexander)">Alexander</strong>, writing from the hospital at Harpers Ferry. The government owes him $52 in back pay but he must beg his mother for $5 to survive. The gap between what was promised and what was delivered.',
+    date: 'September 27, 1862',
+    lid: 'LTR-1862-09-27',
+    author: 'alexander',
+    highlight: 'to be without money'
+  }
+];
+
 function renderHighlights() {
   var el = document.getElementById('highlightsList');
-  var highlights = [
-    {
-      q: 'I will give you an account of what I have spent since I have been in the army: Sutler &mdash; $5.00, Luther &mdash; $3.00, Washing &mdash; 40&cent;, Ayes &mdash; 50&cent;... That is every cent I have spent or loaned in six months. I should not have spent a cent at the sutler&rsquo;s if the rations had been sufficient but they were not.',
-      m: '<strong style="color:var(--alexander)">Alexander</strong> itemizing every penny spent or loaned in six months of service &mdash; totaling roughly $10. A vivid accounting of a private soldier\'s tiny economy.',
-      date: 'May 1, 1862',
-      lid: 'LTR-1862-05-01'
-    },
-    {
-      q: 'I hope when you write you will let me know whether you received that money, was eight dollars... he said it would cost me twelve dollars, thought it would not pay. If I had known it would have cost only five dollars I would have gone. I know you will need the money at home.',
-      m: '<strong style="color:var(--henry)">Henry</strong>, in his very first letter from Washington. Already calculating whether a $5 vs. $12 trip home was worth it, while sending $8 to his widowed mother.',
-      date: 'June 6, 1861',
-      lid: 'LTR-1861-06-06-001'
-    },
-    {
-      q: 'If you would send me one dollar I should like it... I want to get a shirt washed. &mdash; <em>Later:</em> You need not send any money now, till I write.',
-      m: '<strong style="color:var(--henry)">Henry</strong> asks Frances for $1 for laundry, then cancels the request in a hasty postscript as the Union defeat at Bull Run changes everything.',
-      date: 'July 21, 1861',
-      lid: 'LTR-1861-07-21'
-    },
-    {
-      q: 'You know, Mother, what it is to be away from home, sick among strangers and to be without money. I will not try to describe my feelings when I ask for this... We shall have four months pay due us the first of Nov. ($52) and I shall be able to return it to you ten fold. Do you suppose you could spare me five dollars, if not, less will do.',
-      m: '<strong style="color:var(--alexander)">Alexander</strong>, writing from the hospital at Harpers Ferry. The government owes him $52 in back pay but he must beg his mother for $5 to survive. The gap between what was promised and what was delivered.',
-      date: 'September 27, 1862',
-      lid: 'LTR-1862-09-27'
-    }
-  ];
   var html = '';
-  highlights.forEach(function(h) {
-    html += '<div class="highlight-card">' +
+  HIGHLIGHTS.forEach(function(h, idx) {
+    var visible = activeAuthors.has(h.author);
+    html += '<div class="highlight-card" data-hidx="' + idx + '"' + (visible ? '' : ' style="display:none"') + '>' +
       '<div class="h-cite">' + h.date + ' &mdash; ' + h.lid + '</div>' +
       '<div class="hq">&ldquo;' + h.q + '&rdquo;</div>' +
       '<div class="hm">' + h.m + '</div></div>';
   });
   el.innerHTML = html;
+
+  // Make highlight cards clickable → open source letter
+  el.querySelectorAll('.highlight-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      var h = HIGHLIGHTS[parseInt(this.dataset.hidx)];
+      openLetterDetail(h.lid, h.highlight);
+    });
+  });
 }
 
 /* ===== TIMELINE ===== */
@@ -703,41 +753,147 @@ document.addEventListener('mousemove', function(e) {
 });
 
 /* ===== DETAIL PANEL ===== */
-function showDetail(ref) {
+function showDetail(ref, sourceHighlight) {
   var overlay = document.getElementById('detailOverlay');
   var panel = document.getElementById('detailPanel');
   var modern = ref.amount > 0 ? '~$' + toModernDollars(ref.amount, ref.date).toLocaleString() + ' in 2024 dollars' : '';
   var confLabel = CONF_LABELS[ref.confidence] || ref.confidence;
   var confClass = 'conf-' + (ref.confidence || 'explicit');
-  // Find best paragraph
+
+  // Find best paragraph for context
   var paras = ref.fullText.split(/\n\n+/);
   var bestPara = ref.context;
   var snip = ref.context.replace(/^\.\.\./, '').replace(/\.\.\.$/, '').trim().substring(0, 40);
   paras.forEach(function(p) { if (p.indexOf(snip.substring(0, 28)) !== -1) bestPara = p; });
 
-  // Highlight dollar amounts in context for source display
+  // Highlight dollar amounts in context
   var highlightedContext = esc(ref.context).replace(/(\$\d+(?:\.\d{1,2})?)/g, '<strong style="color:' + COLORS[ref.author] + '">$1</strong>');
-  // Also highlight written-out dollar amounts
   highlightedContext = highlightedContext.replace(/(\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred)\s+dollars?)/gi, '<strong style="color:' + COLORS[ref.author] + '">$1</strong>');
+
+  // Other financial refs in the same letter
+  var sameLetterRefs = allRefs.filter(function(r) { return r.letterId === ref.letterId && r !== ref; });
+  var otherRefsHtml = '';
+  if (sameLetterRefs.length > 0) {
+    otherRefsHtml = '<div class="dp-section-label">Other financial refs in this letter</div><div class="dp-other-refs">';
+    sameLetterRefs.forEach(function(r, i) {
+      otherRefsHtml += '<div class="dp-other-ref" data-same-idx="' + i + '">' +
+        '<span><span class="cat-badge cat-' + r.category + '">' + (CAT_LABELS[r.category] || r.category) + '</span> ' +
+        esc(trunc(r.context, 80)) + '</span>' +
+        (r.amount > 0 ? '<span style="font-weight:600;color:' + COLORS[r.author] + '">$' + r.amount.toFixed(2) + '</span>' : '') +
+        '</div>';
+    });
+    otherRefsHtml += '</div>';
+  }
+
+  // Full letter text with financial keywords highlighted
+  var fullLetterHtml = '';
+  if (ref.fullText) {
+    var letterBody = esc(ref.fullText);
+    // Highlight dollar amounts
+    letterBody = letterBody.replace(/(\$\d+(?:\.\d{1,2})?)/g, '<span class="hl-money">$1</span>');
+    letterBody = letterBody.replace(/(\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred)\s+dollars?)/gi, '<span class="hl-money">$1</span>');
+    // Highlight source phrase if provided
+    if (sourceHighlight) {
+      var srcEsc = esc(sourceHighlight).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      letterBody = letterBody.replace(new RegExp('(' + srcEsc + ')', 'i'), '<span class="hl-money" style="background:rgba(255,180,50,0.35)">$1</span>');
+    }
+    fullLetterHtml = '<div class="dp-section-label">Full Letter</div><div class="dp-full-letter">' + letterBody + '</div>';
+  }
 
   panel.innerHTML =
     '<button class="dp-close" onclick="closeDetail()">&times;</button>' +
     '<h3 style="color:' + COLORS[ref.author] + '">' + esc(ref.authorName) + ' to ' + esc(ref.recipient) + '</h3>' +
-    '<div class="dp-meta">' + esc(ref.date) + ' &mdash; ' + esc(ref.location) + '</div>' +
+    '<div class="dp-meta">' + esc(ref.date) + ' &mdash; ' + esc(ref.location) + '<br>' +
+      '<span style="color:var(--text-light);font-size:0.72rem">' + esc(ref.letterId) + '</span></div>' +
     (ref.amount > 0 ? '<div class="dp-amount" style="color:' + COLORS[ref.author] + '">$' + ref.amount.toFixed(2) + '</div>' : '') +
     (modern ? '<div class="dp-modern">' + modern + '</div>' : '') +
     '<div style="display:flex;gap:6px;align-items:center;margin-bottom:14px">' +
       '<span class="cat-badge cat-' + ref.category + '">' + (CAT_LABELS[ref.category] || ref.category) + '</span>' +
       '<span class="conf-badge ' + confClass + '">' + confLabel + '</span>' +
     '</div>' +
-    '<div class="dp-context">' + esc(bestPara).replace(/\n/g, '<br>') + '</div>' +
-    '<div class="source-context">' +
-      '<h4>\uD83D\uDCDC Source Context</h4>' +
+    (ref.context ? '<div class="source-context" style="margin-top:0">' +
+      '<h4>Source Context</h4>' +
       '<div class="src-text">' + highlightedContext + '</div>' +
-      '<div class="src-cite">Letter ' + esc(ref.letterId) + ' &mdash; ' + esc(ref.date) + ', ' + esc(ref.authorName) + ' to ' + esc(ref.recipient) + '</div>' +
-    '</div>';
+    '</div>' : '') +
+    otherRefsHtml +
+    fullLetterHtml;
+
   overlay.classList.add('show');
+
+  // Wire up other-ref clicks
+  panel.querySelectorAll('.dp-other-ref').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.stopPropagation();
+      showDetail(sameLetterRefs[parseInt(this.dataset.sameIdx)]);
+    });
+  });
+
+  // Scroll to source highlight if present
+  if (sourceHighlight) {
+    setTimeout(function() {
+      var hl = panel.querySelector('.dp-full-letter .hl-money[style]');
+      if (hl) hl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }
 }
+
+// Open detail panel for a letter by ID (from highlights or narratives)
+function openLetterDetail(letterId, highlightText) {
+  // Find the first financial ref matching this letter ID
+  var ref = allRefs.find(function(r) { return r.letterId === letterId; });
+  if (!ref) {
+    // Try partial match (some highlight lids lack the -001 suffix)
+    ref = allRefs.find(function(r) { return r.letterId.indexOf(letterId) === 0; });
+  }
+  if (!ref) {
+    // No financial ref — build a minimal ref from RAW_LETTERS
+    var letter = RAW_LETTERS.find(function(l) { return l.id === letterId || l.id.indexOf(letterId) === 0; });
+    if (!letter) return;
+    ref = {
+      letterId: letter.id, date: letter.d, author: letter.a, authorName: letter.n,
+      recipient: letter.r, location: letter.loc, amount: 0, context: '',
+      category: 'GENERAL', fullText: letter.t, confidence: 'keyword'
+    };
+  }
+  showDetail(ref, highlightText);
+}
+
+// Show a category detail panel listing multiple refs
+function showCategoryDetail(author, cat, refs) {
+  var overlay = document.getElementById('detailOverlay');
+  var panel = document.getElementById('detailPanel');
+  var names = {henry:'Henry Hubbell',alexander:'Alexander F. Hubbell',james:'James Hubbell',charles:'Charles Hubbell'};
+  var total = refs.reduce(function(s, r) { return s + r.amount; }, 0);
+  var modern = total > 0 ? '~$' + toModernDollars(total, 1862).toLocaleString() + ' in 2024' : '';
+
+  var refsHtml = '';
+  refs.forEach(function(r, i) {
+    refsHtml += '<div class="dp-other-ref" data-cat-idx="' + i + '">' +
+      '<span style="flex:1"><strong>' + esc(r.date) + '</strong> &mdash; ' + esc(trunc(r.context, 90)) + '</span>' +
+      (r.amount > 0 ? '<span style="font-weight:600;white-space:nowrap;color:' + COLORS[r.author] + '">$' + r.amount.toFixed(2) + '</span>' : '') +
+      '</div>';
+  });
+
+  panel.innerHTML =
+    '<button class="dp-close" onclick="closeDetail()">&times;</button>' +
+    '<h3 style="color:' + COLORS[author] + '">' + esc(names[author] || author) + '</h3>' +
+    '<div style="display:flex;gap:8px;align-items:center;margin-bottom:12px">' +
+      '<span class="cat-badge cat-' + cat + '" style="font-size:0.8rem;padding:4px 12px">' + (CAT_LABELS[cat] || cat) + '</span>' +
+      '<span style="font-size:0.85rem;color:var(--text-mid)">' + refs.length + ' references' + (total > 0 ? ', $' + total.toFixed(2) + (modern ? ' (' + modern + ')' : '') : '') + '</span>' +
+    '</div>' +
+    '<div class="dp-other-refs">' + refsHtml + '</div>';
+
+  overlay.classList.add('show');
+
+  // Wire up individual ref clicks
+  panel.querySelectorAll('.dp-other-ref').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.stopPropagation();
+      showDetail(refs[parseInt(this.dataset.catIdx)]);
+    });
+  });
+}
+
 function closeDetail() { document.getElementById('detailOverlay').classList.remove('show'); }
 document.getElementById('detailOverlay').addEventListener('click', function(e) {
   if (e.target === e.currentTarget) closeDetail();
@@ -746,7 +902,10 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
 
 /* ===== RENDER ===== */
 function renderFiltered() {
+  renderHero();
   renderControls();
+  renderCards();
+  renderHighlights();
   renderTimeline();
   renderTable();
 }

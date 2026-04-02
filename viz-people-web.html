@@ -439,6 +439,145 @@ body {
   margin-bottom: 1em;
 }
 
+/* ---- Link & Explore ---- */
+#link-explore-btn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 50;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid #E8E4DF;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.25s, transform 0.25s, background 0.15s, border-color 0.15s;
+}
+#link-explore-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+#link-explore-btn:hover {
+  background: #FFFFFF;
+  border-color: #2D5F8A;
+}
+#link-explore-btn .link-btn-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2D5F8A;
+}
+#link-explore-btn .link-btn-sub {
+  font-size: 10px;
+  color: #9B9B9B;
+  margin-top: 2px;
+}
+#link-explore-btn.active {
+  background: #2D5F8A;
+  border-color: #2D5F8A;
+}
+#link-explore-btn.active .link-btn-label { color: #FFFFFF; }
+#link-explore-btn.active .link-btn-sub { color: rgba(255,255,255,0.7); }
+#link-explore-btn.active:hover { background: #3A7AB5; }
+
+/* Link panel header with clickable names */
+.link-header-names {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.link-header-name {
+  cursor: pointer;
+  color: #2D5F8A;
+  text-decoration: none;
+  transition: color 0.15s;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+.link-header-name:hover {
+  color: #1A3D5C;
+  text-decoration: underline;
+}
+.link-header-sep {
+  color: #C8C4BF;
+  font-size: 14px;
+}
+.link-summary {
+  font-size: 12px;
+  color: #6B6B6B;
+  line-height: 1.6;
+  margin: 8px 0 12px;
+  padding: 10px 12px;
+  background: rgba(45,95,138,0.04);
+  border-radius: 6px;
+  border-left: 3px solid #2D5F8A;
+}
+.link-summary strong { color: #2C2C2C; }
+
+/* Excerpt cards */
+.excerpt-card {
+  padding: 12px 10px;
+  border-bottom: 1px solid #F0ECE7;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.excerpt-card:hover { background: rgba(45,95,138,0.04); }
+.excerpt-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+.excerpt-type {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.excerpt-type.correspondent {
+  background: rgba(45,95,138,0.12);
+  color: #2D5F8A;
+}
+.excerpt-type.mentioned {
+  background: rgba(107,107,107,0.12);
+  color: #6B6B6B;
+}
+.excerpt-text {
+  font-family: 'Source Serif 4', 'Playfair Display', serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #4A4A4A;
+  margin: 6px 0;
+  padding-left: 8px;
+  border-left: 2px solid #E8E4DF;
+}
+.excerpt-text mark {
+  background: rgba(184,134,11,0.18);
+  color: inherit;
+  padding: 0 1px;
+  border-radius: 2px;
+}
+.excerpt-view-link {
+  font-size: 11px;
+  color: #6B8FAD;
+  float: right;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.excerpt-card:hover .excerpt-view-link { opacity: 1; }
+
 /* ---- Canvas area ---- */
 #canvas-wrap {
   flex: 1;
@@ -914,7 +1053,6 @@ canvas.grabbing {
   <nav class="viz-nav">
     <span class="viz-nav-label">Explore:</span>
     <a href="hubbell-dashboard.html" class="viz-nav-link">Parallel Lives</a>
-    <a href="viz-emotional-arcs.html" class="viz-nav-link">Emotional Arcs</a>
     <a href="viz-map-fullwar.html" class="viz-nav-link">Map That Moves</a>
     <a href="viz-health-ledger.html" class="viz-nav-link">Health Ledger</a>
     <a href="viz-money-story.html" class="viz-nav-link">Money Story</a>
@@ -970,6 +1108,10 @@ canvas.grabbing {
   </div>
   <div id="canvas-wrap">
     <button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar">&#9776;</button>
+    <button id="link-explore-btn" onclick="toggleLinkMode()">
+      <div class="link-btn-label">Link &amp; Explore</div>
+      <div class="link-btn-sub">Select a second node</div>
+    </button>
     <canvas id="graph"></canvas>
     <div id="stats-bar"></div>
     <div id="controls">
@@ -1381,6 +1523,11 @@ let dragging = false, dragNode = null, hoverNode = null, selectedNode = null;
 let lastMouse = { x: 0, y: 0 };
 let mouseDownPos = { x: 0, y: 0 };
 let isPanning = false;
+// Link & Explore state
+let linkMode = false;       // waiting for second node pick
+let linkSourceNode = null;  // index of first selected node
+let linkedPair = null;      // {a: idx, b: idx} when two nodes are linked
+let linkPulsePhase = 0;     // animation phase for edge pulse
 let simRunning = true;
 let simAlpha = 1.0;
 let frameCount = 0;
@@ -1621,10 +1768,32 @@ function draw() {
 
   const highlightSet = new Set();
   const highlightEdges = new Set();
+  let linkEdgeIdx = -1; // direct edge between linked pair, for pulse animation
   const focusNode = hoverNode !== null ? hoverNode : selectedNode;
 
-  // Add all search matches to highlight set
-  if (searchQuery && searchMatchSet.size > 0) {
+  // Linked pair mode: highlight both nodes + their shared connections
+  if (linkedPair) {
+    highlightSet.add(linkedPair.a);
+    highlightSet.add(linkedPair.b);
+    for (let i = 0; i < edges.length; i++) {
+      const e = edges[i];
+      const touchesA = e.source === linkedPair.a || e.target === linkedPair.a;
+      const touchesB = e.source === linkedPair.b || e.target === linkedPair.b;
+      // Direct edge between the pair
+      if (touchesA && touchesB) {
+        highlightEdges.add(i);
+        linkEdgeIdx = i;
+      }
+      // Edges to either node (secondary highlight)
+      if (touchesA || touchesB) {
+        highlightEdges.add(i);
+        highlightSet.add(e.source);
+        highlightSet.add(e.target);
+      }
+    }
+    linkPulsePhase += 0.03;
+  } else if (searchQuery && searchMatchSet.size > 0) {
+    // Add all search matches to highlight set
     for (const idx of searchMatchSet) {
       highlightSet.add(idx);
       for (let i = 0; i < edges.length; i++) {
@@ -1634,6 +1803,17 @@ function draw() {
           highlightSet.add(e.target);
           highlightEdges.add(i);
         }
+      }
+    }
+  } else if (linkMode && linkSourceNode !== null) {
+    // Link mode: highlight source node and its connections, waiting for pick
+    highlightSet.add(linkSourceNode);
+    for (let i = 0; i < edges.length; i++) {
+      const e = edges[i];
+      if (e.source === linkSourceNode || e.target === linkSourceNode) {
+        highlightSet.add(e.source);
+        highlightSet.add(e.target);
+        highlightEdges.add(i);
       }
     }
   } else if (focusNode !== null) {
@@ -1664,9 +1844,24 @@ function draw() {
     ctx.moveTo(a.x, a.y);
     ctx.lineTo(b.x, b.y);
 
+    const isLinkEdge = (i === linkEdgeIdx);
+
     if (dimmed) {
       ctx.strokeStyle = 'rgba(200,195,188,0.08)';
       ctx.lineWidth = 0.5;
+    } else if (isLinkEdge) {
+      // Pulsing golden dashed line for the direct link edge
+      const pulse = 0.5 + 0.5 * Math.sin(linkPulsePhase);
+      ctx.save();
+      ctx.strokeStyle = `rgba(184,134,11,${0.5 + pulse * 0.4})`;
+      ctx.lineWidth = 3 + pulse * 2;
+      ctx.setLineDash([8, 5]);
+      ctx.lineDashOffset = -linkPulsePhase * 20;
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+      // Skip normal stroke for this edge
+      continue;
     } else if (highlighted) {
       if (e.isBrotherEdge) {
         ctx.strokeStyle = hexToRgba(BROTHER_COLORS[e.brotherKey], 0.7);
@@ -1701,7 +1896,16 @@ function draw() {
       ctx.fill();
     } else {
       // Glow for highlighted
-      if (highlighted && !node.isBrother) {
+      const isLinkedNode = linkedPair && (i === linkedPair.a || i === linkedPair.b);
+      if (isLinkedNode) {
+        // Enhanced glow for linked pair nodes
+        ctx.save();
+        ctx.shadowColor = '#B8860B';
+        ctx.shadowBlur = 18;
+        ctx.fillStyle = node.color;
+        ctx.fill();
+        ctx.restore();
+      } else if (highlighted && !node.isBrother) {
         ctx.save();
         ctx.shadowColor = node.color;
         ctx.shadowBlur = 12;
@@ -1961,7 +2165,7 @@ canvas.addEventListener('mouseup', (e) => {
     }
     isPanning = false;
     canvas.classList.remove('grabbing');
-    canvas.style.cursor = 'grab';
+    canvas.style.cursor = linkMode ? 'crosshair' : 'grab';
   }
 });
 
@@ -2055,11 +2259,24 @@ function hideTooltip() {
 
 // Selection detail
 function selectNode(idx) {
+  // Link mode: second click completes the link
+  if (linkMode && linkSourceNode !== null) {
+    completeLinkMode(idx);
+    return;
+  }
+
   if (selectedNode === idx) {
     selectedNode = null;
     closeDetail();
     return;
   }
+
+  // Clear any existing linked pair
+  if (linkedPair) {
+    linkedPair = null;
+    linkPulsePhase = 0;
+  }
+
   selectedNode = idx;
   const node = nodes[idx];
   if (node.isBrother) {
@@ -2067,6 +2284,7 @@ function selectNode(idx) {
   } else {
     showPersonDetail(node);
   }
+  updateLinkButton();
 }
 
 function showPersonDetail(node) {
@@ -2084,7 +2302,11 @@ function showPersonDetail(node) {
   const letters = node.letters || [];
   const sorted = [...letters].sort((a, b) => a.date.localeCompare(b.date));
 
-  let html = `<div class="pw-mentions-title">Mentioned in ${sorted.length} letter${sorted.length !== 1 ? 's' : ''}</div>`;
+  const nodeIdx = nodes.indexOf(node);
+  let html = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+    <div class="pw-mentions-title" style="margin:0">Mentioned in ${sorted.length} letter${sorted.length !== 1 ? 's' : ''}</div>
+    <button class="detail-link-btn" data-link-source="${nodeIdx}" style="background:none;border:1px solid #2D5F8A;border-radius:4px;padding:3px 8px;font-size:11px;color:#2D5F8A;cursor:pointer;font-family:Inter,sans-serif">Link &amp; Explore</button>
+  </div>`;
 
   // Mentioned by brothers — chips
   const authorEntries = Object.entries(node.authors || {}).filter(([a]) => BROTHER_NAMES[a]).sort((a, b) => b[1] - a[1]);
@@ -2126,6 +2348,24 @@ function showPersonDetail(node) {
   document.getElementById('detail-mentions').innerHTML = html;
   panel.classList.add('visible');
   attachLetterClickHandlers(panel);
+
+  // Wire in-panel Link & Explore button
+  const linkBtn = panel.querySelector('.detail-link-btn');
+  if (linkBtn) {
+    linkBtn.addEventListener('click', () => {
+      const srcIdx = parseInt(linkBtn.dataset.linkSource);
+      if (!isNaN(srcIdx)) {
+        // Hide panel without full closeDetail (which would cancel link mode)
+        document.getElementById('detail-panel').classList.remove('visible');
+        selectedNode = srcIdx;
+        linkSourceNode = srcIdx;
+        linkMode = true;
+        linkedPair = null;
+        canvas.style.cursor = 'crosshair';
+        updateLinkButton();
+      }
+    });
+  }
 }
 
 function showPersonDetailByName(name) {
@@ -2225,7 +2465,11 @@ function showBrotherDetail(node) {
   }
   peopleMentioned.sort((a, b) => b.count - a.count);
 
-  let html = `<div class="pw-mentions-title">${peopleMentioned.length} people mentioned across ${RAW_LETTERS.filter(l => l.author === key).length} letters</div>`;
+  const brotherIdx = nodes.indexOf(node);
+  let html = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+    <div class="pw-mentions-title" style="margin:0">${peopleMentioned.length} people mentioned across ${RAW_LETTERS.filter(l => l.author === key).length} letters</div>
+    <button class="detail-link-btn" data-link-source="${brotherIdx}" style="background:none;border:1px solid #2D5F8A;border-radius:4px;padding:3px 8px;font-size:11px;color:#2D5F8A;cursor:pointer;font-family:Inter,sans-serif">Link &amp; Explore</button>
+  </div>`;
   for (const p of peopleMentioned.slice(0, 20)) {
     html += `<div class="pw-mention stat-row clickable" data-person-name="${p.name}"><span class="name">${p.name}</span> <span class="count">${p.count}×</span></div>`;
   }
@@ -2242,11 +2486,285 @@ function showBrotherDetail(node) {
       showPersonDetailByName(el.dataset.personName);
     });
   });
+
+  // Wire in-panel Link & Explore button
+  const linkBtn = panel.querySelector('.detail-link-btn');
+  if (linkBtn) {
+    linkBtn.addEventListener('click', () => {
+      const srcIdx = parseInt(linkBtn.dataset.linkSource);
+      if (!isNaN(srcIdx)) {
+        // Hide panel without full closeDetail (which would cancel link mode)
+        document.getElementById('detail-panel').classList.remove('visible');
+        selectedNode = srcIdx;
+        linkSourceNode = srcIdx;
+        linkMode = true;
+        linkedPair = null;
+        canvas.style.cursor = 'crosshair';
+        updateLinkButton();
+      }
+    });
+  }
 }
 
 function closeDetail() {
   document.getElementById('detail-panel').classList.remove('visible');
   selectedNode = null;
+  cancelLinkMode();
+}
+
+// ============================================================
+// LINK & EXPLORE
+// ============================================================
+function updateLinkButton() {
+  const btn = document.getElementById('link-explore-btn');
+  if (linkMode) {
+    btn.classList.add('visible', 'active');
+    btn.querySelector('.link-btn-sub').textContent = 'Click a node to link...';
+  } else if (selectedNode !== null && !linkedPair) {
+    btn.classList.add('visible');
+    btn.classList.remove('active');
+    btn.querySelector('.link-btn-sub').textContent = 'Select a second node';
+  } else {
+    btn.classList.remove('visible', 'active');
+  }
+}
+
+function toggleLinkMode() {
+  if (linkMode) {
+    cancelLinkMode();
+  } else if (selectedNode !== null) {
+    linkMode = true;
+    linkSourceNode = selectedNode;
+    canvas.style.cursor = 'crosshair';
+    updateLinkButton();
+  }
+}
+
+function cancelLinkMode() {
+  linkMode = false;
+  linkSourceNode = null;
+  linkedPair = null;
+  linkPulsePhase = 0;
+  canvas.style.cursor = 'grab';
+  updateLinkButton();
+}
+
+function completeLinkMode(targetIdx) {
+  if (targetIdx === linkSourceNode) return; // can't link to self
+  linkMode = false;
+  linkedPair = { a: linkSourceNode, b: targetIdx };
+  selectedNode = null;
+  canvas.style.cursor = 'grab';
+  document.getElementById('link-explore-btn').classList.remove('visible', 'active');
+  showLinkedPairDetail(linkedPair.a, linkedPair.b);
+}
+
+function getNameAliases(canonName) {
+  const SKIP_WORDS = new Set(['hubbell', 'mrs', 'gen', 'capt', 'lieut', 'colonel', 'uncle', 'aunt', 'cousin']);
+  const aliases = new Set();
+  aliases.add(canonName.toLowerCase());
+  const rev = REVERSE_MERGE_MAP[canonName];
+  if (rev) for (const a of rev) aliases.add(a.toLowerCase());
+  // Also add individual words for multi-word names (e.g. "Frances" from "Frances Hubbell")
+  const parts = canonName.toLowerCase().split(/\s+/);
+  if (parts.length > 1) for (const p of parts) {
+    if (p.length > 3 && !SKIP_WORDS.has(p)) aliases.add(p);
+  }
+  return aliases;
+}
+
+function extractExcerpts(transcription, personName) {
+  if (!transcription) return [];
+  const TITLE_ONLY = new Set(['capt', 'capt.', 'captain', 'lieut', 'lieut.', 'lieutenant', 'lt.', 'gen', 'gen.', 'general', 'col', 'col.', 'colonel', 'mrs', 'mrs.', 'mr', 'mr.', 'miss']);
+  const aliases = [...getNameAliases(personName)].filter(a => a.length >= 3 && !TITLE_ONLY.has(a));
+  const paragraphs = transcription.split(/\n\n+/);
+  const matches = [];
+  for (const raw of paragraphs) {
+    const p = raw.replace(/\n/g, ' ').trim();
+    if (!p) continue;
+    const pLower = p.toLowerCase();
+    for (const alias of aliases) {
+      if (pLower.includes(alias)) {
+        matches.push(p);
+        break;
+      }
+    }
+    if (matches.length >= 3) break; // max 3 excerpts per letter
+  }
+  return matches;
+}
+
+function highlightName(text, personName) {
+  const TITLE_ONLY = new Set(['capt', 'capt.', 'captain', 'lieut', 'lieut.', 'lieutenant', 'lt.', 'gen', 'gen.', 'general', 'col', 'col.', 'colonel', 'mrs', 'mrs.', 'mr', 'mr.', 'miss']);
+  const aliases = getNameAliases(personName);
+  let result = escapeHtml(text);
+  // Sort longer aliases first so "Capt. Ransom" matches before bare "Ransom"
+  const sorted = [...aliases].filter(a => a.length >= 3 && !TITLE_ONLY.has(a)).sort((a, b) => b.length - a.length);
+  for (const alias of sorted) {
+    const regex = new RegExp('(' + alias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    result = result.replace(regex, '<mark>$1</mark>');
+  }
+  return result;
+}
+
+function buildRelationshipSummary(nodeA, nodeB, sharedLetters) {
+  const parts = [];
+
+  // Categories
+  const catA = nodeA.isBrother ? 'Brother' : (nodeA.category || 'Unknown');
+  const catB = nodeB.isBrother ? 'Brother' : (nodeB.category || 'Unknown');
+  parts.push(`<strong>${nodeA.id}</strong> (${catA}) and <strong>${nodeB.id}</strong> (${catB})`);
+
+  // Shared roles — deduplicated from shared letters
+  const rolesA = new Set(), rolesB = new Set();
+  for (const l of sharedLetters) {
+    if (!l.people) continue;
+    for (const p of l.people) {
+      const cn = getCanonName(p.name);
+      if (cn === nodeA.id && p.role) rolesA.add(p.role);
+      if (cn === nodeB.id && p.role) rolesB.add(p.role);
+    }
+  }
+  if (rolesA.size > 0 || rolesB.size > 0) {
+    const roleStr = [];
+    if (rolesA.size > 0) roleStr.push(`${nodeA.id}: ${[...rolesA].slice(0, 2).join(', ')}`);
+    if (rolesB.size > 0) roleStr.push(`${nodeB.id}: ${[...rolesB].slice(0, 2).join(', ')}`);
+    parts.push(roleStr.join(' · '));
+  }
+
+  // Date range
+  if (sharedLetters.length > 0) {
+    const first = sharedLetters[0].date, last = sharedLetters[sharedLetters.length - 1].date;
+    parts.push(`Mentioned together in ${sharedLetters.length} letter${sharedLetters.length !== 1 ? 's' : ''}, ${formatDate(first)} – ${formatDate(last)}`);
+  }
+
+  // Which brothers connect them
+  const brotherSet = new Set();
+  for (const l of sharedLetters) brotherSet.add(l.authorName || l.author);
+  if (brotherSet.size > 0) parts.push('Via: ' + [...brotherSet].join(', '));
+
+  return parts.join('<br>');
+}
+
+async function showLinkedPairDetail(idxA, idxB) {
+  const nodeA = nodes[idxA], nodeB = nodes[idxB];
+  const panel = document.getElementById('detail-panel');
+  const nameA = nodeA.id, nameB = nodeB.id;
+
+  // Header: clickable names
+  document.getElementById('detail-name').innerHTML =
+    `<div class="link-header-names">
+      <span class="link-header-name" data-link-person="a">${escapeHtml(nameA)}</span>
+      <span class="link-header-sep">↔</span>
+      <span class="link-header-name" data-link-person="b">${escapeHtml(nameB)}</span>
+    </div>`;
+
+  // Wire header name clicks
+  panel.querySelector('[data-link-person="a"]').addEventListener('click', () => {
+    linkedPair = null; linkPulsePhase = 0;
+    selectedNode = idxA;
+    if (nodeA.isBrother) showBrotherDetail(nodeA); else showPersonDetail(nodeA);
+    updateLinkButton();
+  });
+  panel.querySelector('[data-link-person="b"]').addEventListener('click', () => {
+    linkedPair = null; linkPulsePhase = 0;
+    selectedNode = idxB;
+    if (nodeB.isBrother) showBrotherDetail(nodeB); else showPersonDetail(nodeB);
+    updateLinkButton();
+  });
+
+  document.getElementById('detail-role').textContent = '';
+
+  // Find shared letters (where both appear)
+  const sharedLetters = [];
+  const seen = new Set();
+  RAW_LETTERS.forEach(letter => {
+    if (!letter.people) return;
+    const pNames = letter.people.map(p => getCanonName(p.name));
+    const hasA = pNames.includes(nameA) || (nodeA.isBrother && letter.author === nodeA.brotherKey);
+    const hasB = pNames.includes(nameB) || (nodeB.isBrother && letter.author === nodeB.brotherKey);
+    // Also check recipient for correspondence detection
+    const recipCanon = getCanonName(letter.recipient);
+    const hasARecip = recipCanon === nameA;
+    const hasBRecip = recipCanon === nameB;
+    if ((hasA || hasARecip) && (hasB || hasBRecip) && !seen.has(letter.id)) {
+      seen.add(letter.id);
+      sharedLetters.push(letter);
+    }
+  });
+  sharedLetters.sort((a, b) => a.date.localeCompare(b.date));
+
+  // Relationship summary
+  let html = `<div class="link-summary">${buildRelationshipSummary(nodeA, nodeB, sharedLetters)}</div>`;
+
+  // Mini timeline of shared letters
+  if (sharedLetters.length > 0) {
+    html += '<div class="detail-timeline-wrap">' + buildMiniTimeline(sharedLetters) + '</div>';
+  }
+
+  html += `<div class="pw-mentions-title">${sharedLetters.length} letter${sharedLetters.length !== 1 ? 's' : ''} connecting them</div>`;
+
+  // Await transcription data
+  if (!lettersLoaded) await lettersPromise;
+
+  // Build excerpt cards
+  for (const l of sharedLetters) {
+    const color = BROTHER_COLORS[l.author] || '#9B9B9B';
+    const authorFirst = l.authorName || l.author;
+
+    // Determine relationship type for this letter
+    const authorCanon = nodeA.isBrother && l.author === nodeA.brotherKey ? nameA :
+                        nodeB.isBrother && l.author === nodeB.brotherKey ? nameB : null;
+    const recipCanon = getCanonName(l.recipient);
+    const isCorrespondence = (authorCanon === nameA && recipCanon === nameB) ||
+                             (authorCanon === nameB && recipCanon === nameA);
+    const typeLabel = isCorrespondence ? 'Correspondent' : 'Mentioned';
+    const typeClass = isCorrespondence ? 'correspondent' : 'mentioned';
+
+    // Extract relevant excerpts from transcription
+    const full = FULL_LETTERS[l.id];
+    const searchName = nodeA.isBrother ? nameB : (nodeB.isBrother ? nameA :
+      // For two non-brothers, search for both
+      null);
+
+    let excerptHtml = '';
+    if (full && full.transcription) {
+      let excerpts = [];
+      if (searchName) {
+        excerpts = extractExcerpts(full.transcription, searchName);
+      } else {
+        // Two non-brothers: search for both, deduplicate
+        const exA = extractExcerpts(full.transcription, nameA);
+        const exB = extractExcerpts(full.transcription, nameB);
+        const combined = new Set([...exA, ...exB]);
+        excerpts = [...combined].slice(0, 3);
+      }
+      for (const ex of excerpts) {
+        const highlighted = searchName ? highlightName(ex, searchName) :
+          highlightName(highlightName(ex, nameA), nameB);
+        excerptHtml += `<div class="excerpt-text">${highlighted}</div>`;
+      }
+    }
+
+    html += `<div class="excerpt-card" data-letter-id="${l.id}">
+      <span class="excerpt-view-link">View full letter ›</span>
+      <div class="excerpt-meta">
+        <span class="excerpt-type ${typeClass}">${typeLabel}</span>
+        <span class="mention-date">${formatDate(l.date)}</span> —
+        <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${authorFirst}</span>
+        <span class="mention-to">to ${l.recipient}</span>
+      </div>
+      ${excerptHtml}
+    </div>`;
+  }
+
+  document.getElementById('detail-mentions').innerHTML = html;
+  panel.classList.add('visible');
+
+  // Wire excerpt card clicks to letter overlay
+  panel.querySelectorAll('.excerpt-card[data-letter-id]').forEach(el => {
+    el.addEventListener('click', () => openLetterOverlay(el.dataset.letterId));
+  });
 }
 
 function formatDate(d) {
@@ -2335,6 +2853,11 @@ document.addEventListener('keydown', (e) => {
     const overlay = document.getElementById('letterOverlay');
     if (overlay.classList.contains('visible')) {
       closeLetterOverlay();
+      e.stopPropagation();
+    } else if (linkMode || linkedPair) {
+      cancelLinkMode();
+      document.getElementById('detail-panel').classList.remove('visible');
+      selectedNode = null;
       e.stopPropagation();
     }
   }

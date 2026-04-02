@@ -613,6 +613,7 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.25);
   cursor: pointer;
   white-space: nowrap;
+  text-align: center;
   animation: badge-pulse 2s infinite;
 }
 @keyframes badge-pulse {
@@ -743,7 +744,6 @@ body {
 <nav class="viz-nav">
   <span class="viz-nav-label">Explore:</span>
   <a href="hubbell-dashboard.html" class="viz-nav-link">Parallel Lives</a>
-  <a href="viz-emotional-arcs.html" class="viz-nav-link">Emotional Arcs</a>
   <a href="viz-map-fullwar.html" class="viz-nav-link active">Map That Moves</a>
   <a href="viz-health-ledger.html" class="viz-nav-link">Health Ledger</a>
   <a href="viz-money-story.html" class="viz-nav-link">Money Story</a>
@@ -1126,7 +1126,11 @@ function updateToDate(day) {
       });
       const badge = L.marker([letter.lat, letter.lon], { icon: badgeIcon, zIndexOffset: 2000 })
         .on('click', () => {
-          showInfoPanel(letter, brotherId);
+          if (letter.letterId && letter.transcription) {
+            openLetterOverlay(letter.letterId, brotherId);
+          } else {
+            showInfoPanel(letter, brotherId);
+          }
         })
         .addTo(markerLayers[brotherId]);
       newLetterMarkers.push(badge);
