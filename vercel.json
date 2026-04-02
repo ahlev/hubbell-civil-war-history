@@ -1,5 +1,10 @@
 {
+  "buildCommand": "",
+  "outputDirectory": ".",
   "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/hubbell-dashboard.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
