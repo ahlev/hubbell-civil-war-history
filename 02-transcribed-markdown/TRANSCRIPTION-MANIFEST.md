@@ -353,8 +353,8 @@ See `other-documents/README.md` for the full provenance narrative and wayfinding
 | ID | Output File | Source | Status | Enrichment Value |
 |----|-------------|--------|--------|-----------------|
 | M01 | `M01-muster-roll-60th-ny.md` | `60thInf_NYSV_MusterRoll-Hubbell highlighted.pdf` | **COMPLETE** | Names, ranks, dates — cross-ref against letters |
-| M02 | — | `A. F. Hubbell - Civil War Pension File.pdf` | **PENDING OCR** | Wounds, service dates, post-war disability claims |
-| M03 | — | `A.F. Hubbell Civil War record N. Archive.pdf` | **PENDING OCR** | Official National Archive service record |
+| M02 | `M02-pension-file.md` | `A. F. Hubbell - Civil War Pension File.pdf` | **COMPLETE** | Pension index card — confirms death Dec 7, 1894, App #710,072, Cert #658,842 |
+| M03 | `M03-national-archive-record.md` | `A.F. Hubbell Civil War record N. Archive.pdf` | **COMPLETE** | General Index Card — Corp'l. Sgt., Co. H, 60 N.Y. Infantry |
 | M04 | — | `HUBBELL - Fred. A Hubbell WWII Discharge.pdf` | **SKIP** | WWII-era, not Civil War relevant |
 
 ### Regimental History (`other-documents/regimental-history/`)
@@ -379,21 +379,21 @@ See `other-documents/README.md` for the full provenance narrative and wayfinding
 | G02 | — | `A. F. HUBBELL - lineage notes.doc` | **SKIP** | Word version of G01 |
 | G03 | `G03-emilys-line.md` | `A. F. HUBBELL - Emily's line - GOOD!.pdf` | **COMPLETE** | Core genealogy: Frederick Augustus → Alexander Hubbell Levitt |
 | G04 | — | `A. F. HUBBELL - Emily's line - GOOD!.docx` | **PENDING** | 78MB Word file — may contain richer content than PDF |
-| G05 | — | `A.F. Hubbell's LIFE DETAILS - GOOD!.pdf` | **PENDING** | Biographical article, 10+ pages — HIGH enrichment value |
-| G06 | — | `A.F. Hubbell's LIFE DETAILS - GOOD!.docx` | **PENDING** | Word source for G05 |
+| G05 | `G05-life-details.md` | `A.F. Hubbell's LIFE DETAILS - GOOD!.pdf` | **COMPLETE** | Published biography from Flickinger's Pioneer History — gravestone photo, portraits (Alexander, Lois, Mother), full military & post-war narrative, 6 children confirmed (incl. Julia d.1859) |
+| G06 | — | `A.F. Hubbell's LIFE DETAILS - GOOD!.docx` | **SKIP** | Word source for G05 (PDF already fully transcribed) |
 | G07 | — | `Hubbell - GENEALOGY 1628-1889.pdf` | **PENDING OCR** | Published genealogy excerpt, scanned |
 | G08 | — | `HUBBELL GENEAOLOGY - 9 Generations.pdf` | **PENDING OCR** | 9-generation chart, scanned |
 | G10 | `G10-genealogy-notes.md` | `Hubbell genology notes.doc` | **COMPLETE** | CRITICAL: Resolves death date (1894, not 1899) |
 | G13 | — | `Emily - BIRTH CERTIFICATE 1953.pdf` | **SKIP** | Not Civil War era |
-| G14 | — | `HUBBELL - Wolcott ltr - 4 brothers regiments.pdf` | **PENDING OCR** | KEY: Confirms regiment assignments for Henry, James, Charles |
-| G15 | — | `HUBBELL - Wolcott ltr - Iowa info 1869.pdf` | **PENDING OCR** | Post-war relocation, ties to Dover Township |
+| G14 | `G14-wolcott-ltr-regiments.md` | `HUBBELL - Wolcott ltr - 4 brothers regiments.pdf` | **COMPLETE** | 1971 letter from Wolcott (Alexander's son) — all 4 brothers' regiments, family photos, pension numbers |
+| G15 | `G15-wolcott-ltr-iowa.md` | `HUBBELL - Wolcott ltr - Iowa info 1869.pdf` | **COMPLETE** | 1962 letter — Iowa settlement 1869-70, Presbyterian church, Frances in Iowa, Civil War letters meta-question |
 | G16 | — | `HUBBELL - Wolcott ltr copy.pdf` | **SKIP** | Duplicate of G14 |
 
 ### Wood Family (`other-documents/wood-family/`)
 
 | ID | Output File | Source | Status | Notes |
 |----|-------------|--------|--------|-------|
-| W01 | — | `HUBBELL - Lois Wood memorial - life info.pdf` | **PENDING OCR** | 9-page memorial/obituary — HIGH value |
+| W01 | `W01-lois-wood-memorial.md` | `HUBBELL - Lois Wood memorial - life info.pdf` | **COMPLETE** | 1928 memorial pamphlet — Lois's full life timeline, mother's maiden name (Keyser), children's WWI service |
 | W02 | `W02-wood-family-iowa-judith.md` | `WOOD family Iowa from Judith V. Wood.docx` | **COMPLETE** | Judith V. Wood ROOTS-L email (1997) |
 | W03 | — | `WOOD.doc` | **PENDING** | Wood family notes |
 | W04 | — | `Wood - Abraham Wood - Last Will & Testament.html` | **SKIP** | HTML version; W06 docx already transcribed |
@@ -416,16 +416,25 @@ See `other-documents/README.md` for the full provenance narrative and wayfinding
 
 | Status | Count | Details |
 |--------|-------|---------|
-| **COMPLETE** | 15 | 1 intro + 1 military + 5 regimental + 3 genealogy + 3 wood + 3 local |
-| **PENDING OCR** | 5 | M02, M03, G07, G08, G14, G15, W01 |
-| **PENDING (text extract)** | 4 | G04, G05/G06, R07, W03 |
-| **SKIP** | 12 | Duplicates, non-CW era, redundant formats |
+| **COMPLETE** | 21 | 1 intro + 3 military + 5 regimental + 6 genealogy + 4 wood + 3 local |
+| **PENDING OCR** | 2 | G07 (published genealogy 1628-1889), G08 (9-gen chart) |
+| **PENDING (text extract)** | 2 | G04 (78MB DOCX), R07 (webarchive), W03 (Wood notes) |
+| **SKIP** | 13 | Duplicates, non-CW era, redundant formats |
 
-### Tier 1 Priority Queue (highest enrichment value — process next)
+### Tier 1 — COMPLETE (all processed 2026-03-31)
 
-1. **M02** — Pension File (validates wounds, service dates, post-war disability)
-2. **M03** — National Archive Record (official service confirmation)
-3. **G14** — Wolcott letter: 4 brothers' regiment assignments
-4. **G15** — Wolcott letter: Iowa 1869 relocation
-5. **G05/G06** — Life Details biographical article
-6. **W01** — Lois Wood memorial (9 pages, OCR needed)
+All six Tier 1 priority items have been transcribed:
+1. **M02** — Pension index card: death Dec 7 1894, App #710,072, Cert #658,842
+2. **M03** — National Archives General Index Card: Corp'l. Sgt., Co. H, 60 NY
+3. **G14** — 1971 Wolcott letter: all 4 brothers' regiments, family photos, family rift
+4. **G15** — 1962 Wolcott letter: Iowa settlement, Frances in Iowa, Civil War letters meta-history
+5. **G05** — Flickinger biography: portraits, military narrative, 6 children (incl. Julia d.1859), post-war career
+6. **W01** — Lois Wood memorial: full life timeline 1857-1927, mother's maiden name (Keyser), children's WWI service
+
+### Tier 2 Remaining Queue (process when needed)
+
+1. **G07** — Published genealogy 1628-1889 (OCR needed, 3 pages)
+2. **G08** — 9-generation chart (OCR needed, 4 pages)
+3. **G04** — Emily's line DOCX (78MB Word file — may contain richer content than G03 PDF)
+4. **R07** — Gen. Greene at Culp's Hill webarchive (special format)
+5. **W03** — Wood family notes (DOC format)

@@ -1,0 +1,986 @@
+[
+  {
+    "doc_id": "LTR-1863-01-02-001",
+    "verified_people": [
+      {
+        "name": "Mrs. Turners",
+        "role": "Neighbor — Mr. Savage sold lots near her property",
+        "confidence": "stated",
+        "basis": "Transcription: 'Mr. Savage has sold several lots at $500 an acre, just over Mrs. Turners.'"
+      }
+    ],
+    "verified_places": [],
+    "verified_flags": [],
+    "notes": "Rejected candidates — people: 'Fairfax Station Jan' (place+date), 'Reserve Grand Division' (military unit), 'Copeland'/'Ransom'/'Rye'/'Savage'/'Sigel'/'Slocum' (all already listed). Places: 'Aquia' (already listed as Aquia Creek), 'Fairfax' (already listed as Fairfax Station), 'Henry' (person). Battle flag: past-tense reference to Henry at Antietam, not combat described in this letter."
+  },
+  {
+    "doc_id": "LTR-1863-02-22-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Charlotte",
+        "identification": "Charlotte, NY — nearby town where relatives live",
+        "confidence": "stated",
+        "basis": "Transcription: 'Would not you both like to make a visit to Charlotte?'"
+      },
+      {
+        "name": "Fortress Monroe",
+        "identification": "Fortress Monroe, VA — Union military installation",
+        "confidence": "stated",
+        "basis": "Transcription: 'A. Douglas has gone to Fortress Monroe with some of our men as a guard'"
+      }
+    ],
+    "verified_flags": [
+      {
+        "flag": "Request for supplies/money",
+        "present": true,
+        "detail": "Wants $2 for boots — 'I wish you would send me two dollars as I want to buy a pair of boots'",
+        "confidence": "stated"
+      },
+      {
+        "flag": "Receipt of package/letter",
+        "present": true,
+        "detail": "Received Mother's letter of Feb. 9th, Tribune, and Observer",
+        "confidence": "stated"
+      }
+    ],
+    "notes": "Rejected people: 'Aquia Creek' (place), 'Armstrong' (already listed), 'High Mass' (not a person), 'Rich' (already listed), 'Uncle Sam' (idiom), 'Fortress Monroe' (place). Places: 'Aquia'/'Aquia Creek'/'High Mass' rejected."
+  },
+  {
+    "doc_id": "LTR-1863-02-28-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Champlain",
+        "identification": "Champlain, NY — Hubbell family hometown",
+        "confidence": "inferred",
+        "basis": "Referenced in context of home affairs"
+      }
+    ],
+    "verified_flags": [
+      {
+        "flag": "Request for supplies/money",
+        "present": true,
+        "detail": "Asks Mother to send another dollar",
+        "confidence": "stated"
+      }
+    ],
+    "notes": "Rejected: 'Miss Fannie' (Frances, already listed). 'Frenchman' not a place."
+  },
+  {
+    "doc_id": "LTR-1863-03-02-001",
+    "verified_people": [
+      {
+        "name": "Mrs. Burdick",
+        "role": "Champlain resident — Charles asks if Mother has called on her",
+        "confidence": "stated",
+        "basis": "Transcription: 'Have you called on Mrs. Burdick?'"
+      }
+    ],
+    "verified_places": [
+      {
+        "name": "Canada",
+        "identification": "Canada — boot buyer is from there",
+        "confidence": "stated",
+        "basis": "Transcription: 'This man is from Canada.'"
+      },
+      {
+        "name": "Plattsburgh",
+        "identification": "Plattsburgh, NY — nearby town",
+        "confidence": "stated",
+        "basis": "Transcription: 'I heard today that he was routed out of Plattsburgh.'"
+      }
+    ],
+    "verified_flags": [
+      {
+        "flag": "Request for supplies/money",
+        "present": true,
+        "detail": "Asks Mother to send Tribune newspaper",
+        "confidence": "stated"
+      },
+      {
+        "flag": "Receipt of package/letter",
+        "present": true,
+        "detail": "Received Mother's letter of Feb. 23, Observer; received letter from Uncle John",
+        "confidence": "stated"
+      },
+      {
+        "flag": "Political commentary",
+        "present": true,
+        "detail": "Uncle John is 'a strong democrat and a little sesesh'",
+        "confidence": "stated"
+      }
+    ],
+    "notes": "Rejected people: 'Armstrong'/'Rye' (already listed), 'Episcopal Church' (not a person). Mrs. Burdick is distinct from Lt. Burdick. Rejected places: 'Lieut' (rank), 'Uncle John' (person)."
+  },
+  {
+    "doc_id": "LTR-1863-03-12-001",
+    "verified_people": [
+      {
+        "name": "Brinkerhoff",
+        "role": "Champlain neighbor",
+        "confidence": "stated",
+        "basis": "Mentioned in letter transcription in context of home affairs"
+      }
+    ],
+    "verified_places": [
+      {
+        "name": "Charlotte",
+        "identification": "Charlotte, NY — nearby town where Aunt Laura lives",
+        "confidence": "stated",
+        "basis": "Transcription mentions Charlotte in context of Aunt Laura's letter"
+      }
+    ],
+    "verified_flags": [
+      {
+        "flag": "Request for supplies/money",
+        "present": true,
+        "detail": "Asks for $2 to buy boots — repeated request from weeks ago",
+        "confidence": "stated"
+      },
+      {
+        "flag": "Receipt of package/letter",
+        "present": true,
+        "detail": "Alex received letter from Aunt Laura",
+        "confidence": "stated"
+      },
+      {
+        "flag": "Promotion/demotion",
+        "present": true,
+        "detail": "Alexander is 3rd sergeant; when orderly promoted to Lieut., he will be 2nd sergeant",
+        "confidence": "stated"
+      }
+    ],
+    "notes": "Rejected: 'Ransom' (already listed), 'Aquia Creek Monday' (not a name). Places: 'Aunt Laura'/'Lieut' rejected."
+  },
+  {
+    "doc_id": "LTR-1863-03-16-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Champlain",
+        "identification": "Champlain, NY — Hubbell family hometown",
+        "confidence": "stated",
+        "basis": "Referenced as home location"
+      }
+    ],
+    "verified_flags": [
+      {
+        "flag": "Request for supplies/money",
+        "present": true,
+        "detail": "Asks for Albert Cook's address",
+        "confidence": "stated"
+      },
+      {
+        "flag": "Receipt of package/letter",
+        "present": true,
+        "detail": "Received letter from Capt. Ransom",
+        "confidence": "stated"
+      },
+      {
+        "flag": "Death reported",
+        "present": true,
+        "detail": "Dana Lyman's death — notice posted for Mrs. Hoyle",
+        "confidence": "stated"
+      }
+    ],
+    "notes": "Rejected people: 'Copeland'/'Hoyle'/'Miss Fannie' (all already listed), 'Simons' (already listed). Death reported flag genuinely missing from metadata."
+  },
+  {
+    "doc_id": "LTR-1863-03-19-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Champlain",
+        "identification": "Champlain, NY — Hubbell family hometown",
+        "confidence": "stated",
+        "basis": "Referenced as home location"
+      },
+      {
+        "name": "Plattsburgh",
+        "identification": "Plattsburgh, NY — nearby town",
+        "confidence": "stated",
+        "basis": "Mentioned in letter"
+      },
+      {
+        "name": "Vicksburg",
+        "identification": "Vicksburg, MS — Union siege referenced",
+        "confidence": "stated",
+        "basis": "Mentioned in context of war progress"
+      }
+    ],
+    "verified_flags": [
+      {
+        "flag": "Request for supplies/money",
+        "present": true,
+        "detail": "Asks for $2 immediately",
+        "confidence": "stated"
+      },
+      {
+        "flag": "Receipt of package/letter",
+        "present": true,
+        "detail": "Mother's letter of March 10th received; letter from Alex enclosed",
+        "confidence": "stated"
+      }
+    ],
+    "notes": "Rejected people: 'Fortress Monroe' (place), 'Rye' (already listed), 'Uncle Sam' (idiom)."
+  },
+  {
+    "doc_id": "LTR-1863-03-22-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "present": true,
+        "detail": "Received letter from Mother",
+        "confidence": "stated"
+      },
+      {
+        "flag": "Discharge/muster-out",
+        "present": true,
+        "detail": "Alexander hopes to come home in 90 days with 'an honorable discharge in my pocket'",
+        "confidence": "stated"
+      }
+    ],
+    "notes": "Rejected people: 'Copeland'/'Francis'/'Hoyle'/'Simons' (all already listed). Places: 'Aquia' (already listed), 'Mother' (person)."
+  },
+  {
+    "doc_id": "LTR-1863-03-29-001",
+    "verified_people": [
+      {
+        "name": "Clark",
+        "role": "Home aide — cares for horse and animals",
+        "confidence": "stated",
+        "basis": "Mentioned in context of home farm work"
+      }
+    ],
+    "verified_places": [
+      {
+        "name": "Baltimore",
+        "identification": "Baltimore, MD — loyal widow mentioned there",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      },
+      {
+        "name": "Rutland",
+        "identification": "Rutland, VT — tailor there",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      }
+    ],
+    "verified_flags": [
+      {
+        "flag": "Request for supplies/money",
+        "present": true,
+        "detail": "Out of stamps — asks Mother to send 2-3",
+        "confidence": "stated"
+      },
+      {
+        "flag": "Receipt of package/letter",
+        "present": true,
+        "detail": "Mother's letter of 20th received",
+        "confidence": "stated"
+      }
+    ],
+    "notes": "Rejected: 'Many' (not a person), 'Miss Fannie' (Frances, already listed)."
+  },
+  {
+    "doc_id": "LTR-1863-03-29-002",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Georgetown",
+        "identification": "Georgetown, D.C. — Mink and Cook stationed there",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      },
+      {
+        "name": "Champlain",
+        "identification": "Champlain, NY — hometown",
+        "confidence": "stated",
+        "basis": "Transcription: 'he heard from Champlain'"
+      },
+      {
+        "name": "Plattsburgh",
+        "identification": "Plattsburgh, NY — furlough destination",
+        "confidence": "stated",
+        "basis": "Transcription: 'One man from our Co. has had a furlough to go to Plattsburgh'"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Aquia Creek' (place), 'Coyt' (already listed as Dr. Coyt), 'Fort Lyons' (place), 'Uncle John' (already listed). Rejected places: 'Hooker'/'James' (persons), 'Lieut' (rank), 'Lyons' (part of Fort Lyons)."
+  },
+  {
+    "doc_id": "LTR-1863-04-11-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Canada",
+        "identification": "Canada — deserter fled there",
+        "confidence": "stated",
+        "basis": "Mentioned in context of desertion"
+      },
+      {
+        "name": "Plattsburgh",
+        "identification": "Plattsburgh, NY — furlough man gone there",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      },
+      {
+        "name": "Washington",
+        "identification": "Washington, D.C.",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Copeland'/'Rye' (already listed), 'Crea' (unclear), 'Uncle Sam' (idiom)."
+  },
+  {
+    "doc_id": "LTR-1863-04-13-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Charlotte",
+        "identification": "Charlotte, NY — relatives live there",
+        "confidence": "stated",
+        "basis": "Mentioned in context of visiting relatives"
+      },
+      {
+        "name": "Garrettstown",
+        "identification": "Garrettstown — site of rebel train capture",
+        "confidence": "stated",
+        "basis": "Rebel raid on 16 cars near Garrettstown mentioned in transcription"
+      },
+      {
+        "name": "Champlain",
+        "identification": "Champlain, NY — hometown",
+        "confidence": "stated",
+        "basis": "Mentioned in letter"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Cousin Charles' (recipient), 'Cousin Mary' (already listed as Mary McNeil), 'Uncle John' (already listed). Places: 'Charles'/'Lincoln' (persons)."
+  },
+  {
+    "doc_id": "LTR-1863-04-23-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Montreal",
+        "identification": "Montreal, QC — Alexander wants to visit after discharge",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected: 'Crimean War' (not a person), 'Master James' (James, already listed). Places: 'Aquia' (already listed), 'Luther' (person)."
+  },
+  {
+    "doc_id": "LTR-1863-04-27-001",
+    "verified_people": [
+      {
+        "name": "Abram Fry",
+        "role": "Witnessed/described Henry's grave headboard",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription as witness to Henry's burial/grave"
+      }
+    ],
+    "verified_places": [
+      {
+        "name": "Philadelphia",
+        "identification": "Philadelphia, PA — soldier in hospital there since Antietam",
+        "confidence": "stated",
+        "basis": "Transcription: 'has been in the hospital at Philadelphia ever since'"
+      }
+    ],
+    "verified_flags": [
+      {
+        "flag": "Request for supplies/money",
+        "present": true,
+        "detail": "Wants $2 for boots — repeated request",
+        "confidence": "stated"
+      }
+    ],
+    "notes": "Rejected: 'Aquia Landing' (already listed as place), 'Hoyle' (already listed). Places: 'Henry'/'Mary Mc'/'Sedgwick' (all persons)."
+  },
+  {
+    "doc_id": "LTR-1863-04-30-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Williamsburg",
+        "identification": "Williamsburg, VA — insane asylum; Mother fears Henry may be there",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription in context of insane asylum"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Williamsburg genuinely missing from places table."
+  },
+  {
+    "doc_id": "LTR-1863-05-04-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Richmond",
+        "identification": "Richmond, VA — Confederate capital; prisoners/Henry's fate discussed",
+        "confidence": "stated",
+        "basis": "Mentioned in context of prisoners and Henry"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Red River Battle' (not a person), 'Vitohoek' (unclear). Places: 'Henry'/'Ballerjy' (persons), 'Rouse' (may be Rouse's Point, already listed)."
+  },
+  {
+    "doc_id": "LTR-1863-05-16-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Chancellorsville",
+        "identification": "Chancellorsville, VA — battle site, May 3, 1863",
+        "confidence": "stated",
+        "basis": "Transcription: 'the battle of Chancellorsville in which my regiment was engaged'"
+      },
+      {
+        "name": "Champlain",
+        "identification": "Champlain, NY — hometown",
+        "confidence": "stated",
+        "basis": "Referenced in context of Champlain officers in Co. H"
+      }
+    ],
+    "verified_flags": [
+      {
+        "flag": "Request for supplies/money",
+        "present": true,
+        "detail": "Asked Mother to send a watch",
+        "confidence": "stated"
+      },
+      {
+        "flag": "Receipt of package/letter",
+        "present": true,
+        "detail": "Charles's letter of the 3rd received; letter from home received",
+        "confidence": "stated"
+      }
+    ],
+    "notes": "Rejected places: 'Aquia' (already listed), 'Hooker'/'Luther' (persons). Chancellorsville and Champlain genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1863-05-19-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Champlain",
+        "identification": "Champlain, NY — hometown",
+        "confidence": "stated",
+        "basis": "Mentioned in letter"
+      }
+    ],
+    "verified_flags": [
+      {
+        "flag": "Request for supplies/money",
+        "present": true,
+        "detail": "Asks Mother to send $11.20 of Alex's money by mail",
+        "confidence": "stated"
+      }
+    ],
+    "notes": "Rejected: 'Col'/'Strain' (rank/already listed). Places: 'Alexander'/'Captain' (person/rank). Promotion flag already marked 'yes' in existing metadata."
+  },
+  {
+    "doc_id": "LTR-1863-06-03-001",
+    "verified_people": [
+      {
+        "name": "Colonel Redington",
+        "role": "60th NY — singing at battle of Chancellorsville; 'a man of courage'",
+        "confidence": "stated",
+        "basis": "Transcription: 'In the last battle at Chancellor he was singing away at a rebel battery'"
+      }
+    ],
+    "verified_places": [
+      {
+        "name": "Champlain",
+        "identification": "Champlain, NY — hometown",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      },
+      {
+        "name": "Antietam",
+        "identification": "Antietam, MD — battle site referenced",
+        "confidence": "stated",
+        "basis": "Referenced in context of Henry's fate"
+      }
+    ],
+    "verified_flags": [
+      {
+        "flag": "Request for supplies/money",
+        "present": true,
+        "detail": "P.S. asks for stamps — 'Will you now and then send me a stamp?'",
+        "confidence": "stated"
+      }
+    ],
+    "notes": "Rejected people: 'Aquia Creek Landing' (place), 'Col' (rank), 'Miss Fannie' (Frances), 'Ransom' (already listed)."
+  },
+  {
+    "doc_id": "LTR-1863-06-10-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Charlotte",
+        "identification": "Charlotte, NY — M. Smith there; Mother and Frances should visit",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      },
+      {
+        "name": "Falmouth",
+        "identification": "Falmouth, VA — Luther's father visited there",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected: 'Fort Lyons' as person (it's a place, in Military References already). 'Lyons' is part of Fort Lyons."
+  },
+  {
+    "doc_id": "LTR-1863-07-06-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Charlotte",
+        "identification": "Charlotte, NY — Grandmother there; Frances visiting",
+        "confidence": "stated",
+        "basis": "Mentioned as destination"
+      },
+      {
+        "name": "Chicago",
+        "identification": "Chicago, IL — Silas considering emigration",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      },
+      {
+        "name": "Maryland",
+        "identification": "Maryland — army crossed into",
+        "confidence": "stated",
+        "basis": "Referenced in context of army movements"
+      },
+      {
+        "name": "Plattsburgh",
+        "identification": "Plattsburgh, NY — nearby town",
+        "confidence": "stated",
+        "basis": "Mentioned in letter"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Brink'/'Cynthia Bourns'/'Steais' (all already listed). Rejected places: 'David Savage'/'Grandmother'/'Henry' (all persons)."
+  },
+  {
+    "doc_id": "LTR-1863-07-20-001",
+    "verified_people": [
+      {
+        "name": "Gen. Slough",
+        "role": "Brigade commander at Alexandria; 153rd NY his 'band box regiment'",
+        "confidence": "stated",
+        "basis": "Transcription: 'The Gen. (Gen. Slough) says our regt. looks the best'"
+      }
+    ],
+    "verified_places": [
+      {
+        "name": "Alexandria",
+        "identification": "Alexandria, VA — Charles transferred there",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      },
+      {
+        "name": "Champlain",
+        "identification": "Champlain, NY — hometown",
+        "confidence": "stated",
+        "basis": "Mentioned in letter"
+      },
+      {
+        "name": "Charlotte",
+        "identification": "Charlotte, NY — relatives there",
+        "confidence": "stated",
+        "basis": "Mentioned in letter"
+      }
+    ],
+    "verified_flags": [
+      {
+        "flag": "Request for supplies/money",
+        "present": true,
+        "detail": "Asks Mother to send James's letters",
+        "confidence": "stated"
+      },
+      {
+        "flag": "Camp movement/march",
+        "present": true,
+        "detail": "Marched in hot sun on 4th of July to Alexandria",
+        "confidence": "stated"
+      }
+    ],
+    "notes": "Rejected people: 'Aquia Creek' (place), 'Rich' (already listed), 'West Point' (institution). Rejected places: 'James'/'Savages' (persons)."
+  },
+  {
+    "doc_id": "LTR-1863-07-25-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Gettysburg",
+        "identification": "Gettysburg, PA — battle site referenced",
+        "confidence": "stated",
+        "basis": "Transcription: 'Alex came safely out of that Gettysburg fight'"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected: 'Steais' (already listed). Places: 'Frances'/'James' (persons)."
+  },
+  {
+    "doc_id": "LTR-1863-07-30-001",
+    "verified_people": [
+      {
+        "name": "Mrs. Boyle",
+        "role": "Sends Tribune newspaper to Charles",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      }
+    ],
+    "verified_places": [
+      {
+        "name": "Gettysburg",
+        "identification": "Gettysburg, PA — battle site",
+        "confidence": "stated",
+        "basis": "Mentioned in letter"
+      },
+      {
+        "name": "Warrenton",
+        "identification": "Warrenton, VA — near camp",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      },
+      {
+        "name": "Warrenton Junction",
+        "identification": "Warrenton Junction, VA — camp location",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected: 'Warrenton Junction' as person (it's a place), 'Miss Fannie' (Frances, already listed)."
+  },
+  {
+    "doc_id": "LTR-1863-08-21-001",
+    "verified_people": [
+      {
+        "name": "Clark",
+        "role": "Caring for horse/heifer at home",
+        "confidence": "stated",
+        "basis": "Mentioned in context of home farm management"
+      },
+      {
+        "name": "Mrs. Boyle",
+        "role": "Sends papers to Charles",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      }
+    ],
+    "verified_places": [
+      {
+        "name": "Champlain",
+        "identification": "Champlain, NY — hometown",
+        "confidence": "stated",
+        "basis": "Mentioned in letter"
+      },
+      {
+        "name": "Charlotte",
+        "identification": "Charlotte, NY — relatives",
+        "confidence": "stated",
+        "basis": "Mentioned in letter"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected: 'City Hall' (not a person), 'Savage' (already listed)."
+  },
+  {
+    "doc_id": "LTR-1863-08-25-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Maryland",
+        "identification": "Maryland — passed over Antietam battlefield",
+        "confidence": "stated",
+        "basis": "Transcription: 'in Maryland, I passed over a part of the battle ground of Antietam'"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Miss Fannie'/'Sister Frances' (already listed), 'Simonds' (need verification). Rejected places: 'Amos Luther' (person), 'Sergt' (rank)."
+  },
+  {
+    "doc_id": "LTR-1863-09-07-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Fonda",
+        "identification": "Fonda, NY — Capt. Rich attending to conscripts there",
+        "confidence": "stated",
+        "basis": "Transcription: Capt. Rich 'near Fonda attending to conscripts'"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Beardslee' (already listed), 'Burdick' (already listed), 'Harpers Magazines'/'Hill Barracks'/'James Sunday' (not persons), 'Rich' (already listed)."
+  },
+  {
+    "doc_id": "LTR-1863-09-18-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Raccoon Ford",
+        "identification": "Raccoon Ford, VA — near camp on the Rapidan",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      },
+      {
+        "name": "Rapidan",
+        "identification": "Rapidan River, VA",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Captain Delaney'/'Delaney' (already listed). Rejected places: 'Captain Delaney' (person)."
+  },
+  {
+    "doc_id": "LTR-1863-09-25-001",
+    "verified_people": [
+      {
+        "name": "Brinkerhoff",
+        "role": "Champlain neighbor",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      }
+    ],
+    "verified_places": [],
+    "verified_flags": [],
+    "notes": "Rejected: 'West Point' as person (institution). 'Mary Mc' as place (person)."
+  },
+  {
+    "doc_id": "LTR-1863-09-29-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Fortress Monroe",
+        "identification": "Fortress Monroe, VA — Union military installation",
+        "confidence": "stated",
+        "basis": "Mentioned as part of transport route"
+      },
+      {
+        "name": "Moorestown",
+        "identification": "Moorestown, NJ — Lt. Knapp's home",
+        "confidence": "stated",
+        "basis": "Transcription: 'gone home to Moorestown on leave of absence'"
+      },
+      {
+        "name": "Philadelphia",
+        "identification": "Philadelphia, PA — rebels sent there after oath of allegiance",
+        "confidence": "stated",
+        "basis": "Transcription: rebels taking oath sent to Philadelphia"
+      },
+      {
+        "name": "Tennessee",
+        "identification": "Tennessee — 11th and 12th Corps transferring there",
+        "confidence": "stated",
+        "basis": "Mentioned in context of corps reinforcing Rosecrans"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Chesapeake Bay'/'Fortress Monroe'/'Point Lookout Out' (all places), 'Rich' (already listed). Rejected places: 'James' (person)."
+  },
+  {
+    "doc_id": "LTR-1863-10-11-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Nashville",
+        "identification": "Nashville, TN — transit point for supplies",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Captain Ran'/'Ran' (Capt. Ransom, already listed), 'Greene' (already listed), 'Miss Fannie' (Frances), 'York State' (not a person)."
+  },
+  {
+    "doc_id": "LTR-1863-10-31-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Alexandria",
+        "identification": "Alexandria, VA — 153rd NY previously stationed there",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      },
+      {
+        "name": "Corbeau",
+        "identification": "Corbeau, NY — letter received from there",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Chesapeake Bay'/'Fortress Monroe'/'Point Lookout' (all places), 'Invalid Corps' (unit), 'It' (not a person), 'Rich' (already listed)."
+  },
+  {
+    "doc_id": "LTR-1863-11-15-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Virginia",
+        "identification": "Virginia — Alexander's service area",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      },
+      {
+        "name": "Washington",
+        "identification": "Washington, D.C. — Charles stationed there",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Brinkerhoff' (already listed as Mrs. Brinkerhoff), 'Darling Child' (salutation). Rejected places: 'Alexander'/'Charles'/'James'/'Geary' (all persons)."
+  },
+  {
+    "doc_id": "LTR-1863-11-19-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Sandusky",
+        "identification": "Sandusky, OH — rebel officers sent there as POWs",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Invalid Corps' (unit), 'Old Capitol' (place), 'Point Lookout' (place), 'Rich'/'Strain'/'Roberts' (all already listed). Rejected places: 'Goddard'/'James'/'Meade'/'Pet Steais' (all persons)."
+  },
+  {
+    "doc_id": "LTR-1863-11-20-001",
+    "verified_people": [
+      {
+        "name": "Major Strange",
+        "role": "Commanding regiment while Col. away",
+        "confidence": "stated",
+        "basis": "Mentioned in transcription as being in command"
+      }
+    ],
+    "verified_places": [],
+    "verified_flags": [],
+    "notes": "Rejected places: 'James' (person), 'Major Strange' (person), 'Alexandria'/'Philadelphia' (may be mentioned but need verification)."
+  },
+  {
+    "doc_id": "LTR-1863-11-21-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Nashville",
+        "identification": "Nashville, TN — express delivery address for supplies",
+        "confidence": "stated",
+        "basis": "Transcription: 'If you do send them, direct to Nashville, Tennessee.'"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Delaney'/'Geary'/'General Geary'/'Ransom' (all already listed), 'East Tennessee' (place). Rejected places: 'Division' (not a place name)."
+  },
+  {
+    "doc_id": "LTR-1863-12-01-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Lookout Mountain",
+        "identification": "Lookout Mountain, TN — battle site, Nov 24, 1863",
+        "confidence": "stated",
+        "basis": "Mentioned as battle location in transcription"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Corporals Ish'/'Sidney Rider' (already listed), 'Hospital' (not a person), 'Sergeants Hubbell' (Alexander himself), 'Lookout Mountain' (place). Lookout Mountain genuinely missing — only 'General Hospital, Tullahoma, TN' is in places."
+  },
+  {
+    "doc_id": "LTR-1863-12-01-002",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Alexandria",
+        "identification": "Alexandria, VA — barracks being built there",
+        "confidence": "stated",
+        "basis": "Transcription: 'Others say that we are going to Alexandria'"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Pet'/'Steais' (Mr. Steais already listed). Rejected places: 'Charles' (person)."
+  },
+  {
+    "doc_id": "LTR-1863-12-09-002",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Alexandria",
+        "identification": "Alexandria, VA — Gen. Slough's HQ; 153rd NY stationed there previously",
+        "confidence": "stated",
+        "basis": "Transcription: 'while in Alexandria, Gen. Slough's band box regt.'"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'Carrol Prison'/'Central Guard House' (places), 'Invalid Corps' (unit), 'Provost Marshal' (title), 'Slough' (already listed as Gen. Slough). Rejected places: 'Frances' (person)."
+  },
+  {
+    "doc_id": "LTR-1863-12-13-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "name": "Chattanooga",
+        "identification": "Chattanooga, TN — objective of campaign",
+        "confidence": "stated",
+        "basis": "Transcription: 'We (the 2nd Div.) went with Gen. Hooker to open the road to Chattanooga.'"
+      },
+      {
+        "name": "Whiteside",
+        "identification": "Whiteside, GA/TN border — gap in mountains",
+        "confidence": "stated",
+        "basis": "Transcription: 'a place called Whiteside'"
+      },
+      {
+        "name": "Lookout Mountain",
+        "identification": "Lookout Mountain, TN — stormed by Alexander's division",
+        "confidence": "stated",
+        "basis": "Transcription: 'Our Division was the one chosen to storm Lookout Mountain.'"
+      },
+      {
+        "name": "Missionary Ridge",
+        "identification": "Missionary Ridge, TN — battle site",
+        "confidence": "stated",
+        "basis": "Transcription: 'the fights of Missionary Ridge and Ringgold'"
+      },
+      {
+        "name": "Ringgold",
+        "identification": "Ringgold, GA — battle site",
+        "confidence": "stated",
+        "basis": "Transcription: 'Missionary Ridge and Ringgold'"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "Rejected people: 'East Tennessee' (place), 'Hooker' (already listed as Gen. Hooker), 'Lookout Mountain'/'Missionary Ridge' (places, not people). Five places genuinely missing — only Wauhatchie currently listed."
+  },
+  {
+    "doc_id": "LTR-1863-12-16-001",
+    "verified_people": [
+      {
+        "name": "Capt. Ransom",
+        "role": "Alexander sends regards — 'Give my regards to Capt. Ransom'",
+        "confidence": "stated",
+        "basis": "Transcription: 'Give my regards to Capt. Ransom and let him know the loss of the Co.' — Not in this letter's existing people table (only Doten, Housedean, Lemage, Small, Sergt. Long listed)."
+      }
+    ],
+    "verified_places": [],
+    "verified_flags": [],
+    "notes": "Rejected: 'Missionary Ridge' (place, not person). Capt. Ransom genuinely missing from this letter's people table."
+  }
+]

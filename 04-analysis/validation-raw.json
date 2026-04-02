@@ -2,7 +2,7 @@
   "schema_violations": {},
   "json_issues": [],
   "json_missing_fields": {
-    "Camp movement/march": 76,
+    "Camp movement/march": 84,
     "Eyewitness to named event": 37,
     "Recipient Location": 45,
     "Cross-references": 25,
@@ -11,17 +11,17 @@
     "Domestic/Home Front": 54,
     "Military References": 197,
     "Objects & Material Culture": 64,
-    "Place Coordinates": 119,
+    "Place Coordinates": 135,
     "Confidence Metadata": 274,
-    "Receipt of package/letter": 62,
-    "Request for supplies/money": 31,
-    "Major news from home": 11,
-    "Political commentary": 58,
-    "Promotion/demotion": 27,
+    "Receipt of package/letter": 118,
+    "Request for supplies/money": 64,
+    "Political commentary": 62,
+    "Major news from home": 12,
+    "Promotion/demotion": 32,
     "Desertion mentioned": 15,
-    "Morale crisis": 8,
+    "Morale crisis": 10,
     "Capture/POW": 12,
-    "Discharge/muster-out": 7,
+    "Discharge/muster-out": 25,
     "False intelligence": 1,
     "Hazing described": 1,
     "Grand review": 1,
@@ -179,6 +179,7 @@
       "mr. copeland"
     ],
     "hoyle": [
+      "hoyle",
       "mr. hoyle",
       "mr. t. hoyle",
       "mr. timothy hoyle",
@@ -220,6 +221,7 @@
       "j & r.l. savage",
       "joel savage",
       "mr. savage",
+      "savage",
       "willie savage",
       "willis savage"
     ],
@@ -321,6 +323,7 @@
       "professor bass"
     ],
     "banks": [
+      "banks",
       "gen. banks",
       "mrs. banks"
     ],
@@ -369,6 +372,12 @@
       "george corbin",
       "royal corbin"
     ],
+    "brinkerhoff": [
+      "brinkerhoff",
+      "mary ann brinkerhoff",
+      "mary jane brinkerhoff",
+      "mrs. brinkerhoff"
+    ],
     "davis": [
       "col. davis",
       "jeff davis"
@@ -414,6 +423,10 @@
       "miss riley",
       "riley"
     ],
+    "lyman": [
+      "dana lyman",
+      "lyman"
+    ],
     "burdick": [
       "burdick",
       "capt. burdick",
@@ -425,6 +438,14 @@
       "sergeant welky",
       "welky"
     ],
+    "dixon": [
+      "dixon",
+      "mr. dixon"
+    ],
+    "slocum": [
+      "gen. slocum",
+      "slocum"
+    ],
     "fullerton": [
       "c. fullerton",
       "uncle fullerton"
@@ -433,11 +454,20 @@
       "cousin mary mcneil",
       "mary j. mcneil"
     ],
+    "clark": [
+      "clark",
+      "mr. clark"
+    ],
     "lincoln": [
       "abraham lincoln",
       "lincoln"
     ],
+    "hooker": [
+      "gen. hooker",
+      "hooker"
+    ],
     "bostwick": [
+      "bostwick",
       "culver bostwick",
       "mrs. bostwick"
     ],
@@ -462,7 +492,12 @@
       "lieut. col. strain",
       "lt. col. strain",
       "major strain",
-      "mrs. strain"
+      "mrs. strain",
+      "strain"
+    ],
+    "redington": [
+      "col. redington",
+      "colonel redington"
     ],
     "mcneill": [
       "grandmother mcneill",
@@ -474,8 +509,13 @@
       "steais"
     ],
     "boyle": [
+      "boyle",
       "mr. boyle",
       "mrs. boyle"
+    ],
+    "delaney": [
+      "capt. delaney",
+      "delaney"
     ],
     "greene": [
       "brevet maj. gen. greene",
@@ -513,9 +553,17 @@
       "gen. thomas",
       "thomas"
     ],
+    "trombly": [
+      "corporal trombly",
+      "trombly"
+    ],
     "douglass": [
       "a. douglass",
       "alex douglass"
+    ],
+    "burroughs": [
+      "burroughs",
+      "mr. burroughs"
     ],
     "martin": [
       "joseph martin",
@@ -535,16 +583,29 @@
     "(charles)": [
       "charley (charles)",
       "charlie (charles)"
+    ],
+    "denys": [
+      "miss denys",
+      "mrs. denys"
     ]
   },
   "place_inconsistencies": {
     "albany": [
+      "`stated`",
       "albany, new york",
       "albany, ny",
       "albany, ny — destination of deserters",
       "albany, ny — reference to mustering experience"
     ],
+    "new york": [
+      "`stated`",
+      "new york (city)",
+      "new york (state/city)",
+      "new york city",
+      "new york, ny"
+    ],
     "baltimore": [
+      "`stated`",
       "baltimore",
       "baltimore, maryland",
       "baltimore, md",
@@ -558,18 +619,25 @@
       "washington, d.c."
     ],
     "charlotte": [
+      "`stated`",
       "charlotte, ny (clinton county) — suggested summer visit for mother",
+      "charlotte, ny (likely charlotte, vt or charlotte, nc — uncertain)",
       "charlotte, ny (now part of rochester)",
+      "charlotte, ny -- mother's planned trip destination",
       "likely charlotte, clinton county, ny (or charlotte, vt)"
     ],
     "west point": [
+      "`stated`",
       "u.s. military academy — james's goal",
+      "u.s. military academy, west point, ny",
       "united states military academy, west point, new york",
       "united states military academy, west point, ny",
       "west point, orange county, ny",
       "west point, va — on york river; eltham's landing nearby"
     ],
     "champlain": [
+      "`inferred`",
+      "`stated`",
       "champlain, clinton county, ny",
       "champlain, clinton county, ny — to be occupied by u.s. troops",
       "champlain, new york",
@@ -582,8 +650,14 @@
       "potomac river"
     ],
     "virginia": [
+      "`stated`",
       "anticipated movement",
+      "virginia",
       "virginia (across potomac)"
+    ],
+    "ogdensburgh": [
+      "ogdensburg, ny",
+      "ogdensburg, st. lawrence county, ny"
     ],
     "near washington, d.c.": [
       "near washington, d.c.",
@@ -595,8 +669,11 @@
       "ogdensburg, ny — departed nov 1"
     ],
     "richmond": [
+      "`stated`",
       "confederate capital — misner returned from",
+      "richmond, va",
       "richmond, va (confederate capital / prison)",
+      "richmond, va -- (false) capture reported; also mentioned as destination of carriages story",
       "richmond, va — b. misner held prisoner",
       "richmond, va — expected movement toward",
       "richmond, va — union target",
@@ -618,6 +695,7 @@
       "whitehall, washington county, ny"
     ],
     "washington": [
+      "`stated`",
       "possible next posting",
       "washington, d.c.",
       "washington, d.c. — 8 miles, difficult to get pass",
@@ -648,13 +726,17 @@
     ],
     "camden station": [
       "camden station, b&o railroad depot, baltimore",
-      "camden station, baltimore — 1st platoon location"
+      "camden station, baltimore — 1st platoon location",
+      "camden station, baltimore, md -- railroad station where alexander was posted"
     ],
     "canada": [
+      "`stated`",
+      "canada",
       "frances going there",
       "where frances had been teaching"
     ],
     "montreal": [
+      "`stated`",
       "frances's location — comparison to harpers ferry",
       "where frances teaching this winter"
     ],
@@ -671,11 +753,26 @@
       "harpers ferry, wv/va — departed last tuesday",
       "where mcdonald talked to \"charles of the 60th\""
     ],
+    "bolivar heights": [
+      "bolivar heights, near harpers ferry, wv",
+      "bolivar heights, wv -- above harpers ferry; line of battle formed there",
+      "near harpers ferry, west virginia"
+    ],
     "south carolina": [
       "state; site of burnside expedition",
       "state; target of railroad brigade expedition"
     ],
+    "tennessee": [
+      "`stated`",
+      "state; site of union victory mentioned"
+    ],
+    "plattsburgh": [
+      "`stated`",
+      "plattsburgh, new york",
+      "plattsburgh, ny"
+    ],
     "fortress monroe": [
+      "`stated`",
       "fort monroe — possible destination",
       "fort monroe, va",
       "fort monroe, va — 4 miles from camp",
@@ -688,13 +785,23 @@
       "manassas, va — confederate evacuation mocked"
     ],
     "winchester": [
+      "`stated`",
       "winchester, va — 30 miles from harpers ferry",
       "winchester, va — academy hospital",
       "winchester, va — departed",
       "winchester, va — henry's march described",
       "winchester, va — road described, bridge repaired"
     ],
+    "berryville": [
+      "`stated`",
+      "berryville, va — 10 miles from winchester; rebel flag torn down"
+    ],
+    "shenandoah river": [
+      "bridge repaired; cars running",
+      "shenandoah river -- onikers ferry is located on this river"
+    ],
     "new orleans": [
+      "`stated`",
       "new orleans, la — 34th ny rumored there (false)",
       "new orleans, la — captured by union",
       "new orleans, la.",
@@ -706,9 +813,11 @@
       "hampton, virginia — burnt by confederates aug 1861"
     ],
     "alexandria": [
+      "`stated`",
       "alexandria",
       "alexandria, louisiana",
       "alexandria, louisiana — captured",
+      "alexandria, va",
       "alexandria, va — camp 2 days; 8 miles from washington",
       "alexandria, va — charles now stationed in city",
       "alexandria, va — city under military occupation",
@@ -731,14 +840,53 @@
       "camp near york town",
       "siege lines, yorktown, va"
     ],
+    "james river": [
+      "james river, va",
+      "james river, va — expects to cross"
+    ],
     "camp within five miles of richmond": [
       "camp within five miles of richmond",
       "near richmond, va",
       "near richmond, va — peninsula campaign"
     ],
+    "dixie": [
+      "the confederacy",
+      "the south / confederacy (colloquial)"
+    ],
+    "burlington": [
+      "`stated`",
+      "burlington, vt",
+      "burlington, vt — where holcomb boarded"
+    ],
     "champlain, n.y.": [
       "champlain, clinton county, ny",
       "champlain, n.y."
+    ],
+    "antietam": [
+      "`stated`",
+      "antietam battlefield, near sharpsburg, md",
+      "battle of antietam, sharpsburg, md"
+    ],
+    "frederick": [
+      "`stated`",
+      "frederick, md — major hospital center after antietam"
+    ],
+    "fonda": [
+      "`stated`",
+      "fonda, montgomery county, ny"
+    ],
+    "north carolina": [
+      "destination of 153rd ny",
+      "north carolina (state)"
+    ],
+    "annapolis": [
+      "annapolis, md",
+      "where albert cook was (paroled prisoner)"
+    ],
+    "georgetown": [
+      "`stated`",
+      "georgetown, d.c. — parole camp where albert cook is",
+      "georgetown, washington, d.c."
     ],
     "fairfax station": [
       "fairfax station, va",
@@ -749,6 +897,22 @@
       "aquia creek, va — straggler transport",
       "aquia creek, va — straggler transport destination"
     ],
+    "stevenson": [
+      "`stated`",
+      "stevenson, alabama (railroad junction)"
+    ],
+    "nashville": [
+      "`stated`",
+      "nashville, tn"
+    ],
+    "chattanooga": [
+      "`stated`",
+      "chattanooga, tn"
+    ],
+    "ringgold": [
+      "`stated`",
+      "ringgold, ga"
+    ],
     "fort derussy": [
       "fort derussy, louisiana",
       "fort derussy, louisiana — captured"
@@ -757,6 +921,14 @@
       "red river, louisiana",
       "red river, louisiana — army amassed",
       "red river, western louisiana"
+    ],
+    "atlanta": [
+      "`stated`",
+      "atlanta, georgia — visible from ridge"
+    ],
+    "harper's ferry": [
+      "`stated`",
+      "two miles beyond — camped"
     ]
   },
   "chain_issues": [],
@@ -771,50 +943,50 @@
     "henry hubbell": 23,
     "frances": 22,
     "james": 22,
+    "capt. ransom": 21,
     "mother (mrs. hubbell)": 20,
-    "capt. ransom": 20,
     "charles hubbell": 19,
     "alexander hubbell": 18,
     "frances hubbell": 17,
     "silas": 13,
+    "capt. rich": 12,
     "henry": 12,
-    "capt. rich": 11,
     "culver bostwick": 11,
     "sid": 10,
+    "mr. hoyle": 8,
     "charles": 8,
     "alexander": 8,
     "albert cook": 8,
     "mr. copeland": 7,
-    "mr. hoyle": 7,
     "aunt laura": 7,
+    "gen. slocum": 7,
     "alex douglas": 7,
     "gen. hooker": 7,
     "nellie": 6,
     "mr. bass": 6,
-    "gen. slocum": 6,
     "capt. delaney": 6,
     "albert": 5,
     "lieut. scott": 5,
     "gen. mcclellan": 5,
     "mcclellan": 5,
+    "grandmother": 5,
+    "uncle henry": 5,
+    "mcdonald": 5,
     "alek douglas": 5,
     "james lucas": 5,
+    "gen. slough": 5,
+    "mrs. boyle": 5,
     "brink": 4,
     "capt. reich": 4,
     "mrs. b.": 4,
     "gen. gorman": 4,
     "plummer": 4,
     "cousin nellie": 4,
-    "grandmother": 4,
-    "uncle henry": 4,
-    "mcdonald": 4,
+    "uncle john": 4,
     "cyrus kellogg": 4,
+    "mr. simons": 4,
     "mrs. hoyle": 4,
     "jim lucas": 4,
-    "gen. geary": 4,
-    "marshall dunn": 4,
-    "dr. sweeney": 4,
-    "reich": 3,
-    "mrs. brinkhoff": 3
+    "mr. rye": 4
   }
 }

@@ -98,15 +98,15 @@ body {
 }
 .status-name {
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 2px;
+  gap: 8px;
+  margin-bottom: 3px;
 }
 .status-dot {
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   display: inline-block;
   flex-shrink: 0;
@@ -154,11 +154,32 @@ body {
 .status-context {
   font-size: 0.7rem;
   color: #6B6B6B;
-  line-height: 1.4;
+  line-height: 1.45;
   margin-top: 3px;
-  max-height: 2.8em;
+  max-height: 8em;
   overflow: hidden;
   font-style: italic;
+}
+.read-letter-btn {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 600;
+  font-style: normal;
+  color: #2D5F8A;
+  background: #E8F0F8;
+  border: 1px solid #C0D4E8;
+  border-radius: 3px;
+  padding: 2px 8px;
+  margin-top: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.3px;
+}
+.read-letter-btn:hover {
+  background: #D0E0F0;
+  color: #1A3D5C;
+  border-color: #A0B8D0;
 }
 
 /* ── Main Layout ── */
@@ -420,29 +441,33 @@ body {
   align-items: center;
   cursor: pointer;
   transition: transform 0.15s;
+  overflow: visible !important;
 }
+.leaflet-marker-icon { overflow: visible !important; }
 .node-current:hover { transform: scale(1.1); }
 .node-pin {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   border: 3px solid #FFFFFF;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 .node-pin.verified {
-  box-shadow: 0 0 0 3px rgba(45, 107, 45, 0.4), 0 2px 6px rgba(0,0,0,0.35);
+  box-shadow: 0 0 0 4px rgba(45, 107, 45, 0.4), 0 2px 8px rgba(0,0,0,0.4);
 }
 .node-label {
   background: rgba(255, 255, 255, 0.95);
-  padding: 2px 8px;
-  border-radius: 4px;
+  padding: 3px 10px;
+  border-radius: 5px;
   font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
   white-space: nowrap;
-  margin-top: 3px;
-  letter-spacing: 0.2px;
+  margin-top: 4px;
+  letter-spacing: 0.3px;
+  position: relative;
+  z-index: 10;
 }
 .node-label.verified {
   background: rgba(232, 245, 232, 0.95);
@@ -450,20 +475,30 @@ body {
 }
 .node-label .verified-star {
   color: #B8860B;
-  font-size: 0.65rem;
-  margin-left: 2px;
+  font-size: 0.95rem;
+  margin-left: 3px;
 }
 
-/* Trail markers — small, fading, clickable */
+/* Trail markers — visible, connected, clickable */
 .node-trail {
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.7);
+  border: 2px solid rgba(255,255,255,0.85);
   cursor: pointer;
   transition: transform 0.15s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 .node-trail:hover {
-  transform: scale(1.6);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  transform: scale(1.5);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+}
+.node-trail-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.55rem;
+  color: #6B6B6B;
+  white-space: nowrap;
+  margin-top: 1px;
+  text-align: center;
+  pointer-events: none;
 }
 
 /* Memorial marker — permanent */
@@ -509,28 +544,176 @@ body {
 }
 .recenter-btn:hover { background: #FAF8F5; color: #2C2C2C; }
 
-/* Event feed in info panel */
-.event-feed {
-  border-top: 1px solid #F0ECE7;
-  padding: 10px 16px;
-  max-height: 200px;
-  overflow-y: auto;
-}
-.event-feed h4 {
-  font-size: 0.7rem;
+/* Days since letter badge */
+.days-since-letter {
+  font-size: 0.6rem;
   color: #9B9B9B;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  margin-bottom: 6px;
+  font-weight: 400;
+  font-style: italic;
+  margin-left: 6px;
 }
-.event-item {
+
+/* ── Lock-on ── */
+.status-panel.locked {
+  background: #F0F4F8;
+  border-bottom: 3px solid;
+}
+.status-panel.locked .status-name { font-weight: 700; }
+.lock-btn {
+  font-size: 0.65rem;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1.5px solid #B8B2AA;
+  background: #F0ECE7;
+  color: #6B6B6B;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  transition: all 0.15s;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+.lock-btn:hover {
+  background: #E0DCD7;
+  color: #2C2C2C;
+  border-color: #9B9B9B;
+}
+.status-panel.locked .lock-btn {
+  background: #2D5F8A;
+  color: #FFFFFF;
+  border-color: #2D5F8A;
+  box-shadow: 0 1px 4px rgba(45, 95, 138, 0.3);
+}
+.status-panel.locked .lock-btn:hover {
+  background: #1A3D5C;
+  border-color: #1A3D5C;
+}
+.status-name {
+  display: flex;
+  align-items: center;
+}
+/* ── Days since letter (in status panel) ── */
+.days-since {
+  font-size: 0.6rem;
+  color: #9B9B9B;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+/* ── New Letter Badge (map overlay) ── */
+.new-letter-badge {
+  background: #B8860B;
+  color: #FFFFFF;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  cursor: pointer;
+  white-space: nowrap;
+  animation: badge-pulse 2s infinite;
+}
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ── Letter Detail Overlay ── */
+.letter-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(44, 44, 44, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.letter-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.letter-overlay-content {
+  background: #FFFFFF;
+  border-radius: 8px;
+  max-width: 640px;
+  width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 24px 28px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  position: relative;
+}
+.letter-overlay-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #9B9B9B;
+  padding: 4px;
+}
+.letter-overlay-close:hover { color: #2C2C2C; }
+.letter-overlay-header {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+.letter-overlay-meta {
+  font-size: 0.8rem;
+  color: #6B6B6B;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.letter-overlay-body {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: #2C2C2C;
+  white-space: pre-wrap;
+  border-top: 1px solid #F0ECE7;
+  padding-top: 12px;
+}
+
+/* ── Recent Letters in info panel ── */
+.recent-letter-card {
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  background: #FAFAFA;
+  border-radius: 4px;
+  border-left: 3px solid #E8E4DF;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
   font-size: 0.75rem;
-  padding: 4px 0;
-  border-bottom: 1px solid #F8F6F3;
+  line-height: 1.5;
+}
+.recent-letter-card:hover {
+  background: #F0F4F8;
+  border-left-color: #B8860B;
+}
+.recent-letter-card .letter-date {
+  font-weight: 600;
+  color: #2C2C2C;
+}
+.recent-letter-card .letter-recipient {
   color: #6B6B6B;
 }
-.event-item .event-date { font-weight: 600; color: #2C2C2C; }
-.event-item .event-battle { color: #C44E52; }
+.recent-letter-card .letter-context {
+  color: #4A4A4A;
+  margin-top: 2px;
+}
+.recent-letter-card .letter-quote {
+  font-style: italic;
+  color: #6B6B6B;
+  margin-top: 3px;
+  border-left: 2px solid #E8E4DF;
+  padding-left: 6px;
+}
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
@@ -576,32 +759,36 @@ body {
 <!-- Status Bar: 4 brother panels -->
 <div class="status-bar" id="statusBar">
   <div class="status-panel" id="status-henry" data-brother="henry">
-    <div class="status-name"><span class="status-dot" style="background:#2D5F8A"></span> Henry</div>
+    <div class="status-name"><span class="status-dot" style="background:#2D5F8A"></span> Henry <span class="lock-btn" data-brother="henry">Lock to follow</span></div>
     <div class="status-regiment">34th NY Infantry</div>
     <div class="status-location" id="loc-henry">Not yet enlisted</div>
     <div><span class="status-badge badge-not-enlisted" id="badge-henry">Not enlisted</span></div>
     <div class="status-context" id="ctx-henry"></div>
+    <div class="days-since" id="days-henry"></div>
   </div>
   <div class="status-panel" id="status-alexander" data-brother="alexander">
-    <div class="status-name"><span class="status-dot" style="background:#B8860B"></span> Alexander</div>
+    <div class="status-name"><span class="status-dot" style="background:#B8860B"></span> Alexander <span class="lock-btn" data-brother="alexander">Lock to follow</span></div>
     <div class="status-regiment">60th NY Infantry</div>
     <div class="status-location" id="loc-alexander">Not yet enlisted</div>
     <div><span class="status-badge badge-not-enlisted" id="badge-alexander">Not enlisted</span></div>
     <div class="status-context" id="ctx-alexander"></div>
+    <div class="days-since" id="days-alexander"></div>
   </div>
   <div class="status-panel" id="status-charles" data-brother="charles">
-    <div class="status-name"><span class="status-dot" style="background:#8B3A3A"></span> Charles</div>
+    <div class="status-name"><span class="status-dot" style="background:#8B3A3A"></span> Charles <span class="lock-btn" data-brother="charles">Lock to follow</span></div>
     <div class="status-regiment">153rd NY Infantry</div>
     <div class="status-location" id="loc-charles">Not yet enlisted</div>
     <div><span class="status-badge badge-not-enlisted" id="badge-charles">Not enlisted</span></div>
     <div class="status-context" id="ctx-charles"></div>
+    <div class="days-since" id="days-charles"></div>
   </div>
   <div class="status-panel" id="status-james" data-brother="james">
-    <div class="status-name"><span class="status-dot" style="background:#4A7C59"></span> James</div>
+    <div class="status-name"><span class="status-dot" style="background:#4A7C59"></span> James <span class="lock-btn" data-brother="james">Lock to follow</span></div>
     <div class="status-regiment">West Point / 153rd NY</div>
     <div class="status-location" id="loc-james">Not yet enlisted</div>
     <div><span class="status-badge badge-not-enlisted" id="badge-james">Not enlisted</span></div>
     <div class="status-context" id="ctx-james"></div>
+    <div class="days-since" id="days-james"></div>
   </div>
 </div>
 
@@ -641,10 +828,6 @@ body {
     <div class="info-body" id="infoPanelBody">
       <div class="info-empty">Click a node on the map to explore details</div>
     </div>
-    <div class="event-feed" id="eventFeed">
-      <h4>Recent Events</h4>
-      <div id="eventFeedContent"></div>
-    </div>
   </div>
 </div>
 
@@ -682,12 +865,14 @@ const START_DATE = new Date('1861-06-15');
 const END_DATE = new Date('1865-08-01');
 const TOTAL_DAYS = Math.floor((END_DATE - START_DATE) / 86400000);
 let currentDay = 0;
+let lockedBrother = null; // Lock-on state
+let newLetterMarkers = []; // "New Letter!" badges on map
 
 // ============================================================
 // SOURCE URLS — hyperlinked citations
 // ============================================================
 const SOURCE_URLS = {
-  "Dyer's Compendium": "https://archive.org/details/compendiumofwarr03dyer",
+  "Dyer's Compendium": "https://www.civilwararchive.com/unionny.htm",
   "NY AG Report": "https://dmna.ny.gov/historic/reghist/civil/infantry/34thInf/34thInfMain.htm",
   "34th NY": "https://dmna.ny.gov/historic/reghist/civil/infantry/34thInf/34thInfMain.htm",
   "60th NY": "https://dmna.ny.gov/historic/reghist/civil/infantry/60thInf/60thInfMain.htm",
@@ -768,8 +953,20 @@ function dateStr(d) {
 }
 
 function formatDate(d) {
+  if (!d || isNaN(d.getTime())) return d ? String(d) : 'Unknown date';
   const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+}
+
+function formatDateStr(s) {
+  // Handle dates like "1864-07-00" where day is unknown
+  if (!s) return 'Unknown date';
+  if (s.endsWith('-00')) {
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const [y, m] = s.split('-');
+    return `${months[parseInt(m) - 1]} ${y}`;
+  }
+  return formatDate(new Date(s));
 }
 
 function updateToDate(day) {
@@ -787,6 +984,8 @@ function updateToDate(day) {
     markerLayers[b].clearLayers();
   }
   if (memorialMarker) { map.removeLayer(memorialMarker); memorialMarker = null; }
+  newLetterMarkers.forEach(m => map.removeLayer(m));
+  newLetterMarkers = [];
 
   const activeBounds = [];
   const isHenryDead = currentDateStr >= '1862-09-17';
@@ -801,39 +1000,45 @@ function updateToDate(day) {
     const locEl = document.getElementById(`loc-${brotherId}`);
     const badgeEl = document.getElementById(`badge-${brotherId}`);
     const ctxEl = document.getElementById(`ctx-${brotherId}`);
+    const daysEl = document.getElementById(`days-${brotherId}`);
+
+    const isThisLocked = lockedBrother === brotherId;
 
     // Not yet enlisted
     if (currentDateStr < brotherInfo.serviceStart) {
-      panel.className = 'status-panel inactive';
+      panel.className = 'status-panel inactive' + (isThisLocked ? ' locked' : '');
       locEl.textContent = 'Not yet enlisted';
       badgeEl.textContent = 'Not enlisted';
       badgeEl.className = 'status-badge badge-not-enlisted';
       ctxEl.textContent = '';
+      daysEl.textContent = '';
       continue;
     }
 
     // Henry KIA
     if (brotherId === 'henry' && isHenryDead) {
-      panel.className = 'status-panel memorial';
+      panel.className = 'status-panel memorial' + (isThisLocked ? ' locked' : '');
       locEl.textContent = 'Killed at Antietam';
       badgeEl.textContent = 'KIA Sept 17, 1862';
       badgeEl.className = 'status-badge badge-kia';
       ctxEl.textContent = '34th NY suffered 48% casualties. Henry was among 150 killed or wounded.';
+      daysEl.textContent = '';
       continue;
     }
 
     // Mustered out
     if (currentDateStr > brotherInfo.serviceEnd) {
-      panel.className = 'status-panel inactive';
+      panel.className = 'status-panel inactive' + (isThisLocked ? ' locked' : '');
       locEl.textContent = 'Mustered out';
       badgeEl.textContent = 'Mustered out';
       badgeEl.className = 'status-badge badge-not-enlisted';
       ctxEl.textContent = '';
+      daysEl.textContent = '';
       continue;
     }
 
     // Active brother
-    panel.className = 'status-panel';
+    panel.className = 'status-panel' + (isThisLocked ? ' locked' : '');
 
     const allMovements = DATA.movements.filter(m => m.brother === brotherId && m.date <= currentDateStr);
     if (allMovements.length === 0) {
@@ -841,6 +1046,7 @@ function updateToDate(day) {
       badgeEl.textContent = 'Active';
       badgeEl.className = 'status-badge badge-estimated';
       ctxEl.textContent = '';
+      daysEl.textContent = '✉ No letters yet';
       continue;
     }
 
@@ -857,28 +1063,47 @@ function updateToDate(day) {
     badgeEl.textContent = isVerified ? '★ Letter verified' : 'Estimated position';
     badgeEl.className = isVerified ? 'status-badge badge-letter' : 'status-badge badge-estimated';
 
-    // Context: recent letter or notable event
-    ctxEl.textContent = getContextText(brotherId, currentDateStr, current);
+    // Context: recent letter or notable event + READ IT button if letter-verified
+    const contextText = getContextText(brotherId, currentDateStr, current);
+    if (isVerified && current.letterId && current.transcription) {
+      ctxEl.innerHTML = contextText + `<br><span class="read-letter-btn" onclick="event.stopPropagation();openLetterOverlay('${current.letterId}','${brotherId}')">READ IT</span>`;
+    } else {
+      ctxEl.textContent = contextText;
+    }
 
-    // Draw 30-day trail (smaller fading markers)
+    // Days since last letter (updates on every slider change)
+    const lastLetter = DATA.movements
+      .filter(m => m.brother === brotherId && m.source === 'letter' && m.date <= currentDateStr)
+      .sort((a, b) => b.date.localeCompare(a.date))[0];
+    if (lastLetter) {
+      const daysSince = daysBetween(lastLetter.date, currentDateStr);
+      daysEl.textContent = daysSince === 0
+        ? '✉ Letter today!'
+        : `✉ Last letter: ${daysSince} day${daysSince !== 1 ? 's' : ''} ago`;
+    } else {
+      daysEl.textContent = '✉ No letters yet';
+    }
+
+    // Draw 30-day trail: up to 5 most recent nodes, connected to current position
     const trailMovements = allMovements.filter(m => m.date >= thirtyDaysAgo && m !== current);
-    const totalTrail = trailMovements.length;
-    for (let i = 0; i < totalTrail; i++) {
-      const m = trailMovements[i];
+    // Take the 5 most recent (end of array = most recent)
+    const recentTrail = trailMovements.slice(-5);
+    for (let i = 0; i < recentTrail.length; i++) {
+      const m = recentTrail[i];
       const age = (new Date(currentDateStr) - new Date(m.date)) / 86400000;
-      const opacity = Math.max(0.15, 1 - (age / 30));
+      const opacity = Math.max(0.3, 1 - (age / 30) * 0.7);
       addTrailNode(m, brotherId, opacity);
     }
 
-    // Draw trail lines (fading)
-    if (trailMovements.length > 0) {
-      const trailWithCurrent = [...trailMovements, current];
-      for (let i = 0; i < trailWithCurrent.length - 1; i++) {
-        const age = (new Date(currentDateStr) - new Date(trailWithCurrent[i].date)) / 86400000;
-        const opacity = Math.max(0.1, 0.4 * (1 - age / 30));
+    // Draw solid connecting lines from trail to current position
+    if (recentTrail.length > 0) {
+      const chain = [...recentTrail, current];
+      for (let i = 0; i < chain.length - 1; i++) {
+        const age = (new Date(currentDateStr) - new Date(chain[i].date)) / 86400000;
+        const opacity = Math.max(0.2, 0.6 * (1 - age / 30));
         L.polyline(
-          [[trailWithCurrent[i].lat, trailWithCurrent[i].lon], [trailWithCurrent[i+1].lat, trailWithCurrent[i+1].lon]],
-          { color: COLORS[brotherId], weight: 1.5, opacity, dashArray: '4 4' }
+          [[chain[i].lat, chain[i].lon], [chain[i+1].lat, chain[i+1].lon]],
+          { color: COLORS[brotherId], weight: 2.5, opacity }
         ).addTo(trailLayers[brotherId]);
       }
     }
@@ -887,6 +1112,30 @@ function updateToDate(day) {
     const pxOffset = getCoLocationPixelOffset(brotherId, current, currentDateStr);
     addCurrentNode(current, brotherId, pxOffset);
     activeBounds.push([current.lat, current.lon]);
+
+    // "New Letter!" badge — if a letter falls exactly on today's date
+    const todaysLetters = DATA.movements.filter(m =>
+      m.brother === brotherId && m.source === 'letter' && m.date === currentDateStr
+    );
+    todaysLetters.forEach(letter => {
+      const badgeIcon = L.divIcon({
+        html: `<div class="new-letter-badge">&#9993; New letter to ${formatRecipientShort(letter.recipient)}</div>`,
+        className: '',
+        iconSize: [200, 24],
+        iconAnchor: [100, 40]
+      });
+      const badge = L.marker([letter.lat, letter.lon], { icon: badgeIcon, zIndexOffset: 2000 })
+        .on('click', () => {
+          showInfoPanel(letter, brotherId);
+        })
+        .addTo(markerLayers[brotherId]);
+      newLetterMarkers.push(badge);
+    });
+
+    // If new letter arrives and this brother is locked, auto-show it
+    if (lockedBrother === brotherId && todaysLetters.length > 0) {
+      showInfoPanel(todaysLetters[0], brotherId);
+    }
   }
 
   // Always include memorial in bounds if active
@@ -894,12 +1143,16 @@ function updateToDate(day) {
     activeBounds.push([39.4747, -77.7447]);
   }
 
-  // Update event feed + narrative
-  updateEventFeed(currentDateStr);
+  // Update narrative
   updateNarrative(currentDateStr);
 
-  // Auto-zoom to keep all active brothers visible
-  if (activeBounds.length > 0) {
+  // Viewport: if locked on a brother, follow them; otherwise fit all
+  if (lockedBrother) {
+    const lockedPos = getLockedBrotherPosition(currentDateStr);
+    if (lockedPos) {
+      map.setView(lockedPos, Math.max(map.getZoom(), 8), { animate: true, duration: 0.3 });
+    }
+  } else if (activeBounds.length > 0) {
     if (activeBounds.length === 1) {
       map.setView(activeBounds[0], 9, { animate: true, duration: 0.3 });
     } else {
@@ -907,6 +1160,18 @@ function updateToDate(day) {
       map.fitBounds(bounds, { animate: true, duration: 0.3, maxZoom: 10 });
     }
   }
+}
+
+function getLockedBrotherPosition(currentDateStr) {
+  if (!lockedBrother) return null;
+  if (lockedBrother === 'henry' && currentDateStr >= '1862-09-17') return [39.4747, -77.7447];
+  const moves = DATA.movements.filter(m => m.brother === lockedBrother && m.date <= currentDateStr);
+  if (moves.length === 0) return null;
+  let cur = moves[moves.length - 1];
+  for (let i = moves.length - 1; i >= 0; i--) {
+    if ((moves[i].endDate || moves[i].date) >= currentDateStr) { cur = moves[i]; break; }
+  }
+  return [cur.lat, cur.lon];
 }
 
 // ============================================================
@@ -939,7 +1204,7 @@ function getCoLocationPixelOffset(brotherId, movement, currentDateStr) {
   // Sort to get consistent ordering
   coLocated.sort((a, b) => brotherOrder.indexOf(a) - brotherOrder.indexOf(b));
   const myIdx = coLocated.indexOf(brotherId);
-  const spread = 50; // pixels
+  const spread = 80; // pixels
   return (myIdx - (coLocated.length - 1) / 2) * spread;
 }
 
@@ -957,8 +1222,8 @@ function addCurrentNode(movement, brotherId, pixelOffsetX) {
       <div class="node-label${verifiedClass}">${name}${starHtml}</div>
     </div>`,
     className: '',
-    iconSize: [80, 40],
-    iconAnchor: [40 - pixelOffsetX, 10]
+    iconSize: [140, 55],
+    iconAnchor: [70 - pixelOffsetX, 14]
   });
 
   L.marker([movement.lat, movement.lon], { icon, zIndexOffset: 1000 })
@@ -968,10 +1233,12 @@ function addCurrentNode(movement, brotherId, pixelOffsetX) {
 
 function addTrailNode(movement, brotherId, opacity) {
   const color = COLORS[brotherId];
-  const size = 8;
+  const size = 12;
 
   const icon = L.divIcon({
-    html: `<div class="node-trail" style="width:${size}px;height:${size}px;background:${color};opacity:${opacity}"></div>`,
+    html: `<div style="display:flex;flex-direction:column;align-items:center">
+      <div class="node-trail" style="width:${size}px;height:${size}px;background:${color};opacity:${opacity}"></div>
+    </div>`,
     className: '',
     iconSize: [size, size],
     iconAnchor: [size/2, size/2]
@@ -1003,6 +1270,29 @@ function addMemorialMarker() {
 // ============================================================
 // CONTEXT TEXT (for status panels)
 // ============================================================
+function formatRecipientShort(r) {
+  if (!r) return 'Unknown';
+  // Mrs. Hubbell / Mrs. F. A. Hubbell / Mrs. F. M. Hubbell → "Mother"
+  if (/^Mrs\.?\s/i.test(r)) return 'Mother';
+  // "Mother" anywhere → "Mother"
+  if (/^Mother/i.test(r)) return 'Mother';
+  // "Family" → "Family"
+  if (/^Family/i.test(r)) return 'Family';
+  // Known family: Frances/Fannie → "Fannie (sister)"
+  if (/Frances|Fannie/i.test(r)) return 'Fannie (sister)';
+  // Generic "Brother" without clear name
+  if (/^Brother\s*\(unnamed/i.test(r)) return 'brother';
+  // Brothers: Alexander, Charles, James Hubbell → "FirstName (brother)"
+  if (/Alexander.*Hubbell|Brother.*Alexander/i.test(r)) return 'Alexander (brother)';
+  if (/Charles.*Hubbell|Brother.*Charles|"Dear Charley"/i.test(r)) return 'Charles (brother)';
+  if (/James.*Hubbell|Brother.*James/i.test(r)) return 'James (brother)';
+  if (/^Brother\b/i.test(r)) return 'brother';
+  // Aunt
+  if (/^Aunt/i.test(r)) return 'Aunt';
+  // Non-family: keep as-is (e.g. "Capt. J. M. Ransom")
+  return r;
+}
+
 function getContextText(brotherId, currentDateStr, currentMovement) {
   // Find most recent letter within 14 days
   const recentLetters = DATA.movements.filter(m =>
@@ -1015,8 +1305,8 @@ function getContextText(brotherId, currentDateStr, currentMovement) {
   if (recentLetters.length > 0) {
     const letter = recentLetters[recentLetters.length - 1];
     if (letter.letterExcerpt) {
-      const excerpt = letter.letterExcerpt.slice(0, 80);
-      return `"${excerpt}${letter.letterExcerpt.length > 80 ? '...' : ''}"`;
+      const excerpt = letter.letterExcerpt.slice(0, 200);
+      return `"${excerpt}${letter.letterExcerpt.length > 200 ? '...' : ''}"`;
     }
   }
 
@@ -1065,7 +1355,7 @@ function showInfoPanel(movement, brotherId) {
     : 'Unit history (estimated)';
 
   html += `<div class="info-meta">
-    <strong>Date:</strong> ${formatDate(new Date(movement.date))}${movement.endDate ? ' – ' + formatDate(new Date(movement.endDate)) : ''}<br>
+    <strong>Date:</strong> ${formatDateStr(movement.date)}${movement.endDate ? ' – ' + formatDateStr(movement.endDate) : ''}<br>
     <strong>Location:</strong> ${movement.placeName}<br>
     <strong>Status:</strong> ${(movement.status || 'active').replace(/_/g, ' ')}<br>
     <strong>Source:</strong> ${sourceLabel}
@@ -1076,10 +1366,14 @@ function showInfoPanel(movement, brotherId) {
     html += `<div class="info-excerpt">"${movement.letterExcerpt}"</div>`;
   }
 
-  // Full letter text if available
-  if (movement.letterText) {
-    const preview = movement.letterText.slice(0, 300);
-    html += `<div style="font-size:0.78rem;color:#4A4A4A;line-height:1.6;margin-top:8px;padding:8px;background:#FAFAFA;border-radius:3px">${preview}${movement.letterText.length > 300 ? '...' : ''}</div>`;
+  // Significance summary
+  if (movement.sigSummary) {
+    html += `<div style="font-size:0.78rem;color:#4A4A4A;line-height:1.5;margin-top:8px">${movement.sigSummary}</div>`;
+  }
+
+  // "Read full letter" link if transcription available
+  if (movement.transcription) {
+    html += `<div style="margin-top:6px"><a href="#" onclick="event.preventDefault();openLetterOverlay('${movement.letterId}','${brotherId}')" style="font-size:0.75rem;color:#2D5F8A;font-weight:500">Read full letter &rarr;</a></div>`;
   }
 
   // Citation with hyperlinks
@@ -1102,20 +1396,27 @@ function showInfoPanel(movement, brotherId) {
     html += `<div style="font-size:0.75rem;color:#9B9B9B;margin-top:10px;font-style:italic">${movement.notes}</div>`;
   }
 
-  // Recent activity for this brother (nearby dates)
+  // 3 Most Recent Letters for this brother
   const currentDateStr = dateStr(dayToDate(currentDay));
-  const nearby = DATA.movements.filter(m =>
+  const recentLetters = DATA.movements.filter(m =>
     m.brother === brotherId &&
-    daysBetween(m.date, currentDateStr) <= 30 &&
-    m.date <= currentDateStr &&
-    m !== movement
-  ).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
+    m.source === 'letter' &&
+    m.date <= currentDateStr
+  ).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
 
-  if (nearby.length > 0) {
-    html += `<div class="info-section"><h4>Recent Activity</h4>`;
-    nearby.forEach(m => {
-      const icon = m.source === 'letter' ? '★ ' : '';
-      html += `<div class="info-recent-item"><span class="date">${m.date}</span> ${icon}${m.placeName}</div>`;
+  if (recentLetters.length > 0) {
+    const daysSince = daysBetween(recentLetters[0].date, currentDateStr);
+    const daysSinceText = daysSince === 0 ? 'today' : `${daysSince} day${daysSince !== 1 ? 's' : ''} ago`;
+    html += `<div class="info-section"><h4>Recent Letters <span class="days-since-letter">(last: ${daysSinceText})</span></h4>`;
+    recentLetters.forEach(l => {
+      const quote = l.letterExcerpt ? `"${l.letterExcerpt.slice(0, 60)}${l.letterExcerpt.length > 60 ? '...' : ''}"` : '';
+      const recipient = l.recipient || 'Unknown';
+      const context = l.sigSummary ? l.sigSummary.slice(0, 80) + (l.sigSummary.length > 80 ? '...' : '') : l.placeName;
+      html += `<div class="recent-letter-card" onclick="openLetterOverlay('${l.letterId}','${brotherId}')">
+        <div><span class="letter-date">${formatDateStr(l.date)}</span> <span class="letter-recipient">to ${recipient}</span></div>
+        <div class="letter-context">${context}</div>
+        ${quote ? `<div class="letter-quote">${quote}</div>` : ''}
+      </div>`;
     });
     html += `</div>`;
   }
@@ -1179,26 +1480,6 @@ function linkifyCitation(text) {
 }
 
 // ============================================================
-// EVENT FEED
-// ============================================================
-function updateEventFeed(currentDateStr) {
-  const recent = DATA.events.filter(e => e.date <= currentDateStr)
-    .sort((a, b) => b.date.localeCompare(a.date))
-    .slice(0, 8);
-
-  const container = document.getElementById('eventFeedContent');
-  if (recent.length === 0) {
-    container.innerHTML = '<div style="font-size:0.75rem;color:#9B9B9B;font-style:italic">No events yet</div>';
-    return;
-  }
-
-  container.innerHTML = recent.map(e => {
-    const cls = e.type === 'battle' ? 'event-battle' : '';
-    return `<div class="event-item"><span class="event-date">${e.date}</span> <span class="${cls}">${e.label}</span></div>`;
-  }).join('');
-}
-
-// ============================================================
 // NARRATIVE CAPTIONS
 // ============================================================
 const NARRATIVES = [
@@ -1255,7 +1536,68 @@ function scrubTimeline(val) {
 }
 
 function recenterMap() {
-  updateToDate(currentDay); // Re-triggers fitBounds
+  if (lockedBrother) {
+    const pos = getLockedBrotherPosition(dateStr(dayToDate(currentDay)));
+    if (pos) map.flyTo(pos, 9, { duration: 0.5 });
+  } else {
+    updateToDate(currentDay);
+  }
+}
+
+// ============================================================
+// LOCK-ON
+// ============================================================
+function toggleLock(brotherId) {
+  if (lockedBrother === brotherId) {
+    // Unlock
+    lockedBrother = null;
+    document.querySelectorAll('.status-panel').forEach(p => p.classList.remove('locked'));
+    document.querySelectorAll('.lock-btn').forEach(b => { b.textContent = 'Lock to follow'; });
+  } else {
+    // Lock onto this brother
+    lockedBrother = brotherId;
+    document.querySelectorAll('.status-panel').forEach(p => {
+      p.classList.toggle('locked', p.dataset.brother === brotherId);
+    });
+    document.querySelectorAll('.lock-btn').forEach(b => {
+      b.textContent = b.dataset.brother === brotherId ? 'Following ✓' : 'Lock to follow';
+    });
+    // Apply locked panel border color
+    const panel = document.getElementById(`status-${brotherId}`);
+    if (panel) panel.style.borderBottomColor = COLORS[brotherId];
+  }
+  updateToDate(currentDay);
+}
+
+// ============================================================
+// LETTER OVERLAY
+// ============================================================
+function openLetterOverlay(letterId, brotherId) {
+  const movement = DATA.movements.find(m => m.letterId === letterId);
+  if (!movement) return;
+
+  const overlay = document.getElementById('letterOverlay');
+  const header = document.getElementById('letterOverlayHeader');
+  const meta = document.getElementById('letterOverlayMeta');
+  const body = document.getElementById('letterOverlayBody');
+
+  header.textContent = `${DATA.brothers[brotherId].name} — ${formatDate(new Date(movement.date))}`;
+  header.style.color = COLORS[brotherId];
+
+  meta.innerHTML = `
+    <strong>From:</strong> ${movement.placeName}<br>
+    <strong>To:</strong> ${movement.recipient || 'Unknown'}<br>
+    <strong>ID:</strong> ${movement.letterId}
+    ${movement.sigSummary ? '<br><strong>Significance:</strong> ' + movement.sigSummary : ''}
+  `;
+
+  body.textContent = movement.transcription || 'Full transcription not available.';
+
+  overlay.classList.add('visible');
+}
+
+function closeLetterOverlay() {
+  document.getElementById('letterOverlay').classList.remove('visible');
 }
 
 function toggleInfoPanel() {
@@ -1282,6 +1624,9 @@ function handleKeyboard(e) {
       currentDay = Math.max(currentDay - 1, 0);
       updateToDate(currentDay);
       break;
+    case 'Escape':
+      closeLetterOverlay();
+      break;
   }
 }
 
@@ -1291,6 +1636,15 @@ function handleKeyboard(e) {
 document.addEventListener('DOMContentLoaded', () => {
   init();
 
+  // Lock button clicks (stop propagation so panel click doesn't also fire)
+  document.querySelectorAll('.lock-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleLock(btn.dataset.brother);
+    });
+  });
+
+  // Status panel click → fly to brother + show info
   document.querySelectorAll('.status-panel').forEach(panel => {
     panel.addEventListener('click', () => {
       const brotherId = panel.dataset.brother;
@@ -1313,5 +1667,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+
+<!-- Letter Detail Overlay -->
+<div class="letter-overlay" id="letterOverlay" onclick="if(event.target===this)closeLetterOverlay()">
+  <div class="letter-overlay-content">
+    <button class="letter-overlay-close" onclick="closeLetterOverlay()">&times;</button>
+    <div class="letter-overlay-header" id="letterOverlayHeader"></div>
+    <div class="letter-overlay-meta" id="letterOverlayMeta"></div>
+    <div class="letter-overlay-body" id="letterOverlayBody"></div>
+  </div>
+</div>
 </body>
 </html>

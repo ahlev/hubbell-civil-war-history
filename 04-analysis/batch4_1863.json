@@ -1,0 +1,2433 @@
+[
+  {
+    "doc_id": "LTR-1863-01-02-001",
+    "file": "LTR-1863-01-02-001.md",
+    "existing_people_count": 22,
+    "existing_places_count": 13,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Copeland",
+      "Fairfax Station Jan",
+      "Ransom",
+      "Reserve Grand Division",
+      "Rye",
+      "Savage",
+      "Sigel",
+      "Slocum",
+      "Turners"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "Fairfax",
+      "Fairfax Station Jan",
+      "Henry"
+    ],
+    "candidate_flags": {
+      "Battle/combat described": [
+        {
+          "match": "fight",
+          "context": "...hat Henry was urged not to go into that fight. Perhaps it is not so. When we were cal..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-01-13-001",
+    "file": "LTR-1863-01-13-001.md",
+    "existing_people_count": 8,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Fairfax Station",
+      "Miss Fannie"
+    ],
+    "candidate_places": [
+      "Fairfax",
+      "Fairfax Station"
+    ],
+    "candidate_flags": {
+      "Camp movement/march": [
+        {
+          "match": "on the march",
+          "context": "...y well when I am in camp, but when I am on the march, what tastes better than a good hunk of..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-01-14-001",
+    "file": "LTR-1863-01-14-001.md",
+    "existing_people_count": 10,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Army Corps",
+      "Dear Friend"
+    ],
+    "candidate_places": [
+      "Alexander",
+      "Fairfax",
+      "Fredericksburg",
+      "Harper",
+      "Rosecrans"
+    ],
+    "candidate_flags": {
+      "Discharge/muster-out": [
+        {
+          "match": "furlough",
+          "context": "...failed, I was determined to apply for a furlough for him, as our circumstances daily loo..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-01-31-001",
+    "file": "LTR-1863-01-31-001.md",
+    "existing_people_count": 9,
+    "existing_places_count": 7,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Rye"
+    ],
+    "candidate_places": [
+      "Aquia"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...Alexandria, Va. > > Dear Mother: > > I received your letter today and was surprised to learn that y..."
+        },
+        {
+          "match": "had a letter from",
+          "context": "...me. I wish Frances would write. Has she had a letter from C. Fullerton? The newspaper wrapper on..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "sick",
+          "context": "...rprised to learn that you thought I was sick. My health is very good; have got over..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "died",
+          "context": "...h yard around it are buried persons who died in 1700s. The grave stones are weather..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-02-06-001",
+    "file": "LTR-1863-02-06-001.md",
+    "existing_people_count": 10,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Copeland",
+      "Gen Siegel",
+      "If",
+      "Ransom",
+      "Siegel",
+      "War Department"
+    ],
+    "candidate_places": [],
+    "candidate_flags": {
+      "Discharge/muster-out": [
+        {
+          "match": "furlough",
+          "context": "...him, but Gen Siegel would not sign the furlough and it has gone to the War Department,..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-02-13-001",
+    "file": "LTR-1863-02-13-001.md",
+    "existing_people_count": 21,
+    "existing_places_count": 11,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Armstrong",
+      "Burdick",
+      "Hooker",
+      "Rhode Island Reg",
+      "Simonds"
+    ],
+    "candidate_places": [
+      "Alexandria",
+      "Aquia",
+      "James",
+      "Washington"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...ou will be, too. Ask Mother if she will send me the Tribune once in a while to read, an..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...63 > Alexandria > > Dear Frances: > > I received your letter of Feb. 1st. Was glad to hear from you..."
+        },
+        {
+          "match": "received a letter",
+          "context": "...lad to read a letter so full of news. I received a letter from D. V. Savage this morning. Will an..."
+        },
+        {
+          "match": "hear from",
+          "context": "...ed your letter of Feb. 1st. Was glad to hear from you and also glad to read a letter so f..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "furlough",
+          "context": "...s and privates going home on a ten days furlough. I believe that only Hooker's army have..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-02-21-001",
+    "file": "LTR-1863-02-21-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 10,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [],
+    "candidate_places": [
+      "Aquia Creek",
+      "Jersey",
+      "New York",
+      "Reached White River",
+      "Rouse",
+      "Washington"
+    ],
+    "candidate_flags": {
+      "Discharge/muster-out": [
+        {
+          "match": "furlough",
+          "context": "...six hours prior to the expiration of my furlough. Found everything here about as I had l..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-02-22-001",
+    "file": "LTR-1863-02-22-001.md",
+    "existing_people_count": 13,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Aquia Creek",
+      "Armstrong",
+      "Fortress Monroe",
+      "High Mass",
+      "Rich",
+      "Uncle Sam"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "Aquia Creek",
+      "Charlotte",
+      "Fortress Monroe",
+      "High Mass"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...es were not the thing. I wish you would send me two dollars as I want to buy a pair of..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "heard from",
+          "context": "...w lots to see who should go. I have not heard from Alex. Do you think he will get a furlou..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "sick",
+          "context": "...ten days furlough. There were also two sick boys and one man and some more ladies t..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "furlough",
+          "context": "...ficers and men going home on a ten days furlough. There were also two sick boys and one..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-02-28-001",
+    "file": "LTR-1863-02-28-001.md",
+    "existing_people_count": 11,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Miss Fannie"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "Champlain",
+      "Frenchman",
+      "New York",
+      "Rouse"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...> [page break] > > can pass it will you send me another? As I wish to return the dollar..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-03-02-001",
+    "file": "LTR-1863-03-02-001.md",
+    "existing_people_count": 11,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Armstrong",
+      "Burdick",
+      "Episcopal Church",
+      "Rye"
+    ],
+    "candidate_places": [
+      "Canada",
+      "Lieut",
+      "Uncle John"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...eap now and groceries? I wish you would send me the Tribune after you have both read it..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...863 > Alexandria > > Dear Mother: > > I received your letter of Feb. 23, also the Observer, in which..."
+        },
+        {
+          "match": "received a letter",
+          "context": "...rather talk about something else. > > I received a letter from Uncle John which I will send in th..."
+        }
+      ],
+      "Political commentary": [
+        {
+          "match": "democrat",
+          "context": "...us a year or two since? He is a strong democrat and a little sesesh, I think. I don't l..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "dead",
+          "context": "...did not know. There was a soldier shot dead by a citizen and I told him that I did..."
+        }
+      ],
+      "Wound/injury reported": [
+        {
+          "match": "shot",
+          "context": "...hat I did not know. There was a soldier shot dead by a citizen and I told him that I..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-03-08-001",
+    "file": "LTR-1863-03-08-001.md",
+    "existing_people_count": 8,
+    "existing_places_count": 4,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Cousin Mary",
+      "Delany",
+      "Mary",
+      "Miss Fannie"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "Cheesje",
+      "Frenchman",
+      "Mary Mc"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...resigned and gone home. > > Goodrich, I received a letter a few days since from cousin Mary McNei..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-03-12-001",
+    "file": "LTR-1863-03-12-001.md",
+    "existing_people_count": 17,
+    "existing_places_count": 7,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Aquia Creek Monday",
+      "Brinkerhoff",
+      "Ransom"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "Aquia Creek Monday",
+      "Aunt Laura",
+      "Charlotte",
+      "Lieut"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...e weeks since requesting that you would send me two dollars as I wished to buy a pair o..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...cost him nearly $40.00 to go home. Alex received a letter from Aunt Laura while I was there. She..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "sick",
+          "context": "...d, etc? Do you know I think some one is sick or dead over at Charlotte and that you..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "dead",
+          "context": "...Do you know I think some one is sick or dead over at Charlotte and that you and Fran..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "furlough",
+          "context": "...hearty as a buck; is anxious to have a furlough and will not fail to call upon you. No..."
+        }
+      ],
+      "Promotion/demotion": [
+        {
+          "match": "promoted",
+          "context": "...hird sergeant and when their orderly is promoted to Lieut. he will be second sergeant. L..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-03-16-001",
+    "file": "LTR-1863-03-16-001.md",
+    "existing_people_count": 11,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Copeland",
+      "Hoyle",
+      "Miss Fannie",
+      "Simons"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "Champlain",
+      "Charles",
+      "Lieut"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": ".... I wish, Mother, if you can, you would send me Albert Cook's address. I should like ve..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...ch gratified by my visit to his wife. I received a letter from him a few days since. I wish, Moth..."
+        },
+        {
+          "match": "hear from",
+          "context": "...k's address. I should like very much to hear from him. There is a signal station down at..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "sick",
+          "context": "...was not right up there (i.e., you were sick) ... We have finished the forts and now..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "death",
+          "context": "...rs. Hoyle with a notice of Dana Lyman's death posted upon it. How much her and you in..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-03-19-001",
+    "file": "LTR-1863-03-19-001.md",
+    "existing_people_count": 15,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Fortress Monroe",
+      "Rye",
+      "Uncle Sam"
+    ],
+    "candidate_places": [
+      "Champlain",
+      "Plattsburgh",
+      "Uncle Sam",
+      "Vicksburg"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...f a headache for a day or two. Will you send me two dollars immediately if you have not..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...— Mch 20 continuation] > > Mch. 20 — I received a letter from Alex this morning enclosing one fr..."
+        },
+        {
+          "match": "hear from",
+          "context": "...letter of March 10th received; glad to hear from you. I have not heard from Alex since I..."
+        },
+        {
+          "match": "heard from",
+          "context": "...ived; glad to hear from you. I have not heard from Alex since I saw him. He is not a good..."
+        }
+      ],
+      "Political commentary": [
+        {
+          "match": "war will",
+          "context": "...n heard from. > > When do you think the war will end? I hope that we will give the rebel..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "died",
+          "context": "...the names of 400 Union soldiers who had died in rebel hospitals was about to be publ..."
+        },
+        {
+          "match": "killed",
+          "context": "...can receive a pension for a son that is killed provided that they are dependent or par..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-03-22-001",
+    "file": "LTR-1863-03-22-001.md",
+    "existing_people_count": 11,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Alma Mcyath",
+      "Copeland",
+      "Francis",
+      "Hoyle",
+      "Miss Francis",
+      "Simons"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "Mother"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...Francis, I will first address myself. I received a letter a day or two since from Mother — and no..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharge",
+          "context": "...course of ninety days with an honorable discharge in my pocket, and the war over. How doe..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-03-29-001",
+    "file": "LTR-1863-03-29-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 7,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Clark",
+      "Many",
+      "Miss Fannie"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "Baltimore",
+      "Rutland"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...home? I am now out of stamps. Will you send me two or three? Love to all. Remember me..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...nding > > Dear Mother and Sister: > > I received your letter of the 20th inst, a day or two since, a..."
+        },
+        {
+          "match": "letter of the 2",
+          "context": "...Mother and Sister: > > I received your letter of the 20th inst, a day or two since, and was mu..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...assign me a place of safety in time of battle!\" Haven't Wherever my reg't goes, I wil..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "surgeon",
+          "context": "...you should say what you did: \"Write the surgeon to assign me a place of safety in time..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-03-29-002",
+    "file": "LTR-1863-03-29-002.md",
+    "existing_people_count": 13,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Aquia Creek",
+      "Coyt",
+      "Fort Lyons",
+      "Uncle John"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "Aquia Creek",
+      "Champlain",
+      "Georgetown",
+      "Hooker",
+      "James",
+      "Lieut",
+      "Lyons",
+      "Plattsburgh"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "heard from",
+          "context": ".... He inquired about my friends; says he heard from Champlain > > [page break] > > that Jam..."
+        }
+      ],
+      "Camp movement/march": [
+        {
+          "match": "marched",
+          "context": "...of the church was filled with soldiers marched there in a body. Had a good sermon. I h..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fighting",
+          "context": "...e will give the two years men some hard fighting before their time is out. He looks well..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "killed",
+          "context": "...nt about Henry. I am afraid that he was killed. Emerson Smith is at the convalescent c..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "furlough",
+          "context": "...ing men. One man from our Co. has had a furlough to go to Plattsburgh and has been gone..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-04-11-001",
+    "file": "LTR-1863-04-11-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Copeland",
+      "Crea",
+      "Rye",
+      "Uncle Sam"
+    ],
+    "candidate_places": [
+      "Canada",
+      "Plattsburgh",
+      "Washington"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "heard from",
+          "context": "...am afraid he was killed. > > I have not heard from Alex for some time. Think Hooker's army..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "sick",
+          "context": "...ry had gone to the hospital when he was sick, he might have escaped some of the batt..."
+        },
+        {
+          "match": "hospital",
+          "context": "...ore he got it. If Henry had gone to the hospital when he was sick, he might have escaped..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "killed",
+          "context": "...e battles he was in. I am afraid he was killed. > > I have not heard from Alex for som..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "furlough",
+          "context": "...Co. that went home to Plattsburgh on a furlough from our Co. has not come back; goes to..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-04-13-001",
+    "file": "LTR-1863-04-13-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 7,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Cousin Charles",
+      "Cousin Mary",
+      "Uncle John"
+    ],
+    "candidate_places": [
+      "Champlain",
+      "Charles",
+      "Charlotte",
+      "Garrettstown",
+      "Lincoln",
+      "Uncle John"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...usin Charles: > > We, or rather Father, received a letter from you a few days ago and were glad t..."
+        },
+        {
+          "match": "heard from",
+          "context": "...> > Is your mother well now? I have not heard from her for a long time. I hope you and Ale..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fight",
+          "context": "...ere are many that say they would sooner fight for the Union than to free the negroes...."
+        }
+      ],
+      "Political commentary": [
+        {
+          "match": "government",
+          "context": "...s the citizens will like it to have the government stockade its stores and have nearly the..."
+        },
+        {
+          "match": "president",
+          "context": "...t its stores will not be destroyed. The President was here a few days since. I heard cann..."
+        },
+        {
+          "match": "war will",
+          "context": "...I suppose there is no knowing when the war will end, but hope it will soon. Uncle Charl..."
+        }
+      ],
+      "Major news from home": [
+        {
+          "match": "wedding",
+          "context": "...a solemn time. I understand there was a wedding in the neighborhood last week which was..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-04-16-001",
+    "file": "LTR-1863-04-16-001.md",
+    "existing_people_count": 11,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Fan",
+      "Hooker",
+      "Hoyle",
+      "Laura",
+      "Miss Fan",
+      "Miss Fannie"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "English"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...> Aquia Landing > > Dear Mother: > > I received your letter of the 7 inst. a day or two since and w..."
+        },
+        {
+          "match": "letter of the 7",
+          "context": "...ng > > Dear Mother: > > I received your letter of the 7 inst. a day or two since and was filled..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fight",
+          "context": "...first person you hear say they will not fight. Gen'l. Hooker so far as I know, is in..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "dead",
+          "context": "...that we can hear of no one who saw him dead upon the field and it is upon this that..."
+        }
+      ],
+      "Wound/injury reported": [
+        {
+          "match": "wounded",
+          "context": "...he is yet alive. Your fears that he was wounded are groundless and (excuse me) very foo..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-04-23-001",
+    "file": "LTR-1863-04-23-001.md",
+    "existing_people_count": 13,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Crimean War",
+      "Master James"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "Frilly",
+      "Luther",
+      "Montreal"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...s shown himself to be a man of honor. I received a letter from him a short time since. He request..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-04-24-001",
+    "file": "LTR-1863-04-24-001.md",
+    "existing_people_count": 8,
+    "existing_places_count": 4,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Copeland"
+    ],
+    "candidate_places": [
+      "Aquia"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "got the letter",
+          "context": "...short time since. Wants to know if she got the letter. He sends regards. Is fat and husky. Te..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-04-27-001",
+    "file": "LTR-1863-04-27-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Abram Fry",
+      "Aquia Landing",
+      "Hoyle"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "Aquia Landing",
+      "Henry",
+      "Mary Mc",
+      "Philadelphia",
+      "Sedgwick"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...es were not the thing. I wish you would send me two dollars as I want to buy a pair of..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "heard from",
+          "context": "...bt that Henry was killed. We would have heard from him long before this if he had been liv..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...e. He said the artillery waited after a battle because their sessions carried the shov..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "sick",
+          "context": "...There are only two besides him that are sick, though not with the small pox. I hope..."
+        },
+        {
+          "match": "hospital",
+          "context": "...the battle of Antietam, has been in the hospital at Philadelphia ever since. There are o..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "killed",
+          "context": "...ou ask me what makes me think Henry was killed. Well, I think so from what you have wr..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharged",
+          "context": "...ar ago. The reg't. was on its way home. discharged as its time was cut out. The men looked..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-04-30-001",
+    "file": "LTR-1863-04-30-001.md",
+    "existing_people_count": 13,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [],
+    "candidate_places": [
+      "Williamsburg"
+    ],
+    "candidate_flags": {
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...N.Y. reg't., has been missing since the battle of Antietam. He fell as the enemy charg..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "hospital",
+          "context": "...> The Col. thought he was taken to the hospital. He was in very feeble health some time..."
+        },
+        {
+          "match": "surgeon",
+          "context": "...my charged, and was not seen after. The surgeon assures me that he sent trusty men to s..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "died",
+          "context": "...faction to me to know when and where he died, whether in one of our own or a rebel h..."
+        },
+        {
+          "match": "killed",
+          "context": "...er the battle, that every union soldier killed was fully identified, and that my son c..."
+        }
+      ],
+      "Wound/injury reported": [
+        {
+          "match": "wounded",
+          "context": "...ose. His belief is that he was slightly wounded and taken prisoner. > > The Col. though..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-05-04-001",
+    "file": "LTR-1863-05-04-001.md",
+    "existing_people_count": 17,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 4,
+    "candidate_people": [
+      "Allison",
+      "Averill",
+      "Bass",
+      "Beaumont",
+      "Cook",
+      "Luther",
+      "Red River Battle",
+      "Vitohoek"
+    ],
+    "candidate_places": [
+      "Ballerjy",
+      "Henry",
+      "Richmond",
+      "Rouse"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "heard from",
+          "context": "...o here from Chas. this week. He has not heard from home since early in Feb. How strange it..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fighting",
+          "context": "...ure, must get into a great deal of hard fighting. > > May 5th — Oh, Alex, I have shockin..."
+        },
+        {
+          "match": "battle",
+          "context": "...ee's letter today, written me after the battle, in which he says, \"I did not see Henry..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "died",
+          "context": "...in rebellion. I very much fear that he died on the field. It will be a life long so..."
+        },
+        {
+          "match": "killed",
+          "context": "...was fourth and next to Ballerjy who was killed. Thinks the reason why so little is kno..."
+        },
+        {
+          "match": "death",
+          "context": "...that I have read his letters since his death. Today I was necessitated to do it to g..."
+        }
+      ],
+      "Wound/injury reported": [
+        {
+          "match": "wounded",
+          "context": "...d has said that he saw him after he was wounded — limping to the rear leaning upon his..."
+        },
+        {
+          "match": "wound",
+          "context": "...ysicians were called who pronounced the wound mortal, and told him that he had but a..."
+        },
+        {
+          "match": "shot",
+          "context": "...y occurred here last night. Isaac Dedds shot Mr. Bass through the right arm and then..."
+        }
+      ],
+      "Major news from home": [
+        {
+          "match": "married",
+          "context": "...o marry him. About three weeks since he married a girl for whom he had no affection and..."
+        },
+        {
+          "match": "divorce",
+          "context": "...fection and was talking about getting a divorce. He was jealous of Mr. Bass without the..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharged",
+          "context": "...battle of Antietam, returned last week, discharged. He left the field before Henry was wou..."
+        },
+        {
+          "match": "furlough",
+          "context": "...ble constitution. > > I mailed you your furlough this morning and took your county bount..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-05-06-001",
+    "file": "LTR-1863-05-06-001.md",
+    "existing_people_count": 11,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [],
+    "candidate_places": [
+      "Champlain"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1863-05-11-001",
+    "file": "LTR-1863-05-11-001.md",
+    "existing_people_count": 11,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [],
+    "candidate_places": [
+      "Aquia",
+      "Champlain"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...I sent my money home I asked Mother to send me a watch. She tried to get one, but Scot..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...ong time held the enemy in check. > > I received a letter from home today. They are all well. Whe..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...ume you have long ere this heard of the battle of Chancellorsville in which my regimen..."
+        },
+        {
+          "match": "charge. our orderly was sent fittingly a few feet in the air, by a rebel shell, but without doing him much damage. the reg't. charged three times upon the rebels, driving them back each time in great disorder. the eleventh corps broke and ran in a most cowardly manner and let the brunt come upon the twelfth. at one time, the 60th and 102nd n.y. were left unsupported by the rest of the troops and for a long time held the enemy",
+          "context": "...d while the reg't. was making a bayonet charge. Our orderly was sent Fittingly a few feet in the air, by a rebel shell, but without doing him much damage. The reg't. charged three times upon the rebels, driving them back each time in great disorder. The eleventh corps broke and ran in a most cowardly manner and let the brunt come upon the twelfth. At one time, the 60th and 102nd N.Y. were left unsupported by the rest of the troops and for a long time held the enemy in check. > > I received a letter from..."
+        }
+      ],
+      "Wound/injury reported": [
+        {
+          "match": "wounded",
+          "context": "...eventy three — nine killed, forty three wounded, and twenty-one missing. Company H lost..."
+        },
+        {
+          "match": "shot",
+          "context": "...— one killed dead, Lester Bond. He was shot through the forehead and instantly kill..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-05-13-001",
+    "file": "LTR-1863-05-13-001.md",
+    "existing_people_count": 8,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Aquia Creek",
+      "Aquia Landing",
+      "Provost Marshal",
+      "Simonds"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "Aquia Creek",
+      "Aquia Landing",
+      "Henry",
+      "Sedgwick"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "heard from",
+          "context": "...bt that Henry was killed. We would have heard from him long before this if he had been liv..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fight",
+          "context": "...o find out whether Alex came out of the fight all right, and the other reason was tha..."
+        },
+        {
+          "match": "battle",
+          "context": "...o them. This was from the first line of battle which then laid down and the second lin..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "killed",
+          "context": "...e is not the least doubt that Henry was killed. We would have heard from him long befo..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharged",
+          "context": "...ar ago. The reg't. was on its way home, discharged as its time was cut out. The men looked..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-05-16-001",
+    "file": "LTR-1863-05-16-001.md",
+    "existing_people_count": 15,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Brookway",
+      "Orderly Sergeant Brookway"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "Champlain",
+      "Chancellorsville",
+      "Hooker",
+      "Luther"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...I sent my money home I asked Mother to send me a watch. She tried to get one, but Scot..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...> Aquia Landing > > Dear Charley: > > I received your letter of the 3rd just after we returned from..."
+        },
+        {
+          "match": "received a letter",
+          "context": "...ong time held the enemy in check. > > I received a letter from home today. They are all well. Whe..."
+        },
+        {
+          "match": "letter of the 3",
+          "context": "...g > > Dear Charley: > > I received your letter of the 3rd just after we returned from the front..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...d in his knapsack were lost in the late battle, owing to the fact that Luther was obli..."
+        },
+        {
+          "match": "shelling",
+          "context": "...orn. — May 14th —— The rebels commenced shelling the hospitals and the supply and ammuni..."
+        },
+        {
+          "match": "charge. our orderly was sent fittingly a few feet in the air, by a rebel shell, but without doing him much damage. the reg't. charged three times upon the rebels, driving them back each time in great disorder. the eleventh corps broke and ran in a most cowardly manner and let the brunt come upon the twelfth. at one time, the 60th and 102nd n.y. were left unsupported by the rest of the troops and for a long time held the enemy",
+          "context": "...d while the reg't. was making a bayonet charge. Our Orderly was sent Fittingly a few feet in the air, by a rebel shell, but without doing him much damage. The reg't. charged three times upon the rebels, driving them back each time in great disorder. The eleventh corps broke and ran in a most cowardly manner and let the brunt come upon the twelfth. At one time, the 60th and 102nd N.Y. were left unsupported by the rest of the troops and for a long time held the enemy in check. > > I received a letter from..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "killed",
+          "context": "...e, May 3rd. We lost seventy-three, nine killed, forty three wounded and twenty-one mis..."
+        }
+      ],
+      "Wound/injury reported": [
+        {
+          "match": "wounded",
+          "context": "...seventy-three, nine killed, forty three wounded and twenty-one missing. Co. H lost six..."
+        },
+        {
+          "match": "shot",
+          "context": "...H lost six men. Lester Bond (Co. B) was shot through the forehead and instantly kill..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-05-19-001",
+    "file": "LTR-1863-05-19-001.md",
+    "existing_people_count": 10,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Col",
+      "Strain"
+    ],
+    "candidate_places": [
+      "Alexander",
+      "Aquia",
+      "Captain",
+      "Champlain"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...m or send it by express. Wish you would send me $11.20 of Alex's money by mail; greenba..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fight",
+          "context": "...ten you that he came safely out of that fight and is back in his old camp. In his let..."
+        }
+      ],
+      "Political commentary": [
+        {
+          "match": "government",
+          "context": "...eading to the wharves. A vast amount of government stores are in buildings along the wharv..."
+        }
+      ],
+      "Promotion/demotion": [
+        {
+          "match": "promoted",
+          "context": "...did not see him. Burdick is back and is promoted to Captain. Another Capt. is now Lt. Co..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-05-31-001",
+    "file": "LTR-1863-05-31-001.md",
+    "existing_people_count": 8,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Aquia Creek",
+      "Col",
+      "Strain"
+    ],
+    "candidate_places": [
+      "Aquia",
+      "Aquia Creek",
+      "Captain",
+      "Charley"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...Alexandria, Va. > > Dear Mother: > > I received your letter two or three days since containing elev..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fight",
+          "context": "...rge as ever. He was color bearer in the fight. He is detached from the reg't. and is..."
+        }
+      ],
+      "Political commentary": [
+        {
+          "match": "government",
+          "context": "...eading to the wharves. A vast amount of government stores are in buildings along the wharv..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharge",
+          "context": "...had applied to his Lieut. Col. for his discharge. But neither of us thought it would do..."
+        }
+      ],
+      "Promotion/demotion": [
+        {
+          "match": "promoted",
+          "context": "...did not see him. Burdick is back and is promoted to Captain. Another Capt. is now Lt. Co..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-06-03-001",
+    "file": "LTR-1863-06-03-001.md",
+    "existing_people_count": 9,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Aquia Creek Landing",
+      "Col",
+      "Colonel Redington",
+      "Miss Fannie",
+      "Ransom",
+      "Redington"
+    ],
+    "candidate_places": [
+      "Antietam",
+      "Aquia Creek",
+      "Aquia Creek Landing",
+      "Champlain",
+      "Chancellor"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...Hubbell > > P.S. Will you now and then send me a stamp?..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "heard from",
+          "context": "...am much pleased that you have at length heard from me. Tell me when you next write whether..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...ll, he is a man of courage. In the last battle at Chancellor he was singing away at a..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "ague",
+          "context": "...would have a tendency to give them the ague.\" > > June 4th — We have orders to marc..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-06-10-001",
+    "file": "LTR-1863-06-10-001.md",
+    "existing_people_count": 10,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Fort Lyons"
+    ],
+    "candidate_places": [
+      "Charlotte",
+      "Falmouth",
+      "Fort Lyons",
+      "Lyons"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...r of June 2nd yesterday and was glad to hear from you. Enclosed is a few lines that I rec..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "killed",
+          "context": "...will have to wait a good while. He was killed, without a doubt. > > We have an hours..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-06-29-001",
+    "file": "LTR-1863-06-29-001.md",
+    "existing_people_count": 4,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [],
+    "candidate_places": [
+      "Charlotte",
+      "Mother"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1863-07-04-001",
+    "file": "LTR-1863-07-04-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 7,
+    "existing_flags_yes_count": 4,
+    "candidate_people": [
+      "Brookway",
+      "John Tickle",
+      "Ransome"
+    ],
+    "candidate_places": [
+      "Milebus Ayres"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1863-07-06-001",
+    "file": "LTR-1863-07-06-001.md",
+    "existing_people_count": 15,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Brink",
+      "Cynthia Bourns",
+      "Mrs Cynthia Bourns",
+      "Steais"
+    ],
+    "candidate_places": [
+      "Charlotte",
+      "Chicago",
+      "David Savage",
+      "Grandmother",
+      "Henry",
+      "Maryland",
+      "Penna",
+      "Plattsburgh"
+    ],
+    "candidate_flags": {
+      "Camp movement/march": [
+        {
+          "match": "marched",
+          "context": "...re we started and after we got back. We marched with our reg'ts. There was a band of mu..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "furlough",
+          "context": "...esn't write. A deserter from our Co. on furlough was caught and brought back here and is..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-07-20-001",
+    "file": "LTR-1863-07-20-001.md",
+    "existing_people_count": 16,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Aquia Creek",
+      "Rich",
+      "Slough",
+      "West Point"
+    ],
+    "candidate_places": [
+      "Alexandria",
+      "Aquia",
+      "Champlain",
+      "Charlotte",
+      "James",
+      "Savages",
+      "West Point"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...from James lately? If you have will you send me his letters and I will return it. I saw..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...ia, Va. > > Dear Mother: > > I have not received a letter since July 8th and I am a little vexed..."
+        },
+        {
+          "match": "hear from",
+          "context": "...written because I have been waiting to hear from you. Have not heard from James for some..."
+        },
+        {
+          "match": "heard from",
+          "context": "...been waiting to hear from you. Have not heard from James for some time. Have you heard fro..."
+        }
+      ],
+      "Camp movement/march": [
+        {
+          "match": "marched",
+          "context": "...Alexandria. We don't like it much as we marched in the hot sun on the 4th of July enoug..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-07-25-001",
+    "file": "LTR-1863-07-25-001.md",
+    "existing_people_count": 10,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Steais"
+    ],
+    "candidate_places": [
+      "Frances",
+      "Gettysburg",
+      "James"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...elcome letter of July 16th. Was glad to hear from you and Frances. Rec'd a letter from Ja..."
+        },
+        {
+          "match": "heard from",
+          "context": "...d not know anything about him. Have not heard from him yet, but I will write him soon. > >..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fight",
+          "context": "...Alex came safely out of that Gettysburg fight. Until I rec'd your letter did not know..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-07-30-001",
+    "file": "LTR-1863-07-30-001.md",
+    "existing_people_count": 10,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Boyle",
+      "Boyles",
+      "Miss Fannie",
+      "Warrenton Junction"
+    ],
+    "candidate_places": [
+      "Gettysburg",
+      "Warrenton",
+      "Warrenton Junction"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1863-08-16-001",
+    "file": "LTR-1863-08-16-001.md",
+    "existing_people_count": 10,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Burdick",
+      "Hill Barracks"
+    ],
+    "candidate_places": [
+      "James Lucas",
+      "Mary Mc"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...get plenty of reading here you need not send me the Observer; send only the Tribune onc..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...I have not heard how he came out. > > I received a letter from Mary McNeill a few days since. Gue..."
+        },
+        {
+          "match": "heard from",
+          "context": "...ought she would not answer it. Have not heard from Alex yet; wish he would write. Have you..."
+        }
+      ],
+      "Camp movement/march": [
+        {
+          "match": "marched",
+          "context": "...wo ago. All in the Co. that want it are marched to the hospital to get it from an open..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "hospital",
+          "context": "...the Co. that want it are marched to the hospital to get it from an open window. Some wou..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-08-21-001",
+    "file": "LTR-1863-08-21-001.md",
+    "existing_people_count": 11,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Boyle",
+      "City Hall",
+      "Clark",
+      "Savage"
+    ],
+    "candidate_places": [
+      "Champlain",
+      "Charlotte"
+    ],
+    "candidate_flags": {
+      "Battle/combat described": [
+        {
+          "match": "fighting",
+          "context": "...t there will be a good deal of guerilla fighting yet. > > I am much obliged to you and F..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-08-25-001",
+    "file": "LTR-1863-08-25-001.md",
+    "existing_people_count": 9,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Miss Fannie",
+      "Simonds",
+      "Sister Frances"
+    ],
+    "candidate_places": [
+      "Amos Luther",
+      "Ellis",
+      "Maryland",
+      "Sergt"
+    ],
+    "candidate_flags": {
+      "Camp movement/march": [
+        {
+          "match": "marched",
+          "context": "...tle. Skirmishers were thrown out and we marched a short distance when we halted and com..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...n Maryland, I passed over a part of the battle ground of Antietam, where we were at on..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "ill",
+          "context": "...ncient philosopher whose head a certain ill omened bird mistaking for a stone dropp..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-09-03-001",
+    "file": "LTR-1863-09-03-001.md",
+    "existing_people_count": 9,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Army Corps",
+      "Ransom"
+    ],
+    "candidate_places": [
+      "Albert",
+      "Albert Cook",
+      "Ellis",
+      "Frances",
+      "Ingram"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...863 > Ellis Ford > > Dear Mother: > > I received your letter of the 20th of August tonight — and fee..."
+        },
+        {
+          "match": "letter of the 2",
+          "context": "...rd > > Dear Mother: > > I received your letter of the 20th of August tonight — and feel — Oh! s..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-09-07-001",
+    "file": "LTR-1863-09-07-001.md",
+    "existing_people_count": 6,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 4,
+    "candidate_people": [
+      "Beardslee",
+      "Burdick",
+      "Harpers Magazines",
+      "Hill Barracks",
+      "James Sunday",
+      "Rich"
+    ],
+    "candidate_places": [
+      "Fonda",
+      "James Sunday"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1863-09-15-001",
+    "file": "LTR-1863-09-15-001.md",
+    "existing_people_count": 6,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Capitol Hill"
+    ],
+    "candidate_places": [
+      "Davis",
+      "James"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "heard from",
+          "context": "...discharge them the first year. Have you heard from James lately? How is he getting along a..."
+        }
+      ],
+      "Major news from home": [
+        {
+          "match": "married",
+          "context": "...A few days since he heard that she was married and had spent all the money. He is an i..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharge",
+          "context": "...er that 100 demerits in six months will discharge them. It takes 150 demerits in six mont..."
+        },
+        {
+          "match": "furlough",
+          "context": "...elf, as he expects to go home soon on a furlough. Pet Steais is in the hospital which is..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-09-18-001",
+    "file": "LTR-1863-09-18-001.md",
+    "existing_people_count": 9,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Captain Delaney",
+      "Delaney"
+    ],
+    "candidate_places": [
+      "Captain Delaney",
+      "Raccoon",
+      "Rapidan"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...shall send twenty dollars this time. I received your letter of the 12 inst. last night. It does me..."
+        },
+        {
+          "match": "letter of the 1",
+          "context": "...enty dollars this time. I received your letter of the 12 inst. last night. It does me good to h..."
+        },
+        {
+          "match": "hear from",
+          "context": "...12 inst. last night. It does me good to hear from you. Please write often. Tell Frances I..."
+        }
+      ],
+      "Camp movement/march": [
+        {
+          "match": "marched",
+          "context": "...e shot. After the execution we were all marched by the coffins that we might see them a..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...e. Yesterday was the anniversary of the battle of Antietam. I presume I shall be in an..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "killed",
+          "context": "...bliged to shoot three times before they killed him. They sat upon their coffins beside..."
+        }
+      ],
+      "Wound/injury reported": [
+        {
+          "match": "shot",
+          "context": "...ins beside their graves where they were shot. After the execution we were all marche..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-09-25-001",
+    "file": "LTR-1863-09-25-001.md",
+    "existing_people_count": 9,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Brikerhoff",
+      "West Point"
+    ],
+    "candidate_places": [
+      "Mary Mc",
+      "West Point"
+    ],
+    "candidate_flags": {
+      "Illness reported": [
+        {
+          "match": "sick",
+          "context": "...have a furlough soon. He has a 20 days sick furlough, but a good many here say he w..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharge",
+          "context": "...this regt. again. Think he will get his discharge. > > I don't know as I want anything ex..."
+        },
+        {
+          "match": "furlough",
+          "context": "...as is still here, but expects to have a furlough soon. He has a 20 days sick furlough, b..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-09-29-001",
+    "file": "LTR-1863-09-29-001.md",
+    "existing_people_count": 10,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Chesapeake Bay",
+      "Fortress Monroe",
+      "Point Lookout Out",
+      "Rich"
+    ],
+    "candidate_places": [
+      "Fortress Monroe",
+      "James",
+      "Moorestown",
+      "Philadelphia",
+      "Point Lookout Out",
+      "Tennessee"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "heard from",
+          "context": "...l the men like Capt. Rich. > > Have you heard from James and Alex lately? James has owed m..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fighting",
+          "context": "...at while they were riding they were not fighting, and he had gotten sick of Va.; it was..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "sick",
+          "context": "...ey were not fighting, and he had gotten sick of Va.; it was nothing but a waste. He..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "furlough",
+          "context": "...of absence. Alex D. has not gotten his furlough yet. I heard not long since that Capt...."
+        },
+        {
+          "match": "leave of absence",
+          "context": "...our Co. has gone home to Moorestown on leave of absence. Alex D. has not gotten his furlough ye..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-10-11-001",
+    "file": "LTR-1863-10-11-001.md",
+    "existing_people_count": 8,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Captain Ran",
+      "Greene",
+      "Miss Fannie",
+      "Ran",
+      "York State"
+    ],
+    "candidate_places": [
+      "Nashville",
+      "York State"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1863-10-12-001",
+    "file": "LTR-1863-10-12-001.md",
+    "existing_people_count": 8,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Odd Fellows",
+      "Roaring Methodist",
+      "Strain"
+    ],
+    "candidate_places": [
+      "Major Strain"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...Washington, D.C. > > Dear Mother: > > I received your letter enclosing Frances' letter of Oct. 4th i..."
+        },
+        {
+          "match": "hear from",
+          "context": "...er of Oct. 4th in due time. Was glad to hear from you both. > > About Alex, I do not know..."
+        }
+      ],
+      "Camp movement/march": [
+        {
+          "match": "marched",
+          "context": "...his city. They looked very well as they marched through the streets in their uniforms a..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharged",
+          "context": "...be perfectly useless to try to get him discharged. The most they can do is to put him in..."
+        },
+        {
+          "match": "furlough",
+          "context": "...evening for home. He has a fifteen days furlough. I don't know as I want anything except..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-10-21-001",
+    "file": "LTR-1863-10-21-001.md",
+    "existing_people_count": 9,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 4,
+    "candidate_people": [
+      "Alex Cash",
+      "Boyle",
+      "Carrol Prison",
+      "Point Lookout"
+    ],
+    "candidate_places": [
+      "Alexandria",
+      "Carrol Prison",
+      "James",
+      "Point Lookout"
+    ],
+    "candidate_flags": {
+      "Major news from home": [
+        {
+          "match": "married",
+          "context": "...> Our 1st Lieut. has within a few days married a lady from Alexandria. They live in a..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-10-31-001",
+    "file": "LTR-1863-10-31-001.md",
+    "existing_people_count": 6,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Chesapeake Bay",
+      "Fortress Monroe",
+      "Invalid Corps",
+      "It",
+      "Point Lookout",
+      "Rich"
+    ],
+    "candidate_places": [
+      "Alexandria",
+      "Corbeau",
+      "Fortress Monroe",
+      "James",
+      "Point Lookout"
+    ],
+    "candidate_flags": {
+      "Discharge/muster-out": [
+        {
+          "match": "furlough",
+          "context": "...ed me to him and asked me if I wanted a furlough. I told him I did not at present. A goo..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-11-01-001",
+    "file": "LTR-1863-11-01-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 4,
+    "candidate_people": [
+      "Cumberland Mountains",
+      "Ruth Hubbell"
+    ],
+    "candidate_places": [
+      "Aunt Wry",
+      "Cumberland"
+    ],
+    "candidate_flags": {
+      "Discharge/muster-out": [
+        {
+          "match": "discharge",
+          "context": "...give you my views fully in regard to a discharge. It would be useless. There is no one,..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-11-15-001",
+    "file": "LTR-1863-11-15-001.md",
+    "existing_people_count": 8,
+    "existing_places_count": 3,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Brinkerhoff",
+      "Darling Child"
+    ],
+    "candidate_places": [
+      "Alexander",
+      "Charles",
+      "Geary",
+      "James",
+      "Libby",
+      "Virginia",
+      "Washington"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "heard from",
+          "context": "...in church today and whispered \"Have you heard from Alexander?\" Her countenance beamed with..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...eary's Division was engaged in the last battle, although we are no member of the 60th,..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "hospital",
+          "context": "...rison, sometimes all mangled in a field hospital, and at others, with our blessed lament..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharge",
+          "context": "...adly disappointed in not obtaining your discharge. Your Col. wrote me that he \"would do w..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-11-19-001",
+    "file": "LTR-1863-11-19-001.md",
+    "existing_people_count": 11,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Invalid Corps",
+      "Old Capitol",
+      "Point Lookout",
+      "Rich",
+      "Roberts",
+      "Strain"
+    ],
+    "candidate_places": [
+      "Goddard",
+      "James",
+      "Meade",
+      "Pet Steais",
+      "Point Lookout",
+      "Sandusky"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...r of Nov. 7th yesterday and was glad to hear from you. Mr. Roberts from C. is here visiti..."
+        },
+        {
+          "match": "heard from",
+          "context": "...ent because our Co. draw from. Have you heard from James lately? How is he getting along a..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-11-20-001",
+    "file": "LTR-1863-11-20-001.md",
+    "existing_people_count": 8,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Strange"
+    ],
+    "candidate_places": [
+      "Alexandria",
+      "James",
+      "Major Strange",
+      "Philadelphia"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "heard from",
+          "context": "...> Have you heard from James and Alex lately? James has owed m..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-11-21-001",
+    "file": "LTR-1863-11-21-001.md",
+    "existing_people_count": 6,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Delaney",
+      "East Tennessee",
+      "Geary",
+      "General Geary",
+      "Ransom"
+    ],
+    "candidate_places": [
+      "Division",
+      "Nashville"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...his tent the other day and said he had received a letter from Capt. Ransom asking him to use his..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...not far distant when I shall be able to battle for drunk and lath on him again. Three..."
+        }
+      ],
+      "Political commentary": [
+        {
+          "match": "president",
+          "context": "...ton is the man to apply to, or else the President. > > I have now only about eleven month..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "surgeon",
+          "context": "...me a discharge. He had talked with the surgeon and colonel, but it was not in their po..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharge",
+          "context": "...im to use his influence in getting me a discharge. He had talked with the surgeon and col..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-12-01-001",
+    "file": "LTR-1863-12-01-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 4,
+    "candidate_people": [
+      "Corporals Ish",
+      "Hospital",
+      "Lookout Mountain",
+      "Sergeants Hubbell",
+      "Sidney Rider"
+    ],
+    "candidate_places": [
+      "Lookout"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...> > I presume you will be surprised to hear from me from this place. Well here I am in t..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "hospital",
+          "context": "...> Dec. 1st, 1863 > General Hospital > Tullahoma, Tenn. > > Dear Mother: > >..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-12-01-002",
+    "file": "LTR-1863-12-01-002.md",
+    "existing_people_count": 3,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Pet",
+      "Steais"
+    ],
+    "candidate_places": [
+      "Alexandria",
+      "Charles"
+    ],
+    "candidate_flags": {
+      "Battle/combat described": [
+        {
+          "match": "fight",
+          "context": "...e to hear how Alex came out of Hooker's fight, but I don't borrow trouble as it does..."
+        }
+      ],
+      "Political commentary": [
+        {
+          "match": "war will",
+          "context": "...eade is successful in this campaign the war will be short. The last ditch men of the reb..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharge",
+          "context": "...cent camp. Said he was going to get his discharge next week, also said he had not been ho..."
+        },
+        {
+          "match": "furlough",
+          "context": "...t. > > I don't know whether I can get a furlough this winter, and if I can, think I had..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-12-09-001",
+    "file": "LTR-1863-12-09-001.md",
+    "existing_people_count": 9,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Belle Island",
+      "Col Goddard",
+      "Darling Child",
+      "Goddard",
+      "Invalid Corps",
+      "Lookout Mountain",
+      "Ransom"
+    ],
+    "candidate_places": [
+      "Lookout",
+      "Tennessee",
+      "Washington"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "heard from",
+          "context": "...u? Oh, where are you? Not a word have I heard from you since the late battles in Tennessee..."
+        },
+        {
+          "match": "hear from",
+          "context": "...he Invalid Corps. He is very anxious to hear from you since Hooker's battle. I have sent..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...anxious to hear from you since Hooker's battle. I have sent you stamps in almost every..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "hospital",
+          "context": "...find you, whether with your Reg't., in hospital, or in prison. As yet your name is abse..."
+        }
+      ],
+      "Wound/injury reported": [
+        {
+          "match": "wounded",
+          "context": "...dard's name is on the list of killed or wounded. I hope it is not serious. Write me imm..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-12-09-002",
+    "file": "LTR-1863-12-09-002.md",
+    "existing_people_count": 8,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 0,
+    "candidate_people": [
+      "Carrol Prison",
+      "Central Guard House",
+      "Invalid Corps",
+      "Provost Marshal",
+      "Slough"
+    ],
+    "candidate_places": [
+      "Alexandria",
+      "Frances"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send us",
+          "context": "...front. I think that it was intended to send us to the front, because we changed our gu..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "heard from",
+          "context": "...s a Presbyterian, I think. > > Have you heard from Alex? I am anxious to hear from him, bu..."
+        },
+        {
+          "match": "hear from",
+          "context": "...ve you heard from Alex? I am anxious to hear from him, but don't borrow trouble, as that..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-12-13-001",
+    "file": "LTR-1863-12-13-001.md",
+    "existing_people_count": 15,
+    "existing_places_count": 7,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "East Tennessee",
+      "Hooker",
+      "Lookout Mountain",
+      "Missionary Ridge"
+    ],
+    "candidate_places": [
+      "Chattanooga",
+      "Lookout"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "want of materials for the main. i am now writing upon paper",
+          "context": "...e conspired to prevent my writing — the want of materials for the main. I am now writing upon paper I received today. Now for business! > >..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...iting hereafter. Do not write until you hear from me again as we expect to make a move so..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1863-12-16-001",
+    "file": "LTR-1863-12-16-001.md",
+    "existing_people_count": 11,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 4,
+    "candidate_people": [
+      "Missionary Ridge",
+      "Ransom"
+    ],
+    "candidate_places": [],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...Co. Love to all. Do not write until you hear from me again as we expect to make a move so..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "hospital",
+          "context": "...d not like the way things worked at the hospital and told the surgeon I was ready to go..."
+        },
+        {
+          "match": "surgeon",
+          "context": "...ngs worked at the hospital and told the surgeon I was ready to go back to the regt. Two..."
+        }
+      ]
+    }
+  }
+]

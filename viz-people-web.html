@@ -30,8 +30,9 @@ body {
 
 /* ---- Sidebar ---- */
 #sidebar {
-  width: 340px;
-  min-width: 340px;
+  width: 33vw;
+  min-width: 360px;
+  max-width: 520px;
   background: #FFFFFF;
   border-right: 1px solid #E8E4DF;
   display: flex;
@@ -184,13 +185,24 @@ body {
   font-size: 12px;
 }
 
+.stat-row.clickable {
+  cursor: pointer;
+  padding: 6px 4px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.stat-row.clickable:hover {
+  background: rgba(45,95,138,0.06);
+}
+
 .stat-row .name {
   color: #2C2C2C;
   font-weight: 400;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 200px;
+  max-width: 260px;
 }
 
 .stat-row .count {
@@ -230,23 +242,48 @@ body {
   line-height: 1.6;
 }
 
+.unique-person {
+  cursor: pointer;
+  color: #6B6B6B;
+  transition: color 0.15s;
+}
+
+.unique-person:hover {
+  color: #2D5F8A;
+  text-decoration: underline;
+}
+
+.unique-person::after {
+  content: ', ';
+}
+
+.unique-person:last-of-type::after {
+  content: '';
+}
+
 /* Detail panel (shown on click) */
 #detail-panel {
   display: none;
-  padding: 16px 20px;
-  border-bottom: 1px solid #F0ECE7;
+  padding: 20px 24px;
   background: #FDFCFA;
+  flex: 1;
+  overflow-y: auto;
 }
 
 #detail-panel.visible {
   display: block;
 }
 
+#detail-panel.visible ~ #sidebar-content {
+  display: none;
+}
+
 #detail-panel h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   margin-bottom: 4px;
+  color: #2C2C2C;
 }
 
 #detail-panel .role-text {
@@ -286,19 +323,120 @@ body {
   color: #9B9B9B;
 }
 
-#detail-close {
-  float: right;
+#detail-back {
   background: none;
   border: none;
-  font-size: 18px;
+  font-size: 13px;
   cursor: pointer;
-  color: #9B9B9B;
-  padding: 0 4px;
-  line-height: 1;
+  color: #6B8FAD;
+  padding: 4px 0 8px;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.3px;
 }
 
-#detail-close:hover {
+#detail-back:hover {
+  color: #2D5F8A;
+}
+
+.pw-mention {
+  padding: 10px 8px;
+  border-bottom: 1px solid #F0ECE7;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.pw-mention:hover {
+  background: rgba(45,95,138,0.06);
+}
+
+.pw-arrow {
+  float: right;
+  font-size: 11px;
+  color: #6B8FAD;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.pw-mention:hover .pw-arrow {
+  opacity: 1;
+}
+
+.pw-mention:last-child {
+  border-bottom: none;
+}
+
+.pw-mentions-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #6B6B6B;
+  margin-bottom: 8px;
+}
+
+/* ---- Letter Overlay ---- */
+.letter-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(44, 44, 44, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.letter-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.letter-overlay-content {
+  background: #FFFFFF;
+  border-radius: 8px;
+  max-width: 640px;
+  width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 24px 28px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  position: relative;
+}
+.letter-overlay-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #9B9B9B;
+  padding: 4px;
+}
+.letter-overlay-close:hover { color: #2C2C2C; }
+.letter-overlay-header {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+.letter-overlay-meta {
+  font-size: 0.8rem;
+  color: #6B6B6B;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.letter-overlay-body {
+  font-family: 'Source Serif 4', 'Playfair Display', serif;
+  font-size: 0.88rem;
+  line-height: 1.75;
   color: #2C2C2C;
+  border-top: 1px solid #F0ECE7;
+  padding-top: 12px;
+}
+.letter-overlay-body p {
+  margin-bottom: 1em;
 }
 
 /* ---- Canvas area ---- */
@@ -823,7 +961,7 @@ canvas.grabbing {
       </div>
     </div>
     <div id="detail-panel">
-      <button id="detail-close" onclick="closeDetail()">&times;</button>
+      <button id="detail-back" onclick="closeDetail()">← Back to network</button>
       <h3 id="detail-name"></h3>
       <div class="role-text" id="detail-role"></div>
       <div class="mention-list" id="detail-mentions"></div>
@@ -853,6 +991,16 @@ canvas.grabbing {
       <p>Simulating force-directed layout</p>
     </div>
   </div>
+  </div>
+</div>
+
+<!-- Letter Overlay -->
+<div class="letter-overlay" id="letterOverlay" onclick="if(event.target===this)closeLetterOverlay()">
+  <div class="letter-overlay-content">
+    <button class="letter-overlay-close" onclick="closeLetterOverlay()">&times;</button>
+    <div class="letter-overlay-header" id="letterOverlayHeader"></div>
+    <div class="letter-overlay-meta" id="letterOverlayMeta"></div>
+    <div class="letter-overlay-body" id="letterOverlayBody"></div>
   </div>
 </div>
 
@@ -1639,6 +1787,74 @@ function hexToRgba(hex, alpha) {
 // INTERACTION
 // ============================================================
 
+function getEdgeAtPos(mx, my) {
+  const world = screenToWorld(mx, my);
+  const hitThreshold = 8 / scale;
+  let closest = null;
+  let closestDist = Infinity;
+  for (let i = 0; i < edges.length; i++) {
+    const e = edges[i];
+    const a = nodes[e.source], b = nodes[e.target];
+    if (!isVisible(a) || !isVisible(b)) continue;
+    // Point-to-line-segment distance
+    const dx = b.x - a.x, dy = b.y - a.y;
+    const lenSq = dx * dx + dy * dy;
+    if (lenSq === 0) continue;
+    const t = Math.max(0, Math.min(1, ((world.x - a.x) * dx + (world.y - a.y) * dy) / lenSq));
+    const px = a.x + t * dx, py = a.y + t * dy;
+    const dist = Math.sqrt((world.x - px) ** 2 + (world.y - py) ** 2);
+    if (dist < hitThreshold && dist < closestDist) {
+      closest = i;
+      closestDist = dist;
+    }
+  }
+  return closest;
+}
+
+function showConnectionDetail(edgeIdx) {
+  const edge = edges[edgeIdx];
+  const nodeA = nodes[edge.source];
+  const nodeB = nodes[edge.target];
+  const panel = document.getElementById('detail-panel');
+
+  const nameA = nodeA.id, nameB = nodeB.id;
+  document.getElementById('detail-name').textContent = nameA + ' & ' + nameB;
+  document.getElementById('detail-role').textContent =
+    (edge.isBrotherEdge ? 'Brother → person connection' : 'Co-mentioned in letters') +
+    ' · ' + edge.weight + ' shared mention' + (edge.weight !== 1 ? 's' : '');
+
+  // Find all letters where both appear
+  const sharedLetters = [];
+  const seen = new Set();
+  RAW_LETTERS.forEach((letter) => {
+    if (!letter.people) return;
+    const pNames = letter.people.map(p => getCanonName(p.name));
+    const hasA = pNames.includes(nameA) || (nodeA.isBrother && letter.author === nodeA.brotherKey);
+    const hasB = pNames.includes(nameB) || (nodeB.isBrother && letter.author === nodeB.brotherKey);
+    if (hasA && hasB && !seen.has(letter.id)) {
+      seen.add(letter.id);
+      sharedLetters.push(letter);
+    }
+  });
+  sharedLetters.sort((a, b) => a.date.localeCompare(b.date));
+
+  let html = `<div class="pw-mentions-title">${sharedLetters.length} letter${sharedLetters.length !== 1 ? 's' : ''} connecting them</div>`;
+  for (const l of sharedLetters) {
+    const color = BROTHER_COLORS[l.author] || '#9B9B9B';
+    const authorFirst = l.authorName || l.author;
+    html += `<div class="pw-mention" data-letter-id="${l.id}">
+      <span class="pw-arrow">View letter ›</span>
+      <span class="mention-date">${formatDate(l.date)}</span> —
+      <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${authorFirst}</span>
+      <span class="mention-to">to ${l.recipient}</span>
+    </div>`;
+  }
+
+  document.getElementById('detail-mentions').innerHTML = html;
+  panel.classList.add('visible');
+  attachLetterClickHandlers(panel);
+}
+
 function getNodeAtPos(mx, my) {
   const world = screenToWorld(mx, my);
   let closest = null;
@@ -1730,6 +1946,19 @@ canvas.addEventListener('mouseup', (e) => {
     canvas.style.cursor = 'pointer';
   }
   if (isPanning) {
+    const rect2 = canvas.getBoundingClientRect();
+    const mx2 = e.clientX - rect2.left;
+    const my2 = e.clientY - rect2.top;
+    const panDist = Math.sqrt((mx2 - mouseDownPos.x) ** 2 + (my2 - mouseDownPos.y) ** 2);
+    if (panDist < 5) {
+      // Short click on empty canvas — check for edge hit
+      const edgeHit = getEdgeAtPos(mx2, my2);
+      if (edgeHit !== null) {
+        showConnectionDetail(edgeHit);
+      } else {
+        closeDetail();
+      }
+    }
     isPanning = false;
     canvas.classList.remove('grabbing');
     canvas.style.cursor = 'grab';
@@ -1842,63 +2071,35 @@ function selectNode(idx) {
 
 function showPersonDetail(node) {
   const panel = document.getElementById('detail-panel');
-  const catColor = CAT_COLORS[node.category] || CAT_COLORS.UNKNOWN;
 
   // Name with category badge
+  const catColor = CAT_COLORS[node.category] || CAT_COLORS.UNKNOWN;
   document.getElementById('detail-name').innerHTML = node.id +
     ` <span class="detail-category-badge" style="background:${hexToRgba(catColor, 0.15)};color:${catColor}">${node.category}</span>`;
 
-  // All roles collected
-  const uniqueRoles = node.roles ? [...new Set(node.roles)] : [];
-  document.getElementById('detail-role').textContent = '';
-
-  let html = '';
-
-  // Mentions count prominently
-  const brotherCount = Object.keys(node.authors || {}).length;
-  const letterCount = (node.letters || []).length;
-  html += `<div class="detail-stat-bar">
-    <span class="big-num">${node.mentions}</span>
-    <span class="stat-label">mention${node.mentions > 1 ? 's' : ''} across ${letterCount} letter${letterCount > 1 ? 's' : ''}<br>by ${brotherCount} brother${brotherCount > 1 ? 's' : ''}</span>
-  </div>`;
-
-  // Significance assessment
-  html += `<div class="detail-significance">Mentioned in ${letterCount} letter${letterCount !== 1 ? 's' : ''} by ${brotherCount} Hubbell brother${brotherCount !== 1 ? 's' : ''}</div>`;
-
   // Roles
-  if (uniqueRoles.length > 0) {
-    html += '<div class="detail-section-label">Roles &amp; Descriptions</div>';
-    html += '<div class="detail-roles-list">' + uniqueRoles.join('; ') + '</div>';
-  }
+  const uniqueRoles = node.roles ? [...new Set(node.roles)].filter(r => r && r !== 'undefined') : [];
+  document.getElementById('detail-role').textContent = uniqueRoles.join(', ');
 
-  // Mentioned by brothers
-  html += '<div class="detail-section-label">Mentioned By</div>';
-  html += '<div class="detail-brother-mentions">';
-  const authorEntries = Object.entries(node.authors || {}).sort((a, b) => b[1] - a[1]);
-  for (const [a, c] of authorEntries) {
-    const color = BROTHER_COLORS[a] || '#9B9B9B';
-    html += `<span class="detail-brother-chip" style="background:${hexToRgba(color, 0.12)};color:${color}">${BROTHER_NAMES[a]}: ${c}</span>`;
-  }
-  html += '</div>';
-
-  // Date range
   const letters = node.letters || [];
   const sorted = [...letters].sort((a, b) => a.date.localeCompare(b.date));
-  if (sorted.length > 0) {
-    const first = formatDate(sorted[0].date);
-    const last = formatDate(sorted[sorted.length - 1].date);
-    html += '<div class="detail-section-label">Date Range</div>';
-    if (first === last) {
-      html += `<div class="detail-date-range">${first}</div>`;
-    } else {
-      html += `<div class="detail-date-range">First mention: ${first} &rarr; Last mention: ${last}</div>`;
+
+  let html = `<div class="pw-mentions-title">Mentioned in ${sorted.length} letter${sorted.length !== 1 ? 's' : ''}</div>`;
+
+  // Mentioned by brothers — chips
+  const authorEntries = Object.entries(node.authors || {}).filter(([a]) => BROTHER_NAMES[a]).sort((a, b) => b[1] - a[1]);
+  if (authorEntries.length > 0) {
+    html += '<div class="detail-brother-mentions" style="margin-bottom:12px">';
+    for (const [a, c] of authorEntries) {
+      const color = BROTHER_COLORS[a] || '#9B9B9B';
+      html += `<span class="detail-brother-chip" style="background:${hexToRgba(color, 0.12)};color:${color}">${BROTHER_NAMES[a]}: ${c}</span>`;
     }
+    html += '</div>';
   }
 
-  // Entity resolution notes (Change 6)
+  // Entity resolution notes
   const aliases = REVERSE_MERGE_MAP[node.id];
   if (aliases && aliases.size > 0) {
-    // Filter out trivial matches (the canonical name itself lowercased)
     const canonLower = normalizeKey(node.id);
     const meaningful = [...aliases].filter(a => a !== canonLower);
     if (meaningful.length > 0) {
@@ -1906,18 +2107,17 @@ function showPersonDetail(node) {
     }
   }
 
-  // Mini timeline (Change 3)
+  // Mini timeline
   if (sorted.length > 0) {
-    html += '<div class="detail-section-label">Mention Timeline</div>';
     html += '<div class="detail-timeline-wrap">' + buildMiniTimeline(sorted) + '</div>';
   }
 
-  // Letter mentions list
-  html += '<div class="detail-section-label">Letters</div>';
+  // Letter list
   for (const l of sorted) {
     const color = BROTHER_COLORS[l.author] || '#9B9B9B';
-    html += `<div class="mention-item">
-      <span class="mention-date">${formatDate(l.date)}</span>
+    html += `<div class="pw-mention" data-letter-id="${l.id}">
+      <span class="pw-arrow">View letter ›</span>
+      <span class="mention-date">${formatDate(l.date)}</span> —
       <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${l.authorName}</span>
       <span class="mention-to">to ${l.recipient}</span>
     </div>`;
@@ -1925,6 +2125,52 @@ function showPersonDetail(node) {
 
   document.getElementById('detail-mentions').innerHTML = html;
   panel.classList.add('visible');
+  attachLetterClickHandlers(panel);
+}
+
+function showPersonDetailByName(name) {
+  // For sidebar clicks when person might not be a graph node
+  const idx = nodeIndex[name];
+  if (idx !== undefined) {
+    showPersonDetail(nodes[idx]);
+    return;
+  }
+  // Fallback: build detail from people data
+  const data = people[name];
+  if (!data) return;
+  const panel = document.getElementById('detail-panel');
+  const catColor = CAT_COLORS[data.category] || CAT_COLORS.UNKNOWN;
+  document.getElementById('detail-name').innerHTML = name +
+    ` <span class="detail-category-badge" style="background:${hexToRgba(catColor, 0.15)};color:${catColor}">${data.category}</span>`;
+  const uniqueRoles = data.roles ? [...data.roles].filter(r => r && r !== 'undefined') : [];
+  document.getElementById('detail-role').textContent = uniqueRoles.join(', ');
+
+  const sorted = [...(data.letters || [])].sort((a, b) => a.date.localeCompare(b.date));
+  let html = `<div class="pw-mentions-title">Mentioned in ${sorted.length} letter${sorted.length !== 1 ? 's' : ''}</div>`;
+  const authorEntries = Object.entries(data.authors || {}).filter(([a]) => BROTHER_NAMES[a]).sort((a, b) => b[1] - a[1]);
+  if (authorEntries.length > 0) {
+    html += '<div class="detail-brother-mentions" style="margin-bottom:12px">';
+    for (const [a, c] of authorEntries) {
+      const color = BROTHER_COLORS[a] || '#9B9B9B';
+      html += `<span class="detail-brother-chip" style="background:${hexToRgba(color, 0.12)};color:${color}">${BROTHER_NAMES[a]}: ${c}</span>`;
+    }
+    html += '</div>';
+  }
+  if (sorted.length > 0) {
+    html += '<div class="detail-timeline-wrap">' + buildMiniTimeline(sorted) + '</div>';
+  }
+  for (const l of sorted) {
+    const color = BROTHER_COLORS[l.author] || '#9B9B9B';
+    html += `<div class="pw-mention" data-letter-id="${l.id}">
+      <span class="pw-arrow">View letter ›</span>
+      <span class="mention-date">${formatDate(l.date)}</span> —
+      <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${l.authorName}</span>
+      <span class="mention-to">to ${l.recipient}</span>
+    </div>`;
+  }
+  document.getElementById('detail-mentions').innerHTML = html;
+  panel.classList.add('visible');
+  attachLetterClickHandlers(panel);
 }
 
 function buildMiniTimeline(sortedLetters) {
@@ -1971,7 +2217,6 @@ function showBrotherDetail(node) {
   document.getElementById('detail-name').textContent = BROTHER_NAMES[key] + ' Hubbell';
   document.getElementById('detail-role').textContent = 'Hubbell brother, letter author';
 
-  // Find unique people for this brother
   const peopleMentioned = [];
   for (const [name, data] of Object.entries(people)) {
     if (data.authors[key]) {
@@ -1980,16 +2225,23 @@ function showBrotherDetail(node) {
   }
   peopleMentioned.sort((a, b) => b.count - a.count);
 
-  let html = `<div style="font-size:12px;color:#6B6B6B;margin-bottom:6px">${peopleMentioned.length} people mentioned across ${RAW_LETTERS.filter(l => l.author === key).length} letters</div>`;
-  for (const p of peopleMentioned.slice(0, 15)) {
-    html += `<div class="mention-item"><span class="mention-date">${p.name}</span> <span class="mention-to">${p.count}x</span></div>`;
+  let html = `<div class="pw-mentions-title">${peopleMentioned.length} people mentioned across ${RAW_LETTERS.filter(l => l.author === key).length} letters</div>`;
+  for (const p of peopleMentioned.slice(0, 20)) {
+    html += `<div class="pw-mention stat-row clickable" data-person-name="${p.name}"><span class="name">${p.name}</span> <span class="count">${p.count}×</span></div>`;
   }
-  if (peopleMentioned.length > 15) {
-    html += `<div style="font-size:11px;color:#9B9B9B;padding-top:4px">+ ${peopleMentioned.length - 15} more...</div>`;
+  if (peopleMentioned.length > 20) {
+    html += `<div style="font-size:11px;color:#9B9B9B;padding-top:4px">+ ${peopleMentioned.length - 20} more...</div>`;
   }
 
   document.getElementById('detail-mentions').innerHTML = html;
   panel.classList.add('visible');
+
+  // Attach click handlers
+  panel.querySelectorAll('.pw-mention[data-person-name]').forEach(el => {
+    el.addEventListener('click', () => {
+      showPersonDetailByName(el.dataset.personName);
+    });
+  });
 }
 
 function closeDetail() {
@@ -2001,6 +2253,99 @@ function formatDate(d) {
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const [y, m, day] = d.split('-');
   return `${months[parseInt(m) - 1]} ${parseInt(day)}, ${y}`;
+}
+
+// ============================================================
+// LETTER OVERLAY SYSTEM
+// ============================================================
+const FULL_LETTERS = {}; // letterId -> full letter object with transcription
+let lettersLoaded = false;
+
+// Fetch full letter data (with transcriptions) from all-letters.json
+const lettersPromise = fetch('03-data/all-letters.json')
+  .then(r => r.json())
+  .then(data => {
+    for (const letter of data) {
+      FULL_LETTERS[letter.id] = letter;
+    }
+    lettersLoaded = true;
+  })
+  .catch(() => {
+    lettersLoaded = true; // mark done even on failure so we don't wait forever
+  });
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function formatTranscription(raw) {
+  if (!raw) return '<p><em>Full transcription not available.</em></p>';
+  // Collapse single \n to spaces (paper-width artifacts), \n\n = paragraph break
+  const paragraphs = raw.split(/\n\n+/);
+  return paragraphs.map(p => '<p>' + escapeHtml(p.replace(/\n/g, ' ').trim()) + '</p>').join('');
+}
+
+async function openLetterOverlay(letterId) {
+  if (!lettersLoaded) await lettersPromise;
+  const full = FULL_LETTERS[letterId];
+  const overlay = document.getElementById('letterOverlay');
+  const header = document.getElementById('letterOverlayHeader');
+  const meta = document.getElementById('letterOverlayMeta');
+  const body = document.getElementById('letterOverlayBody');
+
+  if (full) {
+    const color = BROTHER_COLORS[full.author] || '#6B6B6B';
+    header.style.color = color;
+    header.textContent = (full.authorName || full.author) + ' — ' + formatDate(full.date);
+
+    let metaHtml = `<strong>To:</strong> ${escapeHtml(full.recipient)}`;
+    if (full.location) metaHtml += `<br><strong>From:</strong> ${escapeHtml(full.location)}`;
+    if (full.sigSummary) metaHtml += `<br><strong>Significance:</strong> ${escapeHtml(full.sigSummary)}`;
+    metaHtml += `<br><strong>ID:</strong> ${full.id}`;
+    meta.innerHTML = metaHtml;
+
+    body.innerHTML = formatTranscription(full.transcription);
+  } else {
+    // Fallback: use RAW_LETTERS data (no transcription)
+    const raw = RAW_LETTERS.find(l => l.id === letterId);
+    if (raw) {
+      const color = BROTHER_COLORS[raw.author] || '#6B6B6B';
+      header.style.color = color;
+      header.textContent = (raw.authorName || raw.author) + ' — ' + formatDate(raw.date);
+      meta.innerHTML = `<strong>To:</strong> ${escapeHtml(raw.recipient)}<br><strong>ID:</strong> ${raw.id}`;
+      body.innerHTML = '<p><em>Letter transcription is loading or not available.</em></p>';
+    } else {
+      header.textContent = letterId;
+      meta.textContent = '';
+      body.innerHTML = '<p><em>Letter not found.</em></p>';
+    }
+  }
+
+  overlay.classList.add('visible');
+}
+
+function closeLetterOverlay() {
+  document.getElementById('letterOverlay').classList.remove('visible');
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const overlay = document.getElementById('letterOverlay');
+    if (overlay.classList.contains('visible')) {
+      closeLetterOverlay();
+      e.stopPropagation();
+    }
+  }
+});
+
+function attachLetterClickHandlers(container) {
+  container.querySelectorAll('.pw-mention[data-letter-id]').forEach(el => {
+    el.addEventListener('click', () => {
+      openLetterOverlay(el.dataset.letterId);
+    });
+  });
 }
 
 // Filters
@@ -2050,11 +2395,11 @@ function buildSidebar() {
   const content = document.getElementById('sidebar-content');
   let html = '';
 
-  // Top mentioned people
+  // Top mentioned people — clickable
   const topPeople = Object.entries(people).sort((a, b) => b[1].mentions - a[1].mentions).slice(0, 12);
   html += '<div class="stats-section"><h3>Most Mentioned People</h3>';
   for (const [name, data] of topPeople) {
-    html += `<div class="stat-row"><span class="name">${name}</span><span class="count">${data.mentions} mentions</span></div>`;
+    html += `<div class="stat-row clickable" data-person-name="${name}"><span class="name">${name}</span><span class="count">${data.mentions} mentions</span></div>`;
   }
   html += '</div>';
 
@@ -2070,12 +2415,15 @@ function buildSidebar() {
     if (unique.length === 0) continue;
 
     html += `<div class="brother-section"><h4><span class="bdot" style="background:${BROTHER_COLORS[key]}"></span>${bName}'s Unique Connections</h4>`;
-    html += `<div class="person-list">${unique.slice(0, 8).join(', ')}`;
-    if (unique.length > 8) html += ` + ${unique.length - 8} more`;
+    html += '<div class="person-list">';
+    for (const name of unique.slice(0, 8)) {
+      html += `<span class="unique-person" data-person-name="${name}">${name}</span>`;
+    }
+    if (unique.length > 8) html += `<span style="color:#9B9B9B"> + ${unique.length - 8} more</span>`;
     html += '</div></div>';
   }
 
-  // Shared between brothers
+  // Shared between brothers — clickable
   const shared = [];
   for (const [name, data] of Object.entries(people)) {
     const authorKeys = Object.keys(data.authors);
@@ -2090,7 +2438,7 @@ function buildSidebar() {
   if (shared.length > 0) {
     html += '<div class="stats-section"><h3>Shared Between Brothers</h3>';
     for (const s of shared.slice(0, 15)) {
-      html += `<div class="stat-row"><span class="name">${s.name}</span><span class="count">${s.brothers}</span></div>`;
+      html += `<div class="stat-row clickable" data-person-name="${s.name}"><span class="name">${s.name}</span><span class="count">${s.brothers}</span></div>`;
     }
     if (shared.length > 15) {
       html += `<div style="font-size:11px;color:#9B9B9B;padding:4px 0">+ ${shared.length - 15} more shared connections</div>`;
@@ -2114,6 +2462,20 @@ function buildSidebar() {
   html += '</div>';
 
   content.innerHTML = html;
+
+  // Attach click handlers to clickable stat rows
+  content.querySelectorAll('.stat-row.clickable[data-person-name]').forEach(el => {
+    el.addEventListener('click', () => {
+      showPersonDetailByName(el.dataset.personName);
+    });
+  });
+
+  // Attach click handlers to unique connections
+  content.querySelectorAll('.unique-person[data-person-name]').forEach(el => {
+    el.addEventListener('click', () => {
+      showPersonDetailByName(el.dataset.personName);
+    });
+  });
 }
 
 // Legend

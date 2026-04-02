@@ -1,0 +1,1687 @@
+[
+  {
+    "doc_id": "LTR-1862-01-01-001",
+    "file": "LTR-1862-01-01-001.md",
+    "existing_people_count": 7,
+    "existing_places_count": 4,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Copeland",
+      "New Year"
+    ],
+    "candidate_places": [],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1862-01-09-001",
+    "file": "LTR-1862-01-09-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 7,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "New Years",
+      "Reich",
+      "Some"
+    ],
+    "candidate_places": [
+      "Champlain"
+    ],
+    "candidate_flags": {
+      "Illness reported": [
+        {
+          "match": "sick",
+          "context": "...know that you are all well. If you are sick I want you should write and let me know..."
+        }
+      ],
+      "Major news from home": [
+        {
+          "match": "married",
+          "context": "...I could, for I understand that only the married men can go at present. I shall have to..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "furlough",
+          "context": "...not long enough. I should like to get a furlough and make a visit home, but I do not thi..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-01-09-002",
+    "file": "LTR-1862-01-09-002.md",
+    "existing_people_count": 11,
+    "existing_places_count": 7,
+    "existing_flags_yes_count": 0,
+    "candidate_people": [],
+    "candidate_places": [
+      "Mother",
+      "Nellie"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...ot want all of those letters with me. I received a letter from Nellie and Aunt Laura. I am glad f..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-01-13-001",
+    "file": "LTR-1862-01-13-001.md",
+    "existing_people_count": 13,
+    "existing_places_count": 7,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Dear Mother",
+      "New Year"
+    ],
+    "candidate_places": [
+      "Charles",
+      "Henry"
+    ],
+    "candidate_flags": {
+      "Illness reported": [
+        {
+          "match": "sick",
+          "context": "...me. What can be the reason? Are you all sick or are you dead? Something must be the..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-01-15-001",
+    "file": "LTR-1862-01-15-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Clinton County Bible Society",
+      "Dear Mother",
+      "Myers"
+    ],
+    "candidate_places": [
+      "Camden"
+    ],
+    "candidate_flags": {
+      "Illness reported": [
+        {
+          "match": "sick",
+          "context": "...magining almost everything. Are you all sick or are you dead. Perhaps the Chay River..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "dead",
+          "context": "...everything. Are you all sick or are you dead. Perhaps the Chay River has overflowed..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-01-17-001",
+    "file": "LTR-1862-01-17-001.md",
+    "existing_people_count": 18,
+    "existing_places_count": 10,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Dear Brother",
+      "Dobbin",
+      "Finch",
+      "Union Relief Association"
+    ],
+    "candidate_places": [
+      "Brink Miner",
+      "Camden"
+    ],
+    "candidate_flags": {
+      "Battle/combat described": [
+        {
+          "match": "fight",
+          "context": "...t to try and take care of myself and to fight for my native land. I don't like to see..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-01-24-001",
+    "file": "LTR-1862-01-24-001.md",
+    "existing_people_count": 16,
+    "existing_places_count": 10,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Debating Club",
+      "Relief Association",
+      "Wheeler"
+    ],
+    "candidate_places": [
+      "Camden"
+    ],
+    "candidate_flags": {
+      "Political commentary": [
+        {
+          "match": "government",
+          "context": "...y by private contribution and partly by Government. Its object is to feed soldiers passing..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "died",
+          "context": "...e bosey get along? How many of the hens died this winter. Now, dear Mother, don't gi..."
+        }
+      ],
+      "Morale crisis": [
+        {
+          "match": "give up",
+          "context": "...ed this winter. Now, dear Mother, don't give up housekeeping. Hire a boy. I will pay hi..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-01-24-002",
+    "file": "LTR-1862-01-24-002.md",
+    "existing_people_count": 7,
+    "existing_places_count": 5,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [],
+    "candidate_places": [
+      "Kentucky"
+    ],
+    "candidate_flags": {
+      "Political commentary": [
+        {
+          "match": "war will",
+          "context": "...t getting a discharge, but I think this war will be all over before next July from what..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharge",
+          "context": "...my last letter I wrote about getting a discharge, but I think this war will be all over..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-01-25-001",
+    "file": "LTR-1862-01-25-001.md",
+    "existing_people_count": 16,
+    "existing_places_count": 12,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Fannie Hubbell",
+      "Miss Fannie"
+    ],
+    "candidate_places": [
+      "Canada",
+      "England",
+      "Porter"
+    ],
+    "candidate_flags": {
+      "Wound/injury reported": [
+        {
+          "match": "shot",
+          "context": "...n the old cat for company for I had her shot before I left home. I hope you will wri..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-01-28-001",
+    "file": "LTR-1862-01-28-001.md",
+    "existing_people_count": 19,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Aunt Laurie",
+      "Cousin Nellie",
+      "Dear Brother",
+      "Holcomb",
+      "Partridge",
+      "Upton"
+    ],
+    "candidate_places": [
+      "Aunt Laurie",
+      "Mother",
+      "Nellie",
+      "Willis Savage"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...gine the pleasure they gave me. (I just received a letter from Willis Savage. I wrote him some ti..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-02-04-001",
+    "file": "LTR-1862-02-04-001.md",
+    "existing_people_count": 9,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Hoyle"
+    ],
+    "candidate_places": [
+      "Champlain"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...> Camp McClellan > > Dear Mother: > > I received a letter from you, brought by Mr. Hoyle. We are..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-02-05-001",
+    "file": "LTR-1862-02-05-001.md",
+    "existing_people_count": 17,
+    "existing_places_count": 12,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [],
+    "candidate_places": [
+      "Gormon",
+      "Harpers"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...ontd.) > > Feb. 5th 1862 — Contd. > > I received a letter from home last night with yours. They a..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-02-05-002",
+    "file": "LTR-1862-02-05-002.md",
+    "existing_people_count": 16,
+    "existing_places_count": 12,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Adams Town",
+      "Bolivar Heights",
+      "Gorman",
+      "Ladue",
+      "New York Observer",
+      "New York Times",
+      "Uncle Sam"
+    ],
+    "candidate_places": [
+      "Adams Town",
+      "Adamstown",
+      "Bolivar Heights",
+      "Harpers"
+    ],
+    "candidate_flags": {
+      "Wound/injury reported": [
+        {
+          "match": "shot",
+          "context": "...all that it is so. Our Regt. had a very shot notice to pack up and be ready at a mom..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-02-05-003",
+    "file": "LTR-1862-02-05-003.md",
+    "existing_people_count": 18,
+    "existing_places_count": 14,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "United States Service"
+    ],
+    "candidate_places": [
+      "Gorman"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1862-02-07-001",
+    "file": "LTR-1862-02-07-001.md",
+    "existing_people_count": 24,
+    "existing_places_count": 16,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Dear Mother",
+      "Ransom"
+    ],
+    "candidate_places": [
+      "Baltimore"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1862-02-11-001",
+    "file": "LTR-1862-02-11-001.md",
+    "existing_people_count": 24,
+    "existing_places_count": 18,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Dear Brother",
+      "Master James"
+    ],
+    "candidate_places": [
+      "Wheeler"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1862-02-11-002",
+    "file": "LTR-1862-02-11-002.md",
+    "existing_people_count": 23,
+    "existing_places_count": 17,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [],
+    "candidate_places": [
+      "India"
+    ],
+    "candidate_flags": {
+      "Battle/combat described": [
+        {
+          "match": "fighting",
+          "context": "...ot long since another of our Co. got to fighting, and was completely covered with mud. >..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-02-12-001",
+    "file": "LTR-1862-02-12-001.md",
+    "existing_people_count": 27,
+    "existing_places_count": 18,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Burnside Expedition",
+      "West Point"
+    ],
+    "candidate_places": [
+      "Nellie",
+      "West Point"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...re beginning to play pretty well now. I received a letter from Nellie and Aunt Laura a short time..."
+        }
+      ],
+      "Morale crisis": [
+        {
+          "match": "give up",
+          "context": "...ee, and the rebels will in time have to give up. Only let the 34th go into action once..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-02-12-002",
+    "file": "LTR-1862-02-12-002.md",
+    "existing_people_count": 16,
+    "existing_places_count": 14,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [],
+    "candidate_places": [],
+    "candidate_flags": {
+      "Battle/combat described": [
+        {
+          "match": "fighting",
+          "context": "...of drunkenness in the Company and some fighting, but I keep out of it all. The hardest..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-02-17-001",
+    "file": "LTR-1862-02-17-001.md",
+    "existing_people_count": 35,
+    "existing_places_count": 22,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Robinson"
+    ],
+    "candidate_places": [
+      "Aunt Laurie",
+      "Charlotte",
+      "Henry",
+      "Nellie",
+      "Willie Savage"
+    ],
+    "candidate_flags": {
+      "Illness reported": [
+        {
+          "match": "ill",
+          "context": ".... Not long after he was taken violently ill and vomited up a green substance. A doc..."
+        },
+        {
+          "match": "fever",
+          "context": "...would, I think, be worse than having a fever in the army. Perhaps I have come to a w..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-02-23-001",
+    "file": "LTR-1862-02-23-001.md",
+    "existing_people_count": 30,
+    "existing_places_count": 19,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Albert Savages",
+      "Dear Mother",
+      "Perkins"
+    ],
+    "candidate_places": [
+      "Corporal Perkins",
+      "Nellie",
+      "Willie"
+    ],
+    "candidate_flags": {
+      "Discharge/muster-out": [
+        {
+          "match": "furlough",
+          "context": "...more for I remember when I came home on furlough you said the reason you did not write m..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-02-24-001",
+    "file": "LTR-1862-02-24-001.md",
+    "existing_people_count": 13,
+    "existing_places_count": 9,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Brigadier Gen",
+      "Ladue",
+      "Nothing"
+    ],
+    "candidate_places": [
+      "Brigadier Gen"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...> Camp McClellan > > Dear Mother: > > I received a letter from you two or three days ago. Was ver..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fight",
+          "context": "...sailing before this time. He got into a fight with some of the boys and was broke fro..."
+        }
+      ],
+      "Promotion/demotion": [
+        {
+          "match": "promoted",
+          "context": "...r Regt. again. I heard that he has been promoted to Brigadier Gen. Nothing more this tim..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-02-28-001",
+    "file": "LTR-1862-02-28-001.md",
+    "existing_people_count": 16,
+    "existing_places_count": 14,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Mc"
+    ],
+    "candidate_places": [
+      "Adams",
+      "Adamstown",
+      "Harpers"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1862-03-03-001",
+    "file": "LTR-1862-03-03-001.md",
+    "existing_people_count": 19,
+    "existing_places_count": 10,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Banks",
+      "Bass",
+      "Corporal Luther",
+      "Dear Sister",
+      "Lieut Fitch",
+      "Miss Fannie",
+      "Mix"
+    ],
+    "candidate_places": [
+      "Neptunes"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1862-03-06-001",
+    "file": "LTR-1862-03-06-001.md",
+    "existing_people_count": 23,
+    "existing_places_count": 14,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Copeland",
+      "Dear Mother",
+      "Dodds Beaumont",
+      "Kellogg",
+      "Webb"
+    ],
+    "candidate_places": [
+      "Charles",
+      "Harpers",
+      "Henry"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...y time reading them. I am very happy to hear from the hens and heifer and \"old whity\". So..."
+        },
+        {
+          "match": "heard from",
+          "context": "...P.S. The 34th is now or was the last I heard from them, at Harpers Ferry. They form a par..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fight",
+          "context": "...indeed as brave as a lion and eager for fight. Is Dobbin going to remain another term..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "killed",
+          "context": "...One of the pickets of Co. C was nearly killed an hour or two since. He was standing l..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-03-11-001",
+    "file": "LTR-1862-03-11-001.md",
+    "existing_people_count": 26,
+    "existing_places_count": 20,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Dear Mother",
+      "General",
+      "Major General",
+      "Potsdam Regts"
+    ],
+    "candidate_places": [
+      "Aunt Laura",
+      "Nellie"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "need the money",
+          "context": "...oon. I will not get the revolver if you need the money at home. Keep a boy by all means. I wil..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fighting",
+          "context": "...nassas and Richmond. I expect some hard fighting will be done. I wish our Regt. was ther..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-03-16-001",
+    "file": "LTR-1862-03-16-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 10,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Mich Genesee"
+    ],
+    "candidate_places": [
+      "Harpers",
+      "Mich Genesee Co",
+      "Uncle John"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...r by next summer, at least I hope so. I received a letter from Uncle John last evening. He is in..."
+        },
+        {
+          "match": "hear from",
+          "context": "...> > I know you will be very anxious to hear from me. Our Regt. and two brigades besides..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-03-17-001",
+    "file": "LTR-1862-03-17-001.md",
+    "existing_people_count": 24,
+    "existing_places_count": 14,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Belgor",
+      "Corporal Hubbell",
+      "Excelsior Brigade",
+      "Malone Regt",
+      "Provost Marshals",
+      "Ransom",
+      "Union Relief"
+    ],
+    "candidate_places": [
+      "Budds",
+      "Camden",
+      "James Sweney",
+      "Reveille",
+      "Washington"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...ing of him until lately. One of our Co. received a letter from him. Among other things he asked w..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fight",
+          "context": "...Ransom says that our Regt. will have to fight. He has been to Fortress Monroe. He sta..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-03-21-001",
+    "file": "LTR-1862-03-21-001.md",
+    "existing_people_count": 14,
+    "existing_places_count": 9,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Douglas",
+      "Mc"
+    ],
+    "candidate_places": [
+      "Gormon",
+      "Harpers",
+      "Shenandoah"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...hts > Camp Gormon > > Dear James: > > I received your letter and was very glad to hear from you. I h..."
+        },
+        {
+          "match": "hear from",
+          "context": "...ceived your letter and was very glad to hear from you. I hope you will write as often as..."
+        }
+      ],
+      "Political commentary": [
+        {
+          "match": "government",
+          "context": "...aves me getting a pr. of shoes from the Government. Peter Guyan did the job. That bag of f..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-03-23-001",
+    "file": "LTR-1862-03-23-001.md",
+    "existing_people_count": 15,
+    "existing_places_count": 12,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Two"
+    ],
+    "candidate_places": [
+      "Harpers"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...862 > Washington > > Dear Mother: > > I received a letter from you this morning. Nothing does me..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "sick",
+          "context": "...their discharge. Both of them have been sick. Have not been able to do duty for some..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-03-26-001",
+    "file": "LTR-1862-03-26-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Dear Mother",
+      "Henry Monday",
+      "Preston King"
+    ],
+    "candidate_places": [
+      "Baltimore",
+      "Henry Monday",
+      "Preston King"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...ow that I am well and my whereabouts. I received a letter and paper from home the day we moved an..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-03-30-001",
+    "file": "LTR-1862-03-30-001.md",
+    "existing_people_count": 9,
+    "existing_places_count": 7,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Dear Mother"
+    ],
+    "candidate_places": [
+      "Harpers"
+    ],
+    "candidate_flags": {
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...d duty. I feel old. I have begun life's battle for myself. I am thrown upon my own res..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "furlough",
+          "context": "...r Company will probably be home soon on furlough. He will call upon you. > > Your affect..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-04-01-001",
+    "file": "LTR-1862-04-01-001.md",
+    "existing_people_count": 28,
+    "existing_places_count": 15,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Beauregard",
+      "Fry Clarks",
+      "General Beauregard",
+      "Master James"
+    ],
+    "candidate_places": [
+      "Catiline",
+      "Clark",
+      "Fry Clarks",
+      "Manassas",
+      "Nellie",
+      "Riders",
+      "Silas"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "letter of the 3",
+          "context": "...too well. I have just been reading your letter of the 30th inst. Oh! how vividly it brought bef..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fight",
+          "context": "...Reff instead of perishing in honorable fight as old Cat. did, shall probably take to..."
+        },
+        {
+          "match": "fighting",
+          "context": "...t Henry. I don't like the notion of his fighting there alone. I think I could draw sight..."
+        },
+        {
+          "match": "battle",
+          "context": "...> I see by today's papers that a great battle is expected at Corinth in the northern..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-04-02-001",
+    "file": "LTR-1862-04-02-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 9,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Harpers Ferry"
+    ],
+    "candidate_places": [
+      "Aunt Laura",
+      "Harpers",
+      "Washington"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...2 > Hampton, Va. > > Dear Mother: > > I received a letter the day before I left Alexandria, eight..."
+        }
+      ],
+      "Political commentary": [
+        {
+          "match": "government",
+          "context": "...e left our tents at Alexandria, but the Government has supplied us with rubber blankets. B..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-04-02-002",
+    "file": "LTR-1862-04-02-002.md",
+    "existing_people_count": 11,
+    "existing_places_count": 9,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [],
+    "candidate_places": [
+      "Cooper",
+      "Washington"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1862-04-02-003",
+    "file": "LTR-1862-04-02-003.md",
+    "existing_people_count": 10,
+    "existing_places_count": 9,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Brother Charles"
+    ],
+    "candidate_places": [],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...on, Va. > > Dear Brother Charles: > > I received your letter and was very glad to hear from you. It..."
+        },
+        {
+          "match": "hear from",
+          "context": "...ceived your letter and was very glad to hear from you. It is some time since I have writt..."
+        }
+      ],
+      "Political commentary": [
+        {
+          "match": "war will",
+          "context": "...rebels get tired of us. Then I hope the war will close. To tell the truth I would rather..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-04-06-002",
+    "file": "LTR-1862-04-06-002.md",
+    "existing_people_count": 14,
+    "existing_places_count": 11,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Gorman",
+      "Mc"
+    ],
+    "candidate_places": [
+      "Washington"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...April 6th, 1862 > > Dear Mother: > > I received your letter last night and was glad to hear from ho..."
+        },
+        {
+          "match": "hear from",
+          "context": "...your letter last night and was glad to hear from home. I have to take my chance to write..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-04-09-001",
+    "file": "LTR-1862-04-09-001.md",
+    "existing_people_count": 13,
+    "existing_places_count": 11,
+    "existing_flags_yes_count": 0,
+    "candidate_people": [],
+    "candidate_places": [
+      "Harpers"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...ers except what we receive from home. I received a letter from home not long since. The snow is v..."
+        },
+        {
+          "match": "hear from",
+          "context": "...etter I received and very glad was I to hear from you. I am not sure that this letter wil..."
+        }
+      ],
+      "Camp movement/march": [
+        {
+          "match": "on the march",
+          "context": "...that when the rebels knew that we were on the march for this place they left on a double qu..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "skirmish",
+          "context": "...to York Town and perhaps have a little skirmish. We are good for them any time. I heard..."
+        }
+      ],
+      "Morale crisis": [
+        {
+          "match": "give up",
+          "context": "...pretty well surrounded and will have to give up before long. I think the rebels are a c..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-04-11-001",
+    "file": "LTR-1862-04-11-001.md",
+    "existing_people_count": 20,
+    "existing_places_count": 12,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Brother James",
+      "Dear Mother",
+      "General Niles",
+      "Harpers Ferry",
+      "Maine Regt",
+      "New Orleans",
+      "Niles",
+      "Relay House",
+      "Timothy Hoyle",
+      "West Point"
+    ],
+    "candidate_places": [
+      "Annapolis",
+      "Baltimore",
+      "Corcoran",
+      "Harpers",
+      "Harpers Ferry",
+      "Niles",
+      "Pittsburgh",
+      "Washington",
+      "West Point",
+      "Willie Savage",
+      "Yorktown"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...ve a very formidable package of them. I received a letter from Willie Savage a day or two since...."
+        },
+        {
+          "match": "hear from",
+          "context": "...ter Sunday and was very much pleased to hear from you. What do you now think of the \"Rebe..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...to come home without having been in one battle at least, but from present appearances..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "sick",
+          "context": "...unwell today. I hope is not going to be sick, if he is I shall take extra good care..."
+        }
+      ],
+      "Wound/injury reported": [
+        {
+          "match": "shot",
+          "context": "...They fired three volleys, \"the farewell shot\", over the grave. Our band was also pre..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-04-18-001",
+    "file": "LTR-1862-04-18-001.md",
+    "existing_people_count": 13,
+    "existing_places_count": 12,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Fortress Monroe",
+      "Knap Sack",
+      "Vermont Regts",
+      "York Town"
+    ],
+    "candidate_places": [
+      "Albany",
+      "Fortress Monroe",
+      "York Town"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...r aff. brother, > > Henry > > Could you send me a few postage stamps. I have no franked..."
+        }
+      ],
+      "Political commentary": [
+        {
+          "match": "government",
+          "context": "...ave received two pair of shoes from the Government, not counting what I received in Albany..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "dead",
+          "context": "...so heard that the rebels lay all around dead. I have been keeping a Journal now for..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharge",
+          "context": "...little skirmishing and have a chance to discharge my piece, but disappointed, but we may..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-04-21-001",
+    "file": "LTR-1862-04-21-001.md",
+    "existing_people_count": 9,
+    "existing_places_count": 7,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "York Town"
+    ],
+    "candidate_places": [
+      "York Town"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1862-04-21-002",
+    "file": "LTR-1862-04-21-002.md",
+    "existing_people_count": 13,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Gorman Brigade",
+      "Mc",
+      "Near York Town"
+    ],
+    "candidate_places": [
+      "Alexander",
+      "Charles",
+      "Sedgwick",
+      "Virginia"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...our very welcome letter and was glad to hear from home. We belong to Sedgwick's Division,..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-05-01-001",
+    "file": "LTR-1862-05-01-001.md",
+    "existing_people_count": 26,
+    "existing_places_count": 22,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Brigadier General",
+      "Green",
+      "Relay House"
+    ],
+    "candidate_places": [
+      "Brigadier General",
+      "Niles"
+    ],
+    "candidate_flags": {
+      "Promotion/demotion": [
+        {
+          "match": "promoted",
+          "context": "...l and all is well. Our Colonel has been promoted to Brigadier General of Volunteers. His..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-05-01-002",
+    "file": "LTR-1862-05-01-002.md",
+    "existing_people_count": 19,
+    "existing_places_count": 16,
+    "existing_flags_yes_count": 0,
+    "candidate_people": [
+      "Windfield Scott"
+    ],
+    "candidate_places": [
+      "Windfield Scott"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1862-05-06-001",
+    "file": "LTR-1862-05-06-001.md",
+    "existing_people_count": 10,
+    "existing_places_count": 9,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Rebels Camp Ground",
+      "York Town"
+    ],
+    "candidate_places": [
+      "Ground",
+      "James"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1862-05-09-001",
+    "file": "LTR-1862-05-09-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Military Academy",
+      "Windfield Scott"
+    ],
+    "candidate_places": [
+      "Richmond",
+      "Windfield Scott"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1862-05-09-002",
+    "file": "LTR-1862-05-09-002.md",
+    "existing_people_count": 16,
+    "existing_places_count": 11,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "York River"
+    ],
+    "candidate_places": [
+      "Richmond"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...ot feel anxious if you do not happen to hear from me regularly, for the mail doesn't go v..."
+        }
+      ],
+      "Wound/injury reported": [
+        {
+          "match": "wounded",
+          "context": "...he companies lost sixteen, several were wounded. George Corbin and Royal shook hands wi..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-05-10-001",
+    "file": "LTR-1862-05-10-001.md",
+    "existing_people_count": 26,
+    "existing_places_count": 18,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Copeland",
+      "Dear Mother",
+      "Niles Relay House",
+      "Yankee Doodle"
+    ],
+    "candidate_places": [
+      "Dodds",
+      "Niles Relay House",
+      "Portray"
+    ],
+    "candidate_flags": {
+      "Political commentary": [
+        {
+          "match": "government",
+          "context": "...eenth or twentieth of this month by the Government, and consequently we will no longer be..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharged",
+          "context": "...$1 (I believe) that our regt. would be discharged within a month. One thing is quite cert..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-05-12-001",
+    "file": "LTR-1862-05-12-001.md",
+    "existing_people_count": 14,
+    "existing_places_count": 11,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Brinkhoff",
+      "West Point",
+      "York River"
+    ],
+    "candidate_places": [
+      "Alton",
+      "Richmond"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...her: > > I know that you are anxious to hear from me every week and oftener. I shall writ..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-05-27-001",
+    "file": "LTR-1862-05-27-001.md",
+    "existing_people_count": 8,
+    "existing_places_count": 6,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [],
+    "candidate_places": [
+      "Harpers"
+    ],
+    "candidate_flags": {
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...rginia. We are in some expectation of a battle. The rebels are not far distant. We hav..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-05-31-001",
+    "file": "LTR-1862-05-31-001.md",
+    "existing_people_count": 15,
+    "existing_places_count": 12,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Brinkerhoff",
+      "Dear Mother",
+      "Luther"
+    ],
+    "candidate_places": [
+      "Harpers"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...ruck within about ten rods of us. > > I received your letter and Charles yesterday. Please write oft..."
+        }
+      ],
+      "Camp movement/march": [
+        {
+          "match": "we are stationed",
+          "context": "...nts on boards inclined against a fence. We are stationed behind a powerful battery. If the rebel..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "killed",
+          "context": "...I understand dismounted a rebel gun and killed several. A rebel deserter came and gave..."
+        }
+      ],
+      "Wound/injury reported": [
+        {
+          "match": "shot",
+          "context": "...next day. The rebels had begun throwing shot and shell at our camp. Our batteries re..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-06-06-001",
+    "file": "LTR-1862-06-06-001.md",
+    "existing_people_count": 10,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 4,
+    "candidate_people": [],
+    "candidate_places": [
+      "James"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1862-06-08-001",
+    "file": "LTR-1862-06-08-001.md",
+    "existing_people_count": 19,
+    "existing_places_count": 12,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Banks Division",
+      "Footed Virginians",
+      "General Siegel",
+      "Mc",
+      "Rail Road Brigade",
+      "Rich",
+      "Siegel"
+    ],
+    "candidate_places": [
+      "Banks",
+      "Banks Division",
+      "Harpers",
+      "Henry",
+      "Winchester"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received a letter",
+          "context": "...ting. Direct to Winchester, Virginia. I received a letter from Henry the day we left the Ferry. (..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-06-13-001",
+    "file": "LTR-1862-06-13-001.md",
+    "existing_people_count": 13,
+    "existing_places_count": 7,
+    "existing_flags_yes_count": 4,
+    "candidate_people": [
+      "Brinkhoff",
+      "Mc",
+      "Reich"
+    ],
+    "candidate_places": [],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...iles of Richmond > > Dear Mother: > > I received your letter day before yesterday. Very glad to hear..."
+        },
+        {
+          "match": "hear from",
+          "context": "...tter day before yesterday. Very glad to hear from you and know that you are well. How I l..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharged",
+          "context": "...of the Co. now, as Capt. Reich has been discharged. I wish he was back. Ransom is liked ve..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-06-13-002",
+    "file": "LTR-1862-06-13-002.md",
+    "existing_people_count": 12,
+    "existing_places_count": 10,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [],
+    "candidate_places": [
+      "Beauregard"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...> Dear Charles: > > I was very glad to hear from you and know that all is going on well..."
+        }
+      ],
+      "Wound/injury reported": [
+        {
+          "match": "wounded",
+          "context": "...came out of the woods that any one was wounded or killed. There was a rebel Colonel an..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-06-16-001",
+    "file": "LTR-1862-06-16-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Gorman"
+    ],
+    "candidate_places": [
+      "Nellie"
+    ],
+    "candidate_flags": {
+      "Wound/injury reported": [
+        {
+          "match": "wounded",
+          "context": "...take there own carriages to carry their wounded. It is my belief that they found it rat..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharged",
+          "context": "...nths and then our time is up. We may be discharged before that time, the sooner the better..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-06-17-001",
+    "file": "LTR-1862-06-17-001.md",
+    "existing_people_count": 12,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Bolivar Heights",
+      "Dear Mother",
+      "Harpers Ferry",
+      "Shenandoah River"
+    ],
+    "candidate_places": [
+      "Bolivar Heights",
+      "Harpers",
+      "Harpers Ferry",
+      "Onikers",
+      "Shenandoah"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...letter last evening. It did me good to hear from you — real substantial good. I have not..."
+        },
+        {
+          "match": "heard from",
+          "context": "...you — real substantial good. I have not heard from you in a long long time. The last lette..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...Bolivar Heights and formed our line of battle upon it. The right wing was supported b..."
+        }
+      ],
+      "Wound/injury reported": [
+        {
+          "match": "shot",
+          "context": "...ood will. The rebels did no harm. Their shot all stuck too low. That night we were a..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharge",
+          "context": "...ght I was roused up by the simultaneous discharge of two of our cannon. I gave my blanket..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-06-22-001",
+    "file": "LTR-1862-06-22-001.md",
+    "existing_people_count": 13,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Mc",
+      "New York Herald"
+    ],
+    "candidate_places": [
+      "Frances",
+      "Richmond"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "received your letter",
+          "context": "...abbath afternoon > > Dear Mother: > > I received your letter this morning, and very glad was I to he..."
+        },
+        {
+          "match": "hear from",
+          "context": "...er this morning, and very glad was I to hear from you. Nothing does me more good than to..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "skirmish",
+          "context": "...nd morning. Yesterday there was quite a skirmish between our pickets and the rebles. I h..."
+        }
+      ],
+      "Morale crisis": [
+        {
+          "match": "give up",
+          "context": "...we arrive at Richmond they will have to give up. I take a great deal of comfort from th..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharge",
+          "context": "...uld like nothing better than to have my discharge, for your sake if nothing more. I have..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-06-22-002",
+    "file": "LTR-1862-06-22-002.md",
+    "existing_people_count": 12,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Reich",
+      "The Colonel"
+    ],
+    "candidate_places": [
+      "Lieut",
+      "Mother",
+      "Richmond"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send me",
+          "context": "...Dr. has left that used to frank. Please send me a few stamps. There are not any around..."
+        },
+        {
+          "match": "please send",
+          "context": "...he old Dr. has left that used to frank. Please send me a few stamps. There are not any arou..."
+        }
+      ],
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...> Dear Charles: > > I was very glad to hear from you. We are suffering a great deal from..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "dead",
+          "context": "...r fire. Three hundred of the rebles lay dead and wounded. I should not wonder if it..."
+        }
+      ],
+      "Wound/injury reported": [
+        {
+          "match": "wounded",
+          "context": "...hree hundred of the rebles lay dead and wounded. I should not wonder if it was so. I di..."
+        },
+        {
+          "match": "shot",
+          "context": "...t feel like it. I saw one rebel who was shot through the head. Our boys went over af..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharge",
+          "context": "...bout Capt. Reich. He had a dishonorable discharge, that is it was read so on dress parade..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1862-06-30-001",
+    "file": "LTR-1862-06-30-001.md",
+    "existing_people_count": 13,
+    "existing_places_count": 8,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Academy Hospital",
+      "Brinkerhoff",
+      "Dear Mother",
+      "Harpers Ferry"
+    ],
+    "candidate_places": [
+      "Charlotte",
+      "Frances",
+      "Genls",
+      "Harpers",
+      "Henry",
+      "James",
+      "Richmond",
+      "Sharpsburgh"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...rs. Brinkerhoff. I feel very anxious to hear from James. > > Your affectionate son, > > A..."
+        }
+      ],
+      "Camp movement/march": [
+        {
+          "match": "we are now encamped",
+          "context": "...ery pleasant for me to contemplate. > > We are now encamped within about three miles of Strausburgh..."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "fighting",
+          "context": "...had captured Richmond after three days fighting and that thirty thousand men were left..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "sick",
+          "context": "...en to the Academy Hospital to guard the sick rebels, some of whom were getting to be..."
+        },
+        {
+          "match": "hospital",
+          "context": "...th a guard of twelve men to the Academy Hospital to guard the sick rebels, some of whom..."
+        }
+      ]
+    }
+  }
+]

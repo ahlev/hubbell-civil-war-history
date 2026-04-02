@@ -1,0 +1,336 @@
+[
+  {
+    "doc_id": "LTR-1862-07-04-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "Richmond", "modern_id": "Richmond, VA", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": {"present": "yes", "detail": "received a letter from Mother; also received a letter directed to 78th Regt", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: 'Cooper' already listed as Gen. Cooper. 'Dear Mother' is salutation. 'Goodrich' already listed as Camp Goodrich. 'James' is brother James (person, not place). Richmond ('go to Richmond') is genuine place gap."
+  },
+  {
+    "doc_id": "LTR-1862-07-08-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "Richmond", "modern_id": "Richmond, VA", "confidence": "stated"}
+    ],
+    "verified_flags": {},
+    "notes": "Rejected candidates: 'Camp Goodrich July' garbled extraction. 'Dear Mother' salutation. 'Royal' already listed as Fort Royal. 'Manassas' already listed as Manassas Gap. 'James' is person not place. Richmond ('I hope we are going to Richmond') is genuine place gap."
+  },
+  {
+    "doc_id": "LTR-1862-07-08-002",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "James River", "modern_id": "James River, VA", "confidence": "stated"},
+      {"place_as_written": "Vermont", "modern_id": "Vermont (state)", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Request for supplies/money": {"present": "yes", "detail": "requests handkerchiefs, towel, writing paper, and pens", "confidence": "stated"},
+      "Receipt of package/letter": {"present": "yes", "detail": "received Frances's letter yesterday", "confidence": "stated"},
+      "Discharge/muster-out": {"present": "yes", "detail": "would like a furlough but doesn't think he can get one", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: 'James River' as person is false positive (it's a place). 'Government' is not political commentary — drawing shirts/socks from Government. James River and Vermont are genuine place gaps."
+  },
+  {
+    "doc_id": "LTR-1862-07-12-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "New York", "modern_id": "New York (state/city)", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": {"present": "yes", "detail": "received two letters from Mother; also received letter from Alexander dated June 22nd", "confidence": "stated"},
+      "Camp movement/march": {"present": "yes", "detail": "marched all next day in hard rain; retreat from battle", "confidence": "stated"},
+      "Discharge/muster-out": {"present": "yes", "detail": "would like to get discharge but very difficult; 13 months served", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: 'Irish Brigade' is military unit not person. 'Rich' already listed as Capt. Rich. 'Alexander' already listed. 'Frances' already listed. 'Haryson' already listed as Haryson's Landing. 'Congress' not a geographic place mention. New York ('new doctor from New York') is genuine place gap."
+  },
+  {
+    "doc_id": "LTR-1862-07-14-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "Washington, D.C.", "modern_id": "Washington, D.C.", "confidence": "stated"},
+      {"place_as_written": "Dixie", "modern_id": "The South / Confederacy (colloquial)", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Request for supplies/money": {"present": "yes", "detail": "requests postage stamps", "confidence": "stated"},
+      "Receipt of package/letter": {"present": "yes", "detail": "received a letter from Mary Doolittle", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: Mary Doolittle already listed in People. 'Banks Division' and 'Signal Corps' are military units. 'Dear Sister' is salutation. 'Pine Mountain' already in Places. Washington D.C. ('Please direct your letters to Washington, D.C.') and Dixie ('Way down South in Dixie') are genuine place gaps."
+  },
+  {
+    "doc_id": "LTR-1862-07-26-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": {
+      "Receipt of package/letter": {"present": "yes", "detail": "received Mother's letter yesterday; also received one from Frances a few days ago", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: Sergeant Sterns already in People. Washington, Va. already in Places. 'Christian Man' is descriptor. 'Dear Mother' is salutation. 'Frances' is not a place. Receipt of package/letter is only genuine gap."
+  },
+  {
+    "doc_id": "LTR-1862-07-27-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "New York", "modern_id": "New York (city)", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": {"present": "yes", "detail": "received Charles's letter and others, also a paper", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: Mr. Holcomb already listed in People. 'Cadet Lieutenants' is rank description. 'Point Military Academy' already listed as West Point. 'Marched' refers to hazing not military movement. Requesting addresses is not supplies/money — rejected that flag. New York ('He was going to New York') is genuine place gap."
+  },
+  {
+    "doc_id": "LTR-1862-07-28-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": {
+      "Receipt of package/letter": {"present": "yes", "detail": "received Frances's letter not long since", "confidence": "stated"},
+      "Illness reported": {"present": "yes", "detail": "was sick — mentions what he would have done without the Sutler when sick", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: 'Harisons Landing' and 'James River' already covered by existing combined entry 'Harisons Landing, James River, Va.' 'Battle' is line of battle (marching formation), not actual combat. Henry's past sickness IS illness reported."
+  },
+  {
+    "doc_id": "LTR-1862-09-09-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "West Point", "modern_id": "U.S. Military Academy, West Point, NY", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Request for supplies/money": {"present": "yes", "detail": "requests undershirt and shirt sent by anyone coming to Plattsburgh", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: Mr. Averill, Dr. Foote, Mr. Armstrong, Mr. Youngs ALL already in People table. 'He' and 'Non Commissioned' and 'Pet Stacia' not people gaps. West Point ('two brothers in the Army & one at West Point') is genuine place gap. Furlough mention is about leave from training, not discharge — rejected Discharge flag."
+  },
+  {
+    "doc_id": "LTR-1862-09-21-002",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": {
+      "Discharge/muster-out": {"present": "yes", "detail": "Charles has not had his furlough yet, to have a short one last of this week", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: Mrs. Carter already in People. 'Sumners Corps' is military unit. Wound/injury flag rejected — no specific wound reported for a named individual (general casualties described). Existing Promotion flag already covers Charles's corporal appointment. Furlough from training is a genuine flag gap."
+  },
+  {
+    "doc_id": "LTR-1862-09-27-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "Washington", "modern_id": "Washington, D.C.", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Request for supplies/money": {"present": "yes", "detail": "asks Mother for $5 — 'stearnest necessity'; sick, among strangers, without money", "confidence": "stated"},
+      "Receipt of package/letter": {"present": "yes", "detail": "has heard from Henry — slightly wounded in hand but still with company", "confidence": "stated"},
+      "Illness reported": {"present": "yes", "detail": "exhausting diarrhea for several weeks; brought pretty low", "confidence": "stated"},
+      "Wound/injury reported": {"present": "yes", "detail": "Henry slightly wounded in the hand", "confidence": "secondhand"}
+    },
+    "notes": "Rejected candidates: 'Dear Mother' is salutation. 'Harpers Ferry' already covered by 'Hospital at Harpers Ferry.' Washington ('Direct to Washington') is genuine place gap. The existing flags use custom names (Hospitalization, Henry found, Money requested) but the standard flag names are NOT populated — these are genuine gaps in the standard flag taxonomy."
+  },
+  {
+    "doc_id": "LTR-1862-09-28-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": {
+      "Discharge/muster-out": {"present": "yes", "detail": "Mother urges Alexander to get furlough for Henry; asks Alexander to get furlough and come home with Henry", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: Washington already listed in Places for this letter. 'Hear from' is wanting to hear, not receipt. Furlough request is genuine Discharge/muster-out flag gap."
+  },
+  {
+    "doc_id": "LTR-1862-09-30-002",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": {
+      "Receipt of package/letter": {"present": "yes", "detail": "received a letter from home (Mother) mid-letter", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: 'Henry' as place is false positive (person). 'Dudleys' already listed as Dudleys farm. 'Plattsburgh' covered by existing Plattsburgh Barracks/village entries. 'Sick' is descriptive (facilities for sick soldiers), not a report of Charles being ill. Receipt from home is genuine."
+  },
+  {
+    "doc_id": "LTR-1862-10-01-001",
+    "verified_people": [
+      {"name": "Stonewall Jackson", "role": "Confederate general — headquarters 7.5 miles from McDonald's position", "confidence": "stated"}
+    ],
+    "verified_places": [],
+    "verified_flags": {},
+    "notes": "Rejected candidates: 'Fred Hubbell' from editorial header, not letter body. 'Champalin' already listed in Places. 'Memorable Day' and 'Ransoms Company' not people. Stonewall Jackson is named in the letter body ('Headquarters of Stonewall Jackson') and NOT in the People table — genuine gap."
+  },
+  {
+    "doc_id": "LTR-1862-10-02-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": {
+      "Discharge/muster-out": {"present": "yes", "detail": "Mother urges Alexander to get leave of absence to find Henry", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: Capt. Ransom already in People. Mrs. Doolittle already in People. 'Henry' as place is false positive. Leave-of-absence request is genuine Discharge/muster-out gap."
+  },
+  {
+    "doc_id": "LTR-1862-10-15-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "Vermont", "modern_id": "Vermont (state)", "confidence": "stated"}
+    ],
+    "verified_flags": {},
+    "notes": "Rejected candidates: Mr. Marshall already in People. Joel Savage already in People. Col. Armstrong already in People. 'Camp Fonda' is the same location as existing entries (Camp Mohawk at Fonda). 'Mohawk' already listed as Camp Mohawk. 'Henry' is person not place. Requesting 'a list of my bad spelling' is not supplies/money — rejected. Vermont ('what they are paying in Vermont') is genuine place gap."
+  },
+  {
+    "doc_id": "LTR-1862-10-29-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "Antietam", "modern_id": "Antietam battlefield, near Sharpsburg, MD", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Discharge/muster-out": {"present": "yes", "detail": "Tom was discharged for not being able bodied", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: Ransom already listed. Capt. Rich already listed. 'Grand Ligne' and 'Longeurit' as people are false positives (places, already listed). 'Henry', 'James', 'Charles' as places are false positives (persons). Longeurit and Grand Ligne already in Places. Antietam ('battle of Antietam') is genuine place gap. Tom's discharge is genuine flag gap."
+  },
+  {
+    "doc_id": "LTR-1862-11-10-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "Annapolis", "modern_id": "Annapolis, MD", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": {"present": "yes", "detail": "received letters from Mr. Vossey, Miss Cundia, Ida Niles about Henry; also received Charles's note about money", "confidence": "stated"},
+      "Discharge/muster-out": {"present": "yes", "detail": "B. Misner home on short furlough taken without leave or license", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: Ida Niles, Miss Cundia, Cyrus Kellogg, Mr. Vossey all already in People. 'Henry' as place is false positive. Annapolis is genuine place gap (existing Places only has Champlain and Camp near Alexandria). Misner's unauthorized furlough and receipt of letters are genuine flag gaps."
+  },
+  {
+    "doc_id": "LTR-1862-11-12-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "Bolivar Heights", "modern_id": "Bolivar Heights, near Harpers Ferry, WV", "confidence": "stated"}
+    ],
+    "verified_flags": {},
+    "notes": "Rejected candidates: Ransom already in People. 'Dear Mother' is salutation. 'Bolivar Heights' as person is false positive (it's a place). Receipt of package/letter already flagged as yes in existing flags. Bolivar Heights ('settled down on Bolivar Heights') is genuine place gap."
+  },
+  {
+    "doc_id": "LTR-1862-11-18-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "Fonda", "modern_id": "Fonda, Montgomery County, NY", "confidence": "stated"},
+      {"place_as_written": "West Point", "modern_id": "U.S. Military Academy, West Point, NY", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": {"present": "yes", "detail": "received Mother's letter directed to Fonda and three more since; received two Observers (newspapers)", "confidence": "stated"},
+      "Illness reported": {"present": "yes", "detail": "large number of men sick; hospital full in a tent; some taken to city; one sickly man died bleeding at lungs", "confidence": "stated"},
+      "Promotion/demotion": {"present": "yes", "detail": "two corporals reduced to the ranks for absence without leave; another had stripes cut off for threatening lieutenant", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: Lieut. Col. Frentress already listed. Col. Sabastine already listed. Karns, Simons, Ruth Hubbell all already in People. 'West Point' as person is false positive. 'French' refers to teacher not place. 'Plummer' already listed. Fonda and West Point are genuine place gaps. Illness, Receipt, and Promotion/demotion are genuine flag gaps."
+  },
+  {
+    "doc_id": "LTR-1862-11-19-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "Antietam", "modern_id": "Antietam battlefield, near Sharpsburg, MD", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Political commentary": {"present": "yes", "detail": "Our Government is worth any sacrifice", "confidence": "stated"},
+      "Wound/injury reported": {"present": "yes", "detail": "Henry's wound — 'from all that I can learn I do not think was dangerous'", "confidence": "secondhand"}
+    },
+    "notes": "Rejected candidates: 'Dear Mother' is salutation. Miss Fannie already listed. Capt. Ransom already listed. Georgetown and Rockville already in Places. 'Charles' and 'Harpers' as places are false positives. Antietam is genuine place gap. Political commentary and Wound/injury are genuine flag gaps (existing flags cover Battle and Capture/POW but not these)."
+  },
+  {
+    "doc_id": "LTR-1862-11-28-001",
+    "verified_people": [
+      {"name": "Mr. Simons", "role": "Teacher — Charles asks Frances how his school is doing", "confidence": "stated"},
+      {"name": "McDonald", "role": "Source of 'good news' about Henry that Charles doubts — 'afraid it is too good news to be true'", "confidence": "stated"},
+      {"name": "Grandmother", "role": "Family — Charles hopes Frances and Mother went to Grandmother's for Thanksgiving", "confidence": "stated"}
+    ],
+    "verified_places": [
+      {"place_as_written": "Alexandria", "modern_id": "Alexandria, VA", "confidence": "stated"},
+      {"place_as_written": "Washington", "modern_id": "Washington, D.C.", "confidence": "stated"},
+      {"place_as_written": "Johnson", "modern_id": "Johnson (location of bridge guarded near Alexandria)", "confidence": "uncertain"}
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": {"present": "yes", "detail": "received Frances's and Mother's letter dated Nov 20th enclosing Luther's letter", "confidence": "stated"},
+      "Illness reported": {"present": "yes", "detail": "smallpox case in regiment; whole regiment vaccinated", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: F. Borron and Charles Dodds already in People. 'Grandmothers' as place is false positive. Simons, McDonald, and Grandmother are genuinely mentioned in letter body but NOT in People table — genuine gaps. Alexandria, Washington, and Johnson are genuine place gaps (existing Places only has 'Camp near Alexandria, VA')."
+  },
+  {
+    "doc_id": "LTR-1862-12-04-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "Alexandria", "modern_id": "Alexandria, VA", "confidence": "stated"},
+      {"place_as_written": "Fonda", "modern_id": "Fonda, Montgomery County, NY", "confidence": "stated"},
+      {"place_as_written": "Plattsburgh", "modern_id": "Plattsburgh, NY", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": {"present": "yes", "detail": "received a letter from home this morning (Dec 8 continuation)", "confidence": "stated"},
+      "Discharge/muster-out": {"present": "yes", "detail": "men enlisted expecting to be discharged for not being sound; two men shot fingers off to avoid duty", "confidence": "stated"},
+      "Illness reported": {"present": "yes", "detail": "good many sick in regiment, several deaths; one smallpox case; whole regiment vaccinated", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: Capt. Rich already in People. Gen. Slough already in People. 'Henry' as place is false positive. Alexandria, Fonda, Plattsburgh are genuine place gaps (existing Places only has 'Camp near Alexandria'). Receipt, Discharge, and Illness are genuine flag gaps."
+  },
+  {
+    "doc_id": "LTR-1862-12-08-001",
+    "verified_people": [
+      {"name": "Lyman", "role": "Ben Bouron's brother at Yorktown — Ben going to visit him", "confidence": "stated"},
+      {"name": "Uncle John", "role": "Family member — Charles says he need not write often", "confidence": "stated"},
+      {"name": "Mary Ann Brinkerhoff", "role": "Woman Pollard may have married — Charles asks about it", "confidence": "stated"},
+      {"name": "Capt. Rich", "role": "Now Aid De Camp to Gen. Slough, military governor of Alexandria", "confidence": "stated"},
+      {"name": "Gen. Slough", "role": "Military governor of Alexandria — Capt. Rich now on his staff", "confidence": "stated"},
+      {"name": "Pollard", "role": "May have married Mary Ann Brinkerhoff — Charles asks", "confidence": "stated"}
+    ],
+    "verified_places": [
+      {"place_as_written": "Alexandria", "modern_id": "Alexandria, VA", "confidence": "stated"},
+      {"place_as_written": "Yorktown", "modern_id": "Yorktown, VA", "confidence": "stated"},
+      {"place_as_written": "Washington", "modern_id": "Washington, D.C.", "confidence": "stated"},
+      {"place_as_written": "North Carolina", "modern_id": "North Carolina (state)", "confidence": "stated"},
+      {"place_as_written": "Corbeaus", "modern_id": "Corbeau(x), Clinton County, NY area", "confidence": "uncertain"},
+      {"place_as_written": "Georgetown", "modern_id": "Georgetown, Washington, D.C.", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Request for supplies/money": {"present": "yes", "detail": "requests woolen yarn and couple of darning needles; also requests $1", "confidence": "stated"},
+      "Receipt of package/letter": {"present": "yes", "detail": "received Mother's letter of Dec 1st and the Observer newspaper", "confidence": "stated"},
+      "Death reported": {"present": "yes", "detail": "Frenchman from tent died — sickly man bled at lungs; James Beaumont died of fever (per L. La Tube); Fonda man died", "confidence": "stated"},
+      "Wound/injury reported": {"present": "yes", "detail": "Henry probably badly wounded (Savagham/Mathews report); also newspaper clipping of killed and wounded from Bethune", "confidence": "secondhand"},
+      "Morale crisis": {"present": "yes", "detail": "homesickness among family men; soldiers hate fighting to free slaves; Staats says won't enlist again", "confidence": "stated"},
+      "Discharge/muster-out": {"present": "yes", "detail": "men returning to hospitals or being discharged from convalescent camp", "confidence": "stated"},
+      "Political commentary": {"present": "yes", "detail": "soldiers say 'it makes them mad to think they are fighting to free the niger' — anti-emancipation sentiment", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: Savagham, Mathews, Bethune, Ben Bouron, Riley, Staats, Mrs. Doolittle, Neshan all already in People. 'North Carolina' as person is false positive (place). 'West Point' as person is false positive. Genuine people gaps: Lyman (Ben Bouron's brother), Uncle John, Mary Ann Brinkerhoff, Capt. Rich, Gen. Slough, and Pollard — all named in letter body but not in People table. Existing Places has only 'Camp near Alexandria' — all 6 place additions are genuine. Major news from home flag rejected — Charles is asking a question about Pollard's marriage, not reporting news received."
+  },
+  {
+    "doc_id": "LTR-1862-12-09-001",
+    "verified_people": [
+      {"name": "Mary Jane Brinkerhoff", "role": "Marrying Pollard this week — 'a Mrs. Brinkerhoff old girl'", "confidence": "stated"}
+    ],
+    "verified_places": [
+      {"place_as_written": "North Carolina", "modern_id": "North Carolina (state)", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Political commentary": {"present": "yes", "detail": "wishes South would accept 'gradual emancipation' to end the war", "confidence": "stated"},
+      "Discharge/muster-out": {"present": "yes", "detail": "Mother begs Alexander to get a discharge and come home", "confidence": "stated"},
+      "Major news from home": {"present": "yes", "detail": "Pollard is going to be married to Mary Jane Brinkerhoff this week", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: Dennis Hayes, Monsieur Cushas, Pollard all already in People. 'New Year' not a person. 'Charley' and 'Henry' and 'Mary Jane' as places are false positives. Mary Jane Brinkerhoff is named in letter body ('Pollard is going to be married this week to Mary Jane — a Mrs. Brinkerhoff old girl') but only mentioned indirectly in Pollard's People entry — deserves own entry. North Carolina is genuine place gap (existing Places only has Champlain)."
+  },
+  {
+    "doc_id": "LTR-1862-12-09-002",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "Richmond", "modern_id": "Richmond, VA", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": {"present": "yes", "detail": "received Mother's letter of the 2nd inst. making enquiry about Henry", "confidence": "stated"},
+      "Wound/injury reported": {"present": "yes", "detail": "Albert Cook reported Henry's wound was 'very slight & in the leg'", "confidence": "secondhand"}
+    },
+    "notes": "Rejected candidates: 'Brother Charles' refers to Alexander (McDonald confuses name). Falmouth, Harpers Ferry, Annapolis all already in Places. 'Albert Cook' and 'Henry' as places are false positives. Death reported rejected — Mother asks 'whether he is dead or alive' but no death is actually confirmed. Richmond ('in Richmond a prisoner') is genuine place gap. Receipt and Wound are genuine flag gaps."
+  },
+  {
+    "doc_id": "LTR-1862-12-26-001",
+    "verified_people": [
+      {"name": "Mr. Dixon", "role": "Teacher in the teacher class — Frances helped Tombe during his recitation to Mr. Dixon", "confidence": "stated"},
+      {"name": "Norman", "role": "Cyrus Kellogg's uncle — Kellogg visits him at camp", "confidence": "stated"},
+      {"name": "Mrs. Nodiah Moores", "role": "Hosted a party that S. Tombe was invited to", "confidence": "stated"},
+      {"name": "Mrs. Vanberton", "role": "Urged Tombe to come see Charles — 'he was very polite'", "confidence": "stated"}
+    ],
+    "verified_places": [
+      {"place_as_written": "Fonda", "modern_id": "Fonda, Montgomery County, NY", "confidence": "stated"},
+      {"place_as_written": "Alexandria", "modern_id": "Alexandria, VA", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Illness reported": {"present": "yes", "detail": "Cyrus Kellogg recently out of hospital; at convalescent camp", "confidence": "stated"},
+      "Discharge/muster-out": {"present": "yes", "detail": "Frances's old friend S. Tombe going to be discharged — was to be drummer but hasn't drummed", "confidence": "stated"}
+    },
+    "notes": "Rejected candidates: Col. McMartin, S. Tombe, 1st Lieut. McGuire, Sergeant Welky, Tromby all already in People. Fairfax Station and Georgetown already in Places. 'Grandmothers' as place is false positive. 'Brinkerhoff' — Mrs. Brinkerhoff is mentioned but context is asking about rent, not a new person reference. Genuine people gaps: Mr. Dixon, Norman, Mrs. Nodiah Moores, Mrs. Vanberton — all named in letter body but not in People table. Genuine place gaps: Fonda and Alexandria. Major news from home flag rejected — marriages and rent question are conversational, not major news events."
+  }
+]

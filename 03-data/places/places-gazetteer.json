@@ -1,5 +1,62 @@
 [
   {
+    "id": "PLC-champlain",
+    "canonicalName": "Champlain, Clinton County, NY",
+    "asWritten": [
+      "Champlain"
+    ],
+    "modernIdentifications": [
+      "Champlain, Clinton County, NY",
+      "Champlain, NY",
+      "Champlain, New York",
+      "Family home, New York",
+      "Home",
+      "`inferred`",
+      "`stated`"
+    ],
+    "state": "NY",
+    "coordinates": {
+      "lat": 44.998,
+      "lon": -73.433
+    },
+    "letterCount": 33,
+    "letters": [
+      "LTR-1861-09-05-001",
+      "LTR-1861-09-11-001",
+      "LTR-1861-11-15-001",
+      "LTR-1861-12-16-001",
+      "LTR-1861-12-19-001",
+      "LTR-1861-12-20-001",
+      "LTR-1861-12-23-001",
+      "LTR-1862-01-15-001",
+      "LTR-1862-02-05-003",
+      "LTR-1862-02-07-001",
+      "LTR-1862-02-12-002",
+      "LTR-1862-02-17-001",
+      "LTR-1862-02-23-001",
+      "LTR-1862-05-10-001",
+      "LTR-1863-02-28-001",
+      "LTR-1863-03-16-001",
+      "LTR-1863-03-19-001",
+      "LTR-1863-03-29-002",
+      "LTR-1863-04-13-001",
+      "LTR-1863-05-16-001",
+      "LTR-1863-05-19-001",
+      "LTR-1863-06-03-001",
+      "LTR-1863-07-20-001",
+      "LTR-1863-08-21-001",
+      "LTR-1864-02-18-001",
+      "LTR-1864-03-07-001",
+      "LTR-1864-04-06-001",
+      "LTR-1864-05-06-001",
+      "LTR-1864-06-13-001",
+      "LTR-1864-06-20-001",
+      "LTR-1864-07-02-001",
+      "LTR-1864-07-24-001",
+      "LTR-1864-08-22-001"
+    ]
+  },
+  {
     "id": "PLC-baltimore",
     "canonicalName": "Baltimore, Maryland",
     "asWritten": [
@@ -8,14 +65,15 @@
     "modernIdentifications": [
       "Baltimore",
       "Baltimore, MD",
-      "Baltimore, Maryland"
+      "Baltimore, Maryland",
+      "`stated`"
     ],
     "state": "Maryland",
     "coordinates": {
       "lat": 39.2904,
       "lon": -76.6122
     },
-    "letterCount": 19,
+    "letterCount": 20,
     "letters": [
       "LTR-1861-06-06-001",
       "LTR-1861-11-13-001",
@@ -35,7 +93,45 @@
       "LTR-1862-03-06-001",
       "LTR-1862-03-11-001",
       "LTR-1862-03-17-001",
-      "LTR-1862-05-10-001"
+      "LTR-1862-05-10-001",
+      "LTR-1863-03-29-001"
+    ]
+  },
+  {
+    "id": "PLC-washington",
+    "canonicalName": "Where box of socks likely held up",
+    "asWritten": [
+      "Washington"
+    ],
+    "modernIdentifications": [
+      "Possible next posting",
+      "Washington, D.C.",
+      "Where box of socks likely held up",
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 19,
+    "letters": [
+      "LTR-1861-11-13-001",
+      "LTR-1861-11-15-001",
+      "LTR-1861-12-20-002",
+      "LTR-1862-01-09-001",
+      "LTR-1862-01-25-001",
+      "LTR-1862-03-23-001",
+      "LTR-1862-09-27-001",
+      "LTR-1862-09-28-001",
+      "LTR-1862-11-28-001",
+      "LTR-1862-12-08-001",
+      "LTR-1862-12-26-001",
+      "LTR-1863-04-11-001",
+      "LTR-1863-11-15-001",
+      "LTR-1864-02-18-001",
+      "LTR-1864-03-01-001",
+      "LTR-1864-08-15-001",
+      "LTR-1864-08-26-001",
+      "LTR-1865-06-12-001",
+      "LTR-1865-07-13-001"
     ]
   },
   {
@@ -113,6 +209,40 @@
     ]
   },
   {
+    "id": "PLC-alexandria",
+    "canonicalName": "Alexandria, Louisiana",
+    "asWritten": [
+      "Alexandria"
+    ],
+    "modernIdentifications": [
+      "Alexandria",
+      "Alexandria, Louisiana",
+      "Alexandria, VA",
+      "`stated`"
+    ],
+    "state": "Louisiana",
+    "coordinates": null,
+    "letterCount": 16,
+    "letters": [
+      "LTR-1862-04-02-001",
+      "LTR-1862-04-09-001",
+      "LTR-1862-11-18-001",
+      "LTR-1862-11-28-001",
+      "LTR-1862-12-04-001",
+      "LTR-1862-12-08-001",
+      "LTR-1862-12-26-001",
+      "LTR-1863-01-02-001",
+      "LTR-1863-06-10-001",
+      "LTR-1863-07-20-001",
+      "LTR-1863-10-31-001",
+      "LTR-1863-12-01-002",
+      "LTR-1863-12-09-002",
+      "LTR-1864-02-17-001",
+      "LTR-1864-03-25-001",
+      "LTR-1864-05-03-001"
+    ]
+  },
+  {
     "id": "PLC-capitol-hill--washington--d-c",
     "canonicalName": "Capitol Hill, Washington, D.C.",
     "asWritten": [
@@ -143,38 +273,71 @@
     ]
   },
   {
-    "id": "PLC-champlain",
-    "canonicalName": "Champlain, Clinton County, NY",
+    "id": "PLC-charlotte",
+    "canonicalName": "Charlotte, NY (likely Charlotte, VT or Charlotte, NC",
     "asWritten": [
-      "Champlain"
+      "Charlotte"
     ],
     "modernIdentifications": [
-      "Champlain, Clinton County, NY",
-      "Champlain, NY",
-      "Champlain, New York",
-      "Family home, New York",
-      "Home"
+      "Charlotte, NY",
+      "Charlotte, NY (likely Charlotte, VT or Charlotte, NC",
+      "Charlotte, NY -- Mother's planned trip destination",
+      "Likely Charlotte, Clinton County, NY",
+      "`stated`"
     ],
-    "state": "NY",
+    "state": "NC",
     "coordinates": {
-      "lat": 44.998,
-      "lon": -73.433
+      "lat": 43.2589,
+      "lon": -77.6117
     },
+    "letterCount": 14,
+    "letters": [
+      "LTR-1861-07-21-001",
+      "LTR-1861-09-11-001",
+      "LTR-1862-05-09-002",
+      "LTR-1862-06-30-001",
+      "LTR-1863-02-22-001",
+      "LTR-1863-03-12-001",
+      "LTR-1863-04-13-001",
+      "LTR-1863-06-10-001",
+      "LTR-1863-07-06-001",
+      "LTR-1863-07-20-001",
+      "LTR-1863-08-21-001",
+      "LTR-1864-07-02-001",
+      "LTR-1864-07-29-001",
+      "LTR-1865-07-13-001"
+    ]
+  },
+  {
+    "id": "PLC-richmond",
+    "canonicalName": "Richmond, VA -- (false) capture reported; also mentioned as destination of carriages story",
+    "asWritten": [
+      "Richmond"
+    ],
+    "modernIdentifications": [
+      "Confederate capital",
+      "Richmond, VA",
+      "Richmond, VA -- (false) capture reported; also mentioned as destination of carriages story",
+      "Richmond, Virginia",
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
     "letterCount": 13,
     "letters": [
-      "LTR-1861-09-05-001",
-      "LTR-1861-09-11-001",
-      "LTR-1861-11-15-001",
-      "LTR-1861-12-16-001",
-      "LTR-1861-12-20-001",
-      "LTR-1861-12-23-001",
-      "LTR-1862-01-15-001",
-      "LTR-1862-02-05-003",
-      "LTR-1862-02-07-001",
-      "LTR-1862-02-12-002",
-      "LTR-1862-02-17-001",
-      "LTR-1862-02-23-001",
-      "LTR-1862-05-10-001"
+      "LTR-1861-10-17-001",
+      "LTR-1862-03-11-001",
+      "LTR-1862-04-02-002",
+      "LTR-1862-06-30-001",
+      "LTR-1862-07-04-001",
+      "LTR-1862-07-08-001",
+      "LTR-1862-09-30-001",
+      "LTR-1862-09-30-002",
+      "LTR-1862-10-06-001",
+      "LTR-1862-10-29-001",
+      "LTR-1862-12-09-002",
+      "LTR-1863-05-04-001",
+      "LTR-1864-05-23-001"
     ]
   },
   {
@@ -206,6 +369,33 @@
     ]
   },
   {
+    "id": "PLC-fortress-monroe",
+    "canonicalName": "Fort Monroe, VA",
+    "asWritten": [
+      "Fortress Monroe"
+    ],
+    "modernIdentifications": [
+      "Fort Monroe",
+      "Fort Monroe, VA",
+      "`stated`"
+    ],
+    "state": "VA",
+    "coordinates": null,
+    "letterCount": 10,
+    "letters": [
+      "LTR-1862-03-11-001",
+      "LTR-1862-03-17-001",
+      "LTR-1862-03-26-001",
+      "LTR-1862-04-02-001",
+      "LTR-1862-04-02-002",
+      "LTR-1862-04-09-001",
+      "LTR-1862-04-11-001",
+      "LTR-1863-02-13-001",
+      "LTR-1863-02-22-001",
+      "LTR-1863-09-29-001"
+    ]
+  },
+  {
     "id": "PLC-aquia-landing",
     "canonicalName": "Aquia Landing",
     "asWritten": [
@@ -227,6 +417,31 @@
       "LTR-1863-04-23-001",
       "LTR-1863-04-24-001",
       "LTR-1863-05-16-001"
+    ]
+  },
+  {
+    "id": "PLC-nashville",
+    "canonicalName": "Nashville, TN",
+    "asWritten": [
+      "Nashville"
+    ],
+    "modernIdentifications": [
+      "Nashville, TN",
+      "`stated`"
+    ],
+    "state": "TN",
+    "coordinates": null,
+    "letterCount": 9,
+    "letters": [
+      "LTR-1863-10-11-001",
+      "LTR-1863-11-21-001",
+      "LTR-1864-02-18-001",
+      "LTR-1864-04-18-001",
+      "LTR-1864-09-02-001",
+      "LTR-1864-09-18-001",
+      "LTR-1864-10-26-001",
+      "LTR-1864-12-05-001",
+      "LTR-1865-01-11-001"
     ]
   },
   {
@@ -254,27 +469,115 @@
     ]
   },
   {
-    "id": "PLC-fortress-monroe",
-    "canonicalName": "Fort Monroe, VA",
+    "id": "PLC-albany",
+    "canonicalName": "Albany, New York",
     "asWritten": [
-      "Fortress Monroe"
+      "Albany"
     ],
     "modernIdentifications": [
-      "Fort Monroe",
-      "Fort Monroe, VA"
+      "Albany, NY",
+      "Albany, New York",
+      "`stated`"
+    ],
+    "state": "New York",
+    "coordinates": {
+      "lat": 42.6526,
+      "lon": -73.7562
+    },
+    "letterCount": 8,
+    "letters": [
+      "LTR-1861-06-06-001",
+      "LTR-1861-09-11-001",
+      "LTR-1861-11-13-001",
+      "LTR-1862-03-23-001",
+      "LTR-1862-09-30-002",
+      "LTR-1864-06-02-001",
+      "LTR-1864-09-21-001",
+      "LTR-1864-10-04-002"
+    ]
+  },
+  {
+    "id": "PLC-west-point",
+    "canonicalName": "United States Military Academy, West Point, New York",
+    "asWritten": [
+      "West Point"
+    ],
+    "modernIdentifications": [
+      "U.S. Military Academy",
+      "U.S. Military Academy, West Point, NY",
+      "United States Military Academy, West Point, NY",
+      "United States Military Academy, West Point, New York",
+      "West Point, Orange County, NY",
+      "West Point, VA",
+      "`stated`"
+    ],
+    "state": "New York",
+    "coordinates": {
+      "lat": 41.3914,
+      "lon": -73.9671
+    },
+    "letterCount": 8,
+    "letters": [
+      "LTR-1861-08-06-001",
+      "LTR-1861-11-13-001",
+      "LTR-1862-02-11-001",
+      "LTR-1862-04-06-001",
+      "LTR-1862-05-09-001",
+      "LTR-1862-09-09-001",
+      "LTR-1862-11-18-001",
+      "LTR-1864-02-15-001"
+    ]
+  },
+  {
+    "id": "PLC-plattsburgh",
+    "canonicalName": "Plattsburgh, New York",
+    "asWritten": [
+      "Plattsburgh"
+    ],
+    "modernIdentifications": [
+      "Plattsburgh, NY",
+      "Plattsburgh, New York",
+      "`stated`"
+    ],
+    "state": "New York",
+    "coordinates": {
+      "lat": 44.76,
+      "lon": -73.459
+    },
+    "letterCount": 8,
+    "letters": [
+      "LTR-1862-02-23-001",
+      "LTR-1862-12-04-001",
+      "LTR-1863-03-02-001",
+      "LTR-1863-03-19-001",
+      "LTR-1863-03-29-002",
+      "LTR-1863-04-11-001",
+      "LTR-1863-07-06-001",
+      "LTR-1864-01-29-001"
+    ]
+  },
+  {
+    "id": "PLC-winchester",
+    "canonicalName": "Winchester, VA",
+    "asWritten": [
+      "Winchester"
+    ],
+    "modernIdentifications": [
+      "Winchester, VA",
+      "`stated`"
     ],
     "state": "VA",
     "coordinates": null,
     "letterCount": 8,
     "letters": [
-      "LTR-1862-03-11-001",
-      "LTR-1862-03-17-001",
+      "LTR-1862-03-16-001",
+      "LTR-1862-03-21-001",
       "LTR-1862-03-26-001",
-      "LTR-1862-04-02-001",
-      "LTR-1862-04-02-002",
-      "LTR-1862-04-09-001",
-      "LTR-1862-04-11-001",
-      "LTR-1863-02-13-001"
+      "LTR-1862-06-17-001",
+      "LTR-1862-06-30-001",
+      "LTR-1864-09-21-001",
+      "LTR-1864-10-29-001",
+      "LTR-1864-11-04-001"
     ]
   },
   {
@@ -302,75 +605,101 @@
     ]
   },
   {
-    "id": "PLC-richmond",
-    "canonicalName": "Confederate capital",
+    "id": "PLC-new-york",
+    "canonicalName": "New York City",
     "asWritten": [
-      "Richmond"
+      "New York"
     ],
     "modernIdentifications": [
-      "Confederate capital",
-      "Richmond, VA",
-      "Richmond, Virginia"
+      "New York",
+      "New York City",
+      "New York, NY",
+      "`stated`"
     ],
     "state": null,
-    "coordinates": null,
-    "letterCount": 7,
+    "coordinates": {
+      "lat": 40.7128,
+      "lon": -74.006
+    },
+    "letterCount": 6,
     "letters": [
-      "LTR-1861-10-17-001",
-      "LTR-1862-03-11-001",
-      "LTR-1862-04-02-002",
-      "LTR-1862-09-30-001",
-      "LTR-1862-09-30-002",
-      "LTR-1862-10-06-001",
-      "LTR-1862-10-29-001"
-    ]
-  },
-  {
-    "id": "PLC-washington",
-    "canonicalName": "Where box of socks likely held up",
-    "asWritten": [
-      "Washington"
-    ],
-    "modernIdentifications": [
-      "Possible next posting",
-      "Washington, D.C.",
-      "Where box of socks likely held up"
-    ],
-    "state": null,
-    "coordinates": null,
-    "letterCount": 7,
-    "letters": [
+      "LTR-1861-06-06-001",
       "LTR-1861-11-13-001",
-      "LTR-1861-11-15-001",
-      "LTR-1862-01-09-001",
-      "LTR-1862-01-25-001",
-      "LTR-1862-03-23-001",
-      "LTR-1862-09-28-001",
-      "LTR-1862-12-26-001"
+      "LTR-1862-07-12-001",
+      "LTR-1862-07-27-001",
+      "LTR-1864-01-08-001",
+      "LTR-1865-01-11-001"
     ]
   },
   {
-    "id": "PLC-alexandria",
-    "canonicalName": "Alexandria, Louisiana",
+    "id": "PLC-virginia",
+    "canonicalName": "Anticipated movement",
     "asWritten": [
-      "Alexandria"
+      "Virginia"
     ],
     "modernIdentifications": [
-      "Alexandria",
-      "Alexandria, Louisiana",
-      "Alexandria, VA"
+      "Anticipated movement",
+      "Virginia",
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 6,
+    "letters": [
+      "LTR-1861-09-11-001",
+      "LTR-1861-09-21-001",
+      "LTR-1861-09-22-001",
+      "LTR-1861-11-30-002",
+      "LTR-1862-01-09-002",
+      "LTR-1863-11-15-001"
+    ]
+  },
+  {
+    "id": "PLC-canada",
+    "canonicalName": "Where Frances had been teaching",
+    "asWritten": [
+      "Canada"
+    ],
+    "modernIdentifications": [
+      "Canada",
+      "Frances going there",
+      "Where Frances had been teaching",
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 6,
+    "letters": [
+      "LTR-1861-12-29-001",
+      "LTR-1862-07-14-001",
+      "LTR-1863-03-02-001",
+      "LTR-1863-04-11-001",
+      "LTR-1864-11-30-001",
+      "LTR-1865-01-11-001"
+    ]
+  },
+  {
+    "id": "PLC-new-orleans",
+    "canonicalName": "New Orleans, Louisiana",
+    "asWritten": [
+      "New Orleans"
+    ],
+    "modernIdentifications": [
+      "New Orleans, LA",
+      "New Orleans, La.",
+      "New Orleans, Louisiana",
+      "`stated`"
     ],
     "state": "Louisiana",
     "coordinates": null,
-    "letterCount": 7,
+    "letterCount": 6,
     "letters": [
-      "LTR-1862-04-02-001",
-      "LTR-1862-04-09-001",
-      "LTR-1862-11-18-001",
-      "LTR-1863-01-02-001",
-      "LTR-1863-06-10-001",
+      "LTR-1862-04-01-001",
+      "LTR-1862-05-01-001",
+      "LTR-1864-03-01-001",
       "LTR-1864-03-25-001",
-      "LTR-1864-05-03-001"
+      "LTR-1864-04-23-001",
+      "LTR-1864-05-10-001"
     ]
   },
   {
@@ -395,96 +724,67 @@
     ]
   },
   {
-    "id": "PLC-albany",
-    "canonicalName": "Albany, New York",
+    "id": "PLC-fonda",
+    "canonicalName": "Fonda, Montgomery County, NY",
     "asWritten": [
-      "Albany"
+      "Fonda"
     ],
     "modernIdentifications": [
-      "Albany, NY",
-      "Albany, New York"
+      "Fonda, Montgomery County, NY",
+      "`stated`"
     ],
-    "state": "New York",
-    "coordinates": {
-      "lat": 42.6526,
-      "lon": -73.7562
-    },
-    "letterCount": 5,
+    "state": "NY",
+    "coordinates": null,
+    "letterCount": 6,
     "letters": [
-      "LTR-1861-06-06-001",
-      "LTR-1861-09-11-001",
-      "LTR-1861-11-13-001",
-      "LTR-1862-03-23-001",
-      "LTR-1862-09-30-002"
+      "LTR-1862-10-15-001",
+      "LTR-1862-11-18-001",
+      "LTR-1862-12-04-001",
+      "LTR-1862-12-26-001",
+      "LTR-1863-09-07-001",
+      "LTR-1864-01-19-001"
     ]
   },
   {
-    "id": "PLC-west-point",
-    "canonicalName": "United States Military Academy, West Point, New York",
+    "id": "PLC-chattanooga",
+    "canonicalName": "Chattanooga, TN",
     "asWritten": [
-      "West Point"
+      "Chattanooga"
     ],
     "modernIdentifications": [
-      "U.S. Military Academy",
-      "United States Military Academy, West Point, NY",
-      "United States Military Academy, West Point, New York",
-      "West Point, Orange County, NY",
-      "West Point, VA"
+      "Chattanooga, TN",
+      "`stated`"
     ],
-    "state": "New York",
-    "coordinates": {
-      "lat": 41.3914,
-      "lon": -73.9671
-    },
-    "letterCount": 5,
+    "state": "TN",
+    "coordinates": null,
+    "letterCount": 6,
     "letters": [
-      "LTR-1861-08-06-001",
-      "LTR-1861-11-13-001",
-      "LTR-1862-02-11-001",
-      "LTR-1862-04-06-001",
-      "LTR-1862-05-09-001"
+      "LTR-1863-12-13-001",
+      "LTR-1864-03-20-001",
+      "LTR-1864-06-20-001",
+      "LTR-1864-08-08-002",
+      "LTR-1864-10-10-001",
+      "LTR-1865-01-11-001"
     ]
   },
   {
-    "id": "PLC-winchester",
-    "canonicalName": "Winchester, VA",
+    "id": "PLC-texas",
+    "canonicalName": "`stated`",
     "asWritten": [
-      "Winchester"
+      "Texas"
     ],
     "modernIdentifications": [
-      "Winchester, VA"
+      "`stated`"
     ],
-    "state": "VA",
+    "state": null,
     "coordinates": null,
     "letterCount": 5,
     "letters": [
-      "LTR-1862-03-16-001",
-      "LTR-1862-03-21-001",
-      "LTR-1862-03-26-001",
-      "LTR-1862-06-17-001",
-      "LTR-1862-06-30-001"
-    ]
-  },
-  {
-    "id": "PLC-new-orleans",
-    "canonicalName": "New Orleans, Louisiana",
-    "asWritten": [
-      "New Orleans"
-    ],
-    "modernIdentifications": [
-      "New Orleans, LA",
-      "New Orleans, La.",
-      "New Orleans, Louisiana"
-    ],
-    "state": "Louisiana",
-    "coordinates": null,
-    "letterCount": 5,
-    "letters": [
-      "LTR-1862-04-01-001",
-      "LTR-1862-05-01-001",
+      "LTR-1864-02-17-001",
       "LTR-1864-03-01-001",
-      "LTR-1864-03-25-001",
-      "LTR-1864-04-23-001"
+      "LTR-1864-03-06-001",
+      "LTR-1864-03-07-001",
+      "LTR-1864-03-25-001"
     ]
   },
   {
@@ -508,6 +808,28 @@
     ]
   },
   {
+    "id": "PLC-washington--d-c",
+    "canonicalName": "Washington, D.C.",
+    "asWritten": [
+      "Washington, D.C."
+    ],
+    "modernIdentifications": [
+      "Washington, D.C."
+    ],
+    "state": null,
+    "coordinates": {
+      "lat": 38.9072,
+      "lon": -77.0369
+    },
+    "letterCount": 4,
+    "letters": [
+      "LTR-1861-06-06-001",
+      "LTR-1861-07-21-003",
+      "LTR-1861-09-05-001",
+      "LTR-1862-07-14-001"
+    ]
+  },
+  {
     "id": "PLC-the-river",
     "canonicalName": "Potomac River",
     "asWritten": [
@@ -525,26 +847,6 @@
       "LTR-1861-11-13-001",
       "LTR-1861-11-15-001",
       "LTR-1861-11-30-001"
-    ]
-  },
-  {
-    "id": "PLC-virginia",
-    "canonicalName": "Anticipated movement",
-    "asWritten": [
-      "Virginia"
-    ],
-    "modernIdentifications": [
-      "Anticipated movement",
-      "Virginia"
-    ],
-    "state": null,
-    "coordinates": null,
-    "letterCount": 4,
-    "letters": [
-      "LTR-1861-09-11-001",
-      "LTR-1861-09-21-001",
-      "LTR-1861-09-22-001",
-      "LTR-1862-01-09-002"
     ]
   },
   {
@@ -568,8 +870,27 @@
     ]
   },
   {
+    "id": "PLC-relay-house",
+    "canonicalName": "Relay, MD",
+    "asWritten": [
+      "Relay House"
+    ],
+    "modernIdentifications": [
+      "Relay, MD"
+    ],
+    "state": "MD",
+    "coordinates": null,
+    "letterCount": 4,
+    "letters": [
+      "LTR-1861-11-13-001",
+      "LTR-1861-12-08-002",
+      "LTR-1862-03-30-001",
+      "LTR-1862-04-01-001"
+    ]
+  },
+  {
     "id": "PLC-camp-within-five-miles-of-richmond",
-    "canonicalName": "Camp within five miles of Richmond",
+    "canonicalName": "Camp within Five miles of Richmond",
     "asWritten": [
       "Camp within Five miles of Richmond",
       "Camp within five miles of Richmond"
@@ -587,6 +908,27 @@
       "LTR-1862-06-13-002",
       "LTR-1862-06-16-001",
       "LTR-1862-06-22-001"
+    ]
+  },
+  {
+    "id": "PLC-antietam",
+    "canonicalName": "Antietam battlefield, near Sharpsburg, MD",
+    "asWritten": [
+      "Antietam"
+    ],
+    "modernIdentifications": [
+      "Antietam battlefield, near Sharpsburg, MD",
+      "Battle of Antietam, Sharpsburg, MD",
+      "`stated`"
+    ],
+    "state": "MD",
+    "coordinates": null,
+    "letterCount": 4,
+    "letters": [
+      "LTR-1862-09-21-002",
+      "LTR-1862-10-29-001",
+      "LTR-1862-11-19-001",
+      "LTR-1863-06-03-001"
     ]
   },
   {
@@ -628,6 +970,25 @@
     ]
   },
   {
+    "id": "PLC-mississippi",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Mississippi"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 4,
+    "letters": [
+      "LTR-1864-03-01-001",
+      "LTR-1864-06-02-001",
+      "LTR-1864-06-13-001",
+      "LTR-1864-06-29-001"
+    ]
+  },
+  {
     "id": "PLC-morganza--louisiana",
     "canonicalName": "Morganza, Louisiana",
     "asWritten": [
@@ -644,49 +1005,6 @@
       "LTR-1864-06-21-001",
       "LTR-1864-06-22-001",
       "LTR-1864-06-29-001"
-    ]
-  },
-  {
-    "id": "PLC-washington--d-c",
-    "canonicalName": "Washington, D.C.",
-    "asWritten": [
-      "Washington, D.C."
-    ],
-    "modernIdentifications": [
-      "Washington, D.C."
-    ],
-    "state": null,
-    "coordinates": {
-      "lat": 38.9072,
-      "lon": -77.0369
-    },
-    "letterCount": 3,
-    "letters": [
-      "LTR-1861-06-06-001",
-      "LTR-1861-07-21-003",
-      "LTR-1861-09-05-001"
-    ]
-  },
-  {
-    "id": "PLC-charlotte",
-    "canonicalName": "Likely Charlotte, Clinton County, NY",
-    "asWritten": [
-      "Charlotte"
-    ],
-    "modernIdentifications": [
-      "Charlotte, NY",
-      "Likely Charlotte, Clinton County, NY"
-    ],
-    "state": "NY",
-    "coordinates": {
-      "lat": 43.2589,
-      "lon": -77.6117
-    },
-    "letterCount": 3,
-    "letters": [
-      "LTR-1861-07-21-001",
-      "LTR-1861-09-11-001",
-      "LTR-1862-05-09-002"
     ]
   },
   {
@@ -727,24 +1045,6 @@
       "LTR-1861-10-17-001",
       "LTR-1861-11-15-001",
       "LTR-1862-02-24-001"
-    ]
-  },
-  {
-    "id": "PLC-relay-house",
-    "canonicalName": "Relay, MD",
-    "asWritten": [
-      "Relay House"
-    ],
-    "modernIdentifications": [
-      "Relay, MD"
-    ],
-    "state": "MD",
-    "coordinates": null,
-    "letterCount": 3,
-    "letters": [
-      "LTR-1861-11-13-001",
-      "LTR-1862-03-30-001",
-      "LTR-1862-04-01-001"
     ]
   },
   {
@@ -791,6 +1091,71 @@
     ]
   },
   {
+    "id": "PLC-montreal",
+    "canonicalName": "Where Frances teaching this winter",
+    "asWritten": [
+      "Montreal"
+    ],
+    "modernIdentifications": [
+      "Frances's location",
+      "Where Frances teaching this winter",
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 3,
+    "letters": [
+      "LTR-1862-01-09-002",
+      "LTR-1862-02-05-001",
+      "LTR-1863-04-23-001"
+    ]
+  },
+  {
+    "id": "PLC-bolivar-heights",
+    "canonicalName": "Bolivar Heights, WV -- above Harpers Ferry; line of battle formed there",
+    "asWritten": [
+      "Bolivar Heights"
+    ],
+    "modernIdentifications": [
+      "Bolivar Heights, WV -- above Harpers Ferry; line of battle formed there",
+      "Bolivar Heights, near Harpers Ferry, WV",
+      "Near Harpers Ferry, West Virginia"
+    ],
+    "state": null,
+    "coordinates": {
+      "lat": 39.326,
+      "lon": -77.744
+    },
+    "letterCount": 3,
+    "letters": [
+      "LTR-1862-02-05-003",
+      "LTR-1862-06-17-001",
+      "LTR-1862-11-12-001"
+    ]
+  },
+  {
+    "id": "PLC-tennessee",
+    "canonicalName": "State; site of Union victory mentioned",
+    "asWritten": [
+      "Tennessee"
+    ],
+    "modernIdentifications": [
+      "State; site of Union victory mentioned",
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": {
+      "lat": 35.5,
+      "lon": -86.5
+    },
+    "letterCount": 3,
+    "letters": [
+      "LTR-1862-02-12-001",
+      "LTR-1863-09-29-001",
+      "LTR-1864-01-19-001"
+    ]
+  },
+  {
     "id": "PLC-hampton",
     "canonicalName": "Hampton, VA",
     "asWritten": [
@@ -827,6 +1192,64 @@
     ]
   },
   {
+    "id": "PLC-burlington",
+    "canonicalName": "Burlington, VT",
+    "asWritten": [
+      "Burlington"
+    ],
+    "modernIdentifications": [
+      "Burlington, VT",
+      "`stated`"
+    ],
+    "state": "VT",
+    "coordinates": null,
+    "letterCount": 3,
+    "letters": [
+      "LTR-1862-07-27-001",
+      "LTR-1864-12-12-002",
+      "LTR-1870-11-28-001"
+    ]
+  },
+  {
+    "id": "PLC-north-carolina",
+    "canonicalName": "Destination of 153rd NY",
+    "asWritten": [
+      "North Carolina"
+    ],
+    "modernIdentifications": [
+      "Destination of 153rd NY",
+      "North Carolina"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 3,
+    "letters": [
+      "LTR-1862-10-29-001",
+      "LTR-1862-12-08-001",
+      "LTR-1862-12-09-001"
+    ]
+  },
+  {
+    "id": "PLC-georgetown",
+    "canonicalName": "Georgetown, Washington, D.C.",
+    "asWritten": [
+      "Georgetown"
+    ],
+    "modernIdentifications": [
+      "Georgetown, D.C.",
+      "Georgetown, Washington, D.C.",
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 3,
+    "letters": [
+      "LTR-1862-12-08-001",
+      "LTR-1862-12-26-001",
+      "LTR-1863-03-29-002"
+    ]
+  },
+  {
     "id": "PLC-fairfax-station",
     "canonicalName": "Fairfax Station, VA",
     "asWritten": [
@@ -860,6 +1283,61 @@
       "LTR-1863-01-02-001",
       "LTR-1863-01-31-001",
       "LTR-1863-02-13-001"
+    ]
+  },
+  {
+    "id": "PLC-philadelphia",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Philadelphia"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 3,
+    "letters": [
+      "LTR-1863-04-27-001",
+      "LTR-1863-09-29-001",
+      "LTR-1864-10-29-001"
+    ]
+  },
+  {
+    "id": "PLC-maryland",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Maryland"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 3,
+    "letters": [
+      "LTR-1863-07-06-001",
+      "LTR-1863-08-25-001",
+      "LTR-1864-08-02-001"
+    ]
+  },
+  {
+    "id": "PLC-ringgold",
+    "canonicalName": "Ringgold, GA",
+    "asWritten": [
+      "Ringgold"
+    ],
+    "modernIdentifications": [
+      "Ringgold, GA",
+      "`stated`"
+    ],
+    "state": "GA",
+    "coordinates": null,
+    "letterCount": 3,
+    "letters": [
+      "LTR-1863-12-13-001",
+      "LTR-1864-02-18-001",
+      "LTR-1865-06-16-001"
     ]
   },
   {
@@ -900,6 +1378,43 @@
     ]
   },
   {
+    "id": "PLC-atlanta",
+    "canonicalName": "Atlanta, Georgia",
+    "asWritten": [
+      "Atlanta"
+    ],
+    "modernIdentifications": [
+      "Atlanta, Georgia",
+      "`stated`"
+    ],
+    "state": "Georgia",
+    "coordinates": null,
+    "letterCount": 3,
+    "letters": [
+      "LTR-1864-06-08-001",
+      "LTR-1864-07-08-001",
+      "LTR-1864-08-30-001"
+    ]
+  },
+  {
+    "id": "PLC-louisiana",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Louisiana"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 3,
+    "letters": [
+      "LTR-1864-08-15-001",
+      "LTR-1864-10-04-001",
+      "LTR-1864-10-04-002"
+    ]
+  },
+  {
     "id": "PLC-u-s--field-hospital-no--2--chattanooga--tennessee",
     "canonicalName": "U.S. Field Hospital No. 2, Chattanooga, Tennessee",
     "asWritten": [
@@ -918,23 +1433,39 @@
     ]
   },
   {
-    "id": "PLC-new-york",
-    "canonicalName": "New York City",
+    "id": "PLC-strasburg",
+    "canonicalName": "`stated`",
     "asWritten": [
-      "New York"
+      "Strasburg"
     ],
     "modernIdentifications": [
-      "New York City"
+      "`stated`"
     ],
     "state": null,
-    "coordinates": {
-      "lat": 40.7128,
-      "lon": -74.006
-    },
-    "letterCount": 2,
+    "coordinates": null,
+    "letterCount": 3,
     "letters": [
-      "LTR-1861-06-06-001",
-      "LTR-1861-11-13-001"
+      "LTR-1864-09-21-001",
+      "LTR-1864-10-04-001",
+      "LTR-1864-10-22-001"
+    ]
+  },
+  {
+    "id": "PLC-newtown",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Newtown"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 3,
+    "letters": [
+      "LTR-1864-11-30-001",
+      "LTR-1864-12-09-001",
+      "LTR-1864-12-12-001"
     ]
   },
   {
@@ -956,6 +1487,24 @@
     "letters": [
       "LTR-1861-07-21-001",
       "LTR-1864-08-15-001"
+    ]
+  },
+  {
+    "id": "PLC-ogdensburgh",
+    "canonicalName": "Ogdensburg, St. Lawrence County, NY",
+    "asWritten": [
+      "Ogdensburgh"
+    ],
+    "modernIdentifications": [
+      "Ogdensburg, NY",
+      "Ogdensburg, St. Lawrence County, NY"
+    ],
+    "state": "NY",
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1861-09-20-001",
+      "LTR-1865-06-27-001"
     ]
   },
   {
@@ -1030,56 +1579,21 @@
   },
   {
     "id": "PLC-camden-station",
-    "canonicalName": "Camden Station, B&O Railroad depot, Baltimore",
+    "canonicalName": "Camden Station, Baltimore, MD -- railroad station where Alexander was posted",
     "asWritten": [
       "Camden Station"
     ],
     "modernIdentifications": [
       "Camden Station, B&O Railroad depot, Baltimore",
-      "Camden Station, Baltimore"
+      "Camden Station, Baltimore",
+      "Camden Station, Baltimore, MD -- railroad station where Alexander was posted"
     ],
-    "state": "Baltimore",
+    "state": null,
     "coordinates": null,
     "letterCount": 2,
     "letters": [
       "LTR-1861-12-22-001",
       "LTR-1862-03-17-001"
-    ]
-  },
-  {
-    "id": "PLC-canada",
-    "canonicalName": "Where Frances had been teaching",
-    "asWritten": [
-      "Canada"
-    ],
-    "modernIdentifications": [
-      "Frances going there",
-      "Where Frances had been teaching"
-    ],
-    "state": null,
-    "coordinates": null,
-    "letterCount": 2,
-    "letters": [
-      "LTR-1861-12-29-001",
-      "LTR-1862-07-14-001"
-    ]
-  },
-  {
-    "id": "PLC-montreal",
-    "canonicalName": "Where Frances teaching this winter",
-    "asWritten": [
-      "Montreal"
-    ],
-    "modernIdentifications": [
-      "Frances's location",
-      "Where Frances teaching this winter"
-    ],
-    "state": null,
-    "coordinates": null,
-    "letterCount": 2,
-    "letters": [
-      "LTR-1862-01-09-002",
-      "LTR-1862-02-05-001"
     ]
   },
   {
@@ -1138,6 +1652,42 @@
     ]
   },
   {
+    "id": "PLC-berryville",
+    "canonicalName": "Berryville, VA",
+    "asWritten": [
+      "Berryville"
+    ],
+    "modernIdentifications": [
+      "Berryville, VA",
+      "`stated`"
+    ],
+    "state": "VA",
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1862-03-16-001",
+      "LTR-1864-09-21-001"
+    ]
+  },
+  {
+    "id": "PLC-shenandoah-river",
+    "canonicalName": "Shenandoah River -- Onikers Ferry is located on this river",
+    "asWritten": [
+      "Shenandoah River"
+    ],
+    "modernIdentifications": [
+      "Bridge repaired; cars running",
+      "Shenandoah River -- Onikers Ferry is located on this river"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1862-03-21-001",
+      "LTR-1862-06-17-001"
+    ]
+  },
+  {
     "id": "PLC-hampton--va",
     "canonicalName": "Hampton, Virginia",
     "asWritten": [
@@ -1191,6 +1741,146 @@
     ]
   },
   {
+    "id": "PLC-james-river",
+    "canonicalName": "James River, VA",
+    "asWritten": [
+      "James River"
+    ],
+    "modernIdentifications": [
+      "James River, VA"
+    ],
+    "state": "VA",
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1862-05-06-001",
+      "LTR-1862-07-08-002"
+    ]
+  },
+  {
+    "id": "PLC-vermont",
+    "canonicalName": "Vermont",
+    "asWritten": [
+      "Vermont"
+    ],
+    "modernIdentifications": [
+      "Vermont"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1862-07-08-002",
+      "LTR-1862-10-15-001"
+    ]
+  },
+  {
+    "id": "PLC-dixie",
+    "canonicalName": "The South / Confederacy",
+    "asWritten": [
+      "Dixie"
+    ],
+    "modernIdentifications": [
+      "The Confederacy",
+      "The South / Confederacy"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1862-07-14-001",
+      "LTR-1862-09-30-002"
+    ]
+  },
+  {
+    "id": "PLC-frederick",
+    "canonicalName": "Frederick, MD",
+    "asWritten": [
+      "Frederick"
+    ],
+    "modernIdentifications": [
+      "Frederick, MD",
+      "`stated`"
+    ],
+    "state": "MD",
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1862-10-01-001",
+      "LTR-1864-08-26-001"
+    ]
+  },
+  {
+    "id": "PLC-annapolis",
+    "canonicalName": "Where Albert Cook was",
+    "asWritten": [
+      "Annapolis"
+    ],
+    "modernIdentifications": [
+      "Annapolis, MD",
+      "Where Albert Cook was"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1862-11-10-001",
+      "LTR-1862-12-09-002"
+    ]
+  },
+  {
+    "id": "PLC-stevenson",
+    "canonicalName": "Stevenson, Alabama",
+    "asWritten": [
+      "Stevenson"
+    ],
+    "modernIdentifications": [
+      "Stevenson, Alabama",
+      "`stated`"
+    ],
+    "state": "Alabama",
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1863-05-06-001",
+      "LTR-1864-04-28-001"
+    ]
+  },
+  {
+    "id": "PLC-chicago",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Chicago"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1863-07-06-001",
+      "LTR-1864-07-08-001"
+    ]
+  },
+  {
+    "id": "PLC-gettysburg",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Gettysburg"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1863-07-25-001",
+      "LTR-1863-07-30-001"
+    ]
+  },
+  {
     "id": "PLC-capitol-hill-barracks--washington--d-c",
     "canonicalName": "Capitol Hill Barracks, Washington, D.C.",
     "asWritten": [
@@ -1225,6 +1915,23 @@
     ]
   },
   {
+    "id": "PLC-corbeau",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Corbeau"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1863-10-31-001",
+      "LTR-1864-10-22-001"
+    ]
+  },
+  {
     "id": "PLC-wauhatchie--east-tennessee",
     "canonicalName": "Wauhatchie, East Tennessee",
     "asWritten": [
@@ -1239,6 +1946,40 @@
     "letters": [
       "LTR-1863-11-21-001",
       "LTR-1863-12-13-001"
+    ]
+  },
+  {
+    "id": "PLC-lookout-mountain",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Lookout Mountain"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1863-12-01-001",
+      "LTR-1863-12-13-001"
+    ]
+  },
+  {
+    "id": "PLC-savannah",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Savannah"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1864-01-08-001",
+      "LTR-1864-12-09-001"
     ]
   },
   {
@@ -1273,6 +2014,41 @@
     "letters": [
       "LTR-1864-06-20-001",
       "LTR-1864-07-00-001"
+    ]
+  },
+  {
+    "id": "PLC-harper-s-ferry",
+    "canonicalName": "Two miles beyond",
+    "asWritten": [
+      "Harper's Ferry"
+    ],
+    "modernIdentifications": [
+      "Two miles beyond",
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1864-08-15-001",
+      "LTR-1864-10-04-002"
+    ]
+  },
+  {
+    "id": "PLC-cedar-creek",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Cedar Creek"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 2,
+    "letters": [
+      "LTR-1864-10-04-001",
+      "LTR-1864-11-04-001"
     ]
   },
   {
@@ -1407,22 +2183,6 @@
     "letterCount": 1,
     "letters": [
       "LTR-1861-09-11-001"
-    ]
-  },
-  {
-    "id": "PLC-ogdensburgh",
-    "canonicalName": "Ogdensburg, St. Lawrence County, NY",
-    "asWritten": [
-      "Ogdensburgh"
-    ],
-    "modernIdentifications": [
-      "Ogdensburg, St. Lawrence County, NY"
-    ],
-    "state": "NY",
-    "coordinates": null,
-    "letterCount": 1,
-    "letters": [
-      "LTR-1861-09-20-001"
     ]
   },
   {
@@ -1746,6 +2506,22 @@
     ]
   },
   {
+    "id": "PLC-kalarama-heights",
+    "canonicalName": "Kalorama Heights, Washington, D.C.",
+    "asWritten": [
+      "Kalarama Heights"
+    ],
+    "modernIdentifications": [
+      "Kalorama Heights, Washington, D.C."
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1861-12-08-002"
+    ]
+  },
+  {
     "id": "PLC-chazy---chaney",
     "canonicalName": "Chazy, Clinton County, NY",
     "asWritten": [
@@ -1775,6 +2551,22 @@
     "letterCount": 1,
     "letters": [
       "LTR-1861-12-16-001"
+    ]
+  },
+  {
+    "id": "PLC-chasy",
+    "canonicalName": "Chazy, Clinton County, NY",
+    "asWritten": [
+      "Chasy"
+    ],
+    "modernIdentifications": [
+      "Chazy, Clinton County, NY"
+    ],
+    "state": "NY",
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1861-12-19-001"
     ]
   },
   {
@@ -1957,25 +2749,6 @@
     ]
   },
   {
-    "id": "PLC-bolivar-heights",
-    "canonicalName": "Near Harpers Ferry, West Virginia",
-    "asWritten": [
-      "Bolivar Heights"
-    ],
-    "modernIdentifications": [
-      "Near Harpers Ferry, West Virginia"
-    ],
-    "state": "West Virginia",
-    "coordinates": {
-      "lat": 39.326,
-      "lon": -77.744
-    },
-    "letterCount": 1,
-    "letters": [
-      "LTR-1862-02-05-003"
-    ]
-  },
-  {
     "id": "PLC-academy",
     "canonicalName": "Likely Clinton County Academy or similar",
     "asWritten": [
@@ -2020,25 +2793,6 @@
     "coordinates": {
       "lat": 45.5017,
       "lon": -73.5673
-    },
-    "letterCount": 1,
-    "letters": [
-      "LTR-1862-02-12-001"
-    ]
-  },
-  {
-    "id": "PLC-tennessee",
-    "canonicalName": "State; site of Union victory mentioned",
-    "asWritten": [
-      "Tennessee"
-    ],
-    "modernIdentifications": [
-      "State; site of Union victory mentioned"
-    ],
-    "state": null,
-    "coordinates": {
-      "lat": 35.5,
-      "lon": -86.5
     },
     "letterCount": 1,
     "letters": [
@@ -2109,25 +2863,6 @@
     "coordinates": {
       "lat": 39.285,
       "lon": -76.615
-    },
-    "letterCount": 1,
-    "letters": [
-      "LTR-1862-02-23-001"
-    ]
-  },
-  {
-    "id": "PLC-plattsburgh",
-    "canonicalName": "Plattsburgh, New York",
-    "asWritten": [
-      "Plattsburgh"
-    ],
-    "modernIdentifications": [
-      "Plattsburgh, New York"
-    ],
-    "state": "New York",
-    "coordinates": {
-      "lat": 44.76,
-      "lon": -73.459
     },
     "letterCount": 1,
     "letters": [
@@ -2247,22 +2982,6 @@
     ]
   },
   {
-    "id": "PLC-berryville",
-    "canonicalName": "Berryville, VA",
-    "asWritten": [
-      "Berryville"
-    ],
-    "modernIdentifications": [
-      "Berryville, VA"
-    ],
-    "state": "VA",
-    "coordinates": null,
-    "letterCount": 1,
-    "letters": [
-      "LTR-1862-03-16-001"
-    ]
-  },
-  {
     "id": "PLC-mich-genesee-co",
     "canonicalName": "Genesee County, Michigan",
     "asWritten": [
@@ -2320,22 +3039,6 @@
       "Harpers Ferry, WV area"
     ],
     "state": "WV area",
-    "coordinates": null,
-    "letterCount": 1,
-    "letters": [
-      "LTR-1862-03-21-001"
-    ]
-  },
-  {
-    "id": "PLC-shenandoah-river",
-    "canonicalName": "Bridge repaired; cars running",
-    "asWritten": [
-      "Shenandoah River"
-    ],
-    "modernIdentifications": [
-      "Bridge repaired; cars running"
-    ],
-    "state": null,
     "coordinates": null,
     "letterCount": 1,
     "letters": [
@@ -2542,22 +3245,6 @@
     ],
     "modernIdentifications": [
       "Yorktown, VA"
-    ],
-    "state": "VA",
-    "coordinates": null,
-    "letterCount": 1,
-    "letters": [
-      "LTR-1862-05-06-001"
-    ]
-  },
-  {
-    "id": "PLC-james-river",
-    "canonicalName": "James River, VA",
-    "asWritten": [
-      "James River"
-    ],
-    "modernIdentifications": [
-      "James River, VA"
     ],
     "state": "VA",
     "coordinates": null,
@@ -2999,22 +3686,6 @@
     ]
   },
   {
-    "id": "PLC-burlington",
-    "canonicalName": "Burlington, VT",
-    "asWritten": [
-      "Burlington"
-    ],
-    "modernIdentifications": [
-      "Burlington, VT"
-    ],
-    "state": "VT",
-    "coordinates": null,
-    "letterCount": 1,
-    "letters": [
-      "LTR-1862-07-27-001"
-    ]
-  },
-  {
     "id": "PLC-harisons-landing--james-river--va",
     "canonicalName": "Harrison's Landing (Berkeley Plantation), VA",
     "asWritten": [
@@ -3127,22 +3798,6 @@
     ]
   },
   {
-    "id": "PLC-antietam",
-    "canonicalName": "Battle of Antietam, Sharpsburg, MD",
-    "asWritten": [
-      "Antietam"
-    ],
-    "modernIdentifications": [
-      "Battle of Antietam, Sharpsburg, MD"
-    ],
-    "state": "MD",
-    "coordinates": null,
-    "letterCount": 1,
-    "letters": [
-      "LTR-1862-09-21-002"
-    ]
-  },
-  {
     "id": "PLC-hospital-at-harpers-ferry",
     "canonicalName": "Military hospital, Harpers Ferry, WV",
     "asWritten": [
@@ -3223,22 +3878,6 @@
     ]
   },
   {
-    "id": "PLC-dixie",
-    "canonicalName": "The Confederacy",
-    "asWritten": [
-      "Dixie"
-    ],
-    "modernIdentifications": [
-      "The Confederacy"
-    ],
-    "state": null,
-    "coordinates": null,
-    "letterCount": 1,
-    "letters": [
-      "LTR-1862-09-30-002"
-    ]
-  },
-  {
     "id": "PLC-bollever-heights",
     "canonicalName": "Bolivar Heights, near Harpers Ferry, WV",
     "asWritten": [
@@ -3296,22 +3935,6 @@
       "Winchester, VA area"
     ],
     "state": "VA area",
-    "coordinates": null,
-    "letterCount": 1,
-    "letters": [
-      "LTR-1862-10-01-001"
-    ]
-  },
-  {
-    "id": "PLC-frederick",
-    "canonicalName": "Frederick, MD",
-    "asWritten": [
-      "Frederick"
-    ],
-    "modernIdentifications": [
-      "Frederick, MD"
-    ],
-    "state": "MD",
     "coordinates": null,
     "letterCount": 1,
     "letters": [
@@ -3399,22 +4022,6 @@
     ]
   },
   {
-    "id": "PLC-fonda",
-    "canonicalName": "Fonda, Montgomery County, NY",
-    "asWritten": [
-      "Fonda"
-    ],
-    "modernIdentifications": [
-      "Fonda, Montgomery County, NY"
-    ],
-    "state": "NY",
-    "coordinates": null,
-    "letterCount": 1,
-    "letters": [
-      "LTR-1862-10-15-001"
-    ]
-  },
-  {
     "id": "PLC-saratoga",
     "canonicalName": "Saratoga Springs, NY",
     "asWritten": [
@@ -3460,22 +4067,6 @@
     "letterCount": 1,
     "letters": [
       "LTR-1862-10-15-001"
-    ]
-  },
-  {
-    "id": "PLC-north-carolina",
-    "canonicalName": "Destination of 153rd NY",
-    "asWritten": [
-      "North Carolina"
-    ],
-    "modernIdentifications": [
-      "Destination of 153rd NY"
-    ],
-    "state": null,
-    "coordinates": null,
-    "letterCount": 1,
-    "letters": [
-      "LTR-1862-10-29-001"
     ]
   },
   {
@@ -3559,6 +4150,54 @@
     ]
   },
   {
+    "id": "PLC-johnson",
+    "canonicalName": "Johnson",
+    "asWritten": [
+      "Johnson"
+    ],
+    "modernIdentifications": [
+      "Johnson"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1862-11-28-001"
+    ]
+  },
+  {
+    "id": "PLC-yorktown",
+    "canonicalName": "Yorktown, VA",
+    "asWritten": [
+      "Yorktown"
+    ],
+    "modernIdentifications": [
+      "Yorktown, VA"
+    ],
+    "state": "VA",
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1862-12-08-001"
+    ]
+  },
+  {
+    "id": "PLC-corbeaus",
+    "canonicalName": "Corbeau(x), Clinton County, NY area",
+    "asWritten": [
+      "Corbeaus"
+    ],
+    "modernIdentifications": [
+      "Corbeau(x), Clinton County, NY area"
+    ],
+    "state": "NY area",
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1862-12-08-001"
+    ]
+  },
+  {
     "id": "PLC-camp-near-falmouth--v-a",
     "canonicalName": "Falmouth, VA",
     "asWritten": [
@@ -3568,22 +4207,6 @@
       "Falmouth, VA"
     ],
     "state": "VA",
-    "coordinates": null,
-    "letterCount": 1,
-    "letters": [
-      "LTR-1862-12-09-002"
-    ]
-  },
-  {
-    "id": "PLC-annapolis",
-    "canonicalName": "Where Albert Cook was",
-    "asWritten": [
-      "Annapolis"
-    ],
-    "modernIdentifications": [
-      "Where Albert Cook was"
-    ],
-    "state": null,
     "coordinates": null,
     "letterCount": 1,
     "letters": [
@@ -3716,22 +4339,6 @@
     "letterCount": 1,
     "letters": [
       "LTR-1862-12-21-001"
-    ]
-  },
-  {
-    "id": "PLC-georgetown",
-    "canonicalName": "Georgetown, D.C.",
-    "asWritten": [
-      "Georgetown"
-    ],
-    "modernIdentifications": [
-      "Georgetown, D.C."
-    ],
-    "state": null,
-    "coordinates": null,
-    "letterCount": 1,
-    "letters": [
-      "LTR-1862-12-26-001"
     ]
   },
   {
@@ -3943,6 +4550,38 @@
     ]
   },
   {
+    "id": "PLC-vicksburg",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Vicksburg"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-03-19-001"
+    ]
+  },
+  {
+    "id": "PLC-rutland",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Rutland"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-03-29-001"
+    ]
+  },
+  {
     "id": "PLC-atlas",
     "canonicalName": "Atlas",
     "asWritten": [
@@ -3959,6 +4598,38 @@
     ]
   },
   {
+    "id": "PLC-garrettstown",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Garrettstown"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-04-13-001"
+    ]
+  },
+  {
+    "id": "PLC-williamsburg",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Williamsburg"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-04-30-001"
+    ]
+  },
+  {
     "id": "PLC-state-of-georgia",
     "canonicalName": "Error",
     "asWritten": [
@@ -3968,22 +4639,6 @@
       "Error"
     ],
     "state": null,
-    "coordinates": null,
-    "letterCount": 1,
-    "letters": [
-      "LTR-1863-05-06-001"
-    ]
-  },
-  {
-    "id": "PLC-stevenson",
-    "canonicalName": "Stevenson, Alabama",
-    "asWritten": [
-      "Stevenson"
-    ],
-    "modernIdentifications": [
-      "Stevenson, Alabama"
-    ],
-    "state": "Alabama",
     "coordinates": null,
     "letterCount": 1,
     "letters": [
@@ -4023,6 +4678,22 @@
     ]
   },
   {
+    "id": "PLC-chancellorsville",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Chancellorsville"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-05-16-001"
+    ]
+  },
+  {
     "id": "PLC-camp-near-aquia-creek-landing",
     "canonicalName": "Camp near Aquia Creek Landing",
     "asWritten": [
@@ -4036,6 +4707,22 @@
     "letterCount": 1,
     "letters": [
       "LTR-1863-06-03-001"
+    ]
+  },
+  {
+    "id": "PLC-falmouth",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Falmouth"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-06-10-001"
     ]
   },
   {
@@ -4087,6 +4774,38 @@
     ]
   },
   {
+    "id": "PLC-warrenton",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Warrenton"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-07-30-001"
+    ]
+  },
+  {
+    "id": "PLC-warrenton-junction",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Warrenton Junction"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-07-30-001"
+    ]
+  },
+  {
     "id": "PLC-camp-davis--capitol-hill--washington--d-c",
     "canonicalName": "Camp Davis, Capitol Hill, Washington, D.C.",
     "asWritten": [
@@ -4116,6 +4835,54 @@
     "letterCount": 1,
     "letters": [
       "LTR-1863-09-18-001"
+    ]
+  },
+  {
+    "id": "PLC-raccoon-ford",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Raccoon Ford"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-09-18-001"
+    ]
+  },
+  {
+    "id": "PLC-rapidan",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Rapidan"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-09-18-001"
+    ]
+  },
+  {
+    "id": "PLC-moorestown",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Moorestown"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-09-29-001"
     ]
   },
   {
@@ -4151,6 +4918,22 @@
     ]
   },
   {
+    "id": "PLC-sandusky",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Sandusky"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-11-19-001"
+    ]
+  },
+  {
     "id": "PLC-general-hospital--tullahoma--tn",
     "canonicalName": "General Hospital, Tullahoma, TN",
     "asWritten": [
@@ -4164,6 +4947,38 @@
     "letterCount": 1,
     "letters": [
       "LTR-1863-12-01-001"
+    ]
+  },
+  {
+    "id": "PLC-whiteside",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Whiteside"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-12-13-001"
+    ]
+  },
+  {
+    "id": "PLC-missionary-ridge",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Missionary Ridge"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-12-13-001"
     ]
   },
   {
@@ -4199,6 +5014,22 @@
     ]
   },
   {
+    "id": "PLC-dalton",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Dalton"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-01-08-001"
+    ]
+  },
+  {
     "id": "PLC-point-lookout--maryland",
     "canonicalName": "Point Lookout, Maryland",
     "asWritten": [
@@ -4215,6 +5046,22 @@
     ]
   },
   {
+    "id": "PLC-point-lookout",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Point Lookout"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-02-15-001"
+    ]
+  },
+  {
     "id": "PLC-nashville--tennessee",
     "canonicalName": "Nashville, Tennessee",
     "asWritten": [
@@ -4224,6 +5071,22 @@
       "Nashville, Tennessee"
     ],
     "state": "Tennessee",
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-02-18-001"
+    ]
+  },
+  {
+    "id": "PLC-louisville",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Louisville"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
     "coordinates": null,
     "letterCount": 1,
     "letters": [
@@ -4292,6 +5155,70 @@
     "letterCount": 1,
     "letters": [
       "LTR-1864-03-01-001"
+    ]
+  },
+  {
+    "id": "PLC-elmira",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Elmira"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-03-20-001"
+    ]
+  },
+  {
+    "id": "PLC-western-louisiana",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Western Louisiana"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-04-15-001"
+    ]
+  },
+  {
+    "id": "PLC-illinois",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Illinois"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-04-18-001"
+    ]
+  },
+  {
+    "id": "PLC-indiana",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Indiana"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-04-18-001"
     ]
   },
   {
@@ -4407,6 +5334,38 @@
     ]
   },
   {
+    "id": "PLC-altoona",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Altoona"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-05-08-001"
+    ]
+  },
+  {
+    "id": "PLC-cobb-co",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Cobb Co"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-05-08-001"
+    ]
+  },
+  {
     "id": "PLC-camp-near-buzzard-s-roost--georgia",
     "canonicalName": "Camp near Buzzard's Roost, Georgia",
     "asWritten": [
@@ -4439,6 +5398,22 @@
     ]
   },
   {
+    "id": "PLC-oostanaula",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Oostanaula"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-05-17-001"
+    ]
+  },
+  {
     "id": "PLC-camp-near-kingston--georgia",
     "canonicalName": "Camp near Kingston, Georgia",
     "asWritten": [
@@ -4448,6 +5423,22 @@
       "Camp near Kingston, Georgia"
     ],
     "state": "Georgia",
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-05-20-001"
+    ]
+  },
+  {
+    "id": "PLC-kingston",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Kingston"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
     "coordinates": null,
     "letterCount": 1,
     "letters": [
@@ -4487,6 +5478,22 @@
     ]
   },
   {
+    "id": "PLC-dallas",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Dallas"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-05-31-001"
+    ]
+  },
+  {
     "id": "PLC-morganza-bend--louisiana",
     "canonicalName": "Morganza Bend, Louisiana",
     "asWritten": [
@@ -4496,6 +5503,38 @@
       "Morganza Bend, Louisiana"
     ],
     "state": "Louisiana",
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-06-02-001"
+    ]
+  },
+  {
+    "id": "PLC-clinton-co",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Clinton Co"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-06-02-001"
+    ]
+  },
+  {
+    "id": "PLC-new-york-city",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "New York City"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
     "coordinates": null,
     "letterCount": 1,
     "letters": [
@@ -4535,22 +5574,6 @@
     ]
   },
   {
-    "id": "PLC-atlanta",
-    "canonicalName": "Atlanta, Georgia",
-    "asWritten": [
-      "Atlanta"
-    ],
-    "modernIdentifications": [
-      "Atlanta, Georgia"
-    ],
-    "state": "Georgia",
-    "coordinates": null,
-    "letterCount": 1,
-    "letters": [
-      "LTR-1864-07-08-001"
-    ]
-  },
-  {
     "id": "PLC-chattahoochee",
     "canonicalName": "Chattahoochee River",
     "asWritten": [
@@ -4564,6 +5587,22 @@
     "letterCount": 1,
     "letters": [
       "LTR-1864-07-08-001"
+    ]
+  },
+  {
+    "id": "PLC-lost-mountain",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Lost Mountain"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-08-08-002"
     ]
   },
   {
@@ -4599,13 +5638,13 @@
     ]
   },
   {
-    "id": "PLC-harper-s-ferry",
-    "canonicalName": "Two miles beyond",
+    "id": "PLC-frederick-city",
+    "canonicalName": "Hospital",
     "asWritten": [
-      "Harper's Ferry"
+      "Frederick City"
     ],
     "modernIdentifications": [
-      "Two miles beyond"
+      "Hospital"
     ],
     "state": null,
     "coordinates": null,
@@ -4615,13 +5654,13 @@
     ]
   },
   {
-    "id": "PLC-frederick-city",
-    "canonicalName": "Hospital",
+    "id": "PLC-morganza",
+    "canonicalName": "`stated`",
     "asWritten": [
-      "Frederick City"
+      "Morganza"
     ],
     "modernIdentifications": [
-      "Hospital"
+      "`stated`"
     ],
     "state": null,
     "coordinates": null,
@@ -4679,6 +5718,22 @@
     ]
   },
   {
+    "id": "PLC-macon",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Macon"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-08-30-001"
+    ]
+  },
+  {
     "id": "PLC-u-s--general-hospital--chattanooga--tennessee",
     "canonicalName": "U.S. General Hospital, Chattanooga, Tennessee",
     "asWritten": [
@@ -4720,6 +5775,22 @@
       "U.S. Hospital No. 2, Chattanooga, Tennessee"
     ],
     "state": "Tennessee",
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-09-21-002"
+    ]
+  },
+  {
+    "id": "PLC-shenandoah",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Shenandoah"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
     "coordinates": null,
     "letterCount": 1,
     "letters": [
@@ -4775,6 +5846,38 @@
     ]
   },
   {
+    "id": "PLC-bunker-hill",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Bunker Hill"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-10-04-002"
+    ]
+  },
+  {
+    "id": "PLC-fresseville",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Fresseville"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-10-04-002"
+    ]
+  },
+  {
     "id": "PLC-fort-gillam",
     "canonicalName": "Fort near Nashville",
     "asWritten": [
@@ -4807,6 +5910,38 @@
     ]
   },
   {
+    "id": "PLC-fisher-s-hill",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Fisher's Hill"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-10-22-001"
+    ]
+  },
+  {
+    "id": "PLC-harrisburg",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Harrisburg"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-10-22-001"
+    ]
+  },
+  {
     "id": "PLC-u-s-a--hospital-no--3--nashville--tennessee",
     "canonicalName": "U.S.A. Hospital No. 3, Nashville, Tennessee",
     "asWritten": [
@@ -4832,6 +5967,22 @@
       "Patterson Park Hospital, Baltimore, Maryland"
     ],
     "state": "Maryland",
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-10-29-001"
+    ]
+  },
+  {
+    "id": "PLC-cedar-run",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Cedar Run"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
     "coordinates": null,
     "letterCount": 1,
     "letters": [
@@ -4932,6 +6083,86 @@
     "letterCount": 1,
     "letters": [
       "LTR-1864-12-27-001"
+    ]
+  },
+  {
+    "id": "PLC-russell",
+    "canonicalName": "`stated`",
+    "asWritten": [
+      "Russell"
+    ],
+    "modernIdentifications": [
+      "`stated`"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-12-27-001"
+    ]
+  },
+  {
+    "id": "PLC-boston",
+    "canonicalName": "Boston, MA",
+    "asWritten": [
+      "Boston"
+    ],
+    "modernIdentifications": [
+      "Boston, MA"
+    ],
+    "state": "MA",
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1865-01-11-001"
+    ]
+  },
+  {
+    "id": "PLC-plattsburg",
+    "canonicalName": "Plattsburgh, NY",
+    "asWritten": [
+      "Plattsburg"
+    ],
+    "modernIdentifications": [
+      "Plattsburgh, NY"
+    ],
+    "state": "NY",
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1865-01-11-001"
+    ]
+  },
+  {
+    "id": "PLC-massachusetts",
+    "canonicalName": "Massachusetts",
+    "asWritten": [
+      "Massachusetts"
+    ],
+    "modernIdentifications": [
+      "Massachusetts"
+    ],
+    "state": null,
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1865-01-11-001"
+    ]
+  },
+  {
+    "id": "PLC-wauhatchie--tenn",
+    "canonicalName": "Wauhatchie, TN",
+    "asWritten": [
+      "Wauhatchie, Tenn."
+    ],
+    "modernIdentifications": [
+      "Wauhatchie, TN"
+    ],
+    "state": "TN",
+    "coordinates": null,
+    "letterCount": 1,
+    "letters": [
+      "LTR-1865-06-16-001"
     ]
   },
   {

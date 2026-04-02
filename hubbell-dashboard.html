@@ -2380,8 +2380,9 @@ footer {
 }
 #pane-people-web /* ---- Sidebar ---- */
 #sidebar-people-web {
-  width: 340px;
-  min-width: 340px;
+  width: 33vw;
+  min-width: 360px;
+  max-width: 520px;
   background: #FFFFFF;
   border-right: 1px solid #E8E4DF;
   display: flex;
@@ -2554,24 +2555,31 @@ footer {
 #pane-people-web /* Detail panel (shown on click) */
 #detail-panel-people-web {
   display: none;
-  padding: 16px 20px;
+  padding: 20px 24px;
   border-bottom: 1px solid #F0ECE7;
   background: #FDFCFA;
+  flex: 1;
+  overflow-y: auto;
 }
 #pane-people-web #detail-panel-people-web.visible {
   display: block;
 }
+#pane-people-web #detail-panel-people-web.visible ~ #sidebar-content-people-web {
+  display: none;
+}
 #pane-people-web #detail-panel-people-web h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   margin-bottom: 4px;
+  color: #2C2C2C;
 }
 #pane-people-web #detail-panel-people-web .role-text {
   font-size: 12px;
   color: #6B6B6B;
   font-style: italic;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  line-height: 1.5;
 }
 #pane-people-web #detail-panel-people-web .mention-list {
   font-size: 12px;
@@ -2597,18 +2605,80 @@ footer {
 #pane-people-web .mention-to {
   color: #9B9B9B;
 }
-#pane-people-web #detail-close-people-web {
-  float: right;
+#pane-people-web #detail-back-people-web {
   background: none;
   border: none;
-  font-size: 18px;
+  font-size: 13px;
   cursor: pointer;
-  color: #9B9B9B;
-  padding: 0 4px;
-  line-height: 1;
+  color: #6B8FAD;
+  padding: 4px 0 8px;
+  font-family: 'Source Sans 3', sans-serif;
+  letter-spacing: 0.3px;
 }
-#pane-people-web #detail-close-people-web:hover {
-  color: #2C2C2C;
+#pane-people-web #detail-back-people-web:hover {
+  color: #2D5F8A;
+}
+#pane-people-web .pw-mention {
+  padding: 10px 8px;
+  border-bottom: 1px solid #F0ECE7;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-radius: 4px;
+  margin-bottom: 2px;
+}
+#pane-people-web .pw-mention:hover {
+  background: rgba(45,95,138,0.06);
+}
+#pane-people-web .pw-mention:last-child {
+  border-bottom: none;
+}
+#pane-people-web .pw-mention .pw-arrow {
+  float: right;
+  font-size: 11px;
+  color: #B8860B;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+#pane-people-web .pw-mention:hover .pw-arrow {
+  opacity: 1;
+}
+#pane-people-web .pw-excerpt {
+  font-size: 12px;
+  color: #5C5C5C;
+  font-style: italic;
+  margin-top: 4px;
+  line-height: 1.5;
+  font-family: 'Source Serif 4', Georgia, serif;
+}
+#pane-people-web .pw-highlight {
+  background: #FFF3CD;
+  padding: 1px 2px;
+  font-style: normal;
+  font-weight: 600;
+  border-radius: 2px;
+}
+#pane-people-web .pw-mentions-title {
+  font-size: 11px;
+  color: #9B9B9B;
+  margin-bottom: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+#pane-people-web .pw-role {
+  font-size: 13px;
+  color: #6B6B6B;
+  font-style: italic;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+#pane-people-web .stat-row.clickable {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+#pane-people-web .stat-row.clickable:hover {
+  background: rgba(45,95,138,0.06);
+  border-radius: 4px;
 }
 #pane-people-web /* ---- Canvas area ---- */
 #canvas-wrap-people-web {
@@ -2814,16 +2884,25 @@ footer {
 #pane-what-they-didnt-know .page-header .subtitle {font-size:0.85rem;color:var(--text-mid);font-weight:300;letter-spacing:0.02em}
 #pane-what-they-didnt-know .irony-bar {display:flex;gap:0.5rem;padding:0.55rem 2rem;background:#FDFBF9;border-bottom:1px solid var(--border-light);flex-wrap:wrap;align-items:center}
 #pane-what-they-didnt-know .irony-bar .label {font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);font-weight:600;margin-right:0.3rem}
-#pane-what-they-didnt-know .irony-btn {font-size:0.72rem;padding:0.25rem 0.65rem;border:1px solid var(--irony);color:var(--irony);background:transparent;border-radius:20px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;white-space:nowrap}
-#pane-what-they-didnt-know .irony-btn:hover {background:var(--irony);color:#fff}
-#pane-what-they-didnt-know .timeline-ribbon {position:relative;height:48px;background:var(--card);border-bottom:1px solid var(--border);padding:0 2rem;overflow:hidden}
-#pane-what-they-didnt-know .timeline-track {position:absolute;top:26px;left:2rem;right:2rem;height:2px;background:var(--border)}
-#pane-what-they-didnt-know .timeline-marker {position:absolute;width:7px;height:7px;border-radius:50%;top:23px;transform:translateX(-3.5px);cursor:pointer;z-index:2;transition:transform 0.15s}
+#pane-what-they-didnt-know .irony-btn {font-size:0.72rem;padding:0.25rem 0.65rem;border:1px solid #B8A88A;color:#6B5B3E;background:transparent;border-radius:20px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;white-space:nowrap}
+#pane-what-they-didnt-know .irony-btn:hover {background:#6B5B3E;color:#FFF}
+#pane-what-they-didnt-know .timeline-ribbon {position:relative;height:72px;background:var(--card);border-bottom:1px solid var(--border);padding:0 2rem;overflow:visible;user-select:none}
+#pane-what-they-didnt-know .timeline-track {position:absolute;top:40px;left:2rem;right:2rem;height:2px;background:var(--border)}
+#pane-what-they-didnt-know .timeline-range-fill {position:absolute;top:40px;height:2px;background:#8B7355;z-index:1}
+#pane-what-they-didnt-know .timeline-handle {position:absolute;width:14px;height:14px;border-radius:50%;top:34px;background:#6B5B3E;border:2px solid #FFF;box-shadow:0 1px 4px rgba(0,0,0,0.25);cursor:ew-resize;z-index:5;transform:translateX(-7px);transition:box-shadow 0.15s}
+#pane-what-they-didnt-know .timeline-handle:hover {box-shadow:0 1px 6px rgba(0,0,0,0.35)}
+#pane-what-they-didnt-know .timeline-handle:active {box-shadow:0 0 0 4px rgba(107,91,62,0.2)}
+#pane-what-they-didnt-know .timeline-handle-label {position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:0.6rem;color:#6B5B3E;font-weight:600;white-space:nowrap;font-family:'Inter',sans-serif}
+#pane-what-they-didnt-know .timeline-marker {position:absolute;width:7px;height:7px;border-radius:50%;top:37px;transform:translateX(-3.5px);cursor:pointer;z-index:3;transition:transform 0.15s,opacity 0.15s}
 #pane-what-they-didnt-know .timeline-marker:hover {transform:translateX(-3.5px) scale(1.8)}
 #pane-what-they-didnt-know .timeline-marker.active {transform:translateX(-3.5px) scale(2.2);box-shadow:0 0 0 3px rgba(0,0,0,0.12)}
-#pane-what-they-didnt-know .timeline-event-dot {position:absolute;width:5px;height:5px;border-radius:50%;top:24px;transform:translateX(-2.5px);background:var(--hist);opacity:0.4;z-index:1}
-#pane-what-they-didnt-know .timeline-label {position:absolute;top:4px;font-size:0.6rem;color:var(--text-light);font-family:'Inter',sans-serif;white-space:nowrap}
-#pane-what-they-didnt-know .main-layout {display:grid;grid-template-columns:280px 1fr 340px;height:calc(100vh - 168px);overflow:hidden}
+#pane-what-they-didnt-know .timeline-marker.out-of-range {opacity:0.2}
+#pane-what-they-didnt-know .timeline-event-tick {position:absolute;width:1px;height:8px;top:42px;background:var(--hist);opacity:0.5;z-index:1}
+#pane-what-they-didnt-know .timeline-event-label {position:absolute;top:52px;font-size:0.55rem;color:var(--hist);font-family:'Inter',sans-serif;white-space:nowrap;transform:rotate(-25deg);transform-origin:left top;opacity:0.7}
+#pane-what-they-didnt-know .timeline-label {position:absolute;top:6px;font-size:0.6rem;color:var(--text-light);font-family:'Inter',sans-serif;white-space:nowrap}
+#pane-what-they-didnt-know .timeline-reset-btn {position:absolute;top:4px;right:0;font-size:0.6rem;color:var(--text-light);cursor:pointer;font-family:'Inter',sans-serif;background:none;border:1px solid var(--border-light);border-radius:3px;padding:1px 6px;transition:all 0.15s}
+#pane-what-they-didnt-know .timeline-reset-btn:hover {color:var(--text);border-color:var(--text-light)}
+#pane-what-they-didnt-know .main-layout {display:grid;grid-template-columns:260px 1fr minmax(380px, 33%);height:calc(100vh - 200px);overflow:hidden}
 @media(max-width:900px) {
 #pane-what-they-didnt-know .main-layout {grid-template-columns:1fr;height:auto}
 #pane-what-they-didnt-know .left-panel, #pane-what-they-didnt-know .right-panel {max-height:45vh}
@@ -2834,6 +2913,7 @@ footer {
 #pane-what-they-didnt-know .letter-item {padding:0.55rem 1rem;border-bottom:1px solid var(--border-light);cursor:pointer;transition:background 0.12s;border-left:3px solid transparent}
 #pane-what-they-didnt-know .letter-item:hover {background:#F5F3F0}
 #pane-what-they-didnt-know .letter-item.active {background:#F0EDE8;border-left-color:var(--text)}
+#pane-what-they-didnt-know .letter-item.filtered-out {display:none}
 #pane-what-they-didnt-know .letter-item .li-date {font-size:0.68rem;color:var(--text-light);font-weight:500}
 #pane-what-they-didnt-know .letter-item .li-author {font-size:0.76rem;font-weight:600;margin:0.08rem 0}
 #pane-what-they-didnt-know .letter-item .li-excerpt {font-size:0.66rem;color:var(--text-mid);font-family:'Source Serif 4',serif;font-style:italic;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -2875,9 +2955,9 @@ footer {
 #pane-what-they-didnt-know .brother-card:hover {box-shadow:0 2px 8px rgba(0,0,0,0.06);transform:translateX(2px)}
 #pane-what-they-didnt-know .bc-header {font-size:0.73rem;font-weight:600;margin-bottom:0.12rem}
 #pane-what-they-didnt-know .bc-excerpt {font-size:0.68rem;color:var(--text-mid);font-family:'Source Serif 4',serif;font-style:italic;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-#pane-what-they-didnt-know .irony-card {padding:0.75rem;margin-bottom:0.5rem;background:var(--irony-bg);border-radius:6px;border:1px solid #F0D0D0}
-#pane-what-they-didnt-know .irony-icon {font-size:0.78rem;color:var(--irony);font-weight:700;margin-bottom:0.15rem}
-#pane-what-they-didnt-know .irony-text {font-size:0.76rem;color:#8B3030;line-height:1.5;font-family:'Source Serif 4',serif}
+#pane-what-they-didnt-know .irony-card {padding:0.75rem;margin-bottom:0.5rem;background:#F5F2ED;border-radius:6px;border:1px solid #E0DAD0;border-left:3px solid #8B7355}
+#pane-what-they-didnt-know .irony-icon {font-size:0.78rem;color:#5C4A32;font-weight:700;margin-bottom:0.15rem}
+#pane-what-they-didnt-know .irony-text {font-size:0.76rem;color:#5C4A32;line-height:1.5;font-family:'Source Serif 4',serif}
 #pane-what-they-didnt-know .info-gap {padding:0.55rem 0.7rem;margin-bottom:0.4rem;background:#F9F7FD;border-radius:6px;border:1px solid #E8E0F0}
 #pane-what-they-didnt-know .gap-text {font-size:0.72rem;color:var(--hist);line-height:1.4;font-style:italic}
 #pane-what-they-didnt-know .empty-state {text-align:center;padding:2rem;color:var(--text-light);font-size:0.85rem;font-style:italic}
@@ -2982,7 +3062,7 @@ footer {
               </div>
               <button class="tl-scroll-arrow" onclick="panRight()">▶</button>
             </div>
-            <div class="legend">
+            <div class="legend" id="timelineLegend">
                 <div class="legend-item"><div class="legend-dot" style="background:var(--henry)"></div> Henry (34th NY)</div>
                 <div class="legend-item"><div class="legend-dot" style="background:var(--alexander)"></div> Alexander (60th NY)</div>
                 <div class="legend-item"><div class="legend-dot" style="background:var(--james)"></div> James (West Point)</div>
@@ -3039,6 +3119,10 @@ footer {
         mother: 'Mother (Frances Hubbell)',
         unknown: 'Other Correspondents'
     };
+
+    // Lookup: letter ID → index in LETTERS array (used by People Web tab)
+    const LETTER_IDX_BY_ID = {};
+    LETTERS.forEach((l, i) => { LETTER_IDX_BY_ID[l.id] = i; });
 
     let activeLetterIdx = null;
 
@@ -3103,6 +3187,8 @@ footer {
     let zoomDateMax = null;
     let brushStartX = null;
     let zoomHistory = [];
+    // Track brush event handlers for cleanup between buildTimeline() calls
+    let _brushHandlers = { move: null, up: null, leave: null };
 
     function pushZoomState() {
         zoomHistory.push({ min: zoomDateMin, max: zoomDateMax });
@@ -3320,27 +3406,67 @@ footer {
         });
     })();
 
-    // Recipient color palette
-    const RECIPIENT_COLORS = {
-        'Mrs. Hubbell (Mother)': '#7B5EA7',
-        'Frances Hubbell': '#C44E52',
-        'Mother': '#7B5EA7',
-    };
+    // Recipient color palette — distinct hues to avoid confusion with author colors
     function getRecipientColor(recipient) {
-        if (RECIPIENT_COLORS[recipient]) return RECIPIENT_COLORS[recipient];
-        // Assign based on hash for consistency
-        const recipLower = (recipient || '').toLowerCase();
-        if (recipLower.includes('mother') || recipLower.includes('mrs')) return '#7B5EA7';
-        if (recipLower.includes('frances') || recipLower.includes('fanny')) return '#C44E52';
-        if (recipLower.includes('wife')) return '#C44E52';
-        return '#6B8E9B'; // default for other recipients
+        const r = (recipient || '').toLowerCase();
+        // Mother (most common recipient) — purple
+        if (r.includes('mother') || r.includes('mrs')) return '#7B5EA7';
+        // Frances/Fannie (sister) — rose
+        if (r.includes('frances') || r.includes('fann')) return '#C44E52';
+        // Alexander (as recipient) — teal
+        if (r.includes('alexander')) return '#2A9D8F';
+        // Charles (as recipient) — burnt orange
+        if (r.includes('charles') || r.includes('charley')) return '#E07A3A';
+        // James (as recipient) — slate blue
+        if (r.includes('james')) return '#5B7FB5';
+        // Henry (as recipient) — deep steel
+        if (r.includes('henry')) return '#4A6670';
+        // Family/Brother/Aunt/etc — muted sage
+        if (r.includes('family') || r.includes('brother') || r.includes('aunt') || r.includes('sister')) return '#8A9A7B';
+        // Default — neutral gray-blue
+        return '#6B8E9B';
     }
 
     function setColorMode(mode) {
         colorMode = mode;
         document.getElementById('colorByAuthorBtn').classList.toggle('active', mode === 'author');
         document.getElementById('colorByRecipientBtn').classList.toggle('active', mode === 'recipient');
+        updateLegend(mode);
         buildTimeline();
+    }
+
+    function updateLegend(mode) {
+        const legend = document.getElementById('timelineLegend');
+        if (!legend) return;
+        if (mode === 'recipient') {
+            legend.innerHTML = `
+                <div class="legend-item"><div class="legend-dot" style="background:#7B5EA7"></div> Mother</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#C44E52"></div> Frances (sister)</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#2A9D8F"></div> Alexander</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#E07A3A"></div> Charles</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#5B7FB5"></div> James</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#4A6670"></div> Henry</div>
+                <div class="legend-item"><div class="legend-dot" style="background:#8A9A7B"></div> Family / Other</div>
+                <div class="legend-item"><div class="legend-line" style="border-color:var(--battle)"></div> Battle</div>
+                <div class="legend-item"><div class="legend-line" style="border-color:var(--personal)"></div> Key event</div>
+                <div class="legend-item">
+                    <div class="legend-size"><div class="dot-sm"></div><div class="dot-md"></div><div class="dot-lg"></div></div>
+                    Significance
+                </div>`;
+        } else {
+            legend.innerHTML = `
+                <div class="legend-item"><div class="legend-dot" style="background:var(--henry)"></div> Henry (34th NY)</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--alexander)"></div> Alexander (60th NY)</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--james)"></div> James (West Point)</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--charles)"></div> Charles (Plattsburgh)</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--mother)"></div> Mother (Champlain)</div>
+                <div class="legend-item"><div class="legend-line" style="border-color:var(--battle)"></div> Battle</div>
+                <div class="legend-item"><div class="legend-line" style="border-color:var(--personal)"></div> Key event</div>
+                <div class="legend-item">
+                    <div class="legend-size"><div class="dot-sm"></div><div class="dot-md"></div><div class="dot-lg"></div></div>
+                    Significance
+                </div>`;
+        }
     }
 
     function resetZoom() {
@@ -3573,6 +3699,11 @@ footer {
             return d.toISOString().slice(0, 10);
         }
 
+        // Remove old brush handlers before attaching new ones (prevents stale closures on re-zoom)
+        if (_brushHandlers.move) svg.removeEventListener('mousemove', _brushHandlers.move);
+        if (_brushHandlers.up) svg.removeEventListener('mouseup', _brushHandlers.up);
+        if (_brushHandlers.leave) svg.removeEventListener('mouseleave', _brushHandlers.leave);
+
         if (brushOverlay) {
             brushOverlay.addEventListener('mousedown', (e) => {
                 if (e.button !== 0) return;
@@ -3587,7 +3718,7 @@ footer {
                 e.preventDefault();
             });
 
-            const onMouseMove = (e) => {
+            _brushHandlers.move = (e) => {
                 if (brushStartX === null || !brushRect) return;
                 const currentX = getSvgX(e.clientX);
                 const x1 = Math.min(brushStartX, currentX);
@@ -3596,7 +3727,7 @@ footer {
                 brushRect.setAttribute('width', Math.min(x2, width - margin.right) - Math.max(margin.left, x1));
             };
 
-            const onMouseUp = (e) => {
+            _brushHandlers.up = (e) => {
                 if (brushStartX === null) return;
                 const endX = getSvgX(e.clientX);
                 const x1 = Math.max(margin.left, Math.min(brushStartX, endX));
@@ -3614,12 +3745,14 @@ footer {
                 }
             };
 
-            svg.addEventListener('mousemove', onMouseMove);
-            svg.addEventListener('mouseup', onMouseUp);
-            svg.addEventListener('mouseleave', () => {
+            _brushHandlers.leave = () => {
                 if (brushRect) { brushRect.remove(); brushRect = null; }
                 brushStartX = null;
-            });
+            };
+
+            svg.addEventListener('mousemove', _brushHandlers.move);
+            svg.addEventListener('mouseup', _brushHandlers.up);
+            svg.addEventListener('mouseleave', _brushHandlers.leave);
         }
 
         updateScrollbar();
@@ -7489,7 +7622,7 @@ TAB_BUILDERS['people-web'] = function(pane) {
       </div>
     </div>
     <div id="detail-panel-people-web">
-      <button id="detail-close-people-web" onclick="closeDetail()">&times;</button>
+      <button id="detail-back-people-web" onclick="closePeopleWebDetail()">← Back to network</button>
       <h3 id="detail-name-people-web"></h3>
       <div class="role-text" id="detail-role-people-web"></div>
       <div class="mention-list" id="detail-mentions-people-web"></div>
@@ -8238,6 +8371,134 @@ function getNodeAtPos(mx, my) {
   return closest;
 }
 
+function getEdgeAtPos(mx, my) {
+  const world = screenToWorld(mx, my);
+  let closest = null;
+  let closestDist = Infinity;
+  const hitThreshold = 8 / scale;
+  for (let i = 0; i < edges.length; i++) {
+    const a = nodes[edges[i].source], b = nodes[edges[i].target];
+    if (!isVisible(a) || !isVisible(b)) continue;
+    // Point-to-line-segment distance
+    const dx = b.x - a.x, dy = b.y - a.y;
+    const lenSq = dx * dx + dy * dy;
+    if (lenSq === 0) continue;
+    let t = ((world.x - a.x) * dx + (world.y - a.y) * dy) / lenSq;
+    t = Math.max(0, Math.min(1, t));
+    const px = a.x + t * dx, py = a.y + t * dy;
+    const dist = Math.sqrt((world.x - px) * (world.x - px) + (world.y - py) * (world.y - py));
+    if (dist < hitThreshold && dist < closestDist) {
+      closest = i;
+      closestDist = dist;
+    }
+  }
+  return closest;
+}
+
+function showConnectionDetail(edgeIdx) {
+  const edge = edges[edgeIdx];
+  const nodeA = nodes[edge.source];
+  const nodeB = nodes[edge.target];
+  const panel = document.getElementById('detail-panel-people-web');
+
+  // Determine the two names
+  const nameA = nodeA.id, nameB = nodeB.id;
+  document.getElementById('detail-name-people-web').textContent = nameA + ' & ' + nameB;
+  document.getElementById('detail-role-people-web').textContent =
+    (edge.isBrotherEdge ? 'Brother → person connection' : 'Co-mentioned in letters') +
+    ' · ' + edge.weight + ' shared mention' + (edge.weight !== 1 ? 's' : '');
+
+  // Find all letters where both appear
+  const sharedLetters = [];
+  const seen = new Set();
+  LETTERS.forEach((letter, li) => {
+    if (!letter.people || seen.has(li)) return;
+    const peopleNames = letter.people.map(p => p.name.toLowerCase().replace(/['"]/g, ''));
+    // Check if both names (or their aliases) appear
+    const canonA = getCanonicalName(nameA);
+    const canonB = getCanonicalName(nameB);
+    let hasA = false, hasB = false;
+    letter.people.forEach(p => {
+      const pCanon = getCanonicalName(p.name);
+      const pLower = p.name.toLowerCase().replace(/['"]/g, '');
+      if (pLower === nameA.toLowerCase().replace(/['"]/g, '') || (canonA && pCanon === canonA)) hasA = true;
+      if (pLower === nameB.toLowerCase().replace(/['"]/g, '') || (canonB && pCanon === canonB)) hasB = true;
+    });
+    // For brother edges, also count letters authored by the brother mentioning the person
+    if (edge.isBrotherEdge && nodeA.isBrother) {
+      if (letter.author === nodeA.brotherKey) hasA = true;
+    }
+    if (edge.isBrotherEdge && nodeB.isBrother) {
+      if (letter.author === nodeB.brotherKey) hasB = true;
+    }
+    if (hasA && hasB) {
+      sharedLetters.push({ idx: li, letter });
+      seen.add(li);
+    }
+  });
+
+  sharedLetters.sort((a, b) => a.letter.date.localeCompare(b.letter.date));
+
+  // Build dynamic summary
+  const authorCounts = {};
+  sharedLetters.forEach(sl => {
+    const a = sl.letter.authorName || sl.letter.author;
+    authorCounts[a] = (authorCounts[a] || 0) + 1;
+  });
+  const dateRange = sharedLetters.length > 0
+    ? formatDate(sharedLetters[0].letter.date) + ' — ' + formatDate(sharedLetters[sharedLetters.length - 1].letter.date)
+    : '';
+  const authorSummary = Object.entries(authorCounts).map(([a, c]) => `${a}: ${c}`).join(', ');
+
+  let html = '';
+  if (sharedLetters.length > 0) {
+    html += `<div style="font-size:11px;color:#6B6B6B;margin-bottom:4px">${dateRange}</div>`;
+    html += `<div style="font-size:11px;color:#9B9B9B;margin-bottom:8px">By author: ${authorSummary}</div>`;
+  }
+  html += `<div class="pw-mentions-title">${sharedLetters.length} letter${sharedLetters.length !== 1 ? 's' : ''} mentioning both</div>`;
+
+  const mentionData = [];
+  const personName = nodeA.isBrother ? nameB : nameA;
+  const personCanon = getCanonicalName(personName);
+  const personVariants = personCanon ? (PERSON_ALIASES.find(g => g[0] === personCanon) || [personName]) : [personName];
+
+  sharedLetters.forEach(sl => {
+    const color = COLORS[sl.letter.author] || '#9B9B9B';
+    const authorFirst = NAMES[sl.letter.author] ? NAMES[sl.letter.author].split(' ')[0] : sl.letter.author;
+    const dateStr = formatDate(sl.letter.date);
+
+    // Excerpt showing the non-brother person's name
+    const searchNames = [...personVariants];
+    let excerptData = null, usedName = personName;
+    for (const tryName of searchNames) {
+      excerptData = findPersonExcerpt(sl.letter.transcription, tryName);
+      if (excerptData) { usedName = tryName; break; }
+    }
+    let excerptHtml = '';
+    if (excerptData) {
+      let excText = escapeHtml(excerptData.excerpt);
+      excText = highlightPersonInText(excText, usedName, 'pw-highlight');
+      excerptHtml = `<div class="pw-excerpt">"${excText}"</div>`;
+    }
+    html += `<div class="pw-mention"><span class="pw-arrow">View letter ›</span><span class="mention-date">${dateStr}</span> — <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${authorFirst}</span>${excerptHtml}</div>`;
+    mentionData.push({ idx: sl.idx, searchNames });
+  });
+
+  document.getElementById('detail-mentions-people-web').innerHTML = html;
+  panel.classList.add('visible');
+  selectedNode = null;
+
+  const mentionEls = panel.querySelectorAll('.pw-mention');
+  mentionData.forEach((md, i) => {
+    const el = mentionEls[i];
+    if (!el) return;
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openLetterOverlay(md.idx, md.searchNames);
+    });
+  });
+}
+
 canvas.addEventListener('mousemove', (e) => {
   const rect = canvas.getBoundingClientRect();
   const mx = e.clientX - rect.left;
@@ -8311,6 +8572,19 @@ canvas.addEventListener('mouseup', (e) => {
     canvas.style.cursor = 'pointer';
   }
   if (isPanning) {
+    // Check if it was a click (not a pan drag) — try edge hit
+    const rect2 = canvas.getBoundingClientRect();
+    const mx2 = e.clientX - rect2.left;
+    const my2 = e.clientY - rect2.top;
+    const panDist = Math.sqrt((mx2 - mouseDownPos.x) ** 2 + (my2 - mouseDownPos.y) ** 2);
+    if (panDist < 5) {
+      const edgeHit = getEdgeAtPos(mx2, my2);
+      if (edgeHit !== null) {
+        showConnectionDetail(edgeHit);
+      } else {
+        closeDetail();
+      }
+    }
     isPanning = false;
     canvas.classList.remove('grabbing');
     canvas.style.cursor = 'grab';
@@ -8397,21 +8671,69 @@ function selectNode(idx) {
 function showPersonDetail(node) {
   const panel = document.getElementById('detail-panel-people-web');
   document.getElementById('detail-name-people-web').textContent = node.id;
-  document.getElementById('detail-role-people-web').textContent = node.roles ? node.roles[0] : '';
 
-  let html = '';
-  const letters = node.letters || [];
-  letters.sort((a, b) => a.date.localeCompare(b.date));
-  for (const l of letters) {
-    const color = BROTHER_COLORS[l.author] || '#9B9B9B';
-    html += `<div class="mention-item">
-      <span class="mention-date">${formatDate(l.date)}</span>
-      <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${l.authorName}</span>
-      <span class="mention-to">to ${l.recipient}</span>
-    </div>`;
+  // Collect roles
+  const roles = node.roles ? [...new Set(node.roles)].filter(r => r && r !== 'undefined') : [];
+  document.getElementById('detail-role-people-web').textContent = roles.join(', ');
+
+  // Use findPersonMentions for accurate matching via PERSON_ALIASES
+  let mentions = findPersonMentions(node.id);
+  const canonical = getCanonicalName(node.id);
+  const allVariants = canonical ? (PERSON_ALIASES.find(g => g[0] === canonical) || [node.id]) : [node.id];
+
+  // Fallback: if PERSON_ALIASES didn't match, use People Web's letter data to find LETTERS indices
+  if (mentions.length === 0 && node.letters && node.letters.length > 0) {
+    const seen = new Set();
+    for (const nl of node.letters) {
+      const li = LETTER_IDX_BY_ID[nl.id];
+      if (li !== undefined && !seen.has(li)) {
+        seen.add(li);
+        mentions.push({ idx: li, letter: LETTERS[li], role: '', matchedName: node.id });
+      }
+    }
   }
+
+  let html = `<div class="pw-mentions-title">Mentioned in ${mentions.length} letter${mentions.length !== 1 ? 's' : ''}</div>`;
+
+  mentions.sort((a, b) => a.letter.date.localeCompare(b.letter.date));
+  const mentionData = []; // for attaching click handlers
+
+  mentions.forEach(m => {
+    const color = COLORS[m.letter.author] || '#9B9B9B';
+    const authorFirst = NAMES[m.letter.author] ? NAMES[m.letter.author].split(' ')[0] : m.letter.author;
+    const dateStr = formatDate(m.letter.date);
+
+    // Find excerpt
+    const searchNames = [m.matchedName, ...allVariants.filter(v => v !== m.matchedName)];
+    let excerptData = null, usedName = m.matchedName;
+    for (const tryName of searchNames) {
+      excerptData = findPersonExcerpt(m.letter.transcription, tryName);
+      if (excerptData) { usedName = tryName; break; }
+    }
+    let excerptHtml = '';
+    if (excerptData) {
+      let excText = escapeHtml(excerptData.excerpt);
+      excText = highlightPersonInText(excText, usedName, 'pw-highlight');
+      excerptHtml = `<div class="pw-excerpt">"${excText}"</div>`;
+    }
+
+    html += `<div class="pw-mention"><span class="pw-arrow">View letter ›</span><span class="mention-date">${dateStr}</span> — <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${authorFirst}</span>${excerptHtml}</div>`;
+    mentionData.push({ idx: m.idx, searchNames });
+  });
+
   document.getElementById('detail-mentions-people-web').innerHTML = html;
   panel.classList.add('visible');
+
+  // Attach click handlers via closures
+  const mentionEls = panel.querySelectorAll('.pw-mention');
+  mentionData.forEach((md, i) => {
+    const el = mentionEls[i];
+    if (!el) return;
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openLetterOverlay(md.idx, md.searchNames);
+    });
+  });
 }
 
 function showBrotherDetail(node) {
@@ -8429,22 +8751,101 @@ function showBrotherDetail(node) {
   }
   peopleMentioned.sort((a, b) => b.count - a.count);
 
-  let html = `<div style="font-size:12px;color:#6B6B6B;margin-bottom:6px">${peopleMentioned.length} people mentioned across ${RAW_LETTERS.filter(l => l.author === key).length} letters</div>`;
-  for (const p of peopleMentioned.slice(0, 15)) {
-    html += `<div class="mention-item"><span class="mention-date">${p.name}</span> <span class="mention-to">${p.count}x</span></div>`;
+  let html = `<div class="pw-mentions-title">${peopleMentioned.length} people mentioned across ${RAW_LETTERS.filter(l => l.author === key).length} letters</div>`;
+  for (const p of peopleMentioned.slice(0, 20)) {
+    html += `<div class="pw-mention" data-person-name="${escapeHtml(p.name)}"><span class="pw-arrow">Details ›</span><span class="mention-date">${escapeHtml(p.name)}</span> <span class="mention-to">${p.count}x</span></div>`;
   }
-  if (peopleMentioned.length > 15) {
-    html += `<div style="font-size:11px;color:#9B9B9B;padding-top:4px">+ ${peopleMentioned.length - 15} more...</div>`;
+  if (peopleMentioned.length > 20) {
+    html += `<div style="font-size:11px;color:#9B9B9B;padding-top:4px">+ ${peopleMentioned.length - 20} more...</div>`;
   }
 
   document.getElementById('detail-mentions-people-web').innerHTML = html;
   panel.classList.add('visible');
+
+  // Make each person clickable — shows their full detail
+  panel.querySelectorAll('.pw-mention[data-person-name]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const personName = el.dataset.personName;
+      // Find matching node and show its detail
+      const nodeIdx = nodes.findIndex(n => n.id === personName);
+      if (nodeIdx !== -1) {
+        selectedNode = nodeIdx;
+        showPersonDetail(nodes[nodeIdx]);
+      } else {
+        // Person not in graph (filtered out) — show detail directly
+        showPersonDetailByName(personName);
+      }
+    });
+  });
+}
+
+function showPersonDetailByName(personName) {
+  const panel = document.getElementById('detail-panel-people-web');
+  document.getElementById('detail-name-people-web').textContent = personName;
+  const data = people[personName];
+  const roles = data ? [...data.roles].filter(r => r && r !== 'undefined') : [];
+  document.getElementById('detail-role-people-web').textContent = roles.join(', ');
+
+  let mentions = findPersonMentions(personName);
+  const canonical = getCanonicalName(personName);
+  const allVariants = canonical ? (PERSON_ALIASES.find(g => g[0] === canonical) || [personName]) : [personName];
+
+  // Fallback: use People Web's letter data
+  if (mentions.length === 0 && data && data.letters) {
+    const seen = new Set();
+    for (const nl of data.letters) {
+      const li = LETTER_IDX_BY_ID[nl.id];
+      if (li !== undefined && !seen.has(li)) {
+        seen.add(li);
+        mentions.push({ idx: li, letter: LETTERS[li], role: '', matchedName: personName });
+      }
+    }
+  }
+
+  let html = `<div class="pw-mentions-title">Mentioned in ${mentions.length} letter${mentions.length !== 1 ? 's' : ''}</div>`;
+  mentions.sort((a, b) => a.letter.date.localeCompare(b.letter.date));
+  const mentionData = [];
+
+  mentions.forEach(m => {
+    const color = COLORS[m.letter.author] || '#9B9B9B';
+    const authorFirst = NAMES[m.letter.author] ? NAMES[m.letter.author].split(' ')[0] : m.letter.author;
+    const dateStr = formatDate(m.letter.date);
+    const searchNames = [m.matchedName, ...allVariants.filter(v => v !== m.matchedName)];
+    let excerptData = null, usedName = m.matchedName;
+    for (const tryName of searchNames) {
+      excerptData = findPersonExcerpt(m.letter.transcription, tryName);
+      if (excerptData) { usedName = tryName; break; }
+    }
+    let excerptHtml = '';
+    if (excerptData) {
+      let excText = escapeHtml(excerptData.excerpt);
+      excText = highlightPersonInText(excText, usedName, 'pw-highlight');
+      excerptHtml = `<div class="pw-excerpt">"${excText}"</div>`;
+    }
+    html += `<div class="pw-mention"><span class="pw-arrow">View letter ›</span><span class="mention-date">${dateStr}</span> — <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${authorFirst}</span>${excerptHtml}</div>`;
+    mentionData.push({ idx: m.idx, searchNames });
+  });
+
+  document.getElementById('detail-mentions-people-web').innerHTML = html;
+  panel.classList.add('visible');
+
+  const mentionEls = panel.querySelectorAll('.pw-mention');
+  mentionData.forEach((md, i) => {
+    const el = mentionEls[i];
+    if (!el) return;
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openLetterOverlay(md.idx, md.searchNames);
+    });
+  });
 }
 
 function closeDetail() {
   document.getElementById('detail-panel-people-web').classList.remove('visible');
   selectedNode = null;
 }
+window.closePeopleWebDetail = closeDetail;
 
 function formatDate(d) {
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -8499,11 +8900,11 @@ function buildSidebar() {
   const content = document.getElementById('sidebar-content-people-web');
   let html = '';
 
-  // Top mentioned people
+  // Top mentioned people — clickable
   const topPeople = Object.entries(people).sort((a, b) => b[1].mentions - a[1].mentions).slice(0, 12);
   html += '<div class="stats-section"><h3>Most Mentioned People</h3>';
   for (const [name, data] of topPeople) {
-    html += `<div class="stat-row"><span class="name">${name}</span><span class="count">${data.mentions} mentions</span></div>`;
+    html += `<div class="stat-row clickable" data-person-name="${escapeHtml(name)}"><span class="name">${escapeHtml(name)}</span><span class="count">${data.mentions} mentions</span></div>`;
   }
   html += '</div>';
 
@@ -8539,7 +8940,7 @@ function buildSidebar() {
   if (shared.length > 0) {
     html += '<div class="stats-section"><h3>Shared Between Brothers</h3>';
     for (const s of shared.slice(0, 15)) {
-      html += `<div class="stat-row"><span class="name">${s.name}</span><span class="count">${s.brothers}</span></div>`;
+      html += `<div class="stat-row clickable" data-person-name="${escapeHtml(s.name)}"><span class="name">${escapeHtml(s.name)}</span><span class="count">${s.brothers}</span></div>`;
     }
     if (shared.length > 15) {
       html += `<div style="font-size:11px;color:#9B9B9B;padding:4px 0">+ ${shared.length - 15} more shared connections</div>`;
@@ -8563,6 +8964,20 @@ function buildSidebar() {
   html += '</div>';
 
   content.innerHTML = html;
+
+  // Attach click handlers to "Most Mentioned People" rows
+  content.querySelectorAll('.stat-row.clickable[data-person-name]').forEach(el => {
+    el.addEventListener('click', () => {
+      const personName = el.dataset.personName;
+      const nodeIdx = nodes.findIndex(n => n.id === personName);
+      if (nodeIdx !== -1) {
+        selectedNode = nodeIdx;
+        showPersonDetail(nodes[nodeIdx]);
+      } else {
+        showPersonDetailByName(personName);
+      }
+    });
+  });
 }
 
 // Legend
@@ -8638,7 +9053,7 @@ TAB_BUILDERS['what-they-didnt-know'] = function(pane) {
 </header>
 
 <div class="irony-bar" id="ironyBar-what-they-didnt-know">
-  <span class="label">Most Ironic Moments</span>
+  <span class="label">Poignant Gaps</span>
 </div>
 
 <div class="timeline-ribbon" id="timelineRibbon-what-they-didnt-know">
@@ -8826,17 +9241,29 @@ function buildLetterList() {
   });
 }
 
-// Build timeline ribbon
+// Build timeline ribbon with range slider
+let rangeStart = null; // Date object or null (= full range)
+let rangeEnd = null;
+const TL_START = new Date('1861-05-15');
+const TL_END = new Date('1862-10-20');
+const TL_RANGE = TL_END - TL_START;
+
+function tlPct(dateStr) {
+  const d = new Date(dateStr);
+  return Math.max(0, Math.min(100, ((d - TL_START) / TL_RANGE) * 100));
+}
+
+function tlDateFromPct(pct) {
+  return new Date(TL_START.getTime() + (pct / 100) * TL_RANGE);
+}
+
+function formatShortDate(d) {
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return months[d.getMonth()] + ' ' + d.getFullYear();
+}
+
 function buildTimeline() {
   const ribbon = document.getElementById('timelineRibbon-what-they-didnt-know');
-  const startDate = new Date('1861-05-15');
-  const endDate = new Date('1862-10-20');
-  const range = endDate - startDate;
-
-  function pct(dateStr) {
-    const d = new Date(dateStr);
-    return ((d - startDate) / range) * 100;
-  }
 
   // Quarter labels
   const labels = [
@@ -8845,7 +9272,7 @@ function buildTimeline() {
     {d:'1862-07-01',t:'Jul 1862'},{d:'1862-10-01',t:'Oct 1862'}
   ];
   labels.forEach(lbl => {
-    const p = pct(lbl.d);
+    const p = tlPct(lbl.d);
     const el = document.createElement('div');
     el.className = 'timeline-label';
     el.style.left = `calc(2rem + ${p}% * (100% - 4rem) / 100%)`;
@@ -8853,21 +9280,36 @@ function buildTimeline() {
     ribbon.appendChild(el);
   });
 
-  // Historical event dots (significance >= 2)
-  HISTORICAL_EVENTS.filter(e => e.significance >= 2).forEach(e => {
+  // Key historical events — ticks for sig>=2, labels only for sig>=3 with collision avoidance
+  const visibleEvents = HISTORICAL_EVENTS.filter(e => {
     const d = new Date(e.date);
-    if (d < startDate || d > endDate) return;
-    const p = pct(e.date);
-    const dot = document.createElement('div');
-    dot.className = 'timeline-event-dot';
-    dot.style.left = `calc(2rem + ${p}% * (100% - 4rem) / 100%)`;
-    dot.title = e.title + ' (' + formatDate(e.date) + ')';
-    ribbon.appendChild(dot);
+    return d >= TL_START && d <= TL_END && e.significance >= 2;
+  }).sort((a, b) => a.date.localeCompare(b.date));
+
+  let lastLabelPct = -10; // collision guard
+  visibleEvents.forEach(e => {
+    const p = tlPct(e.date);
+    const posExpr = `calc(2rem + ${p}% * (100% - 4rem) / 100%)`;
+    // Tick mark for all sig>=2
+    const tick = document.createElement('div');
+    tick.className = 'timeline-event-tick';
+    tick.style.left = posExpr;
+    tick.title = e.title + ' (' + formatDate(e.date) + ')';
+    ribbon.appendChild(tick);
+    // Label only for sig>=3, with minimum spacing
+    if (e.significance >= 3 && (p - lastLabelPct) > 5) {
+      const lbl = document.createElement('div');
+      lbl.className = 'timeline-event-label';
+      lbl.style.left = posExpr;
+      lbl.textContent = e.title;
+      ribbon.appendChild(lbl);
+      lastLabelPct = p;
+    }
   });
 
   // Letter markers
   LETTERS.forEach((l, i) => {
-    const p = pct(l.date);
+    const p = tlPct(l.date);
     const mk = document.createElement('div');
     mk.className = 'timeline-marker';
     mk.dataset.index = i;
@@ -8877,6 +9319,144 @@ function buildTimeline() {
     mk.addEventListener('click', () => selectLetter(i));
     ribbon.appendChild(mk);
   });
+
+  // Range fill
+  const fill = document.createElement('div');
+  fill.className = 'timeline-range-fill';
+  fill.id = 'tl-range-fill';
+  ribbon.appendChild(fill);
+
+  // Range handles
+  const handleL = document.createElement('div');
+  handleL.className = 'timeline-handle';
+  handleL.id = 'tl-handle-left';
+  handleL.innerHTML = '<div class="timeline-handle-label" id="tl-label-left"></div>';
+  ribbon.appendChild(handleL);
+
+  const handleR = document.createElement('div');
+  handleR.className = 'timeline-handle';
+  handleR.id = 'tl-handle-right';
+  handleR.innerHTML = '<div class="timeline-handle-label" id="tl-label-right"></div>';
+  ribbon.appendChild(handleR);
+
+  // Reset button
+  const resetBtn = document.createElement('button');
+  resetBtn.className = 'timeline-reset-btn';
+  resetBtn.textContent = 'Reset range';
+  resetBtn.id = 'tl-reset-btn';
+  resetBtn.style.display = 'none';
+  resetBtn.addEventListener('click', () => {
+    rangeStart = null;
+    rangeEnd = null;
+    updateRangeUI();
+    applyRangeFilter();
+  });
+  ribbon.appendChild(resetBtn);
+
+  // Initialize range to full
+  rangeStart = new Date(TL_START);
+  rangeEnd = new Date(TL_END);
+  updateRangeUI();
+
+  // Drag logic for handles
+  function makeDraggable(handleEl, isLeft) {
+    let dragging = false;
+    handleEl.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      dragging = true;
+      document.body.style.cursor = 'ew-resize';
+
+      const onMove = (e2) => {
+        if (!dragging) return;
+        const rect = ribbon.querySelector('.timeline-track').getBoundingClientRect();
+        const x = e2.clientX - rect.left;
+        const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
+        const newDate = tlDateFromPct(pct);
+        if (isLeft) {
+          rangeStart = newDate < rangeEnd ? newDate : rangeEnd;
+        } else {
+          rangeEnd = newDate > rangeStart ? newDate : rangeStart;
+        }
+        updateRangeUI();
+        applyRangeFilter();
+      };
+
+      const onUp = () => {
+        dragging = false;
+        document.body.style.cursor = '';
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+      };
+
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+    });
+  }
+
+  makeDraggable(handleL, true);
+  makeDraggable(handleR, false);
+}
+
+function updateRangeUI() {
+  const track = document.querySelector('#pane-what-they-didnt-know .timeline-track');
+  if (!track) return;
+  const trackRect = track.getBoundingClientRect();
+  const ribbonRect = track.parentElement.getBoundingClientRect();
+  const trackLeft = trackRect.left - ribbonRect.left;
+  const trackWidth = trackRect.width;
+
+  const leftPct = rangeStart ? ((rangeStart - TL_START) / TL_RANGE) * 100 : 0;
+  const rightPct = rangeEnd ? ((rangeEnd - TL_START) / TL_RANGE) * 100 : 100;
+
+  const leftPx = trackLeft + (leftPct / 100) * trackWidth;
+  const rightPx = trackLeft + (rightPct / 100) * trackWidth;
+
+  document.getElementById('tl-handle-left').style.left = leftPx + 'px';
+  document.getElementById('tl-handle-right').style.left = rightPx + 'px';
+  document.getElementById('tl-label-left').textContent = rangeStart ? formatShortDate(rangeStart) : '';
+  document.getElementById('tl-label-right').textContent = rangeEnd ? formatShortDate(rangeEnd) : '';
+
+  // Range fill
+  const fill = document.getElementById('tl-range-fill');
+  fill.style.left = leftPx + 'px';
+  fill.style.width = (rightPx - leftPx) + 'px';
+
+  // Show/hide reset button
+  const isFullRange = leftPct < 1 && rightPct > 99;
+  document.getElementById('tl-reset-btn').style.display = isFullRange ? 'none' : 'block';
+
+  // Dim out-of-range markers
+  document.querySelectorAll('#pane-what-they-didnt-know .timeline-marker').forEach(mk => {
+    const idx = parseInt(mk.dataset.index);
+    const letterDate = new Date(LETTERS[idx].date);
+    mk.classList.toggle('out-of-range', letterDate < rangeStart || letterDate > rangeEnd);
+  });
+}
+
+function applyRangeFilter() {
+  const items = document.querySelectorAll('#pane-what-they-didnt-know .letter-item');
+  let visibleCount = 0;
+  let firstVisibleIdx = -1;
+  items.forEach((el, i) => {
+    const letterDate = new Date(LETTERS[i].date);
+    const inRange = (!rangeStart || letterDate >= rangeStart) && (!rangeEnd || letterDate <= rangeEnd);
+    el.classList.toggle('filtered-out', !inRange);
+    if (inRange) {
+      visibleCount++;
+      if (firstVisibleIdx === -1) firstVisibleIdx = i;
+    }
+  });
+  // Update letter count in panel title
+  const title = document.querySelector('#leftPanel-what-they-didnt-know .panel-title');
+  if (title) title.textContent = `Letters (${visibleCount})`;
+
+  // If current selection is out of range, select first visible letter
+  if (firstVisibleIdx !== -1) {
+    const currentDate = new Date(LETTERS[currentIndex].date);
+    if (currentDate < rangeStart || currentDate > rangeEnd) {
+      selectLetter(firstVisibleIdx);
+    }
+  }
 }
 
 // Build irony quick-jump buttons
@@ -8962,12 +9542,12 @@ function updateRight(letter, idx) {
   const panel = document.getElementById('rightPanel-what-they-didnt-know');
   let html = '<div class="panel-title">Meanwhile\u2026</div>';
 
-  // 1. Dramatic irony for this letter
+  // 1. What the writer couldn't have known
   const irony = IRONY_MOMENTS.filter(m => m.letterId === letter.id);
   if (irony.length) {
-    html += '<div class="meanwhile-section"><div class="section-label">Dramatic Irony</div>';
+    html += '<div class="meanwhile-section"><div class="section-label">The Unseen</div>';
     irony.forEach(m => {
-      html += `<div class="irony-card"><div class="irony-icon">\u25C6 ${escapeHtml(m.title)}</div><div class="irony-text">${escapeHtml(m.summary)}</div></div>`;
+      html += `<div class="irony-card"><div class="irony-icon">${escapeHtml(m.title)}</div><div class="irony-text">${escapeHtml(m.summary)}</div></div>`;
     });
     html += '</div>';
   }

@@ -1,0 +1,251 @@
+[
+  {
+    "doc_id": "LTR-1865-01-11-001",
+    "file": "LTR-1865-01-11-001.md",
+    "existing_people_count": 9,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 3,
+    "candidate_people": [
+      "Bass",
+      "Denys",
+      "Glee Club",
+      "Hoyle",
+      "New Yrs",
+      "Rye",
+      "War Department"
+    ],
+    "candidate_places": [
+      "Boston",
+      "Canada",
+      "Chattanooga",
+      "James",
+      "Nashville",
+      "New York",
+      "Plattsburg",
+      "Shermans",
+      "Solomon"
+    ],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "hear from",
+          "context": "...eared was among the slain as we did not hear from you. Could it be possible that you have..."
+        }
+      ],
+      "Illness reported": [
+        {
+          "match": "hospital",
+          "context": "...ither any progress. He cannot is at the hospital. You remember — an order was issued fro..."
+        },
+        {
+          "match": "surgeon",
+          "context": "...ames was among them. I have written the Surgeon of the hospital inquiring what time he..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "killed",
+          "context": "...soldiers with several hundred guerillas killed & captured a vast number. I very much f..."
+        },
+        {
+          "match": "dead",
+          "context": "...hile my fears had numbered you with the dead. > > I supposed that you were in the te..."
+        },
+        {
+          "match": "death",
+          "context": "...n but hope that the rebellion is in its death throes. I have thought so many times be..."
+        }
+      ],
+      "Major news from home": [
+        {
+          "match": "married",
+          "context": "...cers. There are five & only one of them married. S——. has made a conquest of one of the..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1865-06-12-001",
+    "file": "LTR-1865-06-12-001.md",
+    "existing_people_count": 6,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Joseph Martin",
+      "Washington June"
+    ],
+    "candidate_places": [],
+    "candidate_flags": {
+      "Receipt of package/letter": [
+        {
+          "match": "heard from",
+          "context": "...I think it will stay here. > > Have you heard from Alex lately, how does he get along? Hav..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "mustered out",
+          "context": "...h of Oct. Don't know whether we will be mustered out before that or not. > > I hope you and..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1865-06-16-001",
+    "file": "LTR-1865-06-16-001.md",
+    "existing_people_count": 7,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Brevet Major General Bartlette",
+      "Brevet Major General Greene",
+      "Geary",
+      "General Bartlette",
+      "General Greene",
+      "Hoyle",
+      "State Governs",
+      "White Star Division"
+    ],
+    "candidate_places": [
+      "Frances",
+      "Wauhatchie"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "please send",
+          "context": "...aff. son, > > Alex F. Hubbell > > P.S. Please send lots of papers, i.e. if you have them...."
+        }
+      ],
+      "Battle/combat described": [
+        {
+          "match": "battle",
+          "context": "...sion a long time. He was wounded in the battle at Wauhatchie, Tenn. and left us then a..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharged",
+          "context": "...e prospects though I presume we will be discharged before a very very long while, as soon..."
+        }
+      ],
+      "Promotion/demotion": [
+        {
+          "match": "promoted",
+          "context": "...as formerly Colonel of our Regt. He was promoted to be a Brigadier and commanded our bri..."
+        },
+        {
+          "match": "promotion",
+          "context": "...il now. We like him and are glad at his promotion. His son, Chris Greene (his aide de Cam..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1865-06-27-001",
+    "file": "LTR-1865-06-27-001.md",
+    "existing_people_count": 3,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Bostwick",
+      "Hoff",
+      "Miss Fannie",
+      "Sixtieth New York Veteran Volunteers"
+    ],
+    "candidate_places": [
+      "Mother",
+      "Ogdensburgh"
+    ],
+    "candidate_flags": {
+      "Discharge/muster-out": [
+        {
+          "match": "discharged",
+          "context": "...shall come to Ogdensburgh, and there be discharged and paid off. That's a happy day that w..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1865-07-13-001",
+    "file": "LTR-1865-07-13-001.md",
+    "existing_people_count": 6,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 1,
+    "candidate_people": [
+      "Division Hospital",
+      "Harry Hummel",
+      "John Sweeney",
+      "Uncle Henry"
+    ],
+    "candidate_places": [
+      "Charlotte",
+      "Uncle Henry",
+      "Washington"
+    ],
+    "candidate_flags": {
+      "Camp movement/march": [
+        {
+          "match": "we have moved",
+          "context": "...in the day time. Since I last wrote you we have moved into the city near the river. We have a..."
+        }
+      ],
+      "Discharge/muster-out": [
+        {
+          "match": "discharged",
+          "context": "...surgeon but is not now as his Regt. is discharged. John inquired about you & Frances. > >..."
+        }
+      ]
+    }
+  },
+  {
+    "doc_id": "LTR-1865-07-27-001",
+    "file": "LTR-1865-07-27-001.md",
+    "existing_people_count": 3,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [],
+    "candidate_places": [
+      "Wheeler"
+    ],
+    "candidate_flags": {}
+  },
+  {
+    "doc_id": "LTR-1870-11-28-001",
+    "file": "LTR-1870-11-28-001.md",
+    "existing_people_count": 10,
+    "existing_places_count": 1,
+    "existing_flags_yes_count": 2,
+    "candidate_people": [
+      "Edgar",
+      "Hennings",
+      "Louise",
+      "Meade",
+      "New England",
+      "Uncle Henrys",
+      "Uncle Williams"
+    ],
+    "candidate_places": [
+      "Burlington",
+      "New England"
+    ],
+    "candidate_flags": {
+      "Request for supplies/money": [
+        {
+          "match": "send us",
+          "context": "...drawback was that your Uncle W. had to send us at ten P.M., a dark, rainy, muddy night..."
+        }
+      ],
+      "Death reported": [
+        {
+          "match": "died",
+          "context": "...visit aunt Meade. Her son, Sam. Hewitt died recently. She is almost heart broken. S..."
+        },
+        {
+          "match": "death",
+          "context": "...he by — I should say you will freeze to death if you do not have another thickness on..."
+        }
+      ]
+    }
+  }
+]

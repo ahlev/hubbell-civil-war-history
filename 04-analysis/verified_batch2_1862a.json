@@ -1,0 +1,479 @@
+[
+  {
+    "doc_id": "LTR-1862-01-09-002",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received a letter from Nellie and Aunt Laura.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "candidate_places 'Mother' and 'Nellie' are people names, not places. Receipt of letter is genuinely missing from flags."
+  },
+  {
+    "doc_id": "LTR-1862-01-28-001",
+    "verified_people": [
+      {
+        "name": "Mr. Holcomb",
+        "role": "Respects sent to -- acquaintance in Champlain",
+        "confidence": "stated / clear / definite",
+        "already_listed": true
+      }
+    ],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received two letters and a paper day before yesterday\" and \"I just received a letter from Willis Savage\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "All candidate_people already listed or salutations. candidate_places are all people names. Receipt of package/letter genuinely missing from event flags."
+  },
+  {
+    "doc_id": "LTR-1862-02-04-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received a letter from you, brought by Mr. Hoyle.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "candidate_people 'Hoyle' already listed as Mr. Hoyle. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-02-05-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received a letter from home last night with yours.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "candidate_places 'Gormon' and 'Harpers' are truncated versions of already-listed places. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-02-05-002",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [],
+    "notes": "All candidate_people are places misidentified as people (Adams Town, Bolivar Heights), already-listed people (Gorman, Ladue), newspapers (NY Observer, NY Times), or figurative (Uncle Sam). All candidate_places already listed. candidate_flag 'shot' is actually 'short notice' -- not a wound."
+  },
+  {
+    "doc_id": "LTR-1862-02-12-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received a letter from Nellie and Aunt Laura a short time [ago]\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "candidate_people are either military operations (Burnside Expedition) or places (West Point). 'give up' is about rebels surrendering, not morale crisis. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-02-17-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Illness reported",
+        "value": true,
+        "detail": "Soldier poisoned by woman -- 'taken violently ill and vomited up a green substance' -- near death",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "candidate_people 'Robinson' already listed as Gen. Robinson. candidate_places are all people names. Poisoning is a genuine illness event currently flagged 'no'."
+  },
+  {
+    "doc_id": "LTR-1862-02-24-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received a letter from you two or three days ago.\"",
+        "confidence": "stated / clear / definite"
+      },
+      {
+        "flag": "Promotion/demotion",
+        "value": true,
+        "detail": "\"I heard that he has been promoted to Brigadier Gen.\" -- referring to a former officer",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "candidate_people 'Brigadier Gen' is a rank, 'Nothing' is not a person. 'fight' context is interpersonal fighting, not combat. Receipt and Promotion genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-03-16-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received a letter from Uncle John last evening.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "'Mich Genesee' is a place reference, not a person. 'Uncle John' in candidate_places is a person, not a place. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-03-17-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "place_as_written": "Camden Station",
+        "modern_id": "Camden Station, Baltimore, MD -- railroad station where Alexander was posted",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "verified_flags": [],
+    "notes": "candidate_people are already listed (Ransom), organizations (Excelsior Brigade, Malone Regt, Union Relief, Provost Marshals), or the author himself (Corporal Hubbell). 'Belgor' (Major Belgor) may be a genuine missing person -- mentioned in text but borderline. 'received a letter' was someone else receiving a letter, not Alexander. Camden Station genuinely missing from Places."
+  },
+  {
+    "doc_id": "LTR-1862-03-21-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received your letter and was very glad to hear from you.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "'Mc' is truncated name fragment. 'Gormon' and 'Harpers' are truncated, already listed. 'government' is logistics context. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-03-23-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received a letter from you this morning.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "'Two' is not a person. 'Harpers' is truncated. 'sick' describes other soldiers' illness in context of discharge, not a primary illness report. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-03-26-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received a letter and paper from home the day we moved.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "'Dear Mother' is salutation. 'Henry Monday' is brother Henry + day of week. 'Preston King' may be a real person (NY politician) mentioned in the letter but needs further verification. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-04-01-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I have just been reading your letter of the 30th inst.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "'Master James' is James Hubbell, already listed. 'Beauregard' may or may not be already listed. 'fight/fighting/battle' contexts are aspirational or news reports, not personal combat. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-04-02-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received a letter the day before I left Alexandria.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "'Harpers Ferry' is a place, not a person. 'government' is logistics. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-04-02-003",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received your letter and was very glad to hear from you.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "'Brother Charles' is the recipient. 'war will' is general commentary. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-04-06-002",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received your letter last night and was glad to hear from home.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "'Gorman' already listed. 'Mc' truncated. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-04-09-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received a letter from home not long since\" and \"your letter I received and very glad was I to hear from you\"",
+        "confidence": "stated / clear / definite"
+      },
+      {
+        "flag": "Camp movement/march",
+        "value": true,
+        "detail": "\"when the rebels knew that we were on the march for this place they left on a double quick\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "'skirmish' is hypothetical ('perhaps have a little skirmish'). 'give up' is about rebels surrendering. Receipt and Camp movement genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-04-11-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received a letter from Willie Savage a day or two since\" and \"Received your very welcome letter Sunday\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "All candidate_people are already listed, places misidentified as people, military units, or salutations. 'battle' is aspirational. 'sick' is hypothetical. 'shot' is funeral salute. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-04-18-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Request for supplies/money",
+        "value": true,
+        "detail": "\"Could you send me a few postage stamps. I have no franked envelopes.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "candidate_people are places (Fortress Monroe, York Town) or equipment (Knap Sack) or units (Vermont Regts). 'government' is logistics. 'dead' refers to enemy dead. 'discharge' means 'fire my weapon'. Request for stamps genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-04-21-002",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"your very welcome letter and was glad to hear from home\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "candidate_people are units (Gorman Brigade) or truncated (Mc) or places (Near York Town). candidate_places are people (Alexander, Charles) or military units (Sedgwick). Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-05-01-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Promotion/demotion",
+        "value": true,
+        "detail": "\"Our Colonel has been promoted to Brigadier General of Volunteers.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "'Brigadier General' is a rank, not a person name. 'Green' (Col. Green) already listed. 'Relay House' is a place. Promotion genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-05-09-002",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Wound/injury reported",
+        "value": true,
+        "detail": "\"several were wounded\" -- casualties in other companies during engagement",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "'York River' is a place, not a person. 'hear from' is about mail regularity. Wound/injury genuinely missing -- actual casualties reported."
+  },
+  {
+    "doc_id": "LTR-1862-05-31-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received your letter and Charles yesterday.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "candidate_people all already listed (Brinkerhoff, Luther) or salutations (Dear Mother). 'killed' refers to enemy dead in combat already flagged. 'shot' is ordnance. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-06-08-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received a letter from Henry the day we left the Ferry.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "candidate_people are military units (Banks Division, Rail Road Brigade), jokes (Footed Virginians), already listed (Siegel, Rich), or truncated (Mc). candidate_places already listed or people names. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-06-13-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received your letter day before yesterday.\"",
+        "confidence": "stated / clear / definite"
+      },
+      {
+        "flag": "Discharge/muster-out",
+        "value": true,
+        "detail": "\"Capt. Reich has been discharged.\"",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "candidate_people all already listed (Brinkhoff, Reich) or truncated (Mc). Receipt and Discharge genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-06-17-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "place_as_written": "Bolivar Heights",
+        "modern_id": "Bolivar Heights, WV -- above Harpers Ferry; line of battle formed there",
+        "confidence": "stated / clear / definite"
+      },
+      {
+        "place_as_written": "Shenandoah River",
+        "modern_id": "Shenandoah River -- Onikers Ferry is located on this river",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received your very, very, welcome letter last evening.\"",
+        "confidence": "stated / clear / definite"
+      },
+      {
+        "flag": "Battle/combat described",
+        "value": true,
+        "detail": "Detailed retroactive account of Harpers Ferry combat: batteries opened fire, rebel artillery exchange, sharpshooters engaged, rebel battery of 11 guns planted and scattered, night alarms, skirmishers on lines, rebel shots within 10 rods",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "candidate_people 'Bolivar Heights' and 'Shenandoah River' are places -- moved to verified_places. 'Dear Mother' is salutation. 'Harpers Ferry' already listed. Bolivar Heights and Shenandoah River genuinely missing from Places. Battle/combat flag was 'no' but letter contains extensive retroactive combat narrative -- genuine miss. 'shot' is ordnance/artillery. 'discharge' is cannon firing, not muster-out."
+  },
+  {
+    "doc_id": "LTR-1862-06-22-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I received your letter this morning.\" Also received the Observer newspaper.",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "'Mc' is truncated McClellan -- already listed. 'New York Herald' is a newspaper. 'Frances' is a person. 'skirmish' was secondhand report. 'give up' is about rebels. 'discharge' is personal wish. Receipt genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-06-22-002",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": [
+      {
+        "flag": "Request for supplies/money",
+        "value": true,
+        "detail": "\"Please send me a few stamps. There are not any around here.\"",
+        "confidence": "stated / clear / definite"
+      },
+      {
+        "flag": "Receipt of package/letter",
+        "value": true,
+        "detail": "\"I was very glad to hear from you\" -- implies received Charles's letter",
+        "confidence": "inferred / clear / probable"
+      },
+      {
+        "flag": "Discharge/muster-out",
+        "value": true,
+        "detail": "\"He had a dishonorable discharge\" -- Capt. Reich's discharge described in detail (refused order, put in irons)",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "candidate_people already listed (Reich, The Colonel). candidate_places are ranks (Lieut), people (Mother), or need verification (Richmond). 'dead' and 'wounded' and 'shot' refer to enemy dead in combat already flagged as Battle. Request, Receipt, and Discharge genuinely missing."
+  },
+  {
+    "doc_id": "LTR-1862-06-30-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "place_as_written": "Charlotte",
+        "modern_id": "Charlotte, NY -- Mother's planned trip destination",
+        "confidence": "stated / clear / definite"
+      },
+      {
+        "place_as_written": "Richmond",
+        "modern_id": "Richmond, VA -- (false) capture reported; also mentioned as destination of carriages story",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "verified_flags": [
+      {
+        "flag": "Camp movement/march",
+        "value": true,
+        "detail": "\"We are now encamped within about three miles of Strausburgh\" -- moved from Winchester area",
+        "confidence": "stated / clear / definite"
+      }
+    ],
+    "notes": "candidate_people are institutions (Academy Hospital), already listed (Brinkerhoff), salutations (Dear Mother), or places (Harpers Ferry). candidate_places 'Frances', 'Henry', 'James' are people. 'Genls' is truncated. 'Sharpsburgh' already listed. Charlotte and Richmond genuinely missing from Places. 'fighting' is news report, not personal combat. 'sick/hospital' refers to guarding enemy sick. Camp movement genuinely missing."
+  }
+]

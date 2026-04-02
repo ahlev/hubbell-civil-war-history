@@ -240,9 +240,18 @@ def build_places_gazetteer(letters):
             if modern and modern != '—':
                 # Strip contextual notes from modern ID for canonical use
                 clean_modern = re.sub(r'\s*—\s*.*$', '', modern).strip()
-                # Also strip parenthetical notes like "(went to church)"
+                clean_modern = re.sub(r'\s*--\s*.*$', '', clean_modern).strip()
+                # Strip parenthetical notes like "(went to church)"
                 clean_modern = re.sub(r'\s*\([^)]*\)\s*$', '', clean_modern).strip()
-                if clean_modern:
+                # Skip non-place values
+                skip_patterns = [
+                    r'^`',              # confidence tags like `inferred`
+                    r'^Where\b',        # editorial notes
+                    r'^Home$',          # generic
+                    r'^Family home',    # generic
+                    r'^Camp somewhere', # vague
+                ]
+                if clean_modern and not any(re.match(p, clean_modern) for p in skip_patterns):
                     entry["modern_ids"].add(clean_modern)
 
             if "lat" in place and "lon" in place:

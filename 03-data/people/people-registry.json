@@ -570,6 +570,7 @@
       "\"Very, very kind\"",
       "60th NY officer — took tea with Mother, health improving, returning to regiment",
       "Accused of taking company ration money",
+      "Alexander sends regards — 'Give my regards to Capt. Ransom'",
       "Alexander's captain — narrow escape (boiler explosion)",
       "Captain forming a company",
       "Captain, 60th NY — LaBlue's company commander",
@@ -596,7 +597,7 @@
       "Captain",
       "Lieutenant"
     ],
-    "letterCount": 26,
+    "letterCount": 27,
     "letters": [
       "LTR-1861-09-11-001",
       "LTR-1861-09-23-001",
@@ -622,6 +623,7 @@
       "LTR-1863-06-03-001",
       "LTR-1863-11-21-001",
       "LTR-1863-12-09-001",
+      "LTR-1863-12-16-001",
       "LTR-1864-07-02-001",
       "LTR-1864-07-29-001"
     ],
@@ -844,6 +846,7 @@
       "Has coat damages ($16)",
       "Left for Champlain — recruiting band and drafted men",
       "Near Fonda attending to conscripts",
+      "Now Aid De Camp to Gen. Slough, military governor of Alexandria",
       "Now captain of Charles's company in 153rd NY — Mother bites her tongue about him",
       "Now on Gen. Slough's staff — military governor of Alexandria",
       "Preached at church",
@@ -852,13 +855,14 @@
     "ranks": [
       "Captain"
     ],
-    "letterCount": 12,
+    "letterCount": 13,
     "letters": [
       "LTR-1861-12-20-001",
       "LTR-1862-06-08-001",
       "LTR-1862-07-12-001",
       "LTR-1862-10-29-001",
       "LTR-1862-12-04-001",
+      "LTR-1862-12-08-001",
       "LTR-1863-02-22-001",
       "LTR-1863-07-20-001",
       "LTR-1863-09-07-001",
@@ -874,6 +878,7 @@
     "id": "PER-hoyle",
     "canonicalName": "Mrs. Hoyle",
     "variants": [
+      "Hoyle",
       "Mr. Hoyle",
       "Mrs. Hoyle"
     ],
@@ -889,7 +894,8 @@
       "Sent newspapers — Alexander grateful",
       "Sent paper with Bass news",
       "Sent paper with death notice",
-      "Store used as guard house"
+      "Store used as guard house",
+      "`stated`"
     ],
     "ranks": [],
     "letterCount": 11,
@@ -1166,7 +1172,8 @@
       "Frances's friend — sled rides",
       "Frances's friend — sliding in ravine",
       "May have furlough — told to send it",
-      "Presented democratic paper"
+      "Presented democratic paper",
+      "`stated`"
     ],
     "ranks": [],
     "letterCount": 7,
@@ -1183,10 +1190,48 @@
     "lastAppearance": "1864-12-09"
   },
   {
+    "id": "PER-burdick",
+    "canonicalName": "Lieut. Burdick",
+    "variants": [
+      "Burdick",
+      "Capt. Burdick",
+      "Lieut. Burdick",
+      "Mr. Burdick",
+      "Mrs. Burdick"
+    ],
+    "category": "military",
+    "roles": [
+      "Came with Ransom; pleasant man; Charles sees often",
+      "Champlain resident — Charles asks if Mother has called on her",
+      "Leaving for home in 3-4 days; invited soldiers to visit",
+      "May resign",
+      "Promoted to Captain",
+      "Resigned, going home",
+      "Resigned, gone home — \"very high spirits\""
+    ],
+    "ranks": [
+      "Captain",
+      "Lieutenant"
+    ],
+    "letterCount": 7,
+    "letters": [
+      "LTR-1862-12-26-001",
+      "LTR-1863-02-13-001",
+      "LTR-1863-03-02-001",
+      "LTR-1863-03-12-001",
+      "LTR-1863-05-19-001",
+      "LTR-1863-08-16-001",
+      "LTR-1863-09-07-001"
+    ],
+    "firstAppearance": "1862-12-26",
+    "lastAppearance": "1863-09-07"
+  },
+  {
     "id": "PER-hooker",
     "canonicalName": "Gen. Hooker",
     "variants": [
-      "Gen. Hooker"
+      "Gen. Hooker",
+      "Hooker"
     ],
     "category": "military",
     "roles": [
@@ -1196,7 +1241,8 @@
       "Corps commander — 20th Army Corps",
       "Leaving 20th Corps — farewell ride",
       "Led operation to open road to Chattanooga",
-      "Visited troops — \"fine looking officer\""
+      "Visited troops — \"fine looking officer\"",
+      "`stated`"
     ],
     "ranks": [
       "General"
@@ -1303,45 +1349,40 @@
     "lastAppearance": "1865-01-11"
   },
   {
-    "id": "PER-burdick",
-    "canonicalName": "Lieut. Burdick",
+    "id": "PER-mcdonald",
+    "canonicalName": "McDonald (R.W.)",
     "variants": [
-      "Burdick",
-      "Capt. Burdick",
-      "Lieut. Burdick",
-      "Mr. Burdick",
-      "Mrs. Burdick"
+      "McDonald",
+      "McDonald (R.W.)"
     ],
-    "category": "military",
+    "category": "civilian",
     "roles": [
-      "Came with Ransom; pleasant man; Charles sees often",
-      "Leaving for home in 3-4 days; invited soldiers to visit",
-      "May resign",
-      "Promoted to Captain",
-      "Resigned, going home",
-      "Resigned, gone home — \"very high spirits\""
+      "Claimed to see Henry \"limping to the rear leaning upon his gun\"",
+      "His report about Henry being alive is now \"false rumor\"",
+      "Says Henry is missing (= R.W. McDonald of LTR-1862-10-01-001)",
+      "Source of 'good news' about Henry that Charles doubts — 'afraid it is too good news to be true'",
+      "Urged Henry to go to hospital twice",
+      "Will write his wife about how he heard about Henry"
     ],
-    "ranks": [
-      "Captain",
-      "Lieutenant"
-    ],
+    "ranks": [],
     "letterCount": 6,
     "letters": [
-      "LTR-1862-12-26-001",
-      "LTR-1863-02-13-001",
-      "LTR-1863-03-12-001",
-      "LTR-1863-05-19-001",
-      "LTR-1863-08-16-001",
-      "LTR-1863-09-07-001"
+      "LTR-1862-07-12-001",
+      "LTR-1862-10-02-001",
+      "LTR-1862-11-28-001",
+      "LTR-1862-12-04-001",
+      "LTR-1862-12-09-001",
+      "LTR-1863-05-04-001"
     ],
-    "firstAppearance": "1862-12-26",
-    "lastAppearance": "1863-09-07"
+    "firstAppearance": "1862-07-12",
+    "lastAppearance": "1863-05-04"
   },
   {
     "id": "PER-slocum",
     "canonicalName": "Gen. Slocum",
     "variants": [
-      "Gen. Slocum"
+      "Gen. Slocum",
+      "Slocum"
     ],
     "category": "military",
     "roles": [
@@ -1350,7 +1391,8 @@
       "Commands Corps (stated \"6th\" — likely means 20th)",
       "Returns to command 20th Corps",
       "Said 1st Div. should go to front, not 2nd",
-      "Speech prophesying speedy war termination"
+      "Speech prophesying speedy war termination",
+      "`stated`"
     ],
     "ranks": [
       "General"
@@ -1371,7 +1413,8 @@
     "id": "PER-delaney",
     "canonicalName": "Capt. Delaney",
     "variants": [
-      "Capt. Delaney"
+      "Capt. Delaney",
+      "Delaney"
     ],
     "category": "military",
     "roles": [
@@ -1380,7 +1423,8 @@
       "Presented sword by Co. H",
       "Talked to surgeon and colonel — discharge impossible",
       "Wounded fight of July 20",
-      "Wounded in arm — 2-3 months recovery"
+      "Wounded in arm — 2-3 months recovery",
+      "`stated`"
     ],
     "ranks": [
       "Captain"
@@ -1542,31 +1586,84 @@
     "lastAppearance": "1863-09-03"
   },
   {
-    "id": "PER-mcdonald",
-    "canonicalName": "McDonald (R.W.)",
+    "id": "PER-grandmother",
+    "canonicalName": "Frances M. Hubbell (Mother)",
     "variants": [
-      "McDonald",
-      "McDonald (R.W.)"
+      "Grandmother"
     ],
-    "category": "civilian",
+    "category": "family",
     "roles": [
-      "Claimed to see Henry \"limping to the rear leaning upon his gun\"",
-      "His report about Henry being alive is now \"false rumor\"",
-      "Says Henry is missing (= R.W. McDonald of LTR-1862-10-01-001)",
-      "Urged Henry to go to hospital twice",
-      "Will write his wife about how he heard about Henry"
+      "Died",
+      "Expected to host Thanksgiving dinner",
+      "Family — Charles hopes Frances and Mother went to Grandmother's for Thanksgiving",
+      "Involved in land sale that \"cheated us out of our rights\"",
+      "Regards sent"
     ],
     "ranks": [],
     "letterCount": 5,
     "letters": [
-      "LTR-1862-07-12-001",
-      "LTR-1862-10-02-001",
-      "LTR-1862-12-04-001",
-      "LTR-1862-12-09-001",
-      "LTR-1863-05-04-001"
+      "LTR-1862-04-01-001",
+      "LTR-1862-11-25-001",
+      "LTR-1862-11-28-001",
+      "LTR-1864-05-10-001",
+      "LTR-1864-11-04-001"
     ],
-    "firstAppearance": "1862-07-12",
-    "lastAppearance": "1863-05-04"
+    "firstAppearance": "1862-04-01",
+    "lastAppearance": "1864-11-04",
+    "relationship": "Mother",
+    "notes": "Widowed mother in Champlain, NY. Wrote to sons at front."
+  },
+  {
+    "id": "PER-brinkerhoff",
+    "canonicalName": "Mrs. Brinkerhoff",
+    "variants": [
+      "Brinkerhoff",
+      "Mrs. Brinkerhoff"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Champlain neighbor",
+      "Remembered",
+      "Remembered to — family friend/neighbor",
+      "Whispered in church — \"Have you heard from Alexander?\""
+    ],
+    "ranks": [],
+    "letterCount": 5,
+    "letters": [
+      "LTR-1862-05-31-001",
+      "LTR-1862-06-30-001",
+      "LTR-1863-03-12-001",
+      "LTR-1863-09-25-001",
+      "LTR-1863-11-15-001"
+    ],
+    "firstAppearance": "1862-05-31",
+    "lastAppearance": "1863-11-15"
+  },
+  {
+    "id": "PER-uncle-henry",
+    "canonicalName": "Uncle Henry",
+    "variants": [
+      "Uncle Henry"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Family uncle — requested Mother visit Charlotte",
+      "Farm/land",
+      "Has a new baby boy",
+      "Place to be purchased",
+      "Visited after Thanksgiving"
+    ],
+    "ranks": [],
+    "letterCount": 5,
+    "letters": [
+      "LTR-1862-06-16-001",
+      "LTR-1862-07-08-002",
+      "LTR-1862-07-14-001",
+      "LTR-1865-07-13-001",
+      "LTR-1870-11-28-001"
+    ],
+    "firstAppearance": "1862-06-16",
+    "lastAppearance": "1870-11-28"
   },
   {
     "id": "PER-sherman",
@@ -1730,54 +1827,56 @@
     "lastAppearance": "1862-04-01"
   },
   {
-    "id": "PER-grandmother",
-    "canonicalName": "Frances M. Hubbell (Mother)",
+    "id": "PER-banks",
+    "canonicalName": "Mrs. Banks",
     "variants": [
-      "Grandmother"
+      "Banks",
+      "Gen. Banks",
+      "Mrs. Banks"
     ],
-    "category": "family",
+    "category": "military",
     "roles": [
-      "Died",
-      "Expected to host Thanksgiving dinner",
-      "Involved in land sale that \"cheated us out of our rights\"",
-      "Regards sent"
+      "Commanding general; army provisioned by wagon",
+      "Commands division Henry is in; false rumor of being \"cut to pieces\"",
+      "Wife of Gen. Banks — Sanitary Commission president",
+      "`stated`"
     ],
-    "ranks": [],
+    "ranks": [
+      "General"
+    ],
     "letterCount": 4,
     "letters": [
-      "LTR-1862-04-01-001",
-      "LTR-1862-11-25-001",
-      "LTR-1864-05-10-001",
-      "LTR-1864-11-04-001"
+      "LTR-1862-03-03-001",
+      "LTR-1862-06-17-001",
+      "LTR-1864-04-15-001",
+      "LTR-1864-04-25-001"
     ],
-    "firstAppearance": "1862-04-01",
-    "lastAppearance": "1864-11-04",
-    "relationship": "Mother",
-    "notes": "Widowed mother in Champlain, NY. Wrote to sons at front."
+    "firstAppearance": "1862-03-03",
+    "lastAppearance": "1864-04-25"
   },
   {
-    "id": "PER-uncle-henry",
-    "canonicalName": "Uncle Henry",
+    "id": "PER-uncle-john",
+    "canonicalName": "Uncle John",
     "variants": [
-      "Uncle Henry"
+      "Uncle John"
     ],
     "category": "civilian",
     "roles": [
-      "Farm/land",
-      "Has a new baby boy",
-      "Place to be purchased",
-      "Visited after Thanksgiving"
+      "Family member — Charles says he need not write often",
+      "In Genesee Co., Michigan — not well",
+      "Visiting — estate share?",
+      "Wrote letter — \"strong democrat and a little sesesh\""
     ],
     "ranks": [],
     "letterCount": 4,
     "letters": [
-      "LTR-1862-06-16-001",
-      "LTR-1862-07-08-002",
-      "LTR-1862-07-14-001",
-      "LTR-1870-11-28-001"
+      "LTR-1862-03-16-001",
+      "LTR-1862-12-08-001",
+      "LTR-1863-03-02-001",
+      "LTR-1863-11-19-001"
     ],
-    "firstAppearance": "1862-06-16",
-    "lastAppearance": "1870-11-28"
+    "firstAppearance": "1862-03-16",
+    "lastAppearance": "1863-11-19"
   },
   {
     "id": "PER-cyrus-kellogg",
@@ -1804,6 +1903,57 @@
     "lastAppearance": "1863-03-29"
   },
   {
+    "id": "PER-simons",
+    "canonicalName": "Mr. Simons",
+    "variants": [
+      "Mr. Simons"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Academy connection — \"brains in the right place\"",
+      "Academy — opinions about Potomac army",
+      "Frances's preferred colleague/teacher",
+      "Teacher — Charles asks Frances how his school is doing"
+    ],
+    "ranks": [],
+    "letterCount": 4,
+    "letters": [
+      "LTR-1862-11-18-001",
+      "LTR-1862-11-28-001",
+      "LTR-1863-03-16-001",
+      "LTR-1863-03-22-001"
+    ],
+    "firstAppearance": "1862-11-18",
+    "lastAppearance": "1863-03-22"
+  },
+  {
+    "id": "PER-slough",
+    "canonicalName": "Gen. Slough",
+    "variants": [
+      "Gen. Slough"
+    ],
+    "category": "military",
+    "roles": [
+      "\"Band box regt.\" — white shirts and collars",
+      "Brigade commander at Alexandria; 153rd NY his 'band box regiment'",
+      "Military governor of Alexandria",
+      "Military governor of Alexandria — Capt. Rich now on his staff",
+      "Wants 26th NY band"
+    ],
+    "ranks": [
+      "General"
+    ],
+    "letterCount": 4,
+    "letters": [
+      "LTR-1862-12-04-001",
+      "LTR-1862-12-08-001",
+      "LTR-1863-07-20-001",
+      "LTR-1863-12-09-002"
+    ],
+    "firstAppearance": "1862-12-04",
+    "lastAppearance": "1863-12-09"
+  },
+  {
     "id": "PER-jim-lucas",
     "canonicalName": "Jim Lucas",
     "variants": [
@@ -1826,6 +1976,30 @@
     ],
     "firstAppearance": "1862-12-26",
     "lastAppearance": "1864-02-15"
+  },
+  {
+    "id": "PER-rye",
+    "canonicalName": "Mr. Rye",
+    "variants": [
+      "Mr. Rye"
+    ],
+    "category": "civilian",
+    "roles": [
+      "\"Persecuting a helpless woman\" — land dispute escalated",
+      "Champlain resident sent back from Canadian border",
+      "Land claim continues — boundary dispute",
+      "Land claim — will pay over appraisal value"
+    ],
+    "ranks": [],
+    "letterCount": 4,
+    "letters": [
+      "LTR-1863-01-02-001",
+      "LTR-1863-03-02-001",
+      "LTR-1863-04-16-001",
+      "LTR-1865-01-11-001"
+    ],
+    "firstAppearance": "1863-01-02",
+    "lastAppearance": "1865-01-11"
   },
   {
     "id": "PER-brookway",
@@ -1863,7 +2037,8 @@
       "Capt. Strain",
       "Col. Strain",
       "Major Strain",
-      "Mrs. Strain"
+      "Mrs. Strain",
+      "Strain"
     ],
     "category": "military",
     "roles": [
@@ -1871,7 +2046,8 @@
       "Arranged reassignment — booked for Savannah",
       "Promoted to Major",
       "Wife visited camp",
-      "Wife — wrote to husband on Charles's behalf"
+      "Wife — wrote to husband on Charles's behalf",
+      "`stated`"
     ],
     "ranks": [
       "Captain",
@@ -1892,15 +2068,19 @@
     "id": "PER-boyle",
     "canonicalName": "Mrs. Boyle",
     "variants": [
+      "Boyle",
       "Mr. Boyle",
       "Mrs. Boyle"
     ],
     "category": "civilian",
     "roles": [
       "Bought cow — good friend of family",
+      "Sends Tribune newspaper to Charles",
+      "Sends papers to Charles",
       "Sent N.Y. Tribune and papers",
       "Sent papers including McClellan speech",
-      "Sent papers — Tribune and draft list"
+      "Sent papers — Tribune and draft list",
+      "`stated`"
     ],
     "ranks": [],
     "letterCount": 4,
@@ -2088,31 +2268,6 @@
     "lastAppearance": "1862-07-14"
   },
   {
-    "id": "PER-banks",
-    "canonicalName": "Mrs. Banks",
-    "variants": [
-      "Gen. Banks",
-      "Mrs. Banks"
-    ],
-    "category": "military",
-    "roles": [
-      "Commanding general; army provisioned by wagon",
-      "Commands division Henry is in; false rumor of being \"cut to pieces\"",
-      "Wife of Gen. Banks — Sanitary Commission president"
-    ],
-    "ranks": [
-      "General"
-    ],
-    "letterCount": 3,
-    "letters": [
-      "LTR-1862-03-03-001",
-      "LTR-1862-06-17-001",
-      "LTR-1864-04-15-001"
-    ],
-    "firstAppearance": "1862-03-03",
-    "lastAppearance": "1864-04-15"
-  },
-  {
     "id": "PER-dodds",
     "canonicalName": "Dodds",
     "variants": [
@@ -2133,28 +2288,6 @@
     ],
     "firstAppearance": "1862-03-06",
     "lastAppearance": "1864-05-20"
-  },
-  {
-    "id": "PER-uncle-john",
-    "canonicalName": "Uncle John",
-    "variants": [
-      "Uncle John"
-    ],
-    "category": "civilian",
-    "roles": [
-      "In Genesee Co., Michigan — not well",
-      "Visiting — estate share?",
-      "Wrote letter — \"strong democrat and a little sesesh\""
-    ],
-    "ranks": [],
-    "letterCount": 3,
-    "letters": [
-      "LTR-1862-03-16-001",
-      "LTR-1863-03-02-001",
-      "LTR-1863-11-19-001"
-    ],
-    "firstAppearance": "1862-03-16",
-    "lastAppearance": "1863-11-19"
   },
   {
     "id": "PER-beauregard",
@@ -2222,28 +2355,6 @@
     ],
     "firstAppearance": "1862-05-09",
     "lastAppearance": "1863-05-13"
-  },
-  {
-    "id": "PER-brinkerhoff",
-    "canonicalName": "Mrs. Brinkerhoff",
-    "variants": [
-      "Mrs. Brinkerhoff"
-    ],
-    "category": "civilian",
-    "roles": [
-      "Remembered",
-      "Remembered to — family friend/neighbor",
-      "Whispered in church — \"Have you heard from Alexander?\""
-    ],
-    "ranks": [],
-    "letterCount": 3,
-    "letters": [
-      "LTR-1862-05-31-001",
-      "LTR-1862-06-30-001",
-      "LTR-1863-11-15-001"
-    ],
-    "firstAppearance": "1862-05-31",
-    "lastAppearance": "1863-11-15"
   },
   {
     "id": "PER-david-savage",
@@ -2316,52 +2427,6 @@
     "lastAppearance": "1862-11-10"
   },
   {
-    "id": "PER-simons",
-    "canonicalName": "Mr. Simons",
-    "variants": [
-      "Mr. Simons"
-    ],
-    "category": "civilian",
-    "roles": [
-      "Academy connection — \"brains in the right place\"",
-      "Academy — opinions about Potomac army",
-      "Frances's preferred colleague/teacher"
-    ],
-    "ranks": [],
-    "letterCount": 3,
-    "letters": [
-      "LTR-1862-11-18-001",
-      "LTR-1863-03-16-001",
-      "LTR-1863-03-22-001"
-    ],
-    "firstAppearance": "1862-11-18",
-    "lastAppearance": "1863-03-22"
-  },
-  {
-    "id": "PER-slough",
-    "canonicalName": "Gen. Slough",
-    "variants": [
-      "Gen. Slough"
-    ],
-    "category": "military",
-    "roles": [
-      "\"Band box regt.\" — white shirts and collars",
-      "Military governor of Alexandria",
-      "Wants 26th NY band"
-    ],
-    "ranks": [
-      "General"
-    ],
-    "letterCount": 3,
-    "letters": [
-      "LTR-1862-12-04-001",
-      "LTR-1863-07-20-001",
-      "LTR-1863-12-09-002"
-    ],
-    "firstAppearance": "1862-12-04",
-    "lastAppearance": "1863-12-09"
-  },
-  {
     "id": "PER-savagham",
     "canonicalName": "Savagham",
     "variants": [
@@ -2384,38 +2449,18 @@
     "lastAppearance": "1863-03-19"
   },
   {
-    "id": "PER-rye",
-    "canonicalName": "Mr. Rye",
-    "variants": [
-      "Mr. Rye"
-    ],
-    "category": "civilian",
-    "roles": [
-      "\"Persecuting a helpless woman\" — land dispute escalated",
-      "Land claim continues — boundary dispute",
-      "Land claim — will pay over appraisal value"
-    ],
-    "ranks": [],
-    "letterCount": 3,
-    "letters": [
-      "LTR-1863-01-02-001",
-      "LTR-1863-03-02-001",
-      "LTR-1863-04-16-001"
-    ],
-    "firstAppearance": "1863-01-02",
-    "lastAppearance": "1863-04-16"
-  },
-  {
     "id": "PER-savage",
     "canonicalName": "Mr. Savage",
     "variants": [
-      "Mr. Savage"
+      "Mr. Savage",
+      "Savage"
     ],
     "category": "civilian",
     "roles": [
       "Financial settlement pending — $16.55",
       "Holds Alexander's $500",
-      "Sold lots at $500/acre near Mrs. Turner's"
+      "Sold lots at $500/acre near Mrs. Turner's",
+      "`stated`"
     ],
     "ranks": [],
     "letterCount": 3,
@@ -2897,7 +2942,7 @@
   },
   {
     "id": "PER-lablue",
-    "canonicalName": "Lablue",
+    "canonicalName": "LaBlue",
     "variants": [
       "LaBlue",
       "Lablue"
@@ -2925,7 +2970,8 @@
     "category": "civilian",
     "roles": [
       "On same boat from Burlington — going to New York",
-      "Respects sent"
+      "Respects sent",
+      "Respects sent to -- acquaintance in Champlain"
     ],
     "ranks": [],
     "letterCount": 2,
@@ -3430,6 +3476,26 @@
     "lastAppearance": "1864-02-18"
   },
   {
+    "id": "PER-pollard",
+    "canonicalName": "Pollard",
+    "variants": [
+      "Pollard"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Getting married to Mary Jane (Brinkerhoff girl)",
+      "May have married Mary Ann Brinkerhoff — Charles asks"
+    ],
+    "ranks": [],
+    "letterCount": 2,
+    "letters": [
+      "LTR-1862-12-08-001",
+      "LTR-1862-12-09-001"
+    ],
+    "firstAppearance": "1862-12-08",
+    "lastAppearance": "1862-12-09"
+  },
+  {
     "id": "PER-joe",
     "canonicalName": "Joe",
     "variants": [
@@ -3471,6 +3537,27 @@
     ],
     "firstAppearance": "1862-12-26",
     "lastAppearance": "1863-06-10"
+  },
+  {
+    "id": "PER-dixon",
+    "canonicalName": "Mr. Dixon",
+    "variants": [
+      "Dixon",
+      "Mr. Dixon"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Brought letter to hospital",
+      "Teacher in the teacher class — Frances helped Tombe during his recitation to Mr. Dixon"
+    ],
+    "ranks": [],
+    "letterCount": 2,
+    "letters": [
+      "LTR-1862-12-26-001",
+      "LTR-1864-08-22-001"
+    ],
+    "firstAppearance": "1862-12-26",
+    "lastAppearance": "1864-08-22"
   },
   {
     "id": "PER-sigel",
@@ -3601,11 +3688,14 @@
     "id": "PER-clark",
     "canonicalName": "Mr. Clark",
     "variants": [
+      "Clark",
       "Mr. Clark"
     ],
     "category": "civilian",
     "roles": [
       "Caring for horse and heifer",
+      "Caring for horse/heifer at home",
+      "Home aide — cares for horse and animals",
       "Predicted good luck — won't come true"
     ],
     "ranks": [],
@@ -3616,6 +3706,26 @@
     ],
     "firstAppearance": "1863-03-29",
     "lastAppearance": "1863-08-21"
+  },
+  {
+    "id": "PER-abram-fry",
+    "canonicalName": "Abram Fry",
+    "variants": [
+      "Abram Fry"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Story \"very doubtful\" — dismissed",
+      "Witnessed/described Henry's grave headboard"
+    ],
+    "ranks": [],
+    "letterCount": 2,
+    "letters": [
+      "LTR-1863-04-27-001",
+      "LTR-1863-05-13-001"
+    ],
+    "firstAppearance": "1863-04-27",
+    "lastAppearance": "1863-05-13"
   },
   {
     "id": "PER-grandmother-mcneill",
@@ -3668,7 +3778,8 @@
     "category": "civilian",
     "roles": [
       "Regards",
-      "Will live with Mother this winter"
+      "Will live with Mother this winter",
+      "`stated`"
     ],
     "ranks": [],
     "letterCount": 2,
@@ -3911,6 +4022,26 @@
     ],
     "firstAppearance": "1864-06-13",
     "lastAppearance": "1865-06-12"
+  },
+  {
+    "id": "PER-martin",
+    "canonicalName": "Martin",
+    "variants": [
+      "Martin"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Paid 30¢ share of freight",
+      "Soldier in regiment — sent $70 home with Charles and James"
+    ],
+    "ranks": [],
+    "letterCount": 2,
+    "letters": [
+      "LTR-1864-06-29-001",
+      "LTR-1865-07-13-001"
+    ],
+    "firstAppearance": "1864-06-29",
+    "lastAppearance": "1865-07-13"
   },
   {
     "id": "PER-hardee",
@@ -6507,6 +6638,24 @@
     "lastAppearance": "1862-10-01"
   },
   {
+    "id": "PER-stonewall-jackson",
+    "canonicalName": "Stonewall Jackson",
+    "variants": [
+      "Stonewall Jackson"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Confederate general — headquarters 7.5 miles from McDonald's position"
+    ],
+    "ranks": [],
+    "letterCount": 1,
+    "letters": [
+      "LTR-1862-10-01-001"
+    ],
+    "firstAppearance": "1862-10-01",
+    "lastAppearance": "1862-10-01"
+  },
+  {
     "id": "PER-davalls",
     "canonicalName": "DaValls",
     "variants": [
@@ -7183,6 +7332,42 @@
     "lastAppearance": "1862-12-08"
   },
   {
+    "id": "PER-lyman",
+    "canonicalName": "Lyman",
+    "variants": [
+      "Lyman"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Ben Bouron's brother at Yorktown — Ben going to visit him"
+    ],
+    "ranks": [],
+    "letterCount": 1,
+    "letters": [
+      "LTR-1862-12-08-001"
+    ],
+    "firstAppearance": "1862-12-08",
+    "lastAppearance": "1862-12-08"
+  },
+  {
+    "id": "PER-mary-ann-brinkerhoff",
+    "canonicalName": "Mary Ann Brinkerhoff",
+    "variants": [
+      "Mary Ann Brinkerhoff"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Woman Pollard may have married — Charles asks about it"
+    ],
+    "ranks": [],
+    "letterCount": 1,
+    "letters": [
+      "LTR-1862-12-08-001"
+    ],
+    "firstAppearance": "1862-12-08",
+    "lastAppearance": "1862-12-08"
+  },
+  {
     "id": "PER-dennis-hayes",
     "canonicalName": "Dennis Hayes",
     "variants": [
@@ -7219,14 +7404,14 @@
     "lastAppearance": "1862-12-09"
   },
   {
-    "id": "PER-pollard",
-    "canonicalName": "Pollard",
+    "id": "PER-carter-boys",
+    "canonicalName": "The Carter boys",
     "variants": [
-      "Pollard"
+      "The Carter boys"
     ],
     "category": "civilian",
     "roles": [
-      "Getting married to Mary Jane (Brinkerhoff girl)"
+      "Having heavy shirts made to send to soldiers"
     ],
     "ranks": [],
     "letterCount": 1,
@@ -7237,14 +7422,14 @@
     "lastAppearance": "1862-12-09"
   },
   {
-    "id": "PER-carter-boys",
-    "canonicalName": "The Carter boys",
+    "id": "PER-mary-jane-brinkerhoff",
+    "canonicalName": "Mary Jane Brinkerhoff",
     "variants": [
-      "The Carter boys"
+      "Mary Jane Brinkerhoff"
     ],
     "category": "civilian",
     "roles": [
-      "Having heavy shirts made to send to soldiers"
+      "Marrying Pollard this week — 'a Mrs. Brinkerhoff old girl'"
     ],
     "ranks": [],
     "letterCount": 1,
@@ -7351,6 +7536,60 @@
     "lastAppearance": "1862-12-26"
   },
   {
+    "id": "PER-norman",
+    "canonicalName": "Norman",
+    "variants": [
+      "Norman"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Cyrus Kellogg's uncle — Kellogg visits him at camp"
+    ],
+    "ranks": [],
+    "letterCount": 1,
+    "letters": [
+      "LTR-1862-12-26-001"
+    ],
+    "firstAppearance": "1862-12-26",
+    "lastAppearance": "1862-12-26"
+  },
+  {
+    "id": "PER-nodiah-moores",
+    "canonicalName": "Mrs. Nodiah Moores",
+    "variants": [
+      "Mrs. Nodiah Moores"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Hosted a party that S. Tombe was invited to"
+    ],
+    "ranks": [],
+    "letterCount": 1,
+    "letters": [
+      "LTR-1862-12-26-001"
+    ],
+    "firstAppearance": "1862-12-26",
+    "lastAppearance": "1862-12-26"
+  },
+  {
+    "id": "PER-vanberton",
+    "canonicalName": "Mrs. Vanberton",
+    "variants": [
+      "Mrs. Vanberton"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Urged Tombe to come see Charles — 'he was very polite'"
+    ],
+    "ranks": [],
+    "letterCount": 1,
+    "letters": [
+      "LTR-1862-12-26-001"
+    ],
+    "firstAppearance": "1862-12-26",
+    "lastAppearance": "1862-12-26"
+  },
+  {
     "id": "PER-james-luther",
     "canonicalName": "James Luther",
     "variants": [
@@ -7359,6 +7598,24 @@
     "category": "civilian",
     "roles": [
       "Sends respects — looks fat and healthy"
+    ],
+    "ranks": [],
+    "letterCount": 1,
+    "letters": [
+      "LTR-1863-01-02-001"
+    ],
+    "firstAppearance": "1863-01-02",
+    "lastAppearance": "1863-01-02"
+  },
+  {
+    "id": "PER-turners",
+    "canonicalName": "Mrs. Turners",
+    "variants": [
+      "Mrs. Turners"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Neighbor — Mr. Savage sold lots near her property"
     ],
     "ranks": [],
     "letterCount": 1,
@@ -8111,24 +8368,6 @@
     "lastAppearance": "1863-05-11"
   },
   {
-    "id": "PER-abram-fry",
-    "canonicalName": "Abram Fry",
-    "variants": [
-      "Abram Fry"
-    ],
-    "category": "civilian",
-    "roles": [
-      "Story \"very doubtful\" — dismissed"
-    ],
-    "ranks": [],
-    "letterCount": 1,
-    "letters": [
-      "LTR-1863-05-13-001"
-    ],
-    "firstAppearance": "1863-05-13",
-    "lastAppearance": "1863-05-13"
-  },
-  {
     "id": "PER-l--bond",
     "canonicalName": "L. Bond",
     "variants": [
@@ -8238,12 +8477,14 @@
   },
   {
     "id": "PER-redington",
-    "canonicalName": "Col. Redington",
+    "canonicalName": "Colonel Redington",
     "variants": [
-      "Col. Redington"
+      "Col. Redington",
+      "Colonel Redington"
     ],
     "category": "military",
     "roles": [
+      "60th NY — singing at battle of Chancellorsville; 'a man of courage'",
       "Described: minimum height, slender, erect, bargainer, man of courage; singing during shellfire"
     ],
     "ranks": [
@@ -8692,6 +8933,7 @@
     ],
     "category": "military",
     "roles": [
+      "Commanding regiment while Col. away",
       "Doesn't like Alexandria"
     ],
     "ranks": [
@@ -8928,11 +9170,13 @@
     "id": "PER-trombly",
     "canonicalName": "Corporal Trombly",
     "variants": [
-      "Corporal Trombly"
+      "Corporal Trombly",
+      "Trombly"
     ],
     "category": "military",
     "roles": [
-      "2nd Lieut. in colored regt. — passed examining board"
+      "2nd Lieut. in colored regt. — passed examining board",
+      "`stated`"
     ],
     "ranks": [
       "Corporal"
@@ -9168,11 +9412,13 @@
     "id": "PER-bostwick",
     "canonicalName": "Mrs. Bostwick",
     "variants": [
+      "Bostwick",
       "Mrs. Bostwick"
     ],
     "category": "civilian",
     "roles": [
-      "Having dolorous times with Mother"
+      "Having dolorous times with Mother",
+      "`stated`"
     ],
     "ranks": [],
     "letterCount": 1,
@@ -9316,11 +9562,13 @@
     "id": "PER-burroughs",
     "canonicalName": "Mr. Burroughs",
     "variants": [
+      "Burroughs",
       "Mr. Burroughs"
     ],
     "category": "civilian",
     "roles": [
-      "Local man — Thomas compared to his build"
+      "Local man — Thomas compared to his build",
+      "`stated`"
     ],
     "ranks": [],
     "letterCount": 1,
@@ -9403,24 +9651,6 @@
     ],
     "firstAppearance": "1864-05-31",
     "lastAppearance": "1864-05-31"
-  },
-  {
-    "id": "PER-martin",
-    "canonicalName": "Martin",
-    "variants": [
-      "Martin"
-    ],
-    "category": "civilian",
-    "roles": [
-      "Paid 30¢ share of freight"
-    ],
-    "ranks": [],
-    "letterCount": 1,
-    "letters": [
-      "LTR-1864-06-29-001"
-    ],
-    "firstAppearance": "1864-06-29",
-    "lastAppearance": "1864-06-29"
   },
   {
     "id": "PER-barker",
@@ -9665,24 +9895,6 @@
     "lastAppearance": "1864-08-08"
   },
   {
-    "id": "PER-dixon",
-    "canonicalName": "Dixon",
-    "variants": [
-      "Dixon"
-    ],
-    "category": "civilian",
-    "roles": [
-      "Brought letter to hospital"
-    ],
-    "ranks": [],
-    "letterCount": 1,
-    "letters": [
-      "LTR-1864-08-22-001"
-    ],
-    "firstAppearance": "1864-08-22",
-    "lastAppearance": "1864-08-22"
-  },
-  {
     "id": "PER-f--a--cook",
     "canonicalName": "F. A. Cook",
     "variants": [
@@ -9815,6 +10027,24 @@
     "lastAppearance": "1864-12-05"
   },
   {
+    "id": "PER-avey",
+    "canonicalName": "Miss Avey",
+    "variants": [
+      "Miss Avey"
+    ],
+    "category": "civilian",
+    "roles": [
+      "`stated`"
+    ],
+    "ranks": [],
+    "letterCount": 1,
+    "letters": [
+      "LTR-1864-12-09-001"
+    ],
+    "firstAppearance": "1864-12-09",
+    "lastAppearance": "1864-12-09"
+  },
+  {
     "id": "PER-tom-moore",
     "canonicalName": "Tom Moore",
     "variants": [
@@ -9872,10 +10102,12 @@
     "id": "PER-denys",
     "canonicalName": "Miss Denys",
     "variants": [
-      "Miss Denys"
+      "Miss Denys",
+      "Mrs. Denys"
     ],
     "category": "civilian",
     "roles": [
+      "Champlain neighbor visited by family",
       "Getting pretty — making bags for soldiers"
     ],
     "ranks": [],
@@ -9923,6 +10155,24 @@
     ],
     "firstAppearance": "1865-06-16",
     "lastAppearance": "1865-06-16"
+  },
+  {
+    "id": "PER-hoff",
+    "canonicalName": "Mrs. Hoff",
+    "variants": [
+      "Mrs. Hoff"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Family friend — Alexander sends love"
+    ],
+    "ranks": [],
+    "letterCount": 1,
+    "letters": [
+      "LTR-1865-06-27-001"
+    ],
+    "firstAppearance": "1865-06-27",
+    "lastAppearance": "1865-06-27"
   },
   {
     "id": "PER-john-sweeney",
@@ -10099,6 +10349,24 @@
     "category": "civilian",
     "roles": [
       "Staying with aunt — suspected of theft"
+    ],
+    "ranks": [],
+    "letterCount": 1,
+    "letters": [
+      "LTR-1870-11-28-001"
+    ],
+    "firstAppearance": "1870-11-28",
+    "lastAppearance": "1870-11-28"
+  },
+  {
+    "id": "PER-mendes",
+    "canonicalName": "The Mendes",
+    "variants": [
+      "The Mendes"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Visitors at Uncle Henry's evening gathering"
     ],
     "ranks": [],
     "letterCount": 1,

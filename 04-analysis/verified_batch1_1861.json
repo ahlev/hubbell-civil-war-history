@@ -1,0 +1,138 @@
+[
+  {
+    "doc_id": "LTR-1861-08-06-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": {
+      "Political commentary": {
+        "present": "yes",
+        "detail": "Cessation of all business at West Point for Ex President Van Buren's death — cannon salutes every half hour, flag at half mast, officers wearing crape for six months, 13 guns before reveille, 30 at evening. National observance of a former president's death.",
+        "confidence": "stated"
+      }
+    },
+    "notes": "All candidate people (Brinckerhoff, Van Buren) already listed. Request for supplies/money rejected — context is about lockers and oil on paper, not a supply request. Political commentary confirmed: the elaborate military honors for Van Buren's death constitute political/national commentary beyond the already-flagged Death and Eyewitness events."
+  },
+  {
+    "doc_id": "LTR-1861-09-05-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": {
+      "Wound/injury reported": {
+        "present": "yes",
+        "detail": "A private from Co. H was shot while on guard by another person playing with guns; the ball killed him within fifteen minutes. This is the third accidental death from carelessness in the regiment.",
+        "confidence": "stated"
+      }
+    },
+    "notes": "All candidate people and places rejected as false positives ('York Times' = newspaper, 'Charles' and 'Mother' = people not places). Battle/combat rejected — 'may never see a battle' expresses absence of combat. Wound/injury confirmed: the shooting IS a wound event (currently only flagged as Death). The soldier was shot (injured) and died — both flags should apply."
+  },
+  {
+    "doc_id": "LTR-1861-10-17-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": {
+      "Battle/combat described": {
+        "present": "yes",
+        "detail": "Describes the past skirmish where Kellogg and others were captured by rebels. Escaped prisoner passed through three rebel regiments and had 'a ball glance by his face the time he was taken.' Armed engagement with casualties is described.",
+        "confidence": "stated"
+      },
+      "Wound/injury reported": {
+        "present": "yes",
+        "detail": "Escaped prisoner had 'a ball glance by his face the time he was taken' — a near-miss/graze wound during the skirmish.",
+        "confidence": "stated"
+      }
+    },
+    "notes": "All candidate people (General Gormon) already listed. Battle/combat confirmed: existing flag says 'no' but the letter describes a past skirmish with rebels in detail (prisoners taken, ball near face, three rebel regiments traversed). Wound/injury confirmed: ball glancing by face is a reported injury. Illness rejected: prisoner 'pretended that he was sick' — feigned illness for escape purposes, not genuine illness."
+  },
+  {
+    "doc_id": "LTR-1861-11-30-002",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "place_as_written": "Virginia",
+        "modern_id": "Virginia",
+        "confidence": "stated"
+      }
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": {
+        "present": "yes",
+        "detail": "Henry received a letter from Frances — 'I was very glad to get a letter from you'",
+        "confidence": "stated"
+      },
+      "Morale crisis": {
+        "present": "yes",
+        "detail": "Henry admits 'I have been a little homesick lately, but I have got over it' — mild but explicitly stated homesickness",
+        "confidence": "stated"
+      }
+    },
+    "notes": "Gorman already listed in People. Virginia IS mentioned ('one time in Virginia we had a pretty hard time') and is NOT in the existing Places table (only Camp McClellan listed). Both flags confirmed: letter receipt is explicit; homesickness is stated though brief. Existing flags show 0 yes flags — these are genuine gaps."
+  },
+  {
+    "doc_id": "LTR-1861-12-08-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": {
+      "Request for supplies/money": {
+        "present": "yes",
+        "detail": "Alexander asks 'Send me papers as often as you can. We have nothing to read here.' Direct request for reading material.",
+        "confidence": "stated"
+      }
+    },
+    "notes": "All candidate people and places already listed or false positives. Request for supplies confirmed: 'Send me papers as often as you can' is a clear request. Existing flag shows 'no' for this."
+  },
+  {
+    "doc_id": "LTR-1861-12-08-002",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "place_as_written": "Kalarama Heights",
+        "modern_id": "Kalorama Heights, Washington, D.C.",
+        "confidence": "stated"
+      },
+      {
+        "place_as_written": "Relay House",
+        "modern_id": "Relay, MD (B&O Railroad junction)",
+        "confidence": "stated"
+      }
+    ],
+    "verified_flags": {},
+    "notes": "All candidate people rejected (Camp Jackson = place; Kalarama Heights = place; Orderly Sergeant = rank; Partridges = Mr. Partridge already listed; Relay House = place). Kalarama Heights confirmed: 'I began a letter when we were at Kalarama Heights' — not in existing places (only Camp Jackson and Champlain listed). Relay House confirmed: 'Luther as one of an escort to the Major as he was oblige to go back to the Relay House on business' — not in existing places. Morale crisis rejected: 'Don't be discouraged' is motivational encouragement to James about education, not a report of personal despair."
+  },
+  {
+    "doc_id": "LTR-1861-12-19-001",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "place_as_written": "Champlain",
+        "modern_id": "Champlain, Clinton County, NY",
+        "confidence": "stated"
+      },
+      {
+        "place_as_written": "Chasy",
+        "modern_id": "Chazy, Clinton County, NY",
+        "confidence": "stated"
+      }
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": {
+        "present": "yes",
+        "detail": "Henry received a letter from Charles and two papers — 'I received a letter from you and also two papers'",
+        "confidence": "stated"
+      }
+    },
+    "notes": "Minnesota Regts is a unit not a person. Alexander is a person not a place. Champlain confirmed: 'some of the Champlain boys' and letters directed there — not in existing Places (only Camp McClellan listed). Chazy confirmed: 'E. Graves from Chasy' — not in existing Places. Receipt confirmed: explicit statement of receiving letter and papers. Battle/combat rejected: 'march in line of battle' describes a drill formation not actual combat. Illness rejected: building a hospital is not reporting illness."
+  },
+  {
+    "doc_id": "LTR-1861-12-20-002",
+    "verified_people": [],
+    "verified_places": [
+      {
+        "place_as_written": "Washington",
+        "modern_id": "Washington, D.C.",
+        "confidence": "stated"
+      }
+    ],
+    "verified_flags": {},
+    "notes": "Gorman and Minnesota Regt already listed or not persons. Washington confirmed: 'Some of the boys bought one in Washington' and 'I have written to Alex, but directed to Washington' — Washington mentioned but NOT in existing Places table (only Camp McClellan listed). Receipt rejected: 'I have not heard from him' reports non-receipt."
+  }
+]

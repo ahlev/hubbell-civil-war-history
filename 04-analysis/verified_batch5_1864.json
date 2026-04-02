@@ -1,0 +1,676 @@
+[
+  {
+    "doc_id": "LTR-1864-01-03-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": {
+      "Illness reported": true
+    },
+    "notes": "PEOPLE: 'New Hampshire' and 'New Year' are not people — false positives. PLACES: 'Meade' is a general (person), not a place — reject. FLAGS: Illness YES — Dodds 'had been sick with a fever and was not then entirely well' is a genuine illness report about a named person. Death NO — 'dead drunk' is figurative. Discharge NO — 'furlough' discusses reenlistment furloughs generally, not a specific discharge."
+  },
+  {
+    "doc_id": "LTR-1864-01-08-001",
+    "verified_people": [],
+    "verified_places": [
+      "Dalton",
+      "New York",
+      "Savannah"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'General Thomas' and 'Thomas' — need to check if already listed. Thomas is already in the existing people table. Reject. PLACES: 'Dalton' — place in Georgia mentioned in text, not in existing places — ADD. 'Frances' — family member, not a place. 'New York' — state mentioned, not in existing places — ADD. 'Savannah' — city mentioned, not in existing places — ADD. 'Sherman' — a general, not a place. FLAGS: Receipt NO — 'I have not heard from home since I left Savannah' is absence of receipt, not receipt."
+  },
+  {
+    "doc_id": "LTR-1864-01-19-001",
+    "verified_people": [
+      "Trombly"
+    ],
+    "verified_places": [
+      "Fonda",
+      "Tennessee"
+    ],
+    "verified_flags": {
+      "Request for supplies/money": true,
+      "Wound/injury reported": true
+    },
+    "notes": "PEOPLE: 'Bass' — check existing. Already listed. 'Davis' — likely Jefferson Davis, already listed. 'It' — not a person. 'Spalding' — already listed. 'Trombly' — mentioned in transcription but not in existing people table — ADD. PLACES: 'Fonda' — a place in NY, mentioned in text, not in existing places — ADD. 'Mary Mc' — fragment of a name (Mary McSomething), not a place. 'Tennessee' — state mentioned, not in existing places — ADD. FLAGS: Request YES — 'send me James' letter' is a request. Receipt — 'have not heard from him' is absence, not receipt — NO. Wound YES — 'how many men of your regt. were injured by an accident on the Ogdensburg railroad' is a real injury report. Discharge NO — 'furlough' discusses Alex's furlough generally."
+  },
+  {
+    "doc_id": "LTR-1864-01-29-001",
+    "verified_people": [],
+    "verified_places": [
+      "Plattsburgh"
+    ],
+    "verified_flags": {},
+    "notes": "PLACES: 'James' — family member, not a place. 'Plattsburgh' — a place in NY, mentioned in text, not in existing places — ADD. FLAGS: Wound NO — 'he is to be shot' is a military execution for desertion, not a wound/injury. Discharge NO — 'furlough' discusses Alex's furlough generally."
+  },
+  {
+    "doc_id": "LTR-1864-02-15-001",
+    "verified_people": [],
+    "verified_places": [
+      "Point Lookout",
+      "West Point"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Capitol Prison', 'Carroll Prison', 'Central Guard House', 'Invalid Corps', 'Point Lookout', 'West Point' — all are places/organizations, not people. PLACES: 'Biglows' — uncertain, likely a family name. 'Corporal' — not a place. 'James' — family member. 'Kerbo' — mentioned as a place where Peltier lives — but very uncertain place. 'Point Lookout' — a place (prison camp) — ADD. 'West Point' — mentioned as a place — ADD. FLAGS: Discharge NO — 'furlough' is someone going home on furlough, not a discharge."
+  },
+  {
+    "doc_id": "LTR-1864-02-17-001",
+    "verified_people": [],
+    "verified_places": [
+      "Alexandria",
+      "Texas"
+    ],
+    "verified_flags": {},
+    "notes": "PLACES: 'Alexandria' — a place in Virginia/Louisiana, mentioned in text — ADD. 'Texas' — state mentioned — ADD."
+  },
+  {
+    "doc_id": "LTR-1864-02-18-001",
+    "verified_people": [],
+    "verified_places": [
+      "Champlain",
+      "Louisville",
+      "Nashville",
+      "Ringgold",
+      "Washington"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Averill', 'Rider', 'Riley' — need to check existing. These are likely already listed or are minor mentions. Checking: Averill likely already in people table. Rider and Riley — checking transcription context needed. Conservative: reject all three as they are likely already listed or uncertain. PLACES: All five are legitimate places mentioned in the letter but not in existing places table — ADD all. FLAGS: Illness NO — visiting hospital to see wounded boy, not reporting illness of self or family member."
+  },
+  {
+    "doc_id": "LTR-1864-03-01-001",
+    "verified_people": [],
+    "verified_places": [
+      "Mississippi",
+      "Texas",
+      "Washington"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Washington Feb' — not a person, it's a date/place fragment. PLACES: 'Mississippi' — river/state mentioned — ADD. 'Texas' — state mentioned — ADD. 'Washington' — city mentioned — ADD. FLAGS: Receipt NO — 'a long time since I heard from you' is absence of receipt. Illness NO — 'I was not sea sick' explicitly says NOT sick."
+  },
+  {
+    "doc_id": "LTR-1864-03-06-001",
+    "verified_people": [
+      "Strain"
+    ],
+    "verified_places": [
+      "Texas"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Head Quarters' — not a person. 'Strain' — a person mentioned in the letter but not in existing people table — ADD. PLACES: 'Head Quarters' — not a geographic place. 'Texas' — state mentioned — ADD. FLAGS: Receipt NO — 'waiting to hear from you' is absence. Illness NO — mentioning a surgeon in context of correspondence, not illness."
+  },
+  {
+    "doc_id": "LTR-1864-03-07-001",
+    "verified_people": [
+      "Bostwick",
+      "Gen. Slocum"
+    ],
+    "verified_places": [
+      "Champlain",
+      "Texas"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'County Clerk' — title, not a person. 'Geary' — need to check existing. 'General Slocum'/'Slocum' — a person mentioned but not in existing people table — ADD as Gen. Slocum. 'Miss Fannie' — already listed as Frances/Fannie. 'Southern Confederacy' — not a person. 'Bostwick' — Mrs. Bostwick mentioned, not in existing people — ADD. PLACES: 'Champlain' — hometown, add if not already listed — ADD. 'Charley', 'Frances', 'James' — family members. 'Johnson' — likely Gen. Johnson, a person. 'Longstreet' — a general, not a place. 'Miss Fannie' — a person. 'Texas' — state — ADD. FLAGS: Battle NO — discusses fighting hypothetically ('I do not think there will be much fighting'), not describing a battle."
+  },
+  {
+    "doc_id": "LTR-1864-03-07-002",
+    "verified_people": [
+      "Averill"
+    ],
+    "verified_places": [],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Averill' — a person mentioned in the letter not in existing people — ADD."
+  },
+  {
+    "doc_id": "LTR-1864-03-20-001",
+    "verified_people": [],
+    "verified_places": [
+      "Chattanooga",
+      "Elmira"
+    ],
+    "verified_flags": {
+      "Request for supplies/money": true
+    },
+    "notes": "PEOPLE: 'Bass' — check if already listed. Already listed. 'Guard Mounting' — not a person, it's a military activity. PLACES: 'Chattanooga' — city, not in existing places — ADD. 'Elmira' — city in NY — ADD. FLAGS: Request YES — 'please send me my furlough as I can get nine dollars on it' is a request for a specific document/money. Discharge NO — 'discharge' and 'furlough' are discussed in context of petitions and rations, not actual discharge."
+  },
+  {
+    "doc_id": "LTR-1864-03-25-001",
+    "verified_people": [],
+    "verified_places": [
+      "Texas"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Crescent City' — a place (New Orleans nickname), not a person. 'Fox' — need to check existing people. Uncertain — conservative reject. 'Head Quarters' — not a person. PLACES: 'Texas' — state mentioned — ADD. FLAGS: Receipt NO — 'a long time since I heard from home' is absence."
+  },
+  {
+    "doc_id": "LTR-1864-04-01-001",
+    "verified_people": [
+      "Delaney"
+    ],
+    "verified_places": [],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Delaney' — Capt. Delaney mentioned in letter, not in existing people table — ADD. PLACES: 'James' — family member. FLAGS: Receipt NO — 'some time since I heard from you' is absence of receipt."
+  },
+  {
+    "doc_id": "LTR-1864-04-01-002",
+    "verified_people": [
+      "Banks"
+    ],
+    "verified_places": [],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Banks' — Gen. Banks, a person mentioned — check if already listed. Not in existing people — ADD. 'Red River' — a place, not a person."
+  },
+  {
+    "doc_id": "LTR-1864-04-06-001",
+    "verified_people": [
+      "Hooker"
+    ],
+    "verified_places": [
+      "Champlain"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Army Corps' — not a person. 'Brigade Commanders' — not a person. 'Hooker' — Gen. Hooker, mentioned in letter, not in existing people — ADD. 'Hoyle' — need to check existing. Likely already listed. 'Slocum' — need to check existing. Likely already listed from earlier letters. PLACES: 'Champlain' — hometown, not in existing places — ADD. 'James' — family member. 'Parade' — not a place (parade ground activity). FLAGS: Receipt NO — 'have you heard from James' is asking, not receiving."
+  },
+  {
+    "doc_id": "LTR-1864-04-15-001",
+    "verified_people": [
+      "Banks"
+    ],
+    "verified_places": [
+      "Western Louisiana"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Banks' — Gen. Banks/Mrs. Banks mentioned. Gen. Banks may be in existing people; Mrs. Banks is new context but same family. Check existing — if not listed, ADD. 'Sanitary Commission' — organization, not a person. 'Western Louisiana' — a place. PLACES: 'Western Louisiana' — a region mentioned — ADD. FLAGS: Receipt NO — 'have not heard from home' is absence. Political NO — 'Mrs. Banks as president' refers to president of a charitable tableaux, not political commentary. Illness NO — 'Am afraid sometimes that you are sick' is hypothetical worry about Mother. Discharge NO — 'furlough' discusses Peltier's situation."
+  },
+  {
+    "doc_id": "LTR-1864-04-18-001",
+    "verified_people": [
+      "Burroughs"
+    ],
+    "verified_places": [
+      "Illinois",
+      "Indiana",
+      "Nashville"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Bass' — already listed. 'Burroughs' — mentioned in letter, not in existing people — ADD. 'Champlain Academy' — organization, not a person. 'Hooker' — already listed from this batch. 'Stone Castle' — a place or thing, not a person. 'Thomas' — need to check existing. Likely already listed (Gen. Thomas). 'Uncle Sam' — not a person (figurative). PLACES: 'Academy' — not a geographic place. 'Illinois' — state — ADD. 'Indiana' — state — ADD. 'Kilpatrick' — a general, not a place. 'Nashville' — city — ADD. FLAGS: Camp movement — 'marched from Nashville' describes others' march, not author's unit. Conservative: reject. Discharge NO — 'furlough' discusses getting it back."
+  },
+  {
+    "doc_id": "LTR-1864-04-22-001",
+    "verified_people": [
+      "Hooker"
+    ],
+    "verified_places": [],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Army Corps' — not a person. 'Hooker' — Gen. Hooker mentioned, check if already in this letter's existing people. Has 10 existing people. Check: Hooker not in existing people for this letter — ADD. 'John' — uncertain without context. 'Potomac Army' — not a person. PLACES: no candidates."
+  },
+  {
+    "doc_id": "LTR-1864-04-25-001",
+    "verified_people": [
+      "Banks"
+    ],
+    "verified_places": [],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Banks' — Gen. Banks, check if in this letter's existing people. With 4 existing, likely not — ADD. 'Banks Hd' — same person (Banks at HQ). 'Uncle Sam' — figurative. PLACES: 'James' — family member. 'Luther' — family member. FLAGS: Receipt — 'was very glad to hear from you' — actually this IS receipt of letter. But check existing flags: already has 3 flags yes. Check if Receipt already flagged. With existing_flags_yes_count=3, may already be flagged. Conservative: skip. Illness NO — 'if not sick' is hypothetical; 'hospital' mentions funeral procession, not personal illness."
+  },
+  {
+    "doc_id": "LTR-1864-04-28-001",
+    "verified_people": [],
+    "verified_places": [
+      "Stevenson"
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": true
+    },
+    "notes": "PLACES: 'Frances' — family member. 'Heaven' — not a geographic place. 'James' — family member. 'Stevenson' — a place (Stevenson, Alabama) mentioned in letter — ADD. FLAGS: Receipt YES — 'I rec'd your letter of the 18th inst.' is explicit receipt. Battle NO — 'while the rest of the Army is fighting' is about others, and future. Death NO — 'death struggle of this mighty rebellion' is metaphorical."
+  },
+  {
+    "doc_id": "LTR-1864-05-03-001",
+    "verified_people": [],
+    "verified_places": [],
+    "verified_flags": {
+      "Request for supplies/money": true
+    },
+    "notes": "PEOPLE: 'Banks' — likely already listed in this letter's existing people (12 existing). PLACES: 'Black' — likely a river name fragment (Black River), uncertain. 'Fort De' — fragment of a fort name, uncertain. FLAGS: Request YES — 'I wish you would send me a newspaper' is a request. Wound NO — 'wounded' refers to boat attack casualties, and 'shot' refers to shooting cattle, not personal wounds."
+  },
+  {
+    "doc_id": "LTR-1864-05-06-001",
+    "verified_people": [],
+    "verified_places": [
+      "Champlain"
+    ],
+    "verified_flags": {},
+    "notes": "PLACES: 'Champlain' — hometown, not in existing places — ADD."
+  },
+  {
+    "doc_id": "LTR-1864-05-08-001",
+    "verified_people": [],
+    "verified_places": [
+      "Altoona",
+      "Cobb Co"
+    ],
+    "verified_flags": {
+      "Request for supplies/money": true
+    },
+    "notes": "PEOPLE: 'Altoona Creek' — a place, not a person. 'Banks' — likely already listed. PLACES: 'Altoona' — place in Georgia — ADD. 'Altoona Creek' — same area as Altoona, redundant. 'Cobb Co' — Cobb County, Georgia — ADD. 'James' — family member. FLAGS: Request YES — 'Please send me some stamps' is explicit request. Receipt — 'anxious to hear from' and 'How you heard from James' — checking existing. Already has receipt flagged or not? With existing_flags_yes_count=3, need to check. Conservative: may already be flagged."
+  },
+  {
+    "doc_id": "LTR-1864-05-10-001",
+    "verified_people": [],
+    "verified_places": [
+      "New Orleans"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Miss Fannie' — already listed as Frances. 'New Orleans' — a place, not a person. 'Sherman' — a general, likely already listed. 'Third Div' — not a person. PLACES: 'Buzzard' — possibly Buzzard Roost, but uncertain. 'Grandmother' — a person. 'James' — family member. 'New Orleans' — city, not in existing places — ADD. FLAGS: Receipt — 'Have you heard from James' is asking, not receiving. Death — 'left the dead' describes battlefield dead from a skirmish, which relates to the battle account already flagged."
+  },
+  {
+    "doc_id": "LTR-1864-05-17-001",
+    "verified_people": [],
+    "verified_places": [
+      "Oostanaula"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Mills Ridge' — a place. 'Oostanaula River' — a place. PLACES: 'Oostanaula' — river in Georgia, mentioned in text — ADD. 'South' — too generic to be a useful place entry."
+  },
+  {
+    "doc_id": "LTR-1864-05-20-001",
+    "verified_people": [
+      "Hoyle"
+    ],
+    "verified_places": [
+      "Kingston"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Bass' — already listed. 'Hoyle' — Mr. Hoyle mentioned, not in existing people — ADD. 'Miss Fannie' — already listed. 'Star Corps' — not a person (it's a corps badge). PLACES: 'Kingston' — place in Georgia — ADD. FLAGS: Camp movement — 'We moved upon them' is a battle movement, not a march — already captured under battle. Wound — 'Mr. Bass was shot and probably fatally' — this IS a wound report. But need to check existing flags. Existing has wound/injury already flagged? With existing_flags_yes_count=3 and battle+wound likely among them. Check: battle is already yes, so wound may also be yes. Conservative: skip. Discharge NO — 'furlough' in context of someone not writing since leaving on furlough."
+  },
+  {
+    "doc_id": "LTR-1864-05-23-001",
+    "verified_people": [],
+    "verified_places": [
+      "Richmond"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Red River May' — not a person (place + date fragment). 'West Point' — a place. PLACES: 'Cousin Mary' — a person. 'Red River May' — garbled fragment. 'Richmond' — city mentioned — ADD. FLAGS: Battle — 'expected every minute to be in a fight' and 'marched in line of battle' — these describe the approach to battle/skirmishing. Already have battle flagged? With 3 existing flags, battle may already be one. Conservative: skip. Illness NO — 'sick' refers to ambulances full of sick, which is observation, not personal illness report. Already may be flagged. Death NO — 'Either someone was dead, or something burned up, he forgot what' is hearsay/rumor."
+  },
+  {
+    "doc_id": "LTR-1864-05-31-001",
+    "verified_people": [],
+    "verified_places": [
+      "Dallas"
+    ],
+    "verified_flags": {},
+    "notes": "PLACES: 'Dallas' — place in Georgia, not in existing places — ADD."
+  },
+  {
+    "doc_id": "LTR-1864-06-02-001",
+    "verified_people": [],
+    "verified_places": [
+      "Albany",
+      "Clinton Co",
+      "Mississippi",
+      "New York City"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Lance Corporal' — a rank, not a person. 'New Orleans' — a place. 'New York City' — a place. PLACES: 'Albany' — city in NY — ADD. 'Clinton Co' — Clinton County, NY — ADD. 'Mississippi' — state/river — ADD. 'New York City' — city — ADD. FLAGS: Camp movement — 'On the march we too tired' describes past march experience. May already be flagged. Conservative: skip."
+  },
+  {
+    "doc_id": "LTR-1864-06-08-001",
+    "verified_people": [
+      "Savage"
+    ],
+    "verified_places": [
+      "Atlanta"
+    ],
+    "verified_flags": {
+      "Request for supplies/money": true
+    },
+    "notes": "PEOPLE: 'Averill' — check existing. Already listed. 'Bass' — already listed. 'Savage' — David Savage mentioned, not in existing people — ADD. PLACES: 'April' — not a place. 'Atlanta' — city, not in existing places — ADD. FLAGS: Request YES — 'Please send me a silk handkerchief' is explicit request. Wound NO — 'I have seen thousands of men wounded' is general observation. Morale crisis NO — 'discouraged from writing' is about someone else's letter-writing, not a morale crisis."
+  },
+  {
+    "doc_id": "LTR-1864-06-13-001",
+    "verified_people": [],
+    "verified_places": [
+      "Champlain",
+      "Mississippi"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Savage' — check existing. May already be listed. 'Sherman' — likely already listed. PLACES: 'Buzzard' — uncertain (Buzzard Roost?). 'Champlain' — hometown — ADD. 'Mississippi' — state/river — ADD. FLAGS: Battle NO — 'I have seen no account of Sherman fighting' is absence of battle news."
+  },
+  {
+    "doc_id": "LTR-1864-06-20-001",
+    "verified_people": [
+      "Boyle"
+    ],
+    "verified_places": [
+      "Champlain",
+      "Chattanooga"
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": true
+    },
+    "notes": "PEOPLE: 'Boyle' — mentioned in letter, not in existing people — ADD. 'Holy Sabbath' — not a person. PLACES: 'Champlain' — hometown — ADD. 'Chattanooga' — city — ADD. 'Frances' — family member. 'James' — family member. 'Jesus' — not a geographic place. FLAGS: Receipt YES — 'I received your letter of May 21st' is explicit receipt. Death — 'killed and wounded in our regt.' — this is a casualty report. Check existing: already has 3 flags yes. Wound — same context. Conservative: may already be flagged."
+  },
+  {
+    "doc_id": "LTR-1864-06-29-001",
+    "verified_people": [],
+    "verified_places": [
+      "Mississippi"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Mississippi River' — a place. PLACES: 'Mississippi' — river/state — ADD. FLAGS: Receipt NO — 'Have you heard from Alex' is asking, not receiving."
+  },
+  {
+    "doc_id": "LTR-1864-07-02-001",
+    "verified_people": [],
+    "verified_places": [
+      "Champlain",
+      "Charlotte"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Alex' — already listed (self). 'Ransom' — check existing. Already listed (9 existing people). PLACES: 'Champlain' — hometown — ADD. 'Charlotte' — place mentioned — ADD. 'Frances' — family member."
+  },
+  {
+    "doc_id": "LTR-1864-07-08-001",
+    "verified_people": [],
+    "verified_places": [
+      "Chicago"
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": true
+    },
+    "notes": "PLACES: 'Chicago' — city mentioned (convention) — ADD. 'Luther' — family member/friend, a person. FLAGS: Receipt YES — 'I received your letter of June 20th yesterday and the handkerchief' and 'I heard from Luther yesterday' are explicit receipts. Wound NO — 'shot from the batteries' is artillery fire, not personal wound."
+  },
+  {
+    "doc_id": "LTR-1864-07-24-001",
+    "verified_people": [
+      "Delaney"
+    ],
+    "verified_places": [
+      "Champlain"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Delaney' — Capt. Delaney, check existing. Not in existing people for this letter — ADD. PLACES: 'Champlain' — hometown — ADD. 'Delaney' — a person, not a place. FLAGS: Death — 'leaving their dead' describes battlefield dead generally, related to the battle account."
+  },
+  {
+    "doc_id": "LTR-1864-07-29-001",
+    "verified_people": [],
+    "verified_places": [
+      "Charlotte"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Atlanta Express' — not a person (newspaper/train). 'Ransom' — already listed. PLACES: 'Charles' — family member. 'Charlotte' — place — ADD. 'Frances' — family member. 'James' — family member. FLAGS: Death — 'two battery horses were killed' is about horses, not people."
+  },
+  {
+    "doc_id": "LTR-1864-08-02-001",
+    "verified_people": [],
+    "verified_places": [
+      "Maryland"
+    ],
+    "verified_flags": {},
+    "notes": "PLACES: 'Charles' — family member. 'Maryland' — state, not in existing places — ADD."
+  },
+  {
+    "doc_id": "LTR-1864-08-08-001",
+    "verified_people": [
+      "Mrs. Brikerhoff"
+    ],
+    "verified_places": [],
+    "verified_flags": {
+      "Request for supplies/money": true
+    },
+    "notes": "PEOPLE: 'Brikerhoff' — Mrs. Brikerhoff mentioned in letter, not in existing people — ADD. 'Gen' — not a standalone person name. 'General Hooker'/'Hooker' — check existing people. Already listed (15 existing). PLACES: none. FLAGS: Request YES — 'please send me some [stamps]' is explicit request. Illness NO — 'the report of Charles being ill' is about hearing a report, not confirmed illness of someone in the letter."
+  },
+  {
+    "doc_id": "LTR-1864-08-08-002",
+    "verified_people": [],
+    "verified_places": [
+      "Chattanooga",
+      "Lost Mountain"
+    ],
+    "verified_flags": {
+      "Discharge/muster-out": true
+    },
+    "notes": "PEOPLE: 'Delaney' — already listed (22 existing people includes Capt. Delaney). 'Elliott' — already listed. 'Lost Mountain' — a place, not a person. PLACES: 'Chattanooga' — mentioned in transcription ('come all the way from Chattanooga'), not in existing places — ADD. 'Jeff Davis' — a person, not a place. 'Lost Mountain' — a place in Georgia — ADD. FLAGS: Discharge YES — 'officers will be mustered out when we are consolidated' and 'surplus non coms are to be reduced' is about mustering out during consolidation — this IS a discharge/muster-out discussion."
+  },
+  {
+    "doc_id": "LTR-1864-08-15-001",
+    "verified_people": [],
+    "verified_places": [
+      "Louisiana",
+      "Morganza",
+      "Washington"
+    ],
+    "verified_flags": {
+      "Camp movement/march": true
+    },
+    "notes": "PLACES: 'Louisiana' — state, not in existing places — ADD. 'Morganza' — place in Louisiana — ADD. 'Shenandoah' — already in existing places as Shenandoah Valley. 'Washington' — city, not in existing places — ADD. FLAGS: Camp movement YES — extensive description of marching from Louisiana to Washington, night march, countermarching. Morale crisis NO — 'won't give up' is about Charlie's stubbornness, not a morale crisis."
+  },
+  {
+    "doc_id": "LTR-1864-08-22-001",
+    "verified_people": [],
+    "verified_places": [
+      "Champlain"
+    ],
+    "verified_flags": {
+      "Request for supplies/money": true,
+      "Receipt of package/letter": true
+    },
+    "notes": "PLACES: 'Champlain' — mentioned in transcription ('F. A. Cook is at Champlain'), not in existing places — ADD. FLAGS: Request YES — 'Please send me some stamps' and 'Please send papers often' are explicit requests. Receipt YES — 'I received your letter of August 8th yesterday' and 'I have received several papers since then' are explicit receipts. Wound NO — 'not wounded' is explicitly stated."
+  },
+  {
+    "doc_id": "LTR-1864-08-26-001",
+    "verified_people": [],
+    "verified_places": [
+      "Frederick",
+      "Washington"
+    ],
+    "verified_flags": {
+      "Request for supplies/money": true,
+      "Receipt of package/letter": true
+    },
+    "notes": "PEOPLE: 'Frederick James' — not a person; it's 'Frederick' (place) + 'James' (person) adjacent in text. 'General Sheridan'/'Sheridan' — already listed in existing people. 'Hospital Corporal' — a rank/title. 'Sweeney' — already listed. PLACES: 'Frances' — family member. 'Frederick James' — not a place, garbled. 'Frederick' — city where James hospitalized, mentioned in text ('James was sent to the hospital at that place'), not in existing places as standalone — ADD. But checking existing: author location is 'Camp near Harper's Ferry'. Frederick is mentioned as a place James was sent. ADD. 'Harper' — already in author location as Harper's Ferry. 'James' — family member. 'Washington' — mentioned ('would be sent on to Washington probably'), not in existing places — ADD. FLAGS: Request YES — 'When you would send me a couple of dollars and some stamps' is explicit request. Receipt YES — 'I received a letter from you last night' is explicit receipt."
+  },
+  {
+    "doc_id": "LTR-1864-08-30-001",
+    "verified_people": [
+      "Delaney",
+      "Slocum"
+    ],
+    "verified_places": [
+      "Atlanta",
+      "Macon"
+    ],
+    "verified_flags": {
+      "Request for supplies/money": true,
+      "Receipt of package/letter": true
+    },
+    "notes": "PEOPLE: 'Delaney' — Capt. Delaney mentioned ('Capt. Delaney, as you are aware, is at home'), not in existing people (5 existing) — ADD. 'Orderly Sergt' — a rank. 'Slocum' — Gen. Slocum mentioned ('General Slocum now commands'), not in existing people — ADD. PLACES: 'Atlanta' — mentioned ('Corps has fallen back from Atlanta'), not in existing places — ADD. 'James' — family member. 'Macon' — city ('heading toward Macon'), not in existing places — ADD. FLAGS: Request YES — 'Please send some stamps' is explicit request. Receipt YES — 'I received your letter of Aug 16th day before yesterday' is explicit receipt."
+  },
+  {
+    "doc_id": "LTR-1864-09-02-001",
+    "verified_people": [],
+    "verified_places": [
+      "Nashville"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Hospital' — not a person. PLACES: 'Nashville' — mentioned ('should have gone directly to Nashville'), not in existing places — ADD. FLAGS: Wound NO — 'sick and wounded' refers to others on hospital train, not personal wound."
+  },
+  {
+    "doc_id": "LTR-1864-09-18-001",
+    "verified_people": [],
+    "verified_places": [
+      "Nashville"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Atlantic Ocean' — a place, not a person. PLACES: 'Jack Ingram' — a person, not a place. 'Nashville' — mentioned ('sent off to Nashville'), not in existing places — ADD."
+  },
+  {
+    "doc_id": "LTR-1864-09-21-001",
+    "verified_people": [
+      "Mr. Hoyle"
+    ],
+    "verified_places": [
+      "Albany",
+      "Berryville",
+      "Strasburg",
+      "Winchester"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Brigade Commissary' — a position, not a person. 'Hoyle' — Mr. Hoyle mentioned ('newspapers with Mr. Hoyle's name on them'), not in existing people — ADD. 'Sweeney' — already listed. PLACES: 'Albany' — city in NY ('got our Capt. to write to Albany') — ADD. 'Berryville' — place in Virginia ('camped near Berryville two weeks') — ADD. 'Frances' — family member. 'James' — family member. 'Strasburg' — already in author location but not in places table — ADD. 'Winchester' — 'battle near Winchester' — ADD."
+  },
+  {
+    "doc_id": "LTR-1864-09-21-002",
+    "verified_people": [],
+    "verified_places": [
+      "Shenandoah"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Shenandoah Valley' — a place, not a person. PLACES: 'Shenandoah' — Shenandoah Valley mentioned in P.S. — ADD. FLAGS: Receipt NO — 'anxious to hear from the boys' is wanting news, not receiving. Battle NO — 'morning papers give an acct of a heavy fight' is reading about it, not describing combat. Wound NO — 'I was wounded' refers to a past wound (last fall), not a new one."
+  },
+  {
+    "doc_id": "LTR-1864-10-04-001",
+    "verified_people": [],
+    "verified_places": [
+      "Cedar Creek",
+      "Louisiana",
+      "Strasburg"
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": true
+    },
+    "notes": "PEOPLE: 'Cedar Creek' — a place. 'Shenandoah Valley' — a place. PLACES: 'Cedar' — part of Cedar Creek. 'Cedar Creek' — 'fallen back to Cedar Creek near Strasburg' — ADD. 'Louisiana' — 'going to Louisiana' — ADD. 'Shenandoah' — already in places as Harrisonburg is in the Valley. 'Strasburg' — 'near Strasburg' — ADD. 'Yankee' — not a place. FLAGS: Receipt YES — 'Last night I received a letter from home' is explicit receipt. Illness — 'Mother says you are quite ill' is report of Alexander being ill (from Mother's letter) and 'I have seen one month in the hospital' is James's own hospital stay. The existing flags already have Illness? With 2 existing yes flags, need to check. Conservative: skip. Wound NO — 'shot up with rebel deserters' means imprisoned/confined, not shot/wounded."
+  },
+  {
+    "doc_id": "LTR-1864-10-04-002",
+    "verified_people": [],
+    "verified_places": [
+      "Albany",
+      "Bunker Hill",
+      "Fresseville",
+      "Harper's Ferry",
+      "Louisiana"
+    ],
+    "verified_flags": {
+      "Camp movement/march": true
+    },
+    "notes": "PEOPLE: 'Bunker Hill' — a place, not a person. 'Provost Marshall' — a title/position. PLACES: 'Albany' — mentioned ('seventy-five dollars from Albany') — ADD. 'Bunker Hill' — place in Virginia ('fight near Bunker Hill') — ADD. 'Fresseville' — place ('recruit from Fresseville') — ADD. 'Harper' — partial for Harper's Ferry. Add as 'Harper's Ferry' — ADD. 'Louisiana' — 'going to Louisiana to spend the winter' — ADD. FLAGS: Camp movement YES — extensive description of marching, forage, rations wagoned from Harper's Ferry. Battle NO — 'fight near Bunker Hill' is about others' fight/wounded, not author's direct combat. Illness NO — 'wounded rebs in the hospital' is about enemy, not own troops' illness. Wound NO — 'wounded rebs' is about enemy."
+  },
+  {
+    "doc_id": "LTR-1864-10-10-001",
+    "verified_people": [],
+    "verified_places": [
+      "Chattanooga"
+    ],
+    "verified_flags": {},
+    "notes": "PLACES: 'Chattanooga' — mentioned ('coming from Chattanooga'), not in existing places — ADD. 'Gillam' — Fort Gillam mentioned ('flag raised at Fort Gillam'), this is a place. But Fort Gillam is already listed as a place. Check: existing has only 1 place. Check if it's 'Fort Gillam'. Looking at the People Mentioned, Fort Gillam is listed in Places at line 89. So it IS already in the places. Then 'Chattanooga' is the only addition — ADD. FLAGS: Discharge NO — 'furlough' is about trying and failing to get one."
+  },
+  {
+    "doc_id": "LTR-1864-10-22-001",
+    "verified_people": [],
+    "verified_places": [
+      "Corbeau",
+      "Fisher's Hill",
+      "Harrisburg",
+      "Strasburg"
+    ],
+    "verified_flags": {
+      "Request for supplies/money": true,
+      "Camp movement/march": true
+    },
+    "notes": "PEOPLE: 'Douglas' — Alex Douglas, mentioned ('Alex Douglas has been missing'), already in existing people? Check: existing has 14 people. Looking at People Mentioned: James, James Lucas, Sgt. Pelkier, Alex Douglas, Lieut. Col. Strain, Dr. Sweeney. Wait — checking existing_people_count=14 but the people table shows those names ARE already listed. Let me re-check. The batch file says existing_people_count=14 and candidates are Douglas, Pelkier, Strain, Sweeney. If the existing count is 14 and these 4 are candidates (not in existing), then these are genuinely missing from the People Mentioned table. But I read the People Mentioned table and it DOES include Sgt. Pelkier, Alex Douglas, Lt. Col. Strain. So these are false candidates — they ARE already listed. Wait — the batch scanner runs differently. Let me re-check. The existing_people_count=14 is the count the scanner found. The candidate_people are names found in transcription but NOT in the People Mentioned table according to the scanner. But I can see from my reading that the People Mentioned table at line 80-84 includes James, James Lucas, Sgt. Pelkier, Alex Douglas, Lieut. Col. Strain, Dr. Sweeney. That's 6+ people. The scanner found 14 existing, and 4 candidates. If the scanner's count is right (14 existing), then Douglas/Pelkier/Strain/Sweeney should be among those 14. Reject all as already listed. PLACES: 'Corbeau' — place where Pelkier is from — check existing places. Existing has only 1 place (Camp near Strasburg). So Corbeau is NOT listed — ADD. 'Fisher' — Fisher's Hill mentioned — ADD as Fisher's Hill. 'Harrisburg' — 'I wrote two from Harrisburg' — a place — ADD. But wait, this may be 'Harrisonburg' misread. Checking transcription: 'I wrote two from Harrisburg.' In context of Shenandoah Valley letters, this is likely Harrisonburg, Virginia. ADD as mentioned. 'James' — family member. 'Strasburg' — already in author location description but not in places table — ADD. FLAGS: Request YES — 'send me a few stamps' is explicit request. Camp movement YES — 'While on the march here, he and another man...' describes march context."
+  },
+  {
+    "doc_id": "LTR-1864-10-26-001",
+    "verified_people": [],
+    "verified_places": [
+      "Nashville"
+    ],
+    "verified_flags": {},
+    "notes": "PLACES: 'Nashville' — mentioned ('write to Postmaster'), already in author location. Check existing places: only 1 place listed. If Nashville isn't in it — ADD. 'Postmaster' — not a place, a person/position. FLAGS: Receipt NO — 'anxious to hear from you' is absence. Illness NO — 'hospital' is just the author's location heading."
+  },
+  {
+    "doc_id": "LTR-1864-10-29-001",
+    "verified_people": [],
+    "verified_places": [
+      "Cedar Run",
+      "Philadelphia",
+      "Winchester"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Cedar Run' — a place (Cedar Creek, called Cedar Run by James). 'Park Hospital'/'Patterson Park Hospital' — hospital names, not people. PLACES: 'Cedar Run' — James's name for Cedar Creek — ADD. 'Philadelphia' — mentioned ('transferred from here to Philadelphia') — ADD. 'Winchester' — mentioned in context of hospital locations — ADD. FLAGS: Receipt — 'I heard from you last' is past reference, not new receipt. Illness NO — 'sick are sent' is about others."
+  },
+  {
+    "doc_id": "LTR-1864-11-04-001",
+    "verified_people": [],
+    "verified_places": [
+      "Cedar Creek",
+      "Winchester"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Brigade Review' — not a person (military activity). 'Cedar Creek' — a place. PLACES: 'Cedar' — part of Cedar Creek. 'Cedar Creek' — already in author location but not in places table — ADD. 'James' — family member. 'Silas' — already listed as a person in the People table. 'Winchester' — mentioned ('badly wounded were at the hospital at Winchester') — ADD. FLAGS: Receipt NO — 'Have not heard from James' is absence. Battle NO — 'the last fight' is a past reference to Cedar Creek, already flagged as battle in other letters but not here. However, the letter discusses aftermath, not battle itself. Illness NO — 'sick' is 'Chaplain is none home sick' meaning homesick, not ill. 'hospital' refers to where James/wounded are."
+  },
+  {
+    "doc_id": "LTR-1864-11-30-001",
+    "verified_people": [],
+    "verified_places": [
+      "Canada",
+      "Newtown"
+    ],
+    "verified_flags": {
+      "Request for supplies/money": true,
+      "Political commentary": true
+    },
+    "notes": "PEOPLE: 'Invalid Corps' — organization, not person. 'Skin Boots' — not a person (item). PLACES: 'Boots' — not a place. 'Canada' — mentioned ('rebs in Canada') — ADD. 'Frances' — family member. 'James' — family member. 'Newtown' — already in author location but not in places table — ADD. FLAGS: Request YES — 'please send me a pair of No. 8 Rip Skin Boots, one small coarse towel, one small colored Hdkf' is explicit request. Political YES — 'The eighth of Nov, election day' and discussion of voting — this IS political commentary about the election. Illness NO — 'hospital with James' refers to past hospital stay. Discharge NO — 'furlough' discusses Alex getting one."
+  },
+  {
+    "doc_id": "LTR-1864-12-05-001",
+    "verified_people": [],
+    "verified_places": [
+      "Nashville"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Hood' — Gen. Hood, mentioned ('Hood is now in front of the city'), check existing people. Only 3 existing people; Hood is listed already? Looking at People Mentioned: line 83 shows 'Gen. Hood' IS already listed. Then reject. Wait — the batch says existing_people_count=3 and candidate is 'Hood'. If only 3 existing people and Hood is a candidate, he's NOT in the existing table. But from my reading, the People table shows Gen. Hood. The discrepancy may be the scanner's count. Let me trust my reading: Hood IS already listed. Reject. Actually re-reading line 83: 'Gen. Hood | Before Nashville — bogus Confederacy'. So Hood IS in the people table. The batch scanner's existing_people_count of 3 is just the count, and Hood is among the 3 (or not, and the candidate detected him). Since my reading shows Hood IS listed, reject. PLACES: 'James' — family member. 'Nashville' — city, check if in existing places. The existing has only 1 place (Fort Negley). So Nashville needs adding — ADD. 'Negley' — Fort Negley, already in existing places as 'Fort Negley'. Actually checking: existing_places_count=1. Looking at Places table: Fort Negley at line 89. So Fort Negley is already listed. 'Nashville' is NOT — ADD. Wait, but the candidate list shows 'Nashville' and 'Negley'. If Fort Negley is the 1 existing place, then Nashville is not. ADD Nashville."
+  },
+  {
+    "doc_id": "LTR-1864-12-09-001",
+    "verified_people": [
+      "Miss Avey"
+    ],
+    "verified_places": [
+      "Newtown",
+      "Savannah"
+    ],
+    "verified_flags": {
+      "Wound/injury reported": true
+    },
+    "notes": "PEOPLE: 'Avey'/'Miss Avey' — mentioned in letter ('the handkerchief, I think Miss Avey'), not in existing people — ADD as Miss Avey. 'Colonel Strain' — Lt. Col. Strain mentioned ('Did Lt. Colonel Strain lose a leg?'), check existing. Existing has 6 people, and Lt. Col. Strain IS listed. Reject. Wait — the batch says candidate 'Colonel Strain' which is the same person as Lt. Col. Strain. Already listed. Reject. 'First Brigade' — not a person. 'Hill Hospital' — not a person (Chestnut Hill Hospital). 'Thanksgiving Day' — not a person. 'Walnut Hill' — a place (misidentified as person). PLACES: 'Newtown' — mentioned ('winter quarters at Newtown') — ADD. 'Savannah' — mentioned ('three tons of mail sent by sea to Savannah') — ADD. FLAGS: Wound YES — 'My wound has nearly healed' is James's wound from Cedar Creek, still relevant. Already existing flags shows only 1 yes flag (Receipt). So wound is not yet flagged — ADD. Illness NO — 'sick, he will be well taken care of' is hypothetical about Charlie. Discharge NO — 'furlough; they do not give a single one now' is absence of furlough."
+  },
+  {
+    "doc_id": "LTR-1864-12-12-001",
+    "verified_people": [],
+    "verified_places": [
+      "Newtown"
+    ],
+    "verified_flags": {},
+    "notes": "PLACES: 'Newtown' — already in author location but not in places table — ADD. FLAGS: Request NO — the letter says NOT to send boots. Political NO — 'government boots' is just boots bought from the army, not political commentary."
+  },
+  {
+    "doc_id": "LTR-1864-12-12-002",
+    "verified_people": [],
+    "verified_places": [
+      "Burlington"
+    ],
+    "verified_flags": {},
+    "notes": "PEOPLE: 'Home Guard' — organization, not person. 'Johnny Rebs' — generic term for Confederates. PLACES: 'Burlington' — Burlington, Vt., mentioned in text — ADD. FLAGS: Illness NO — 'I am heartily sick of my present position' is figurative, not illness."
+  },
+  {
+    "doc_id": "LTR-1864-12-27-001",
+    "verified_people": [],
+    "verified_places": [
+      "Russell"
+    ],
+    "verified_flags": {
+      "Request for supplies/money": true
+    },
+    "notes": "PEOPLE: 'Col' — fragment, not a person name. PLACES: 'Banks' — 'at Banks HQ' — this is Banks's headquarters, a location reference. However, 'Banks' is primarily a person (Gen. Banks). This is a stretch as a place — reject. 'Russell' — Camp Russell is a named camp ('Camp Russell, near Newtown') — ADD. Wait: 'Banks' as a place refers to 'Banks HQ' which is a headquarters location. It's named after a person. Conservative: reject as place. 'Russell' — Camp Russell is named in the letter — ADD as a place. FLAGS: Request YES — 'Please send me some postage stamps as I am entirely out' is explicit request. Camp movement NO — 'On the march last fall' is past tense reference."
+  }
+]

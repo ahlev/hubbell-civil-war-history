@@ -1,0 +1,90 @@
+[
+  {
+    "doc_id": "LTR-1865-01-11-001",
+    "verified_people": [
+      {"name": "Mrs. Denys", "role": "Champlain neighbor visited by family", "confidence": "stated"},
+      {"name": "Mr. Rye", "role": "Champlain resident sent back from Canadian border", "confidence": "stated"}
+    ],
+    "verified_places": [
+      {"place_as_written": "Boston", "modern_id": "Boston, MA", "confidence": "stated"},
+      {"place_as_written": "Canada", "modern_id": "Canada", "confidence": "stated"},
+      {"place_as_written": "Chattanooga", "modern_id": "Chattanooga, TN", "confidence": "stated"},
+      {"place_as_written": "Nashville", "modern_id": "Nashville, TN", "confidence": "stated"},
+      {"place_as_written": "New York", "modern_id": "New York, NY", "confidence": "stated"},
+      {"place_as_written": "Plattsburg", "modern_id": "Plattsburgh, NY", "confidence": "stated"},
+      {"place_as_written": "Massachusetts", "modern_id": "Massachusetts", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": {"present": "yes", "detail": "Your letters of the 24th & 25th are this moment received", "confidence": "stated"},
+      "Illness reported": {"present": "yes", "detail": "James is at the hospital; local soldiers visited in hospital, one spitting blood", "confidence": "stated"}
+    },
+    "notes": "Death flag rejected — 'numbered you with the dead' is Mother's fear, not an actual death report; 'death throes' is figurative about the rebellion; guerrilla 'killed' refers to combat casualties, not personal loss. 'Major news from home/married' rejected — describes officers' marital status, not a marriage event. Massachusetts is an additional place found: soldiers enlisted 'under the order that they should not be sent out of Massachusetts.'"
+  },
+  {
+    "doc_id": "LTR-1865-06-12-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "Washington", "modern_id": "Washington, D.C.", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Discharge/muster-out": {"present": "yes", "detail": "My three years is on the 17th of Oct. Don't know whether we will be mustered out before that or not.", "confidence": "stated"}
+    },
+    "notes": "Joseph Martin rejected — already listed as Mrs. Joseph Martin. 'Washington June' rejected as person — it is Washington (place) + June (date). 'Have you heard from Alex' rejected for Receipt flag — it is a question to Mother, not confirming receipt. Washington added as place (Regt. left Washington June 5th)."
+  },
+  {
+    "doc_id": "LTR-1865-06-16-001",
+    "verified_people": [],
+    "verified_places": [
+      {"place_as_written": "Wauhatchie, Tenn.", "modern_id": "Wauhatchie, TN", "confidence": "stated"},
+      {"place_as_written": "Ringgold", "modern_id": "Ringgold, GA", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Request for supplies/money": {"present": "yes", "detail": "P.S. Please send lots of papers, i.e. if you have them.", "confidence": "stated"},
+      "Discharge/muster-out": {"present": "yes", "detail": "I presume we will be discharged before a very very long while", "confidence": "stated"},
+      "Promotion/demotion": {"present": "yes", "detail": "Gen. Greene promoted from Colonel to Brigadier; now Brevet Major General commanding brigade", "confidence": "stated"}
+    },
+    "notes": "All candidate people rejected — Bartlette, Greene, Geary, Hoyle already in People table under variant names; State Governs and White Star Division are not people. Frances rejected as place. Battle/combat flag rejected — Wauhatchie and Ringgold are historical recollections of 1863 battles, not current combat. Ringgold added as additional place (battle of Ringgold where Chris Greene was wounded)."
+  },
+  {
+    "doc_id": "LTR-1865-06-27-001",
+    "verified_people": [
+      {"name": "Mrs. Hoff", "role": "Family friend — Alexander sends love", "confidence": "stated"}
+    ],
+    "verified_places": [
+      {"place_as_written": "Ogdensburgh", "modern_id": "Ogdensburg, NY", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Receipt of package/letter": {"present": "yes", "detail": "I received a magazine and some papers from home the other day.", "confidence": "stated"}
+    },
+    "notes": "Bostwick rejected — already listed as Culver Bostwick. Miss Fannie rejected — she is the recipient (Frances). 'Sixtieth New York Veteran Volunteers' is a regiment, not a person. Discharge flag already present in letter. Receipt of package/letter is a new flag the scanner missed."
+  },
+  {
+    "doc_id": "LTR-1865-07-13-001",
+    "verified_people": [
+      {"name": "Uncle Henry", "role": "Family uncle — requested Mother visit Charlotte", "confidence": "stated"},
+      {"name": "Martin", "role": "Soldier in regiment — sent $70 home with Charles and James", "confidence": "stated"}
+    ],
+    "verified_places": [
+      {"place_as_written": "Charlotte", "modern_id": "Charlotte, NY (likely Charlotte, VT or Charlotte, NC — uncertain)", "confidence": "stated"},
+      {"place_as_written": "Washington", "modern_id": "Washington, D.C.", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Camp movement/march": {"present": "yes", "detail": "Since I last wrote you we have moved into the city near the river. Living in board shanties.", "confidence": "stated"},
+      "Discharge/muster-out": {"present": "yes", "detail": "Ranch Malcolm's Regt. is discharged (not Charles's own regiment)", "confidence": "stated"}
+    },
+    "notes": "Division Hospital rejected — not a person. Harry Hummel and John Sweeney already in People table. Martin is a soldier who sent money with Charles and James — clearly a person not in the People table. Uncle Henry is clearly a named person referenced in the letter."
+  },
+  {
+    "doc_id": "LTR-1870-11-28-001",
+    "verified_people": [
+      {"name": "The Mendes", "role": "Visitors at Uncle Henry's evening gathering", "confidence": "inferred — name uncertain, transcription has '(?)'"}
+    ],
+    "verified_places": [
+      {"place_as_written": "Burlington", "modern_id": "Burlington, VT", "confidence": "stated"}
+    ],
+    "verified_flags": {
+      "Death reported": {"present": "yes", "detail": "Her son, Sam. Hewitt died recently. She is almost heart broken.", "confidence": "stated"}
+    },
+    "notes": "All other candidate people rejected — Edgar, Hennings, Louise, Meade, Uncle Henrys, Uncle Williams already in People table. 'New England' rejected as person and as place (used adjectivally: 'New England dinner'). 'Request for supplies/money' rejected — 'send us' means transport/drive us home, not send supplies. 'Freeze to death' is figurative. The Mendes included with low confidence due to transcription uncertainty mark."
+  }
+]
