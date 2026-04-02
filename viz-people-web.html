@@ -2747,7 +2747,7 @@ async function showLinkedPairDetail(idxA, idxB) {
       }
       for (const ex of excerpts) {
         const highlighted = searchName ? highlightName(ex, searchName) :
-          highlightName(highlightName(ex, nameA), nameB);
+          highlightName(highlightName(ex, nameA), nameB, true);
         excerptHtml += `<div class="excerpt-text">${highlighted}</div>`;
       }
     }
