@@ -8,7 +8,12 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --henry:#2D5F8A;--alexander:#B8860B;--james:#4A7C59;--charles:#8B3A3A;--mother:#7B5EA7;--fannie:#C17B5F;
+  --henry:#2D5F8A;--henry-soft:#E8F0F8;
+  --alexander:#B8860B;--alexander-soft:#FDF5E0;
+  --james:#4A7C59;--james-soft:#E8F3EC;
+  --charles:#8B3A3A;--charles-soft:#F8ECEC;
+  --mother:#7B5EA7;--mother-soft:#F0EBF6;
+  --fannie:#C17B5F;--fannie-soft:#F8F0EC;
   --bg:#FAF8F5;--card:#FFFFFF;
   --text:#2C2C2C;--text-mid:#6B6B6B;--text-light:#9B9B9B;
   --border:#E8E4DF;--border-light:#F0ECE7;
@@ -19,94 +24,144 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 /* ===== NAV ===== */
 .viz-nav{background:#2C2C2C;padding:6px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;font-family:'Inter',sans-serif;font-size:0.75rem;position:sticky;top:0;z-index:9000}
 .viz-nav-label{color:#9B9B9B;font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
-.viz-nav-link{color:#B8B2AA;text-decoration:none;padding:2px 0;transition:color 0.15s}
+.viz-nav-link{color:#B8B2AA;text-decoration:none;padding:2px 0;transition:color 0.15s;white-space:nowrap}
 .viz-nav-link:hover{color:#FFFFFF}
 .viz-nav-link.active{color:#FFFFFF;font-weight:600;cursor:default}
 
 /* ===== HEADER ===== */
-.page-header{text-align:center;padding:60px 24px 20px;max-width:720px;margin:0 auto}
-.page-header h1{font-size:clamp(2rem,4.5vw,2.8rem);letter-spacing:-0.5px;margin-bottom:10px}
-.page-header .subtitle{font-family:'Source Serif 4',serif;font-size:1.1rem;color:var(--text-mid);font-style:italic;line-height:1.8;max-width:600px;margin:0 auto}
+.page-header{text-align:center;padding:56px 24px 12px;max-width:760px;margin:0 auto}
+.page-header h1{font-size:clamp(2.2rem,5vw,3rem);letter-spacing:-0.5px;margin-bottom:12px}
+.page-header .subtitle{font-family:'Source Serif 4',serif;font-size:1.08rem;color:var(--text-mid);font-style:italic;line-height:1.85;max-width:620px;margin:0 auto}
+.family-context{max-width:680px;margin:0 auto;padding:24px 24px 44px;text-align:center}
+.family-context p{font-family:'Source Serif 4',serif;font-size:0.94rem;color:var(--text-mid);line-height:1.85}
 
-/* ===== FAMILY CONTEXT ===== */
-.family-context{max-width:700px;margin:0 auto;padding:30px 24px 40px;text-align:center}
-.family-context p{font-family:'Source Serif 4',serif;font-size:0.95rem;color:var(--text-mid);line-height:1.85}
+/* ===== 2-COL GRID ===== */
+.cards-grid{max-width:1200px;margin:0 auto;padding:0 24px 60px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
 
-/* ===== CARDS ===== */
-.cards-container{max-width:900px;margin:0 auto;padding:0 24px 60px;display:flex;flex-direction:column;gap:32px}
+/* ===== PERSON CARD ===== */
+.person-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,0.04);display:flex;flex-direction:column;transition:box-shadow 0.2s}
+.person-card:hover{box-shadow:0 6px 28px rgba(0,0,0,0.08)}
 
-.person-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
-.card-accent{height:5px}
-.card-inner{padding:32px 36px 28px}
+/* Top band with monogram */
+.card-band{position:relative;padding:28px 30px 22px;display:flex;gap:18px;align-items:flex-start}
+.person-card.mother .card-band{background:var(--mother-soft)}
+.person-card.henry .card-band{background:var(--henry-soft)}
+.person-card.alexander .card-band{background:var(--alexander-soft)}
+.person-card.charles .card-band{background:var(--charles-soft)}
+.person-card.james .card-band{background:var(--james-soft)}
+.person-card.fannie .card-band{background:var(--fannie-soft)}
 
-.card-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:20px}
-.card-icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;color:#fff;font-weight:700;font-family:'Playfair Display',serif}
-.card-title-block{flex:1;min-width:0}
-.card-name{font-size:1.4rem;margin-bottom:2px}
-.card-role{font-size:0.82rem;color:var(--text-mid);font-weight:400;margin-bottom:4px}
-.card-dates{font-size:0.74rem;color:var(--text-light);letter-spacing:0.3px}
+.card-monogram{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;color:#fff;font-weight:700;font-family:'Playfair Display',serif;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+.person-card.mother .card-monogram{background:var(--mother)}
+.person-card.henry .card-monogram{background:var(--henry)}
+.person-card.alexander .card-monogram{background:var(--alexander)}
+.person-card.charles .card-monogram{background:var(--charles)}
+.person-card.james .card-monogram{background:var(--james)}
+.person-card.fannie .card-monogram{background:var(--fannie)}
 
-.card-vitals{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:22px;padding:16px;background:var(--bg);border-radius:10px;border:1px solid var(--border-light)}
-.vital-item{text-align:center}
-.vital-label{display:block;font-size:0.64rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-light);font-weight:600;margin-bottom:2px}
-.vital-value{font-size:0.88rem;font-weight:500;color:var(--text)}
+.card-title{flex:1;min-width:0}
+.card-name{font-size:1.35rem;margin-bottom:3px}
+.person-card.mother .card-name{color:var(--mother)}
+.person-card.henry .card-name{color:var(--henry)}
+.person-card.alexander .card-name{color:var(--alexander)}
+.person-card.charles .card-name{color:var(--charles)}
+.person-card.james .card-name{color:var(--james)}
+.person-card.fannie .card-name{color:var(--fannie)}
+.card-epithet{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.85rem;color:var(--text-mid);margin-bottom:4px}
+.card-lifespan{font-size:0.72rem;color:var(--text-light);letter-spacing:0.2px}
 
-.card-bio{font-family:'Source Serif 4',serif;font-size:0.94rem;line-height:1.85;color:var(--text-mid);margin-bottom:22px}
-.card-bio p{margin-bottom:12px}
+/* Vitals strip */
+.card-vitals{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--border-light)}
+.vital{flex:1;min-width:0;text-align:center;padding:10px 8px;border-right:1px solid var(--border-light)}
+.vital:last-child{border-right:none}
+.vital-label{display:block;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-light);font-weight:600;margin-bottom:1px}
+.vital-value{font-size:0.82rem;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Card body */
+.card-body{padding:22px 28px 20px;flex:1}
+.card-bio{font-family:'Source Serif 4',serif;font-size:0.9rem;line-height:1.8;color:var(--text-mid);margin-bottom:18px}
+.card-bio p{margin-bottom:10px}
 .card-bio p:last-child{margin-bottom:0}
 
-.card-quotes{margin-bottom:0}
-.card-quotes h4{font-family:'Inter',sans-serif;font-size:0.68rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-light);font-weight:600;margin-bottom:12px}
-.card-quote{position:relative;font-family:'Source Serif 4',serif;font-style:italic;font-size:0.92rem;line-height:1.75;color:var(--text);padding:12px 16px;background:var(--bg);border-radius:8px;border-left:3px solid var(--border);margin-bottom:10px}
-.card-quote:last-child{margin-bottom:0}
-.card-quote cite{display:block;font-style:normal;font-family:'Inter',sans-serif;font-size:0.7rem;color:var(--text-light);margin-top:6px}
+/* Quote */
+.card-quote-section{margin-bottom:16px}
+.card-quote-section h4{font-family:'Inter',sans-serif;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-light);font-weight:600;margin-bottom:8px}
+.card-quote{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.88rem;line-height:1.7;color:var(--text);padding:10px 14px;background:var(--bg);border-radius:8px;border-left:3px solid var(--border);margin-bottom:8px}
+.card-quote:last-of-type{margin-bottom:0}
+.card-quote cite{display:block;font-style:normal;font-family:'Inter',sans-serif;font-size:0.67rem;color:var(--text-light);margin-top:5px}
+.person-card.mother .card-quote{border-left-color:var(--mother)}
+.person-card.henry .card-quote{border-left-color:var(--henry)}
+.person-card.alexander .card-quote{border-left-color:var(--alexander)}
+.person-card.charles .card-quote{border-left-color:var(--charles)}
+.person-card.james .card-quote{border-left-color:var(--james)}
+.person-card.fannie .card-quote{border-left-color:var(--fannie)}
 
-.card-fate{font-family:'Source Serif 4',serif;font-size:0.88rem;color:var(--text);padding:12px 16px;border-radius:8px;margin-top:18px;line-height:1.7}
-.card-fate.kia{background:#FFF0F0;border:1px solid #F5D5D5}
+/* Fate strip */
+.card-fate{font-family:'Source Serif 4',serif;font-size:0.82rem;color:var(--text);padding:10px 14px;border-radius:8px;line-height:1.65;margin-bottom:16px}
+.card-fate.kia{background:#FFF0F0;border:1px solid #F0D0D0}
 .card-fate.died{background:#FFF8F0;border:1px solid #F0E0CC}
 .card-fate.survived{background:#F0F8F0;border:1px solid #D5E8D5}
 .card-fate.civilian{background:#F5F0FF;border:1px solid #E0D5F0}
 
-/* ===== CARD COLOR THEMES ===== */
-.person-card.mother .card-accent{background:var(--mother)}
-.person-card.mother .card-icon{background:var(--mother)}
-.person-card.mother .card-name{color:var(--mother)}
-.person-card.mother .card-quote{border-left-color:var(--mother)}
+/* Letters drawer */
+.letters-toggle{display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;background:var(--bg);cursor:pointer;font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:500;color:var(--text);transition:background 0.15s,border-color 0.15s}
+.letters-toggle:hover{background:var(--border-light);border-color:#CCC}
+.letters-toggle .lt-icon{font-size:0.9rem;transition:transform 0.2s}
+.letters-toggle.open .lt-icon{transform:rotate(90deg)}
+.letters-toggle .lt-count{margin-left:auto;font-size:0.68rem;color:var(--text-light);font-weight:400}
 
-.person-card.henry .card-accent{background:var(--henry)}
-.person-card.henry .card-icon{background:var(--henry)}
-.person-card.henry .card-name{color:var(--henry)}
-.person-card.henry .card-quote{border-left-color:var(--henry)}
+.letters-drawer{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.letters-drawer.open{max-height:400px;overflow-y:auto}
+.letters-list{padding:8px 0 4px}
+.letter-row{display:flex;align-items:center;gap:10px;padding:7px 14px;cursor:pointer;border-radius:6px;transition:background 0.1s;font-size:0.78rem}
+.letter-row:hover{background:var(--border-light)}
+.lr-date{font-weight:500;color:var(--text);min-width:82px;flex-shrink:0}
+.lr-to{color:var(--text-mid);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lr-loc{color:var(--text-light);font-size:0.72rem;flex-shrink:0;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lr-flags{display:flex;gap:3px;flex-shrink:0}
+.lr-flag{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.lr-flag.battle{background:#C44E52}
+.lr-flag.illness{background:#E58A00}
+.lr-flag.death{background:#5D4037}
+.lr-flag.wound{background:#7B1FA2}
 
-.person-card.alexander .card-accent{background:var(--alexander)}
-.person-card.alexander .card-icon{background:var(--alexander)}
-.person-card.alexander .card-name{color:var(--alexander)}
-.person-card.alexander .card-quote{border-left-color:var(--alexander)}
-
-.person-card.james .card-accent{background:var(--james)}
-.person-card.james .card-icon{background:var(--james)}
-.person-card.james .card-name{color:var(--james)}
-.person-card.james .card-quote{border-left-color:var(--james)}
-
-.person-card.charles .card-accent{background:var(--charles)}
-.person-card.charles .card-icon{background:var(--charles)}
-.person-card.charles .card-name{color:var(--charles)}
-.person-card.charles .card-quote{border-left-color:var(--charles)}
-
-.person-card.fannie .card-accent{background:var(--fannie)}
-.person-card.fannie .card-icon{background:var(--fannie)}
-.person-card.fannie .card-name{color:var(--fannie)}
-.person-card.fannie .card-quote{border-left-color:var(--fannie)}
+/* ===== LETTER READER OVERLAY ===== */
+.reader-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;padding:24px}
+.reader-overlay.open{display:flex}
+.reader-panel{background:var(--card);border-radius:14px;max-width:720px;width:100%;max-height:85vh;overflow-y:auto;padding:28px 32px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.25)}
+.reader-close{position:absolute;top:12px;right:14px;border:none;background:none;font-size:1.5rem;cursor:pointer;color:var(--text-light);line-height:1}
+.reader-close:hover{color:var(--text)}
+.reader-header h3{font-size:1.15rem;margin-bottom:4px}
+.reader-meta{font-size:0.8rem;color:var(--text-mid);margin-bottom:14px;line-height:1.6}
+.reader-meta .rm-id{font-size:0.7rem;color:var(--text-light)}
+.reader-flags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.reader-flag{font-size:0.65rem;padding:2px 8px;border-radius:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px}
+.rf-battle{background:#FCE4EC;color:#C62828}
+.rf-illness{background:#FFF3E0;color:#E65100}
+.rf-death{background:#EFEBE9;color:#4E342E}
+.rf-wound{background:#F3E5F5;color:#7B1FA2}
+.reader-people,.reader-places{margin-bottom:14px}
+.reader-people h4,.reader-places h4{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-light);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:6px}
+.reader-tags{display:flex;gap:4px;flex-wrap:wrap}
+.reader-tag{font-size:0.73rem;padding:2px 8px;border-radius:10px;background:var(--border-light);color:var(--text-mid)}
+.reader-tag.person{background:#E3F2FD;color:#1565C0}
+.reader-tag.place{background:#E8F5E9;color:#2E7D32}
+.reader-body{font-family:'Source Serif 4',serif;font-size:0.92rem;line-height:1.85;color:var(--text);background:var(--bg);border-radius:8px;padding:18px;white-space:pre-wrap;border:1px solid var(--border-light);max-height:420px;overflow-y:auto}
 
 /* ===== PROVENANCE ===== */
 .viz-provenance{background:var(--bg);border-top:1px solid var(--border);padding:16px 24px;font-family:'Inter',sans-serif;font-size:0.72rem;color:var(--text-light);text-align:center;line-height:1.5}
 
 /* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .cards-grid{grid-template-columns:1fr;max-width:600px}
+}
 @media(max-width:600px){
-  .card-inner{padding:22px 20px 20px}
-  .card-header{flex-direction:column;gap:10px}
-  .card-vitals{grid-template-columns:1fr 1fr}
+  .card-band{padding:20px 18px 16px}
+  .card-body{padding:16px 18px 14px}
+  .card-monogram{width:48px;height:48px;font-size:1.3rem}
   .viz-nav{gap:8px;font-size:0.7rem}
+  .vital{padding:8px 4px}
+  .vital-value{font-size:0.74rem}
 }
 </style>
 </head>
@@ -128,39 +183,36 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
   <h1>Who They Were</h1>
   <p class="subtitle">A widowed mother, four soldier sons, and a sister who kept the home together. These are the people behind the letters.</p>
 </div>
-
 <div class="family-context">
   <p>The Hubbell family lived in Champlain, Clinton County, New York &mdash; a small farming town on the Canadian border near Lake Champlain. Frederick Augustus Hubbell died in 1853, leaving his wife Frances to raise five children alone. When the Civil War began, she sent every son she had.</p>
 </div>
 
-<div class="cards-container">
+<div class="cards-grid">
 
 <!-- ═══════════ MOTHER ═══════════ -->
-<div class="person-card mother">
-  <div class="card-accent"></div>
-  <div class="card-inner">
-    <div class="card-header">
-      <div class="card-icon">F</div>
-      <div class="card-title-block">
-        <h2 class="card-name">Frances L. (McNeil) Hubbell</h2>
-        <div class="card-role">The Mother &mdash; "If I was a man I am sure I should enlist"</div>
-        <div class="card-dates">b. ~1808, Charlotte, Vermont &bull; d. May 29, 1890, Fonda, Iowa</div>
-      </div>
+<div class="person-card mother" id="card-mother">
+  <div class="card-band">
+    <div class="card-monogram">F</div>
+    <div class="card-title">
+      <h2 class="card-name">Frances L. (McNeil) Hubbell</h2>
+      <div class="card-epithet">"If I was a man I am sure I should enlist"</div>
+      <div class="card-lifespan">b. ~1808, Charlotte, Vermont &bull; d. May 29, 1890, Fonda, Iowa</div>
     </div>
-    <div class="card-vitals">
-      <div class="vital-item"><span class="vital-label">Descent</span><span class="vital-value">Scottish (McNeil)</span></div>
-      <div class="vital-item"><span class="vital-label">Married</span><span class="vital-value">1833</span></div>
-      <div class="vital-item"><span class="vital-label">Children</span><span class="vital-value">6 (5 surviving)</span></div>
-      <div class="vital-item"><span class="vital-label">Letters</span><span class="vital-value">17 preserved</span></div>
-      <div class="vital-item"><span class="vital-label">Widowed</span><span class="vital-value">1853 (age ~45)</span></div>
-      <div class="vital-item"><span class="vital-label">Home</span><span class="vital-value">Champlain, NY</span></div>
-    </div>
+  </div>
+  <div class="card-vitals">
+    <div class="vital"><span class="vital-label">Descent</span><span class="vital-value">Scottish</span></div>
+    <div class="vital"><span class="vital-label">Married</span><span class="vital-value">1833</span></div>
+    <div class="vital"><span class="vital-label">Children</span><span class="vital-value">6</span></div>
+    <div class="vital"><span class="vital-label">Widowed</span><span class="vital-value">1853</span></div>
+    <div class="vital"><span class="vital-label">Letters</span><span class="vital-value">17</span></div>
+  </div>
+  <div class="card-body">
     <div class="card-bio">
-      <p>Born in Charlotte, Vermont to a family of Scottish descent, Frances married Frederick Augustus Hubbell in 1833 and settled in Champlain, on the Canadian border of New York. When Frederick died in 1853, she was left to raise six children alone on a small farm. She was approximately 45 years old.</p>
-      <p>Her wartime letters reveal a woman of extraordinary strength, managing the home front alone while all four sons served simultaneously. She sent money she could not spare, shipped boxes of supplies, and endured long silences between letters. She was the emotional center of the family &mdash; the person every son wrote to first.</p>
-      <p>After the war, Frances moved to Fonda, Pocahontas County, Iowa around 1872, following Alexander and Charles who had settled there. She lived with or near her surviving children until her death at approximately age 82.</p>
+      <p>Born in Charlotte, Vermont to a family of Scottish descent, Frances married Frederick Augustus Hubbell in 1833 and settled in Champlain. When Frederick died in 1853, she was left to raise six children alone. She was approximately 45 years old.</p>
+      <p>Her wartime letters reveal extraordinary strength &mdash; managing the home front alone while all four sons served simultaneously. She sent money she could not spare, shipped boxes of supplies, and endured long silences. She was the emotional center of the family, the person every son wrote to first.</p>
+      <p>After the war, Frances moved to Fonda, Iowa around 1872, following her surviving sons. She outlived three of her four soldier sons, dying at approximately age 82.</p>
     </div>
-    <div class="card-quotes">
+    <div class="card-quote-section">
       <h4>In Her Own Words</h4>
       <div class="card-quote">
         If I was a man I am sure I should enlist, but as it is I have sent all I had to send and hope they will do nobly.
@@ -171,36 +223,38 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
         <cite>&mdash; Frances, after learning of Henry's death, 1862</cite>
       </div>
     </div>
-    <div class="card-fate civilian">Survived the war but lost three of her four sons &mdash; Henry at Antietam, James returning from Savannah, and Charles to war-contracted illness a decade later. She outlived them all, dying in Iowa in 1890.</div>
+    <div class="card-fate civilian">Survived the war but lost three of her four sons. She outlived them all, dying in Iowa in 1890.</div>
+    <button class="letters-toggle" data-author="mother" onclick="toggleLetters(this)">
+      <span class="lt-icon">&#9654;</span> Read Her Letters <span class="lt-count"></span>
+    </button>
+    <div class="letters-drawer"><div class="letters-list"></div></div>
   </div>
 </div>
 
 <!-- ═══════════ HENRY ═══════════ -->
-<div class="person-card henry">
-  <div class="card-accent"></div>
-  <div class="card-inner">
-    <div class="card-header">
-      <div class="card-icon">H</div>
-      <div class="card-title-block">
-        <h2 class="card-name">Henry Hubbell</h2>
-        <div class="card-role">The Eldest Son &mdash; First to Enlist, First to Fall</div>
-        <div class="card-dates">b. November 1839, Champlain, NY &bull; d. September 17, 1862, Antietam, MD (age ~22)</div>
-      </div>
+<div class="person-card henry" id="card-henry">
+  <div class="card-band">
+    <div class="card-monogram">H</div>
+    <div class="card-title">
+      <h2 class="card-name">Henry Hubbell</h2>
+      <div class="card-epithet">First to Enlist, First to Fall</div>
+      <div class="card-lifespan">b. Nov 1839, Champlain, NY &bull; d. Sept 17, 1862, Antietam, MD (age ~22)</div>
     </div>
-    <div class="card-vitals">
-      <div class="vital-item"><span class="vital-label">Regiment</span><span class="vital-value">Co. D, 34th NY</span></div>
-      <div class="vital-item"><span class="vital-label">Enlisted</span><span class="vital-value">June 15, 1861</span></div>
-      <div class="vital-item"><span class="vital-label">Service</span><span class="vital-value">15 months</span></div>
-      <div class="vital-item"><span class="vital-label">Letters</span><span class="vital-value">59 preserved</span></div>
-      <div class="vital-item"><span class="vital-label">Rank</span><span class="vital-value">Private</span></div>
-      <div class="vital-item"><span class="vital-label">Theater</span><span class="vital-value">Eastern (VA, MD)</span></div>
-    </div>
+  </div>
+  <div class="card-vitals">
+    <div class="vital"><span class="vital-label">Regiment</span><span class="vital-value">Co. D, 34th NY</span></div>
+    <div class="vital"><span class="vital-label">Enlisted</span><span class="vital-value">Jun 1861</span></div>
+    <div class="vital"><span class="vital-label">Service</span><span class="vital-value">15 mo</span></div>
+    <div class="vital"><span class="vital-label">Rank</span><span class="vital-value">Private</span></div>
+    <div class="vital"><span class="vital-label">Letters</span><span class="vital-value">59</span></div>
+  </div>
+  <div class="card-body">
     <div class="card-bio">
-      <p>Henry was the eldest brother and the first to answer the call, enlisting in the 34th New York Volunteers in June 1861. His letters reveal a thoughtful young man with dry humor and a philosophical streak &mdash; noting that he could spell "diarrhea" but not "rheumatism," and reflecting that his entire military life felt dreamlike.</p>
-      <p>He served in the Eastern Theater through the Peninsula Campaign and Second Bull Run. His letters show someone who tried to avoid the quarreling and petty conflicts of camp life, preferring to write home about the landscape, the food, and the small absurdities of army routine. He was practical and observant, often reassuring his mother while giving unflinching accounts of conditions.</p>
-      <p>Henry's last known letter was written in July 1862. On September 17, 1862, he was killed at the Battle of Antietam &mdash; the single bloodiest day of the war. His body was never positively recovered. The family learned of his death through conflicting reports: a casualty list, then word he was wounded, then finally a soldier's account of seeing his name on a headboard marking a grave.</p>
+      <p>Henry was the eldest brother and the first to answer the call, enlisting in June 1861. His letters reveal a thoughtful young man with dry humor and a philosophical streak &mdash; noting he could spell "diarrhea" but not "rheumatism," and reflecting that his entire military life felt dreamlike.</p>
+      <p>He served in the Eastern Theater through the Peninsula Campaign and Second Bull Run. His letters show someone who avoided the quarreling of camp life, preferring to write about landscape, food, and the small absurdities of army routine.</p>
+      <p>Henry's last known letter was July 1862. On September 17 he was killed at the Battle of Antietam &mdash; the single bloodiest day of the war. His body was never recovered. The family learned through conflicting reports: a casualty list, then word he was wounded, then a soldier's account of seeing his name on a headboard.</p>
     </div>
-    <div class="card-quotes">
+    <div class="card-quote-section">
       <h4>In His Own Words</h4>
       <div class="card-quote">
         It is all like a dream, my being here. I can hardly realize that I have been from home so long.
@@ -210,89 +264,81 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
         I have learned to spell diarrhea but can't spell rheumatism yet.
         <cite>&mdash; Henry, on camp ailments, 1862</cite>
       </div>
-      <div class="card-quote">
-        I try to avoid all quarrels and disputes, for they never do any good.
-        <cite>&mdash; Henry, on camp life, 1862</cite>
-      </div>
     </div>
-    <div class="card-fate kia">Killed in action at the Battle of Antietam, September 17, 1862. He was approximately 22 years old. His body was never recovered by the family.</div>
+    <div class="card-fate kia">Killed in action at Antietam, September 17, 1862. He was approximately 22. His body was never recovered.</div>
+    <button class="letters-toggle" data-author="henry" onclick="toggleLetters(this)">
+      <span class="lt-icon">&#9654;</span> Read His Letters <span class="lt-count"></span>
+    </button>
+    <div class="letters-drawer"><div class="letters-list"></div></div>
   </div>
 </div>
 
 <!-- ═══════════ ALEXANDER ═══════════ -->
-<div class="person-card alexander">
-  <div class="card-accent"></div>
-  <div class="card-inner">
-    <div class="card-header">
-      <div class="card-icon">A</div>
-      <div class="card-title-block">
-        <h2 class="card-name">Alexander F. Hubbell</h2>
-        <div class="card-role">The Prolific Writer &mdash; 120 Letters Through Nearly Four Years of War</div>
-        <div class="card-dates">b. March 28, 1844, Champlain, NY &bull; d. December 7, 1894, Fonda, Iowa (age 50)</div>
-      </div>
+<div class="person-card alexander" id="card-alexander">
+  <div class="card-band">
+    <div class="card-monogram">A</div>
+    <div class="card-title">
+      <h2 class="card-name">Alexander F. Hubbell</h2>
+      <div class="card-epithet">120 Letters Through Nearly Four Years of War</div>
+      <div class="card-lifespan">b. Mar 28, 1844, Champlain, NY &bull; d. Dec 7, 1894, Fonda, Iowa (age 50)</div>
     </div>
-    <div class="card-vitals">
-      <div class="vital-item"><span class="vital-label">Regiment</span><span class="vital-value">Co. H, 60th NY</span></div>
-      <div class="vital-item"><span class="vital-label">Enlisted</span><span class="vital-value">September 13, 1861</span></div>
-      <div class="vital-item"><span class="vital-label">Service</span><span class="vital-value">~3.5 years</span></div>
-      <div class="vital-item"><span class="vital-label">Letters</span><span class="vital-value">120 preserved</span></div>
-      <div class="vital-item"><span class="vital-label">Rank</span><span class="vital-value">Cpl &rarr; Sgt</span></div>
-      <div class="vital-item"><span class="vital-label">Theater</span><span class="vital-value">Eastern &amp; Western</span></div>
-    </div>
+  </div>
+  <div class="card-vitals">
+    <div class="vital"><span class="vital-label">Regiment</span><span class="vital-value">Co. H, 60th NY</span></div>
+    <div class="vital"><span class="vital-label">Enlisted</span><span class="vital-value">Sep 1861</span></div>
+    <div class="vital"><span class="vital-label">Service</span><span class="vital-value">~3.5 yr</span></div>
+    <div class="vital"><span class="vital-label">Rank</span><span class="vital-value">Cpl &rarr; Sgt</span></div>
+    <div class="vital"><span class="vital-label">Letters</span><span class="vital-value">120</span></div>
+  </div>
+  <div class="card-body">
     <div class="card-bio">
-      <p>Alexander was just 17 when he enlisted &mdash; the youngest brother in uniform. Despite his age, he quickly became the family's most dedicated correspondent, writing 120 letters that form the backbone of the collection. He was promoted from Corporal to Sergeant and served in both the Eastern and Western Theaters, fighting at Antietam, Lookout Mountain, and through Sherman's Atlanta Campaign.</p>
-      <p>His letters reveal the most emotionally expressive of the brothers: fiercely patriotic, deeply homesick, and unafraid to show vulnerability. He wrote with passion about duty and country, but also begged his mother for five dollars when the army didn't pay for months. He was wounded at Lookout Mountain and suffered from scurvy during the Atlanta Campaign, spending time in hospitals at Chattanooga and elsewhere.</p>
-      <p>After the war, Alexander settled in Fonda, Pocahontas County, Iowa. He married Lois Wood in 1887 at age 43, had four children, and farmed until his death at age 50 in 1894 &mdash; likely from health complications rooted in his wartime service. His grandson Fred Alexander Hubbell Jr. would later write the introduction contextualizing the family letters, and his daughter-in-law Gladys Sands Hubbell spent two and a half years transcribing the collection by typewriter in 1947.</p>
+      <p>Alexander was just 17 when he enlisted &mdash; the youngest brother in uniform. Despite his age, he became the family's most dedicated correspondent, writing 120 letters that form the backbone of the collection. Promoted from Corporal to Sergeant, he served in both theaters, fighting at Antietam, Lookout Mountain, and through Sherman's Atlanta Campaign.</p>
+      <p>His letters reveal the most emotionally expressive of the brothers: fiercely patriotic, deeply homesick, unafraid to show vulnerability. He begged his mother for five dollars when the army didn't pay for months. He was wounded at Lookout Mountain and suffered scurvy during the Atlanta Campaign.</p>
+      <p>After the war he settled in Iowa, married Lois Wood in 1887, and had four children. His daughter-in-law Gladys spent two and a half years transcribing these letters by typewriter in 1947. His grandson Fred wrote the family introduction in 1996.</p>
     </div>
-    <div class="card-quotes">
+    <div class="card-quote-section">
       <h4>In His Own Words</h4>
       <div class="card-quote">
         I love my country ten times better&hellip; No, not ten times, but ten times ten times better than I ever did before.
         <cite>&mdash; Alexander, early in the war, 1861</cite>
       </div>
       <div class="card-quote">
-        You know, Mother, what it is to be away from home, sick among strangers and to be without money. I will not try to describe my feelings when I ask for this&hellip; Do you suppose you could spare me five dollars, if not, less will do.
-        <cite>&mdash; Alexander, Hospital at Harpers Ferry, September 27, 1862</cite>
-      </div>
-      <div class="card-quote">
         I feel old. I have begun life's battle for myself. I sometimes feel as though I was about 50 years old.
         <cite>&mdash; Alexander, age 20, 1864</cite>
       </div>
-      <div class="card-quote">
-        Please excuse me, Mother, but I did have a hearty laugh when I took in the idea of your three hopeful sons being in the hospital at the one and same time.
-        <cite>&mdash; Alexander, Hospital at Chattanooga, August 30, 1864</cite>
-      </div>
     </div>
-    <div class="card-fate survived">Survived the war. Settled in Iowa, married Lois Wood in 1887, had four children. Died December 7, 1894 at age 50. His descendants preserved the letters for five generations.</div>
+    <div class="card-fate survived">Survived the war. Settled in Iowa, married Lois Wood in 1887. Died Dec 7, 1894 at age 50. His descendants preserved the letters for five generations.</div>
+    <button class="letters-toggle" data-author="alexander" onclick="toggleLetters(this)">
+      <span class="lt-icon">&#9654;</span> Read His Letters <span class="lt-count"></span>
+    </button>
+    <div class="letters-drawer"><div class="letters-list"></div></div>
   </div>
 </div>
 
 <!-- ═══════════ CHARLES ═══════════ -->
-<div class="person-card charles">
-  <div class="card-accent"></div>
-  <div class="card-inner">
-    <div class="card-header">
-      <div class="card-icon">C</div>
-      <div class="card-title-block">
-        <h2 class="card-name">Charles F. Hubbell</h2>
-        <div class="card-role">The Practical One &mdash; Clear-Eyed and Steady Under Fire</div>
-        <div class="card-dates">b. April 1840, Champlain, NY &bull; d. March 21, 1875, Iowa (age ~34)</div>
-      </div>
+<div class="person-card charles" id="card-charles">
+  <div class="card-band">
+    <div class="card-monogram">C</div>
+    <div class="card-title">
+      <h2 class="card-name">Charles F. Hubbell</h2>
+      <div class="card-epithet">Clear-Eyed and Steady Under Fire</div>
+      <div class="card-lifespan">b. Apr 1840, Champlain, NY &bull; d. Mar 21, 1875, Iowa (age ~34)</div>
     </div>
-    <div class="card-vitals">
-      <div class="vital-item"><span class="vital-label">Regiment</span><span class="vital-value">Co. I, 153rd NY</span></div>
-      <div class="vital-item"><span class="vital-label">Enlisted</span><span class="vital-value">September 1862</span></div>
-      <div class="vital-item"><span class="vital-label">Service</span><span class="vital-value">~3 years</span></div>
-      <div class="vital-item"><span class="vital-label">Letters</span><span class="vital-value">69 preserved</span></div>
-      <div class="vital-item"><span class="vital-label">Rank</span><span class="vital-value">Private</span></div>
-      <div class="vital-item"><span class="vital-label">Theater</span><span class="vital-value">Eastern &amp; Shenandoah</span></div>
-    </div>
+  </div>
+  <div class="card-vitals">
+    <div class="vital"><span class="vital-label">Regiment</span><span class="vital-value">Co. I, 153rd NY</span></div>
+    <div class="vital"><span class="vital-label">Enlisted</span><span class="vital-value">Sep 1862</span></div>
+    <div class="vital"><span class="vital-label">Service</span><span class="vital-value">~3 yr</span></div>
+    <div class="vital"><span class="vital-label">Rank</span><span class="vital-value">Private</span></div>
+    <div class="vital"><span class="vital-label">Letters</span><span class="vital-value">69</span></div>
+  </div>
+  <div class="card-body">
     <div class="card-bio">
-      <p>Charles was the most matter-of-fact of the brothers &mdash; his letters are practical, observant, and largely free of the sentimentality that marks Alexander's correspondence. He enlisted in the 153rd New York Volunteers alongside his younger brother James. While remarkably healthy throughout his service compared to his brothers, he kept a clear record of camp conditions and the realities of soldiering.</p>
-      <p>He served in the Shenandoah Valley Campaign under Sheridan, including the Battle of Cedar Creek. His letters show a man who expected nothing from army life and was therefore rarely disappointed. He was the one who confirmed Henry's death to the family, writing plainly: "I think there is not the least doubt that Henry was killed."</p>
-      <p>After the war, Charles followed Alexander to Iowa and settled as a farmer. He died on March 21, 1875 at approximately age 34 &mdash; from disease contracted during his military service. He had survived the war only to be killed by it a decade later.</p>
+      <p>Charles was the most matter-of-fact of the brothers &mdash; practical, observant, and largely free of sentimentality. He enlisted in the 153rd New York alongside his younger brother James. Remarkably healthy throughout his service compared to his brothers, he kept a clear record of camp conditions.</p>
+      <p>He served in the Shenandoah Valley Campaign under Sheridan, including Cedar Creek. He was the one who confirmed Henry's death, writing plainly: "I think there is not the least doubt that Henry was killed."</p>
+      <p>After the war, Charles followed Alexander to Iowa and settled as a farmer. He died March 21, 1875 at about age 34 &mdash; from disease contracted during service. He survived the war only to be killed by it a decade later.</p>
     </div>
-    <div class="card-quotes">
+    <div class="card-quote-section">
       <h4>In His Own Words</h4>
       <div class="card-quote">
         Did not enlist with the expectation of sleeping on a feather bed.
@@ -303,36 +349,38 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
         <cite>&mdash; Charles, confirming his brother's death, 1862</cite>
       </div>
     </div>
-    <div class="card-fate died">Survived the fighting but died March 21, 1875 at age ~34 from disease contracted during his military service. The war claimed him a decade after Appomattox.</div>
+    <div class="card-fate died">Died March 21, 1875 at age ~34 from disease contracted during service. The war claimed him a decade after Appomattox.</div>
+    <button class="letters-toggle" data-author="charles" onclick="toggleLetters(this)">
+      <span class="lt-icon">&#9654;</span> Read His Letters <span class="lt-count"></span>
+    </button>
+    <div class="letters-drawer"><div class="letters-list"></div></div>
   </div>
 </div>
 
 <!-- ═══════════ JAMES ═══════════ -->
-<div class="person-card james">
-  <div class="card-accent"></div>
-  <div class="card-inner">
-    <div class="card-header">
-      <div class="card-icon">J</div>
-      <div class="card-title-block">
-        <h2 class="card-name">James Hubbell</h2>
-        <div class="card-role">The Youngest Soldier &mdash; Wounded at Cedar Creek, Lost on the Way Home</div>
-        <div class="card-dates">b. January 1843, Champlain, NY &bull; d. October 19, 1865, Albany, NY (age ~22)</div>
-      </div>
+<div class="person-card james" id="card-james">
+  <div class="card-band">
+    <div class="card-monogram">J</div>
+    <div class="card-title">
+      <h2 class="card-name">James Hubbell</h2>
+      <div class="card-epithet">Wounded at Cedar Creek, Lost on the Way Home</div>
+      <div class="card-lifespan">b. Jan 1843, Champlain, NY &bull; d. Oct 19, 1865, Albany, NY (age ~22)</div>
     </div>
-    <div class="card-vitals">
-      <div class="vital-item"><span class="vital-label">Regiment</span><span class="vital-value">Co. I, 153rd NY</span></div>
-      <div class="vital-item"><span class="vital-label">Enlisted</span><span class="vital-value">September 1862</span></div>
-      <div class="vital-item"><span class="vital-label">Service</span><span class="vital-value">~3 years</span></div>
-      <div class="vital-item"><span class="vital-label">Letters</span><span class="vital-value">9 preserved</span></div>
-      <div class="vital-item"><span class="vital-label">Rank</span><span class="vital-value">Private</span></div>
-      <div class="vital-item"><span class="vital-label">Theater</span><span class="vital-value">Eastern &amp; Shenandoah</span></div>
-    </div>
+  </div>
+  <div class="card-vitals">
+    <div class="vital"><span class="vital-label">Regiment</span><span class="vital-value">Co. I, 153rd NY</span></div>
+    <div class="vital"><span class="vital-label">Enlisted</span><span class="vital-value">Sep 1862</span></div>
+    <div class="vital"><span class="vital-label">Service</span><span class="vital-value">~3 yr</span></div>
+    <div class="vital"><span class="vital-label">Rank</span><span class="vital-value">Private</span></div>
+    <div class="vital"><span class="vital-label">Letters</span><span class="vital-value">9</span></div>
+  </div>
+  <div class="card-body">
     <div class="card-bio">
-      <p>James was the youngest of the four soldier brothers, enlisting at about age 19 alongside Charles in the 153rd New York Volunteers. His nine surviving letters are the fewest of any brother, but they reveal a lively personality &mdash; the kind of young man who apologized for getting hair oil on the writing paper and described hardtack with dark humor.</p>
-      <p>He served in the Shenandoah Valley alongside Charles and was wounded at the Battle of Cedar Creek on October 19, 1864. He spent months in military hospitals recovering. When the war ended, he was still hospitalized &mdash; too weakened to travel home under his own power.</p>
-      <p>James died on October 19, 1865 &mdash; exactly one year after being wounded at Cedar Creek &mdash; at a hospital in Albany, New York while being transported home from Savannah. The war was already six months over. He was approximately 22 years old.</p>
+      <p>James was the youngest of the four soldier brothers, enlisting at about age 19 alongside Charles. His nine surviving letters are the fewest of any brother, but they reveal a lively personality &mdash; the kind of young man who apologized for getting hair oil on the writing paper and described hardtack with dark humor.</p>
+      <p>He served in the Shenandoah Valley alongside Charles and was wounded at Cedar Creek on October 19, 1864. He spent months in hospitals recovering. When the war ended, he was still too weakened to travel home.</p>
+      <p>James died on October 19, 1865 &mdash; exactly one year after being wounded &mdash; at Albany Hospital while being transported home from Savannah. The war was already six months over. He was approximately 22.</p>
     </div>
-    <div class="card-quotes">
+    <div class="card-quote-section">
       <h4>In His Own Words</h4>
       <div class="card-quote">
         You will have to excuse me for getting hair oil on this paper.
@@ -343,50 +391,187 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
         <cite>&mdash; James, on army rations, 1863</cite>
       </div>
     </div>
-    <div class="card-fate kia">Wounded at Cedar Creek, October 19, 1864. Died exactly one year later, October 19, 1865, at Albany Hospital while being transported home from Savannah. The war had been over for six months.</div>
+    <div class="card-fate kia">Wounded at Cedar Creek, Oct 19, 1864. Died exactly one year later at Albany Hospital. The war had been over for six months.</div>
+    <button class="letters-toggle" data-author="james" onclick="toggleLetters(this)">
+      <span class="lt-icon">&#9654;</span> Read His Letters <span class="lt-count"></span>
+    </button>
+    <div class="letters-drawer"><div class="letters-list"></div></div>
   </div>
 </div>
 
 <!-- ═══════════ FANNIE ═══════════ -->
-<div class="person-card fannie">
-  <div class="card-accent"></div>
-  <div class="card-inner">
-    <div class="card-header">
-      <div class="card-icon">F</div>
-      <div class="card-title-block">
-        <h2 class="card-name">Frances &ldquo;Fannie&rdquo; Hubbell</h2>
-        <div class="card-role">The Sister &mdash; Anchor of the Home Front</div>
-        <div class="card-dates">b. April 1837, Champlain, NY &bull; d. after 1872, Iowa</div>
-      </div>
+<div class="person-card fannie" id="card-fannie">
+  <div class="card-band">
+    <div class="card-monogram">F</div>
+    <div class="card-title">
+      <h2 class="card-name">Frances &ldquo;Fannie&rdquo; Hubbell</h2>
+      <div class="card-epithet">Anchor of the Home Front</div>
+      <div class="card-lifespan">b. Apr 1837, Champlain, NY &bull; d. after 1872, Iowa</div>
     </div>
-    <div class="card-vitals">
-      <div class="vital-item"><span class="vital-label">Descent</span><span class="vital-value">Scottish (McNeil)</span></div>
-      <div class="vital-item"><span class="vital-label">Occupation</span><span class="vital-value">Teacher</span></div>
-      <div class="vital-item"><span class="vital-label">Letters To Her</span><span class="vital-value">38+ received</span></div>
-      <div class="vital-item"><span class="vital-label">Home</span><span class="vital-value">Dover Twp, NY &rarr; Iowa</span></div>
-    </div>
+  </div>
+  <div class="card-vitals">
+    <div class="vital"><span class="vital-label">Role</span><span class="vital-value">Eldest Child</span></div>
+    <div class="vital"><span class="vital-label">Occupation</span><span class="vital-value">Teacher</span></div>
+    <div class="vital"><span class="vital-label">Letters to Her</span><span class="vital-value">38+</span></div>
+    <div class="vital"><span class="vital-label">Home</span><span class="vital-value">Champlain &rarr; Iowa</span></div>
+  </div>
+  <div class="card-body">
     <div class="card-bio">
-      <p>Frances, known as Fannie, was the eldest child of the Hubbell family and the only daughter. She was four years older than Henry and seven years older than Alexander. She worked as a teacher in Dover Township, likely helping support the family after their father's death.</p>
-      <p>Though none of Fannie's own letters survive in the collection, her presence is vivid in what the brothers wrote to her. She was the recipient of at least 38 letters &mdash; the brothers addressed her as "dear sister" and wrote to her separately from their mother, sometimes sharing different details or a more informal tone. Her role as the eldest sibling who stayed behind gave the brothers someone to confide in who was not their mother and would not worry the same way.</p>
-      <p>Fannie never married. Around 1872, she followed the family west to Iowa, where Alexander and Charles had settled after the war. The details of her later life are sparse &mdash; she appears in the family record primarily through the eyes of the brothers who loved her.</p>
+      <p>Fannie was the eldest child and only daughter, four years older than Henry and seven years older than Alexander. She worked as a teacher in Dover Township, helping support the family after their father's death.</p>
+      <p>Though none of Fannie's own letters survive, her presence is vivid in what the brothers wrote. She received at least 38 letters &mdash; addressed as "dear sister," sometimes sharing different details or a more informal tone than letters to their mother. She was confidante as much as sister.</p>
+      <p>Fannie never married. Around 1872 she followed the family west to Iowa. The details of her later life are sparse &mdash; she appears in the record primarily through the eyes of the brothers who loved her.</p>
     </div>
-    <div class="card-quotes">
-      <h4>As They Saw Her</h4>
+    <div class="card-quote-section">
+      <h4>As They Wrote to Her</h4>
       <div class="card-quote">
-        The brothers wrote to Fannie separately from their mother &mdash; sharing details about camp mischief, personal frustrations, and opinions they might not put in a letter home. She was confidante as much as sister.
-        <cite>&mdash; Pattern observed across 38+ letters addressed to "Sister" or "Fannie"</cite>
+        The brothers wrote to Fannie separately from their mother &mdash; sharing camp mischief, personal frustrations, and opinions they might not put in a letter home.
+        <cite>&mdash; Pattern across 38+ letters addressed to "Sister" or "Fannie"</cite>
       </div>
     </div>
-    <div class="card-fate civilian">Fannie stayed on the home front throughout the war, working as a teacher and supporting her mother. She moved to Iowa around 1872 with the surviving family.</div>
+    <div class="card-fate civilian">Stayed on the home front throughout the war, teaching and supporting her mother. Moved to Iowa around 1872 with the surviving family.</div>
+    <button class="letters-toggle" data-recipient="fannie" onclick="toggleLetters(this)">
+      <span class="lt-icon">&#9654;</span> Letters Written to Her <span class="lt-count"></span>
+    </button>
+    <div class="letters-drawer"><div class="letters-list"></div></div>
   </div>
 </div>
 
-</div><!-- end cards-container -->
+</div><!-- end cards-grid -->
+
+<!-- ===== LETTER READER ===== -->
+<div class="reader-overlay" id="readerOverlay">
+  <div class="reader-panel" id="readerPanel">
+    <button class="reader-close" id="readerClose">&times;</button>
+    <div id="readerContent"></div>
+  </div>
+</div>
 
 <div class="viz-provenance">
   Biographical details drawn from letter transcriptions, Fred Alexander Hubbell Jr.'s 1996 introduction, military service records, and census data. &middot; 274 letters, 1861&ndash;1870 &middot;
   <a href="hubbell-dashboard.html" style="color:inherit;text-decoration:underline">Explore the full collection &rarr;</a>
 </div>
+
+<script src="_search-data.js"></script>
+<script>
+var AUTHOR_COLORS = {henry:'#2D5F8A',alexander:'#B8860B',james:'#4A7C59',charles:'#8B3A3A',mother:'#7B5EA7'};
+var AUTHOR_NAMES = {henry:'Henry Hubbell',alexander:'Alexander F. Hubbell',james:'James Hubbell',charles:'Charles F. Hubbell',mother:'Frances Hubbell (Mother)'};
+
+function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+/* ===== LETTER DRAWER ===== */
+function getLettersForCard(btn) {
+  var author = btn.getAttribute('data-author');
+  var recipient = btn.getAttribute('data-recipient');
+  if (author) {
+    return LETTERS.filter(function(l) { return l.a === author; });
+  }
+  if (recipient === 'fannie') {
+    return LETTERS.filter(function(l) {
+      var r = (l.r || '').toLowerCase();
+      return r.indexOf('sister') !== -1 || r.indexOf('fannie') !== -1 || r.indexOf('fanny') !== -1 ||
+             (r.indexOf('frances') !== -1 && r.indexOf('mother') === -1 && r.indexOf('mrs') === -1);
+    });
+  }
+  return [];
+}
+
+function toggleLetters(btn) {
+  var drawer = btn.nextElementSibling;
+  var list = drawer.querySelector('.letters-list');
+  var isOpen = drawer.classList.contains('open');
+
+  if (isOpen) {
+    drawer.classList.remove('open');
+    btn.classList.remove('open');
+    return;
+  }
+
+  // Populate on first open
+  if (!list.children.length) {
+    var letters = getLettersForCard(btn);
+    letters.forEach(function(l) {
+      var row = document.createElement('div');
+      row.className = 'letter-row';
+      var flags = '';
+      if (l.bat) flags += '<span class="lr-flag battle" title="Battle"></span>';
+      if (l.ill) flags += '<span class="lr-flag illness" title="Illness"></span>';
+      if (l.dth) flags += '<span class="lr-flag death" title="Death"></span>';
+      if (l.wnd) flags += '<span class="lr-flag wound" title="Wound"></span>';
+      row.innerHTML =
+        '<span class="lr-date">' + esc(l.d) + '</span>' +
+        '<span class="lr-to">to ' + esc(l.r) + '</span>' +
+        '<span class="lr-loc">' + esc(l.loc) + '</span>' +
+        '<span class="lr-flags">' + flags + '</span>';
+      row.addEventListener('click', function() { openReader(l); });
+      list.appendChild(row);
+    });
+  }
+
+  drawer.classList.add('open');
+  btn.classList.add('open');
+}
+
+// Set letter counts once data loads
+document.querySelectorAll('.letters-toggle').forEach(function(btn) {
+  var letters = getLettersForCard(btn);
+  var countEl = btn.querySelector('.lt-count');
+  countEl.textContent = letters.length + ' letter' + (letters.length !== 1 ? 's' : '');
+});
+
+/* ===== LETTER READER ===== */
+var readerOverlay = document.getElementById('readerOverlay');
+var readerPanel = document.getElementById('readerPanel');
+
+function openReader(letter) {
+  var color = AUTHOR_COLORS[letter.a] || '#999';
+  var name = AUTHOR_NAMES[letter.a] || letter.an;
+
+  var flags = '';
+  if (letter.bat) flags += '<span class="reader-flag rf-battle">Battle</span>';
+  if (letter.ill) flags += '<span class="reader-flag rf-illness">Illness</span>';
+  if (letter.dth) flags += '<span class="reader-flag rf-death">Death</span>';
+  if (letter.wnd) flags += '<span class="reader-flag rf-wound">Wound</span>';
+
+  var peopleTags = '';
+  if (letter.ppl && letter.ppl.length > 0) {
+    peopleTags = '<div class="reader-people"><h4>People Mentioned</h4><div class="reader-tags">' +
+      letter.ppl.map(function(p) { return '<span class="reader-tag person">' + esc(p) + '</span>'; }).join('') +
+      '</div></div>';
+  }
+  var placeTags = '';
+  if (letter.plc && letter.plc.length > 0) {
+    placeTags = '<div class="reader-places"><h4>Places Referenced</h4><div class="reader-tags">' +
+      letter.plc.map(function(p) { return '<span class="reader-tag place">' + esc(p) + '</span>'; }).join('') +
+      '</div></div>';
+  }
+
+  var body = esc(letter.t);
+
+  document.getElementById('readerContent').innerHTML =
+    '<div class="reader-header"><h3 style="color:' + color + '">' + esc(name) + ' to ' + esc(letter.r) + '</h3></div>' +
+    '<div class="reader-meta">' + esc(letter.d) + ' &mdash; ' + esc(letter.loc) +
+      '<br><span class="rm-id">' + esc(letter.id) + '</span></div>' +
+    (flags ? '<div class="reader-flags">' + flags + '</div>' : '') +
+    peopleTags + placeTags +
+    '<div class="reader-body">' + body + '</div>';
+
+  readerOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeReader() {
+  readerOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('readerClose').addEventListener('click', closeReader);
+readerOverlay.addEventListener('click', function(e) {
+  if (e.target === e.currentTarget) closeReader();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && readerOverlay.classList.contains('open')) closeReader();
+});
+</script>
 
 </body>
 </html>
