@@ -399,21 +399,92 @@ body {
 }
 .narrative-caption.visible { opacity: 1; }
 
-/* ── Controls Bar (slider only) ── */
+/* ── Controls Bar ── */
 .controls {
   background: #FFFFFF;
   border-top: 1px solid #E8E4DF;
-  padding: 12px 24px;
+  padding: 14px 24px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.controls-cta {
+  text-align: center;
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: #9B9B9B;
+  letter-spacing: 0.2px;
+  transition: opacity 0.4s;
+}
+.controls-cta .cta-keys {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  vertical-align: middle;
+}
+.cta-kbd {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #6B6B6B;
+  background: #F0ECE7;
+  border: 1px solid #DDD8D2;
+  border-radius: 4px;
+  padding: 1px 5px;
+  line-height: 1.4;
+}
+.slider-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
+}
+.step-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #E8E4DF;
+  background: #FAFAFA;
+  color: #2C2C2C;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  user-select: none;
+}
+.step-btn:hover {
+  background: #F0ECE7;
+  border-color: #CCC;
+}
+.step-btn:active {
+  transform: scale(0.92);
+  background: #E8E4DF;
+}
+.step-btn:focus-visible {
+  outline: 2px solid #2D5F8A;
+  outline-offset: 2px;
+}
+.step-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .timeline-container {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
 }
 .date-display {
   font-family: 'Playfair Display', serif;
@@ -427,11 +498,6 @@ body {
   cursor: pointer;
   accent-color: #2C2C2C;
   height: 6px;
-}
-.keyboard-hint {
-  font-size: 0.65rem;
-  color: #9B9B9B;
-  white-space: nowrap;
 }
 
 /* ── Leaflet Overrides ── */
@@ -732,7 +798,8 @@ body {
   .status-bar { overflow-x: auto; }
   .status-panel { min-width: 140px; padding: 8px 10px; }
   .controls { padding: 10px 12px; }
-  .keyboard-hint { display: none; }
+  .controls-cta .cta-keys { display: none; }
+  .step-btn { width: 34px; height: 34px; }
   .narrative-caption { max-width: 85vw; font-size: 0.85rem; padding: 6px 14px; }
   .header h1 { font-size: 1.2rem; }
   .map-legend { font-size: 0.6rem; padding: 6px 10px; }
@@ -744,6 +811,9 @@ body {
   .status-context { display: none; }
   .header { padding: 6px 12px 4px; }
   .controls { padding: 8px 8px; }
+  .controls-cta { font-size: 0.74rem; }
+  .step-btn { width: 30px; height: 30px; }
+  .step-btn svg { width: 13px; height: 13px; }
   .date-display { font-size: 0.9rem; }
 }
 </style>
@@ -759,7 +829,6 @@ body {
   <a href="viz-health-ledger.html" class="viz-nav-link">Health Ledger</a>
   <a href="viz-money-story.html" class="viz-nav-link">Money Story</a>
   <a href="viz-people-web.html" class="viz-nav-link">People Web</a>
-  <a href="viz-what-they-didnt-know.html" class="viz-nav-link">What They Didn't Know</a>
   <a href="who-they-were.html" class="viz-nav-link">Who They Were</a>
 </nav>
 
@@ -843,13 +912,21 @@ body {
   </div>
 </div>
 
-<!-- Controls Bar: slider only -->
+<!-- Controls Bar -->
 <div class="controls">
-  <div class="timeline-container">
-    <div class="date-display" id="dateDisplay">June 15, 1861</div>
-    <input type="range" class="timeline-slider" id="timelineSlider" min="0" max="1000" value="0" oninput="scrubTimeline(this.value)">
+  <div class="controls-cta" id="controlsCta">Drag the timeline or use <span class="cta-keys"><span class="cta-kbd">&larr;</span><span class="cta-kbd">&rarr;</span></span> arrow keys to trace the Hubbell brothers' movements through the war</div>
+  <div class="slider-row">
+    <button class="step-btn" id="stepBack" title="Step back one day (Left arrow)" aria-label="Step back one day">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="timeline-container">
+      <div class="date-display" id="dateDisplay">June 15, 1861</div>
+      <input type="range" class="timeline-slider" id="timelineSlider" min="0" max="1000" value="0" oninput="scrubTimeline(this.value)">
+    </div>
+    <button class="step-btn" id="stepForward" title="Step forward one day (Right arrow)" aria-label="Step forward one day">
+      <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
   </div>
-  <span class="keyboard-hint">&#8592;&#8594; arrow keys to step</span>
 </div>
 
 <script>
@@ -1657,19 +1734,56 @@ function handleKeyboard(e) {
   switch (e.key) {
     case 'ArrowRight':
       e.preventDefault();
-      currentDay = Math.min(currentDay + 1, TOTAL_DAYS);
-      updateToDate(currentDay);
+      stepDay(1);
       break;
     case 'ArrowLeft':
       e.preventDefault();
-      currentDay = Math.max(currentDay - 1, 0);
-      updateToDate(currentDay);
+      stepDay(-1);
       break;
     case 'Escape':
       closeLetterOverlay();
       break;
   }
 }
+
+// ============================================================
+// STEP BUTTONS + CTA FADE
+// ============================================================
+function stepDay(delta) {
+  currentDay = Math.max(0, Math.min(currentDay + delta, TOTAL_DAYS));
+  updateToDate(currentDay);
+  fadeCta();
+}
+
+let ctaFaded = false;
+function fadeCta() {
+  if (ctaFaded) return;
+  ctaFaded = true;
+  const cta = document.getElementById('controlsCta');
+  if (cta) cta.style.opacity = '0';
+  setTimeout(() => { if (cta) cta.style.display = 'none'; }, 400);
+}
+
+document.getElementById('stepBack').addEventListener('click', () => stepDay(-1));
+document.getElementById('stepForward').addEventListener('click', () => stepDay(1));
+
+// Hold-to-repeat for step buttons
+['stepBack', 'stepForward'].forEach(id => {
+  const btn = document.getElementById(id);
+  const delta = id === 'stepBack' ? -1 : 1;
+  let holdTimer = null, holdInterval = null;
+  btn.addEventListener('mousedown', () => {
+    holdTimer = setTimeout(() => {
+      holdInterval = setInterval(() => stepDay(delta), 60);
+    }, 400);
+  });
+  const stop = () => { clearTimeout(holdTimer); clearInterval(holdInterval); };
+  btn.addEventListener('mouseup', stop);
+  btn.addEventListener('mouseleave', stop);
+});
+
+// Fade CTA on first slider interaction or keyboard use
+document.getElementById('timelineSlider').addEventListener('input', fadeCta);
 
 // ============================================================
 // STATUS PANEL CLICK → FLY TO BROTHER
