@@ -1001,6 +1001,7 @@ const TOTAL_DAYS = Math.floor((END_DATE - START_DATE) / 86400000);
 let currentDay = 0;
 let lockedBrother = null; // Lock-on state
 let newLetterMarkers = []; // "New Letter!" badges on map
+let infoPanelBrother = null; // Which brother is shown in info panel (auto-refreshes on date change)
 
 // ============================================================
 // SOURCE URLS — hyperlinked citations
@@ -1323,6 +1324,9 @@ function updateToDate(day) {
       map.fitBounds(bounds, { animate: true, duration: 0.3, maxZoom: 10 });
     }
   }
+
+  // Auto-refresh info panel if showing a brother
+  refreshInfoPanel(currentDateStr);
 }
 
 function getLockedBrotherPosition(currentDateStr) {
@@ -1495,9 +1499,74 @@ function daysBetween(dateStr1, dateStr2) {
 }
 
 // ============================================================
-// INFO PANEL
+// INFO PANEL — AUTO-REFRESH ON DATE CHANGE
 // ============================================================
+function refreshInfoPanel(currentDateStr) {
+  if (!infoPanelBrother || !DATA) return;
+  const panel = document.getElementById('infoPanel');
+  if (panel.classList.contains('collapsed')) return; // Don't refresh if hidden
+
+  const brotherId = infoPanelBrother;
+  const brotherInfo = DATA.brothers[brotherId];
+  if (!brotherInfo) return;
+
+  // Henry KIA — show memorial panel
+  if (brotherId === 'henry' && currentDateStr >= '1862-09-17') {
+    showMemorialPanel();
+    return;
+  }
+
+  // Not yet enlisted — show waiting state
+  if (currentDateStr < brotherInfo.serviceStart) {
+    const title = document.getElementById('infoPanelTitle');
+    const body = document.getElementById('infoPanelBody');
+    title.textContent = `${brotherInfo.name}`;
+    title.style.color = COLORS[brotherId];
+    body.innerHTML = `<div class="info-empty" style="font-style:normal;color:#6B6B6B">
+      <strong>${brotherInfo.name}</strong> has not yet enlisted.<br>
+      <span style="font-size:0.78rem;color:#9B9B9B">Service begins ${formatDateStr(brotherInfo.serviceStart)}</span>
+    </div>`;
+    return;
+  }
+
+  // Mustered out
+  if (currentDateStr > brotherInfo.serviceEnd) {
+    const title = document.getElementById('infoPanelTitle');
+    const body = document.getElementById('infoPanelBody');
+    title.textContent = `${brotherInfo.name} — Mustered Out`;
+    title.style.color = COLORS[brotherId];
+    body.innerHTML = `<div class="info-meta">
+      <strong>Status:</strong> Mustered out<br>
+      <strong>Service ended:</strong> ${formatDateStr(brotherInfo.serviceEnd)}<br>
+      ${brotherInfo.endReason ? '<strong>Reason:</strong> ' + brotherInfo.endReason : ''}
+    </div>`;
+    return;
+  }
+
+  // Active — find current movement for this date
+  const allMovements = DATA.movements.filter(m => m.brother === brotherId && m.date <= currentDateStr);
+  if (allMovements.length === 0) {
+    const title = document.getElementById('infoPanelTitle');
+    const body = document.getElementById('infoPanelBody');
+    title.textContent = `${brotherInfo.name}`;
+    title.style.color = COLORS[brotherId];
+    body.innerHTML = `<div class="info-empty">En route — no movement data yet</div>`;
+    return;
+  }
+
+  // Find current position (prefer endDate spans)
+  let current = allMovements[allMovements.length - 1];
+  for (let i = allMovements.length - 1; i >= 0; i--) {
+    const m = allMovements[i];
+    if ((m.endDate || m.date) >= currentDateStr) { current = m; break; }
+  }
+
+  // Re-render the full info panel with current movement
+  showInfoPanel(current, brotherId);
+}
+
 function showInfoPanel(movement, brotherId) {
+  infoPanelBrother = brotherId; // Track for auto-refresh on date change
   const brotherInfo = DATA.brothers[brotherId];
   const title = document.getElementById('infoPanelTitle');
   const body = document.getElementById('infoPanelBody');
@@ -1594,6 +1663,7 @@ function showInfoPanel(movement, brotherId) {
 }
 
 function showMemorialPanel() {
+  infoPanelBrother = 'henry'; // Track for auto-refresh
   const title = document.getElementById('infoPanelTitle');
   const body = document.getElementById('infoPanelBody');
 
@@ -1768,6 +1838,8 @@ function toggleInfoPanel() {
   const btn = document.getElementById('infoToggle');
   panel.classList.toggle('collapsed');
   btn.innerHTML = panel.classList.contains('collapsed') ? '&#9654; Info' : '&#9664; Info';
+  // Clear tracking when panel is collapsed so we don't refresh a hidden panel
+  if (panel.classList.contains('collapsed')) infoPanelBrother = null;
 }
 
 // ============================================================
