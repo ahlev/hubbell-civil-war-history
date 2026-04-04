@@ -383,6 +383,91 @@
             border-color: var(--text-muted);
         }
 
+        /* Nav controls group */
+        .detail-nav-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+        .detail-nav-arrows {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Prominent nav arrows */
+        .detail-nav-btn {
+            background: var(--bg);
+            border: 2px solid var(--accent-blue);
+            border-radius: 10px;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+            flex-shrink: 0;
+        }
+        .detail-nav-btn:hover:not(:disabled) {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+        .detail-nav-btn:disabled {
+            opacity: 0.2;
+            cursor: default;
+            border-color: var(--border);
+            color: var(--text-muted);
+        }
+
+        /* Nav mode toggle — compact, below arrows */
+        .nav-mode-wrap {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 9px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        .nav-mode-toggle {
+            position: relative;
+            width: 36px;
+            height: 18px;
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: 9px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .nav-mode-toggle.date-mode {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+        .nav-mode-toggle .toggle-knob {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            transition: left 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        }
+        .nav-mode-toggle.date-mode .toggle-knob {
+            left: 20px;
+        }
+        .nav-mode-label.active {
+            color: var(--text);
+        }
+
         .detail-badges {
             display: flex;
             gap: 6px;
@@ -424,6 +509,27 @@
         }
         .detail-loc-badges-row .detail-badges {
             margin: 0;
+        }
+        .detail-map-link {
+            font-size: 11px;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            padding: 4px 12px;
+            background: #4A7C59;
+            border: none;
+            border-radius: 5px;
+            white-space: nowrap;
+            transition: background 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .detail-map-link:hover {
+            background: #3A6449;
+        }
+        .detail-map-link .map-icon {
+            font-size: 13px;
         }
 
         /* Interactive people chips */
@@ -788,7 +894,7 @@
             padding: 12px 16px;
             border-radius: 10px;
             font-size: 12px;
-            max-width: 280px;
+            max-width: 340px;
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.12s ease;
@@ -800,7 +906,10 @@
         .tooltip.visible { opacity: 1; }
         .tooltip .tt-date { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 600; }
         .tooltip .tt-author { font-size: 11px; opacity: 0.7; }
+        .tooltip .tt-location { font-size: 10px; opacity: 0.6; margin-top: 2px; font-style: italic; }
+        .tooltip .tt-summary { font-size: 11px; opacity: 0.85; margin-top: 6px; line-height: 1.4; }
         .tooltip .tt-hint { font-size: 10px; opacity: 0.5; margin-top: 6px; }
+        .tooltip .tt-brother-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 3px; vertical-align: middle; }
 
         /* Active dot highlight */
         .letter-dot.active-dot {
@@ -827,11 +936,12 @@
 
 .viz-nav {
   background: #2C2C2C;
-  padding: 6px 20px;
+  padding: 0 20px;
+  height: 44px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 14px;
+  overflow-x: auto;
   font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
   position: sticky;
@@ -843,18 +953,23 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  flex-shrink: 0;
 }
 .viz-nav-link {
   color: #B8B2AA;
   text-decoration: none;
   padding: 2px 0;
   transition: color 0.15s;
+  white-space: nowrap;
 }
 .viz-nav-link:hover { color: #FFFFFF; }
 .viz-nav-link.active {
   color: #FFFFFF;
   font-weight: 600;
   cursor: default;
+}
+@media (max-width: 700px) {
+  .viz-nav { gap: 8px; font-size: 0.7rem; padding: 0 12px; }
 }
 .viz-provenance {
   background: #FAF8F5;
@@ -1602,19 +1717,45 @@
     const tooltip = document.getElementById('tooltip');
     function showTooltip(event, idx) {
         const l = LETTERS[idx];
-        // Check for same-day letters from other brothers
+        const color = COLORS[l.author] || COLORS.unknown;
+
+        // Brother color dot + date
+        const dot = `<span class="tt-brother-dot" style="background:${color}"></span>`;
+
+        // Location line
+        const locLine = l.location ? `<div class="tt-location">${l.location}</div>` : '';
+
+        // Summary (sigSummary, truncated to ~2 sentences)
+        let summaryLine = '';
+        if (l.sigSummary) {
+            let summary = l.sigSummary;
+            // Truncate to roughly 2 sentences
+            const sentences = summary.match(/[^.!]+[.!]+/g);
+            if (sentences && sentences.length > 2) {
+                summary = sentences.slice(0, 2).join('').trim();
+            }
+            if (summary.length > 180) summary = summary.slice(0, 177) + '...';
+            summaryLine = `<div class="tt-summary">${summary}</div>`;
+        }
+
+        // Same-day letters from other brothers
         const sameDayOthers = LETTERS.filter((o, oi) => oi !== idx && o.date === l.date && o.author !== l.author);
         const sameDayNote = sameDayOthers.length > 0
-            ? `<div style="font-size:0.7rem;color:#B8860B;margin-top:2px;">Also writing: ${sameDayOthers.map(o => NAMES[o.author].split(' ')[0]).join(', ')}</div>`
+            ? `<div style="font-size:0.7rem;color:#B8860B;margin-top:2px;">Also writing: ${sameDayOthers.map(o =>
+                `<span class="tt-brother-dot" style="background:${COLORS[o.author] || COLORS.unknown}"></span>${NAMES[o.author].split(' ')[0]}`
+              ).join(', ')}</div>`
             : '';
+
         tooltip.innerHTML = `
-            <div class="tt-date">${formatDate(l.date)}</div>
+            <div class="tt-date">${dot}${formatDate(l.date)}</div>
             <div class="tt-author">${NAMES[l.author]} → ${l.recipient}</div>
+            ${locLine}
+            ${summaryLine}
             ${sameDayNote}
             <div class="tt-hint">Click to read</div>
         `;
         let x = event.clientX + 14, y = event.clientY - 8;
-        if (x + 280 > window.innerWidth) x = event.clientX - 294;
+        if (x + 340 > window.innerWidth) x = event.clientX - 354;
         tooltip.style.left = x + 'px';
         tooltip.style.top = y + 'px';
         tooltip.classList.add('visible');
@@ -2008,14 +2149,25 @@
                     <div class="detail-header-text">
                         <div class="detail-date" style="color:${color}">${formatDate(l.date)} <span style="font-size:13px;font-weight:400;color:var(--text-secondary);font-family:Inter,sans-serif;margin-left:6px;">${NAMES[l.author]} → ${l.recipient}</span></div>
                     </div>
-                    <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
-                        <button class="detail-close" style="width:auto;padding:0 10px;font-size:11px;font-weight:500;" onclick="openDetail(${prevIdx})" ${prevIdx === null ? 'disabled' : ''} title="Previous letter">←</button>
-                        <button class="detail-close" style="width:auto;padding:0 10px;font-size:11px;font-weight:500;" onclick="openDetail(${nextIdx})" ${nextIdx === null ? 'disabled' : ''} title="Next letter">→</button>
-                        <button class="detail-close" onclick="closeDetail()" title="Close (Esc)">✕</button>
+                    <div class="detail-nav-group">
+                        <div class="detail-nav-arrows">
+                            <button class="detail-nav-btn" onclick="openDetail(${prevIdx})" ${prevIdx === null ? 'disabled' : ''} title="Previous letter">←</button>
+                            <button class="detail-nav-btn" onclick="openDetail(${nextIdx})" ${nextIdx === null ? 'disabled' : ''} title="Next letter">→</button>
+                            <button class="detail-close" onclick="closeDetail()" title="Close (Esc)">✕</button>
+                        </div>
+                        <div class="nav-mode-wrap">
+                            <span class="nav-mode-label ${navMode === 'author' ? 'active' : ''}">Author</span>
+                            <div class="nav-mode-toggle ${navMode === 'date' ? 'date-mode' : ''}" onclick="toggleNavMode()" title="Toggle: navigate by same author or by date">
+                                <div class="toggle-knob"></div>
+                            </div>
+                            <span class="nav-mode-label ${navMode === 'date' ? 'active' : ''}">Date</span>
+                        </div>
                     </div>
                 </div>
                 <div class="detail-loc-badges-row">
-                    ${enrichedLocation ? `<span class="detail-location">${enrichedLocation}</span><span style="color:#D5D0C8;">|</span>` : ''}
+                    ${enrichedLocation ? `<span class="detail-location">${enrichedLocation}</span>` : ''}
+                    <a href="viz-map-fullwar.html?date=${l.date}&brother=${l.author}" class="detail-map-link" title="See ${NAMES[l.author]}'s position and recent movements on this date"><span class="map-icon">📍</span>View on Map</a>
+                    ${enrichedLocation || true ? `<span style="color:#D5D0C8;">|</span>` : ''}
                     <div class="detail-badges">${badges}</div>
                 </div>
                 <div class="detail-transcription-label">Full Transcription</div>
@@ -2046,15 +2198,36 @@
         });
     }
 
+    let navMode = 'author'; // 'author' = same author, 'date' = all letters by date
+
+    function toggleNavMode() {
+        navMode = navMode === 'author' ? 'date' : 'author';
+        // Re-render the current detail to update toggle state and nav targets
+        if (activeLetterIdx !== null) openDetail(activeLetterIdx);
+    }
+
     function findAdjacentLetter(idx, dir) {
         const l = LETTERS[idx];
-        let best = null;
-        if (dir === -1) {
-            for (let i = idx - 1; i >= 0; i--) { best = i; break; }
+        if (navMode === 'author') {
+            // Find next/prev letter by same author
+            if (dir === -1) {
+                for (let i = idx - 1; i >= 0; i--) {
+                    if (LETTERS[i].author === l.author) return i;
+                }
+            } else {
+                for (let i = idx + 1; i < LETTERS.length; i++) {
+                    if (LETTERS[i].author === l.author) return i;
+                }
+            }
+            return null;
         } else {
-            for (let i = idx + 1; i < LETTERS.length; i++) { best = i; break; }
+            // Date mode: next/prev letter regardless of author
+            if (dir === -1) {
+                return idx > 0 ? idx - 1 : null;
+            } else {
+                return idx < LETTERS.length - 1 ? idx + 1 : null;
+            }
         }
-        return best;
     }
 
     function escapeHtml(text) {

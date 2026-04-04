@@ -18,7 +18,7 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 
 /* ===== STICKY NAV ===== */
 .site-nav{position:sticky;top:0;z-index:9000;background:#2C2C2C;display:flex;align-items:center;padding:0 20px;height:44px;gap:10px;font-family:'Inter',sans-serif;font-size:0.75rem}
-.nav-links{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:14px;flex-shrink:0;overflow-x:auto}
 .nav-label{color:#9B9B9B;font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
 .nav-link{color:#B8B2AA;text-decoration:none;padding:2px 0;transition:color 0.15s;white-space:nowrap}
 .nav-link:hover{color:#FFFFFF}
@@ -56,19 +56,21 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 .search-empty{padding:20px 16px;text-align:center;color:var(--text-light);font-style:italic}
 
 /* ===== HERO ===== */
-.hero{max-width:800px;margin:0 auto;padding:80px 24px 50px;text-align:center}
-.hero h1{font-size:clamp(2.2rem,5vw,3.2rem);letter-spacing:-0.5px;margin-bottom:12px}
+.hero{max-width:1100px;margin:0 auto;padding:70px 32px 40px;text-align:center}
+.hero h1{font-size:clamp(2.2rem,5vw,3.2rem);letter-spacing:-0.5px;margin-bottom:24px}
 .hero h1 .year-range{font-weight:400;font-size:0.6em;color:var(--text-mid);display:block;margin-top:4px;letter-spacing:1px}
-.hero .hook{font-family:'Source Serif 4',serif;font-size:1.15rem;line-height:1.9;color:var(--text-mid);max-width:640px;margin:0 auto 30px}
-.hero .hook strong{color:var(--text);font-weight:500}
+.hero-hooks{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1000px;margin:0 auto 36px;text-align:left}
+.hero-hook{font-family:'Source Serif 4',serif;font-size:1.0rem;line-height:1.85;color:var(--text-mid);background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 32px;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
+.hero-hook .hook-lead{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:600;color:var(--text);display:block;margin-bottom:8px;line-height:1.5}
+.hero-hook-label{font-family:'Inter',sans-serif;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-light);font-weight:600;margin-bottom:10px}
 .hero-stats{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
 .hero-stat{text-align:center}
 .hero-stat .num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;display:block}
 .hero-stat .lbl{font-size:0.72rem;color:var(--text-light);text-transform:uppercase;letter-spacing:1px}
 
 /* ===== BROTHERS INTRO ===== */
-.brothers-section{max-width:900px;margin:0 auto 60px;padding:0 24px}
-.brothers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:20px}
+.brothers-section{max-width:1100px;margin:0 auto 50px;padding:0 32px}
+.brothers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px}
 .brother-intro{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;position:relative;overflow:hidden}
 .brother-intro::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;border-radius:4px 0 0 4px}
 .brother-intro.henry::before{background:var(--henry)}
@@ -84,21 +86,23 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 .brother-intro .bi-fate{font-family:'Source Serif 4',serif;font-size:0.82rem;color:var(--text-mid);line-height:1.5}
 
 /* ===== SECTION DIVIDERS ===== */
-.section-divider{max-width:800px;margin:0 auto;padding:0 24px}
+.section-divider{max-width:1100px;margin:0 auto;padding:0 32px}
 .section-divider hr{border:none;border-top:1px solid var(--border);margin:0}
 
 /* ===== NARRATIVE SECTIONS ===== */
-.narrative{max-width:720px;margin:0 auto;padding:50px 24px}
+.narrative{max-width:1060px;margin:0 auto;padding:44px 32px}
 .narrative h2{font-size:1.6rem;margin-bottom:16px;text-align:center}
 .narrative h2 .section-label{display:block;font-family:'Inter',sans-serif;font-size:0.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-light);font-weight:500;margin-bottom:6px}
-.narrative p{font-family:'Source Serif 4',serif;font-size:1.02rem;line-height:1.9;color:var(--text-mid);margin-bottom:18px}
+.narrative p{font-family:'Source Serif 4',serif;font-size:1.0rem;line-height:1.85;color:var(--text-mid);margin-bottom:16px}
 .narrative p:last-child{margin-bottom:0}
-.narrative blockquote{font-family:'Source Serif 4',serif;font-style:italic;font-size:1.05rem;line-height:1.8;color:var(--text);border-left:3px solid var(--border);padding:10px 0 10px 20px;margin:24px 0}
-.narrative blockquote cite{display:block;font-style:normal;font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-light);margin-top:8px}
+.narrative blockquote{font-family:'Source Serif 4',serif;font-style:italic;font-size:1.02rem;line-height:1.75;color:var(--text);border-left:3px solid var(--border);padding:8px 0 8px 20px;margin:20px 0}
+.narrative blockquote cite{display:block;font-style:normal;font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-light);margin-top:6px}
+.narrative-columns{columns:2;column-gap:40px}
+.narrative-columns p{break-inside:avoid}
 
 /* ===== PRESERVATION CHAIN ===== */
-.chain{max-width:660px;margin:30px auto 0;display:flex;flex-direction:column;gap:0}
-.chain-layer{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-left:2px solid var(--border);margin-left:16px;padding-left:24px;position:relative}
+.chain{max-width:900px;margin:30px auto 0;display:flex;flex-direction:column;gap:0}
+.chain-layer{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-left:2px solid var(--border);margin-left:16px;padding-left:24px;position:relative}
 .chain-layer::before{content:'';position:absolute;left:-6px;top:20px;width:10px;height:10px;border-radius:50%;background:var(--text-mid);border:2px solid var(--bg)}
 .chain-layer:last-child{border-left-color:transparent}
 .chain-year{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;flex-shrink:0;width:80px;color:var(--text)}
@@ -107,10 +111,10 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 .chain-text{font-family:'Source Serif 4',serif;font-size:0.88rem;color:var(--text-mid);line-height:1.6;margin-top:2px}
 
 /* ===== EXPLORE GRID ===== */
-.explore-section{max-width:1000px;margin:0 auto;padding:50px 24px 60px}
+.explore-section{max-width:1100px;margin:0 auto;padding:44px 32px 50px}
 .explore-section h2{font-size:1.6rem;margin-bottom:6px;text-align:center}
-.explore-sub{text-align:center;color:var(--text-light);font-size:0.85rem;margin-bottom:24px}
-.explore-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.explore-sub{text-align:center;color:var(--text-light);font-size:0.85rem;margin-bottom:24px;max-width:800px;margin-left:auto;margin-right:auto;margin-bottom:24px}
+.explore-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .explore-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:22px 24px;text-decoration:none;color:inherit;transition:transform 0.15s,box-shadow 0.15s}
 .explore-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.06)}
 .explore-card h3{font-size:1.05rem;margin-bottom:6px}
@@ -142,12 +146,18 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 .reader-body mark{background:rgba(255,200,50,0.35);color:inherit;font-weight:500;border-radius:2px;padding:0 1px}
 
 /* ===== FOOTER ===== */
-.site-footer{text-align:center;padding:32px 24px 40px;color:var(--text-light);font-size:0.76rem;border-top:1px solid var(--border-light);max-width:800px;margin:0 auto;line-height:1.7}
+.site-footer{text-align:center;padding:32px 32px 40px;color:var(--text-light);font-size:0.76rem;border-top:1px solid var(--border-light);max-width:1100px;margin:0 auto;line-height:1.7}
 
+@media(max-width:900px){
+  .hero-hooks{grid-template-columns:1fr}
+  .brothers-grid{grid-template-columns:1fr 1fr}
+  .explore-grid{grid-template-columns:1fr 1fr}
+  .narrative-columns{columns:1}
+}
 @media(max-width:700px){
   .search-container{width:200px}
   .search-dropdown{width:calc(100vw - 20px);right:-10px}
-  .brothers-grid{grid-template-columns:1fr 1fr}
+  .brothers-grid{grid-template-columns:1fr}
   .explore-grid{grid-template-columns:1fr}
   .nav-links{gap:8px;overflow-x:auto}
 }
@@ -180,7 +190,18 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 <!-- ===== HERO ===== -->
 <div class="hero">
   <h1>The Hubbell Brothers<span class="year-range">Civil War Letters, 1861&ndash;1865</span></h1>
-  <p class="hook">A widowed mother in upstate New York sent <strong>four sons</strong> to the Union Army. They wrote home about marches, money, sickness, and fear. <strong>Three did not survive the war.</strong> Their letters did.</p>
+  <div class="hero-hooks">
+    <div class="hero-hook">
+      <div class="hero-hook-label">The Letters</div>
+      <span class="hook-lead">Four brothers wrote home from the Civil War. Their words survived.</span>
+      Between 1861 and 1865, Henry, Alexander, James, and Charles Hubbell &mdash; sons of a widowed mother in upstate New York &mdash; wrote letters from camps, hospitals, marches, and battlefields. They are not memoirs or histories. They are unfiltered, unedited, and unaware of how the story ends. Read together, they paint a portrait of the war as it unfolded, one family at a time.
+    </div>
+    <div class="hero-hook">
+      <div class="hero-hook-label">The Preservation</div>
+      <span class="hook-lead">A handwritten record of the war, passed down across five generations.</span>
+      One brother was killed at Antietam. Another died on the journey home after the war had already ended. A third survived for years before his death was attributed to wartime disease. Only Alexander lived to old age. The letters outlasted them all &mdash; forgotten in a trunk in a basement for eighty years, water-stained and fading. A daughter-in-law rescued them by typewriter. A grandson placed them in context. A son-in-law digitized them. Now, Alexander Hubbell Levitt &mdash; Alexander's great-great-grandson and namesake &mdash; visited Gettysburg to trace ancestral footsteps and turned to modern technology to reconnect with their words.
+    </div>
+  </div>
   <div class="hero-stats">
     <div class="hero-stat"><span class="num">274</span><span class="lbl">Letters Transcribed</span></div>
     <div class="hero-stat"><span class="num">4</span><span class="lbl">Brothers</span></div>
@@ -200,7 +221,7 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
     <div class="brother-intro alexander">
       <div class="bi-name">Alexander F. Hubbell</div>
       <div class="bi-unit">Co. H, 60th New York Infantry</div>
-      <div class="bi-fate">Wounded at Lookout Mountain. Survived scurvy, chronic diarrhea, and nearly four years of continuous service. Died on his farm in Iowa, 1894.</div>
+      <div class="bi-fate">Color bearer at Chancellorsville. Wounded at Lookout Mountain. Nearly four years of continuous service. Died on his farm in Iowa, 1894.</div>
     </div>
     <div class="brother-intro james">
       <div class="bi-name">James Hubbell</div>
@@ -210,110 +231,113 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
     <div class="brother-intro charles">
       <div class="bi-name">Charles F. Hubbell</div>
       <div class="bi-unit">Co. I, 153rd New York Volunteers</div>
-      <div class="bi-fate">Remarkably healthy throughout his service. Died in 1875 from disease contracted during the war.</div>
+      <div class="bi-fate">Remarkably healthy through four years of service. Died in 1875 from disease contracted during the war.</div>
     </div>
   </div>
 </div>
 
 <div class="section-divider"><hr></div>
 
-<!-- ===== ACT 1: THE STORY ===== -->
+<!-- ===== EXPLORATIONS (moved up) ===== -->
+<div class="explore-section">
+  <h2><span class="section-label" style="display:block;font-family:'Inter',sans-serif;font-size:0.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-light);font-weight:500;margin-bottom:6px;text-align:center">The Explorations</span>What the Letters Reveal</h2>
+  <p class="explore-sub">These 274 letters were transcribed into structured data and text-mined for patterns no single reader could see. Each visualization illuminates a different dimension of the correspondence &mdash; where they were, how they felt, what they spent, who they knew, and what they couldn't yet know was coming.</p>
+  <div class="explore-grid">
+    <a href="hubbell-dashboard.html" class="explore-card">
+      <h3>Parallel Lives</h3>
+      <p>The master timeline. Every letter plotted by date and author &mdash; four brothers writing from four different theaters of war, their lives diverging and intersecting across nine years.</p>
+      <div class="ec-stat">274 letters &middot; Interactive timeline</div>
+    </a>
+    <a href="viz-emotional-arcs.html" class="explore-card">
+      <h3>Emotional Arcs</h3>
+      <p>Watch the emotional tone of each brother's letters shift over time &mdash; early optimism giving way to exhaustion, homesickness, and hard-won dark humor.</p>
+      <div class="ec-stat">Sentiment analysis &middot; Mood trajectories</div>
+    </a>
+    <a href="viz-map-fullwar.html" class="explore-card">
+      <h3>The Map That Moves</h3>
+      <p>Follow four soldiers across the eastern theater. From Champlain to Antietam, Chattanooga to Savannah &mdash; every letter placed where it was written.</p>
+      <div class="ec-stat">Geographic visualization &middot; Movement patterns</div>
+    </a>
+    <a href="viz-health-ledger.html" class="explore-card">
+      <h3>The Health Ledger</h3>
+      <p>For every soldier killed in battle, two died of disease. Track each brother's physical condition through their own words &mdash; fever, scurvy, night blindness, exhaustion.</p>
+      <div class="ec-stat">Health classification &middot; Text-mined reports</div>
+    </a>
+    <a href="viz-money-story.html" class="explore-card">
+      <h3>The Money Story</h3>
+      <p>Every dollar mentioned &mdash; pay, bounties, expenses, money begged from home when the army didn't pay for months. The private economy of a private's war.</p>
+      <div class="ec-stat">Financial text mining &middot; CPI adjustment</div>
+    </a>
+    <a href="viz-people-web.html" class="explore-card">
+      <h3>The People Web</h3>
+      <p>Officers, comrades, family, strangers &mdash; the network of nearly 600 people mentioned across the letters, and the connections between them.</p>
+      <div class="ec-stat">Network graph &middot; Person identity</div>
+    </a>
+  </div>
+</div>
+
+<div class="section-divider"><hr></div>
+
+<!-- ===== THE LETTERS ===== -->
 <div class="narrative">
   <h2><span class="section-label">The Letters</span>What They Wrote Home</h2>
+  <div class="narrative-columns">
   <p>Their father, Frederick Augustus Hubbell, had died in 1853 when Alexander was nine years old. Frances McNeil Hubbell raised four sons and a daughter alone in Champlain, on the Canadian border of New York. When the call came for volunteers in 1861, she sent all four.</p>
-  <p>What followed was not the heroic correspondence of myth. The brothers wrote about <strong>diarrhea, back pay, the cost of getting a shirt washed</strong>. They wrote about men dying of fever in hospitals where the surgeons had no medicine. They wrote about money &mdash; eight dollars sent home, five dollars begged from their mother when the army failed to pay them for months. They wrote, above all, to stay connected to a home they were no longer sure they would see again.</p>
-  <blockquote>You know, Mother, what it is to be away from home, sick among strangers and to be without money. I will not try to describe my feelings when I ask for this... Do you suppose you could spare me five dollars, if not, less will do.<cite>&mdash; Alexander, Hospital at Harpers Ferry, September 27, 1862</cite></blockquote>
+  <p>What followed was not the heroic correspondence of myth. These were young men writing to their mother. They wrote about being sick among strangers, about the ache of months without a letter from home. They worried about money &mdash; eight dollars sent home from a month's pay, five dollars begged back when the army failed to pay them at all. They described not just battles but the long, grinding weeks between them &mdash; the monotony, the mud, the waiting.</p>
+  <p>What makes these letters extraordinary is not any single revelation but the accumulation of ordinary detail across four years. Read together, they become something larger &mdash; an unedited record of what the Civil War felt like from inside it, written by men who did not yet know how their own story would end.</p>
   <p>Henry stopped writing in July 1862. The family learned his name had appeared on a casualty list after Antietam. Conflicting reports followed &mdash; wounded in the leg, or killed outright. A soldier eventually reported seeing his name on a headboard at a grave. Charles would later write: <em>"I think there is not the least doubt that Henry was killed."</em></p>
-  <p>In August 1864, all three surviving brothers were hospitalized simultaneously &mdash; Alexander with scurvy near Atlanta, James with exhaustion at Frederick City, Charles in a convalescent department near Harper's Ferry. Alexander found this darkly amusing.</p>
+  <p>In August 1864, all three surviving brothers were hospitalized simultaneously &mdash; Alexander with scurvy near Atlanta, James with exhaustion at Frederick City, Charles in a convalescent camp near Harper's Ferry. Their mother, who had already lost one son and spent two years fearing for the others, received this news. Alexander wrote to reassure her &mdash; in his own way.</p>
+  </div>
+  <blockquote>You know, Mother, what it is to be away from home, sick among strangers and to be without money. I will not try to describe my feelings when I ask for this... Do you suppose you could spare me five dollars, if not, less will do.<cite>&mdash; Alexander, Hospital at Harpers Ferry, September 27, 1862</cite></blockquote>
   <blockquote>Please excuse me, Mother, but I did have a hearty laugh when I took in the idea of your three hopeful sons being in the hospital at the one and same time.<cite>&mdash; Alexander, Hospital at Chattanooga, August 30, 1864</cite></blockquote>
 </div>
 
 <div class="section-divider"><hr></div>
 
-<!-- ===== ACT 2: THE PRESERVATION ===== -->
+<!-- ===== THE PRESERVATION ===== -->
 <div class="narrative">
-  <h2><span class="section-label">The Preservation</span>Five Generations, One Story</h2>
-  <p>The letters survived in a trunk in a basement for eighty years. Water-stained and fading, they might have been lost entirely. Instead, each generation chose to carry them forward.</p>
+  <h2><span class="section-label">The Preservation</span>A Trunk in a Basement</h2>
+  <p style="max-width:800px;margin-left:auto;margin-right:auto;text-align:center">After the war, the letters were bundled and put away. They sat in a trunk in a basement for eighty years &mdash; water-stained, fading, and largely forgotten. They might easily have been lost entirely. Instead, a remarkable chain of stewardship carried them forward.</p>
 
   <div class="chain">
     <div class="chain-layer">
-      <div class="chain-year">1861</div>
+      <div class="chain-year">1861&ndash;65</div>
       <div class="chain-desc">
         <div class="chain-name">The Brothers</div>
         <div class="chain-text">Henry, Alexander, James, and Charles write home from camps, marches, hospitals, and battlefields across Virginia, Maryland, Tennessee, Georgia, and Louisiana.</div>
       </div>
     </div>
     <div class="chain-layer">
-      <div class="chain-year">1947</div>
+      <div class="chain-year">1947&ndash;49</div>
       <div class="chain-desc">
         <div class="chain-name">Gladys Sands Hubbell</div>
-        <div class="chain-text">Alexander's daughter-in-law spends two and a half years transcribing deteriorating originals by typewriter &mdash; preserving every misspelling, every grammatical choice, noting every passage too damaged to read. A true labor of love.</div>
+        <div class="chain-text">Alexander's daughter-in-law opens the trunk and begins transcribing the deteriorating originals by typewriter. Over two and a half years, she preserves every misspelling, every grammatical choice, and marks every passage too damaged to read. A true labor of love.</div>
       </div>
     </div>
     <div class="chain-layer">
       <div class="chain-year">1996</div>
       <div class="chain-desc">
         <div class="chain-name">Fred Alexander Hubbell Jr.</div>
-        <div class="chain-text">Alexander's grandson writes an introduction identifying the four brothers, their regiments, and their fates &mdash; placing the story in context for future generations.</div>
+        <div class="chain-text">Alexander's grandson writes an introduction from Atlanta, identifying the four brothers, their regiments, and their fates &mdash; placing the story in context for future generations.</div>
       </div>
     </div>
     <div class="chain-layer">
-      <div class="chain-year">2025</div>
+      <div class="chain-year">2010s</div>
       <div class="chain-desc">
         <div class="chain-name">Bruce Levitt</div>
-        <div class="chain-text">Scans the typewritten collection for digital preservation, ensuring the physical pages are no longer the only record.</div>
+        <div class="chain-text">Fred Jr.'s son-in-law scans Gladys's typewritten pages into high-resolution digital files, ensuring the physical record is no longer the only one.</div>
       </div>
     </div>
     <div class="chain-layer">
-      <div class="chain-year">2025&ndash;26</div>
+      <div class="chain-year">2026</div>
       <div class="chain-desc">
         <div class="chain-name">The Descendants</div>
-        <div class="chain-text">Modern technology meets handwritten history. 274 letters are transcribed into structured data, text-mined for health patterns, financial references, emotional arcs, and the web of people and places that shaped these soldiers' lives. What emerges are patterns no single reader could see &mdash; and a family made vivid again.</div>
+        <div class="chain-text">Alexander Hubbell Levitt &mdash; Alexander's great-great-grandson and namesake &mdash; visits Gettysburg to trace ancestral footsteps, then turns to modern technology. Every letter is transcribed into structured data and text-mined for the patterns, connections, and emotional arcs that emerge only when the full collection is read as one. What you are browsing now is the result.</div>
       </div>
     </div>
   </div>
 
   <blockquote>The following letters were transcribed by my mother, from the original hand written pages, in what was a true labor of love. The originals had been stored in a trunk in a basement, and many of them were somewhat water stained.<cite>&mdash; Fred Alexander Hubbell Jr., Atlanta, October 28, 1996</cite></blockquote>
-</div>
-
-<div class="section-divider"><hr></div>
-
-<!-- ===== ACT 3: THE EXPLORATIONS ===== -->
-<div class="explore-section">
-  <h2><span class="section-label" style="display:block;font-family:'Inter',sans-serif;font-size:0.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-light);font-weight:500;margin-bottom:6px;text-align:center">The Explorations</span>What the Letters Reveal</h2>
-  <p class="explore-sub">Each visualization draws meaning from a different dimension of the correspondence.</p>
-  <div class="explore-grid">
-    <a href="hubbell-dashboard.html" class="explore-card">
-      <h3>Parallel Lives</h3>
-      <p>The master timeline. Every letter plotted by date, author, and significance &mdash; with zoom, brush selection, and full letter reader.</p>
-      <div class="ec-stat">274 letters &middot; Interactive timeline</div>
-    </a>
-    <a href="viz-emotional-arcs.html" class="explore-card">
-      <h3>Emotional Arcs</h3>
-      <p>How the brothers' emotional tone shifted over four years of war &mdash; from early optimism through disillusionment to exhaustion.</p>
-      <div class="ec-stat">Sentiment analysis &middot; Mood trajectories</div>
-    </a>
-    <a href="viz-map-fullwar.html" class="explore-card">
-      <h3>The Map That Moves</h3>
-      <p>Where they wrote from. A geographic trace of four soldiers across Virginia, Maryland, Tennessee, Georgia, and Louisiana.</p>
-      <div class="ec-stat">Geographic visualization &middot; Movement patterns</div>
-    </a>
-    <a href="viz-health-ledger.html" class="explore-card">
-      <h3>The Health Ledger</h3>
-      <p>For every soldier killed in battle, two died of disease. Track each brother's physical condition through text-mined health reports.</p>
-      <div class="ec-stat">Health classification &middot; Illness tracking</div>
-    </a>
-    <a href="viz-money-story.html" class="explore-card">
-      <h3>The Money Story</h3>
-      <p>Every dollar mentioned &mdash; pay, bounties, expenses, money begged from home. The tiny economy of a private soldier's war.</p>
-      <div class="ec-stat">Financial text mining &middot; CPI adjustment</div>
-    </a>
-    <a href="viz-people-web.html" class="explore-card">
-      <h3>The People Web</h3>
-      <p>The network of people mentioned across the letters &mdash; officers, comrades, family, and the strangers who shaped their lives.</p>
-      <div class="ec-stat">Network graph &middot; Person identity</div>
-    </a>
-  </div>
 </div>
 
 <!-- ===== LETTER READER ===== -->
@@ -326,7 +350,7 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 
 <footer class="site-footer">
   Based on 274 transcribed letters from the Hubbell family collection, 1861&ndash;1865.<br>
-  Transcribed by Gladys Sands Hubbell (1947&ndash;1949). Introduced by Fred Alexander Hubbell Jr. (1996). Scanned by Bruce Levitt (2025). Analyzed by the descendants (2025&ndash;2026).<br>
+  Transcribed by Gladys Sands Hubbell (1947&ndash;1949). Introduced by Fred Alexander Hubbell Jr. (1996). Digitized by Bruce Levitt (2010s). Analyzed by the descendants (2026).<br>
   <span style="margin-top:4px;display:inline-block">Interactive visualizations built with Claude &middot; Data sourced from original family correspondence</span>
 </footer>
 

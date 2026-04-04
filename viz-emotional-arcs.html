@@ -43,11 +43,12 @@
   .scroll-track.visible { display: block; }
   .scroll-thumb { position: absolute; top: 0; height: 6px; background: #B8B2AA; border-radius: 3px; min-width: 8px; }
   @media (max-width: 860px) { .arcs-container { padding: 24px 12px; } .chart-card { padding: 16px 12px; } }
-  .viz-nav { background: #2C2C2C; padding: 6px 20px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; font-family: 'Inter', sans-serif; font-size: 0.75rem; position: sticky; top: 0; z-index: 9000; }
-  .viz-nav-label { color: #9B9B9B; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
-  .viz-nav-link { color: #B8B2AA; text-decoration: none; padding: 2px 0; transition: color 0.15s; }
+  .viz-nav { background: #2C2C2C; padding: 0 20px; height: 44px; display: flex; align-items: center; gap: 14px; overflow-x: auto; font-family: 'Inter', sans-serif; font-size: 0.75rem; position: sticky; top: 0; z-index: 9000; }
+  .viz-nav-label { color: #9B9B9B; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+  .viz-nav-link { color: #B8B2AA; text-decoration: none; padding: 2px 0; transition: color 0.15s; white-space: nowrap; }
   .viz-nav-link:hover { color: #FFFFFF; }
   .viz-nav-link.active { color: #FFFFFF; font-weight: 600; cursor: default; }
+  @media (max-width: 700px) { .viz-nav { gap: 8px; font-size: 0.7rem; padding: 0 12px; } }
   .viz-provenance { background: #FAF8F5; border-top: 1px solid #E8E4DF; padding: 16px 24px; font-family: 'Inter', sans-serif; font-size: 0.72rem; color: #9B9B9B; text-align: center; line-height: 1.5; }
 
   /* Letter overlay */
