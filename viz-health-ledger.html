@@ -889,42 +889,82 @@ footer p {
   .profiles-grid { grid-template-columns: 1fr; }
   .context-section .context-stats { grid-template-columns: 1fr; }
 }
-.viz-nav {
-  background: #2C2C2C;
-  padding: 0 20px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  overflow-x: auto;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
+/* ===== SITE NAV ===== */
+.site-nav {
   position: sticky;
   top: 0;
   z-index: 9000;
+  background: #2C2C2C;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 8px 20px;
+  gap: 6px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
 }
-.viz-nav-label {
+.nav-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3px 14px;
+}
+.nav-label {
   color: #9B9B9B;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  flex-shrink: 0;
+  white-space: nowrap;
 }
-.viz-nav-link {
+.nav-link {
   color: #B8B2AA;
   text-decoration: none;
   padding: 2px 0;
   transition: color 0.15s;
   white-space: nowrap;
 }
-.viz-nav-link:hover { color: #FFFFFF; }
-.viz-nav-link.active {
+.nav-link:hover { color: #FFFFFF; }
+.nav-link.active {
   color: #FFFFFF;
   font-weight: 600;
-  cursor: default;
+}
+.nav-spacer { flex: 1; min-width: 8px; }
+.search-container {
+  position: relative;
+  flex-shrink: 0;
+}
+.search-input {
+  width: 180px;
+  padding: 5px 10px 5px 28px;
+  border: 1px solid #555;
+  border-radius: 14px;
+  background: #3a3a3a;
+  color: #eee;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.search-input::placeholder { color: #888; }
+.search-input:focus { border-color: #888; background: #444; }
+.search-icon {
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 0.7rem;
+  pointer-events: none;
 }
 @media (max-width: 700px) {
-  .viz-nav { gap: 8px; font-size: 0.7rem; padding: 0 12px; }
+  .site-nav { padding: 6px 12px; }
+  .nav-links { gap: 2px 10px; }
+  .nav-label { display: none; }
+  .nav-link { font-size: 0.68rem; }
+  .search-container { order: 99; width: 100%; margin-top: 2px; }
+  .search-input { width: 100%; }
+  .nav-spacer { display: none; }
+}
 }
 .viz-provenance {
   background: #FAF8F5;
@@ -939,17 +979,23 @@ footer p {
 </style>
 </head>
 <body>
-<nav class="viz-nav">
-  <span class="viz-nav-label">Explore:</span>
-  <a href="index.html" class="viz-nav-link">Home</a>
-  <a href="hubbell-dashboard.html" class="viz-nav-link">Parallel Lives</a>
-  <a href="viz-emotional-arcs.html" class="viz-nav-link">Emotional Arcs</a>
-  <a href="viz-map-fullwar.html" class="viz-nav-link">Map That Moves</a>
-  <a href="viz-health-ledger.html" class="viz-nav-link active">Health Ledger</a>
-  <a href="viz-money-story.html" class="viz-nav-link">Money Story</a>
-  <a href="viz-people-web.html" class="viz-nav-link">People Web</a>
-  <a href="viz-what-they-didnt-know.html" class="viz-nav-link">What They Didn't Know</a>
-  <a href="who-they-were.html" class="viz-nav-link">Who They Were</a>
+<nav class="site-nav">
+  <div class="nav-links">
+    <span class="nav-label">Explore:</span>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="hubbell-dashboard.html" class="nav-link">Parallel Lives</a>
+    <a href="viz-emotional-arcs.html" class="nav-link">Emotional Arcs</a>
+    <a href="viz-map-fullwar.html" class="nav-link">Map That Moves</a>
+    <a href="viz-health-ledger.html" class="nav-link active">Health Ledger</a>
+    <a href="viz-money-story.html" class="nav-link">Money Story</a>
+    <a href="viz-people-web.html" class="nav-link">People Web</a>
+    <a href="who-they-were.html" class="nav-link">Who They Were</a>
+  </div>
+  <div class="nav-spacer"></div>
+  <div class="search-container">
+    <span class="search-icon">&#x1F50D;</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search 274 letters..." autocomplete="off">
+  </div>
 </nav>
 
 <div class="container">
@@ -2484,5 +2530,12 @@ init();
 <footer class="viz-provenance">
   Based on 116 transcribed letters from the Hubbell family collection, 1861–1862. Health, emotion, and significance assessments are editorial judgments by the researcher. Financial figures are extracted from letter text via pattern matching.
 </footer>
+<script>
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && this.value.trim()) {
+    window.location.href = 'index.html?q=' + encodeURIComponent(this.value.trim());
+  }
+});
+</script>
 </body>
 </html>
