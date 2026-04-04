@@ -43,7 +43,7 @@
   .scroll-track.visible { display: block; }
   .scroll-thumb { position: absolute; top: 0; height: 6px; background: #B8B2AA; border-radius: 3px; min-width: 8px; }
   @media (max-width: 860px) { .arcs-container { padding: 24px 12px; } .chart-card { padding: 16px 12px; } }
-  .viz-nav { background: #2C2C2C; padding: 6px 20px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; font-family: 'Inter', sans-serif; font-size: 0.75rem; }
+  .viz-nav { background: #2C2C2C; padding: 6px 20px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; font-family: 'Inter', sans-serif; font-size: 0.75rem; position: sticky; top: 0; z-index: 9000; }
   .viz-nav-label { color: #9B9B9B; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
   .viz-nav-link { color: #B8B2AA; text-decoration: none; padding: 2px 0; transition: color 0.15s; }
   .viz-nav-link:hover { color: #FFFFFF; }
@@ -102,6 +102,7 @@
 <body>
 <nav class="viz-nav">
   <span class="viz-nav-label">Explore:</span>
+  <a href="index.html" class="viz-nav-link">Home</a>
   <a href="hubbell-dashboard.html" class="viz-nav-link">Parallel Lives</a>
   <a href="viz-emotional-arcs.html" class="viz-nav-link active">Emotional Arcs</a>
   <a href="viz-map-fullwar.html" class="viz-nav-link">Map That Moves</a>

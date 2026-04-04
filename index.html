@@ -2,10 +2,682 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0;url=hubbell-dashboard.html">
-<title>Redirecting...</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Hubbell Brothers &mdash; Civil War Letters, 1861&ndash;1865</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --henry:#2D5F8A;--alexander:#B8860B;--james:#4A7C59;--charles:#8B3A3A;--mother:#7B5EA7;
+  --bg:#FAF8F5;--card:#FFFFFF;
+  --text:#2C2C2C;--text-mid:#6B6B6B;--text-light:#9B9B9B;
+  --border:#E8E4DF;--border-light:#F0ECE7;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;line-height:1.6}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3}
+
+/* ===== STICKY NAV ===== */
+.site-nav{position:sticky;top:0;z-index:9000;background:#2C2C2C;display:flex;align-items:center;padding:0 20px;height:44px;gap:10px;font-family:'Inter',sans-serif;font-size:0.75rem}
+.nav-links{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-label{color:#9B9B9B;font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
+.nav-link{color:#B8B2AA;text-decoration:none;padding:2px 0;transition:color 0.15s;white-space:nowrap}
+.nav-link:hover{color:#FFFFFF}
+.nav-link.active{color:#FFFFFF;font-weight:600}
+.nav-spacer{flex:1}
+
+/* ===== SEARCH BAR ===== */
+.search-container{position:relative;width:320px;flex-shrink:0}
+.search-input{width:100%;padding:6px 12px 6px 32px;border:1px solid #555;border-radius:18px;background:#3a3a3a;color:#eee;font-family:'Inter',sans-serif;font-size:0.78rem;outline:none;transition:border-color 0.2s,background 0.2s}
+.search-input::placeholder{color:#888}
+.search-input:focus{border-color:#888;background:#444}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#888;font-size:0.8rem;pointer-events:none}
+.search-dropdown{position:absolute;top:calc(100% + 6px);right:0;width:520px;max-height:70vh;overflow-y:auto;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.15);display:none;z-index:9999;font-size:0.83rem}
+.search-dropdown.open{display:block}
+.search-summary{padding:10px 16px;border-bottom:1px solid var(--border-light);font-size:0.74rem;color:var(--text-light);display:flex;gap:12px;flex-wrap:wrap}
+.search-summary .author-count{display:inline-flex;align-items:center;gap:4px}
+.search-summary .author-count .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.search-group{padding:6px 0}
+.search-group-label{padding:4px 16px;font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-light);font-weight:600;background:var(--bg)}
+.search-result{padding:10px 16px;cursor:pointer;transition:background 0.1s;display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid var(--border-light)}
+.search-result:last-child{border-bottom:none}
+.search-result:hover{background:var(--border-light)}
+.sr-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.sr-body{flex:1;min-width:0}
+.sr-meta{font-size:0.72rem;color:var(--text-light);margin-bottom:2px}
+.sr-meta strong{color:var(--text-mid);font-weight:500}
+.sr-excerpt{font-family:'Source Serif 4',serif;font-size:0.82rem;color:var(--text-mid);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.sr-excerpt mark{background:rgba(255,200,50,0.35);color:inherit;font-weight:500;border-radius:2px;padding:0 1px}
+.sr-badges{display:flex;gap:4px;margin-top:3px;flex-wrap:wrap}
+.sr-badge{font-size:0.62rem;padding:1px 6px;border-radius:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px}
+.sr-badge.text{background:#F5F5F5;color:#616161}
+.sr-badge.person{background:#E3F2FD;color:#1565C0}
+.sr-badge.place{background:#E8F5E9;color:#2E7D32}
+.sr-badge.meta{background:#FFF3E0;color:#E65100}
+.search-empty{padding:20px 16px;text-align:center;color:var(--text-light);font-style:italic}
+
+/* ===== HERO ===== */
+.hero{max-width:800px;margin:0 auto;padding:80px 24px 50px;text-align:center}
+.hero h1{font-size:clamp(2.2rem,5vw,3.2rem);letter-spacing:-0.5px;margin-bottom:12px}
+.hero h1 .year-range{font-weight:400;font-size:0.6em;color:var(--text-mid);display:block;margin-top:4px;letter-spacing:1px}
+.hero .hook{font-family:'Source Serif 4',serif;font-size:1.15rem;line-height:1.9;color:var(--text-mid);max-width:640px;margin:0 auto 30px}
+.hero .hook strong{color:var(--text);font-weight:500}
+.hero-stats{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.hero-stat{text-align:center}
+.hero-stat .num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;display:block}
+.hero-stat .lbl{font-size:0.72rem;color:var(--text-light);text-transform:uppercase;letter-spacing:1px}
+
+/* ===== BROTHERS INTRO ===== */
+.brothers-section{max-width:900px;margin:0 auto 60px;padding:0 24px}
+.brothers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:20px}
+.brother-intro{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;position:relative;overflow:hidden}
+.brother-intro::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;border-radius:4px 0 0 4px}
+.brother-intro.henry::before{background:var(--henry)}
+.brother-intro.alexander::before{background:var(--alexander)}
+.brother-intro.james::before{background:var(--james)}
+.brother-intro.charles::before{background:var(--charles)}
+.brother-intro .bi-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;margin-bottom:2px}
+.brother-intro.henry .bi-name{color:var(--henry)}
+.brother-intro.alexander .bi-name{color:var(--alexander)}
+.brother-intro.james .bi-name{color:var(--james)}
+.brother-intro.charles .bi-name{color:var(--charles)}
+.brother-intro .bi-unit{font-size:0.72rem;color:var(--text-light);margin-bottom:6px}
+.brother-intro .bi-fate{font-family:'Source Serif 4',serif;font-size:0.82rem;color:var(--text-mid);line-height:1.5}
+
+/* ===== SECTION DIVIDERS ===== */
+.section-divider{max-width:800px;margin:0 auto;padding:0 24px}
+.section-divider hr{border:none;border-top:1px solid var(--border);margin:0}
+
+/* ===== NARRATIVE SECTIONS ===== */
+.narrative{max-width:720px;margin:0 auto;padding:50px 24px}
+.narrative h2{font-size:1.6rem;margin-bottom:16px;text-align:center}
+.narrative h2 .section-label{display:block;font-family:'Inter',sans-serif;font-size:0.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-light);font-weight:500;margin-bottom:6px}
+.narrative p{font-family:'Source Serif 4',serif;font-size:1.02rem;line-height:1.9;color:var(--text-mid);margin-bottom:18px}
+.narrative p:last-child{margin-bottom:0}
+.narrative blockquote{font-family:'Source Serif 4',serif;font-style:italic;font-size:1.05rem;line-height:1.8;color:var(--text);border-left:3px solid var(--border);padding:10px 0 10px 20px;margin:24px 0}
+.narrative blockquote cite{display:block;font-style:normal;font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--text-light);margin-top:8px}
+
+/* ===== PRESERVATION CHAIN ===== */
+.chain{max-width:660px;margin:30px auto 0;display:flex;flex-direction:column;gap:0}
+.chain-layer{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-left:2px solid var(--border);margin-left:16px;padding-left:24px;position:relative}
+.chain-layer::before{content:'';position:absolute;left:-6px;top:20px;width:10px;height:10px;border-radius:50%;background:var(--text-mid);border:2px solid var(--bg)}
+.chain-layer:last-child{border-left-color:transparent}
+.chain-year{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;flex-shrink:0;width:80px;color:var(--text)}
+.chain-desc{flex:1}
+.chain-name{font-weight:600;color:var(--text);font-size:0.9rem}
+.chain-text{font-family:'Source Serif 4',serif;font-size:0.88rem;color:var(--text-mid);line-height:1.6;margin-top:2px}
+
+/* ===== EXPLORE GRID ===== */
+.explore-section{max-width:1000px;margin:0 auto;padding:50px 24px 60px}
+.explore-section h2{font-size:1.6rem;margin-bottom:6px;text-align:center}
+.explore-sub{text-align:center;color:var(--text-light);font-size:0.85rem;margin-bottom:24px}
+.explore-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.explore-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:22px 24px;text-decoration:none;color:inherit;transition:transform 0.15s,box-shadow 0.15s}
+.explore-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+.explore-card h3{font-size:1.05rem;margin-bottom:6px}
+.explore-card p{font-size:0.82rem;color:var(--text-mid);line-height:1.5}
+.explore-card .ec-stat{font-size:0.72rem;color:var(--text-light);margin-top:8px;text-transform:uppercase;letter-spacing:0.5px}
+
+/* ===== LETTER READER PANEL ===== */
+.reader-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center;padding:24px}
+.reader-overlay.open{display:flex}
+.reader-panel{background:var(--card);border-radius:14px;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;padding:28px 32px;position:relative;box-shadow:0 16px 50px rgba(0,0,0,0.2)}
+.reader-close{position:absolute;top:12px;right:14px;border:none;background:none;font-size:1.5rem;cursor:pointer;color:var(--text-light);line-height:1}
+.reader-close:hover{color:var(--text)}
+.reader-header h3{font-size:1.2rem;margin-bottom:4px}
+.reader-meta{font-size:0.8rem;color:var(--text-mid);margin-bottom:14px;line-height:1.6}
+.reader-meta .rm-id{font-size:0.7rem;color:var(--text-light)}
+.reader-flags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.reader-flag{font-size:0.65rem;padding:2px 8px;border-radius:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px}
+.rf-battle{background:#FCE4EC;color:#C62828}
+.rf-illness{background:#FFF3E0;color:#E65100}
+.rf-death{background:#EFEBE9;color:#4E342E}
+.rf-wound{background:#F3E5F5;color:#7B1FA2}
+.reader-people,.reader-places{margin-bottom:14px}
+.reader-people h4,.reader-places h4{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-light);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:6px}
+.reader-tags{display:flex;gap:4px;flex-wrap:wrap}
+.reader-tag{font-size:0.73rem;padding:2px 8px;border-radius:10px;background:var(--border-light);color:var(--text-mid)}
+.reader-tag.person{background:#E3F2FD;color:#1565C0}
+.reader-tag.place{background:#E8F5E9;color:#2E7D32}
+.reader-body{font-family:'Source Serif 4',serif;font-size:0.92rem;line-height:1.85;color:var(--text);background:var(--bg);border-radius:8px;padding:18px;white-space:pre-wrap;border:1px solid var(--border-light);max-height:400px;overflow-y:auto}
+.reader-body mark{background:rgba(255,200,50,0.35);color:inherit;font-weight:500;border-radius:2px;padding:0 1px}
+
+/* ===== FOOTER ===== */
+.site-footer{text-align:center;padding:32px 24px 40px;color:var(--text-light);font-size:0.76rem;border-top:1px solid var(--border-light);max-width:800px;margin:0 auto;line-height:1.7}
+
+@media(max-width:700px){
+  .search-container{width:200px}
+  .search-dropdown{width:calc(100vw - 20px);right:-10px}
+  .brothers-grid{grid-template-columns:1fr 1fr}
+  .explore-grid{grid-template-columns:1fr}
+  .nav-links{gap:8px;overflow-x:auto}
+}
+</style>
 </head>
 <body>
-<p>Redirecting to <a href="hubbell-dashboard.html">Hubbell Brothers Civil War Dashboard</a>...</p>
+
+<!-- ===== STICKY NAV ===== -->
+<nav class="site-nav">
+  <div class="nav-links">
+    <span class="nav-label">Explore:</span>
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="hubbell-dashboard.html" class="nav-link">Parallel Lives</a>
+    <a href="viz-emotional-arcs.html" class="nav-link">Emotional Arcs</a>
+    <a href="viz-map-fullwar.html" class="nav-link">Map That Moves</a>
+    <a href="viz-health-ledger.html" class="nav-link">Health Ledger</a>
+    <a href="viz-money-story.html" class="nav-link">Money Story</a>
+    <a href="viz-people-web.html" class="nav-link">People Web</a>
+    <a href="viz-what-they-didnt-know.html" class="nav-link">What They Didn't Know</a>
+    <a href="who-they-were.html" class="nav-link">Who They Were</a>
+  </div>
+  <div class="nav-spacer"></div>
+  <div class="search-container">
+    <span class="search-icon">&#x1F50D;</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search 274 letters..." autocomplete="off">
+    <div class="search-dropdown" id="searchDropdown"></div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <h1>The Hubbell Brothers<span class="year-range">Civil War Letters, 1861&ndash;1865</span></h1>
+  <p class="hook">A widowed mother in upstate New York sent <strong>four sons</strong> to the Union Army. They wrote home about marches, money, sickness, and fear. <strong>Three did not survive the war.</strong> Their letters did.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">274</span><span class="lbl">Letters Transcribed</span></div>
+    <div class="hero-stat"><span class="num">4</span><span class="lbl">Brothers</span></div>
+    <div class="hero-stat"><span class="num">1861&ndash;65</span><span class="lbl">Span</span></div>
+    <div class="hero-stat"><span class="num">5</span><span class="lbl">Generations of Stewardship</span></div>
+  </div>
+</div>
+
+<!-- ===== THE BROTHERS ===== -->
+<div class="brothers-section">
+  <div class="brothers-grid">
+    <div class="brother-intro henry">
+      <div class="bi-name">Henry Hubbell</div>
+      <div class="bi-unit">Co. D, 34th New York Volunteers</div>
+      <div class="bi-fate">Killed at Antietam, September 17, 1862. His body was never recovered.</div>
+    </div>
+    <div class="brother-intro alexander">
+      <div class="bi-name">Alexander F. Hubbell</div>
+      <div class="bi-unit">Co. H, 60th New York Infantry</div>
+      <div class="bi-fate">Wounded at Lookout Mountain. Survived scurvy, chronic diarrhea, and nearly four years of continuous service. Died on his farm in Iowa, 1894.</div>
+    </div>
+    <div class="brother-intro james">
+      <div class="bi-name">James Hubbell</div>
+      <div class="bi-unit">Co. I, 153rd New York Volunteers</div>
+      <div class="bi-fate">Wounded at Cedar Creek. Died returning home from Savannah, October 19, 1865 &mdash; the war already over.</div>
+    </div>
+    <div class="brother-intro charles">
+      <div class="bi-name">Charles F. Hubbell</div>
+      <div class="bi-unit">Co. I, 153rd New York Volunteers</div>
+      <div class="bi-fate">Remarkably healthy throughout his service. Died in 1875 from disease contracted during the war.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"><hr></div>
+
+<!-- ===== ACT 1: THE STORY ===== -->
+<div class="narrative">
+  <h2><span class="section-label">The Letters</span>What They Wrote Home</h2>
+  <p>Their father, Frederick Augustus Hubbell, had died in 1853 when Alexander was nine years old. Frances McNeil Hubbell raised four sons and a daughter alone in Champlain, on the Canadian border of New York. When the call came for volunteers in 1861, she sent all four.</p>
+  <p>What followed was not the heroic correspondence of myth. The brothers wrote about <strong>diarrhea, back pay, the cost of getting a shirt washed</strong>. They wrote about men dying of fever in hospitals where the surgeons had no medicine. They wrote about money &mdash; eight dollars sent home, five dollars begged from their mother when the army failed to pay them for months. They wrote, above all, to stay connected to a home they were no longer sure they would see again.</p>
+  <blockquote>You know, Mother, what it is to be away from home, sick among strangers and to be without money. I will not try to describe my feelings when I ask for this... Do you suppose you could spare me five dollars, if not, less will do.<cite>&mdash; Alexander, Hospital at Harpers Ferry, September 27, 1862</cite></blockquote>
+  <p>Henry stopped writing in July 1862. The family learned his name had appeared on a casualty list after Antietam. Conflicting reports followed &mdash; wounded in the leg, or killed outright. A soldier eventually reported seeing his name on a headboard at a grave. Charles would later write: <em>"I think there is not the least doubt that Henry was killed."</em></p>
+  <p>In August 1864, all three surviving brothers were hospitalized simultaneously &mdash; Alexander with scurvy near Atlanta, James with exhaustion at Frederick City, Charles in a convalescent department near Harper's Ferry. Alexander found this darkly amusing.</p>
+  <blockquote>Please excuse me, Mother, but I did have a hearty laugh when I took in the idea of your three hopeful sons being in the hospital at the one and same time.<cite>&mdash; Alexander, Hospital at Chattanooga, August 30, 1864</cite></blockquote>
+</div>
+
+<div class="section-divider"><hr></div>
+
+<!-- ===== ACT 2: THE PRESERVATION ===== -->
+<div class="narrative">
+  <h2><span class="section-label">The Preservation</span>Five Generations, One Story</h2>
+  <p>The letters survived in a trunk in a basement for eighty years. Water-stained and fading, they might have been lost entirely. Instead, each generation chose to carry them forward.</p>
+
+  <div class="chain">
+    <div class="chain-layer">
+      <div class="chain-year">1861</div>
+      <div class="chain-desc">
+        <div class="chain-name">The Brothers</div>
+        <div class="chain-text">Henry, Alexander, James, and Charles write home from camps, marches, hospitals, and battlefields across Virginia, Maryland, Tennessee, Georgia, and Louisiana.</div>
+      </div>
+    </div>
+    <div class="chain-layer">
+      <div class="chain-year">1947</div>
+      <div class="chain-desc">
+        <div class="chain-name">Gladys Sands Hubbell</div>
+        <div class="chain-text">Alexander's daughter-in-law spends two and a half years transcribing deteriorating originals by typewriter &mdash; preserving every misspelling, every grammatical choice, noting every passage too damaged to read. A true labor of love.</div>
+      </div>
+    </div>
+    <div class="chain-layer">
+      <div class="chain-year">1996</div>
+      <div class="chain-desc">
+        <div class="chain-name">Fred Alexander Hubbell Jr.</div>
+        <div class="chain-text">Alexander's grandson writes an introduction identifying the four brothers, their regiments, and their fates &mdash; placing the story in context for future generations.</div>
+      </div>
+    </div>
+    <div class="chain-layer">
+      <div class="chain-year">2025</div>
+      <div class="chain-desc">
+        <div class="chain-name">Bruce Levitt</div>
+        <div class="chain-text">Scans the typewritten collection for digital preservation, ensuring the physical pages are no longer the only record.</div>
+      </div>
+    </div>
+    <div class="chain-layer">
+      <div class="chain-year">2025&ndash;26</div>
+      <div class="chain-desc">
+        <div class="chain-name">The Descendants</div>
+        <div class="chain-text">Modern technology meets handwritten history. 274 letters are transcribed into structured data, text-mined for health patterns, financial references, emotional arcs, and the web of people and places that shaped these soldiers' lives. What emerges are patterns no single reader could see &mdash; and a family made vivid again.</div>
+      </div>
+    </div>
+  </div>
+
+  <blockquote>The following letters were transcribed by my mother, from the original hand written pages, in what was a true labor of love. The originals had been stored in a trunk in a basement, and many of them were somewhat water stained.<cite>&mdash; Fred Alexander Hubbell Jr., Atlanta, October 28, 1996</cite></blockquote>
+</div>
+
+<div class="section-divider"><hr></div>
+
+<!-- ===== ACT 3: THE EXPLORATIONS ===== -->
+<div class="explore-section">
+  <h2><span class="section-label" style="display:block;font-family:'Inter',sans-serif;font-size:0.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-light);font-weight:500;margin-bottom:6px;text-align:center">The Explorations</span>What the Letters Reveal</h2>
+  <p class="explore-sub">Each visualization draws meaning from a different dimension of the correspondence.</p>
+  <div class="explore-grid">
+    <a href="hubbell-dashboard.html" class="explore-card">
+      <h3>Parallel Lives</h3>
+      <p>The master timeline. Every letter plotted by date, author, and significance &mdash; with zoom, brush selection, and full letter reader.</p>
+      <div class="ec-stat">274 letters &middot; Interactive timeline</div>
+    </a>
+    <a href="viz-emotional-arcs.html" class="explore-card">
+      <h3>Emotional Arcs</h3>
+      <p>How the brothers' emotional tone shifted over four years of war &mdash; from early optimism through disillusionment to exhaustion.</p>
+      <div class="ec-stat">Sentiment analysis &middot; Mood trajectories</div>
+    </a>
+    <a href="viz-map-fullwar.html" class="explore-card">
+      <h3>The Map That Moves</h3>
+      <p>Where they wrote from. A geographic trace of four soldiers across Virginia, Maryland, Tennessee, Georgia, and Louisiana.</p>
+      <div class="ec-stat">Geographic visualization &middot; Movement patterns</div>
+    </a>
+    <a href="viz-health-ledger.html" class="explore-card">
+      <h3>The Health Ledger</h3>
+      <p>For every soldier killed in battle, two died of disease. Track each brother's physical condition through text-mined health reports.</p>
+      <div class="ec-stat">Health classification &middot; Illness tracking</div>
+    </a>
+    <a href="viz-money-story.html" class="explore-card">
+      <h3>The Money Story</h3>
+      <p>Every dollar mentioned &mdash; pay, bounties, expenses, money begged from home. The tiny economy of a private soldier's war.</p>
+      <div class="ec-stat">Financial text mining &middot; CPI adjustment</div>
+    </a>
+    <a href="viz-people-web.html" class="explore-card">
+      <h3>The People Web</h3>
+      <p>The network of people mentioned across the letters &mdash; officers, comrades, family, and the strangers who shaped their lives.</p>
+      <div class="ec-stat">Network graph &middot; Person identity</div>
+    </a>
+  </div>
+</div>
+
+<!-- ===== LETTER READER ===== -->
+<div class="reader-overlay" id="readerOverlay">
+  <div class="reader-panel" id="readerPanel">
+    <button class="reader-close" id="readerClose">&times;</button>
+    <div id="readerContent"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  Based on 274 transcribed letters from the Hubbell family collection, 1861&ndash;1865.<br>
+  Transcribed by Gladys Sands Hubbell (1947&ndash;1949). Introduced by Fred Alexander Hubbell Jr. (1996). Scanned by Bruce Levitt (2025). Analyzed by the descendants (2025&ndash;2026).<br>
+  <span style="margin-top:4px;display:inline-block">Interactive visualizations built with Claude &middot; Data sourced from original family correspondence</span>
+</footer>
+
+<!-- ===== DATA EMBED ===== -->
+<script>
+/* Letter data is embedded below by build script */
+</script>
+<script src="_search-data.js"></script>
+<script>
+/* ===== CONSTANTS ===== */
+var AUTHOR_COLORS = {henry:'#2D5F8A',alexander:'#B8860B',james:'#4A7C59',charles:'#8B3A3A',mother:'#7B5EA7',mcdonald:'#666',luther:'#666',mcneil:'#666'};
+var AUTHOR_NAMES = {henry:'Henry Hubbell',alexander:'Alexander F. Hubbell',james:'James Hubbell',charles:'Charles F. Hubbell',mother:'Frances Hubbell (Mother)',mcdonald:'R.W. McDonald',luther:'Amos Luther',mcneil:'Mary McNeil'};
+
+/* ===== THEMATIC SYNONYMS ===== */
+var THEMES = {
+  illness: ['sick','ill','unwell','fever','ague','diarrhea','dysentery','health','hospital','surgeon','doctor','medicine','quinine','pills','measles','rheumatism','cough','scurvy','disease','typhoid','malaria'],
+  battle: ['battle','fight','engagement','skirmish','attack','charge','shell','musket','cannon','artillery','wounded','killed','casualty','retreat','advance','picket','fortification','breastwork','rifle'],
+  money: ['dollar','dollars','pay','paid','bounty','money','expense','cost','owe','debt','sutler','cent','cents','remittance','send home'],
+  family: ['mother','sister','brother','home','family','father','wife','children','frances','fannie'],
+  morale: ['lonely','homesick','discouraged','cheerful','hope','despair','tired','weary','courage','fear','anxious','worry','spirit','resign'],
+  camp: ['camp','tent','march','drill','ration','rations','guard','picket','duty','fatigue','knapsack','blanket','regiment','company','colonel','captain']
+};
+
+/* ===== SEARCH INDEX ===== */
+var searchIndex = [];
+function buildIndex() {
+  LETTERS.forEach(function(l) {
+    var textLower = l.t.toLowerCase();
+    var peopleLower = (l.ppl || []).map(function(p) { return p.toLowerCase(); });
+    var placesLower = (l.plc || []).map(function(p) { return p.toLowerCase(); });
+    var metaLower = (l.an + ' ' + l.r + ' ' + l.loc + ' ' + l.d).toLowerCase();
+    searchIndex.push({
+      letter: l,
+      textLower: textLower,
+      peopleLower: peopleLower,
+      placesLower: placesLower,
+      metaLower: metaLower,
+      allLower: textLower + ' ' + peopleLower.join(' ') + ' ' + placesLower.join(' ') + ' ' + metaLower
+    });
+  });
+}
+buildIndex();
+
+function search(query) {
+  if (!query || query.length < 2) return [];
+  var terms = query.toLowerCase().split(/\s+/).filter(function(t) { return t.length > 1; });
+  if (terms.length === 0) return [];
+
+  // Expand thematic terms
+  var expandedTerms = [];
+  terms.forEach(function(term) {
+    expandedTerms.push(term);
+    for (var theme in THEMES) {
+      if (theme === term || THEMES[theme].indexOf(term) !== -1) {
+        THEMES[theme].forEach(function(syn) {
+          if (expandedTerms.indexOf(syn) === -1) expandedTerms.push(syn);
+        });
+      }
+    }
+  });
+
+  var results = [];
+  searchIndex.forEach(function(entry) {
+    var score = 0;
+    var matchTypes = new Set();
+    var matchedTerms = [];
+
+    terms.forEach(function(term) {
+      // Exact metadata match (author, recipient, location, date) — highest weight
+      if (entry.metaLower.indexOf(term) !== -1) {
+        score += 15;
+        matchTypes.add('meta');
+        matchedTerms.push(term);
+      }
+      // People match
+      var personMatch = entry.peopleLower.some(function(p) { return p.indexOf(term) !== -1; });
+      if (personMatch) {
+        score += 12;
+        matchTypes.add('person');
+        matchedTerms.push(term);
+      }
+      // Place match
+      var placeMatch = entry.placesLower.some(function(p) { return p.indexOf(term) !== -1; });
+      if (placeMatch) {
+        score += 10;
+        matchTypes.add('place');
+        matchedTerms.push(term);
+      }
+      // Direct text match — weight by frequency
+      var textMatches = (entry.textLower.match(new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length;
+      if (textMatches > 0) {
+        score += 5 + Math.min(textMatches * 2, 10);
+        matchTypes.add('text');
+        matchedTerms.push(term);
+      }
+    });
+
+    // Thematic expansion matches (lower weight)
+    expandedTerms.forEach(function(syn) {
+      if (terms.indexOf(syn) !== -1) return; // skip original terms
+      var synMatches = (entry.textLower.match(new RegExp(syn.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length;
+      if (synMatches > 0) {
+        score += 1 + Math.min(synMatches, 3);
+        matchTypes.add('text');
+      }
+    });
+
+    // Multi-term bonus
+    if (matchedTerms.length > 1) score += matchedTerms.length * 3;
+
+    // Flag bonus
+    if (entry.letter.bat) score += 1;
+    if (entry.letter.ill) score += 1;
+
+    if (score > 0) {
+      results.push({
+        letter: entry.letter,
+        score: score,
+        matchTypes: Array.from(matchTypes),
+        matchedTerms: matchedTerms
+      });
+    }
+  });
+
+  results.sort(function(a, b) { return b.score - a.score; });
+  return results.slice(0, 40);
+}
+
+/* ===== SEARCH UI ===== */
+var searchInput = document.getElementById('searchInput');
+var searchDropdown = document.getElementById('searchDropdown');
+var searchTimeout = null;
+
+searchInput.addEventListener('input', function() {
+  clearTimeout(searchTimeout);
+  var q = this.value.trim();
+  if (q.length < 2) { searchDropdown.classList.remove('open'); return; }
+  searchTimeout = setTimeout(function() { renderResults(q); }, 150);
+});
+
+searchInput.addEventListener('focus', function() {
+  if (this.value.trim().length >= 2) renderResults(this.value.trim());
+});
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.search-container')) searchDropdown.classList.remove('open');
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    searchDropdown.classList.remove('open');
+    searchInput.blur();
+  }
+  // Ctrl+K or Cmd+K to focus search
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault();
+    searchInput.focus();
+    searchInput.select();
+  }
+});
+
+function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function highlightTerms(text, terms, maxLen) {
+  var t = text.length > maxLen ? text.substring(0, maxLen) + '...' : text;
+  var escaped = esc(t);
+  terms.forEach(function(term) {
+    var re = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    escaped = escaped.replace(re, '<mark>$1</mark>');
+  });
+  return escaped;
+}
+
+function findBestExcerpt(text, terms, radius) {
+  var tl = text.toLowerCase();
+  var bestPos = -1;
+  var bestScore = 0;
+  terms.forEach(function(term) {
+    var idx = tl.indexOf(term.toLowerCase());
+    if (idx !== -1) {
+      // Score by how many terms are near this position
+      var nearScore = 0;
+      terms.forEach(function(t2) {
+        var nearby = tl.indexOf(t2.toLowerCase(), Math.max(0, idx - radius));
+        if (nearby !== -1 && nearby < idx + radius) nearScore++;
+      });
+      if (nearScore > bestScore || (nearScore === bestScore && idx < bestPos)) {
+        bestScore = nearScore;
+        bestPos = idx;
+      }
+    }
+  });
+  if (bestPos === -1) return text.substring(0, radius * 2);
+  var start = Math.max(0, bestPos - radius);
+  var end = Math.min(text.length, bestPos + radius);
+  var excerpt = (start > 0 ? '...' : '') + text.substring(start, end) + (end < text.length ? '...' : '');
+  return excerpt;
+}
+
+function renderResults(query) {
+  var results = search(query);
+  if (results.length === 0) {
+    searchDropdown.innerHTML = '<div class="search-empty">No results for &ldquo;' + esc(query) + '&rdquo;</div>';
+    searchDropdown.classList.add('open');
+    return;
+  }
+
+  var terms = query.toLowerCase().split(/\s+/).filter(function(t) { return t.length > 1; });
+
+  // Count by author
+  var authorCounts = {};
+  results.forEach(function(r) {
+    authorCounts[r.letter.a] = (authorCounts[r.letter.a] || 0) + 1;
+  });
+
+  // Summary bar
+  var html = '<div class="search-summary">';
+  html += '<span>' + results.length + ' result' + (results.length !== 1 ? 's' : '') + '</span>';
+  for (var a in authorCounts) {
+    var color = AUTHOR_COLORS[a] || '#999';
+    html += '<span class="author-count"><span class="dot" style="background:' + color + '"></span>' + (AUTHOR_NAMES[a] || a) + ': ' + authorCounts[a] + '</span>';
+  }
+  html += '</div>';
+
+  // Group top results by primary match type
+  var groups = {meta: [], person: [], place: [], text: []};
+  results.forEach(function(r) {
+    // Assign to primary (highest-priority) group
+    if (r.matchTypes.indexOf('meta') !== -1) groups.meta.push(r);
+    else if (r.matchTypes.indexOf('person') !== -1) groups.person.push(r);
+    else if (r.matchTypes.indexOf('place') !== -1) groups.place.push(r);
+    else groups.text.push(r);
+  });
+
+  var groupLabels = {meta: 'Metadata Matches', person: 'People Mentioned', place: 'Places Referenced', text: 'Letter Content'};
+  var groupOrder = ['meta', 'person', 'place', 'text'];
+
+  groupOrder.forEach(function(gk) {
+    var items = groups[gk];
+    if (items.length === 0) return;
+    html += '<div class="search-group"><div class="search-group-label">' + groupLabels[gk] + ' (' + items.length + ')</div>';
+    items.slice(0, 8).forEach(function(r) {
+      var l = r.letter;
+      var color = AUTHOR_COLORS[l.a] || '#999';
+      var excerpt = findBestExcerpt(l.t, terms, 100);
+      var highlighted = highlightTerms(excerpt, terms, 220);
+
+      // Badges
+      var badges = '';
+      r.matchTypes.forEach(function(mt) {
+        badges += '<span class="sr-badge ' + mt + '">' + mt + '</span>';
+      });
+      if (l.bat) badges += '<span class="sr-badge" style="background:#FCE4EC;color:#C62828">battle</span>';
+      if (l.ill) badges += '<span class="sr-badge" style="background:#FFF3E0;color:#E65100">illness</span>';
+
+      html += '<div class="search-result" data-lid="' + l.id + '">' +
+        '<div class="sr-dot" style="background:' + color + '"></div>' +
+        '<div class="sr-body">' +
+          '<div class="sr-meta"><strong>' + esc(l.an) + '</strong> to ' + esc(l.r) + ' &mdash; ' + esc(l.d) + ', ' + esc(l.loc) + '</div>' +
+          '<div class="sr-excerpt">' + highlighted + '</div>' +
+          '<div class="sr-badges">' + badges + '</div>' +
+        '</div></div>';
+    });
+    if (items.length > 8) {
+      html += '<div style="padding:6px 16px;font-size:0.72rem;color:var(--text-light);text-align:center">+ ' + (items.length - 8) + ' more</div>';
+    }
+    html += '</div>';
+  });
+
+  searchDropdown.innerHTML = html;
+  searchDropdown.classList.add('open');
+
+  // Wire up clicks
+  searchDropdown.querySelectorAll('.search-result').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var lid = this.dataset.lid;
+      var letter = LETTERS.find(function(l) { return l.id === lid; });
+      if (letter) openReader(letter, terms);
+      searchDropdown.classList.remove('open');
+    });
+  });
+}
+
+/* ===== LETTER READER ===== */
+var readerOverlay = document.getElementById('readerOverlay');
+var readerPanel = document.getElementById('readerPanel');
+
+function openReader(letter, highlightTerms) {
+  var color = AUTHOR_COLORS[letter.a] || '#999';
+  var name = AUTHOR_NAMES[letter.a] || letter.an;
+
+  // Flags
+  var flags = '';
+  if (letter.bat) flags += '<span class="reader-flag rf-battle">Battle</span>';
+  if (letter.ill) flags += '<span class="reader-flag rf-illness">Illness</span>';
+  if (letter.dth) flags += '<span class="reader-flag rf-death">Death</span>';
+  if (letter.wnd) flags += '<span class="reader-flag rf-wound">Wound</span>';
+
+  // People tags
+  var peopleTags = '';
+  if (letter.ppl && letter.ppl.length > 0) {
+    peopleTags = '<div class="reader-people"><h4>People Mentioned</h4><div class="reader-tags">' +
+      letter.ppl.map(function(p) { return '<span class="reader-tag person">' + esc(p) + '</span>'; }).join('') +
+      '</div></div>';
+  }
+
+  // Place tags
+  var placeTags = '';
+  if (letter.plc && letter.plc.length > 0) {
+    placeTags = '<div class="reader-places"><h4>Places Referenced</h4><div class="reader-tags">' +
+      letter.plc.map(function(p) { return '<span class="reader-tag place">' + esc(p) + '</span>'; }).join('') +
+      '</div></div>';
+  }
+
+  // Letter body with highlights
+  var body = esc(letter.t);
+  if (highlightTerms && highlightTerms.length > 0) {
+    highlightTerms.forEach(function(term) {
+      var re = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      body = body.replace(re, '<mark>$1</mark>');
+    });
+  }
+
+  document.getElementById('readerContent').innerHTML =
+    '<div class="reader-header"><h3 style="color:' + color + '">' + esc(name) + ' to ' + esc(letter.r) + '</h3></div>' +
+    '<div class="reader-meta">' + esc(letter.d) + ' &mdash; ' + esc(letter.loc) +
+      '<br><span class="rm-id">' + esc(letter.id) + '</span></div>' +
+    (flags ? '<div class="reader-flags">' + flags + '</div>' : '') +
+    peopleTags +
+    placeTags +
+    '<div class="reader-body">' + body + '</div>';
+
+  readerOverlay.classList.add('open');
+
+  // Scroll to first highlight
+  if (highlightTerms && highlightTerms.length > 0) {
+    setTimeout(function() {
+      var firstMark = readerPanel.querySelector('.reader-body mark');
+      if (firstMark) firstMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }
+}
+
+function closeReader() { readerOverlay.classList.remove('open'); }
+document.getElementById('readerClose').addEventListener('click', closeReader);
+readerOverlay.addEventListener('click', function(e) {
+  if (e.target === e.currentTarget) closeReader();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && readerOverlay.classList.contains('open')) closeReader();
+});
+</script>
 </body>
 </html>
