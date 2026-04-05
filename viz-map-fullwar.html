@@ -855,6 +855,7 @@ body {
   .date-display { font-size: 0.9rem; }
 }
 </style>
+<link rel="stylesheet" href="_overlay.css">
 </head>
 <body>
 
@@ -868,6 +869,7 @@ body {
     <a href="viz-health-ledger.html" class="nav-link">Health Ledger</a>
     <a href="viz-money-story.html" class="nav-link">Money Story</a>
     <a href="viz-people-web.html" class="nav-link">People Web</a>
+    <a href="viz-what-they-wrote-about.html" class="nav-link">What They Wrote</a>
     <a href="who-they-were.html" class="nav-link">Who They Were</a>
   </div>
   <div class="nav-spacer"></div>
@@ -1065,8 +1067,22 @@ async function init() {
     toggleLock(paramBrother);
   }
 
+  // Handle ?place= parameter: fly to matching location
+  const paramPlace = params.get('place');
+  if (paramPlace) {
+    const placeLower = paramPlace.toLowerCase();
+    const match = DATA.movements.find(function(m) {
+      return m.placeName && m.placeName.toLowerCase() === placeLower;
+    });
+    if (match && match.lat && match.lon) {
+      setTimeout(function() {
+        map.flyTo([match.lat, match.lon], 10, { duration: 1.2 });
+      }, 400);
+    }
+  }
+
   // Clean URL params without triggering reload
-  if (paramDate || paramBrother) {
+  if (paramDate || paramBrother || paramPlace) {
     window.history.replaceState({}, '', window.location.pathname);
   }
 
@@ -1956,5 +1972,9 @@ document.getElementById('searchInput').addEventListener('keydown', function(e) {
   }
 });
 </script>
+
+<script src="_overlay-data.js"></script>
+<script src="_overlay.js"></script>
+<script>HubbellOverlay.bindPage({ tags: true, locations: true });</script>
 </body>
 </html>

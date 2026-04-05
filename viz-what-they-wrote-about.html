@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What They Wrote About &mdash; Hubbell Brothers Civil War Letters</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --henry:#2D5F8A;--alexander:#B8860B;--james:#4A7C59;--charles:#8B3A3A;
+  --bg:#FAF8F5;--card:#FFFFFF;
+  --text:#2C2C2C;--text-mid:#6B6B6B;--text-light:#9B9B9B;
+  --border:#E8E4DF;--border-light:#F0ECE7;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3}
+
+/* ===== HERO ===== */
+.hero{text-align:center;padding:52px 24px 28px;max-width:900px;margin:0 auto}
+.hero h1{font-size:clamp(2rem,4vw,3rem);margin-bottom:10px;letter-spacing:-0.5px}
+.hero .subtitle{font-size:1.02rem;color:var(--text-mid);max-width:680px;margin:0 auto 20px;font-weight:300;font-family:'Source Serif 4',serif;font-style:italic}
+.hero .stat-row{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.hero .stat{text-align:center}
+.hero .stat .num{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;display:block}
+.hero .stat .lbl{font-size:0.72rem;color:var(--text-light);text-transform:uppercase;letter-spacing:1px}
+
+/* ===== CONTROLS ===== */
+.controls{max-width:1200px;margin:0 auto 8px;padding:10px 24px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.controls label{font-size:0.78rem;color:var(--text-mid);font-weight:500;text-transform:uppercase;letter-spacing:0.8px;margin-right:2px}
+.filter-group{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:20px;font-size:0.79rem;font-weight:500;cursor:pointer;border:1.5px solid var(--border);background:var(--card);transition:all 0.2s;user-select:none}
+.chip:hover{border-color:var(--text-light)}
+.chip.active{background:var(--text);color:#fff;border-color:var(--text)}
+.chip .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* Toggle switch */
+.toggle-group{display:flex;align-items:center;gap:8px;margin:0 8px}
+.toggle-label{font-size:0.76rem;color:var(--text-light);cursor:pointer;transition:color 0.2s}
+.toggle-label.active{color:var(--text);font-weight:600}
+.toggle-track{width:36px;height:20px;border-radius:10px;background:var(--border);cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0}
+.toggle-track .toggle-knob{width:16px;height:16px;border-radius:50%;background:#fff;position:absolute;top:2px;left:2px;transition:left 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
+.toggle-track.on .toggle-knob{left:18px}
+.toggle-track.on{background:var(--text-mid)}
+
+/* ===== CHART AREA ===== */
+.chart-section{max-width:1200px;margin:0 auto 24px;padding:0 24px}
+.chart-wrapper{position:relative;overflow-x:auto;padding:8px 0 16px;-webkit-overflow-scrolling:touch}
+.chart-wrapper::-webkit-scrollbar{height:8px}
+.chart-wrapper::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+svg.chart-svg{display:block}
+.bar-segment{cursor:pointer;transition:opacity 0.15s}
+.bar-segment:hover{opacity:0.8}
+
+/* ===== LEGEND ===== */
+.legend{max-width:1200px;margin:0 auto 28px;padding:0 24px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;font-size:0.76rem;color:var(--text-mid)}
+.legend-item{display:flex;align-items:center;gap:5px;cursor:default}
+.legend-swatch{width:14px;height:14px;border-radius:3px;flex-shrink:0}
+
+/* ===== TOOLTIP ===== */
+.tooltip{position:fixed;z-index:1000;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;box-shadow:0 8px 30px rgba(0,0,0,0.12);max-width:320px;pointer-events:none;opacity:0;transition:opacity 0.12s;font-size:0.83rem}
+.tooltip.show{opacity:1}
+.tooltip .tt-topic{font-weight:600;margin-bottom:2px;display:flex;align-items:center;gap:6px}
+.tooltip .tt-topic .tt-swatch{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.tooltip .tt-pct{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.tooltip .tt-detail{font-size:0.73rem;color:var(--text-light);margin-top:4px}
+
+/* ===== DETAIL OVERLAY ===== */
+.detail-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.35);display:none;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto}
+.detail-overlay.show{display:flex}
+.detail-panel{background:var(--card);border-radius:14px;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;padding:26px 30px;position:relative;box-shadow:0 16px 50px rgba(0,0,0,0.18);margin-top:40px}
+.detail-panel .dp-close{position:absolute;top:12px;right:14px;border:none;background:none;font-size:1.4rem;cursor:pointer;color:var(--text-light);line-height:1}
+.detail-panel .dp-close:hover{color:var(--text)}
+.detail-panel h3{font-size:1.15rem;margin-bottom:2px;display:flex;align-items:center;gap:8px}
+.detail-panel h3 .topic-swatch{width:14px;height:14px;border-radius:3px;flex-shrink:0}
+.detail-panel .dp-sub{font-size:0.82rem;color:var(--text-mid);margin-bottom:16px}
+.dp-excerpt-list{list-style:none}
+.dp-excerpt{padding:12px 14px;border-bottom:1px solid var(--border-light);cursor:pointer;border-radius:6px;transition:background 0.15s}
+.dp-excerpt:last-child{border-bottom:none}
+.dp-excerpt:hover{background:var(--border-light)}
+.dp-excerpt .ex-meta{font-size:0.73rem;color:var(--text-light);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.dp-excerpt .ex-meta .author-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dp-excerpt .ex-text{font-family:'Source Serif 4',serif;font-size:0.88rem;line-height:1.7;color:var(--text)}
+.dp-excerpt .ex-text mark{background:rgba(255,200,50,0.3);color:inherit;border-radius:2px;padding:0 1px}
+
+/* Full letter expand */
+.dp-full-letter{background:var(--bg);border-radius:8px;padding:14px;margin-top:8px;font-family:'Source Serif 4',serif;font-size:0.86rem;line-height:1.8;color:var(--text);white-space:pre-wrap;max-height:300px;overflow-y:auto;border:1px solid var(--border-light);display:none}
+.dp-full-letter.open{display:block}
+.dp-expand-btn{font-size:0.72rem;color:var(--text-mid);cursor:pointer;margin-top:4px;font-weight:500}
+.dp-expand-btn:hover{color:var(--text)}
+
+/* ===== FOOTER ===== */
+.viz-provenance{background:var(--bg);border-top:1px solid var(--border-light);padding:16px 24px;text-align:center;font-size:0.72rem;color:var(--text-light);line-height:1.5;max-width:800px;margin:24px auto 0}
+
+@media(max-width:700px){
+  .hero .stat-row{gap:14px}
+  .controls{justify-content:flex-start}
+  .toggle-group{margin:4px 0}
+}
+
+/* ===== SITE NAV ===== */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 9000;
+  background: #2C2C2C;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 8px 20px;
+  gap: 6px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3px 14px;
+}
+.nav-label {
+  color: #9B9B9B;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.nav-link {
+  color: #B8B2AA;
+  text-decoration: none;
+  padding: 2px 0;
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+.nav-link:hover { color: #FFFFFF; }
+.nav-link.active {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+.nav-spacer { flex: 1; min-width: 8px; }
+.search-container {
+  position: relative;
+  flex-shrink: 0;
+}
+.search-input {
+  width: 180px;
+  padding: 5px 10px 5px 28px;
+  border: 1px solid #555;
+  border-radius: 14px;
+  background: #3a3a3a;
+  color: #eee;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.search-input::placeholder { color: #888; }
+.search-input:focus { border-color: #888; background: #444; }
+.search-icon {
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 0.7rem;
+  pointer-events: none;
+}
+@media (max-width: 700px) {
+  .site-nav { padding: 6px 12px; }
+  .nav-links { gap: 2px 10px; }
+  .nav-label { display: none; }
+  .nav-link { font-size: 0.68rem; }
+  .search-container { order: 99; width: 100%; margin-top: 2px; }
+  .search-input { width: 100%; }
+  .nav-spacer { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-links">
+    <span class="nav-label">Explore:</span>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="hubbell-dashboard.html" class="nav-link">Parallel Lives</a>
+    <a href="viz-emotional-arcs.html" class="nav-link">Emotional Arcs</a>
+    <a href="viz-map-fullwar.html" class="nav-link">Map That Moves</a>
+    <a href="viz-health-ledger.html" class="nav-link">Health Ledger</a>
+    <a href="viz-money-story.html" class="nav-link">Money Story</a>
+    <a href="viz-people-web.html" class="nav-link">People Web</a>
+    <a href="viz-what-they-wrote-about.html" class="nav-link active">What They Wrote</a>
+    <a href="who-they-were.html" class="nav-link">Who They Were</a>
+  </div>
+  <div class="nav-spacer"></div>
+  <div class="search-container">
+    <span class="search-icon">&#x1F50D;</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search 274 letters..." autocomplete="off">
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>What They Wrote About</h1>
+  <p class="subtitle">What filled the pages changed as the war changed them &mdash; topic landscape of 274 letters, 1861&ndash;1865</p>
+  <div class="stat-row" id="hero-stats"></div>
+</div>
+
+<div class="controls" id="controls">
+  <label>Brothers:</label>
+  <div class="filter-group" id="brother-filters"></div>
+
+  <div style="width:1px;height:24px;background:var(--border);margin:0 6px"></div>
+
+  <div class="toggle-group">
+    <span class="toggle-label active" id="lbl-month">Month</span>
+    <div class="toggle-track" id="toggle-period" onclick="togglePeriod()">
+      <div class="toggle-knob"></div>
+    </div>
+    <span class="toggle-label" id="lbl-quarter">Quarter</span>
+  </div>
+
+  <div class="toggle-group">
+    <span class="toggle-label active" id="lbl-ink">% of Ink</span>
+    <div class="toggle-track" id="toggle-metric" onclick="toggleMetric()">
+      <div class="toggle-knob"></div>
+    </div>
+    <span class="toggle-label" id="lbl-letters">% of Letters</span>
+  </div>
+</div>
+
+<div class="legend" id="legend"></div>
+
+<div class="chart-section">
+  <div class="chart-wrapper" id="chart-wrapper">
+    <svg class="chart-svg" id="chart-svg"></svg>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<div class="detail-overlay" id="detailOverlay">
+  <div class="detail-panel" id="detailPanel"></div>
+</div>
+
+<footer class="viz-provenance">
+  Based on 274 transcribed letters from the Hubbell family collection, 1861&ndash;1865. Topic classification is performed by keyword matching at the sentence level. Categories are mutually exclusive; each sentence is assigned to its best-matching topic. Ambiguous sentences default to &ldquo;Other.&rdquo;
+</footer>
+
+<script>
+/* ===== CONSTANTS ===== */
+var COLORS = {henry:'#2D5F8A',alexander:'#B8860B',james:'#4A7C59',charles:'#8B3A3A',unknown:'#999'};
+var NAMES = {henry:'Henry',alexander:'Alexander',james:'James',charles:'Charles',mother:'Mother'};
+var MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+var TOPICS = {
+  COMBAT:  {label:'Combat & Movement', color:'#B85450', order:0},
+  CAMP:    {label:'Camp Life',         color:'#C9A84C', order:1},
+  HEALTH:  {label:'Health',            color:'#5B9E6F', order:2},
+  MONEY:   {label:'Money & Goods',     color:'#5085A5', order:3},
+  HOME:    {label:'Home & Family',     color:'#9673B9', order:4},
+  FOOD:    {label:'Food & Drink',      color:'#D08B4C', order:5},
+  MORALE:  {label:'Morale & Faith',    color:'#5A9E97', order:6},
+  OTHER:   {label:'Other',             color:'#C4BCB4', order:7}
+};
+var TOPIC_KEYS = ['COMBAT','CAMP','HEALTH','MONEY','HOME','FOOD','MORALE','OTHER'];
+
+/* ===== TOPIC KEYWORD PATTERNS ===== */
+/* Each pattern is tested against individual sentences. The topic with the most keyword
+   hits wins. Ties break in favor of the earlier topic in TOPIC_KEYS order. */
+var TOPIC_PATTERNS = {
+  COMBAT: /\b(battle|fought|fight(?:ing)?|enem(?:y|ies)|rebels?|secesh|attack(?:ed|ing)?|charg(?:e|ed|ing)|march(?:ed|ing)|advanc(?:e|ed|ing)|retreat(?:ed|ing)?|skirmish|picket(?:s|ing|ed)?|fir(?:e[ds]?|ing)\s+(?:on|at|upon|into)|shell(?:ed|ing|s)?|cannon|artillery|rifle(?:s|d)?|musket|volley|captur(?:e[ds]?|ing)|surrender|siege|breastwork|trench|fortification|engag(?:e|ed|ement)|campaign|reconn?aiss?ance|flank(?:ed|ing)?|fell\s+back|regiment\s+(?:moved|went|left)|we\s+(?:moved|left|went|came|started|took\s+up)|battle[\s-]?field|under\s+fire|killed\s+in|line\s+of\s+battle|order(?:s|ed)?\s+to\s+march)\b/gi,
+
+  CAMP: /\b(camp(?!\s+(?:creek|run|river))|tent(?:s|ed)?|drill(?:ed|ing|s)?|guard\s+duty|on\s+guard|quarters?|barracks?|dress\s+parade|inspection|review|fatigue\s+(?:duty|detail)|reveille|roll\s+call|bivouac|winter\s+quarters|shelter|stationed|we\s+are\s+(?:in|at|near)\s+camp|camp\s+life|pitch(?:ed|ing)\s+tent|wood[\s-]?(?:cutting|chopping)|wash(?:ed|ing)\s+(?:clothes|shirt)|on\s+duty|off\s+duty|policing\s+(?:camp|ground))\b/gi,
+
+  HEALTH: /\b(sick(?:ness)?|ill(?:ness)?|unwell|fever(?:ish)?|diarrh[eo]+a|dysentery|hospital(?:ized)?|surgeon|(?:the\s+)?doctor|medicine|wound(?:ed)?|injur(?:y|ed)|pain|lame|(?:feel|am|is|was)\s+(?:very\s+)?weak|recover(?:y|ed|ing)?|poor\s+health|ague|rheumatism|measles|typhoid|small[\s-]?pox|scurvy|malaria|diseas(?:e[ds]?)|died|dead|death|furl(?:ough|ow)|discharg(?:e[ds]?)\s+(?:for|on\s+account)|not\s+(?:very\s+)?well|getting\s+better|quite\s+well|feel(?:ing)?\s+(?:well|better|poorly|bad)|my\s+health|his\s+health|headache|cold(?:s)?\b(?!\s+(?:weather|day|night|water|wind|rain)))\b/gi,
+
+  MONEY: /\b(\$\d|dollar(?:s)?|(?:per|a|each|every)\s+month|pay[\s-]?day|money|bount(?:y|ies)|wages?|salary|sutler|cost(?:s|ing)?|price|owe[ds]?|debt|express(?:ed)?|send(?:ing)?\s+(?:it\s+)?home|sent\s+(?:it\s+)?home|send\s+(?:you|mother|her)|stamps?|postage|stationery|pocket[\s-]?book|(?:thirteen|eight|five|ten|twelve|twenty|thirty|forty|fifty|sixty|hundred)\s+dollars?|(?:my|our|his|the)\s+pay|back[\s-]?pay|paid\s+(?:us|off|me)|receive[ds]?\s+(?:our|my|his)\s+pay)\b/gi,
+
+  HOME: /\b((?:dear\s+)?mother|father|(?:my|our|your)\s+sister|(?:at|from|to)\s+home|famil(?:y|ies)|(?:the|our|your)\s+farm|garden|crop(?:s)?|harvest|neighbor(?:s)?|visit(?:ed|ing)?|wedding|marri(?:age|ed)|birth|bab(?:y|ies)|children|(?:the|our)\s+school|write\s+(?:soon|often|me)|let\s+me\s+know|news\s+from|received?\s+(?:your|a|the)\s+letter|heard\s+from|(?:tell|give)\s+my\s+(?:love|regards|respects))\b/gi,
+
+  FOOD: /\b(eat(?:en|ing)?|(?:our|the|good)\s+food|meal(?:s)?|dinner|supper|breakfast|ration(?:s|ed)?|hard[\s-]?tack|coffee|(?:a\s+cup\s+of\s+)?tea\b|bread|meat|pork|beef|beans?|rice|sugar|butter|cheese|apples?|pie|cake|cook(?:ed|ing)?|hungr(?:y|ier)|starv(?:e|ing|ation)|whiskey|liquor|drunk(?:en)?|lager|beer|fruit|potato(?:es)?|corn|flour|salt|biscuit|crackers?|molasses|vinegar|pepper|onion|berries|peach|oyster)\b/gi,
+
+  MORALE: /\b(God(?:\s+bless)?|(?:the|our)\s+Lord|pray(?:er|ed|ing|s)?|trust\s+in|(?:my|our|his)\s+faith|heaven(?:ly)?|hope(?:ful|fully)?(?:\s+(?:the|this|we|that))|courag(?:e|eous)|patriot(?:ic|ism)?|(?:our|this|the)\s+country|(?:the|our)\s+cause|(?:the|our)\s+union|libert(?:y|ies)|freedom|resign(?:ed|ation)?|discourag(?:e[ds]?|ement)|home[\s-]?sick|tired\s+of\s+(?:war|this|the)|peace(?:ful)?|politic(?:s|al)|president|Lincoln|draft(?:ed|ing)?|election|emancipat(?:e|ed|ion)|abolition|copperhead|(?:good|poor|low|high)\s+spirits?|depress(?:ed)?|cheerful|morale|war\s+(?:will|must|should|cannot)\s+(?:end|last|be\s+over))\b/gi
+};
+
+/* ===== STATE ===== */
+var allLetters = [];
+var classifiedData = []; // [{letterId, date, author, authorName, recipient, location, sentences: [{text, topic, words}]}]
+var activeBrothers = new Set(['henry','alexander','james','charles','mother']);
+var periodMode = 'month'; // 'month' or 'quarter'
+var metricMode = 'ink'; // 'ink' or 'letters'
+
+/* ===== TEXT MINING ENGINE ===== */
+function classifyLetter(letter) {
+  var text = letter.transcription || '';
+  if (!text) return {letterId: letter.id, date: letter.date, author: letter.author, authorName: letter.authorName || '', recipient: letter.recipient || '', location: letter.location || '', sentences: []};
+
+  // Collapse single newlines to spaces, split on sentence boundaries
+  var flat = text.replace(/\n\n+/g, ' || ').replace(/\n/g, ' ');
+  var rawSentences = flat.split(/(?<=[.!?])\s+|\s*\|\|\s*/);
+  var sentences = [];
+
+  rawSentences.forEach(function(sent) {
+    sent = sent.trim();
+    if (sent.length < 15) return; // skip tiny fragments, greetings, signatures
+
+    // Score against each topic
+    var scores = {};
+    TOPIC_KEYS.forEach(function(key) {
+      if (key === 'OTHER') return;
+      var pat = TOPIC_PATTERNS[key];
+      pat.lastIndex = 0;
+      var matches = sent.match(pat);
+      scores[key] = matches ? matches.length : 0;
+    });
+
+    // Find best topic
+    var best = 'OTHER';
+    var bestScore = 0;
+    TOPIC_KEYS.forEach(function(key) {
+      if (key === 'OTHER') return;
+      if ((scores[key] || 0) > bestScore) {
+        bestScore = scores[key];
+        best = key;
+      }
+    });
+
+    sentences.push({
+      text: sent,
+      topic: best,
+      words: sent.split(/\s+/).length
+    });
+  });
+
+  return {
+    letterId: letter.id,
+    date: letter.date,
+    author: letter.author,
+    authorName: letter.authorName || NAMES[letter.author] || '',
+    recipient: letter.recipient || '',
+    location: letter.location || '',
+    fullText: text,
+    sentences: sentences
+  };
+}
+
+function classifyAll(letters) {
+  return letters.map(classifyLetter);
+}
+
+/* ===== AGGREGATION ===== */
+function getPeriodKey(dateStr) {
+  if (periodMode === 'month') {
+    return dateStr.substring(0, 7);
+  } else {
+    var y = dateStr.substring(0, 4);
+    var m = parseInt(dateStr.substring(5, 7));
+    var q = Math.ceil(m / 3);
+    return y + '-Q' + q;
+  }
+}
+
+function formatPeriodLabel(key) {
+  if (key.indexOf('Q') !== -1) {
+    var parts = key.split('-Q');
+    return 'Q' + parts[1] + " '" + parts[0].substring(2);
+  }
+  var y = key.substring(0, 4);
+  var m = parseInt(key.substring(5, 7));
+  return MONTH_NAMES[m - 1] + " '" + y.substring(2);
+}
+
+function buildPeriods() {
+  var filtered = classifiedData.filter(function(d) {
+    return activeBrothers.has(d.author);
+  });
+
+  // Generate all period keys in range
+  var allKeys = [];
+  if (periodMode === 'month') {
+    for (var y = 1861; y <= 1865; y++) {
+      var startM = (y === 1861) ? 7 : 1;
+      var endM = (y === 1865) ? 12 : 12;
+      for (var m = startM; m <= endM; m++) {
+        allKeys.push(y + '-' + String(m).padStart(2, '0'));
+      }
+    }
+  } else {
+    for (var y = 1861; y <= 1865; y++) {
+      var startQ = (y === 1861) ? 3 : 1;
+      for (var q = startQ; q <= 4; q++) {
+        allKeys.push(y + '-Q' + q);
+      }
+    }
+  }
+
+  // Aggregate
+  var periods = {};
+  allKeys.forEach(function(k) { periods[k] = {key: k, entries: [], topicWords: {}, topicLetters: {}}; });
+
+  filtered.forEach(function(entry) {
+    var key = getPeriodKey(entry.date);
+    if (!periods[key]) return;
+    periods[key].entries.push(entry);
+
+    // Track which topics this letter touches (for letter-count metric)
+    var touchedTopics = {};
+
+    entry.sentences.forEach(function(s) {
+      periods[key].topicWords[s.topic] = (periods[key].topicWords[s.topic] || 0) + s.words;
+      touchedTopics[s.topic] = (touchedTopics[s.topic] || 0) + s.words;
+    });
+
+    // For letter-count metric: distribute 1 unit proportionally
+    var totalWords = Object.values(touchedTopics).reduce(function(a, b) { return a + b; }, 0);
+    if (totalWords > 0) {
+      Object.keys(touchedTopics).forEach(function(t) {
+        periods[key].topicLetters[t] = (periods[key].topicLetters[t] || 0) + touchedTopics[t] / totalWords;
+      });
+    }
+  });
+
+  // Convert to sorted array
+  return allKeys.map(function(k) { return periods[k]; });
+}
+
+/* ===== RENDERING ===== */
+function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function trunc(s, n) { return s.length > n ? s.substring(0, n) + '...' : s; }
+
+function renderHero() {
+  var filtered = classifiedData.filter(function(d) { return activeBrothers.has(d.author); });
+  var totalLetters = filtered.length;
+  var totalSentences = 0;
+  var topicCounts = {};
+  filtered.forEach(function(d) {
+    d.sentences.forEach(function(s) {
+      totalSentences++;
+      topicCounts[s.topic] = (topicCounts[s.topic] || 0) + 1;
+    });
+  });
+  var topTopic = '';
+  var topCount = 0;
+  TOPIC_KEYS.forEach(function(k) {
+    if ((topicCounts[k] || 0) > topCount && k !== 'OTHER') { topCount = topicCounts[k]; topTopic = k; }
+  });
+
+  document.getElementById('hero-stats').innerHTML =
+    '<div class="stat"><span class="num">' + totalLetters + '</span><span class="lbl">Letters</span></div>' +
+    '<div class="stat"><span class="num">' + totalSentences.toLocaleString() + '</span><span class="lbl">Sentences Classified</span></div>' +
+    '<div class="stat"><span class="num" style="color:' + TOPICS[topTopic].color + '">' + TOPICS[topTopic].label + '</span><span class="lbl">Most Common Topic</span></div>';
+}
+
+function renderControls() {
+  var html = '';
+  ['henry','alexander','james','charles','mother'].forEach(function(b) {
+    var active = activeBrothers.has(b) ? ' active' : '';
+    html += '<div class="chip' + active + '" data-brother="' + b + '" onclick="toggleBrother(\'' + b + '\')">' +
+      '<span class="dot" style="background:' + COLORS[b] + '"></span>' + NAMES[b] + '</div>';
+  });
+  document.getElementById('brother-filters').innerHTML = html;
+}
+
+function renderLegend() {
+  var html = '';
+  TOPIC_KEYS.forEach(function(k) {
+    html += '<div class="legend-item"><div class="legend-swatch" style="background:' + TOPICS[k].color + '"></div>' + TOPICS[k].label + '</div>';
+  });
+  document.getElementById('legend').innerHTML = html;
+}
+
+function renderChart() {
+  var periods = buildPeriods();
+  var svg = document.getElementById('chart-svg');
+  var ns = 'http://www.w3.org/2000/svg';
+  svg.innerHTML = '';
+
+  var barCount = periods.length;
+  var barW = periodMode === 'month' ? 18 : 45;
+  var barGap = periodMode === 'month' ? 3 : 8;
+  var margin = {top: 30, right: 20, bottom: 55, left: 50};
+  var chartW = barCount * (barW + barGap) + margin.left + margin.right;
+  var chartH = 340;
+  var plotH = chartH - margin.top - margin.bottom;
+
+  svg.setAttribute('viewBox', '0 0 ' + chartW + ' ' + chartH);
+  svg.setAttribute('width', chartW);
+  svg.setAttribute('height', chartH);
+
+  // Y-axis gridlines and labels
+  for (var pct = 0; pct <= 100; pct += 25) {
+    var y = margin.top + plotH - (pct / 100) * plotH;
+
+    var line = document.createElementNS(ns, 'line');
+    line.setAttribute('x1', margin.left);
+    line.setAttribute('x2', chartW - margin.right);
+    line.setAttribute('y1', y);
+    line.setAttribute('y2', y);
+    line.setAttribute('stroke', pct === 0 ? '#AAA' : '#E8E4DF');
+    line.setAttribute('stroke-width', pct === 0 ? 1 : 0.5);
+    svg.appendChild(line);
+
+    var label = document.createElementNS(ns, 'text');
+    label.setAttribute('x', margin.left - 8);
+    label.setAttribute('y', y + 3);
+    label.setAttribute('text-anchor', 'end');
+    label.setAttribute('font-size', '10');
+    label.setAttribute('fill', '#9B9B9B');
+    label.setAttribute('font-family', 'Inter, sans-serif');
+    label.textContent = pct + '%';
+    svg.appendChild(label);
+  }
+
+  // Bars
+  periods.forEach(function(period, i) {
+    var x = margin.left + i * (barW + barGap);
+    var source = metricMode === 'ink' ? period.topicWords : period.topicLetters;
+    var total = 0;
+    TOPIC_KEYS.forEach(function(k) { total += (source[k] || 0); });
+
+    if (total === 0) {
+      // Empty period — show a thin gray bar
+      var empty = document.createElementNS(ns, 'rect');
+      empty.setAttribute('x', x);
+      empty.setAttribute('y', margin.top + plotH - 2);
+      empty.setAttribute('width', barW);
+      empty.setAttribute('height', 2);
+      empty.setAttribute('fill', '#E8E4DF');
+      empty.setAttribute('rx', 1);
+      svg.appendChild(empty);
+    } else {
+      var curY = margin.top + plotH;
+      TOPIC_KEYS.forEach(function(topic) {
+        var val = source[topic] || 0;
+        if (val === 0) return;
+        var pct = val / total;
+        var h = pct * plotH;
+        if (h < 0.5) return;
+
+        var rect = document.createElementNS(ns, 'rect');
+        rect.setAttribute('x', x);
+        rect.setAttribute('y', curY - h);
+        rect.setAttribute('width', barW);
+        rect.setAttribute('height', h);
+        rect.setAttribute('fill', TOPICS[topic].color);
+        rect.setAttribute('class', 'bar-segment');
+        rect.setAttribute('rx', i === 0 || i === barCount - 1 ? 1 : 0);
+        rect.dataset.period = period.key;
+        rect.dataset.topic = topic;
+        rect.dataset.pct = (pct * 100).toFixed(1);
+        rect.dataset.count = countSentences(period, topic);
+
+        rect.addEventListener('mouseenter', function(e) { showTooltip(e, this); });
+        rect.addEventListener('mousemove', function(e) { posTooltip(e); });
+        rect.addEventListener('mouseleave', hideTooltip);
+        rect.addEventListener('click', function() { showDetail(this.dataset.period, this.dataset.topic); });
+
+        svg.appendChild(rect);
+        curY -= h;
+      });
+    }
+
+    // X-axis label
+    var lbl = document.createElementNS(ns, 'text');
+    lbl.setAttribute('x', x + barW / 2);
+    lbl.setAttribute('y', margin.top + plotH + 14);
+    lbl.setAttribute('text-anchor', 'middle');
+    lbl.setAttribute('font-size', periodMode === 'month' ? '8' : '10');
+    lbl.setAttribute('fill', '#9B9B9B');
+    lbl.setAttribute('font-family', 'Inter, sans-serif');
+
+    if (periodMode === 'month') {
+      var m = parseInt(period.key.substring(5, 7));
+      var yr = period.key.substring(2, 4);
+      // Show month name for Jan or Jul, year for Jan only, short label otherwise
+      if (m === 1) {
+        lbl.textContent = "'" + yr;
+        lbl.setAttribute('font-weight', '600');
+        lbl.setAttribute('fill', '#6B6B6B');
+      } else if (m === 7) {
+        lbl.textContent = 'Jul';
+      } else if (i % 2 === 0) {
+        lbl.textContent = MONTH_NAMES[m - 1].charAt(0);
+      } else {
+        lbl.textContent = '';
+      }
+    } else {
+      lbl.textContent = formatPeriodLabel(period.key);
+    }
+    svg.appendChild(lbl);
+
+    // Year separator lines
+    if (periodMode === 'month') {
+      var m = parseInt(period.key.substring(5, 7));
+      if (m === 1 && i > 0) {
+        var sep = document.createElementNS(ns, 'line');
+        sep.setAttribute('x1', x - barGap / 2);
+        sep.setAttribute('x2', x - barGap / 2);
+        sep.setAttribute('y1', margin.top - 5);
+        sep.setAttribute('y2', margin.top + plotH + 24);
+        sep.setAttribute('stroke', '#CCC');
+        sep.setAttribute('stroke-dasharray', '3,3');
+        svg.appendChild(sep);
+      }
+    }
+  });
+
+  // Letter count annotation below bars
+  periods.forEach(function(period, i) {
+    if (period.entries.length === 0) return;
+    var x = margin.left + i * (barW + barGap) + barW / 2;
+    var countLabel = document.createElementNS(ns, 'text');
+    countLabel.setAttribute('x', x);
+    countLabel.setAttribute('y', margin.top + plotH + (periodMode === 'month' ? 26 : 28));
+    countLabel.setAttribute('text-anchor', 'middle');
+    countLabel.setAttribute('font-size', '7');
+    countLabel.setAttribute('fill', '#BBB');
+    countLabel.setAttribute('font-family', 'Inter, sans-serif');
+    countLabel.textContent = period.entries.length;
+    svg.appendChild(countLabel);
+  });
+
+  // Letter count row label
+  var rcLabel = document.createElementNS(ns, 'text');
+  rcLabel.setAttribute('x', margin.left - 8);
+  rcLabel.setAttribute('y', margin.top + plotH + (periodMode === 'month' ? 27 : 29));
+  rcLabel.setAttribute('text-anchor', 'end');
+  rcLabel.setAttribute('font-size', '7');
+  rcLabel.setAttribute('fill', '#BBB');
+  rcLabel.setAttribute('font-family', 'Inter, sans-serif');
+  rcLabel.textContent = 'n=';
+  svg.appendChild(rcLabel);
+}
+
+function countSentences(period, topic) {
+  var count = 0;
+  period.entries.forEach(function(e) {
+    e.sentences.forEach(function(s) { if (s.topic === topic) count++; });
+  });
+  return count;
+}
+
+/* ===== TOOLTIP ===== */
+function showTooltip(e, el) {
+  var tt = document.getElementById('tooltip');
+  var topic = el.dataset.topic;
+  var periodLabel = formatPeriodLabel(el.dataset.period);
+  tt.innerHTML =
+    '<div class="tt-topic"><span class="tt-swatch" style="background:' + TOPICS[topic].color + '"></span>' + TOPICS[topic].label + '</div>' +
+    '<div class="tt-pct">' + parseFloat(el.dataset.pct).toFixed(1) + '%</div>' +
+    '<div class="tt-detail">' + el.dataset.count + ' sentences &middot; ' + periodLabel + '</div>' +
+    '<div style="font-size:0.68rem;color:var(--text-light);margin-top:4px">Click to explore</div>';
+  tt.classList.add('show');
+  posTooltip(e);
+}
+function posTooltip(e) {
+  var tt = document.getElementById('tooltip');
+  var x = e.clientX + 14;
+  var y = e.clientY + 14;
+  if (x + 320 > window.innerWidth) x = e.clientX - 330;
+  if (y + 200 > window.innerHeight) y = e.clientY - 160;
+  tt.style.left = x + 'px';
+  tt.style.top = y + 'px';
+}
+function hideTooltip() { document.getElementById('tooltip').classList.remove('show'); }
+
+/* ===== DETAIL PANEL ===== */
+function showDetail(periodKey, topic) {
+  var overlay = document.getElementById('detailOverlay');
+  var panel = document.getElementById('detailPanel');
+  var periodLabel = formatPeriodLabel(periodKey);
+
+  // Gather all sentences for this topic in this period
+  var filtered = classifiedData.filter(function(d) { return activeBrothers.has(d.author); });
+  var excerpts = [];
+  filtered.forEach(function(entry) {
+    var key = getPeriodKey(entry.date);
+    if (key !== periodKey) return;
+    entry.sentences.forEach(function(s) {
+      if (s.topic !== topic) return;
+      excerpts.push({
+        text: s.text,
+        words: s.words,
+        letterId: entry.letterId,
+        date: entry.date,
+        author: entry.author,
+        authorName: entry.authorName,
+        recipient: entry.recipient,
+        location: entry.location,
+        fullText: entry.fullText
+      });
+    });
+  });
+
+  // Sort by date then author
+  excerpts.sort(function(a, b) { return a.date.localeCompare(b.date) || a.author.localeCompare(b.author); });
+
+  // Build HTML
+  var listHtml = '';
+  excerpts.forEach(function(ex, i) {
+    // Highlight keywords from the topic pattern
+    var highlighted = highlightTopicKeywords(esc(ex.text), topic);
+
+    listHtml +=
+      '<li class="dp-excerpt" data-idx="' + i + '">' +
+        '<div class="ex-meta">' +
+          '<span class="author-dot" style="background:' + (COLORS[ex.author] || '#999') + '"></span>' +
+          '<strong>' + esc(ex.authorName) + '</strong> &rarr; ' + esc(ex.recipient) +
+          ' &middot; ' + esc(ex.date) +
+          (ex.location ? ' &middot; ' + esc(ex.location) : '') +
+        '</div>' +
+        '<div class="ex-text">' + highlighted + '</div>' +
+        '<div class="dp-expand-btn" data-idx="' + i + '">Read full letter &rarr;</div>' +
+        '<div class="dp-full-letter" id="full-' + i + '">' + esc(ex.fullText || '').replace(/\n\n+/g, '\n\n') + '</div>' +
+      '</li>';
+  });
+
+  panel.innerHTML =
+    '<button class="dp-close" onclick="closeDetail()">&times;</button>' +
+    '<h3><span class="topic-swatch" style="background:' + TOPICS[topic].color + '"></span>' + TOPICS[topic].label + '</h3>' +
+    '<div class="dp-sub">' + periodLabel + ' &middot; ' + excerpts.length + ' sentence' + (excerpts.length !== 1 ? 's' : '') + ' from ' + countUniqueLetters(excerpts) + ' letter' + (countUniqueLetters(excerpts) !== 1 ? 's' : '') + '</div>' +
+    '<ul class="dp-excerpt-list">' + listHtml + '</ul>';
+
+  overlay.classList.add('show');
+
+  // Wire up expand buttons
+  panel.querySelectorAll('.dp-expand-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var full = document.getElementById('full-' + this.dataset.idx);
+      if (full) {
+        full.classList.toggle('open');
+        this.textContent = full.classList.contains('open') ? 'Collapse letter' : 'Read full letter \u2192';
+      }
+    });
+  });
+}
+
+function countUniqueLetters(excerpts) {
+  var ids = new Set();
+  excerpts.forEach(function(e) { ids.add(e.letterId); });
+  return ids.size;
+}
+
+function highlightTopicKeywords(htmlText, topic) {
+  var pat = TOPIC_PATTERNS[topic];
+  if (!pat) return htmlText;
+  // Create a fresh regex from the pattern source
+  var re = new RegExp(pat.source, 'gi');
+  return htmlText.replace(re, '<mark>$&</mark>');
+}
+
+function closeDetail() { document.getElementById('detailOverlay').classList.remove('show'); }
+document.getElementById('detailOverlay').addEventListener('click', function(e) {
+  if (e.target === e.currentTarget) closeDetail();
+});
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDetail(); });
+
+/* ===== TOGGLE HANDLERS ===== */
+function toggleBrother(b) {
+  if (activeBrothers.has(b)) {
+    if (activeBrothers.size > 1) activeBrothers.delete(b);
+  } else {
+    activeBrothers.add(b);
+  }
+  renderAll();
+}
+
+function togglePeriod() {
+  periodMode = periodMode === 'month' ? 'quarter' : 'month';
+  document.getElementById('toggle-period').classList.toggle('on', periodMode === 'quarter');
+  document.getElementById('lbl-month').classList.toggle('active', periodMode === 'month');
+  document.getElementById('lbl-quarter').classList.toggle('active', periodMode === 'quarter');
+  renderChart();
+}
+
+function toggleMetric() {
+  metricMode = metricMode === 'ink' ? 'letters' : 'ink';
+  document.getElementById('toggle-metric').classList.toggle('on', metricMode === 'letters');
+  document.getElementById('lbl-ink').classList.toggle('active', metricMode === 'ink');
+  document.getElementById('lbl-letters').classList.toggle('active', metricMode === 'letters');
+  renderChart();
+}
+
+function renderAll() {
+  renderHero();
+  renderControls();
+  renderChart();
+}
+
+/* ===== INIT ===== */
+function init() {
+  classifiedData = classifyAll(allLetters);
+  renderLegend();
+  renderAll();
+}
+
+// Load data
+fetch('03-data/all-letters.json')
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    allLetters = data;
+    init();
+  })
+  .catch(function(err) {
+    console.error('Failed to load letter data:', err);
+    document.getElementById('chart-wrapper').innerHTML = '<p style="text-align:center;padding:40px;color:#999">Failed to load letter data. Please ensure 03-data/all-letters.json is accessible.</p>';
+  });
+</script>
+
+<script>
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && this.value.trim()) {
+    window.location.href = 'index.html?q=' + encodeURIComponent(this.value.trim());
+  }
+});
+</script>
+</body>
+</html>

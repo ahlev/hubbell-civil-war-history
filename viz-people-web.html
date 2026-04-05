@@ -1168,6 +1168,7 @@ canvas.grabbing {
   min-height: 0;
 }
 </style>
+<link rel="stylesheet" href="_overlay.css">
 </head>
 <body>
 <div id="app">
@@ -1181,6 +1182,7 @@ canvas.grabbing {
     <a href="viz-health-ledger.html" class="nav-link">Health Ledger</a>
     <a href="viz-money-story.html" class="nav-link">Money Story</a>
     <a href="viz-people-web.html" class="nav-link active">People Web</a>
+    <a href="viz-what-they-wrote-about.html" class="nav-link">What They Wrote</a>
     <a href="who-they-were.html" class="nav-link">Who They Were</a>
   </div>
   <div class="nav-spacer"></div>
@@ -3338,6 +3340,30 @@ requestAnimationFrame(frame);
 if (window.innerWidth <= 768) {
   document.getElementById('sidebar').classList.add('collapsed');
 }
+
+// Handle ?person= URL parameter: select + center the named person
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const paramPerson = params.get('person');
+  if (!paramPerson) return;
+  // Normalize via MERGE_MAP to find graph node
+  const canon = getCanonName(paramPerson);
+  const idx = nodeIndex[canon];
+  if (idx !== undefined) {
+    // Wait for physics to settle, then select
+    setTimeout(function() {
+      selectedNode = idx;
+      const node = nodes[idx];
+      // Center canvas on node
+      panX = canvas.width / 2 - node.x * scale;
+      panY = canvas.height / 2 - node.y * scale;
+      if (node.isBrother) showBrotherDetail(node);
+      else showPersonDetail(node);
+      updateLinkButton();
+    }, 600);
+  }
+  window.history.replaceState({}, '', window.location.pathname);
+})();
 </script>
 <script>
 document.getElementById('searchInput').addEventListener('keydown', function(e) {
@@ -3346,5 +3372,9 @@ document.getElementById('searchInput').addEventListener('keydown', function(e) {
   }
 });
 </script>
+
+<script src="_overlay-data.js"></script>
+<script src="_overlay.js"></script>
+<script>HubbellOverlay.bindPage({ tags: true });</script>
 </body>
 </html>
