@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>James Hubbell &mdash; Co. H, 153rd New York Volunteers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --james:#4A7C59;--james-soft:#E5F0E8;--james-bg:#F4FAF6;
+  --henry:#2D5F8A;--alexander:#B8860B;--charles:#8B3A3A;--mother:#7B5EA7;
+  --bg:#FAF8F5;--card:#FFFFFF;
+  --text:#2C2C2C;--text-mid:#6B6B6B;--text-light:#9B9B9B;
+  --border:#E8E4DF;--border-light:#F0ECE7;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3}
+
+/* ===== SITE NAV ===== */
+.site-nav{position:sticky;top:0;z-index:9000;background:#2C2C2C;display:flex;align-items:center;flex-wrap:wrap;padding:8px 20px;gap:6px 0;font-family:'Inter',sans-serif;font-size:0.75rem}
+.nav-links{display:flex;align-items:center;flex-wrap:wrap;gap:3px 14px}
+.nav-label{color:#9B9B9B;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+.nav-link{color:#B8B2AA;text-decoration:none;padding:2px 0;transition:color 0.15s;white-space:nowrap}
+.nav-link:hover{color:#FFFFFF}
+.nav-link.active{color:#FFFFFF;font-weight:600}
+.nav-spacer{flex:1;min-width:8px}
+.search-container{position:relative;flex-shrink:0}
+.search-input{width:180px;padding:5px 10px 5px 28px;border:1px solid #555;border-radius:14px;background:#3a3a3a;color:#eee;font-family:'Inter',sans-serif;font-size:0.72rem;outline:none;transition:border-color 0.2s,background 0.2s,width 0.2s}
+.search-input::placeholder{color:#888}
+.search-input:focus{border-color:#888;background:#444;width:280px}
+.search-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#888;font-size:0.7rem;pointer-events:none}
+@media(max-width:700px){
+  .site-nav{padding:6px 12px}.nav-links{gap:2px 10px}.nav-label{display:none}.nav-link{font-size:0.68rem}
+  .search-container{order:99;width:100%;margin-top:2px}.search-input{width:100%}.search-input:focus{width:100%}.nav-spacer{display:none}
+}
+
+/* ===== HERO BANNER ===== */
+.hero-banner{background:var(--james-bg);border-bottom:3px solid var(--james);padding:56px 32px 40px;text-align:center}
+.hero-banner h1{font-size:clamp(2rem,5vw,2.8rem);color:var(--james);margin-bottom:6px}
+.hero-subtitle{font-family:'Source Serif 4',serif;font-size:1.1rem;color:var(--text-mid);font-style:italic;margin-bottom:16px}
+.hero-vitals{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.hv{text-align:center}
+.hv-val{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--james);display:block}
+.hv-lbl{font-size:0.68rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.8px}
+.hero-epitaph{font-family:'Source Serif 4',serif;font-size:0.92rem;color:var(--text-mid);max-width:640px;margin:0 auto;line-height:1.7}
+
+/* ===== LETTERS DROPDOWN ===== */
+.letters-section{max-width:1060px;margin:0 auto;padding:28px 32px 0}
+.letters-toggle{display:flex;align-items:center;gap:8px;width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:500;color:var(--text);transition:background 0.15s,border-color 0.15s}
+.letters-toggle:hover{background:var(--james-bg);border-color:var(--james)}
+.letters-toggle .lt-icon{font-size:0.9rem;transition:transform 0.2s}
+.letters-toggle.open .lt-icon{transform:rotate(90deg)}
+.letters-toggle .lt-count{margin-left:auto;font-size:0.72rem;color:var(--text-light)}
+.letters-drawer{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.letters-drawer.open{max-height:500px;overflow-y:auto}
+.letters-list{padding:8px 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2px 16px}
+.letter-row{display:flex;align-items:center;gap:8px;padding:6px 14px;cursor:pointer;border-radius:6px;transition:background 0.1s;font-size:0.78rem}
+.letter-row:hover{background:var(--james-bg)}
+.lr-date{font-weight:500;color:var(--text);min-width:80px;flex-shrink:0}
+.lr-to{color:var(--text-mid);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lr-loc{color:var(--text-light);font-size:0.72rem;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0}
+.lr-flags{display:flex;gap:3px;flex-shrink:0}
+.lr-flag{width:6px;height:6px;border-radius:50%}
+.lr-flag.battle{background:#C44E52}.lr-flag.illness{background:#E58A00}.lr-flag.death{background:#5D4037}.lr-flag.wound{background:#7B1FA2}
+
+/* ===== NARRATIVE ===== */
+.narrative{max-width:1060px;margin:0 auto;padding:40px 32px}
+.chapter{margin-bottom:44px}
+.chapter:last-child{margin-bottom:0}
+.chapter h2{font-size:1.35rem;color:var(--james);margin-bottom:4px}
+.chapter .ch-date{font-family:'Inter',sans-serif;font-size:0.7rem;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.chapter p{font-family:'Source Serif 4',serif;font-size:0.98rem;line-height:1.85;color:var(--text-mid);margin-bottom:14px}
+.chapter p:last-child{margin-bottom:0}
+
+/* Quotes */
+.letter-quote{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.98rem;line-height:1.8;color:var(--text);border-left:3px solid var(--james);padding:12px 0 12px 20px;margin:20px 0;background:var(--james-bg);border-radius:0 8px 8px 0;padding-right:20px}
+.letter-quote cite{display:block;font-style:normal;font-family:'Inter',sans-serif;font-size:0.72rem;color:var(--text-light);margin-top:8px}
+.letter-quote .lq-link{color:var(--james);text-decoration:none;border-bottom:1px dotted var(--james);cursor:pointer;transition:border-color 0.15s}
+.letter-quote .lq-link:hover{border-bottom-style:solid}
+
+/* Inline letter references */
+.ref{color:var(--james);text-decoration:none;border-bottom:1px dotted var(--james);cursor:pointer;font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:500;transition:border-color 0.15s}
+.ref:hover{border-bottom-style:solid}
+
+/* Brother's voice notes */
+.brother-note{border-left:3px solid var(--charles);background:#FAF4F4;border-radius:0 8px 8px 0;padding:14px 20px;margin:20px 0}
+.brother-note.henry{border-left-color:var(--henry);background:#F4F8FC}
+.brother-note .bn-label{font-family:'Inter',sans-serif;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--charles);font-weight:600;margin-bottom:6px}
+.brother-note.henry .bn-label{color:var(--henry)}
+.brother-note p{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.95rem;line-height:1.75;color:var(--text);margin-bottom:6px}
+.brother-note p:last-child{margin-bottom:0}
+.brother-note cite{font-style:normal;font-family:'Inter',sans-serif;font-size:0.7rem;color:var(--text-light)}
+
+/* Mother's voice notes */
+.mother-note{border-left:3px solid var(--mother);background:#F8F5FC;border-radius:0 8px 8px 0;padding:14px 20px;margin:20px 0}
+.mother-note .mn-label{font-family:'Inter',sans-serif;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--mother);font-weight:600;margin-bottom:6px}
+.mother-note p{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.95rem;line-height:1.75;color:var(--text);margin-bottom:6px}
+.mother-note p:last-child{margin-bottom:0}
+.mother-note cite{font-style:normal;font-family:'Inter',sans-serif;font-size:0.7rem;color:var(--text-light)}
+
+/* Context boxes */
+.context-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0;font-size:0.88rem}
+.context-box .cb-label{font-family:'Inter',sans-serif;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-light);font-weight:600;margin-bottom:6px}
+.context-box p{font-family:'Source Serif 4',serif;font-size:0.88rem;line-height:1.7;color:var(--text-mid)}
+
+/* Silence section */
+.silence{text-align:center;padding:40px 20px;margin:30px 0}
+.silence-line{width:60px;height:2px;background:var(--james);margin:0 auto 16px;opacity:0.4}
+.silence h2{color:var(--james);font-size:1.4rem;margin-bottom:8px}
+.silence p{font-family:'Source Serif 4',serif;font-size:0.95rem;color:var(--text-mid);max-width:600px;margin:0 auto;line-height:1.75}
+
+/* Two-column for mid-story */
+.two-col{columns:2;column-gap:40px}
+.two-col p{break-inside:avoid}
+
+/* ===== LETTER READER OVERLAY ===== */
+.reader-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;padding:24px}
+.reader-overlay.open{display:flex}
+.reader-panel{background:var(--card);border-radius:14px;max-width:720px;width:100%;max-height:85vh;overflow-y:auto;padding:28px 32px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.25)}
+.reader-close{position:absolute;top:12px;right:14px;border:none;background:none;font-size:1.5rem;cursor:pointer;color:var(--text-light);line-height:1}
+.reader-close:hover{color:var(--text)}
+.reader-header{border-bottom:3px solid var(--james);padding-bottom:10px;margin-bottom:14px}
+.reader-header h3{font-size:1.15rem;margin-bottom:4px}
+.reader-meta{font-size:0.8rem;color:var(--text-mid);margin-bottom:14px;line-height:1.6}
+.reader-meta .rm-id{font-size:0.7rem;color:var(--text-light)}
+.reader-flags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.reader-flag{font-size:0.65rem;padding:2px 8px;border-radius:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px}
+.rf-battle{background:#FCE4EC;color:#C62828}.rf-illness{background:#FFF3E0;color:#E65100}.rf-death{background:#EFEBE9;color:#4E342E}.rf-wound{background:#F3E5F5;color:#7B1FA2}
+.reader-people,.reader-places{margin-bottom:14px}
+.reader-people h4,.reader-places h4{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-light);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:6px}
+.reader-tags{display:flex;gap:4px;flex-wrap:wrap}
+.reader-tag{font-size:0.73rem;padding:2px 8px;border-radius:10px;background:var(--border-light);color:var(--text-mid)}
+.reader-tag.person{background:#E3F2FD;color:#1565C0}.reader-tag.place{background:#E8F5E9;color:#2E7D32}
+.reader-body{font-family:'Source Serif 4',serif;font-size:0.92rem;line-height:1.85;color:var(--text);background:var(--bg);border-radius:8px;padding:18px;white-space:pre-wrap;border:1px solid var(--border-light);max-height:420px;overflow-y:auto}
+.reader-body mark{background:rgba(74,124,89,0.15);color:inherit;font-weight:500;border-radius:2px;padding:0 1px}
+
+/* ===== FOOTER ===== */
+.provenance{background:var(--bg);border-top:1px solid var(--border);padding:20px 24px;font-family:'Inter',sans-serif;font-size:0.72rem;color:var(--text-light);text-align:center;line-height:1.5}
+
+@media(max-width:900px){.two-col{columns:1}.letters-list{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-banner{padding:40px 20px 30px}.narrative{padding:30px 20px}.letters-section{padding:20px 20px 0}}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-links">
+    <span class="nav-label">Explore:</span>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="hubbell-dashboard.html" class="nav-link">Parallel Lives</a>
+    <a href="viz-emotional-arcs.html" class="nav-link">Emotional Arcs</a>
+    <a href="viz-map-fullwar.html" class="nav-link">Map That Moves</a>
+    <a href="viz-health-ledger.html" class="nav-link">Health Ledger</a>
+    <a href="viz-money-story.html" class="nav-link">Money Story</a>
+    <a href="viz-people-web.html" class="nav-link">People Web</a>
+    <a href="who-they-were.html" class="nav-link active">Who They Were</a>
+  </div>
+  <div class="nav-spacer"></div>
+  <div class="search-container">
+    <span class="search-icon">&#x1F50D;</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search 274 letters..." autocomplete="off">
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<div class="hero-banner">
+  <h1>James Hubbell</h1>
+  <div class="hero-subtitle">West Point Cadet &amp; Co. H, 153rd Regiment, New York Volunteers</div>
+  <div class="hero-vitals">
+    <div class="hv"><span class="hv-val">~18</span><span class="hv-lbl">Age at Enlistment</span></div>
+    <div class="hv"><span class="hv-val">3 yrs.</span><span class="hv-lbl">Service</span></div>
+    <div class="hv"><span class="hv-val" id="letterCount">--</span><span class="hv-lbl">Letters</span></div>
+    <div class="hv"><span class="hv-val">Private</span><span class="hv-lbl">Rank</span></div>
+  </div>
+  <div class="hero-epitaph">The youngest Hubbell brother. A West Point cadet who traded classroom Latin for rifle pits. Wounded at the Battle of Cedar Creek on October 19, 1864. Died exactly one year later, on October 19, 1865, before reaching home.</div>
+</div>
+
+<!-- ===== LETTER DROPDOWN ===== -->
+<div class="letters-section">
+  <button class="letters-toggle" id="lettersToggle" onclick="toggleDrawer()">
+    <span class="lt-icon">&#x25B6;</span>
+    All of James's Letters
+    <span class="lt-count" id="lettersCount"></span>
+  </button>
+  <div class="letters-drawer" id="lettersDrawer">
+    <div class="letters-list" id="lettersList"></div>
+  </div>
+</div>
+
+<!-- ===== NARRATIVE ===== -->
+<div class="narrative">
+
+<!-- CH 1: WEST POINT -->
+<div class="chapter">
+  <h2>The Cadet</h2>
+  <div class="ch-date">Summer 1862 &mdash; West Point Military Academy</div>
+  <p>James was the youngest of the four brothers and the most scholarly. While Henry fought on the Peninsula and Alexander drilled in Virginia, James entered the United States Military Academy at West Point &mdash; a path that set him apart. He was not a volunteer marching toward a battlefield. He was a student preparing for a career. His brothers expected great things.</p>
+
+  <div class="brother-note henry">
+    <div class="bn-label">Henry's Voice</div>
+    <p>I have no doubt but what James will succeed for he is a good scholar.</p>
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-07-08-002')">Henry Hubbell, July 8, 1862</a></cite>
+  </div>
+
+  <p>James's early letters are those of a boy discovering an institution. He described the lockers &mdash; five feet long, one foot high, one foot broad, shared among three cadets. He described the hazing: older cadets dragging new arrivals around the grounds at night, knocking off bayonets, trying to steal their guns. James held his.</p>
+
+  <div class="letter-quote">
+    Sometimes the Cadets would come out with half a dozen wheelbarrows, and sometimes with an old cannon. They would knock off our bayonets and get our guns away if they could. They dragged me around one night but could not get my gun away.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-07-27-001')">July 27, 1862 &mdash; West Point</a></cite>
+  </div>
+
+  <p>He stood in the third section of six &mdash; a strong academic position. The lowest section was called the "Immortal Section," a name that carried no glory. James attended Bible class with Professor French, where prayer books were distributed and cadets held prayer meetings twice a week. He was earnest, devout, and competitive: <em>"I shall try to go up higher, and I think, can."</em></p>
+</div>
+
+<!-- CH 2: WHAT HE DIDN'T KNOW -->
+<div class="chapter">
+  <h2>What He Didn't Know</h2>
+  <div class="ch-date">September 21, 1862 &mdash; West Point</div>
+  <p>On September 21, 1862, James sat down at West Point and <a class="ref" onclick="openLetter('LTR-1862-09-21-001')">wrote to his mother</a>. He reported that Charles had enlisted and that Mother must be "very lonely." He described his academic standing, his Bible class, his near-miss at being marked late to parade because his shoes were unblackened. Then, at the end, he asked a simple question:</p>
+
+  <div class="letter-quote">
+    Have you heard from Henry and Alex yet?
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-09-21-001')">September 21, 1862 &mdash; West Point</a></cite>
+  </div>
+
+  <p>He did not know. Four days earlier, on September 17, Henry had been killed at the Battle of Antietam. Alexander had been wounded. The family was in crisis. And James, in his classroom on the Hudson, was asking about his shoes.</p>
+  <p>It is one of the most quietly devastating moments in the collection &mdash; not for what it says, but for the gap between what the writer knows and what the reader knows. James would learn soon enough. But on September 21, he was still the youngest brother asking after the others, certain they were fine.</p>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>The Battle of Antietam (September 17, 1862) was the bloodiest single day in American history: 22,717 casualties. News traveled slowly. Casualty lists appeared in newspapers days or weeks later, often incomplete. Families frequently learned of a soldier's fate through word of mouth, delayed letters, or rumor. James's innocent question &mdash; written four days after the battle &mdash; illustrates how the war's worst news arrived on its own timetable.</p>
+  </div>
+</div>
+
+<!-- SILENCE: THE GAP -->
+<div class="silence">
+  <div class="silence-line"></div>
+  <h2>Two Years of Silence</h2>
+  <p>James's letters stop after September 1862. No surviving correspondence until June 1864. He left West Point &mdash; whether by graduation, transfer, or withdrawal is unclear from the letters &mdash; and joined the 153rd New York Volunteers, the same regiment as Charles. By the time he wrote again, he was a private in Louisiana, carrying a rifle instead of a textbook.</p>
+  <div class="silence-line" style="margin-top:16px"></div>
+</div>
+
+<!-- CH 3: LOUISIANA -->
+<div class="chapter">
+  <h2>Morganza</h2>
+  <div class="ch-date">June 1864 &mdash; Louisiana</div>
+  <p>James's <a class="ref" onclick="openLetter('LTR-1864-06-21-001')">first letter from the field</a> is that of a young man newly arrived in a strange country. He was encamped on the Mississippi at Morganza, Louisiana. He had been on a foraging expedition &mdash; a hundred-wagon train that filled up from a French woman's barn while her men were off at war. The landscape amazed him: French-speaking Black workers, sugar mills rationing one spoonful per day, handsome brick houses standing empty.</p>
+
+  <div class="letter-quote">
+    One of our company called at a house and was hospitably entertained with cornbread and syrup, part of which he brought out in his hands. They said they had not seen wheat flour for about two years.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-06-21-001')">June 21, 1864 &mdash; Morganza, LA</a></cite>
+  </div>
+
+  <p>He noted that Dr. James Sweeney, whom he remembered as a boy from back home, was now the regimental surgeon &mdash; <em>"such a little faller when he left our place that I hardly remembered him. I think that if either of us are sick he will be a friend worth having."</em> The West Point education surfaced in his French: <em>"Comment vous portez ma vous!"</em> And his politics were already clear: <em>"O, Grant, go ahead and whip the rebels, is the feeling here."</em></p>
+  <p>But beneath the curiosity was the physical reality the scholarly boy had not anticipated. He had spent years sitting in classrooms and now his legs could barely carry him on a march: <em>"I stood it pretty well considering I had used my legs so little since I have entered the service."</em></p>
+</div>
+
+<!-- CH 4: PLAYED OUT -->
+<div class="chapter">
+  <h2>&ldquo;Generally Unwell and Played Out&rdquo;</h2>
+  <div class="ch-date">August 1864 &mdash; Frederick City, Maryland</div>
+  <p>In late June, the regiment was shipped north to defend Washington against Jubal Early's raid. James was thrown into rifle pits around the capital, then sent in pursuit of the retreating Confederates into the Shenandoah Valley. The forced marches broke him. His feet blistered. He fell out of the column, rode a wagon train, and ended up in a hospital at Frederick City, Maryland.</p>
+
+  <div class="letter-quote">
+    My sickness was generally unwell and played out. I have been in the hospital about two weeks now and am nearly ready for duty.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-08-15-001')">August 15, 1864 &mdash; Frederick City, MD</a></cite>
+  </div>
+
+  <p>From his hospital on a hill overlooking the city, James offered one of the collection's most vivid definitions of Army food:</p>
+
+  <div class="letter-quote">
+    Bake a flour and water cake with no salt or saleratus on a griddle till it is hard &mdash; throw it on a shelf for three or four days and see what kind of a meal it will make.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-08-15-001')">August 15, 1864</a></cite>
+  </div>
+
+  <div class="two-col">
+  <p>He described Charles with a brother's clear-eyed honesty: <em>"He was quite thin and used up when I left; he finds the marches very hard. Charlie is one of the kind that'll go until he cannot go. I do not think that is the way."</em> James believed in pacing yourself. Charles believed in endurance. Both survived. But James, the younger and physically weaker, was already learning that this war would demand more from his body than his mind.</p>
+  <p>He was also angry. Early's raid had brought a Confederate army to the outskirts of Washington with twenty thousand Union troops nearby, and the rebels had escaped with a three-mile wagon train of plunder. <em>"The fact that the army came up here with that force, harvested, plundered and got off with a wagon train three miles in length is rather irritating to us."</em></p>
+  </div>
+</div>
+
+<!-- CH 5: SHENANDOAH -->
+<div class="chapter">
+  <h2>The Valley</h2>
+  <div class="ch-date">October 1864 &mdash; Shenandoah Valley, Virginia</div>
+  <p>By October, James was back with the regiment in the Shenandoah Valley. Sheridan's army was burning its way south &mdash; destroying barns, forage, anything that could feed Lee's army. James <a class="ref" onclick="openLetter('LTR-1864-10-04-001')">wrote to Alexander</a> with a mixture of battlefield reporting and dark humor. <em>"You have travelled this road once, I think"</em> &mdash; Alexander had served in this same valley in 1862.</p>
+
+  <div class="letter-quote">
+    While he was in one house one of the children said, "Ma, there is a Yankee down cellar taking all our preserves and bacon." "Ma, see that Yankee looking in the oven."
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-10-04-001')">October 4, 1864 &mdash; Harrisonburg, VA</a></cite>
+  </div>
+
+  <p>He reported that Alex Douglas &mdash; the same man Charles would later report missing from Cedar Creek &mdash; had already been "gobbled by guerrillas" after falling behind on a march. He noted that the boys had a habit of running through Southern houses and taking whatever they chose, <em>"which I think exasperates the rebels very much."</em></p>
+  <p>And then, in a letter to his brother, he stated his politics with the directness of a man who might not get another chance to say it:</p>
+
+  <div class="letter-quote">
+    I'm a voter; I go for old Abe; he is the man, I think. Little Mac will probably run strong. This war has lasted nearly four years. I would like to see it ended, and believe it will be soon.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-10-04-001')">October 4, 1864</a></cite>
+  </div>
+
+  <p>He would cast his vote for Lincoln from a hospital bed.</p>
+</div>
+
+<!-- CH 6: CEDAR CREEK -->
+<div class="chapter">
+  <h2>Cedar Creek</h2>
+  <div class="ch-date">October 19, 1864</div>
+  <p>On the night of October 18, Charles and James received a bundle of newspapers and looked forward to reading them the next day. They never got the chance.</p>
+  <p>Before dawn on October 19, Early's Confederates launched a surprise attack on the Union camp at Cedar Creek. Charles told the story from his perspective &mdash; James exclaiming "The Rebs are here!", the scramble for accoutrements, the breastworks overrun, the retreat across a deep ravine with bullets flying thick. But James's own <a class="ref" onclick="openLetter('LTR-1864-10-29-001')">account</a>, written ten days later from a hospital bed, is spare and soldier-plain:</p>
+
+  <div class="letter-quote">
+    I was wounded in the left thigh at Cedar Run. It is nothing but a flesh wound and is doing well. I walked several miles after being hit in order not to fall into the Johnnies' hands.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-10-29-001')">October 29, 1864 &mdash; Patterson Park Hospital, Baltimore</a></cite>
+  </div>
+
+  <div class="brother-note">
+    <div class="bn-label">Charles's Account</div>
+    <p>A Sergeant of our Co. says that as he was going to the rear with a wounded man he saw James; that James rec'd. a flesh wound in the thigh or hip and walked about five miles to the hospital. Says James had made a bandage of his drawers.</p>
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-10-22-001')">Charles Hubbell, October 22, 1864</a></cite>
+  </div>
+
+  <p>Five miles on a wounded leg, a bandage improvised from his own underclothes, to avoid capture. The West Point cadet, the third-section scholar, the boy who couldn't keep up on marches two months earlier, walked five miles with a bullet wound because the alternative was a Confederate prison.</p>
+  <p>The journey from the field to a hospital was its own ordeal. Thirty miles by army wagon over rutted Valley roads. Then 120 miles by freight car. <em>"That journey was a hard one,"</em> James wrote, in what may be the greatest understatement in the collection.</p>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>The Battle of Cedar Creek (October 19, 1864) began as a Confederate rout of the Union camp and ended as one of Sheridan's greatest victories. The 153rd New York was overrun in the initial surprise attack. Company H lost 7 wounded and 2 killed. James was one of the wounded. Sheridan's famous ride from Winchester rallied the retreating army and drove Early's force from the field, effectively ending the war in the Shenandoah Valley.</p>
+  </div>
+</div>
+
+<!-- CH 7: THE HOSPITAL -->
+<div class="chapter">
+  <h2>The Hospital Chain</h2>
+  <div class="ch-date">October &ndash; December 1864 &mdash; Baltimore to Philadelphia</div>
+  <p>James moved through the military hospital system like a package in the mail &mdash; first Frederick City, then Patterson Park in Baltimore, then Chestnut Hill Hospital in Philadelphia. At each stop he wrote home. His letters from the hospitals are the most detailed and articulate of his small collection, as though the enforced stillness gave the scholar in him permission to observe again.</p>
+  <p>At Patterson Park in Baltimore, he cast his vote for Lincoln, as he had promised. <em>"I shall be able to vote here and shall cast my vote for Abraham Lincoln. I hope he will be elected."</em> He assessed the war with a soldier's confidence: <em>"I do not believe the Rebs will try it again in the Valley &mdash; three times terribly whipped."</em></p>
+  <p>By December, he had been transferred to Chestnut Hill Hospital in Philadelphia, where his wound was nearly healed. He could walk around. He felt ready to return to his regiment. And on <a class="ref" onclick="openLetter('LTR-1864-12-09-001')">December 9</a>, he described the Thanksgiving dinner the hospital had served two weeks earlier:</p>
+
+  <div class="letter-quote">
+    The dinner was turkey and gravy, oyster soup (I could not eat that) boiled potatoes, bread, cranberry preserves and ice cream. All was cold. It could not be otherwise when the table was so large. Each man had his dinner piled on his plate. Our ward got their dinner about four o'clock, being among the last they were obliged to wait for the second table.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-12-09-001')">December 9, 1864 &mdash; Chestnut Hill Hospital, Philadelphia</a></cite>
+  </div>
+
+  <p>Turkey and ice cream, all cold, piled on a plate, served at four in the afternoon because the ward was among the last. It is a deeply American scene &mdash; the institutional attempt at celebration, the reality of mass feeding, the young man who could not eat the oyster soup. James reported it all with his usual precision, the way Charles would have counted the portions.</p>
+</div>
+
+<!-- CH 8: THE RING -->
+<div class="chapter">
+  <h2>The Ring</h2>
+  <div class="ch-date">December 1864</div>
+  <p>In the same letter, folded inside the paper, James enclosed a ring. He had made several during the spring march from Louisiana to Washington, whittling or bending them while walking. Most broke in his pocket book. This one survived.</p>
+
+  <div class="letter-quote">
+    Enclosed you will find a ring. I made several while on my way last Spring to the regiment, but they got broke in my pocket book.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-12-09-001')">December 9, 1864 &mdash; Chestnut Hill Hospital, Philadelphia</a></cite>
+  </div>
+
+  <p>He was planning for the next campaign. He would carry writing paper folded into a book cover. He would roll his bundle across his shoulder instead of using a knapsack. He reassured his mother about Alexander: <em>"You do not know how well a soldier boy can take care of himself."</em> He asked about a furlough but expected none &mdash; too many were already out, and he was nearly well.</p>
+  <p>It is the last letter in the collection from James Hubbell.</p>
+</div>
+
+<!-- SILENCE: THE YEAR -->
+<div class="silence">
+  <div class="silence-line"></div>
+  <h2>October 19, 1865</h2>
+  <p>James died on October 19, 1865 &mdash; exactly one year to the day after the bullet struck him at Cedar Creek. He never made it home. The flesh wound that was "doing well" in October, the wound that was "nearly healed" in December, the wound he had walked five miles on rather than be captured &mdash; it took a year to kill him.</p>
+  <p>No letter survives to explain how. No medical record in the family collection describes what went wrong. The ring he made on the march from Louisiana arrived home before he did.</p>
+  <div class="silence-line" style="margin-top:16px"></div>
+</div>
+
+<!-- CH 9: WHAT REMAINS -->
+<div class="chapter">
+  <h2>What Remains</h2>
+  <p>James left fewer letters than any of his brothers. Nine in all, spanning three years. But in those nine letters he described the full arc of the Civil War experience: the academy and the battlefield, the march and the collapse, the wound and the hospital, the cold turkey and the handmade ring.</p>
+  <p>He was the youngest. He was the scholar. He held his gun when the older cadets tried to take it. He defined hardtack for posterity. He walked five miles on a wounded leg. He voted for Lincoln from a hospital bed. He made rings on the march and mailed the one that didn't break.</p>
+  <p>And on the anniversary of the day that ended his war, the war ended him.</p>
+</div>
+
+</div><!-- /narrative -->
+
+<!-- ===== LETTER READER ===== -->
+<div class="reader-overlay" id="readerOverlay">
+  <div class="reader-panel">
+    <button class="reader-close" onclick="closeReader()">&times;</button>
+    <div id="readerContent"></div>
+  </div>
+</div>
+
+<div class="provenance">
+  Letters from the Hubbell family collection, transcribed from original manuscripts.
+  Interpretive text based on primary sources; all quoted passages are verbatim.
+</div>
+
+<script src="_search-data.js"></script>
+<script>
+var AUTHOR_COLORS = { henry:'#2D5F8A', alexander:'#B8860B', james:'#4A7C59', charles:'#8B3A3A', mother:'#7B5EA7' };
+var AUTHOR_NAMES = { henry:'Henry Hubbell', alexander:'Alexander F. Hubbell', james:'James Hubbell', charles:'Charles F. Hubbell', mother:'Frances Hubbell' };
+
+function getJamesAuthored() {
+  return LETTERS.filter(function(l){ return l.a === 'james'; })
+    .sort(function(a,b){ return a.d < b.d ? -1 : a.d > b.d ? 1 : 0; });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var authored = getJamesAuthored();
+  document.getElementById('letterCount').textContent = authored.length;
+  document.getElementById('lettersCount').textContent = authored.length + ' letters written by James';
+  buildLettersList();
+});
+
+function toggleDrawer() {
+  var btn = document.getElementById('lettersToggle');
+  var drawer = document.getElementById('lettersDrawer');
+  btn.classList.toggle('open');
+  drawer.classList.toggle('open');
+}
+function buildLettersList() {
+  var letters = getJamesAuthored();
+  var list = document.getElementById('lettersList');
+  var html = '';
+  letters.forEach(function(l) {
+    var flags = '';
+    if (l.bat) flags += '<span class="lr-flag battle" title="Battle"></span>';
+    if (l.ill) flags += '<span class="lr-flag illness" title="Illness"></span>';
+    if (l.dth) flags += '<span class="lr-flag death" title="Death"></span>';
+    if (l.wnd) flags += '<span class="lr-flag wound" title="Wound"></span>';
+    var d = l.d.replace(/-/g, '/').replace(/^(\d{4})\/(\d{2})\/(\d{2})$/, function(m,y,mo,dy) {
+      var months = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return months[parseInt(mo)] + ' ' + parseInt(dy) + ', ' + y;
+    });
+    html += '<div class="letter-row" onclick="openLetter(\'' + l.id + '\')">' +
+      '<span class="lr-date">' + d + '</span>' +
+      '<span class="lr-to">' + (l.r || '') + '</span>' +
+      '<span class="lr-loc">' + (l.loc || '') + '</span>' +
+      '<span class="lr-flags">' + flags + '</span></div>';
+  });
+  list.innerHTML = html;
+}
+
+function openLetter(id, highlight) {
+  var letter = LETTERS.find(function(l) { return l.id === id; });
+  if (!letter) return;
+  var color = AUTHOR_COLORS[letter.a] || '#666';
+  var name = AUTHOR_NAMES[letter.a] || letter.an || letter.a;
+  var d = letter.d.replace(/-/g, '/').replace(/^(\d{4})\/(\d{2})\/(\d{2})$/, function(m,y,mo,dy) {
+    var months = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
+    return months[parseInt(mo)] + ' ' + parseInt(dy) + ', ' + y;
+  });
+
+  var flags = '';
+  if (letter.bat) flags += '<span class="reader-flag rf-battle">Battle</span>';
+  if (letter.ill) flags += '<span class="reader-flag rf-illness">Illness</span>';
+  if (letter.dth) flags += '<span class="reader-flag rf-death">Death</span>';
+  if (letter.wnd) flags += '<span class="reader-flag rf-wound">Wound</span>';
+
+  var ppl = '', plc = '';
+  if (letter.ppl && letter.ppl.length) {
+    ppl = '<div class="reader-people"><h4>People Mentioned</h4><div class="reader-tags">' +
+      letter.ppl.map(function(p){ return '<span class="reader-tag person">' + p + '</span>'; }).join('') + '</div></div>';
+  }
+  if (letter.plc && letter.plc.length) {
+    plc = '<div class="reader-places"><h4>Places Mentioned</h4><div class="reader-tags">' +
+      letter.plc.map(function(p){ return '<span class="reader-tag place">' + p + '</span>'; }).join('') + '</div></div>';
+  }
+
+  var bodyText = letter.t || '';
+  bodyText = bodyText.replace(/([^\n])\n([^\n])/g, '$1 $2');
+
+  if (highlight) {
+    try {
+      var re = new RegExp('(' + highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      bodyText = bodyText.replace(re, '<mark>$1</mark>');
+    } catch(e) {}
+  }
+
+  document.getElementById('readerContent').innerHTML =
+    '<div class="reader-header" style="border-bottom-color:' + color + '">' +
+      '<h3 style="color:' + color + '">' + name + '</h3>' +
+      '<div class="reader-meta">' + d + ' &mdash; ' + (letter.loc || 'Unknown location') +
+        '<br>To: ' + (letter.r || 'Unknown') +
+        '<br><span class="rm-id">' + letter.id + '</span></div>' +
+    '</div>' +
+    (flags ? '<div class="reader-flags">' + flags + '</div>' : '') +
+    ppl + plc +
+    '<div class="reader-body">' + bodyText + '</div>';
+
+  document.getElementById('readerOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  if (highlight) {
+    setTimeout(function() {
+      var mark = document.querySelector('.reader-body mark');
+      if (mark) mark.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }, 100);
+  }
+}
+
+function closeReader() {
+  document.getElementById('readerOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('readerOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeReader();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeReader();
+});
+
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && this.value.trim()) {
+    window.location.href = 'index.html?q=' + encodeURIComponent(this.value.trim());
+  }
+});
+</script>
+</body>
+</html>

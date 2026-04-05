@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frances M. Hubbell &mdash; Mother</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --mother:#7B5EA7;--mother-soft:#F0EAF7;--mother-bg:#F8F5FC;
+  --henry:#2D5F8A;--alexander:#B8860B;--james:#4A7C59;--charles:#8B3A3A;
+  --bg:#FAF8F5;--card:#FFFFFF;
+  --text:#2C2C2C;--text-mid:#6B6B6B;--text-light:#9B9B9B;
+  --border:#E8E4DF;--border-light:#F0ECE7;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3}
+
+/* ===== SITE NAV ===== */
+.site-nav{position:sticky;top:0;z-index:9000;background:#2C2C2C;display:flex;align-items:center;flex-wrap:wrap;padding:8px 20px;gap:6px 0;font-family:'Inter',sans-serif;font-size:0.75rem}
+.nav-links{display:flex;align-items:center;flex-wrap:wrap;gap:3px 14px}
+.nav-label{color:#9B9B9B;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+.nav-link{color:#B8B2AA;text-decoration:none;padding:2px 0;transition:color 0.15s;white-space:nowrap}
+.nav-link:hover{color:#FFFFFF}
+.nav-link.active{color:#FFFFFF;font-weight:600}
+.nav-spacer{flex:1;min-width:8px}
+.search-container{position:relative;flex-shrink:0}
+.search-input{width:180px;padding:5px 10px 5px 28px;border:1px solid #555;border-radius:14px;background:#3a3a3a;color:#eee;font-family:'Inter',sans-serif;font-size:0.72rem;outline:none;transition:border-color 0.2s,background 0.2s,width 0.2s}
+.search-input::placeholder{color:#888}
+.search-input:focus{border-color:#888;background:#444;width:280px}
+.search-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#888;font-size:0.7rem;pointer-events:none}
+@media(max-width:700px){
+  .site-nav{padding:6px 12px}.nav-links{gap:2px 10px}.nav-label{display:none}.nav-link{font-size:0.68rem}
+  .search-container{order:99;width:100%;margin-top:2px}.search-input{width:100%}.search-input:focus{width:100%}.nav-spacer{display:none}
+}
+
+/* ===== HERO BANNER ===== */
+.hero-banner{background:var(--mother-bg);border-bottom:3px solid var(--mother);padding:56px 32px 40px;text-align:center}
+.hero-banner h1{font-size:clamp(2rem,5vw,2.8rem);color:var(--mother);margin-bottom:6px}
+.hero-subtitle{font-family:'Source Serif 4',serif;font-size:1.1rem;color:var(--text-mid);font-style:italic;margin-bottom:16px}
+.hero-vitals{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.hv{text-align:center}
+.hv-val{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--mother);display:block}
+.hv-lbl{font-size:0.68rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.8px}
+.hero-epitaph{font-family:'Source Serif 4',serif;font-size:0.92rem;color:var(--text-mid);max-width:640px;margin:0 auto;line-height:1.7}
+
+/* ===== LETTERS DROPDOWN ===== */
+.letters-section{max-width:1060px;margin:0 auto;padding:28px 32px 0}
+.letters-toggle{display:flex;align-items:center;gap:8px;width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:500;color:var(--text);transition:background 0.15s,border-color 0.15s}
+.letters-toggle:hover{background:var(--mother-bg);border-color:var(--mother)}
+.letters-toggle .lt-icon{font-size:0.9rem;transition:transform 0.2s}
+.letters-toggle.open .lt-icon{transform:rotate(90deg)}
+.letters-toggle .lt-count{margin-left:auto;font-size:0.72rem;color:var(--text-light)}
+.letters-drawer{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.letters-drawer.open{max-height:500px;overflow-y:auto}
+.letters-list{padding:8px 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2px 16px}
+.letter-row{display:flex;align-items:center;gap:8px;padding:6px 14px;cursor:pointer;border-radius:6px;transition:background 0.1s;font-size:0.78rem}
+.letter-row:hover{background:var(--mother-bg)}
+.lr-date{font-weight:500;color:var(--text);min-width:80px;flex-shrink:0}
+.lr-to{color:var(--text-mid);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lr-loc{color:var(--text-light);font-size:0.72rem;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0}
+.lr-flags{display:flex;gap:3px;flex-shrink:0}
+.lr-flag{width:6px;height:6px;border-radius:50%}
+.lr-flag.battle{background:#C44E52}.lr-flag.illness{background:#E58A00}.lr-flag.death{background:#5D4037}.lr-flag.wound{background:#7B1FA2}
+
+/* ===== NARRATIVE ===== */
+.narrative{max-width:1060px;margin:0 auto;padding:40px 32px}
+.chapter{margin-bottom:44px}
+.chapter:last-child{margin-bottom:0}
+.chapter h2{font-size:1.35rem;color:var(--mother);margin-bottom:4px}
+.chapter .ch-date{font-family:'Inter',sans-serif;font-size:0.7rem;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.chapter p{font-family:'Source Serif 4',serif;font-size:0.98rem;line-height:1.85;color:var(--text-mid);margin-bottom:14px}
+.chapter p:last-child{margin-bottom:0}
+
+/* Quotes */
+.letter-quote{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.98rem;line-height:1.8;color:var(--text);border-left:3px solid var(--mother);padding:12px 0 12px 20px;margin:20px 0;background:var(--mother-bg);border-radius:0 8px 8px 0;padding-right:20px}
+.letter-quote cite{display:block;font-style:normal;font-family:'Inter',sans-serif;font-size:0.72rem;color:var(--text-light);margin-top:8px}
+.letter-quote .lq-link{color:var(--mother);text-decoration:none;border-bottom:1px dotted var(--mother);cursor:pointer;transition:border-color 0.15s}
+.letter-quote .lq-link:hover{border-bottom-style:solid}
+
+/* Inline letter references */
+.ref{color:var(--mother);text-decoration:none;border-bottom:1px dotted var(--mother);cursor:pointer;font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:500;transition:border-color 0.15s}
+.ref:hover{border-bottom-style:solid}
+
+/* Son's voice notes */
+.son-note{border-left:3px solid var(--henry);background:#F4F8FC;border-radius:0 8px 8px 0;padding:14px 20px;margin:20px 0}
+.son-note.alexander{border-left-color:var(--alexander);background:#FDFAF2}
+.son-note.charles{border-left-color:var(--charles);background:#FAF4F4}
+.son-note .sn-label{font-family:'Inter',sans-serif;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;font-weight:600;margin-bottom:6px}
+.son-note .sn-label{color:var(--henry)}
+.son-note.alexander .sn-label{color:var(--alexander)}
+.son-note.charles .sn-label{color:var(--charles)}
+.son-note p{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.95rem;line-height:1.75;color:var(--text);margin-bottom:6px}
+.son-note p:last-child{margin-bottom:0}
+.son-note cite{font-style:normal;font-family:'Inter',sans-serif;font-size:0.7rem;color:var(--text-light)}
+
+/* Context boxes */
+.context-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0;font-size:0.88rem}
+.context-box .cb-label{font-family:'Inter',sans-serif;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-light);font-weight:600;margin-bottom:6px}
+.context-box p{font-family:'Source Serif 4',serif;font-size:0.88rem;line-height:1.7;color:var(--text-mid)}
+
+/* Silence section */
+.silence{text-align:center;padding:40px 20px;margin:30px 0}
+.silence-line{width:60px;height:2px;background:var(--mother);margin:0 auto 16px;opacity:0.4}
+.silence h2{color:var(--mother);font-size:1.4rem;margin-bottom:8px}
+.silence p{font-family:'Source Serif 4',serif;font-size:0.95rem;color:var(--text-mid);max-width:600px;margin:0 auto;line-height:1.75}
+
+/* Two-column for mid-story */
+.two-col{columns:2;column-gap:40px}
+.two-col p{break-inside:avoid}
+
+/* ===== LETTER READER OVERLAY ===== */
+.reader-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;padding:24px}
+.reader-overlay.open{display:flex}
+.reader-panel{background:var(--card);border-radius:14px;max-width:720px;width:100%;max-height:85vh;overflow-y:auto;padding:28px 32px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.25)}
+.reader-close{position:absolute;top:12px;right:14px;border:none;background:none;font-size:1.5rem;cursor:pointer;color:var(--text-light);line-height:1}
+.reader-close:hover{color:var(--text)}
+.reader-header{border-bottom:3px solid var(--mother);padding-bottom:10px;margin-bottom:14px}
+.reader-header h3{font-size:1.15rem;margin-bottom:4px}
+.reader-meta{font-size:0.8rem;color:var(--text-mid);margin-bottom:14px;line-height:1.6}
+.reader-meta .rm-id{font-size:0.7rem;color:var(--text-light)}
+.reader-flags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.reader-flag{font-size:0.65rem;padding:2px 8px;border-radius:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px}
+.rf-battle{background:#FCE4EC;color:#C62828}.rf-illness{background:#FFF3E0;color:#E65100}.rf-death{background:#EFEBE9;color:#4E342E}.rf-wound{background:#F3E5F5;color:#7B1FA2}
+.reader-people,.reader-places{margin-bottom:14px}
+.reader-people h4,.reader-places h4{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-light);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:6px}
+.reader-tags{display:flex;gap:4px;flex-wrap:wrap}
+.reader-tag{font-size:0.73rem;padding:2px 8px;border-radius:10px;background:var(--border-light);color:var(--text-mid)}
+.reader-tag.person{background:#E3F2FD;color:#1565C0}.reader-tag.place{background:#E8F5E9;color:#2E7D32}
+.reader-body{font-family:'Source Serif 4',serif;font-size:0.92rem;line-height:1.85;color:var(--text);background:var(--bg);border-radius:8px;padding:18px;white-space:pre-wrap;border:1px solid var(--border-light);max-height:420px;overflow-y:auto}
+.reader-body mark{background:rgba(123,94,167,0.15);color:inherit;font-weight:500;border-radius:2px;padding:0 1px}
+
+/* ===== FOOTER ===== */
+.provenance{background:var(--bg);border-top:1px solid var(--border);padding:20px 24px;font-family:'Inter',sans-serif;font-size:0.72rem;color:var(--text-light);text-align:center;line-height:1.5}
+
+@media(max-width:900px){.two-col{columns:1}.letters-list{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-banner{padding:40px 20px 30px}.narrative{padding:30px 20px}.letters-section{padding:20px 20px 0}}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-links">
+    <span class="nav-label">Explore:</span>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="hubbell-dashboard.html" class="nav-link">Parallel Lives</a>
+    <a href="viz-emotional-arcs.html" class="nav-link">Emotional Arcs</a>
+    <a href="viz-map-fullwar.html" class="nav-link">Map That Moves</a>
+    <a href="viz-health-ledger.html" class="nav-link">Health Ledger</a>
+    <a href="viz-money-story.html" class="nav-link">Money Story</a>
+    <a href="viz-people-web.html" class="nav-link">People Web</a>
+    <a href="who-they-were.html" class="nav-link active">Who They Were</a>
+  </div>
+  <div class="nav-spacer"></div>
+  <div class="search-container">
+    <span class="search-icon">&#x1F50D;</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search 274 letters..." autocomplete="off">
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<div class="hero-banner">
+  <h1>Frances M. Hubbell</h1>
+  <div class="hero-subtitle">Mother of four soldiers. The emotional center of the collection.</div>
+  <div class="hero-vitals">
+    <div class="hv"><span class="hv-val">4</span><span class="hv-lbl">Sons at War</span></div>
+    <div class="hv"><span class="hv-val" id="letterCount">--</span><span class="hv-lbl">Letters</span></div>
+    <div class="hv"><span class="hv-val">1862&ndash;70</span><span class="hv-lbl">Span</span></div>
+    <div class="hv"><span class="hv-val">Champlain</span><span class="hv-lbl">Home</span></div>
+  </div>
+  <div class="hero-epitaph">A widow managing a farm in northern New York, Frances Hubbell sent four sons to the Civil War. She read the casualty lists every morning with trembling hands. She conducted her own investigation into Henry's death. She wrote French love letters for the servant girl. She never broke.</div>
+</div>
+
+<!-- ===== LETTER DROPDOWN ===== -->
+<div class="letters-section">
+  <button class="letters-toggle" id="lettersToggle" onclick="toggleDrawer()">
+    <span class="lt-icon">&#x25B6;</span>
+    All of Mother's Letters
+    <span class="lt-count" id="lettersCount"></span>
+  </button>
+  <div class="letters-drawer" id="lettersDrawer">
+    <div class="letters-list" id="lettersList"></div>
+  </div>
+</div>
+
+<!-- ===== NARRATIVE ===== -->
+<div class="narrative">
+
+<!-- CH 1: IF I WAS A MAN -->
+<div class="chapter">
+  <h2>&ldquo;If I Was a Man&rdquo;</h2>
+  <div class="ch-date">September 21, 1862 &mdash; Champlain, New York</div>
+  <p>Frances Hubbell's first surviving letter was written four days after the Battle of Antietam &mdash; though she did not yet know what had happened there. She knew only that the 34th New York had been in terrible fighting. She had been reading the casualty lists every morning, searching for names she recognized, finding none she loved. Not yet.</p>
+
+  <div class="letter-quote">
+    Language is too weak, to express my anxiety about you since the commencement of the terrible battle. Thank God your name has not yet appeared on the sad list, which has caused mourning and lamentation to so many homes. I read the sad record day after day as it is published, with trembling.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-09-21-002')">September 21, 1862 &mdash; to Henry</a></cite>
+  </div>
+
+  <p>She reported that Charles had been made first corporal at Plattsburgh. She noted that the war seemed nearly over. She expressed faith in McClellan. And then, in a single sentence, she revealed what this war had done to a woman who could only watch:</p>
+
+  <div class="letter-quote">
+    How I long to be near you. I am almost tempted at times to go down to the hospitals. If I was a man I am sure I should enlist. In reading the descriptions of the battle fields &mdash; my hair almost rises.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-09-21-002')">September 21, 1862</a></cite>
+  </div>
+
+  <p>She was writing to Henry. She did not know he was already dead.</p>
+</div>
+
+<!-- CH 2: THE WOUNDED LIST -->
+<div class="chapter">
+  <h2>The Wounded List</h2>
+  <div class="ch-date">September 28, 1862</div>
+  <p>One week later, Henry's name appeared on the wounded list. The world Frances had been holding together &mdash; four sons deployed, a farm to run, casualty lists to read each morning &mdash; fractured.</p>
+  <p>She wrote to Alexander in a state of near-collapse. She had no money to travel to Washington. She had no contacts in the 34th New York. She did not know where Henry was &mdash; a field hospital, a prison, a grave. She asked Alexander to find him, to get a furlough, to bring him home. She offered to come herself, as a nurse, if anyone would let her.</p>
+
+  <div class="letter-quote">
+    Write me immediately &amp; relieve me from the agony of suspense. O, the dreadful minutes are hours to me &mdash; I do not know what to do with myself &mdash; and shall be miserable until I hear from you. I wish you would interest some one to get a furlough for him, if he is able to travel. O, if I could only go down and take care of him.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-09-28-001')">September 28, 1862 &mdash; to Alexander</a></cite>
+  </div>
+
+  <p>Then, at the bottom of the page, six words that carry the weight of the entire collection:</p>
+
+  <div class="letter-quote">
+    My heart is aching to bursting, and I can write no more.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-09-28-001')">September 28, 1862</a></cite>
+  </div>
+
+  <p>In the same letter, she noted that Charles was expected the next day for a furlough before deploying. <em>"It is heart breaking to think that I must so soon part with him."</em> She was losing one son and sending another. She could not stop either.</p>
+</div>
+
+<!-- CH 3: THE INVESTIGATION -->
+<div class="chapter">
+  <h2>The Investigation</h2>
+  <div class="ch-date">October 1862</div>
+  <p>What Frances did next is remarkable. Unable to travel, unable to search the battlefield herself, she conducted an investigation from Champlain. Every returned soldier, every letter from the front, every community contact became a source. She cross-referenced testimony the way a detective builds a case.</p>
+  <div class="two-col">
+  <p>Young Fiser reported that Henry was seen to fall, that the rebels were within two rods &mdash; thirty-three feet &mdash; when they charged, and that the men fled without looking back. Mr. Copeland read a letter stating that the field had been searched and Henry's body was not among the identified Union dead. A man named McDonald claimed he had seen Henry after the battle, limping to the rear, leaning on his gun. Scott reported seeing Henry on one knee.</p>
+  <p>Frances weighed each account. She identified contradictions. She <a class="ref" onclick="openLetter('LTR-1862-10-06-001')">demanded specifics</a>: who exactly saw Henry? When? Where were they standing? She tracked down the McDonald story and would later discover, through McKee's letter, that McDonald had not actually seen Henry at all.</p>
+  </div>
+
+  <div class="letter-quote">
+    Where, where is the dear, dear boy? Echo answers &mdash; where? I feel that he somehow got mixed up with another Regt., fell, and was buried unrecognized.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-10-02-001')">October 2, 1862 &mdash; to Alexander</a></cite>
+  </div>
+
+  <p>She was not wrong. Henry was buried on the field at Antietam. His body was never recovered.</p>
+  <p>In the midst of this forensic grief, she found time for spiritual counsel. The 91st Psalm &mdash; the Soldier's Psalm, carried by Union soldiers across the war &mdash; she commanded Alexander to read daily:</p>
+
+  <div class="letter-quote">
+    Read the 91st Psalm daily &mdash; and live up to its promises. The Saviour is near, near you &mdash; and can hear the heart's faintest sigh. In the din of battle no artillery can drown that sigh if it is breathed in faith.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-10-06-001')">October 6, 1862</a></cite>
+  </div>
+
+  <p>At the end of that letter, she abandoned prose entirely:</p>
+
+  <div class="letter-quote">
+    Write, write, write, write, write, write, write, WRITE.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-10-06-001')">October 6, 1862</a></cite>
+  </div>
+</div>
+
+<!-- CH 4: HOPE DIES -->
+<div class="chapter">
+  <h2>Hope Dies</h2>
+  <div class="ch-date">October &ndash; December 1862</div>
+  <p>In late October, B. Misner returned from captivity in Richmond. He had seen every Union prisoner taken at Antietam. Henry was not among them. The prisoner theory &mdash; the last theory that allowed for a living Henry &mdash; collapsed.</p>
+
+  <div class="letter-quote">
+    I see B. Misner this morning and he has dashed any hopes with regard to Henry. He says that he and Albert are not incarcerated at all, and that they saw all the prisoners taken at Antietam, and Henry was not among them.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-10-29-001')">October 29, 1862 &mdash; to Alexander</a></cite>
+  </div>
+
+  <p>Frances began to name what had happened: <em>"I fear that he was one of the 'unknown' buried, or one of the number found in the bushes, who had died of their wounds and could not be identified."</em> She warned Alexander &mdash; <em>"do not go in without your name upon your person"</em> &mdash; a mother's terrible pragmatism, learned from losing a son whose body could not be found.</p>
+  <p>By December, she was unraveling. She went to the post office every morning, and every morning came home empty-handed. She could not look at Henry's letters or photographs. <em>"I cannot endure to look at his letters or pictures &mdash; it is too much for my poor shattered nerves."</em></p>
+
+  <div class="letter-quote">
+    You know what Henry wrote you on New Year day. He says, "who knows Alex, whether you and I will be here at the close of this year." O, how my heart bleeds. It was almost a prophecy.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-12-09-001')">December 9, 1862 &mdash; to Alexander</a></cite>
+  </div>
+</div>
+
+<!-- CH 5: READING HIS LETTERS -->
+<div class="chapter">
+  <h2>Reading His Letters</h2>
+  <div class="ch-date">May 1863</div>
+  <p>Seven months after Antietam, Frances finally read Henry's letters. All of them. She had been unable to look at them. Now she sat down and went through every page her eldest son had written home.</p>
+
+  <div class="letter-quote">
+    I am feeling so sad today. I have just finished the perusal of all of dear Henry's letters. The reading of them brought him so vividly before me. I have wept until I am almost blind. I can see his sweet face and hear his sweet voice &mdash; it seems as if I have had a visit with him.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1863-05-04-001')">May 4, 1863 &mdash; to Alexander</a></cite>
+  </div>
+
+  <p>She quoted his words back to Alexander: <em>"I often dream of being home; I think of you every night when I am alone; I long to see you all; at this time next year, I hope to be with you."</em> Each promise he made &mdash; to come home, to see them, to be there next year &mdash; had been broken by a bullet in Maryland.</p>
+  <p>In the same letter, she resolved the McDonald mystery. McKee's letter, found among Henry's papers, stated plainly: <em>"I did not see Henry after he was wounded."</em> McDonald's story &mdash; the one the family had clung to for months &mdash; was false. Young Carter, recently discharged from the 34th with a thumb shot off at Antietam, explained why no one had seen Henry fall: <em>"His position in the ranks was fourth and next to Ballerjy who was killed. Thinks the reason why so little is known of Henry is that those who were near him were killed."</em></p>
+  <p>The witnesses were dead. The evidence was silence.</p>
+
+  <div class="letter-quote">
+    My heart is breaking, breaking, breaking. I cannot dwell upon this painful, painful subject without being almost deranged.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1863-05-04-001')">May 4, 1863</a></cite>
+  </div>
+
+  <p>And then, acceptance &mdash; a sentence that reads like a door closing:</p>
+
+  <div class="letter-quote">
+    He has gone to his far home of bliss &mdash; yes, one of them, and I shall follow.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1863-05-04-001')">May 4, 1863</a></cite>
+  </div>
+</div>
+
+<!-- CH 6: THE FORMAL INQUIRY -->
+<div class="chapter">
+  <h2>The Formal Inquiry</h2>
+  <div class="ch-date">April 30, 1863</div>
+  <p>Around the same time, Frances composed the only letter in the collection addressed not to family but to authority. Written to an unknown official &mdash; likely a military hospital administrator or the Sanitary Commission &mdash; it is a formal request for information about her son, and it is the most controlled piece of writing she produced.</p>
+
+  <div class="letter-quote">
+    My son, Henry Hubbell, of Co. D, 34th N.Y. reg't., has been missing since the battle of Antietam. He fell as the enemy charged, and was not seen after. The surgeon assures me that he sent trusty men to search the field after the battle, that every union soldier killed was fully identified, and that my son certainly was not among those. His belief is that he was slightly wounded and taken prisoner.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1863-04-30-001')">April 30, 1863 &mdash; to "Dear Sir"</a></cite>
+  </div>
+
+  <p>She described Henry's health before the battle &mdash; feeble, nervous, much reduced. She mentioned, with the careful restraint of a woman who has imagined every possibility, that she had noticed in a newspaper that many soldiers were confined in an insane asylum at Williamsburg, Virginia. <em>"I sometimes fear he may be among them."</em></p>
+  <p>It is signed: <em>"That the Lord will direct and give you success in this matter, is the prayer of his afflicted mother, Frances M. Hubbell."</em></p>
+</div>
+
+<!-- CH 7: THE EMPTY HOUSE -->
+<div class="chapter">
+  <h2>The Empty House</h2>
+  <div class="ch-date">November &ndash; December 1863</div>
+  <p>By late 1863, all four sons were gone &mdash; Henry dead, Alexander in Tennessee, Charles at Capitol Hill in Washington, James at West Point. Frances sat in the Champlain farmhouse with her daughter Fannie and wrote letters into the void. When Alexander's correspondence stopped after the battles around Chattanooga, the Henry nightmare began again.</p>
+
+  <div class="letter-quote">
+    Where are you? Oh, where are you? Not a word have I heard from you since the late battles in Tennessee and I am in the deepest distress about you.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1863-12-09-001')">December 9, 1863 &mdash; to Alexander</a></cite>
+  </div>
+
+  <p>Henry's ghost was everywhere. Every silence from a living son summoned the dead one: <em>"Dear, dear, precious Henry. I cannot dwell a moment upon his fate without an agony that is almost insupportable."</em> She described the house as a great castle of silence. She refused to go out for Thanksgiving.</p>
+
+  <div class="letter-quote">
+    I hope you will get a Thanksgiving dinner somewhere. I wish I could send you one. I trust you will be with us next year. I shall not go out this year. How can I when all my boys are away! I cannot.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1863-11-15-001')">November 15, 1863 &mdash; to Alexander</a></cite>
+  </div>
+
+  <p>In the same breath, she counseled faith: <em>"Go and tell Jesus all your trials. His ear is ever open."</em> She reminded Alexander of his promise &mdash; a temperance pledge, the details unspecified but clearly sacred between them. She urged him to be a Christian soldier, like Havelock. She was sustaining her sons' souls from two hundred miles away while her own was in ruins.</p>
+</div>
+
+<!-- CH 8: FRENCH LOVE LETTERS -->
+<div class="chapter">
+  <h2>French Love Letters</h2>
+  <div class="ch-date">November 1862</div>
+  <p>In the middle of the worst months of her life &mdash; Henry missing, Charles deploying, the casualty lists arriving every morning &mdash; Frances Hubbell <a class="ref" onclick="openLetter('LTR-1862-11-10-001')">reported</a> to Charles that she had taken up a new occupation:</p>
+
+  <div class="letter-quote">
+    I have got quite into the business of writing love letters. Mr. Averill's servant girl has quite an extensive correspondence, writing affectionate love letters to one &amp; another &mdash; she comes to me as no one else can write French for her. I enjoy it finely.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-11-10-001')">November 10, 1862 &mdash; to Charles</a></cite>
+  </div>
+
+  <p>It is the most unexpected passage in the collection. A widow managing a farm in crisis, reading the dead lists every morning, parting with another son &mdash; and she is writing French love letters for a servant girl, and she enjoys it finely. The image resists easy interpretation. It might be resilience. It might be distraction. It might be a woman's small defiance against a world that was taking everything from her, one son at a time.</p>
+</div>
+
+<!-- CH 9: AMONG THE LIVING -->
+<div class="chapter">
+  <h2>&ldquo;Among the Living&rdquo;</h2>
+  <div class="ch-date">January 1865 &mdash; Champlain, New York</div>
+  <p>In January 1865, after weeks of silence following the Battle of Nashville, two letters from Alexander arrived in the same mail. Frances responded with a passage that sounds like the Psalms she had been prescribing to her sons:</p>
+
+  <div class="letter-quote">
+    Praise the Lord &mdash; Bless the Lord O my soul &mdash; all within me bless His holy, holy name for preserving the precious life of my darling child. Your letters of the 24th &amp; 25th are this moment received, the first which we have received from you since the battles before Nashville. You are among the living while my fears had numbered you with the dead.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1865-01-11-001')">January 11, 1865 &mdash; to Alexander</a></cite>
+  </div>
+
+  <p><em>You are among the living while my fears had numbered you with the dead.</em> Every silence, for three years, had meant the same thing to her: another Antietam. Another morning at the post office with nothing. Another son becoming Henry.</p>
+  <p>Champlain itself had changed. After the St. Albans Raid &mdash; Confederate agents crossing from Canada to rob Vermont banks &mdash; the border town was under military rule. One hundred fifty soldiers garrisoned in the village. Stables for a hundred cavalry horses. Reveille in the morning and tattoo at night. The war that Frances had experienced only through letters had finally arrived at her doorstep.</p>
+  <p>She counseled Alexander one last time, at length, with the accumulated moral authority of three years of suffering:</p>
+
+  <div class="letter-quote">
+    Rule your spirit. You know what Solomon says &mdash; that one who does not rule his spirit is like a city without a wall. Let your Bible be your most intimate companion. I beseech you not to indulge in reading the vile literature which is circulated in the army. You had better take coals of fire to your bosom. I warn you against it. I charge you not to read it.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1865-01-11-001')">January 1865</a></cite>
+  </div>
+</div>
+
+<!-- SILENCE: THE WAR ENDS -->
+<div class="silence">
+  <div class="silence-line"></div>
+  <h2>The War Ends</h2>
+  <p>No letters survive from Frances between January 1865 and November 1870. The war ended. Alexander came home. Charles came home. James did not &mdash; he died on October 19, 1865, one year to the day after being wounded at Cedar Creek. Frances buried a second son.</p>
+  <div class="silence-line" style="margin-top:16px"></div>
+</div>
+
+<!-- CH 10: THE CHEESE FACTORY -->
+<div class="chapter">
+  <h2>The Cheese Factory</h2>
+  <div class="ch-date">November 28, 1870 &mdash; Champlain, New York</div>
+  <p>The last letter in the collection is addressed to <em>"My dear boys"</em> &mdash; all of them, together. It is the only letter in which Frances writes to her surviving sons as adults, not as soldiers.</p>
+  <p>She had spent Thanksgiving at Uncle William's house with the extended family. The dinner was grand &mdash; <em>"such as could not be got up anywhere except in New England."</em> The ride home was terrifying: two miles in pitch darkness, muddy roads, rain. <em>"I never rode in such fear. It was pitchy dark &mdash; it could be felt."</em></p>
+
+  <div class="letter-quote">
+    Your Uncle William built a cheese factory last summer, and he says it is better than bonds. There are ten stock holders. The factory cost five thousand dollars and they say it will pay for itself in five years. They intend to milk 25 cows next summer. The cheeses make their weight eighty pounds and sold for fourteen cents. They are the best in market.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1870-11-28-001')">November 28, 1870 &mdash; to "My dear boys"</a></cite>
+  </div>
+
+  <p>Cheese factories and bond yields. Butter selling for forty cents. The boys' house needs insulating &mdash; refuse brick from the fort, available for nothing, would line the walls and make it comfortable. She was sending Webster's Masterpieces by mail if the postage wasn't more than the book was worth.</p>
+  <p>Eight years earlier, she had written <em>"my heart is breaking, breaking, breaking."</em> Now she was advising on dairy investments and home insulation. The distance between those two sentences is the distance the war put between who she was and who she became &mdash; or perhaps it is no distance at all. Perhaps the woman who wrote French love letters while reading casualty lists was always both: the one who broke, and the one who endured.</p>
+</div>
+
+</div><!-- /narrative -->
+
+<!-- ===== LETTER READER ===== -->
+<div class="reader-overlay" id="readerOverlay">
+  <div class="reader-panel">
+    <button class="reader-close" onclick="closeReader()">&times;</button>
+    <div id="readerContent"></div>
+  </div>
+</div>
+
+<div class="provenance">
+  Letters from the Hubbell family collection, transcribed from original manuscripts.
+  Interpretive text based on primary sources; all quoted passages are verbatim.
+</div>
+
+<script src="_search-data.js"></script>
+<script>
+var AUTHOR_COLORS = { henry:'#2D5F8A', alexander:'#B8860B', james:'#4A7C59', charles:'#8B3A3A', mother:'#7B5EA7' };
+var AUTHOR_NAMES = { henry:'Henry Hubbell', alexander:'Alexander F. Hubbell', james:'James Hubbell', charles:'Charles F. Hubbell', mother:'Frances Hubbell' };
+
+function getMotherAuthored() {
+  return LETTERS.filter(function(l){ return l.a === 'mother'; })
+    .sort(function(a,b){ return a.d < b.d ? -1 : a.d > b.d ? 1 : 0; });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var authored = getMotherAuthored();
+  document.getElementById('letterCount').textContent = authored.length;
+  document.getElementById('lettersCount').textContent = authored.length + ' letters written by Frances';
+  buildLettersList();
+});
+
+function toggleDrawer() {
+  var btn = document.getElementById('lettersToggle');
+  var drawer = document.getElementById('lettersDrawer');
+  btn.classList.toggle('open');
+  drawer.classList.toggle('open');
+}
+function buildLettersList() {
+  var letters = getMotherAuthored();
+  var list = document.getElementById('lettersList');
+  var html = '';
+  letters.forEach(function(l) {
+    var flags = '';
+    if (l.bat) flags += '<span class="lr-flag battle" title="Battle"></span>';
+    if (l.ill) flags += '<span class="lr-flag illness" title="Illness"></span>';
+    if (l.dth) flags += '<span class="lr-flag death" title="Death"></span>';
+    if (l.wnd) flags += '<span class="lr-flag wound" title="Wound"></span>';
+    var d = l.d.replace(/-/g, '/').replace(/^(\d{4})\/(\d{2})\/(\d{2})$/, function(m,y,mo,dy) {
+      var months = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return months[parseInt(mo)] + ' ' + parseInt(dy) + ', ' + y;
+    });
+    html += '<div class="letter-row" onclick="openLetter(\'' + l.id + '\')">' +
+      '<span class="lr-date">' + d + '</span>' +
+      '<span class="lr-to">' + (l.r || '') + '</span>' +
+      '<span class="lr-loc">' + (l.loc || '') + '</span>' +
+      '<span class="lr-flags">' + flags + '</span></div>';
+  });
+  list.innerHTML = html;
+}
+
+function openLetter(id, highlight) {
+  var letter = LETTERS.find(function(l) { return l.id === id; });
+  if (!letter) return;
+  var color = AUTHOR_COLORS[letter.a] || '#666';
+  var name = AUTHOR_NAMES[letter.a] || letter.an || letter.a;
+  var d = letter.d.replace(/-/g, '/').replace(/^(\d{4})\/(\d{2})\/(\d{2})$/, function(m,y,mo,dy) {
+    var months = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
+    return months[parseInt(mo)] + ' ' + parseInt(dy) + ', ' + y;
+  });
+
+  var flags = '';
+  if (letter.bat) flags += '<span class="reader-flag rf-battle">Battle</span>';
+  if (letter.ill) flags += '<span class="reader-flag rf-illness">Illness</span>';
+  if (letter.dth) flags += '<span class="reader-flag rf-death">Death</span>';
+  if (letter.wnd) flags += '<span class="reader-flag rf-wound">Wound</span>';
+
+  var ppl = '', plc = '';
+  if (letter.ppl && letter.ppl.length) {
+    ppl = '<div class="reader-people"><h4>People Mentioned</h4><div class="reader-tags">' +
+      letter.ppl.map(function(p){ return '<span class="reader-tag person">' + p + '</span>'; }).join('') + '</div></div>';
+  }
+  if (letter.plc && letter.plc.length) {
+    plc = '<div class="reader-places"><h4>Places Mentioned</h4><div class="reader-tags">' +
+      letter.plc.map(function(p){ return '<span class="reader-tag place">' + p + '</span>'; }).join('') + '</div></div>';
+  }
+
+  var bodyText = letter.t || '';
+  bodyText = bodyText.replace(/([^\n])\n([^\n])/g, '$1 $2');
+
+  if (highlight) {
+    try {
+      var re = new RegExp('(' + highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      bodyText = bodyText.replace(re, '<mark>$1</mark>');
+    } catch(e) {}
+  }
+
+  document.getElementById('readerContent').innerHTML =
+    '<div class="reader-header" style="border-bottom-color:' + color + '">' +
+      '<h3 style="color:' + color + '">' + name + '</h3>' +
+      '<div class="reader-meta">' + d + ' &mdash; ' + (letter.loc || 'Unknown location') +
+        '<br>To: ' + (letter.r || 'Unknown') +
+        '<br><span class="rm-id">' + letter.id + '</span></div>' +
+    '</div>' +
+    (flags ? '<div class="reader-flags">' + flags + '</div>' : '') +
+    ppl + plc +
+    '<div class="reader-body">' + bodyText + '</div>';
+
+  document.getElementById('readerOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  if (highlight) {
+    setTimeout(function() {
+      var mark = document.querySelector('.reader-body mark');
+      if (mark) mark.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }, 100);
+  }
+}
+
+function closeReader() {
+  document.getElementById('readerOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('readerOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeReader();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeReader();
+});
+
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && this.value.trim()) {
+    window.location.href = 'index.html?q=' + encodeURIComponent(this.value.trim());
+  }
+});
+</script>
+</body>
+</html>

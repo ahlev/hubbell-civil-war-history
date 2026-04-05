@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Henry Hubbell &mdash; Co. D, 34th New York</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --henry:#2D5F8A;--henry-soft:#E8F0F8;--henry-bg:#F4F8FC;
+  --alexander:#B8860B;--james:#4A7C59;--charles:#8B3A3A;--mother:#7B5EA7;
+  --bg:#FAF8F5;--card:#FFFFFF;
+  --text:#2C2C2C;--text-mid:#6B6B6B;--text-light:#9B9B9B;
+  --border:#E8E4DF;--border-light:#F0ECE7;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3}
+
+/* ===== SITE NAV ===== */
+.site-nav{position:sticky;top:0;z-index:9000;background:#2C2C2C;display:flex;align-items:center;flex-wrap:wrap;padding:8px 20px;gap:6px 0;font-family:'Inter',sans-serif;font-size:0.75rem}
+.nav-links{display:flex;align-items:center;flex-wrap:wrap;gap:3px 14px}
+.nav-label{color:#9B9B9B;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+.nav-link{color:#B8B2AA;text-decoration:none;padding:2px 0;transition:color 0.15s;white-space:nowrap}
+.nav-link:hover{color:#FFFFFF}
+.nav-link.active{color:#FFFFFF;font-weight:600}
+.nav-spacer{flex:1;min-width:8px}
+.search-container{position:relative;flex-shrink:0}
+.search-input{width:180px;padding:5px 10px 5px 28px;border:1px solid #555;border-radius:14px;background:#3a3a3a;color:#eee;font-family:'Inter',sans-serif;font-size:0.72rem;outline:none;transition:border-color 0.2s,background 0.2s,width 0.2s}
+.search-input::placeholder{color:#888}
+.search-input:focus{border-color:#888;background:#444;width:280px}
+.search-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#888;font-size:0.7rem;pointer-events:none}
+@media(max-width:700px){
+  .site-nav{padding:6px 12px}.nav-links{gap:2px 10px}.nav-label{display:none}.nav-link{font-size:0.68rem}
+  .search-container{order:99;width:100%;margin-top:2px}.search-input{width:100%}.search-input:focus{width:100%}.nav-spacer{display:none}
+}
+
+/* ===== HERO BANNER ===== */
+.hero-banner{background:var(--henry-bg);border-bottom:3px solid var(--henry);padding:56px 32px 40px;text-align:center}
+.hero-banner h1{font-size:clamp(2rem,5vw,2.8rem);color:var(--henry);margin-bottom:6px}
+.hero-subtitle{font-family:'Source Serif 4',serif;font-size:1.1rem;color:var(--text-mid);font-style:italic;margin-bottom:16px}
+.hero-vitals{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.hv{text-align:center}
+.hv-val{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--henry);display:block}
+.hv-lbl{font-size:0.68rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.8px}
+.hero-epitaph{font-family:'Source Serif 4',serif;font-size:0.92rem;color:var(--text-mid);max-width:600px;margin:0 auto;line-height:1.7}
+
+/* ===== LETTERS DROPDOWN ===== */
+.letters-section{max-width:1060px;margin:0 auto;padding:28px 32px 0}
+.letters-toggle{display:flex;align-items:center;gap:8px;width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:500;color:var(--text);transition:background 0.15s,border-color 0.15s}
+.letters-toggle:hover{background:var(--henry-bg);border-color:var(--henry)}
+.letters-toggle .lt-icon{font-size:0.9rem;transition:transform 0.2s}
+.letters-toggle.open .lt-icon{transform:rotate(90deg)}
+.letters-toggle .lt-count{margin-left:auto;font-size:0.72rem;color:var(--text-light)}
+.letters-drawer{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.letters-drawer.open{max-height:500px;overflow-y:auto}
+.letters-list{padding:8px 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2px 16px}
+.letter-row{display:flex;align-items:center;gap:8px;padding:6px 14px;cursor:pointer;border-radius:6px;transition:background 0.1s;font-size:0.78rem}
+.letter-row:hover{background:var(--henry-bg)}
+.lr-date{font-weight:500;color:var(--text);min-width:80px;flex-shrink:0}
+.lr-to{color:var(--text-mid);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lr-loc{color:var(--text-light);font-size:0.72rem;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0}
+.lr-flags{display:flex;gap:3px;flex-shrink:0}
+.lr-flag{width:6px;height:6px;border-radius:50%}
+.lr-flag.battle{background:#C44E52}.lr-flag.illness{background:#E58A00}.lr-flag.death{background:#5D4037}.lr-flag.wound{background:#7B1FA2}
+
+/* ===== NARRATIVE ===== */
+.narrative{max-width:1060px;margin:0 auto;padding:40px 32px}
+.chapter{margin-bottom:44px}
+.chapter:last-child{margin-bottom:0}
+.chapter h2{font-size:1.35rem;color:var(--henry);margin-bottom:4px}
+.chapter .ch-date{font-family:'Inter',sans-serif;font-size:0.7rem;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.chapter p{font-family:'Source Serif 4',serif;font-size:0.98rem;line-height:1.85;color:var(--text-mid);margin-bottom:14px}
+.chapter p:last-child{margin-bottom:0}
+
+/* Quotes */
+.letter-quote{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.98rem;line-height:1.8;color:var(--text);border-left:3px solid var(--henry);padding:12px 0 12px 20px;margin:20px 0;background:var(--henry-bg);border-radius:0 8px 8px 0;padding-right:20px}
+.letter-quote cite{display:block;font-style:normal;font-family:'Inter',sans-serif;font-size:0.72rem;color:var(--text-light);margin-top:8px}
+.letter-quote .lq-link{color:var(--henry);text-decoration:none;border-bottom:1px dotted var(--henry);cursor:pointer;transition:border-color 0.15s}
+.letter-quote .lq-link:hover{border-bottom-style:solid}
+
+/* Inline letter references */
+.ref{color:var(--henry);text-decoration:none;border-bottom:1px dotted var(--henry);cursor:pointer;font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:500;transition:border-color 0.15s}
+.ref:hover{border-bottom-style:solid}
+
+/* Mother's voice notes */
+.mother-note{border-left:3px solid var(--mother);background:#F8F5FC;border-radius:0 8px 8px 0;padding:14px 20px;margin:20px 0}
+.mother-note .mn-label{font-family:'Inter',sans-serif;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--mother);font-weight:600;margin-bottom:6px}
+.mother-note p{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.95rem;line-height:1.75;color:var(--text);margin-bottom:6px}
+.mother-note p:last-child{margin-bottom:0}
+.mother-note cite{font-style:normal;font-family:'Inter',sans-serif;font-size:0.7rem;color:var(--text-light)}
+
+/* Context boxes */
+.context-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0;font-size:0.88rem}
+.context-box .cb-label{font-family:'Inter',sans-serif;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-light);font-weight:600;margin-bottom:6px}
+.context-box p{font-family:'Source Serif 4',serif;font-size:0.88rem;line-height:1.7;color:var(--text-mid)}
+
+/* Silence section */
+.silence{text-align:center;padding:40px 20px;margin:30px 0}
+.silence-line{width:60px;height:2px;background:var(--henry);margin:0 auto 16px;opacity:0.4}
+.silence h2{color:var(--henry);font-size:1.4rem;margin-bottom:8px}
+.silence p{font-family:'Source Serif 4',serif;font-size:0.95rem;color:var(--text-mid);max-width:600px;margin:0 auto;line-height:1.75}
+
+/* Two-column for mid-story */
+.two-col{columns:2;column-gap:40px}
+.two-col p{break-inside:avoid}
+
+/* ===== LETTER READER OVERLAY ===== */
+.reader-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;padding:24px}
+.reader-overlay.open{display:flex}
+.reader-panel{background:var(--card);border-radius:14px;max-width:720px;width:100%;max-height:85vh;overflow-y:auto;padding:28px 32px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.25)}
+.reader-close{position:absolute;top:12px;right:14px;border:none;background:none;font-size:1.5rem;cursor:pointer;color:var(--text-light);line-height:1}
+.reader-close:hover{color:var(--text)}
+.reader-header{border-bottom:3px solid var(--henry);padding-bottom:10px;margin-bottom:14px}
+.reader-header h3{font-size:1.15rem;margin-bottom:4px}
+.reader-meta{font-size:0.8rem;color:var(--text-mid);margin-bottom:14px;line-height:1.6}
+.reader-meta .rm-id{font-size:0.7rem;color:var(--text-light)}
+.reader-flags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.reader-flag{font-size:0.65rem;padding:2px 8px;border-radius:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px}
+.rf-battle{background:#FCE4EC;color:#C62828}.rf-illness{background:#FFF3E0;color:#E65100}.rf-death{background:#EFEBE9;color:#4E342E}.rf-wound{background:#F3E5F5;color:#7B1FA2}
+.reader-people,.reader-places{margin-bottom:14px}
+.reader-people h4,.reader-places h4{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-light);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:6px}
+.reader-tags{display:flex;gap:4px;flex-wrap:wrap}
+.reader-tag{font-size:0.73rem;padding:2px 8px;border-radius:10px;background:var(--border-light);color:var(--text-mid)}
+.reader-tag.person{background:#E3F2FD;color:#1565C0}.reader-tag.place{background:#E8F5E9;color:#2E7D32}
+.reader-body{font-family:'Source Serif 4',serif;font-size:0.92rem;line-height:1.85;color:var(--text);background:var(--bg);border-radius:8px;padding:18px;white-space:pre-wrap;border:1px solid var(--border-light);max-height:420px;overflow-y:auto}
+.reader-body mark{background:rgba(45,95,138,0.15);color:inherit;font-weight:500;border-radius:2px;padding:0 1px}
+
+/* ===== FOOTER ===== */
+.provenance{background:var(--bg);border-top:1px solid var(--border);padding:20px 24px;font-family:'Inter',sans-serif;font-size:0.72rem;color:var(--text-light);text-align:center;line-height:1.5}
+
+@media(max-width:900px){.two-col{columns:1}.letters-list{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-banner{padding:40px 20px 30px}.narrative{padding:30px 20px}.letters-section{padding:20px 20px 0}}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-links">
+    <span class="nav-label">Explore:</span>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="hubbell-dashboard.html" class="nav-link">Parallel Lives</a>
+    <a href="viz-emotional-arcs.html" class="nav-link">Emotional Arcs</a>
+    <a href="viz-map-fullwar.html" class="nav-link">Map That Moves</a>
+    <a href="viz-health-ledger.html" class="nav-link">Health Ledger</a>
+    <a href="viz-money-story.html" class="nav-link">Money Story</a>
+    <a href="viz-people-web.html" class="nav-link">People Web</a>
+    <a href="who-they-were.html" class="nav-link active">Who They Were</a>
+  </div>
+  <div class="nav-spacer"></div>
+  <div class="search-container">
+    <span class="search-icon">&#x1F50D;</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search 274 letters..." autocomplete="off">
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<div class="hero-banner">
+  <h1>Henry Hubbell</h1>
+  <div class="hero-subtitle">Co. D, 34th Regiment, New York Volunteers</div>
+  <div class="hero-vitals">
+    <div class="hv"><span class="hv-val">22</span><span class="hv-lbl">Age at Death</span></div>
+    <div class="hv"><span class="hv-val">15 mo.</span><span class="hv-lbl">Service</span></div>
+    <div class="hv"><span class="hv-val" id="letterCount">--</span><span class="hv-lbl">Letters</span></div>
+    <div class="hv"><span class="hv-val">Private</span><span class="hv-lbl">Rank</span></div>
+  </div>
+  <div class="hero-epitaph">Born November 1839 in Champlain, New York. Enlisted June 1861 at age 21. Killed at the Battle of Antietam, September 17, 1862. His body was never recovered.</div>
+</div>
+
+<!-- ===== LETTER DROPDOWN ===== -->
+<div class="letters-section">
+  <button class="letters-toggle" id="lettersToggle" onclick="toggleDrawer()">
+    <span class="lt-icon">&#x25B6;</span>
+    All of Henry's Letters
+    <span class="lt-count" id="lettersCount"></span>
+  </button>
+  <div class="letters-drawer" id="lettersDrawer">
+    <div class="letters-list" id="lettersList"></div>
+  </div>
+</div>
+
+<!-- ===== NARRATIVE ===== -->
+<div class="narrative">
+
+<!-- CH 1: ARRIVAL -->
+<div class="chapter">
+  <h2>Arrival</h2>
+  <div class="ch-date">July 1861 &mdash; Washington, D.C.</div>
+  <p>Henry was the first Hubbell brother to enlist. In June 1861, two months after Fort Sumter, he joined the 34th New York Volunteers and traveled by boat and rail from Albany to Washington. He was twenty-one years old. His father had been dead for eight years. His mother was managing the farm in Champlain alone.</p>
+  <p>His <a class="ref" onclick="openLetter('LTR-1861-07-06-001')">first letter home</a> captures a young man trying to make sense of what he has entered. The regiment was cheered all the way from Albany. In Baltimore &mdash; where soldiers of the 6th Massachusetts had been attacked by a secessionist mob just weeks earlier &mdash; Henry noted bullet holes in the depot roof but reported that no one molested them. What troubled him was not the enemy but his own side.</p>
+
+  <div class="letter-quote">
+    It seems to me I never got into such a drunken set as I have here, however there are some that don't drink.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1861-07-06-001')">July 6, 1861 &mdash; Washington, D.C.</a></cite>
+  </div>
+
+  <p>From his first letter, Henry established what would become his constant concern: money. He had sent eight dollars home and wanted to know if it arrived. He apologized for bad spelling. He found the knapsack very heavy, but said he would get used to it. These small, practical observations &mdash; the weight of things, the cost of things &mdash; would define his correspondence for the next thirteen months.</p>
+</div>
+
+<!-- CH 2: BULL RUN -->
+<div class="chapter">
+  <h2>The Cannons at Bull Run</h2>
+  <div class="ch-date">July 21, 1861 &mdash; Washington, D.C.</div>
+  <p>On July 21, 1861 &mdash; the day of the first major battle of the Civil War &mdash; Henry sat in camp at Washington and <a class="ref" onclick="openLetter('LTR-1861-07-21-001')">wrote to his mother</a> while listening to the cannons.</p>
+
+  <div class="letter-quote">
+    While I am writing there is a battle going on. Can here cannons firing not over twenty-eight miles from here. Am not certain when our Regt. will go. Wherever we go I am ready. Know I shall not be forsaken if I put my trust in the all seeing power.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1861-07-21-001')">July 21, 1861 &mdash; Washington, D.C.</a></cite>
+  </div>
+
+  <p>That same day, he wrote separately to his sister Frances. The letter was ordinary &mdash; drilling five hours a day, wishing for something to read, asking her to send a dollar so he could get a shirt washed. Then came the postscript, written <a class="ref" onclick="openLetter('LTR-1861-07-21-003')">later that evening</a>, after the Union defeat at Bull Run had sent shockwaves back to Washington:</p>
+
+  <div class="letter-quote">
+    Later &mdash; We are ordered off. Shall probably leave in the morning. Ready tonight. May leave before morning. There has been a hard battle today. Have not heard much about it yet. You need not send any money now, till I write.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1861-07-21-003')">July 21, 1861, later &mdash; Washington, D.C.</a></cite>
+  </div>
+
+  <p>The whiplash between the two halves of this letter &mdash; shirt laundry, then mobilization &mdash; would become a recurring pattern in the Hubbell correspondence. The ordinary and the catastrophic occupied the same page.</p>
+</div>
+
+<!-- CH 3: CAMP LIFE AND MONEY -->
+<div class="chapter">
+  <h2>Camp Life, Money, and a Brother's Advice</h2>
+  <div class="ch-date">September 1861 &ndash; January 1862</div>
+  <div class="two-col">
+  <p>Henry's regiment was stationed as guards along the Potomac, watching for rebel crossings. His letters settled into a rhythm of camp routine, financial accounting, and concern for the family at home. He was meticulous about money &mdash; tracking every dollar sent home, every debt to the sutler, every contribution to the band fund and the cook. In <a class="ref" onclick="openLetter('LTR-1861-09-05-001')">September</a>, he told his sister he had a five-dollar gold piece and intended to send nearly everything home, adding: <em>"You must not hesitate, I put that down as a command. Times are hard and you will need it bad enough."</em></p>
+
+  <p>He slept on the ground, which he believed was making him ill. He watched one soldier die from another's carelessness with a loaded gun &mdash; the third accidental death in the regiment. He heard that his younger brother Alexander was eager to enlist, and in a <a class="ref" onclick="openLetter('LTR-1861-09-11-001')">September 11 letter to his mother</a>, he counseled firmly against it: <em>"My opinion and advise is he had better stay at home, and I think I am wright. If he can get a good chance to go to College, he had better go."</em> Alexander did not take the advice. He enlisted two weeks later.</p>
+
+  <p>By November, the regiment had moved to <a class="ref" onclick="openLetter('LTR-1861-11-15-001')">Camp McClellan near Poolesville, Maryland</a>. Henry sent twenty dollars home by express. One night the regiment formed a line of battle after a report that rebels were crossing the river, but it was a false alarm. He asked his brother Charles to tell their mother that her preserves "went very well."</p>
+
+  <p>In <a class="ref" onclick="openLetter('LTR-1862-01-24-002')">January 1862</a>, Henry reported that the barracks had been torn apart and burned for firewood &mdash; they were thought unhealthy &mdash; and the men would live in tents for the rest of winter. He sent fifteen dollars home, itemizing his expenses to the cent: $5.20 to the sutler, $4.50 for boots, fifty cents to the band, fifty cents to the cook, a dollar for a sword. He was optimistic. "I think this war will be all over before next July," he wrote.</p>
+  </div>
+</div>
+
+<!-- CH 4: PENINSULA CAMPAIGN -->
+<div class="chapter">
+  <h2>The Peninsula</h2>
+  <div class="ch-date">Summer 1862 &mdash; Harrison's Landing, James River</div>
+  <p>By the summer of 1862, the 34th New York had moved south to the Virginia Peninsula as part of McClellan's advance on Richmond. Henry's letters grew shorter and more direct. The tone shifted. In <a class="ref" onclick="openLetter('LTR-1862-07-12-001')">a letter dated July 12</a>, he described the Seven Days battles &mdash; the chaotic retreat, the bayonet charges, the men who shirked the fighting. He had been urged by a comrade named McDonald to go to the hospital when the sick were ordered away, but he refused to leave. The battle began at five in the afternoon, and his regiment charged into the woods on the double quick, throwing their knapsacks. Henry lost his cap.</p>
+
+  <div class="letter-quote">
+    Our regiment fired very low and did great execution. The Irish Brigade charged a rebel battery &mdash; it was a splendid sight, shouting at the top of their voices. We lost a great many men, and the battery, ammunition, and provisions. We marched all the next day in a hard rain without a blanket.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-07-12-001')">July 12, 1862 &mdash; Harrison's Landing, James River</a></cite>
+  </div>
+
+  <p>He noted that his diarrhea was "very bad" and that the head surgeon had left for Congress. He had now served thirteen months. If he completed his full term he would receive a hundred-dollar bounty and a land warrant. He asked his mother to write often.</p>
+</div>
+
+<!-- CH 5: LAST LETTER -->
+<div class="chapter">
+  <h2>The Last Letter</h2>
+  <div class="ch-date">July 28, 1862 &mdash; Harrison's Landing</div>
+  <p>Henry's <a class="ref" onclick="openLetter('LTR-1862-07-28-001')">final surviving letter</a> was written to his sister Frances on July 28, 1862 &mdash; fifty-one days before the battle that would kill him. It is the most relaxed letter in his collection. He wrote about the grand review of the Army of the Potomac near the James River, where they were marched in line of battle and the battery fired blank cartridges. He thought an artist had sketched them. "You may perhaps see the sketch in the Harper's Weekly," he told Frances.</p>
+
+  <p>He teased her about teaching French. He teased a friend named Sid about farming and marriage. He offered a small fantasy of peace:</p>
+
+  <div class="letter-quote">
+    I should like it very well if peace should be proclaimed just before Sugar time, or in the fore part of next winter, so that I could make arrangements for farming next spring, but there is no such luck for me, as matters and things look now. I shall make the best of it.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-07-28-001')">July 28, 1862 &mdash; Harrison's Landing</a></cite>
+  </div>
+
+  <p>He closed by asking Frances to give his regards to all friends. His last written instruction to his family was this: <em>"Burn this scribble &mdash; hope to do better next time."</em></p>
+  <p>They did not burn it.</p>
+</div>
+
+<!-- ===== SILENCE ===== -->
+<div class="silence">
+  <div class="silence-line"></div>
+  <div class="silence-line"></div>
+  <h2>Forty-Three Days of Silence</h2>
+  <p>No letters from Henry survive between July 28 and September 17, 1862. The 34th New York moved north from the Peninsula to join Pope's army, then marched into Maryland as Lee's forces crossed the Potomac. On September 17, at the Battle of Antietam &mdash; the bloodiest single day of the war &mdash; Henry was wounded. He did not survive. His body was never recovered.</p>
+  <div class="silence-line" style="margin-top:16px"></div>
+</div>
+
+<!-- CH 6: THE FAMILY LEARNS -->
+<div class="chapter">
+  <h2>The Family Learns</h2>
+  <div class="ch-date">September 21&ndash;28, 1862</div>
+  <p>What survives instead is the anguish of those who waited for news. On September 21 &mdash; four days after the battle &mdash; Henry's mother sat in Champlain and <a class="ref" onclick="openLetter('LTR-1862-09-21-002')">wrote to him</a>, not yet knowing he was wounded. She had been reading the published casualty lists "with trembling," scanning for his name. The 34th New York had been "terribly cut up." But his name had not appeared.</p>
+
+  <div class="mother-note">
+    <div class="mn-label">Mother's Voice</div>
+    <p>Language is too weak, to express my anxiety about you since the commencement of the terrible battle. Than God your name has not yet appeared on the sad list, which has caused morning and lamentation to so many homes.</p>
+    <p>If I was a man I am sure I should enlist, but as it is I have sent all I had to send and hope they will do nobly.</p>
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-09-21-002')">Frances Hubbell to Henry &mdash; September 21, 1862, Champlain</a></cite>
+  </div>
+
+  <p>She was writing to a son who was already dying, or dead. The dramatic irony is total. She asked him to describe the battle "in the most minute detail." She told him she was "almost tempted at times to go down to the hospitals." She reported that Charles had been made first corporal. She praised McClellan. The remainder of the letter is missing.</p>
+
+  <p>Six days later, Alexander &mdash; himself hospitalized with severe diarrhea at Harpers Ferry &mdash; <a class="ref" onclick="openLetter('LTR-1862-09-27-001')">wrote to their mother</a> with what he had heard: Henry was "slightly wounded in the hand, but is still with the company." This report, passed along second-hand, would prove either wrong or tragically incomplete.</p>
+
+  <p>The next day, September 28, Mother saw Henry's name appear on the published wounded list. She <a class="ref" onclick="openLetter('LTR-1862-09-28-001')">wrote to Alexander</a> in anguish, begging him to find Henry, to administer to his wants, to get him a furlough home.</p>
+
+  <div class="mother-note">
+    <div class="mn-label">Mother's Voice</div>
+    <p>I was shocked this morning by seeing Henry's name on the list of wounded. I cannot tell you of the agony of mind I am in. Want of means alone prevents my going starting for Washington.</p>
+    <p>My heart is aching to bursting, and I can write no more.</p>
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-09-28-001')">Frances Hubbell to Alexander &mdash; September 28, 1862, Champlain</a></cite>
+  </div>
+
+  <p>None of these letters reached their destinations in time. They crossed in the mail, each written in ignorance of what the others said. Henry never learned of his mother's desperate attempts to reach him. She never reached him. In time, the family pieced together the truth. Charles would later write, plainly: <em>"I think there is not the least doubt that Henry was killed."</em></p>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Note</div>
+    <p>The Battle of Antietam on September 17, 1862 produced 22,717 casualties in a single day &mdash; the bloodiest day in American military history. The 34th New York fought in Sumner's Corps near the West Woods and the Sunken Road. Henry Hubbell was among the approximately 2,100 Union soldiers killed outright. His body was never recovered and his grave, if marked at all, has never been identified.</p>
+  </div>
+</div>
+
+<!-- CH 7: WHAT REMAINS -->
+<div class="chapter">
+  <h2>What Remains</h2>
+  <p>Henry Hubbell served thirteen months. He wrote about knapsacks and money, about preserves and French lessons, about cannons heard from twenty-eight miles away and a lost cap in a bayonet charge. He tried to keep his younger brother from enlisting. He sent nearly every dollar home. He dreamed of sugar time and spring farming.</p>
+  <p>His final request &mdash; "burn this scribble" &mdash; was ignored. Five generations later, every letter survives. They are the only record of his voice.</p>
+</div>
+
+</div><!-- /narrative -->
+
+<!-- ===== READER OVERLAY ===== -->
+<div class="reader-overlay" id="readerOverlay">
+  <div class="reader-panel" id="readerPanel">
+    <button class="reader-close" onclick="closeReader()">&times;</button>
+    <div id="readerContent"></div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="provenance">
+  Part of <a href="index.html" style="color:var(--henry)">The Hubbell Brothers</a> &mdash; 274 Civil War letters, transcribed and visualized.<br>
+  <a href="who-they-were.html" style="color:inherit;text-decoration:underline">Back to Who They Were</a>
+</div>
+
+<!-- ===== DATA + SCRIPTS ===== -->
+<script src="_search-data.js"></script>
+<script>
+var AUTHOR_COLORS = {henry:'#2D5F8A',alexander:'#B8860B',james:'#4A7C59',charles:'#8B3A3A',mother:'#7B5EA7'};
+var AUTHOR_NAMES = {henry:'Henry Hubbell',alexander:'Alexander F. Hubbell',james:'James Hubbell',charles:'Charles F. Hubbell',mother:'Frances Hubbell (Mother)'};
+
+// Filter letters by/to Henry
+function getHenryLetters() {
+  return LETTERS.filter(function(l) {
+    return l.a === 'henry' || (l.r && l.r.toLowerCase().indexOf('henry') !== -1);
+  }).sort(function(a,b) { return a.d < b.d ? -1 : 1; });
+}
+function getHenryAuthored() {
+  return LETTERS.filter(function(l) { return l.a === 'henry'; });
+}
+
+// Populate letter count
+document.addEventListener('DOMContentLoaded', function() {
+  var authored = getHenryAuthored();
+  document.getElementById('letterCount').textContent = authored.length;
+  document.getElementById('lettersCount').textContent = authored.length + ' letters written by Henry';
+  buildLettersList();
+});
+
+// Letters drawer
+function toggleDrawer() {
+  var btn = document.getElementById('lettersToggle');
+  var drawer = document.getElementById('lettersDrawer');
+  btn.classList.toggle('open');
+  drawer.classList.toggle('open');
+}
+function buildLettersList() {
+  var letters = getHenryAuthored();
+  var list = document.getElementById('lettersList');
+  var html = '';
+  letters.forEach(function(l) {
+    var flags = '';
+    if (l.bat) flags += '<span class="lr-flag battle" title="Battle"></span>';
+    if (l.ill) flags += '<span class="lr-flag illness" title="Illness"></span>';
+    if (l.dth) flags += '<span class="lr-flag death" title="Death"></span>';
+    if (l.wnd) flags += '<span class="lr-flag wound" title="Wound"></span>';
+    var d = l.d.replace(/-/g, '/').replace(/^(\d{4})\/(\d{2})\/(\d{2})$/, function(m,y,mo,dy) {
+      var months = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return months[parseInt(mo)] + ' ' + parseInt(dy) + ', ' + y;
+    });
+    html += '<div class="letter-row" onclick="openLetter(\'' + l.id + '\')">' +
+      '<span class="lr-date">' + d + '</span>' +
+      '<span class="lr-to">' + (l.r || '') + '</span>' +
+      '<span class="lr-loc">' + (l.loc || '') + '</span>' +
+      '<span class="lr-flags">' + flags + '</span></div>';
+  });
+  list.innerHTML = html;
+}
+
+// Open letter in reader panel
+function openLetter(id, highlight) {
+  var letter = LETTERS.find(function(l) { return l.id === id; });
+  if (!letter) return;
+  var color = AUTHOR_COLORS[letter.a] || '#666';
+  var name = AUTHOR_NAMES[letter.a] || letter.an || letter.a;
+  var d = letter.d.replace(/-/g, '/').replace(/^(\d{4})\/(\d{2})\/(\d{2})$/, function(m,y,mo,dy) {
+    var months = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
+    return months[parseInt(mo)] + ' ' + parseInt(dy) + ', ' + y;
+  });
+
+  var flags = '';
+  if (letter.bat) flags += '<span class="reader-flag rf-battle">Battle</span>';
+  if (letter.ill) flags += '<span class="reader-flag rf-illness">Illness</span>';
+  if (letter.dth) flags += '<span class="reader-flag rf-death">Death</span>';
+  if (letter.wnd) flags += '<span class="reader-flag rf-wound">Wound</span>';
+
+  var ppl = '', plc = '';
+  if (letter.ppl && letter.ppl.length) {
+    ppl = '<div class="reader-people"><h4>People Mentioned</h4><div class="reader-tags">' +
+      letter.ppl.map(function(p){ return '<span class="reader-tag person">' + p + '</span>'; }).join('') + '</div></div>';
+  }
+  if (letter.plc && letter.plc.length) {
+    plc = '<div class="reader-places"><h4>Places Mentioned</h4><div class="reader-tags">' +
+      letter.plc.map(function(p){ return '<span class="reader-tag place">' + p + '</span>'; }).join('') + '</div></div>';
+  }
+
+  var bodyText = letter.t || '';
+  // Collapse single newlines to spaces, keep double newlines as paragraph breaks
+  bodyText = bodyText.replace(/([^\n])\n([^\n])/g, '$1 $2');
+
+  if (highlight) {
+    try {
+      var re = new RegExp('(' + highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      bodyText = bodyText.replace(re, '<mark>$1</mark>');
+    } catch(e) {}
+  }
+
+  document.getElementById('readerContent').innerHTML =
+    '<div class="reader-header" style="border-bottom-color:' + color + '">' +
+      '<h3 style="color:' + color + '">' + name + '</h3>' +
+      '<div class="reader-meta">' + d + ' &mdash; ' + (letter.loc || 'Unknown location') +
+        '<br>To: ' + (letter.r || 'Unknown') +
+        '<br><span class="rm-id">' + letter.id + '</span></div>' +
+    '</div>' +
+    (flags ? '<div class="reader-flags">' + flags + '</div>' : '') +
+    ppl + plc +
+    '<div class="reader-body">' + bodyText + '</div>';
+
+  document.getElementById('readerOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  if (highlight) {
+    setTimeout(function() {
+      var mark = document.querySelector('.reader-body mark');
+      if (mark) mark.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }, 100);
+  }
+}
+
+function closeReader() {
+  document.getElementById('readerOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close on overlay click or Escape
+document.getElementById('readerOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeReader();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeReader();
+});
+
+// Cross-page search redirect
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && this.value.trim()) {
+    window.location.href = 'index.html?q=' + encodeURIComponent(this.value.trim());
+  }
+});
+</script>
+</body>
+</html>

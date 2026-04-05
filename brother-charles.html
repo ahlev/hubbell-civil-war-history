@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charles F. Hubbell &mdash; Co. H, 153rd New York Volunteers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --charles:#8B3A3A;--charles-soft:#F5E8E8;--charles-bg:#FAF4F4;
+  --henry:#2D5F8A;--alexander:#B8860B;--james:#4A7C59;--mother:#7B5EA7;
+  --bg:#FAF8F5;--card:#FFFFFF;
+  --text:#2C2C2C;--text-mid:#6B6B6B;--text-light:#9B9B9B;
+  --border:#E8E4DF;--border-light:#F0ECE7;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3}
+
+/* ===== SITE NAV ===== */
+.site-nav{position:sticky;top:0;z-index:9000;background:#2C2C2C;display:flex;align-items:center;flex-wrap:wrap;padding:8px 20px;gap:6px 0;font-family:'Inter',sans-serif;font-size:0.75rem}
+.nav-links{display:flex;align-items:center;flex-wrap:wrap;gap:3px 14px}
+.nav-label{color:#9B9B9B;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+.nav-link{color:#B8B2AA;text-decoration:none;padding:2px 0;transition:color 0.15s;white-space:nowrap}
+.nav-link:hover{color:#FFFFFF}
+.nav-link.active{color:#FFFFFF;font-weight:600}
+.nav-spacer{flex:1;min-width:8px}
+.search-container{position:relative;flex-shrink:0}
+.search-input{width:180px;padding:5px 10px 5px 28px;border:1px solid #555;border-radius:14px;background:#3a3a3a;color:#eee;font-family:'Inter',sans-serif;font-size:0.72rem;outline:none;transition:border-color 0.2s,background 0.2s,width 0.2s}
+.search-input::placeholder{color:#888}
+.search-input:focus{border-color:#888;background:#444;width:280px}
+.search-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#888;font-size:0.7rem;pointer-events:none}
+@media(max-width:700px){
+  .site-nav{padding:6px 12px}.nav-links{gap:2px 10px}.nav-label{display:none}.nav-link{font-size:0.68rem}
+  .search-container{order:99;width:100%;margin-top:2px}.search-input{width:100%}.search-input:focus{width:100%}.nav-spacer{display:none}
+}
+
+/* ===== HERO BANNER ===== */
+.hero-banner{background:var(--charles-bg);border-bottom:3px solid var(--charles);padding:56px 32px 40px;text-align:center}
+.hero-banner h1{font-size:clamp(2rem,5vw,2.8rem);color:var(--charles);margin-bottom:6px}
+.hero-subtitle{font-family:'Source Serif 4',serif;font-size:1.1rem;color:var(--text-mid);font-style:italic;margin-bottom:16px}
+.hero-vitals{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.hv{text-align:center}
+.hv-val{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--charles);display:block}
+.hv-lbl{font-size:0.68rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.8px}
+.hero-epitaph{font-family:'Source Serif 4',serif;font-size:0.92rem;color:var(--text-mid);max-width:640px;margin:0 auto;line-height:1.7}
+
+/* ===== LETTERS DROPDOWN ===== */
+.letters-section{max-width:1060px;margin:0 auto;padding:28px 32px 0}
+.letters-toggle{display:flex;align-items:center;gap:8px;width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:500;color:var(--text);transition:background 0.15s,border-color 0.15s}
+.letters-toggle:hover{background:var(--charles-bg);border-color:var(--charles)}
+.letters-toggle .lt-icon{font-size:0.9rem;transition:transform 0.2s}
+.letters-toggle.open .lt-icon{transform:rotate(90deg)}
+.letters-toggle .lt-count{margin-left:auto;font-size:0.72rem;color:var(--text-light)}
+.letters-drawer{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.letters-drawer.open{max-height:500px;overflow-y:auto}
+.letters-list{padding:8px 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2px 16px}
+.letter-row{display:flex;align-items:center;gap:8px;padding:6px 14px;cursor:pointer;border-radius:6px;transition:background 0.1s;font-size:0.78rem}
+.letter-row:hover{background:var(--charles-bg)}
+.lr-date{font-weight:500;color:var(--text);min-width:80px;flex-shrink:0}
+.lr-to{color:var(--text-mid);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lr-loc{color:var(--text-light);font-size:0.72rem;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0}
+.lr-flags{display:flex;gap:3px;flex-shrink:0}
+.lr-flag{width:6px;height:6px;border-radius:50%}
+.lr-flag.battle{background:#C44E52}.lr-flag.illness{background:#E58A00}.lr-flag.death{background:#5D4037}.lr-flag.wound{background:#7B1FA2}
+
+/* ===== NARRATIVE ===== */
+.narrative{max-width:1060px;margin:0 auto;padding:40px 32px}
+.chapter{margin-bottom:44px}
+.chapter:last-child{margin-bottom:0}
+.chapter h2{font-size:1.35rem;color:var(--charles);margin-bottom:4px}
+.chapter .ch-date{font-family:'Inter',sans-serif;font-size:0.7rem;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.chapter p{font-family:'Source Serif 4',serif;font-size:0.98rem;line-height:1.85;color:var(--text-mid);margin-bottom:14px}
+.chapter p:last-child{margin-bottom:0}
+
+/* Quotes */
+.letter-quote{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.98rem;line-height:1.8;color:var(--text);border-left:3px solid var(--charles);padding:12px 0 12px 20px;margin:20px 0;background:var(--charles-bg);border-radius:0 8px 8px 0;padding-right:20px}
+.letter-quote cite{display:block;font-style:normal;font-family:'Inter',sans-serif;font-size:0.72rem;color:var(--text-light);margin-top:8px}
+.letter-quote .lq-link{color:var(--charles);text-decoration:none;border-bottom:1px dotted var(--charles);cursor:pointer;transition:border-color 0.15s}
+.letter-quote .lq-link:hover{border-bottom-style:solid}
+
+/* Inline letter references */
+.ref{color:var(--charles);text-decoration:none;border-bottom:1px dotted var(--charles);cursor:pointer;font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:500;transition:border-color 0.15s}
+.ref:hover{border-bottom-style:solid}
+
+/* Mother's voice notes */
+.mother-note{border-left:3px solid var(--mother);background:#F8F5FC;border-radius:0 8px 8px 0;padding:14px 20px;margin:20px 0}
+.mother-note .mn-label{font-family:'Inter',sans-serif;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--mother);font-weight:600;margin-bottom:6px}
+.mother-note p{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.95rem;line-height:1.75;color:var(--text);margin-bottom:6px}
+.mother-note p:last-child{margin-bottom:0}
+.mother-note cite{font-style:normal;font-family:'Inter',sans-serif;font-size:0.7rem;color:var(--text-light)}
+
+/* Context boxes */
+.context-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0;font-size:0.88rem}
+.context-box .cb-label{font-family:'Inter',sans-serif;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-light);font-weight:600;margin-bottom:6px}
+.context-box p{font-family:'Source Serif 4',serif;font-size:0.88rem;line-height:1.7;color:var(--text-mid)}
+
+/* Silence section */
+.silence{text-align:center;padding:40px 20px;margin:30px 0}
+.silence-line{width:60px;height:2px;background:var(--charles);margin:0 auto 16px;opacity:0.4}
+.silence h2{color:var(--charles);font-size:1.4rem;margin-bottom:8px}
+.silence p{font-family:'Source Serif 4',serif;font-size:0.95rem;color:var(--text-mid);max-width:600px;margin:0 auto;line-height:1.75}
+
+/* Two-column for mid-story */
+.two-col{columns:2;column-gap:40px}
+.two-col p{break-inside:avoid}
+
+/* ===== LETTER READER OVERLAY ===== */
+.reader-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;padding:24px}
+.reader-overlay.open{display:flex}
+.reader-panel{background:var(--card);border-radius:14px;max-width:720px;width:100%;max-height:85vh;overflow-y:auto;padding:28px 32px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.25)}
+.reader-close{position:absolute;top:12px;right:14px;border:none;background:none;font-size:1.5rem;cursor:pointer;color:var(--text-light);line-height:1}
+.reader-close:hover{color:var(--text)}
+.reader-header{border-bottom:3px solid var(--charles);padding-bottom:10px;margin-bottom:14px}
+.reader-header h3{font-size:1.15rem;margin-bottom:4px}
+.reader-meta{font-size:0.8rem;color:var(--text-mid);margin-bottom:14px;line-height:1.6}
+.reader-meta .rm-id{font-size:0.7rem;color:var(--text-light)}
+.reader-flags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.reader-flag{font-size:0.65rem;padding:2px 8px;border-radius:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px}
+.rf-battle{background:#FCE4EC;color:#C62828}.rf-illness{background:#FFF3E0;color:#E65100}.rf-death{background:#EFEBE9;color:#4E342E}.rf-wound{background:#F3E5F5;color:#7B1FA2}
+.reader-people,.reader-places{margin-bottom:14px}
+.reader-people h4,.reader-places h4{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-light);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:6px}
+.reader-tags{display:flex;gap:4px;flex-wrap:wrap}
+.reader-tag{font-size:0.73rem;padding:2px 8px;border-radius:10px;background:var(--border-light);color:var(--text-mid)}
+.reader-tag.person{background:#E3F2FD;color:#1565C0}.reader-tag.place{background:#E8F5E9;color:#2E7D32}
+.reader-body{font-family:'Source Serif 4',serif;font-size:0.92rem;line-height:1.85;color:var(--text);background:var(--bg);border-radius:8px;padding:18px;white-space:pre-wrap;border:1px solid var(--border-light);max-height:420px;overflow-y:auto}
+.reader-body mark{background:rgba(139,58,58,0.15);color:inherit;font-weight:500;border-radius:2px;padding:0 1px}
+
+/* ===== FOOTER ===== */
+.provenance{background:var(--bg);border-top:1px solid var(--border);padding:20px 24px;font-family:'Inter',sans-serif;font-size:0.72rem;color:var(--text-light);text-align:center;line-height:1.5}
+
+@media(max-width:900px){.two-col{columns:1}.letters-list{grid-template-columns:1fr}}
+@media(max-width:600px){.hero-banner{padding:40px 20px 30px}.narrative{padding:30px 20px}.letters-section{padding:20px 20px 0}}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-links">
+    <span class="nav-label">Explore:</span>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="hubbell-dashboard.html" class="nav-link">Parallel Lives</a>
+    <a href="viz-emotional-arcs.html" class="nav-link">Emotional Arcs</a>
+    <a href="viz-map-fullwar.html" class="nav-link">Map That Moves</a>
+    <a href="viz-health-ledger.html" class="nav-link">Health Ledger</a>
+    <a href="viz-money-story.html" class="nav-link">Money Story</a>
+    <a href="viz-people-web.html" class="nav-link">People Web</a>
+    <a href="who-they-were.html" class="nav-link active">Who They Were</a>
+  </div>
+  <div class="nav-spacer"></div>
+  <div class="search-container">
+    <span class="search-icon">&#x1F50D;</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search 274 letters..." autocomplete="off">
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<div class="hero-banner">
+  <h1>Charles F. Hubbell</h1>
+  <div class="hero-subtitle">Co. H, 153rd Regiment, New York Volunteers</div>
+  <div class="hero-vitals">
+    <div class="hv"><span class="hv-val">19</span><span class="hv-lbl">Age at Enlistment</span></div>
+    <div class="hv"><span class="hv-val">3 yrs.</span><span class="hv-lbl">Service</span></div>
+    <div class="hv"><span class="hv-val" id="letterCount">--</span><span class="hv-lbl">Letters</span></div>
+    <div class="hv"><span class="hv-val">1st Cpl.</span><span class="hv-lbl">Rank</span></div>
+  </div>
+  <div class="hero-epitaph">Born 1843 in Champlain, New York. Enlisted September 1862. Served through the Shenandoah Valley campaign and the battles of Winchester and Cedar Creek. Survived the war, but died in 1875 &mdash; his death attributed to disease contracted during service.</div>
+</div>
+
+<!-- ===== LETTER DROPDOWN ===== -->
+<div class="letters-section">
+  <button class="letters-toggle" id="lettersToggle" onclick="toggleDrawer()">
+    <span class="lt-icon">&#x25B6;</span>
+    All of Charles's Letters
+    <span class="lt-count" id="lettersCount"></span>
+  </button>
+  <div class="letters-drawer" id="lettersDrawer">
+    <div class="letters-list" id="lettersList"></div>
+  </div>
+</div>
+
+<!-- ===== NARRATIVE ===== -->
+<div class="narrative">
+
+<!-- CH 1: TOO HONEST -->
+<div class="chapter">
+  <h2>Too Honest</h2>
+  <div class="ch-date">September 1862 &mdash; Plattsburgh, New York</div>
+  <p>Charles was the third Hubbell brother to enter the Army. By September 1862, Henry was already dead at Antietam &mdash; though the family didn't yet know it &mdash; and Alexander had been in the field for a year. Charles was nineteen. He went to Plattsburgh to enlist in the 153rd New York Volunteers, and in the very first minutes of his military career, he nearly ended it.</p>
+  <p>The Army required perfect vision. Charles was near-sighted. When Dr. Foote examined him, Charles admitted the deficiency outright. A family acquaintance named Mr. Averill, who had helped arrange his enlistment, intervened &mdash; telling the doctor that Charles had two brothers in the Army and one at West Point. The doctor relented and signed the papers.</p>
+
+  <div class="letter-quote">
+    Mr. Averill told me I was too honest, to tell the Dr. that I was near sighted.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-09-09-001')">September 9, 1862 &mdash; Plattsburgh, NY</a></cite>
+  </div>
+
+  <p>Averill meant it as a mild rebuke. But it reads now as a summary of Charles's character: precise, straightforward, inclined to state things as they were rather than as they needed to be. He reported his barracks in clinical detail &mdash; stone building, bunks four high, straw mattresses. The diet: pork, beef, potatoes, bread. He was made 1st Corporal almost immediately, a sign that someone recognized competence even in a near-sighted teenager.</p>
+
+  <div class="mother-note">
+    <div class="mn-label">Mother's Voice</div>
+    <p>He seems to be quite contented so far &mdash; of course he knows nothing of hardships.</p>
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-09-21-002')">Frances Hubbell, September 21, 1862</a></cite>
+  </div>
+</div>
+
+<!-- CH 2: SEARCHING FOR HENRY -->
+<div class="chapter">
+  <h2>Searching for Henry</h2>
+  <div class="ch-date">September &ndash; December 1862</div>
+  <p>Charles had barely settled into barracks when the news from Antietam arrived. Henry &mdash; the eldest, the first to enlist, the one who had counseled Alexander to stay home &mdash; was reported wounded. No one knew where he was. The family grasped at fragments: a man named "Big Shaw" said Henry had been shot in the thigh. A rumor circulated that he was a prisoner at Richmond.</p>
+  <p>Charles, characteristically, began investigating. In a <a class="ref" onclick="openLetter('LTR-1862-09-30-002')">letter to Alexander on September 30</a>, he relayed what he had gathered and then reached for a theory that might offer comfort: if Henry was wounded, he couldn't run, so he was probably captured. And prisoners, Charles reasoned, were safer than soldiers in the field.</p>
+
+  <div class="letter-quote">
+    It may be all for the best.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-09-30-001')">September 30, 1862 &mdash; Plattsburgh, NY</a></cite>
+  </div>
+
+  <p>It was wishful thinking disguised as logic. Over the next three months, Charles continued to trace leads. By <a class="ref" onclick="openLetter('LTR-1862-12-08-001')">December</a>, he had tracked down the source of the McDonald story &mdash; the rumor that Henry had been seen alive after the battle &mdash; and performed what amounted to a forensic analysis: <em>"McDonald's report might have started at Champlain. Somebody might have wrote to their friends in the army about him."</em> The trail was circular. Nobody had actually seen Henry alive. Charles did not say so directly, but the implication was clear.</p>
+
+  <div class="mother-note">
+    <div class="mn-label">Mother's Voice</div>
+    <p>I expect Charles tomorrow. It is heart breaking to think that I must so soon part with him.</p>
+    <cite><a class="lq-link" onclick="openLetter('LTR-1862-09-28-001')">Frances Hubbell, September 28, 1862</a></cite>
+  </div>
+</div>
+
+<!-- CH 3: CAMP NEAR ALEXANDRIA -->
+<div class="chapter">
+  <h2>Camp Near Alexandria</h2>
+  <div class="ch-date">November 1862 &ndash; Spring 1863</div>
+  <div class="two-col">
+  <p>By November, Charles had deployed to Virginia. His regiment camped near Alexandria, within sight of Washington, and Charles entered the long grind of garrison life. His letters from this period are meticulous inventories: the cost of boots ($4.50), the allotment sent home ($10 a month), the number of men on guard duty (21 men, 2 corporals, 2 sergeants), the quality of food, the temperature of the tents.</p>
+  <p>He observed the soldiers around him without moralizing. <em>"Nearly every man swears,"</em> he wrote to his mother. <em>"There are a good many hard cases here. There are quite a number of decent men here also."</em> He noted that James Beaumont had died of fever. He reported that rubber blankets were essential. He described the convalescent camp near Alexandria &mdash; ten to twelve thousand men, sick and wounded, living in a separate city of misery adjacent to his own.</p>
+  <p>His <a class="ref" onclick="openLetter('LTR-1862-12-08-001')">longest letter</a>, written on December 8, 1862, captures the texture of his world in extraordinary detail: bounty fraud, chaplain character studies, the price of stamps, the hatred of emancipation among the rank and file. Charles reported this last without commentary &mdash; <em>"The soldiers here all seem to hate the niger"</em> &mdash; neither endorsing nor condemning, simply recording what he saw. His regiment would prove overwhelmingly pro-McClellan in the 1864 election, with Charles one of only two Lincoln voters in his company.</p>
+  </div>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>The 153rd New York was recruited from Clinton and Essex Counties in upstate New York &mdash; border country along the Canadian line, far from abolitionist centers. Many soldiers viewed the war as a fight to preserve the Union, not to end slavery. Lincoln's preliminary Emancipation Proclamation (September 1862) and the final version (January 1, 1863) caused widespread resentment in regiments like the 153rd, where enlisted men saw themselves fighting for the Constitution, not for Black freedom.</p>
+  </div>
+</div>
+
+<!-- CH 4: HENRY'S GRAVE -->
+<div class="chapter">
+  <h2>A Name on a Headboard</h2>
+  <div class="ch-date">April 27, 1863</div>
+  <p>For seven months, the Hubbell family had lived in a state of suspended grief &mdash; Henry wounded, Henry missing, Henry possibly a prisoner, possibly alive, possibly dead. No definitive word. Charles had traced every lead to its dead end.</p>
+  <p>Then, in <a class="ref" onclick="openLetter('LTR-1863-04-27-001')">late April 1863</a>, Abram Fry of the New York artillery told Charles he had seen Henry's name written on a headboard at Antietam. A grave marker. Physical evidence. Charles reported it to his mother with the bluntest statement he ever committed to paper:</p>
+
+  <div class="letter-quote">
+    I think there is not the least doubt that Henry was killed. We would have heard from him long before this if he had been living.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1863-04-27-001')">April 27, 1863 &mdash; Alexandria, VA</a></cite>
+  </div>
+
+  <p>Then the letter breaks. Somewhere in the text &mdash; possibly Charles quoting his mother's letter back to her, possibly the grief he had been holding for seven months finally erupting &mdash; a voice cries out:</p>
+
+  <div class="letter-quote">
+    Dear, dear Henry, my darling boy. Oh, what a pall is over my heart, and must be while I am in this vale of tears.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1863-04-27-001')">April 27, 1863</a></cite>
+  </div>
+
+  <p>Whether these are Mother's words quoted, or Charles's own anguish finally surfacing in language he would never otherwise use, it is the rawest passage in the entire collection. The methodical brother, the man who counts casualties and itemizes expenses, suddenly sounds like someone drowning.</p>
+</div>
+
+<!-- CH 5: CHANCELLORSVILLE -->
+<div class="chapter">
+  <h2>Chancellorsville</h2>
+  <div class="ch-date">May 1863</div>
+  <p>In early May 1863, the 153rd New York was thrown into the Battle of Chancellorsville. The regiment's losses were severe: 73 total &mdash; 9 killed, 43 wounded, 21 missing. Company H alone lost 6 men. Lester Bond was shot through the forehead during a bayonet charge. The orderly was blown into the air by a rebel shell. The 11th Corps, on their flank, routed entirely.</p>
+  <p>Charles's <a class="ref" onclick="openLetter('LTR-1863-05-11-001')">account of the battle</a> reads like an after-action report: three charges made, positions held and lost, casualties tallied by company and regiment. He describes the fighting with the same precision he brought to barracks layouts and guard schedules. But the numbers tell their own story. A regiment that began with hundreds was being whittled down engagement by engagement.</p>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>Chancellorsville (May 1&ndash;3, 1863) was Lee's most audacious victory. Stonewall Jackson's flank attack on the 11th Corps triggered a rout that collapsed the entire Union right. The 153rd NY, positioned nearby, fought through the chaos. Confederate losses included Jackson himself, mortally wounded by friendly fire. Union casualties exceeded 17,000.</p>
+  </div>
+</div>
+
+<!-- CH 6: CAPITOL HILL DUTY -->
+<div class="chapter">
+  <h2>Capitol Hill</h2>
+  <div class="ch-date">July 1863 &ndash; February 1864 &mdash; Washington, D.C.</div>
+  <p>After Chancellorsville, Charles was transferred to Washington. For the next seven months, he served as a guard at the Capitol Hill Barracks &mdash; Camp Davis &mdash; while the war raged elsewhere. Gettysburg happened in July 1863. The fall of Vicksburg. The New York Draft Riots. Chickamauga. Charles guarded prisoners and wrote home about the weather.</p>
+  <p>His letters from this period are the quietest in the collection. Routine. Low emotion. Weekly reports to his mother about packages received, allotments sent, health maintained. They read like the correspondence of a man who has learned that survival sometimes means staying still.</p>
+
+  <div class="mother-note">
+    <div class="mn-label">Mother's Voice</div>
+    <p>I rejoice that Charles was not in the last battle in Virginia. His reg't., fortunately was not among those sent out from Washington to the front at that time.</p>
+    <cite><a class="lq-link" onclick="openLetter('LTR-1863-11-15-001')">Frances Hubbell, November 15, 1863</a></cite>
+  </div>
+
+  <p>Mother was not merely grateful. She was working behind the scenes to keep Charles safe. Letters to the regimental surgeon. Correspondence with Mrs. Strain, wife of the regiment's lieutenant colonel. A quiet campaign conducted through the network of officers' wives and family connections that ran parallel to the Army's chain of command.</p>
+</div>
+
+<!-- CH 7: THE CLERK -->
+<div class="chapter">
+  <h2>The Clerk at General Banks's Headquarters</h2>
+  <div class="ch-date">March 1864 &mdash; New Orleans, Louisiana</div>
+  <p>In March 1864, Mother's campaign bore fruit. Mrs. Strain had interceded with her husband, Lt. Col. Strain, who arranged for Charles to be permanently detached from the regiment and assigned as a clerk at General Nathaniel Banks's headquarters in New Orleans. Extra pay: forty cents a day. Third-story office with fresh air off the Gulf. His job: copying special orders.</p>
+
+  <div class="letter-quote">
+    You are at the bottom of this matter. It is a pleasant place here, a good deal better than being in the field.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-03-06-001')">March 6, 1864 &mdash; New Orleans, LA</a></cite>
+  </div>
+
+  <p>Charles acknowledged the arrangement without shame. His mother had found a way to keep one more son alive, and he accepted it. On March 4, he watched Michael Hahn's inauguration as the Free State Governor of Louisiana &mdash; five thousand school children singing, cannon fire, fireworks. Reconstruction beginning while the war still burned.</p>
+  <p>But the safety was not absolute. One night, a clerk fell drunk from the third-story gallery onto the stone pavement below and was killed. The war took lives in every possible way, even in offices far behind the lines.</p>
+</div>
+
+<!-- CH 8: RED RIVER -->
+<div class="chapter">
+  <h2>Bullets on the Red River</h2>
+  <div class="ch-date">April &ndash; May 1864 &mdash; Louisiana</div>
+  <p>In April 1864, General Banks launched the Red River Campaign &mdash; an ambitious push into western Louisiana that quickly turned disastrous. Charles's regiment was in the thick of it, fighting at Sabine Crossroads and Pleasant Hill while Charles remained at headquarters in New Orleans. He reported <a class="ref" onclick="openLetter('LTR-1864-04-15-001')">terrible fighting</a> with detached anxiety &mdash; the losses were horrific, but they were happening to other men.</p>
+  <p>Then he was sent back into the field. Carrying dispatches for General Banks, he boarded a steamer on the Red River. The boat was fired on from the banks. One soldier killed. One wounded. Charles fired his gun into the woods without seeing a target.</p>
+
+  <div class="letter-quote">
+    As I had my gun I fired it into the woods but did not see any rebs. The bullets came very thick near where I was. Three soldiers that went out after cattle have not been heard from since &mdash; supposed to have been captured or killed by guerrillas.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-05-03-001')">May 3, 1864 &mdash; Alexandria, LA</a></cite>
+  </div>
+
+  <p>It was his first real combat &mdash; blind, chaotic, impersonal. He fired without seeing the enemy. Bullets came near him. Three men walked into the Louisiana landscape and never came back. The river itself was <em>"reddish as if mixed with red clay."</em> Charles noted the color the way he noted everything else: precisely, without interpretation.</p>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>The Red River Campaign (March&ndash;May 1864) was a strategic failure. Banks's army was repulsed at Sabine Crossroads (April 8) and fought a costly rearguard action at Pleasant Hill before retreating. Guerrilla attacks on supply lines and river transports made the withdrawal dangerous. The campaign consumed thousands of lives for no territorial gain.</p>
+  </div>
+</div>
+
+<!-- CH 9: SHENANDOAH AND WINCHESTER -->
+<div class="chapter">
+  <h2>The Shenandoah Valley</h2>
+  <div class="ch-date">August &ndash; September 1864 &mdash; Virginia</div>
+  <p>By late summer 1864, Charles had been transferred to the Shenandoah Valley, where Sheridan's army was pressing to destroy Early's Confederate force and close the breadbasket that fed Lee's army. Charles was assigned to the Brigade Commissary &mdash; again behind the fighting line, counting rations instead of carrying a rifle. He wrote home that he was <em>"getting fat, the result of good living."</em></p>
+  <p>His brother James was there too, with the same regiment. On September 19, Sheridan attacked at the Third Battle of Winchester. The fighting was savage. Charles, from his position with the commissary, could see the results: Company H lost four killed and twelve wounded. The regiment lost sixty-five total. James came through unhurt.</p>
+
+  <div class="letter-quote">
+    James says he was not frightened, but I think he would own up if he was. It was a pretty warm place for green troops.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-09-21-001')">September 21, 1864 &mdash; Near Strasburg, VA</a></cite>
+  </div>
+
+  <p>It is one of the few moments of dry humor in Charles's correspondence &mdash; the older brother gently calling out the younger's bravado. James had never been in a real fight before Winchester. He would be in one more.</p>
+</div>
+
+<!-- CH 10: CEDAR CREEK -->
+<div class="chapter">
+  <h2>&ldquo;The Rebs Are Here!&rdquo;</h2>
+  <div class="ch-date">October 19, 1864 &mdash; Cedar Creek, Virginia</div>
+  <p>At dawn on October 19, 1864, Jubal Early's Confederates launched a surprise attack on the Union camp at Cedar Creek. The assault came before the men were fully awake. Charles and James were together when the first shots broke the silence.</p>
+
+  <div class="letter-quote">
+    James exclaimed, "The Rebs are here!" We jumped up, put on our accoutrements and fell in behind the breastworks. We were ordered to pack up. Had our tents down in a twinkling. The Rebs got behind the breastworks before we knew it. Our brigade was ordered to leave the breastworks and form on the other side of a deep ravine. We jumped over the breastworks very quick as the Rebs were firing into us and we were moving up the hill the bullets came very thick.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-10-22-001')">October 22, 1864 &mdash; Near Strasburg, VA</a></cite>
+  </div>
+
+  <p>In the chaos of the retreat across the ravine, James was hit. A flesh wound in the thigh or hip. He walked five miles to the field hospital, fashioning a bandage from his own underclothes. James Lucas was shot through the head and arm. Sergeant Pelky from Corbeau was shot through the leg. Alex Douglas, who had been a friend since training, was missing &mdash; captured or killed by guerrillas, never heard from again. Lt. Col. Strain &mdash; the officer whose wife had helped Mother secure Charles's clerk position &mdash; was wounded in the arm.</p>
+  <p>Company H: seven wounded, two killed. The regiment: fifty wounded, eight killed. The Union line broke, then rallied when Sheridan arrived from Winchester, and drove the Confederates back beyond Fisher's Hill. Charles survived without a scratch.</p>
+
+  <div class="letter-quote">
+    I am very thankful that I did not get scratched.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-10-22-001')">October 22, 1864</a></cite>
+  </div>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>The Battle of Cedar Creek (October 19, 1864) nearly ended in disaster. Early's dawn attack overran the Union camp and drove three corps from the field. Sheridan's dramatic ride from Winchester &mdash; later immortalized in poetry &mdash; rallied the retreating army. The counterattack destroyed Early's force and effectively ended the Confederate presence in the Shenandoah Valley. Union casualties: 5,665. Confederate: 2,910.</p>
+  </div>
+</div>
+
+<!-- CH 11: TWENTY-TWO MEN -->
+<div class="chapter">
+  <h2>Twenty-Two Men</h2>
+  <div class="ch-date">November 1864</div>
+  <p>Two weeks after Cedar Creek, Charles wrote again. The numbers told the story. The company &mdash; which had started at full strength &mdash; was down to twenty-two men. In two fights, Winchester and Cedar Creek, they had lost twenty-three killed and wounded. More than half the company, gone in five weeks.</p>
+
+  <div class="letter-quote">
+    In the fight bullets flew all around me but I came out without a scratch. Our Co. lost 23 in the two fights out of about 45 men. There are but 22 men in Co. now.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-11-04-001')">November 4, 1864 &mdash; Camp at Cedar Creek, VA</a></cite>
+  </div>
+
+  <p>In the same letter, Charles reported that his grandmother had died. He noted that James was doing well at the hospital, according to the chaplain. He mentioned that James Lucas &mdash; shot through the head and arm at Cedar Creek &mdash; would probably not recover. And then, almost as an afterthought, he recorded how he voted:</p>
+
+  <div class="letter-quote">
+    I sent my vote to Silas, voted for Lincoln. Only two votes for Lincoln in our Co.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1864-11-04-001')">November 4, 1864</a></cite>
+  </div>
+
+  <p>Two votes for Lincoln out of twenty-two men. The 153rd was overwhelmingly McClellan &mdash; border-county men who distrusted abolition and wanted the old general back. Charles voted his conscience anyway, quietly, one of two. He didn't explain why. He didn't argue the case. He simply reported it, the same way he reported everything else: as a fact.</p>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>The 1864 presidential election was conducted in the field. Soldiers voted by absentee ballot, and the results varied dramatically by regiment. Lincoln won the overall soldier vote roughly 78% to 22%, but individual units &mdash; especially those from Democratic border counties &mdash; sometimes went heavily for McClellan. Charles's two-of-twenty-two Lincoln votes in Company H represents the extreme end of this divide.</p>
+  </div>
+</div>
+
+<!-- SILENCE: WINTER -->
+<div class="silence">
+  <div class="silence-line"></div>
+  <h2>Winter</h2>
+  <p>The last months of the war passed quietly for Charles. The company was too depleted for major action. Camp Russell, near Newtown, Virginia. Letters home about boots and allotments. Counting the days to October 17, 1865 &mdash; three years from enlistment &mdash; when his term would expire.</p>
+  <div class="silence-line" style="margin-top:16px"></div>
+</div>
+
+<!-- CH 12: SAVANNAH -->
+<div class="chapter">
+  <h2>Savannah</h2>
+  <div class="ch-date">June &ndash; July 1865 &mdash; Georgia</div>
+  <p>The war ended in April 1865, but Charles's service did not. In June, the regiment was shipped south for occupation duty in Savannah, Georgia. Charles arrived on June 12 and wrote home in haste &mdash; the steamer was leaving that night. The river was obstructed with pilings and forts. A man swimming in the harbor was caught by the tide and nearly carried out to sea before marines rescued him.</p>
+
+  <div class="letter-quote">
+    The city looks deserted. Three years up Oct 17th. James says he will write next.
+    <cite><a class="lq-link" onclick="openLetter('LTR-1865-06-12-001')">June 12, 1865 &mdash; Savannah, GA</a></cite>
+  </div>
+
+  <p>The city looks deserted. Three years up October 17th. James will write next. These three sentences, placed side by side, contain everything: the ruined South, the countdown to freedom, the brother who survived Cedar Creek and was still with him. Charles was still counting. Still reporting. Still alive.</p>
+</div>
+
+<!-- CH 13: AFTERMATH -->
+<div class="chapter">
+  <h2>What Remained</h2>
+  <div class="ch-date">After the War</div>
+  <p>Charles came home. He had survived the entire war without a serious wound. The near-sighted teenager who almost failed the eye exam in Plattsburgh had endured three years of service &mdash; garrison duty and clerk work and the Shenandoah Valley &mdash; and walked away physically whole.</p>
+  <p>But the war had not finished with him. In 1875, ten years after mustering out, Charles died. His death was attributed to disease contracted during military service &mdash; the slow poison that killed more Civil War soldiers than bullets ever did. The precise nature of his illness, like so many details in his story, went unrecorded.</p>
+  <p>He was the man who counted everything. Casualties, rations, allotments, days to discharge. He counted his company down from forty-five to twenty-two. He counted two Lincoln votes out of twenty-two. He counted three years to the day. What he could not count, and could not outrun, was the cost the war extracted from his body long after the fighting stopped.</p>
+</div>
+
+</div><!-- /narrative -->
+
+<!-- ===== LETTER READER ===== -->
+<div class="reader-overlay" id="readerOverlay">
+  <div class="reader-panel">
+    <button class="reader-close" onclick="closeReader()">&times;</button>
+    <div id="readerContent"></div>
+  </div>
+</div>
+
+<div class="provenance">
+  Letters from the Hubbell family collection, transcribed from original manuscripts.
+  Interpretive text based on primary sources; all quoted passages are verbatim.
+</div>
+
+<script src="_search-data.js"></script>
+<script>
+var AUTHOR_COLORS = { henry:'#2D5F8A', alexander:'#B8860B', james:'#4A7C59', charles:'#8B3A3A', mother:'#7B5EA7' };
+var AUTHOR_NAMES = { henry:'Henry Hubbell', alexander:'Alexander F. Hubbell', james:'James Hubbell', charles:'Charles F. Hubbell', mother:'Frances Hubbell' };
+
+function getCharlesAuthored() {
+  return LETTERS.filter(function(l){ return l.a === 'charles'; })
+    .sort(function(a,b){ return a.d < b.d ? -1 : a.d > b.d ? 1 : 0; });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var authored = getCharlesAuthored();
+  document.getElementById('letterCount').textContent = authored.length;
+  document.getElementById('lettersCount').textContent = authored.length + ' letters written by Charles';
+  buildLettersList();
+});
+
+// Letters drawer
+function toggleDrawer() {
+  var btn = document.getElementById('lettersToggle');
+  var drawer = document.getElementById('lettersDrawer');
+  btn.classList.toggle('open');
+  drawer.classList.toggle('open');
+}
+function buildLettersList() {
+  var letters = getCharlesAuthored();
+  var list = document.getElementById('lettersList');
+  var html = '';
+  letters.forEach(function(l) {
+    var flags = '';
+    if (l.bat) flags += '<span class="lr-flag battle" title="Battle"></span>';
+    if (l.ill) flags += '<span class="lr-flag illness" title="Illness"></span>';
+    if (l.dth) flags += '<span class="lr-flag death" title="Death"></span>';
+    if (l.wnd) flags += '<span class="lr-flag wound" title="Wound"></span>';
+    var d = l.d.replace(/-/g, '/').replace(/^(\d{4})\/(\d{2})\/(\d{2})$/, function(m,y,mo,dy) {
+      var months = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return months[parseInt(mo)] + ' ' + parseInt(dy) + ', ' + y;
+    });
+    html += '<div class="letter-row" onclick="openLetter(\'' + l.id + '\')">' +
+      '<span class="lr-date">' + d + '</span>' +
+      '<span class="lr-to">' + (l.r || '') + '</span>' +
+      '<span class="lr-loc">' + (l.loc || '') + '</span>' +
+      '<span class="lr-flags">' + flags + '</span></div>';
+  });
+  list.innerHTML = html;
+}
+
+// Open letter in reader panel
+function openLetter(id, highlight) {
+  var letter = LETTERS.find(function(l) { return l.id === id; });
+  if (!letter) return;
+  var color = AUTHOR_COLORS[letter.a] || '#666';
+  var name = AUTHOR_NAMES[letter.a] || letter.an || letter.a;
+  var d = letter.d.replace(/-/g, '/').replace(/^(\d{4})\/(\d{2})\/(\d{2})$/, function(m,y,mo,dy) {
+    var months = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
+    return months[parseInt(mo)] + ' ' + parseInt(dy) + ', ' + y;
+  });
+
+  var flags = '';
+  if (letter.bat) flags += '<span class="reader-flag rf-battle">Battle</span>';
+  if (letter.ill) flags += '<span class="reader-flag rf-illness">Illness</span>';
+  if (letter.dth) flags += '<span class="reader-flag rf-death">Death</span>';
+  if (letter.wnd) flags += '<span class="reader-flag rf-wound">Wound</span>';
+
+  var ppl = '', plc = '';
+  if (letter.ppl && letter.ppl.length) {
+    ppl = '<div class="reader-people"><h4>People Mentioned</h4><div class="reader-tags">' +
+      letter.ppl.map(function(p){ return '<span class="reader-tag person">' + p + '</span>'; }).join('') + '</div></div>';
+  }
+  if (letter.plc && letter.plc.length) {
+    plc = '<div class="reader-places"><h4>Places Mentioned</h4><div class="reader-tags">' +
+      letter.plc.map(function(p){ return '<span class="reader-tag place">' + p + '</span>'; }).join('') + '</div></div>';
+  }
+
+  var bodyText = letter.t || '';
+  bodyText = bodyText.replace(/([^\n])\n([^\n])/g, '$1 $2');
+
+  if (highlight) {
+    try {
+      var re = new RegExp('(' + highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      bodyText = bodyText.replace(re, '<mark>$1</mark>');
+    } catch(e) {}
+  }
+
+  document.getElementById('readerContent').innerHTML =
+    '<div class="reader-header" style="border-bottom-color:' + color + '">' +
+      '<h3 style="color:' + color + '">' + name + '</h3>' +
+      '<div class="reader-meta">' + d + ' &mdash; ' + (letter.loc || 'Unknown location') +
+        '<br>To: ' + (letter.r || 'Unknown') +
+        '<br><span class="rm-id">' + letter.id + '</span></div>' +
+    '</div>' +
+    (flags ? '<div class="reader-flags">' + flags + '</div>' : '') +
+    ppl + plc +
+    '<div class="reader-body">' + bodyText + '</div>';
+
+  document.getElementById('readerOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  if (highlight) {
+    setTimeout(function() {
+      var mark = document.querySelector('.reader-body mark');
+      if (mark) mark.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }, 100);
+  }
+}
+
+function closeReader() {
+  document.getElementById('readerOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close on overlay click or Escape
+document.getElementById('readerOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeReader();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeReader();
+});
+
+// Cross-page search redirect
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && this.value.trim()) {
+    window.location.href = 'index.html?q=' + encodeURIComponent(this.value.trim());
+  }
+});
+</script>
+</body>
+</html>
