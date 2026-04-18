@@ -855,7 +855,7 @@ body {
   .date-display { font-size: 0.9rem; }
 }
 </style>
-<link rel="stylesheet" href="_overlay.css">
+<link rel="stylesheet" href="_overlay.css?v=1775363534">
 </head>
 <body>
 
@@ -1004,6 +1004,21 @@ let currentDay = 0;
 let lockedBrother = null; // Lock-on state
 let newLetterMarkers = []; // "New Letter!" badges on map
 let infoPanelBrother = null; // Which brother is shown in info panel (auto-refreshes on date change)
+let _mapCurrentLetterId = null; // Currently open letter overlay ID
+
+function _mapSyncUrl(opts) {
+  if (!window.HubbellDeepLink) return;
+  var state = {};
+  if (currentDay > 0) {
+    var d = dayToDate(currentDay);
+    state.date = d.getFullYear() + '-' +
+      String(d.getMonth() + 1).padStart(2, '0') + '-' +
+      String(d.getDate()).padStart(2, '0');
+  }
+  if (lockedBrother) state.brother = lockedBrother;
+  if (_mapCurrentLetterId) state.letter = _mapCurrentLetterId;
+  HubbellDeepLink.update(state, opts || {});
+}
 
 // ============================================================
 // SOURCE URLS — hyperlinked citations
@@ -1081,9 +1096,15 @@ async function init() {
     }
   }
 
-  // Clean URL params without triggering reload
-  if (paramDate || paramBrother || paramPlace) {
-    window.history.replaceState({}, '', window.location.pathname);
+  // Handle ?letter= parameter: open letter overlay
+  const paramLetter = params.get('letter');
+  if (paramLetter) {
+    const movement = DATA.movements.find(m => m.letterId === paramLetter);
+    if (movement) {
+      setTimeout(function() {
+        openLetterOverlay(paramLetter, movement.brotherId);
+      }, 500);
+    }
   }
 
   document.addEventListener('keydown', handleKeyboard);
@@ -1671,6 +1692,9 @@ function showInfoPanel(movement, brotherId) {
 
   body.innerHTML = html;
 
+  // Bind overlay links on dynamically-rendered info panel
+  if (window.HubbellOverlay) HubbellOverlay.bindDynamic(body);
+
   // Ensure panel is open
   const panel = document.getElementById('infoPanel');
   if (panel.classList.contains('collapsed')) {
@@ -1782,6 +1806,7 @@ function updateNarrative(currentDateStr) {
 function scrubTimeline(val) {
   if (!DATA || !map) return; // Guard against pre-init slider interaction
   updateToDate(parseInt(val));
+  _mapSyncUrl({ replace: true });
 }
 
 function recenterMap() {
@@ -1816,6 +1841,7 @@ function toggleLock(brotherId) {
     if (panel) panel.style.borderBottomColor = COLORS[brotherId];
   }
   updateToDate(currentDay);
+  _mapSyncUrl();
 }
 
 // ============================================================
@@ -1842,11 +1868,26 @@ function openLetterOverlay(letterId, brotherId) {
 
   body.textContent = movement.transcription || 'Full transcription not available.';
 
+  // Inject letter share button
+  if (window.HubbellDeepLink) {
+    const closeBtn = overlay.querySelector('.letter-overlay-close');
+    const existing = overlay.querySelector('.dl-modal-share');
+    if (existing) existing.remove();
+    if (closeBtn) closeBtn.insertAdjacentHTML('afterend', HubbellDeepLink.letterShareBtn(letterId));
+  }
+
   overlay.classList.add('visible');
+  _mapCurrentLetterId = letterId;
+
+  // Bind overlay links on letter overlay metadata
+  if (window.HubbellOverlay) HubbellOverlay.bindDynamic(overlay);
+  _mapSyncUrl();
 }
 
 function closeLetterOverlay() {
   document.getElementById('letterOverlay').classList.remove('visible');
+  _mapCurrentLetterId = null;
+  _mapSyncUrl();
 }
 
 function toggleInfoPanel() {
@@ -1886,6 +1927,7 @@ function stepDay(delta) {
   currentDay = Math.max(0, Math.min(currentDay + delta, TOTAL_DAYS));
   updateToDate(currentDay);
   fadeCta();
+  _mapSyncUrl({ replace: true });
 }
 
 let ctaFaded = false;
@@ -1968,13 +2010,50 @@ document.addEventListener('DOMContentLoaded', () => {
 <script>
 document.getElementById('searchInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter' && this.value.trim()) {
-    window.location.href = 'index.html?q=' + encodeURIComponent(this.value.trim());
+    window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
   }
 });
 </script>
 
-<script src="_overlay-data.js"></script>
-<script src="_overlay.js"></script>
+<script src="_deeplink.js"></script>
+<script src="_overlay-data.js?v=1775363534"></script>
+<script src="_overlay.js?v=1775363534"></script>
 <script>HubbellOverlay.bindPage({ tags: true, locations: true });</script>
+<script>
+HubbellDeepLink.injectShareButton();
+HubbellDeepLink.registerStateReader(function() {
+  var state = {};
+  if (currentDay > 0) {
+    var d = dayToDate(currentDay);
+    state.date = d.getFullYear() + '-' +
+      String(d.getMonth() + 1).padStart(2, '0') + '-' +
+      String(d.getDate()).padStart(2, '0');
+  }
+  if (lockedBrother) state.brother = lockedBrother;
+  if (_mapCurrentLetterId) state.letter = _mapCurrentLetterId;
+  return state;
+});
+HubbellDeepLink.registerStateApplier(function(p) {
+  if (p.date) {
+    var targetDate = new Date(p.date + 'T12:00:00');
+    if (!isNaN(targetDate.getTime())) {
+      var day = Math.round((targetDate - START_DATE) / 86400000);
+      day = Math.max(0, Math.min(day, TOTAL_DAYS));
+      updateToDate(day);
+      document.getElementById('timelineSlider').value = day;
+    }
+  }
+  if (p.brother && NAMES[p.brother]) {
+    if (lockedBrother !== p.brother) toggleLock(p.brother);
+  }
+  if (p.letter) {
+    var movement = DATA.movements.find(function(m) { return m.letterId === p.letter; });
+    if (movement) {
+      setTimeout(function() { openLetterOverlay(p.letter, movement.brotherId); }, 300);
+    }
+  }
+});
+HubbellDeepLink.enableHistory();
+</script>
 </body>
 </html>

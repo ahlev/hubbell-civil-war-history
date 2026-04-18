@@ -189,6 +189,11 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
   <p>Henry was the first Hubbell brother to enlist. In June 1861, two months after Fort Sumter, he joined the 34th New York Volunteers and traveled by boat and rail from Albany to Washington. He was twenty-one years old. His father had been dead for eight years. His mother was managing the farm in Champlain alone.</p>
   <p>His <a class="ref" onclick="openLetter('LTR-1861-07-06-001')">first letter home</a> captures a young man trying to make sense of what he has entered. The regiment was cheered all the way from Albany. In Baltimore &mdash; where soldiers of the 6th Massachusetts had been attacked by a secessionist mob just weeks earlier &mdash; Henry noted bullet holes in the depot roof but reported that no one molested them. What troubled him was not the enemy but his own side.</p>
 
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>Henry's passage through Baltimore was freighted with recent violence. On April 19, 1861 &mdash; less than three months earlier &mdash; soldiers of the 6th Massachusetts had been attacked by a pro-Confederate mob while transferring between rail stations. Four soldiers and twelve civilians were killed in what became the first bloodshed of the Civil War. The incident made Baltimore the most dangerous transit point for Union troops moving south. Regiments that followed were routed through the city under armed guard, often at night, with loaded weapons but sometimes &mdash; as Henry's regiment experienced &mdash; without percussion caps, rendering their rifles useless. The bullet holes Henry saw in the depot roof were physical evidence of the April riot, still unrepaired when his train passed through in July.</p>
+  </div>
+
   <div class="letter-quote">
     It seems to me I never got into such a drunken set as I have here, however there are some that don't drink.
     <cite><a class="lq-link" onclick="openLetter('LTR-1861-07-06-001')">July 6, 1861 &mdash; Washington, D.C.</a></cite>
@@ -216,6 +221,11 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
   </div>
 
   <p>The whiplash between the two halves of this letter &mdash; shirt laundry, then mobilization &mdash; would become a recurring pattern in the Hubbell correspondence. The ordinary and the catastrophic occupied the same page.</p>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>The First Battle of Bull Run (July 21, 1861) shattered the North's expectation of a short war. Union forces under General McDowell advanced toward Manassas Junction expecting an easy victory; instead, Confederate reinforcements arrived by rail &mdash; the first strategic use of railroads in warfare &mdash; and routed the Federal army. Panicked soldiers and civilian spectators fled back toward Washington. The defeat stunned the nation and triggered a massive mobilization: Lincoln called for 500,000 three-year volunteers. Henry's regiment, the 34th New York, was part of the wave of troops rushed to defend the capital in the days that followed.</p>
+  </div>
 </div>
 
 <!-- CH 3: CAMP LIFE AND MONEY -->
@@ -231,6 +241,11 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 
   <p>In <a class="ref" onclick="openLetter('LTR-1862-01-24-002')">January 1862</a>, Henry reported that the barracks had been torn apart and burned for firewood &mdash; they were thought unhealthy &mdash; and the men would live in tents for the rest of winter. He sent fifteen dollars home, itemizing his expenses to the cent: $5.20 to the sutler, $4.50 for boots, fifty cents to the band, fifty cents to the cook, a dollar for a sword. He was optimistic. "I think this war will be all over before next July," he wrote.</p>
   </div>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>Henry's meticulous accounting &mdash; dollars to the sutler, cents to the cook &mdash; reflects the peculiar economy of a Civil War camp. Sutlers were licensed civilian merchants who set up shop within each regiment, selling tobacco, canned fruit, writing paper, pocket knives, and other goods the Army did not provide. Prices were steep: a can of condensed milk might cost fifty cents when a private earned thirteen dollars a month. Soldiers could buy on credit, with debts deducted from their pay at muster, which meant many men saw only a fraction of their wages. For a family like the Hubbells &mdash; a widowed mother managing a farm with no sons at home &mdash; every dollar Henry sent back represented real survival. His obsessive tracking of expenses was not personality; it was necessity. The allotment system, formalized in 1861, allowed soldiers to direct a portion of their pay home by express or through regimental paymasters, but the system was unreliable. Henry's repeated question &mdash; "did the money arrive?" &mdash; echoed across hundreds of thousands of families dependent on soldier wages.</p>
+  </div>
 </div>
 
 <!-- CH 4: PENINSULA CAMPAIGN -->
@@ -245,6 +260,11 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
   </div>
 
   <p>He noted that his diarrhea was "very bad" and that the head surgeon had left for Congress. He had now served thirteen months. If he completed his full term he would receive a hundred-dollar bounty and a land warrant. He asked his mother to write often.</p>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>The Peninsula Campaign (April&ndash;July 1862) was McClellan's attempt to capture Richmond by landing 100,000 troops at Fort Monroe and advancing up the peninsula between the York and James Rivers. The plan stalled outside the Confederate capital. In late June, Robert E. Lee launched the Seven Days Battles &mdash; seven consecutive days of combat that drove the Union army from the gates of Richmond to a defensive camp at Harrison's Landing on the James. The 34th New York fought at Gaines' Mill and Malvern Hill. Union casualties across the Seven Days exceeded 15,000. Disease &mdash; particularly chronic diarrhea caused by contaminated water and poor sanitation &mdash; killed more soldiers than combat on the Peninsula; the Army of the Potomac reported over 25,000 men sick in July alone.</p>
+  </div>
 </div>
 
 <!-- CH 5: LAST LETTER -->
@@ -433,6 +453,14 @@ function openLetter(id, highlight) {
     ppl + plc +
     '<div class="reader-body">' + bodyText + '</div>';
 
+  // Inject letter share button
+  if (window.HubbellDeepLink) {
+    var closeBtn = document.querySelector('.reader-close');
+    if (closeBtn && !closeBtn.parentNode.querySelector('.dl-modal-share')) {
+      closeBtn.insertAdjacentHTML('afterend', HubbellDeepLink.letterShareBtn(letter.id));
+    }
+  }
+
   document.getElementById('readerOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 
@@ -460,9 +488,41 @@ document.addEventListener('keydown', function(e) {
 // Cross-page search redirect
 document.getElementById('searchInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter' && this.value.trim()) {
-    window.location.href = 'index.html?q=' + encodeURIComponent(this.value.trim());
+    window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
   }
 });
+</script>
+<script src="_deeplink.js"></script>
+<script>
+HubbellDeepLink.injectShareButton();
+HubbellDeepLink.registerStateReader(function() {
+  var s = {};
+  var overlay = document.getElementById('readerOverlay');
+  if (overlay && overlay.classList.contains('open')) {
+    var idEl = overlay.querySelector('.rm-id');
+    if (idEl) s.letter = idEl.textContent;
+  }
+  return s;
+});
+HubbellDeepLink.registerStateApplier(function(p) {
+  if (p.letter) {
+    var l = LETTERS.find(function(x) { return x.id === p.letter; });
+    if (l) openLetter(p.letter);
+  }
+});
+HubbellDeepLink.enableHistory();
+HubbellDeepLink.applyOnLoad();
+// Hook open/close to update URL
+var _origOpenLetter = openLetter;
+openLetter = function(id, highlight) {
+  _origOpenLetter(id, highlight);
+  HubbellDeepLink.set('letter', id);
+};
+var _origCloseReader = closeReader;
+closeReader = function() {
+  _origCloseReader();
+  HubbellDeepLink.remove('letter');
+};
 </script>
 </body>
 </html>

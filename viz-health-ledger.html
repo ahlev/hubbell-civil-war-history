@@ -977,7 +977,7 @@ footer p {
   line-height: 1.5;
 }
 </style>
-<link rel="stylesheet" href="_overlay.css">
+<link rel="stylesheet" href="_overlay.css?v=1775363534">
 </head>
 <body>
 <nav class="site-nav">
@@ -1005,8 +1005,8 @@ footer p {
     <h1>The Health Ledger</h1>
     <div class="subtitle">Tracking Disease, Wounds & Survival Among the Hubbell Brothers, 1861-1865</div>
     <div class="epigraph">
-      "My diarrhea is very bad."
-      <span class="attribution">-- Henry Hubbell, Harrison's Landing, July 12, 1862</span>
+      "The severest military duty has brought me pretty low."
+      <span class="attribution">-- Alexander Hubbell, Hospital at Harpers Ferry, September 27, 1862</span>
     </div>
   </header>
 
@@ -2046,7 +2046,18 @@ function showDetail(letter) {
     ${letterHtml}
   `;
 
+  // Inject letter share button
+  if (window.HubbellDeepLink) {
+    const closeBtn = detailPanel.querySelector('.close-btn');
+    const existing = detailPanel.querySelector('.dl-modal-share');
+    if (existing) existing.remove();
+    if (closeBtn) closeBtn.insertAdjacentHTML('afterend', HubbellDeepLink.letterShareBtn(letter.id));
+  }
+
   detailPanel.classList.add('open');
+
+  // Bind overlay links on dynamically-rendered content
+  if (window.HubbellOverlay) HubbellOverlay.bindDynamic(detailContent);
 }
 
 function closeDetail() {
@@ -2535,13 +2546,45 @@ init();
 <script>
 document.getElementById('searchInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter' && this.value.trim()) {
-    window.location.href = 'index.html?q=' + encodeURIComponent(this.value.trim());
+    window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
   }
 });
 </script>
 
-<script src="_overlay-data.js"></script>
-<script src="_overlay.js"></script>
+<script src="_deeplink.js"></script>
+<script src="_overlay-data.js?v=1775363534"></script>
+<script src="_overlay.js?v=1775363534"></script>
 <script>HubbellOverlay.bindPage({ tags: true, locations: true });</script>
+<script>
+HubbellDeepLink.injectShareButton();
+HubbellDeepLink.registerStateReader(function() {
+  var s = {};
+  if (activeBrother !== 'all') s.brother = activeBrother;
+  if (zoomDateMin || zoomDateMax) s.zoom = (zoomDateMin || '') + ',' + (zoomDateMax || '');
+  return s;
+});
+HubbellDeepLink.registerStateApplier(function(p) {
+  if (p.brother && p.brother !== 'all') {
+    activeBrother = p.brother;
+    document.querySelectorAll('.controls button').forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-brother') === p.brother);
+    });
+    drawTimeline();
+    if (typeof updateNarrativeIntro === 'function') updateNarrativeIntro();
+    if (typeof updateProfileCardStates === 'function') updateProfileCardStates();
+  }
+  if (p.zoom) {
+    var parts = p.zoom.split(',');
+    if (parts[0]) zoomDateMin = parts[0];
+    if (parts[1]) zoomDateMax = parts[1];
+    drawTimeline();
+  }
+  if (p.letter) {
+    setTimeout(function() { openLetterById(p.letter); }, 300);
+  }
+});
+HubbellDeepLink.enableHistory();
+HubbellDeepLink.applyOnLoad();
+</script>
 </body>
 </html>

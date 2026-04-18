@@ -260,6 +260,11 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
   </div>
 
   <p>Whether these are Mother's words quoted, or Charles's own anguish finally surfacing in language he would never otherwise use, it is the rawest passage in the entire collection. The methodical brother, the man who counts casualties and itemizes expenses, suddenly sounds like someone drowning.</p>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>After Antietam, burial details worked for days to inter the dead. Union soldiers were typically buried in shallow graves near where they fell, sometimes with a crude wooden headboard bearing a name &mdash; if the body could be identified. Many could not. Of the approximately 2,100 Union soldiers killed outright, hundreds were buried as unknown. When the Antietam National Cemetery was established in 1867, remains were gathered from the surrounding fields; 1,836 were reinterred, of whom 578 could not be identified. The headboard Abram Fry reported seeing may have been lost or misattributed during this process. Henry Hubbell has no known grave.</p>
+  </div>
 </div>
 
 <!-- CH 5: CHANCELLORSVILLE -->
@@ -289,6 +294,11 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
   </div>
 
   <p>Mother was not merely grateful. She was working behind the scenes to keep Charles safe. Letters to the regimental surgeon. Correspondence with Mrs. Strain, wife of the regiment's lieutenant colonel. A quiet campaign conducted through the network of officers' wives and family connections that ran parallel to the Army's chain of command.</p>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>Frances Hubbell's campaign to protect Charles through Mrs. Strain was not unusual &mdash; it was how the system worked. Officers' wives formed an informal network that paralleled the Army's official chain of command, and families who could access it gained real advantages: favorable assignments, transfers to safer duties, early information about movements. The Union Army had no formal mechanism for compassionate reassignment; a mother who had already lost one son could not petition the War Department to spare another. Instead, she worked through personal connections &mdash; the regimental surgeon, the lieutenant colonel's wife, the community notable who had arranged the enlistment. These networks were invisible in official records but decisive in individual lives. Charles's transfer to a clerk position at headquarters was the direct result of his mother's sustained correspondence, conducted across hundreds of miles, over months, while she was simultaneously managing a farm, reading casualty lists, and grieving for Henry.</p>
+  </div>
 </div>
 
 <!-- CH 7: THE CLERK -->
@@ -303,6 +313,11 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
   </div>
 
   <p>Charles acknowledged the arrangement without shame. His mother had found a way to keep one more son alive, and he accepted it. On March 4, he watched Michael Hahn's inauguration as the Free State Governor of Louisiana &mdash; five thousand school children singing, cannon fire, fireworks. Reconstruction beginning while the war still burned.</p>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>The inauguration Charles witnessed was Lincoln's test case for Reconstruction &mdash; an experiment in rebuilding a state government while the war still raged. Under Lincoln's Ten Percent Plan, Louisiana could form a new government once ten percent of its 1860 voters swore loyalty to the Union. Michael Hahn, a German-born Unionist, won the governorship in February 1864 with the support of Union soldiers and loyalist civilians. The ceremony Charles described &mdash; five thousand school children, cannon salutes, fireworks &mdash; was staged to project normalcy in a city under military occupation. Lincoln privately urged Hahn to consider extending the vote to "some of the colored people," making Louisiana a proving ground for Black suffrage. The experiment ultimately failed: after Lincoln's assassination, Andrew Johnson's lenient policies allowed former Confederates to reclaim power, and Louisiana's Free State constitution was effectively dismantled. But on that March day in 1864, Charles watched something unprecedented &mdash; democracy being rebuilt in real time, in a war zone, with the outcome still in doubt.</p>
+  </div>
   <p>But the safety was not absolute. One night, a clerk fell drunk from the third-story gallery onto the stone pavement below and was killed. The war took lives in every possible way, even in offices far behind the lines.</p>
 </div>
 
@@ -421,6 +436,11 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
   <p>Charles came home. He had survived the entire war without a serious wound. The near-sighted teenager who almost failed the eye exam in Plattsburgh had endured three years of service &mdash; garrison duty and clerk work and the Shenandoah Valley &mdash; and walked away physically whole.</p>
   <p>But the war had not finished with him. In 1875, ten years after mustering out, Charles died. His death was attributed to disease contracted during military service &mdash; the slow poison that killed more Civil War soldiers than bullets ever did. The precise nature of his illness, like so many details in his story, went unrecorded.</p>
   <p>He was the man who counted everything. Casualties, rations, allotments, days to discharge. He counted his company down from forty-five to twenty-two. He counted two Lincoln votes out of twenty-two. He counted three years to the day. What he could not count, and could not outrun, was the cost the war extracted from his body long after the fighting stopped.</p>
+
+  <div class="context-box">
+    <div class="cb-label">Historical Context</div>
+    <p>Disease killed roughly twice as many Civil War soldiers as combat. Chronic diarrhea, typhoid, malaria, and infections contracted in camp persisted long after discharge. The federal government recognized this through the pension system: veterans or their widows could file claims attributing death to wartime service, even years later. Charles's death in 1875 &mdash; ten years after mustering out &mdash; followed a pattern repeated across hundreds of thousands of households. Of the Union's 2.1 million soldiers, an estimated 400,000 carried chronic illness home from the war. Many, like Charles, died young without the cause ever being precisely recorded.</p>
+  </div>
 </div>
 
 </div><!-- /narrative -->
@@ -533,6 +553,14 @@ function openLetter(id, highlight) {
     ppl + plc +
     '<div class="reader-body">' + bodyText + '</div>';
 
+  // Inject letter share button
+  if (window.HubbellDeepLink) {
+    var closeBtn = document.querySelector('.reader-close');
+    if (closeBtn && !closeBtn.parentNode.querySelector('.dl-modal-share')) {
+      closeBtn.insertAdjacentHTML('afterend', HubbellDeepLink.letterShareBtn(letter.id));
+    }
+  }
+
   document.getElementById('readerOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 
@@ -560,9 +588,40 @@ document.addEventListener('keydown', function(e) {
 // Cross-page search redirect
 document.getElementById('searchInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter' && this.value.trim()) {
-    window.location.href = 'index.html?q=' + encodeURIComponent(this.value.trim());
+    window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
   }
 });
+</script>
+<script src="_deeplink.js"></script>
+<script>
+HubbellDeepLink.injectShareButton();
+HubbellDeepLink.registerStateReader(function() {
+  var s = {};
+  var overlay = document.getElementById('readerOverlay');
+  if (overlay && overlay.classList.contains('open')) {
+    var idEl = overlay.querySelector('.rm-id');
+    if (idEl) s.letter = idEl.textContent;
+  }
+  return s;
+});
+HubbellDeepLink.registerStateApplier(function(p) {
+  if (p.letter) {
+    var l = LETTERS.find(function(x) { return x.id === p.letter; });
+    if (l) openLetter(p.letter);
+  }
+});
+HubbellDeepLink.enableHistory();
+HubbellDeepLink.applyOnLoad();
+var _origOpenLetter = openLetter;
+openLetter = function(id, highlight) {
+  _origOpenLetter(id, highlight);
+  HubbellDeepLink.set('letter', id);
+};
+var _origCloseReader = closeReader;
+closeReader = function() {
+  _origCloseReader();
+  HubbellDeepLink.remove('letter');
+};
 </script>
 </body>
 </html>

@@ -232,7 +232,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-
   line-height: 1.5;
 }
 </style>
-<link rel="stylesheet" href="_overlay.css">
+<link rel="stylesheet" href="_overlay.css?v=1775363534">
 </head>
 <body>
 <nav class="site-nav">
@@ -594,6 +594,9 @@ function updateCenter(letter) {
     <div class="letter-body">${escapeHtml(letter.transcription)}</div>
     ${editorialHtml}
     ${sigHtml}`;
+
+  // Bind overlay links on dynamically-rendered content
+  if (window.HubbellOverlay) HubbellOverlay.bindDynamic(panel);
 }
 
 // Compute unknowns for a letter (used by both timeline glow and right panel)
@@ -915,13 +918,32 @@ selectLetter(0);
 <script>
 document.getElementById('searchInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter' && this.value.trim()) {
-    window.location.href = 'index.html?q=' + encodeURIComponent(this.value.trim());
+    window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
   }
 });
 </script>
 
-<script src="_overlay-data.js"></script>
-<script src="_overlay.js"></script>
+<script src="_deeplink.js"></script>
+<script src="_overlay-data.js?v=1775363534"></script>
+<script src="_overlay.js?v=1775363534"></script>
 <script>HubbellOverlay.bindPage({ tags: true, locations: true });</script>
+<script>
+HubbellDeepLink.injectShareButton();
+HubbellDeepLink.registerStateReader(function() {
+  var s = {};
+  if (currentIndex > 0) s.event = String(currentIndex);
+  return s;
+});
+HubbellDeepLink.registerStateApplier(function(p) {
+  if (p.event != null) {
+    var idx = parseInt(p.event);
+    if (!isNaN(idx) && idx >= 0 && idx < LETTERS.length) {
+      selectLetter(idx);
+    }
+  }
+});
+HubbellDeepLink.enableHistory();
+HubbellDeepLink.applyOnLoad();
+</script>
 </body>
 </html>

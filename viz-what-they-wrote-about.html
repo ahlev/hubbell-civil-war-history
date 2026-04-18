@@ -810,9 +810,39 @@ fetch('03-data/all-letters.json')
 <script>
 document.getElementById('searchInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter' && this.value.trim()) {
-    window.location.href = 'index.html?q=' + encodeURIComponent(this.value.trim());
+    window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
   }
 });
+</script>
+<script src="_deeplink.js"></script>
+<script>
+HubbellDeepLink.injectShareButton();
+HubbellDeepLink.registerStateReader(function() {
+  var s = {};
+  var all = ['henry','alexander','james','charles','mother'];
+  var active = all.filter(function(b) { return activeBrothers.has(b); });
+  if (active.length < all.length) s.brothers = active.join(',');
+  if (periodMode !== 'month') s.period = periodMode;
+  if (metricMode !== 'ink') s.metric = metricMode;
+  return s;
+});
+HubbellDeepLink.registerStateApplier(function(p) {
+  if (p.brothers) {
+    var selected = p.brothers.split(',');
+    activeBrothers.clear();
+    selected.forEach(function(b) { activeBrothers.add(b); });
+    renderLegend(); renderAll();
+  }
+  if (p.period && p.period !== periodMode) togglePeriod();
+  if (p.metric && p.metric !== metricMode) toggleMetric();
+});
+HubbellDeepLink.enableHistory();
+// Defer apply until data loads — init() is called inside fetch .then()
+var _origWTWAInit = init;
+init = function() {
+  _origWTWAInit();
+  HubbellDeepLink.applyOnLoad();
+};
 </script>
 </body>
 </html>

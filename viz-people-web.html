@@ -1168,7 +1168,7 @@ canvas.grabbing {
   min-height: 0;
 }
 </style>
-<link rel="stylesheet" href="_overlay.css">
+<link rel="stylesheet" href="_overlay.css?v=1775363534">
 </head>
 <body>
 <div id="app">
@@ -2522,6 +2522,7 @@ function selectNode(idx) {
   if (selectedNode === idx) {
     selectedNode = null;
     closeDetail();
+    _pwSyncUrl();
     return;
   }
 
@@ -2539,6 +2540,7 @@ function selectNode(idx) {
     showPersonDetail(node);
   }
   updateLinkButton();
+  _pwSyncUrl();
 }
 
 function showPersonDetail(node) {
@@ -2811,6 +2813,7 @@ function completeLinkMode(targetIdx) {
   canvas.style.cursor = 'grab';
   document.getElementById('link-explore-btn').classList.remove('visible', 'active');
   showLinkedPairDetail(linkedPair.a, linkedPair.b);
+  _pwSyncUrl();
 }
 
 function getNameAliases(canonName) {
@@ -3079,6 +3082,9 @@ async function openLetterOverlay(letterId, personName) {
     }
     body.innerHTML = bodyHtml;
 
+    // Bind overlay links on letter transcription
+    if (window.HubbellOverlay) HubbellOverlay.bindDynamic(document.getElementById('letterOverlay'));
+
     if (personName) {
       setTimeout(() => {
         const firstMark = body.querySelector('mark');
@@ -3341,40 +3347,95 @@ if (window.innerWidth <= 768) {
   document.getElementById('sidebar').classList.add('collapsed');
 }
 
-// Handle ?person= URL parameter: select + center the named person
+// ===== DEEP-LINKING =====
+function _pwSelectPerson(name) {
+  const canon = getCanonName(name);
+  const idx = nodeIndex[canon];
+  if (idx === undefined) return;
+  setTimeout(function() {
+    selectedNode = idx;
+    const node = nodes[idx];
+    panX = canvas.width / 2 - node.x * scale;
+    panY = canvas.height / 2 - node.y * scale;
+    if (node.isBrother) showBrotherDetail(node);
+    else showPersonDetail(node);
+    updateLinkButton();
+  }, 600);
+}
+
+function _pwCreateLink(nameA, nameB) {
+  const canonA = getCanonName(nameA);
+  const canonB = getCanonName(nameB);
+  const idxA = nodeIndex[canonA];
+  const idxB = nodeIndex[canonB];
+  if (idxA === undefined || idxB === undefined) return;
+  setTimeout(function() {
+    linkedPair = { a: idxA, b: idxB };
+    selectedNode = null;
+    showLinkedPairDetail(idxA, idxB);
+    // Center between the two nodes
+    const nA = nodes[idxA], nB = nodes[idxB];
+    panX = canvas.width / 2 - ((nA.x + nB.x) / 2) * scale;
+    panY = canvas.height / 2 - ((nA.y + nB.y) / 2) * scale;
+  }, 600);
+}
+
+function _pwSyncUrl() {
+  if (!window.HubbellDeepLink) return;
+  var state = {};
+  if (linkedPair) {
+    state.link = nodes[linkedPair.a].label + ',' + nodes[linkedPair.b].label;
+  } else if (selectedNode !== null) {
+    state.person = nodes[selectedNode].label;
+  }
+  HubbellDeepLink.update(state, { replace: true });
+}
+
+// Apply URL params on load (replaces old IIFE)
 (function() {
   const params = new URLSearchParams(window.location.search);
   const paramPerson = params.get('person');
-  if (!paramPerson) return;
-  // Normalize via MERGE_MAP to find graph node
-  const canon = getCanonName(paramPerson);
-  const idx = nodeIndex[canon];
-  if (idx !== undefined) {
-    // Wait for physics to settle, then select
-    setTimeout(function() {
-      selectedNode = idx;
-      const node = nodes[idx];
-      // Center canvas on node
-      panX = canvas.width / 2 - node.x * scale;
-      panY = canvas.height / 2 - node.y * scale;
-      if (node.isBrother) showBrotherDetail(node);
-      else showPersonDetail(node);
-      updateLinkButton();
-    }, 600);
+  const paramLink = params.get('link');
+  if (paramLink) {
+    const parts = paramLink.split(',');
+    if (parts.length === 2) _pwCreateLink(parts[0].trim(), parts[1].trim());
+  } else if (paramPerson) {
+    _pwSelectPerson(paramPerson);
   }
-  window.history.replaceState({}, '', window.location.pathname);
 })();
 </script>
 <script>
 document.getElementById('searchInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter' && this.value.trim()) {
-    window.location.href = 'index.html?q=' + encodeURIComponent(this.value.trim());
+    window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
   }
 });
 </script>
 
-<script src="_overlay-data.js"></script>
-<script src="_overlay.js"></script>
+<script src="_deeplink.js"></script>
+<script src="_overlay-data.js?v=1775363534"></script>
+<script src="_overlay.js?v=1775363534"></script>
 <script>HubbellOverlay.bindPage({ tags: true });</script>
+<script>
+HubbellDeepLink.injectShareButton();
+HubbellDeepLink.registerStateReader(function() {
+  var state = {};
+  if (linkedPair) {
+    state.link = nodes[linkedPair.a].label + ',' + nodes[linkedPair.b].label;
+  } else if (selectedNode !== null) {
+    state.person = nodes[selectedNode].label;
+  }
+  return state;
+});
+HubbellDeepLink.registerStateApplier(function(p) {
+  if (p.link) {
+    var parts = p.link.split(',');
+    if (parts.length === 2) _pwCreateLink(parts[0].trim(), parts[1].trim());
+  } else if (p.person) {
+    _pwSelectPerson(p.person);
+  }
+});
+HubbellDeepLink.enableHistory();
+</script>
 </body>
 </html>

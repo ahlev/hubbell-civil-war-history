@@ -99,7 +99,7 @@
   },
   {
     "id": "PLC-washington",
-    "canonicalName": "Where box of socks likely held up",
+    "canonicalName": "Washington, D.C.",
     "asWritten": [
       "Washington"
     ],
@@ -136,7 +136,7 @@
   },
   {
     "id": "PLC-camp-mcclellan",
-    "canonicalName": "Camp McClellan, likely near Poolesville/Frederick, MD",
+    "canonicalName": "Camp McClellan, MD",
     "asWritten": [
       "Camp McClellan"
     ],
@@ -176,7 +176,7 @@
   },
   {
     "id": "PLC-harpers-ferry",
-    "canonicalName": "Where McDonald talked to \"Charles of the 60th\"",
+    "canonicalName": "Harpers Ferry, WV",
     "asWritten": [
       "Harpers Ferry"
     ],
@@ -274,7 +274,7 @@
   },
   {
     "id": "PLC-charlotte",
-    "canonicalName": "Charlotte, NY (likely Charlotte, VT or Charlotte, NC",
+    "canonicalName": "Charlotte, NY",
     "asWritten": [
       "Charlotte"
     ],
@@ -310,7 +310,7 @@
   },
   {
     "id": "PLC-richmond",
-    "canonicalName": "Richmond, VA -- (false) capture reported; also mentioned as destination of carriages story",
+    "canonicalName": "Richmond, VA",
     "asWritten": [
       "Richmond"
     ],
@@ -656,7 +656,7 @@
   },
   {
     "id": "PLC-canada",
-    "canonicalName": "Where Frances had been teaching",
+    "canonicalName": "Canada",
     "asWritten": [
       "Canada"
     ],
@@ -1092,7 +1092,7 @@
   },
   {
     "id": "PLC-montreal",
-    "canonicalName": "Where Frances teaching this winter",
+    "canonicalName": "Montreal, Canada",
     "asWritten": [
       "Montreal"
     ],
@@ -1112,7 +1112,7 @@
   },
   {
     "id": "PLC-bolivar-heights",
-    "canonicalName": "Bolivar Heights, WV -- above Harpers Ferry; line of battle formed there",
+    "canonicalName": "Bolivar Heights, WV",
     "asWritten": [
       "Bolivar Heights"
     ],
@@ -1579,7 +1579,7 @@
   },
   {
     "id": "PLC-camden-station",
-    "canonicalName": "Camden Station, Baltimore, MD -- railroad station where Alexander was posted",
+    "canonicalName": "Camden Station, Baltimore, MD",
     "asWritten": [
       "Camden Station"
     ],
@@ -1671,7 +1671,7 @@
   },
   {
     "id": "PLC-shenandoah-river",
-    "canonicalName": "Shenandoah River -- Onikers Ferry is located on this river",
+    "canonicalName": "Shenandoah River",
     "asWritten": [
       "Shenandoah River"
     ],
@@ -1812,7 +1812,7 @@
   },
   {
     "id": "PLC-annapolis",
-    "canonicalName": "Where Albert Cook was",
+    "canonicalName": "Annapolis, MD",
     "asWritten": [
       "Annapolis"
     ],
@@ -2139,7 +2139,7 @@
   },
   {
     "id": "PLC-middleburg",
-    "canonicalName": "Likely Middleburgh, Schoharie County, NY",
+    "canonicalName": "Middleburgh, NY",
     "asWritten": [
       "Middleburg"
     ],
@@ -2750,7 +2750,7 @@
   },
   {
     "id": "PLC-academy",
-    "canonicalName": "Likely Clinton County Academy or similar",
+    "canonicalName": "Academy",
     "asWritten": [
       "Academy"
     ],
@@ -2766,7 +2766,7 @@
   },
   {
     "id": "PLC-since",
-    "canonicalName": "Unknown; possibly \"Since\" or misread; context \"floor we had to leave in Since\" unclear",
+    "canonicalName": "Since (unknown location)",
     "asWritten": [
       "Since"
     ],
@@ -2905,7 +2905,7 @@
     "id": "PLC-long",
     "canonicalName": "Longueuil or Longale, Canada",
     "asWritten": [
-      "Long—"
+      "Longâ€”"
     ],
     "modernIdentifications": [
       "Longueuil or Longale, Canada"
@@ -3319,9 +3319,9 @@
   },
   {
     "id": "PLC-river-called-the",
-    "canonicalName": "Likely Pamunkey River",
+    "canonicalName": "Pamunkey River (likely)",
     "asWritten": [
-      "River called the ———"
+      "River called the â€”â€”â€”"
     ],
     "modernIdentifications": [
       "Likely Pamunkey River"
@@ -3337,7 +3337,7 @@
     "id": "PLC-unknown---likely-near-richmond-or-in-transit",
     "canonicalName": "Unknown",
     "asWritten": [
-      "Unknown — likely near Richmond or in transit"
+      "Unknown â€” likely near Richmond or in transit"
     ],
     "modernIdentifications": [
       "Unknown"

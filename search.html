@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search &mdash; Hubbell Civil War Letters</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --henry:#2D5F8A;--alexander:#B8860B;--james:#4A7C59;--charles:#8B3A3A;--mother:#7B5EA7;
+  --bg:#FAF8F5;--card:#FFFFFF;
+  --text:#2C2C2C;--text-mid:#6B6B6B;--text-light:#9B9B9B;
+  --border:#E8E4DF;--border-light:#F0ECE7;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;line-height:1.6}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3}
+
+/* ===== SITE NAV ===== */
+.site-nav{position:sticky;top:0;z-index:9000;background:#2C2C2C;display:flex;align-items:center;flex-wrap:wrap;padding:8px 20px;gap:6px 0;font-family:'Inter',sans-serif;font-size:0.75rem}
+.nav-links{display:flex;align-items:center;flex-wrap:wrap;gap:3px 14px}
+.nav-label{color:#9B9B9B;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+.nav-link{color:#B8B2AA;text-decoration:none;padding:2px 0;transition:color 0.15s;white-space:nowrap}
+.nav-link:hover{color:#FFFFFF}
+.nav-link.active{color:#FFFFFF;font-weight:600}
+.nav-spacer{flex:1;min-width:8px}
+.search-container{position:relative;flex-shrink:0}
+.search-input{width:280px;padding:5px 10px 5px 28px;border:1px solid #555;border-radius:14px;background:#3a3a3a;color:#eee;font-family:'Inter',sans-serif;font-size:0.72rem;outline:none;transition:border-color 0.2s,background 0.2s}
+.search-input::placeholder{color:#888}
+.search-input:focus{border-color:#888;background:#444}
+.search-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#888;font-size:0.7rem;pointer-events:none}
+
+/* ===== SEARCH PAGE ===== */
+.search-page{max-width:900px;margin:0 auto;padding:28px 32px 60px}
+.search-header{margin-bottom:20px}
+.search-header h1{font-size:1.3rem;font-weight:600;margin-bottom:4px}
+.search-header .result-count{font-size:0.85rem;color:var(--text-mid)}
+
+/* Controls bar */
+.search-controls{display:flex;gap:12px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.sort-select{padding:5px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);font-family:'Inter',sans-serif;font-size:0.78rem;color:var(--text);cursor:pointer}
+.sort-select:focus{outline:none;border-color:var(--text-light)}
+
+/* Filter chips */
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+.filter-chip{font-size:0.72rem;padding:4px 12px;border-radius:16px;border:1px solid var(--border);background:var(--card);cursor:pointer;transition:all 0.15s;font-family:'Inter',sans-serif;font-weight:500;user-select:none;display:inline-flex;align-items:center;gap:4px}
+.filter-chip:hover{border-color:var(--text-light)}
+.filter-chip.active{background:var(--text);color:white;border-color:var(--text)}
+.filter-chip .chip-dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+.filter-chip.active .chip-dot{box-shadow:0 0 0 1px rgba(255,255,255,0.5)}
+.filter-sep{width:1px;height:20px;background:var(--border);margin:0 4px;flex-shrink:0}
+.filter-chip.flag-chip.active{background:#F5F0EB;color:var(--text);border-color:var(--text-mid)}
+.filter-chip.sig-chip.active{background:#FFF8E1;color:#8D6E00;border-color:#C9A600}
+
+/* Results list */
+.results-list{display:flex;flex-direction:column;gap:1px}
+.result-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;cursor:pointer;transition:transform 0.1s,box-shadow 0.1s;display:flex;gap:12px;align-items:flex-start}
+.result-card:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,0.06)}
+.rc-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.rc-body{flex:1;min-width:0}
+.rc-top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:3px}
+.rc-author{font-weight:600;font-size:0.88rem}
+.rc-date{font-size:0.78rem;color:var(--text-mid)}
+.rc-location{font-size:0.75rem;color:var(--text-light)}
+.rc-recipient{font-size:0.78rem;color:var(--text-mid);margin-bottom:6px}
+.rc-excerpt{font-family:'Source Serif 4',serif;font-size:0.88rem;color:var(--text-mid);line-height:1.65;margin-bottom:6px}
+.rc-excerpt mark{background:rgba(255,200,50,0.35);color:inherit;font-weight:500;border-radius:2px;padding:0 1px}
+.rc-footer{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.rc-badge{font-size:0.62rem;padding:1px 6px;border-radius:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px}
+.rc-badge.text{background:#F5F5F5;color:#616161}
+.rc-badge.person{background:#E3F2FD;color:#1565C0}
+.rc-badge.place{background:#E8F5E9;color:#2E7D32}
+.rc-badge.meta{background:#FFF3E0;color:#E65100}
+.rc-badge.battle{background:#FCE4EC;color:#C62828}
+.rc-badge.illness{background:#FFF3E0;color:#E65100}
+.rc-badge.death{background:#EFEBE9;color:#4E342E}
+.rc-badge.wound{background:#F3E5F5;color:#7B1FA2}
+.rc-sig{color:#C9A600;font-size:0.72rem;margin-left:4px}
+.rc-people{font-size:0.7rem;color:var(--text-light);margin-left:auto}
+
+/* Load more */
+.load-more{display:block;width:100%;padding:12px;margin-top:16px;border:1px solid var(--border);border-radius:10px;background:var(--card);font-family:'Inter',sans-serif;font-size:0.85rem;color:var(--text-mid);cursor:pointer;text-align:center;transition:background 0.15s}
+.load-more:hover{background:var(--border-light)}
+
+/* Empty state */
+.search-empty{text-align:center;padding:60px 20px;color:var(--text-light)}
+.search-empty h2{font-size:1.2rem;margin-bottom:8px;color:var(--text-mid)}
+.search-empty p{font-size:0.9rem}
+
+/* ===== LETTER READER PANEL ===== */
+.reader-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center;padding:24px}
+.reader-overlay.open{display:flex}
+.reader-panel{background:var(--card);border-radius:14px;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;padding:28px 32px;position:relative;box-shadow:0 16px 50px rgba(0,0,0,0.2)}
+.reader-close{position:absolute;top:12px;right:14px;border:none;background:none;font-size:1.5rem;cursor:pointer;color:var(--text-light);line-height:1}
+.reader-close:hover{color:var(--text)}
+.reader-header h3{font-size:1.2rem;margin-bottom:4px}
+.reader-meta{font-size:0.8rem;color:var(--text-mid);margin-bottom:14px;line-height:1.6}
+.reader-meta .rm-id{font-size:0.7rem;color:var(--text-light)}
+.reader-flags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.reader-flag{font-size:0.65rem;padding:2px 8px;border-radius:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px}
+.rf-battle{background:#FCE4EC;color:#C62828}
+.rf-illness{background:#FFF3E0;color:#E65100}
+.rf-death{background:#EFEBE9;color:#4E342E}
+.rf-wound{background:#F3E5F5;color:#7B1FA2}
+.reader-people,.reader-places{margin-bottom:14px}
+.reader-people h4,.reader-places h4{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-light);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:6px}
+.reader-tags{display:flex;gap:4px;flex-wrap:wrap}
+.reader-tag{font-size:0.73rem;padding:2px 8px;border-radius:10px;background:var(--border-light);color:var(--text-mid)}
+.reader-tag.person{background:#E3F2FD;color:#1565C0}
+.reader-tag.place{background:#E8F5E9;color:#2E7D32}
+.reader-body{font-family:'Source Serif 4',serif;font-size:0.92rem;line-height:1.85;color:var(--text);background:var(--bg);border-radius:8px;padding:18px;white-space:pre-wrap;border:1px solid var(--border-light);max-height:400px;overflow-y:auto}
+.reader-body mark{background:rgba(255,200,50,0.35);color:inherit;font-weight:500;border-radius:2px;padding:0 1px}
+
+/* ===== SEARCH DROPDOWN (nav preview) ===== */
+.search-dropdown{position:absolute;top:calc(100% + 6px);right:0;width:520px;max-height:70vh;overflow-y:auto;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.15);display:none;z-index:9999;font-size:0.83rem}
+.search-dropdown.open{display:block}
+.search-summary{padding:10px 16px;border-bottom:1px solid var(--border-light);font-size:0.74rem;color:var(--text-light);display:flex;gap:12px;flex-wrap:wrap}
+.search-summary .author-count{display:inline-flex;align-items:center;gap:4px}
+.search-summary .author-count .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.search-group{padding:6px 0}
+.search-group-label{padding:4px 16px;font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-light);font-weight:600;background:var(--bg)}
+.search-result{padding:10px 16px;cursor:pointer;transition:background 0.1s;display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid var(--border-light)}
+.search-result:last-child{border-bottom:none}
+.search-result:hover{background:var(--border-light)}
+.sr-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.sr-body{flex:1;min-width:0}
+.sr-meta{font-size:0.72rem;color:var(--text-light);margin-bottom:2px}
+.sr-meta strong{color:var(--text-mid);font-weight:500}
+.sr-excerpt{font-family:'Source Serif 4',serif;font-size:0.82rem;color:var(--text-mid);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.sr-excerpt mark{background:rgba(255,200,50,0.35);color:inherit;font-weight:500;border-radius:2px;padding:0 1px}
+.sr-badges{display:flex;gap:4px;margin-top:3px;flex-wrap:wrap}
+.sr-badge{font-size:0.62rem;padding:1px 6px;border-radius:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px}
+.sr-badge.text{background:#F5F5F5;color:#616161}
+.sr-badge.person{background:#E3F2FD;color:#1565C0}
+.sr-badge.place{background:#E8F5E9;color:#2E7D32}
+.sr-badge.meta{background:#FFF3E0;color:#E65100}
+.search-empty{padding:20px 16px;text-align:center;color:var(--text-light);font-style:italic}
+
+@media(max-width:700px){
+  .site-nav{padding:6px 12px}
+  .nav-links{gap:2px 10px}
+  .nav-label{display:none}
+  .nav-link{font-size:0.68rem}
+  .search-container{order:99;width:100%;margin-top:2px}
+  .search-input{width:100%}
+  .nav-spacer{display:none}
+  .search-dropdown{width:calc(100vw - 20px);right:-10px}
+  .search-page{padding:16px 14px 40px}
+  .result-card{padding:12px 14px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== STICKY NAV ===== -->
+<nav class="site-nav">
+  <div class="nav-links">
+    <span class="nav-label">Explore:</span>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="hubbell-dashboard.html" class="nav-link">Parallel Lives</a>
+    <a href="viz-emotional-arcs.html" class="nav-link">Emotional Arcs</a>
+    <a href="viz-map-fullwar.html" class="nav-link">Map That Moves</a>
+    <a href="viz-health-ledger.html" class="nav-link">Health Ledger</a>
+    <a href="viz-money-story.html" class="nav-link">Money Story</a>
+    <a href="viz-people-web.html" class="nav-link">People Web</a>
+    <a href="viz-what-they-wrote-about.html" class="nav-link">What They Wrote</a>
+    <a href="who-they-were.html" class="nav-link">Who They Were</a>
+  </div>
+  <div class="nav-spacer"></div>
+  <div class="search-container">
+    <span class="search-icon">&#x1F50D;</span>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search 274 letters..." autocomplete="off">
+    <div class="search-dropdown" id="searchDropdown"></div>
+  </div>
+</nav>
+
+<!-- ===== SEARCH RESULTS PAGE ===== -->
+<div class="search-page">
+  <div class="search-header" id="searchHeader">
+    <h1>Search Results</h1>
+    <div class="result-count" id="resultCount"></div>
+  </div>
+
+  <div class="search-controls" id="searchControls" style="display:none">
+    <label style="font-size:0.78rem;color:var(--text-mid)">Sort:</label>
+    <select class="sort-select" id="sortSelect">
+      <option value="relevance">Relevance</option>
+      <option value="date">Date (Chronological)</option>
+      <option value="date-desc">Date (Newest First)</option>
+      <option value="author">Author</option>
+    </select>
+  </div>
+
+  <div class="filter-bar" id="filterBar" style="display:none">
+    <!-- Author chips -->
+    <button class="filter-chip author-chip" data-author="henry"><span class="chip-dot" style="background:#2D5F8A"></span>Henry</button>
+    <button class="filter-chip author-chip" data-author="alexander"><span class="chip-dot" style="background:#B8860B"></span>Alexander</button>
+    <button class="filter-chip author-chip" data-author="james"><span class="chip-dot" style="background:#4A7C59"></span>James</button>
+    <button class="filter-chip author-chip" data-author="charles"><span class="chip-dot" style="background:#8B3A3A"></span>Charles</button>
+    <button class="filter-chip author-chip" data-author="mother"><span class="chip-dot" style="background:#7B5EA7"></span>Mother</button>
+    <div class="filter-sep"></div>
+    <!-- Flag chips -->
+    <button class="filter-chip flag-chip" data-flag="bat">Battle</button>
+    <button class="filter-chip flag-chip" data-flag="ill">Illness</button>
+    <button class="filter-chip flag-chip" data-flag="dth">Death</button>
+    <button class="filter-chip flag-chip" data-flag="wnd">Wound</button>
+    <div class="filter-sep"></div>
+    <!-- Significance chips -->
+    <button class="filter-chip sig-chip" data-sig="major">Major</button>
+    <button class="filter-chip sig-chip" data-sig="notable">Notable</button>
+  </div>
+
+  <div id="resultsList" class="results-list"></div>
+  <button id="loadMore" class="load-more" style="display:none">Load more results</button>
+</div>
+
+<!-- ===== LETTER READER ===== -->
+<div class="reader-overlay" id="readerOverlay">
+  <div class="reader-panel" id="readerPanel">
+    <button class="reader-close" id="readerClose">&times;</button>
+    <div id="readerContent"></div>
+  </div>
+</div>
+
+<!-- ===== DATA + ENGINE ===== -->
+<script src="_search-data.js"></script>
+<script src="_search-engine.js"></script>
+<script>
+/* ===== STATE ===== */
+var allResults = [];
+var filteredResults = [];
+var displayCount = 20;
+var currentQuery = '';
+var currentTerms = [];
+
+// Filters
+var activeAuthors = [];    // OR logic
+var activeFlags = [];      // AND logic
+var activeSig = [];        // OR logic
+var currentSort = 'relevance';
+
+/* ===== INIT: Read ?q= ===== */
+(function() {
+  var urlQ = new URLSearchParams(window.location.search).get('q');
+  if (urlQ) {
+    document.getElementById('searchInput').value = urlQ;
+    runSearch(urlQ);
+  }
+})();
+
+/* ===== SEARCH INPUT + DROPDOWN PREVIEW ===== */
+var searchInput = document.getElementById('searchInput');
+var searchDropdown = document.getElementById('searchDropdown');
+var ddTimeout = null;
+
+searchInput.addEventListener('input', function() {
+  clearTimeout(ddTimeout);
+  var q = this.value.trim();
+  if (q.length < 2) { searchDropdown.classList.remove('open'); return; }
+  ddTimeout = setTimeout(function() { renderDropdown(q); }, 150);
+});
+
+searchInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && this.value.trim()) {
+    e.preventDefault();
+    searchDropdown.classList.remove('open');
+    var q = this.value.trim();
+    runSearch(q);
+    if (window.HubbellDeepLink) _searchSyncUrl({ replace: true });
+  }
+});
+
+searchInput.addEventListener('focus', function() {
+  if (this.value.trim().length >= 2) renderDropdown(this.value.trim());
+});
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.search-container')) searchDropdown.classList.remove('open');
+});
+
+function renderDropdown(query) {
+  var ddResults = search(query, { maxResults: 40 });
+  if (ddResults.length === 0) {
+    searchDropdown.innerHTML = '<div class="search-empty">No results for &ldquo;' + esc(query) + '&rdquo;</div>';
+    searchDropdown.classList.add('open');
+    return;
+  }
+  var terms = query.toLowerCase().split(/\s+/).filter(function(t) { return t.length > 1; });
+
+  // Summary bar
+  var authorCounts = {};
+  ddResults.forEach(function(r) { authorCounts[r.letter.a] = (authorCounts[r.letter.a] || 0) + 1; });
+  var html = '<div class="search-summary"><span>' + ddResults.length + ' result' + (ddResults.length !== 1 ? 's' : '') + '</span>';
+  for (var a in authorCounts) {
+    var color = AUTHOR_COLORS[a] || '#999';
+    html += '<span class="author-count"><span class="dot" style="background:' + color + '"></span>' + (AUTHOR_NAMES[a] || a) + ': ' + authorCounts[a] + '</span>';
+  }
+  html += '</div>';
+
+  // Group by match type
+  var groups = {meta: [], person: [], place: [], text: []};
+  ddResults.forEach(function(r) {
+    if (r.matchTypes.indexOf('meta') !== -1) groups.meta.push(r);
+    else if (r.matchTypes.indexOf('person') !== -1) groups.person.push(r);
+    else if (r.matchTypes.indexOf('place') !== -1) groups.place.push(r);
+    else groups.text.push(r);
+  });
+  var groupLabels = {meta: 'Metadata Matches', person: 'People Mentioned', place: 'Places Referenced', text: 'Letter Content'};
+  ['meta', 'person', 'place', 'text'].forEach(function(gk) {
+    var items = groups[gk];
+    if (items.length === 0) return;
+    html += '<div class="search-group" data-gk="' + gk + '"><div class="search-group-label">' + groupLabels[gk] + ' (' + items.length + ')</div>';
+    html += '<div class="sg-items">';
+    items.forEach(function(r, idx) {
+      var l = r.letter;
+      var color = AUTHOR_COLORS[l.a] || '#999';
+      var excerpt = findBestExcerpt(l.t, terms, 100);
+      var highlighted = highlightTerms(excerpt, terms, 220);
+      var badges = '';
+      r.matchTypes.forEach(function(mt) { badges += '<span class="sr-badge ' + mt + '">' + mt + '</span>'; });
+      if (l.bat) badges += '<span class="sr-badge" style="background:#FCE4EC;color:#C62828">battle</span>';
+      if (l.ill) badges += '<span class="sr-badge" style="background:#FFF3E0;color:#E65100">illness</span>';
+      var hidden = idx >= 8 ? ' style="display:none" data-hidden="1"' : '';
+      html += '<div class="search-result" data-lid="' + l.id + '"' + hidden + '>' +
+        '<div class="sr-dot" style="background:' + color + '"></div>' +
+        '<div class="sr-body">' +
+          '<div class="sr-meta"><strong>' + esc(l.an) + '</strong> to ' + esc(l.r) + ' &mdash; ' + esc(l.d) + ', ' + esc(l.loc) + '</div>' +
+          '<div class="sr-excerpt">' + highlighted + '</div>' +
+          '<div class="sr-badges">' + badges + '</div>' +
+        '</div></div>';
+    });
+    html += '</div>';
+    if (items.length > 8) {
+      html += '<button class="sg-expand" data-group="' + gk + '" data-shown="8" style="display:block;width:100%;padding:6px 16px;font-size:0.72rem;color:var(--text-light);text-align:center;background:none;border:none;cursor:pointer;font-family:Inter,sans-serif">+ ' + (items.length - 8) + ' more &darr;</button>';
+    }
+    html += '</div>';
+  });
+
+  // Footer link — press Enter or click to run full-page search
+  html += '<a href="#" class="dd-view-all" style="display:block;padding:10px 16px;font-size:0.78rem;color:#2D5F8A;text-align:center;text-decoration:none;border-top:1px solid var(--border-light);font-weight:500">View all ' + ddResults.length + ' results &rarr;</a>';
+
+  searchDropdown.innerHTML = html;
+  searchDropdown.classList.add('open');
+
+  // Wire up result clicks → open reader
+  searchDropdown.querySelectorAll('.search-result').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var lid = this.dataset.lid;
+      var letter = LETTERS.find(function(l) { return l.id === lid; });
+      if (letter) openReader(letter, terms);
+      searchDropdown.classList.remove('open');
+    });
+  });
+
+  // Wire up expand buttons
+  searchDropdown.querySelectorAll('.sg-expand').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var group = this.closest('.search-group');
+      var hiddenEls = group.querySelectorAll('.search-result[data-hidden="1"]');
+      var count = 0;
+      hiddenEls.forEach(function(el) { if (count < 8) { el.style.display = ''; el.removeAttribute('data-hidden'); count++; } });
+      this.dataset.shown = +this.dataset.shown + count;
+      var remaining = group.querySelectorAll('.search-result[data-hidden="1"]').length;
+      if (remaining > 0) { this.textContent = '+ ' + remaining + ' more \u2193'; }
+      else { this.style.display = 'none'; }
+    });
+  });
+
+  // Wire up "View all" footer → run full-page search
+  var viewAll = searchDropdown.querySelector('.dd-view-all');
+  if (viewAll) {
+    viewAll.addEventListener('click', function(e) {
+      e.preventDefault();
+      searchDropdown.classList.remove('open');
+      runSearch(query);
+      if (window.HubbellDeepLink) _searchSyncUrl({ replace: true });
+    });
+  }
+}
+
+/* ===== RUN SEARCH ===== */
+function runSearch(query) {
+  currentQuery = query;
+  currentTerms = query.toLowerCase().split(/\s+/).filter(function(t) { return t.length > 1; });
+  allResults = search(query);
+  displayCount = 20;
+
+  // Reset filters
+  activeAuthors = [];
+  activeFlags = [];
+  activeSig = [];
+  document.querySelectorAll('.filter-chip.active').forEach(function(c) { c.classList.remove('active'); });
+
+  applyFiltersAndRender();
+
+  // Show controls
+  document.getElementById('searchControls').style.display = allResults.length > 0 ? 'flex' : 'none';
+  document.getElementById('filterBar').style.display = allResults.length > 0 ? 'flex' : 'none';
+}
+
+/* ===== FILTER + SORT + RENDER ===== */
+function applyFiltersAndRender() {
+  // Filter
+  filteredResults = allResults.filter(function(r) {
+    // Author: OR logic (if any active, letter must match one)
+    if (activeAuthors.length > 0 && activeAuthors.indexOf(r.letter.a) === -1) return false;
+    // Flags: AND logic (all active flags must be true)
+    for (var i = 0; i < activeFlags.length; i++) {
+      if (!r.letter[activeFlags[i]]) return false;
+    }
+    // Significance: OR logic
+    if (activeSig.length > 0 && activeSig.indexOf(r.letter.sig) === -1) return false;
+    return true;
+  });
+
+  // Sort
+  if (currentSort === 'date') {
+    filteredResults.sort(function(a, b) { return a.letter.d.localeCompare(b.letter.d); });
+  } else if (currentSort === 'date-desc') {
+    filteredResults.sort(function(a, b) { return b.letter.d.localeCompare(a.letter.d); });
+  } else if (currentSort === 'author') {
+    filteredResults.sort(function(a, b) {
+      var cmp = a.letter.a.localeCompare(b.letter.a);
+      return cmp !== 0 ? cmp : a.letter.d.localeCompare(b.letter.d);
+    });
+  }
+  // 'relevance' keeps the original score order
+
+  renderResults();
+}
+
+function renderResults() {
+  var countEl = document.getElementById('resultCount');
+  var listEl = document.getElementById('resultsList');
+  var loadMoreBtn = document.getElementById('loadMore');
+
+  if (allResults.length === 0) {
+    countEl.textContent = '';
+    listEl.innerHTML = '<div class="search-empty"><h2>No results found</h2><p>Try different keywords, a date like &ldquo;1862&rdquo;, or an author name.</p></div>';
+    loadMoreBtn.style.display = 'none';
+    return;
+  }
+
+  var showing = filteredResults.length;
+  var total = allResults.length;
+  var filterNote = showing < total ? ' (filtered from ' + total + ')' : '';
+  countEl.innerHTML = '<strong>' + showing + '</strong> result' + (showing !== 1 ? 's' : '') + ' for &ldquo;' + esc(currentQuery) + '&rdquo;' + filterNote;
+
+  var html = '';
+  var limit = Math.min(displayCount, filteredResults.length);
+  for (var i = 0; i < limit; i++) {
+    var r = filteredResults[i];
+    var l = r.letter;
+    var color = AUTHOR_COLORS[l.a] || '#999';
+    var name = AUTHOR_NAMES[l.a] || l.an;
+    var excerpt = findBestExcerpt(l.t, currentTerms, 150);
+    var highlighted = highlightTerms(excerpt, currentTerms, 350);
+
+    // Badges
+    var badges = '';
+    r.matchTypes.forEach(function(mt) {
+      badges += '<span class="rc-badge ' + mt + '">' + mt + '</span>';
+    });
+    if (l.bat) badges += '<span class="rc-badge battle">battle</span>';
+    if (l.ill) badges += '<span class="rc-badge illness">illness</span>';
+    if (l.dth) badges += '<span class="rc-badge death">death</span>';
+    if (l.wnd) badges += '<span class="rc-badge wound">wound</span>';
+
+    // Significance star
+    var sigStar = l.sig === 'major' ? '<span class="rc-sig" title="Major significance">&#9733;</span>' : '';
+
+    // People (first 3)
+    var peopleStr = '';
+    if (l.ppl && l.ppl.length > 0) {
+      var shown = l.ppl.slice(0, 3).join(', ');
+      if (l.ppl.length > 3) shown += ' +' + (l.ppl.length - 3);
+      peopleStr = '<span class="rc-people">' + esc(shown) + '</span>';
+    }
+
+    html += '<div class="result-card" data-lid="' + l.id + '">' +
+      '<div class="rc-dot" style="background:' + color + '"></div>' +
+      '<div class="rc-body">' +
+        '<div class="rc-top">' +
+          '<span class="rc-author" style="color:' + color + '">' + esc(name) + '</span>' + sigStar +
+          '<span class="rc-date">' + esc(l.d) + '</span>' +
+          '<span class="rc-location">' + esc(l.loc) + '</span>' +
+        '</div>' +
+        '<div class="rc-recipient">To ' + esc(l.r) + '</div>' +
+        '<div class="rc-excerpt">' + highlighted + '</div>' +
+        '<div class="rc-footer">' + badges + peopleStr + '</div>' +
+      '</div></div>';
+  }
+
+  listEl.innerHTML = html;
+  loadMoreBtn.style.display = limit < filteredResults.length ? 'block' : 'none';
+  loadMoreBtn.textContent = 'Load more (' + (filteredResults.length - limit) + ' remaining)';
+
+  // Wire up clicks
+  listEl.querySelectorAll('.result-card').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var lid = this.dataset.lid;
+      var letter = LETTERS.find(function(l) { return l.id === lid; });
+      if (letter) openReader(letter, currentTerms);
+    });
+  });
+}
+
+/* ===== LOAD MORE ===== */
+document.getElementById('loadMore').addEventListener('click', function() {
+  displayCount += 20;
+  renderResults();
+});
+
+/* ===== SORT ===== */
+document.getElementById('sortSelect').addEventListener('change', function() {
+  currentSort = this.value;
+  displayCount = 20;
+  applyFiltersAndRender();
+});
+
+/* ===== FILTER CHIPS ===== */
+document.querySelectorAll('.author-chip').forEach(function(chip) {
+  chip.addEventListener('click', function() {
+    var author = this.dataset.author;
+    this.classList.toggle('active');
+    if (this.classList.contains('active')) {
+      if (activeAuthors.indexOf(author) === -1) activeAuthors.push(author);
+    } else {
+      activeAuthors = activeAuthors.filter(function(a) { return a !== author; });
+    }
+    displayCount = 20;
+    applyFiltersAndRender();
+  });
+});
+
+document.querySelectorAll('.flag-chip').forEach(function(chip) {
+  chip.addEventListener('click', function() {
+    var flag = this.dataset.flag;
+    this.classList.toggle('active');
+    if (this.classList.contains('active')) {
+      if (activeFlags.indexOf(flag) === -1) activeFlags.push(flag);
+    } else {
+      activeFlags = activeFlags.filter(function(f) { return f !== flag; });
+    }
+    displayCount = 20;
+    applyFiltersAndRender();
+  });
+});
+
+document.querySelectorAll('.sig-chip').forEach(function(chip) {
+  chip.addEventListener('click', function() {
+    var sig = this.dataset.sig;
+    this.classList.toggle('active');
+    if (this.classList.contains('active')) {
+      if (activeSig.indexOf(sig) === -1) activeSig.push(sig);
+    } else {
+      activeSig = activeSig.filter(function(s) { return s !== sig; });
+    }
+    displayCount = 20;
+    applyFiltersAndRender();
+  });
+});
+
+/* ===== LETTER READER ===== */
+var readerOverlay = document.getElementById('readerOverlay');
+
+function openReader(letter, terms) {
+  var color = AUTHOR_COLORS[letter.a] || '#999';
+  var name = AUTHOR_NAMES[letter.a] || letter.an;
+
+  var flags = '';
+  if (letter.bat) flags += '<span class="reader-flag rf-battle">Battle</span>';
+  if (letter.ill) flags += '<span class="reader-flag rf-illness">Illness</span>';
+  if (letter.dth) flags += '<span class="reader-flag rf-death">Death</span>';
+  if (letter.wnd) flags += '<span class="reader-flag rf-wound">Wound</span>';
+
+  var peopleTags = '';
+  if (letter.ppl && letter.ppl.length > 0) {
+    peopleTags = '<div class="reader-people"><h4>People Mentioned</h4><div class="reader-tags">' +
+      letter.ppl.map(function(p) { return '<span class="reader-tag person">' + esc(p) + '</span>'; }).join('') +
+      '</div></div>';
+  }
+
+  var placeTags = '';
+  if (letter.plc && letter.plc.length > 0) {
+    placeTags = '<div class="reader-places"><h4>Places Referenced</h4><div class="reader-tags">' +
+      letter.plc.map(function(p) { return '<span class="reader-tag place">' + esc(p) + '</span>'; }).join('') +
+      '</div></div>';
+  }
+
+  var body = esc(letter.t);
+  if (terms && terms.length > 0) {
+    terms.forEach(function(term) {
+      var re = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      body = body.replace(re, '<mark>$1</mark>');
+    });
+  }
+
+  document.getElementById('readerContent').innerHTML =
+    '<div class="reader-header"><h3 style="color:' + color + '">' + esc(name) + ' to ' + esc(letter.r) + '</h3></div>' +
+    '<div class="reader-meta">' + esc(letter.d) + ' &mdash; ' + esc(letter.loc) +
+      '<br><span class="rm-id">' + esc(letter.id) + '</span></div>' +
+    (flags ? '<div class="reader-flags">' + flags + '</div>' : '') +
+    peopleTags +
+    placeTags +
+    '<div class="reader-body">' + body + '</div>';
+
+  // Inject letter share button
+  if (window.HubbellDeepLink) {
+    var closeBtn = document.querySelector('.reader-close');
+    if (closeBtn && !closeBtn.parentNode.querySelector('.dl-modal-share')) {
+      closeBtn.insertAdjacentHTML('afterend', HubbellDeepLink.letterShareBtn(letter.id));
+    }
+  }
+
+  readerOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  if (terms && terms.length > 0) {
+    setTimeout(function() {
+      var firstMark = document.querySelector('.reader-body mark');
+      if (firstMark) firstMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }
+}
+
+function closeReader() {
+  readerOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('readerClose').addEventListener('click', closeReader);
+readerOverlay.addEventListener('click', function(e) {
+  if (e.target === this) closeReader();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    if (readerOverlay.classList.contains('open')) closeReader();
+    else if (searchDropdown.classList.contains('open')) { searchDropdown.classList.remove('open'); searchInput.blur(); }
+  }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault();
+    searchInput.focus();
+    searchInput.select();
+  }
+});
+</script>
+<script src="_deeplink.js"></script>
+<script>
+HubbellDeepLink.injectShareButton();
+
+function _searchSyncUrl(opts) {
+  var state = {};
+  if (currentQuery) state.q = currentQuery;
+  if (activeAuthors.length) state.author = activeAuthors.join(',');
+  if (activeFlags.length) state.flag = activeFlags.join(',');
+  if (activeSig.length) state.sig = activeSig.join(',');
+  if (currentSort !== 'relevance') state.sort = currentSort;
+  var overlay = document.getElementById('readerOverlay');
+  if (overlay && overlay.classList.contains('open')) {
+    var idEl = overlay.querySelector('.rm-id');
+    if (idEl) state.letter = idEl.textContent;
+  }
+  HubbellDeepLink.update(state, opts || { replace: true });
+}
+
+HubbellDeepLink.registerStateReader(function() {
+  var state = {};
+  if (currentQuery) state.q = currentQuery;
+  if (activeAuthors.length) state.author = activeAuthors.join(',');
+  if (activeFlags.length) state.flag = activeFlags.join(',');
+  if (activeSig.length) state.sig = activeSig.join(',');
+  if (currentSort !== 'relevance') state.sort = currentSort;
+  var overlay = document.getElementById('readerOverlay');
+  if (overlay && overlay.classList.contains('open')) {
+    var idEl = overlay.querySelector('.rm-id');
+    if (idEl) state.letter = idEl.textContent;
+  }
+  return state;
+});
+
+HubbellDeepLink.registerStateApplier(function(p) {
+  // Query
+  if (p.q) {
+    document.getElementById('searchInput').value = p.q;
+    runSearch(p.q);
+  }
+  // Filters
+  if (p.author) {
+    p.author.split(',').forEach(function(a) {
+      var chip = document.querySelector('.author-chip[data-author="' + a + '"]');
+      if (chip && !chip.classList.contains('active')) chip.click();
+    });
+  }
+  if (p.flag) {
+    p.flag.split(',').forEach(function(f) {
+      var chip = document.querySelector('.flag-chip[data-flag="' + f + '"]');
+      if (chip && !chip.classList.contains('active')) chip.click();
+    });
+  }
+  if (p.sig) {
+    p.sig.split(',').forEach(function(s) {
+      var chip = document.querySelector('.sig-chip[data-sig="' + s + '"]');
+      if (chip && !chip.classList.contains('active')) chip.click();
+    });
+  }
+  if (p.sort) {
+    var sel = document.getElementById('sortSelect');
+    if (sel) { sel.value = p.sort; sel.dispatchEvent(new Event('change')); }
+  }
+  // Letter
+  if (p.letter) {
+    var letter = LETTERS.find(function(l) { return l.id === p.letter; });
+    if (letter) setTimeout(function() { openReader(letter, currentTerms); }, 200);
+  }
+});
+
+HubbellDeepLink.enableHistory();
+
+// Override existing init — remove old ?q= handler since deep-link handles it
+// The IIFE at line 243 already ran, so we just need applier for filters
+var dlParams = HubbellDeepLink.read();
+if (dlParams.author || dlParams.flag || dlParams.sig || dlParams.sort || dlParams.letter) {
+  HubbellDeepLink.applyOnLoad();
+}
+
+// Hook open/close reader to sync URL
+var _origSearchOpenReader = openReader;
+openReader = function(letter, terms) {
+  _origSearchOpenReader(letter, terms);
+  _searchSyncUrl();
+};
+var _origSearchCloseReader = closeReader;
+closeReader = function() {
+  _origSearchCloseReader();
+  _searchSyncUrl();
+};
+</script>
+</body>
+</html>

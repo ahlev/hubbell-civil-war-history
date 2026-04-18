@@ -1,0 +1,842 @@
+Total Alexander letters: 120
+
+Date: 1861-09-20
+ID: LTR-1861-09-20-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Ogdensburgh, NY (barracks)
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1861-09-23
+ID: LTR-1861-09-23-001
+Recipient: Frances Hubbell (Sister)
+Location: Camp Wheeler, Ogdensburg, NY
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1861-09-26
+ID: LTR-1861-09-26-001
+Recipient: James Hubbell (Brother) — primary; Mother — addendum
+Location: Camp Wheeler, Ogdensburg, New York
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1861-09-27
+ID: LTR-1861-09-27-002
+Recipient: Mrs. Hubbell (Mother)
+Location: Ogdensburgh, N.Y., Camp Wheeler
+Significance: notable
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1861-10-03
+ID: LTR-1861-10-03-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp Wheeler, Ogdensburgh
+Significance: routine
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1861-10-03
+ID: LTR-1861-10-03-002
+Recipient: Brother (unnamed — likely Charles or James)
+Location: Camp Wheeler, Ogdensburgh
+Significance: routine
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1861-11-13
+ID: LTR-1861-11-13-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp Jackson, 3 miles from Baltimore, MD
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1861-12-08
+ID: LTR-1861-12-08-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp Jackson, near Baltimore, MD
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1861-12-08
+ID: LTR-1861-12-08-002
+Recipient: James Hubbell (Brother)
+Location: Camp Jackson, near Baltimore, MD
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1861-12-11
+ID: LTR-1861-12-11-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp Jackson
+Significance: routine
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1861-12-16
+ID: LTR-1861-12-16-001
+Recipient: Frances Hubbell (Sister)
+Location: Camp Jackson, near Baltimore, MD
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1861-12-22
+ID: LTR-1861-12-22-001
+Recipient: James Hubbell (Brother)
+Location: Baltimore
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1861-12-23
+ID: LTR-1861-12-23-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Baltimore
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1861-12-29
+ID: LTR-1861-12-29-001
+Recipient: Brother (Charles Hubbell)
+Location: Baltimore
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-01-01
+ID: LTR-1862-01-01-001
+Recipient: Family (general)
+Location: Baltimore
+Significance: notable
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1862-01-13
+ID: LTR-1862-01-13-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Baltimore
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-01-15
+ID: LTR-1862-01-15-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camden Station, Baltimore
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-01-17
+ID: LTR-1862-01-17-001
+Recipient: James Hubbell (Brother)
+Location: Camden Station, Baltimore
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-01-24
+ID: LTR-1862-01-24-001
+Recipient: Mrs. F. A. Hubbell (Mother)
+Location: Baltimore
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-01-25
+ID: LTR-1862-01-25-001
+Recipient: Frances ("Fannie") Hubbell
+Location: Baltimore, Md.
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1862-02-04
+ID: LTR-1862-01-28-001
+Recipient: Brother (Charles)
+Location: Baltimore
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1862-02-07
+ID: LTR-1862-02-07-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Baltimore, Maryland
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1862-02-11
+ID: LTR-1862-02-11-001
+Recipient: James Hubbell
+Location: Baltimore, Maryland
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-02-17
+ID: LTR-1862-02-17-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Baltimore, Maryland
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-02-23
+ID: LTR-1862-02-23-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Baltimore, Maryland
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1862-03-03
+ID: LTR-1862-03-03-001
+Recipient: Frances Hubbell (Sister)
+Location: Baltimore
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1862-03-06
+ID: LTR-1862-03-06-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Baltimore
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1862-03-11
+ID: LTR-1862-03-11-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Baltimore
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-03-17
+ID: LTR-1862-03-17-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Baltimore
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-03-26
+ID: LTR-1862-03-26-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp Preston King, near Baltimore
+Significance: notable
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1862-03-30
+ID: LTR-1862-03-30-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Relay House
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-04-01
+ID: LTR-1862-04-01-001
+Recipient: Mother & Brothers
+Location: Relay House
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-04-11
+ID: LTR-1862-04-11-001
+Recipient: Brother (Apr 11), Mother (Apr 15, 18), James (Apr 18 same sheet)
+Location: Camp Niles, Relay House
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-05-01
+ID: LTR-1862-05-01-001
+Recipient: Mother & Brothers
+Location: Camp Niles, Relay House
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-05-10
+ID: LTR-1862-05-10-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp Niles, Relay House
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-05-27
+ID: LTR-1862-05-27-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Harpers Ferry
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1862-05-31
+ID: LTR-1862-05-31-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Harpers Ferry
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-06-08
+ID: LTR-1862-06-08-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Winchester, Virginia
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-06-17
+ID: LTR-1862-06-17-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Onikers Ferry
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1862-07-01
+ID: LTR-1862-06-30-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp near Sharpsburgh (?), then ~3 miles from Strausburgh
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-07-04
+ID: LTR-1862-07-04-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp Goodrich, Near Strausburgh, Va.
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1862-07-08
+ID: LTR-1862-07-08-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Fort Royal, Va.
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1862-07-14
+ID: LTR-1862-07-14-001
+Recipient: Frances Hubbell (Sister)
+Location: Camp on Pine Mountain, near Warrenton, Va.
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1862-07-26
+ID: LTR-1862-07-26-001
+Recipient: Mother, Sister, and Brother
+Location: Camp near Washington, Va.
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-09-19
+ID: LTR-1862-09-19-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp on the battle field, Va., Near Antietam / Camp below Maryland Heights
+Significance: major
+Emotion: extreme
+--------------------------------------------------------------------------------
+Date: 1862-09-27
+ID: LTR-1862-09-27-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Hospital at Harpers Ferry
+Significance: major
+Emotion: extreme
+--------------------------------------------------------------------------------
+Date: 1862-11-12
+ID: LTR-1862-11-12-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Harpers Ferry
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1862-11-19
+ID: LTR-1862-11-19-001
+Recipient: Mrs. Hubbell (Mother) & Fannie (Sister)
+Location: Harpers Ferry
+Significance: major
+Emotion: extreme
+--------------------------------------------------------------------------------
+Date: 1862-11-25
+ID: LTR-1862-11-25-001
+Recipient: Mrs. Hubbell (Mother) & Fannie (Sister)
+Location: Harpers Ferry
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1862-12-21
+ID: LTR-1862-12-21-001
+Recipient: Mrs. Hubbell (Mother) & Fannie (Sister)
+Location: Camp near Fairfax Station
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-01-13
+ID: LTR-1863-01-13-001
+Recipient: Mother and Sister
+Location: Camp near Fairfax Station
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-02-06
+ID: LTR-1863-02-06-001
+Recipient: Mother and Sister
+Location: Camp near Stafford House
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-02-21
+ID: LTR-1863-02-21-001
+Recipient: Mother and Sister
+Location: Camp near Aquia Creek Landing
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-02-28
+ID: LTR-1863-02-28-001
+Recipient: Mother and Sister
+Location: Aquia Landing
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-03-08
+ID: LTR-1863-03-08-001
+Recipient: Mother and Sister
+Location: Aquia Landing
+Significance: notable
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1863-03-16
+ID: LTR-1863-03-16-001
+Recipient: Mother and Sister
+Location: Aquia Landing
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-03-22
+ID: LTR-1863-03-22-001
+Recipient: Mother and Sister
+Location: Aquia Landing
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-03-29
+ID: LTR-1863-03-29-001
+Recipient: Mother and Sister
+Location: Aquia Landing
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1863-04-16
+ID: LTR-1863-04-16-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Aquia Landing
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1863-04-23
+ID: LTR-1863-04-23-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Aquia Landing
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-04-24
+ID: LTR-1863-04-24-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Aquia Landing
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-05-06
+ID: LTR-1863-05-06-001
+Recipient: Mrs. Hubbell (Mother)
+Location: "Camp somewhere in the State of Georgia" [error — Virginia]
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-05-16
+ID: LTR-1863-05-16-001
+Recipient: Charles Hubbell ("Dear Charley")
+Location: Aquia Landing
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-06-03
+ID: LTR-1863-06-03-001
+Recipient: Mother and Sister
+Location: Camp near Aquia Creek Landing
+Significance: major
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1863-07-04
+ID: LTR-1863-07-04-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Near Gettysburg, Pennsylvania
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-07-08
+ID: LTR-1863-07-08-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Near Crampton's Gap, MD
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-07-30
+ID: LTR-1863-07-30-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp near Warrenton Junction
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-08-16
+ID: LTR-1863-08-16-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Capitol Hill Barracks, Washington, D.C.
+Significance: notable
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1863-08-25
+ID: LTR-1863-08-25-001
+Recipient: Frances (Sister)
+Location: Ellis Ford
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-09-03
+ID: LTR-1863-09-03-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Ellis Ford
+Significance: notable
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1863-09-18
+ID: LTR-1863-09-18-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Raccoon Ford, Rapidan River, VA
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-10-11
+ID: LTR-1863-10-11-001
+Recipient: Frances (Sister)
+Location: Army of the Cumberland, HQ 60th NY Vol., Murfreesboro, TN
+Significance: notable
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1863-11-01
+ID: LTR-1863-11-01-001
+Recipient: Mrs. Hubbell (Mother)
+Location: White Side, Georgia
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-11-21
+ID: LTR-1863-11-21-001
+Recipient: Frances (Sister)
+Location: Wauhatchie, East Tennessee
+Significance: notable
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1863-12-01
+ID: LTR-1863-12-01-001
+Recipient: Mrs. Hubbell (Mother)
+Location: General Hospital, Tullahoma, TN
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-12-13
+ID: LTR-1863-12-13-001
+Recipient: Charles F. Hubbell (Brother)
+Location: Wauhatchie, East Tennessee
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1863-12-16
+ID: LTR-1863-12-16-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Wauhatchie, TN
+Significance: notable
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1864-01-08
+ID: LTR-1864-01-08-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Lolliecoffer House, Nashville, TN
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-02-18
+ID: LTR-1864-02-18-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Nashville, Tennessee
+Significance: routine
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1864-02-21
+ID: LTR-1864-02-21-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Stephenson, Alabama
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-02-24
+ID: LTR-1864-02-24-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Charleston, S.C.
+Significance: notable
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1864-03-07
+ID: LTR-1864-03-07-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Stevenson, Alabama
+Significance: notable
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1864-03-07
+ID: LTR-1864-03-07-002
+Recipient: Frances Hubbell (sister)
+Location: Stevenson, Alabama
+Significance: routine
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-03-20
+ID: LTR-1864-03-20-001
+Recipient: Frances Hubbell (sister)
+Location: Stevenson, Alabama
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-04-01
+ID: LTR-1864-04-01-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Stevenson, Alabama
+Significance: routine
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1864-04-06
+ID: LTR-1864-04-06-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Stevenson, Alabama
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-04-07
+ID: LTR-1864-04-07-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Stevenson, Alabama
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-04-18
+ID: LTR-1864-04-18-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Stevenson, Alabama
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-04-22
+ID: LTR-1864-04-22-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Stevenson, Alabama
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-04-28
+ID: LTR-1864-04-28-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Stevenson, Alabama
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1864-05-06
+ID: LTR-1864-05-06-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp somewhere in Georgia
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-05-08
+ID: LTR-1864-05-08-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp near Altoona Creek, Georgia
+Significance: notable
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1864-05-10
+ID: LTR-1864-05-10-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp near Buzzard's Roost, Georgia
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-05-17
+ID: LTR-1864-05-17-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp South of the Oostanaula River, Georgia
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-05-20
+ID: LTR-1864-05-20-001
+Recipient: Frances Hubbell (sister)
+Location: Camp near Kingston, Georgia
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1864-05-31
+ID: LTR-1864-05-31-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Entrenchments near Dallas, Georgia
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1864-06-08
+ID: LTR-1864-06-08-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Marietta, Georgia
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-06-20
+ID: LTR-1864-06-20-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp in field near Marietta, Georgia
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1864-07-00
+ID: LTR-1864-07-00-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp in field near Marietta, Georgia
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-07-02
+ID: LTR-1864-07-02-001
+Recipient: Mrs. Hubbell (Mother)
+Location: In the Field near Marietta, Georgia
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-07-08
+ID: LTR-1864-07-08-001
+Recipient: Mrs. Hubbell (Mother)
+Location: In the Field near Chattahoochee, Georgia
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-07-24
+ID: LTR-1864-07-24-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Near Atlanta, Georgia
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1864-07-29
+ID: LTR-1864-07-29-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Near Atlanta, Georgia
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-08-02
+ID: LTR-1864-08-02-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Near Atlanta, Georgia
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-08-08
+ID: LTR-1864-08-08-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Near Atlanta, Georgia
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1864-08-08
+ID: LTR-1864-08-08-002
+Recipient: Capt. J. M. Ransom
+Location: Near Atlanta, Georgia
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------
+Date: 1864-08-22
+ID: LTR-1864-08-22-001
+Recipient: Mrs. Hubbell (Mother)
+Location: 2d Div. Hospital, 20th Corps, near Atlanta, Ga.
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-08-30
+ID: LTR-1864-08-30-001
+Recipient: Mrs. Hubbell (Mother)
+Location: 2d Div. Hospital, 20th A.C.
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-09-02
+ID: LTR-1864-09-02-001
+Recipient: Mrs. Hubbell (Mother)
+Location: U.S. General Hospital, Chattanooga, Tennessee
+Significance: notable
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1864-09-18
+ID: LTR-1864-09-18-001
+Recipient: Mrs. Hubbell (Mother)
+Location: U.S. Field Hospital No. 2, Chattanooga, Tennessee
+Significance: notable
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-09-21
+ID: LTR-1864-09-21-002
+Recipient: Mrs. Hubbell (Mother)
+Location: U.S. Hospital No. 2, Chattanooga, Tennessee
+Significance: notable
+Emotion: extreme
+--------------------------------------------------------------------------------
+Date: 1864-09-21
+ID: LTR-1864-09-21-003
+Recipient: Frances (Fannie)
+Location: U.S. Field Hospital No. 2, Chattanooga, Tennessee
+Significance: routine
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1864-09-25
+ID: LTR-1864-09-25-001
+Recipient: Frances (Fannie)
+Location: U.S. Field Hospital No. 2, Chattanooga, Tennessee
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-10-10
+ID: LTR-1864-10-10-001
+Recipient: Mrs. Hubbell (Mother)
+Location: U.S.A. Hospital No. 3, Nashville, Tennessee
+Significance: notable
+Emotion: low
+--------------------------------------------------------------------------------
+Date: 1864-10-26
+ID: LTR-1864-10-26-001
+Recipient: Mrs. Hubbell (Mother)
+Location: U.S.A. Hospital No. 3, Nashville, Tennessee
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-12-05
+ID: LTR-1864-12-05-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Nashville, Tennessee
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1864-12-12
+ID: LTR-1864-12-12-002
+Recipient: Mrs. Hubbell (Mother)
+Location: Nashville, Tennessee
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1865-06-16
+ID: LTR-1865-06-16-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Near Washington, D.C.
+Significance: major
+Emotion: moderate
+--------------------------------------------------------------------------------
+Date: 1865-06-27
+ID: LTR-1865-06-27-001
+Recipient: Frances (Fannie)
+Location: Near Alexandria, Virginia
+Significance: major
+Emotion: extreme
+--------------------------------------------------------------------------------
+Date: 1865-07-27
+ID: LTR-1865-07-27-001
+Recipient: Mrs. Hubbell (Mother)
+Location: Camp Wheeler, Ogdensburgh, N.Y.
+Significance: major
+Emotion: high
+--------------------------------------------------------------------------------

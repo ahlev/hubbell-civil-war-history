@@ -497,6 +497,7 @@ function openLetterOverlay(letter) {
   backdrop.onclick = function(e) { if (e.target === backdrop) closeLetterOverlay(); };
   backdrop.innerHTML = '<div class="letter-overlay-panel">' +
     '<button class="lo-close" onclick="closeLetterOverlay()" title="Close (Esc)">\u2715</button>' +
+    (window.HubbellDeepLink ? HubbellDeepLink.letterShareBtn(letter.id) : '') +
     '<div class="lo-date" style="color:' + color + '">' + formatDate(letter.dateObj) + '</div>' +
     '<div class="lo-meta">' + authorName + (letter.recipient ? ' \u2192 ' + letter.recipient : '') + (letter.location ? ' \u00b7 ' + letter.location : '') + '</div>' +
     '<div class="lo-badges">' + badges + '</div>' +
@@ -770,9 +771,45 @@ updateZoomUI();
 <script>
 document.getElementById('searchInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter' && this.value.trim()) {
-    window.location.href = 'index.html?q=' + encodeURIComponent(this.value.trim());
+    window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
   }
 });
+</script>
+<script src="_deeplink.js"></script>
+<script>
+HubbellDeepLink.injectShareButton();
+HubbellDeepLink.registerStateReader(function() {
+  var s = {};
+  var hidden = Object.keys(visible).filter(function(k) { return !visible[k]; });
+  if (hidden.length) s.hide = hidden.join(',');
+  if (zoomDateMin || zoomDateMax) s.zoom = (zoomDateMin || '') + ',' + (zoomDateMax || '');
+  if (selectedPoint) s.letter = selectedPoint.id;
+  return s;
+});
+HubbellDeepLink.registerStateApplier(function(p) {
+  if (p.hide) {
+    p.hide.split(',').forEach(function(a) {
+      if (visible.hasOwnProperty(a)) {
+        visible[a] = false;
+        var el = document.querySelector('.legend-item[data-author="' + a + '"]');
+        if (el) el.classList.add('dimmed');
+      }
+    });
+    renderMainChart(); renderFreqChart();
+  }
+  if (p.zoom) {
+    var parts = p.zoom.split(',');
+    if (parts[0]) zoomDateMin = parts[0];
+    if (parts[1]) zoomDateMax = parts[1];
+    renderMainChart(); updateZoomUI();
+  }
+  if (p.letter) {
+    var l = letterData.find(function(x) { return x.id === p.letter; });
+    if (l) setTimeout(function() { openLetterOverlay(l); }, 200);
+  }
+});
+HubbellDeepLink.enableHistory();
+HubbellDeepLink.applyOnLoad();
 </script>
 </body>
 </html>

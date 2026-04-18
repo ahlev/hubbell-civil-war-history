@@ -168,7 +168,7 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
   .explore-grid{grid-template-columns:1fr}
 }
 </style>
-<link rel="stylesheet" href="_overlay.css">
+<link rel="stylesheet" href="_overlay.css?v=1775363534">
 </head>
 <body>
 
@@ -367,136 +367,27 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 /* Letter data is embedded below by build script */
 </script>
 <script src="_search-data.js"></script>
+<script src="_search-engine.js"></script>
 <script>
-/* ===== CONSTANTS ===== */
-var AUTHOR_COLORS = {henry:'#2D5F8A',alexander:'#B8860B',james:'#4A7C59',charles:'#8B3A3A',mother:'#7B5EA7',mcdonald:'#666',luther:'#666',mcneil:'#666'};
-var AUTHOR_NAMES = {henry:'Henry Hubbell',alexander:'Alexander F. Hubbell',james:'James Hubbell',charles:'Charles F. Hubbell',mother:'Frances Hubbell (Mother)',mcdonald:'R.W. McDonald',luther:'Amos Luther',mcneil:'Mary McNeil'};
-
-/* ===== THEMATIC SYNONYMS ===== */
-var THEMES = {
-  illness: ['sick','ill','unwell','fever','ague','diarrhea','dysentery','health','hospital','surgeon','doctor','medicine','quinine','pills','measles','rheumatism','cough','scurvy','disease','typhoid','malaria'],
-  battle: ['battle','fight','engagement','skirmish','attack','charge','shell','musket','cannon','artillery','wounded','killed','casualty','retreat','advance','picket','fortification','breastwork','rifle'],
-  money: ['dollar','dollars','pay','paid','bounty','money','expense','cost','owe','debt','sutler','cent','cents','remittance','send home'],
-  family: ['mother','sister','brother','home','family','father','wife','children','frances','fannie'],
-  morale: ['lonely','homesick','discouraged','cheerful','hope','despair','tired','weary','courage','fear','anxious','worry','spirit','resign'],
-  camp: ['camp','tent','march','drill','ration','rations','guard','picket','duty','fatigue','knapsack','blanket','regiment','company','colonel','captain']
-};
-
-/* ===== SEARCH INDEX ===== */
-var searchIndex = [];
-function buildIndex() {
-  LETTERS.forEach(function(l) {
-    var textLower = l.t.toLowerCase();
-    var peopleLower = (l.ppl || []).map(function(p) { return p.toLowerCase(); });
-    var placesLower = (l.plc || []).map(function(p) { return p.toLowerCase(); });
-    var metaLower = (l.an + ' ' + l.r + ' ' + l.loc + ' ' + l.d).toLowerCase();
-    searchIndex.push({
-      letter: l,
-      textLower: textLower,
-      peopleLower: peopleLower,
-      placesLower: placesLower,
-      metaLower: metaLower,
-      allLower: textLower + ' ' + peopleLower.join(' ') + ' ' + placesLower.join(' ') + ' ' + metaLower
-    });
-  });
-}
-buildIndex();
-
-function search(query) {
-  if (!query || query.length < 2) return [];
-  var terms = query.toLowerCase().split(/\s+/).filter(function(t) { return t.length > 1; });
-  if (terms.length === 0) return [];
-
-  // Expand thematic terms
-  var expandedTerms = [];
-  terms.forEach(function(term) {
-    expandedTerms.push(term);
-    for (var theme in THEMES) {
-      if (theme === term || THEMES[theme].indexOf(term) !== -1) {
-        THEMES[theme].forEach(function(syn) {
-          if (expandedTerms.indexOf(syn) === -1) expandedTerms.push(syn);
-        });
-      }
-    }
-  });
-
-  var results = [];
-  searchIndex.forEach(function(entry) {
-    var score = 0;
-    var matchTypes = new Set();
-    var matchedTerms = [];
-
-    terms.forEach(function(term) {
-      // Exact metadata match (author, recipient, location, date) — highest weight
-      if (entry.metaLower.indexOf(term) !== -1) {
-        score += 15;
-        matchTypes.add('meta');
-        matchedTerms.push(term);
-      }
-      // People match
-      var personMatch = entry.peopleLower.some(function(p) { return p.indexOf(term) !== -1; });
-      if (personMatch) {
-        score += 12;
-        matchTypes.add('person');
-        matchedTerms.push(term);
-      }
-      // Place match
-      var placeMatch = entry.placesLower.some(function(p) { return p.indexOf(term) !== -1; });
-      if (placeMatch) {
-        score += 10;
-        matchTypes.add('place');
-        matchedTerms.push(term);
-      }
-      // Direct text match — weight by frequency
-      var textMatches = (entry.textLower.match(new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length;
-      if (textMatches > 0) {
-        score += 5 + Math.min(textMatches * 2, 10);
-        matchTypes.add('text');
-        matchedTerms.push(term);
-      }
-    });
-
-    // Thematic expansion matches (lower weight)
-    expandedTerms.forEach(function(syn) {
-      if (terms.indexOf(syn) !== -1) return; // skip original terms
-      var synMatches = (entry.textLower.match(new RegExp(syn.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length;
-      if (synMatches > 0) {
-        score += 1 + Math.min(synMatches, 3);
-        matchTypes.add('text');
-      }
-    });
-
-    // Multi-term bonus
-    if (matchedTerms.length > 1) score += matchedTerms.length * 3;
-
-    // Flag bonus
-    if (entry.letter.bat) score += 1;
-    if (entry.letter.ill) score += 1;
-
-    if (score > 0) {
-      results.push({
-        letter: entry.letter,
-        score: score,
-        matchTypes: Array.from(matchTypes),
-        matchedTerms: matchedTerms
-      });
-    }
-  });
-
-  results.sort(function(a, b) { return b.score - a.score; });
-  return results.slice(0, 40);
-}
-
 /* ===== SEARCH UI ===== */
 var searchInput = document.getElementById('searchInput');
 var searchDropdown = document.getElementById('searchDropdown');
 var searchTimeout = null;
+var _ddQuery = ''; // track current dropdown query for expand/link
 
 searchInput.addEventListener('input', function() {
   clearTimeout(searchTimeout);
   var q = this.value.trim();
   if (q.length < 2) { searchDropdown.classList.remove('open'); return; }
   searchTimeout = setTimeout(function() { renderResults(q); }, 150);
+});
+
+searchInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && this.value.trim()) {
+    e.preventDefault();
+    searchDropdown.classList.remove('open');
+    window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
+  }
 });
 
 searchInput.addEventListener('focus', function() {
@@ -520,56 +411,17 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// Handle ?q= param from cross-page search redirects
+// Handle ?q= param — redirect to search.html if present
 (function() {
   var urlQ = new URLSearchParams(window.location.search).get('q');
   if (urlQ) {
-    searchInput.value = urlQ;
-    renderResults(urlQ);
-    window.history.replaceState({}, '', window.location.pathname);
+    window.location.replace('search.html?q=' + encodeURIComponent(urlQ));
   }
 })();
 
-function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-
-function highlightTerms(text, terms, maxLen) {
-  var t = text.length > maxLen ? text.substring(0, maxLen) + '...' : text;
-  var escaped = esc(t);
-  terms.forEach(function(term) {
-    var re = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-    escaped = escaped.replace(re, '<mark>$1</mark>');
-  });
-  return escaped;
-}
-
-function findBestExcerpt(text, terms, radius) {
-  var tl = text.toLowerCase();
-  var bestPos = -1;
-  var bestScore = 0;
-  terms.forEach(function(term) {
-    var idx = tl.indexOf(term.toLowerCase());
-    if (idx !== -1) {
-      // Score by how many terms are near this position
-      var nearScore = 0;
-      terms.forEach(function(t2) {
-        var nearby = tl.indexOf(t2.toLowerCase(), Math.max(0, idx - radius));
-        if (nearby !== -1 && nearby < idx + radius) nearScore++;
-      });
-      if (nearScore > bestScore || (nearScore === bestScore && idx < bestPos)) {
-        bestScore = nearScore;
-        bestPos = idx;
-      }
-    }
-  });
-  if (bestPos === -1) return text.substring(0, radius * 2);
-  var start = Math.max(0, bestPos - radius);
-  var end = Math.min(text.length, bestPos + radius);
-  var excerpt = (start > 0 ? '...' : '') + text.substring(start, end) + (end < text.length ? '...' : '');
-  return excerpt;
-}
-
 function renderResults(query) {
-  var results = search(query);
+  _ddQuery = query;
+  var results = search(query, { maxResults: 40 });
   if (results.length === 0) {
     searchDropdown.innerHTML = '<div class="search-empty">No results for &ldquo;' + esc(query) + '&rdquo;</div>';
     searchDropdown.classList.add('open');
@@ -596,7 +448,6 @@ function renderResults(query) {
   // Group top results by primary match type
   var groups = {meta: [], person: [], place: [], text: []};
   results.forEach(function(r) {
-    // Assign to primary (highest-priority) group
     if (r.matchTypes.indexOf('meta') !== -1) groups.meta.push(r);
     else if (r.matchTypes.indexOf('person') !== -1) groups.person.push(r);
     else if (r.matchTypes.indexOf('place') !== -1) groups.place.push(r);
@@ -609,14 +460,13 @@ function renderResults(query) {
   groupOrder.forEach(function(gk) {
     var items = groups[gk];
     if (items.length === 0) return;
-    html += '<div class="search-group"><div class="search-group-label">' + groupLabels[gk] + ' (' + items.length + ')</div>';
-    items.slice(0, 8).forEach(function(r) {
+    html += '<div class="search-group" data-gk="' + gk + '"><div class="search-group-label">' + groupLabels[gk] + ' (' + items.length + ')</div>';
+    html += '<div class="sg-items">';
+    items.forEach(function(r, idx) {
       var l = r.letter;
       var color = AUTHOR_COLORS[l.a] || '#999';
       var excerpt = findBestExcerpt(l.t, terms, 100);
       var highlighted = highlightTerms(excerpt, terms, 220);
-
-      // Badges
       var badges = '';
       r.matchTypes.forEach(function(mt) {
         badges += '<span class="sr-badge ' + mt + '">' + mt + '</span>';
@@ -624,7 +474,8 @@ function renderResults(query) {
       if (l.bat) badges += '<span class="sr-badge" style="background:#FCE4EC;color:#C62828">battle</span>';
       if (l.ill) badges += '<span class="sr-badge" style="background:#FFF3E0;color:#E65100">illness</span>';
 
-      html += '<div class="search-result" data-lid="' + l.id + '">' +
+      var hidden = idx >= 8 ? ' style="display:none" data-hidden="1"' : '';
+      html += '<div class="search-result" data-lid="' + l.id + '"' + hidden + '>' +
         '<div class="sr-dot" style="background:' + color + '"></div>' +
         '<div class="sr-body">' +
           '<div class="sr-meta"><strong>' + esc(l.an) + '</strong> to ' + esc(l.r) + ' &mdash; ' + esc(l.d) + ', ' + esc(l.loc) + '</div>' +
@@ -632,16 +483,20 @@ function renderResults(query) {
           '<div class="sr-badges">' + badges + '</div>' +
         '</div></div>';
     });
+    html += '</div>';
     if (items.length > 8) {
-      html += '<div style="padding:6px 16px;font-size:0.72rem;color:var(--text-light);text-align:center">+ ' + (items.length - 8) + ' more</div>';
+      html += '<button class="sg-expand" data-group="' + gk + '" data-shown="8" style="display:block;width:100%;padding:6px 16px;font-size:0.72rem;color:var(--text-light);text-align:center;background:none;border:none;cursor:pointer;font-family:Inter,sans-serif">+ ' + (items.length - 8) + ' more &darr;</button>';
     }
     html += '</div>';
   });
 
+  // Footer: always link to full results page
+  html += '<a href="search.html?q=' + encodeURIComponent(query) + '" style="display:block;padding:10px 16px;font-size:0.78rem;color:var(--henry);text-align:center;text-decoration:none;border-top:1px solid var(--border-light);font-weight:500">View all ' + results.length + ' results &rarr;</a>';
+
   searchDropdown.innerHTML = html;
   searchDropdown.classList.add('open');
 
-  // Wire up clicks
+  // Wire up result clicks
   searchDropdown.querySelectorAll('.search-result').forEach(function(el) {
     el.addEventListener('click', function() {
       var lid = this.dataset.lid;
@@ -650,24 +505,44 @@ function renderResults(query) {
       searchDropdown.classList.remove('open');
     });
   });
+
+  // Wire up expand buttons
+  searchDropdown.querySelectorAll('.sg-expand').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var group = this.closest('.search-group');
+      var hidden = group.querySelectorAll('.search-result[data-hidden="1"]');
+      var shown = +this.dataset.shown;
+      var count = 0;
+      hidden.forEach(function(el) {
+        if (count < 8) { el.style.display = ''; el.removeAttribute('data-hidden'); count++; }
+      });
+      shown += count;
+      this.dataset.shown = shown;
+      var remaining = group.querySelectorAll('.search-result[data-hidden="1"]').length;
+      if (remaining > 0) {
+        this.textContent = '+ ' + remaining + ' more \u2193';
+      } else {
+        this.style.display = 'none';
+      }
+    });
+  });
 }
 
 /* ===== LETTER READER ===== */
 var readerOverlay = document.getElementById('readerOverlay');
 var readerPanel = document.getElementById('readerPanel');
 
-function openReader(letter, highlightTerms) {
+function openReader(letter, terms) {
   var color = AUTHOR_COLORS[letter.a] || '#999';
   var name = AUTHOR_NAMES[letter.a] || letter.an;
 
-  // Flags
   var flags = '';
   if (letter.bat) flags += '<span class="reader-flag rf-battle">Battle</span>';
   if (letter.ill) flags += '<span class="reader-flag rf-illness">Illness</span>';
   if (letter.dth) flags += '<span class="reader-flag rf-death">Death</span>';
   if (letter.wnd) flags += '<span class="reader-flag rf-wound">Wound</span>';
 
-  // People tags
   var peopleTags = '';
   if (letter.ppl && letter.ppl.length > 0) {
     peopleTags = '<div class="reader-people"><h4>People Mentioned</h4><div class="reader-tags">' +
@@ -675,7 +550,6 @@ function openReader(letter, highlightTerms) {
       '</div></div>';
   }
 
-  // Place tags
   var placeTags = '';
   if (letter.plc && letter.plc.length > 0) {
     placeTags = '<div class="reader-places"><h4>Places Referenced</h4><div class="reader-tags">' +
@@ -683,10 +557,9 @@ function openReader(letter, highlightTerms) {
       '</div></div>';
   }
 
-  // Letter body with highlights
   var body = esc(letter.t);
-  if (highlightTerms && highlightTerms.length > 0) {
-    highlightTerms.forEach(function(term) {
+  if (terms && terms.length > 0) {
+    terms.forEach(function(term) {
       var re = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
       body = body.replace(re, '<mark>$1</mark>');
     });
@@ -703,8 +576,10 @@ function openReader(letter, highlightTerms) {
 
   readerOverlay.classList.add('open');
 
-  // Scroll to first highlight
-  if (highlightTerms && highlightTerms.length > 0) {
+  // Bind overlay links on dynamically-rendered reader tags
+  if (window.HubbellOverlay) HubbellOverlay.bindDynamic(document.getElementById('readerContent'));
+
+  if (terms && terms.length > 0) {
     setTimeout(function() {
       var firstMark = readerPanel.querySelector('.reader-body mark');
       if (firstMark) firstMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -722,8 +597,10 @@ document.addEventListener('keydown', function(e) {
 });
 </script>
 
-<script src="_overlay-data.js"></script>
-<script src="_overlay.js"></script>
+<script src="_deeplink.js"></script>
+<script src="_overlay-data.js?v=1775363534"></script>
+<script src="_overlay.js?v=1775363534"></script>
 <script>HubbellOverlay.bindPage({ tags: true, locations: true, prose: '.hook, .narrative p' });</script>
+<script>HubbellDeepLink.injectShareButton();</script>
 </body>
 </html>
