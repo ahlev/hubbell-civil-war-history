@@ -4,25 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>What They Wrote About &mdash; Hubbell Brothers Civil War Letters</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_design.css">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --henry:#2D5F8A;--alexander:#B8860B;--james:#4A7C59;--charles:#8B3A3A;
   --bg:#FAF8F5;--card:#FFFFFF;
   --text:#2C2C2C;--text-mid:#6B6B6B;--text-light:#9B9B9B;
   --border:#E8E4DF;--border-light:#F0ECE7;
 }
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden}
-h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3}
+body{overflow-x:hidden}
 
 /* ===== HERO ===== */
 .hero{text-align:center;padding:52px 24px 28px;max-width:900px;margin:0 auto}
 .hero h1{font-size:clamp(2rem,4vw,3rem);margin-bottom:10px;letter-spacing:-0.5px}
-.hero .subtitle{font-size:1.02rem;color:var(--text-mid);max-width:680px;margin:0 auto 20px;font-weight:300;font-family:'Source Serif 4',serif;font-style:italic}
+.hero .subtitle{font-size:1.02rem;color:var(--text-mid);max-width:680px;margin:0 auto 20px;font-weight:300;font-family:var(--font-display);font-style:italic}
 .hero .stat-row{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:16px}
 .hero .stat{text-align:center}
-.hero .stat .num{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;display:block}
+.hero .stat .num{font-family:var(--font-display);font-size:1.75rem;font-weight:700;display:block}
 .hero .stat .lbl{font-size:0.72rem;color:var(--text-light);text-transform:uppercase;letter-spacing:1px}
 
 /* ===== CONTROLS ===== */
@@ -62,7 +62,7 @@ svg.chart-svg{display:block}
 .tooltip.show{opacity:1}
 .tooltip .tt-topic{font-weight:600;margin-bottom:2px;display:flex;align-items:center;gap:6px}
 .tooltip .tt-topic .tt-swatch{width:10px;height:10px;border-radius:2px;flex-shrink:0}
-.tooltip .tt-pct{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+.tooltip .tt-pct{font-family:var(--font-display);font-size:1.2rem;font-weight:700}
 .tooltip .tt-detail{font-size:0.73rem;color:var(--text-light);margin-top:4px}
 
 /* ===== DETAIL OVERLAY ===== */
@@ -80,11 +80,11 @@ svg.chart-svg{display:block}
 .dp-excerpt:hover{background:var(--border-light)}
 .dp-excerpt .ex-meta{font-size:0.73rem;color:var(--text-light);margin-bottom:4px;display:flex;align-items:center;gap:6px}
 .dp-excerpt .ex-meta .author-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.dp-excerpt .ex-text{font-family:'Source Serif 4',serif;font-size:0.88rem;line-height:1.7;color:var(--text)}
+.dp-excerpt .ex-text{font-family:var(--font-display);font-size:0.88rem;line-height:1.7;color:var(--text)}
 .dp-excerpt .ex-text mark{background:rgba(255,200,50,0.3);color:inherit;border-radius:2px;padding:0 1px}
 
 /* Full letter expand */
-.dp-full-letter{background:var(--bg);border-radius:8px;padding:14px;margin-top:8px;font-family:'Source Serif 4',serif;font-size:0.86rem;line-height:1.8;color:var(--text);white-space:pre-wrap;max-height:300px;overflow-y:auto;border:1px solid var(--border-light);display:none}
+.dp-full-letter{background:var(--bg);border-radius:4px;padding:14px;margin-top:8px;font-family:var(--font-display);font-size:0.86rem;line-height:1.8;color:var(--text);white-space:pre-wrap;max-height:300px;overflow-y:auto;border:1px solid var(--border-light);display:none}
 .dp-full-letter.open{display:block}
 .dp-expand-btn{font-size:0.72rem;color:var(--text-mid);cursor:pointer;margin-top:4px;font-weight:500}
 .dp-expand-btn:hover{color:var(--text)}
@@ -98,105 +98,11 @@ svg.chart-svg{display:block}
   .toggle-group{margin:4px 0}
 }
 
-/* ===== SITE NAV ===== */
-.site-nav {
-  position: sticky;
-  top: 0;
-  z-index: 9000;
-  background: #2C2C2C;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 8px 20px;
-  gap: 6px 0;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-}
-.nav-links {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 3px 14px;
-}
-.nav-label {
-  color: #9B9B9B;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-}
-.nav-link {
-  color: #B8B2AA;
-  text-decoration: none;
-  padding: 2px 0;
-  transition: color 0.15s;
-  white-space: nowrap;
-}
-.nav-link:hover { color: #FFFFFF; }
-.nav-link.active {
-  color: #FFFFFF;
-  font-weight: 600;
-}
-.nav-spacer { flex: 1; min-width: 8px; }
-.search-container {
-  position: relative;
-  flex-shrink: 0;
-}
-.search-input {
-  width: 180px;
-  padding: 5px 10px 5px 28px;
-  border: 1px solid #555;
-  border-radius: 14px;
-  background: #3a3a3a;
-  color: #eee;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  outline: none;
-  transition: border-color 0.2s, background 0.2s;
-}
-.search-input::placeholder { color: #888; }
-.search-input:focus { border-color: #888; background: #444; }
-.search-icon {
-  position: absolute;
-  left: 9px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #888;
-  font-size: 0.7rem;
-  pointer-events: none;
-}
-@media (max-width: 700px) {
-  .site-nav { padding: 6px 12px; }
-  .nav-links { gap: 2px 10px; }
-  .nav-label { display: none; }
-  .nav-link { font-size: 0.68rem; }
-  .search-container { order: 99; width: 100%; margin-top: 2px; }
-  .search-input { width: 100%; }
-  .nav-spacer { display: none; }
-}
 </style>
 </head>
 <body>
 
-<nav class="site-nav">
-  <div class="nav-links">
-    <span class="nav-label">Explore:</span>
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="hubbell-dashboard.html" class="nav-link">Parallel Lives</a>
-    <a href="viz-emotional-arcs.html" class="nav-link">Emotional Arcs</a>
-    <a href="viz-map-fullwar.html" class="nav-link">Map That Moves</a>
-    <a href="viz-health-ledger.html" class="nav-link">Health Ledger</a>
-    <a href="viz-money-story.html" class="nav-link">Money Story</a>
-    <a href="viz-people-web.html" class="nav-link">People Web</a>
-    <a href="viz-what-they-wrote-about.html" class="nav-link active">What They Wrote</a>
-    <a href="who-they-were.html" class="nav-link">Who They Were</a>
-  </div>
-  <div class="nav-spacer"></div>
-  <div class="search-container">
-    <span class="search-icon">&#x1F50D;</span>
-    <input type="text" class="search-input" id="searchInput" placeholder="Search 274 letters..." autocomplete="off">
-  </div>
-</nav>
+<div id="site-nav"></div>
 
 <div class="hero">
   <h1>What They Wrote About</h1>
@@ -807,13 +713,8 @@ fetch('03-data/all-letters.json')
   });
 </script>
 
-<script>
-document.getElementById('searchInput').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && this.value.trim()) {
-    window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
-  }
-});
-</script>
+<script src="_design-data.js"></script>
+<script src="_design-ui.js"></script>
 <script src="_deeplink.js"></script>
 <script>
 HubbellDeepLink.injectShareButton();

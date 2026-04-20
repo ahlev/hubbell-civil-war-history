@@ -4,127 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Map That Moves — Full War, 1861–1865</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="03-data/map-movements.js"></script>
+<link rel="stylesheet" href="_design.css">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: #FAF8F5;
-  color: #2C2C2C;
+html, body {
+  height: 100%;
+  margin: 0;
   overflow: hidden;
-  height: 100vh;
+}
+body {
   display: flex;
   flex-direction: column;
 }
 
-/* ===== SITE NAV ===== */
-.site-nav {
-  position: sticky;
-  top: 0;
-  z-index: 9000;
-  background: #2C2C2C;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 8px 20px;
-  gap: 6px 0;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-}
-.nav-links {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 3px 14px;
-}
-.nav-label {
-  color: #9B9B9B;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-}
-.nav-link {
-  color: #B8B2AA;
-  text-decoration: none;
-  padding: 2px 0;
-  transition: color 0.15s;
-  white-space: nowrap;
-}
-.nav-link:hover { color: #FFFFFF; }
-.nav-link.active {
-  color: #FFFFFF;
-  font-weight: 600;
-}
-.nav-spacer { flex: 1; min-width: 8px; }
-.search-container {
-  position: relative;
-  flex-shrink: 0;
-}
-.search-input {
-  width: 180px;
-  padding: 5px 10px 5px 28px;
-  border: 1px solid #555;
-  border-radius: 14px;
-  background: #3a3a3a;
-  color: #eee;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  outline: none;
-  transition: border-color 0.2s, background 0.2s;
-}
-.search-input::placeholder { color: #888; }
-.search-input:focus { border-color: #888; background: #444; }
-.search-icon {
-  position: absolute;
-  left: 9px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #888;
-  font-size: 0.7rem;
-  pointer-events: none;
-}
-@media (max-width: 700px) {
-  .site-nav { padding: 6px 12px; }
-  .nav-links { gap: 2px 10px; }
-  .nav-label { display: none; }
-  .nav-link { font-size: 0.68rem; }
-  .search-container { order: 99; width: 100%; margin-top: 2px; }
-  .search-input { width: 100%; }
-  .nav-spacer { display: none; }
-}
-}
-
-/* ── Header ── */
-.header {
-  text-align: center;
-  padding: 10px 24px 6px;
-  border-bottom: 1px solid #E8E4DF;
-  background: #FFFFFF;
-  flex-shrink: 0;
-}
-.header h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #2C2C2C;
-  margin-bottom: 1px;
-}
-.header .subtitle {
-  font-size: 0.8rem;
-  color: #6B6B6B;
-  font-weight: 300;
-}
 
 /* ── Status Bar ── */
 .status-bar {
   display: flex;
-  background: #FFFFFF;
-  border-bottom: 1px solid #E8E4DF;
+  background: var(--bg-elev);
+  border-bottom: 1px solid var(--rule);
   flex-shrink: 0;
 }
 .status-panel {
@@ -134,9 +37,13 @@ body {
   border-right: 1px solid #F0ECE7;
   cursor: pointer;
   transition: opacity 0.3s, background 0.3s;
+  height: 130px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .status-panel:last-child { border-right: none; }
-.status-panel:hover { background: #FAF8F5; }
+.status-panel:hover { background: var(--bg); }
 .status-panel.inactive { opacity: 0.35; }
 .status-panel.memorial {
   background: #F8F4F0;
@@ -162,12 +69,12 @@ body {
 }
 .status-regiment {
   font-size: 0.65rem;
-  color: #9B9B9B;
+  color: var(--ink-3);
   margin-bottom: 4px;
 }
 .status-location {
   font-size: 0.8rem;
-  color: #2C2C2C;
+  color: var(--ink);
   font-weight: 500;
   margin-bottom: 2px;
 }
@@ -188,7 +95,7 @@ body {
 }
 .badge-estimated {
   background: #F0ECE7;
-  color: #9B9B9B;
+  color: var(--ink-3);
 }
 .badge-kia {
   background: #F0E0D8;
@@ -200,33 +107,30 @@ body {
 }
 .status-context {
   font-size: 0.7rem;
-  color: #6B6B6B;
+  color: var(--ink-2);
   line-height: 1.45;
   margin-top: 3px;
-  max-height: 8em;
+  flex: 1;
   overflow: hidden;
   font-style: italic;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
-.read-letter-btn {
-  display: inline-block;
-  font-size: 0.6rem;
-  font-weight: 600;
-  font-style: normal;
-  color: #2D5F8A;
-  background: #E8F0F8;
-  border: 1px solid #C0D4E8;
-  border-radius: 3px;
-  padding: 2px 8px;
-  margin-top: 4px;
+.badge-clickable {
   cursor: pointer;
-  transition: all 0.15s;
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 0.3px;
+  transition: background 0.15s, color 0.15s;
 }
-.read-letter-btn:hover {
-  background: #D0E0F0;
-  color: #1A3D5C;
-  border-color: #A0B8D0;
+.badge-clickable:hover {
+  background: #C8E6C8;
+  color: #1A4D1A;
+}
+.ctx-clickable {
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.ctx-clickable:hover {
+  color: var(--ink);
 }
 
 /* ── Main Layout ── */
@@ -248,8 +152,8 @@ body {
 /* ── Info Panel (right side) ── */
 .info-panel {
   width: 360px;
-  background: #FFFFFF;
-  border-left: 1px solid #E8E4DF;
+  background: var(--bg-elev);
+  border-left: 1px solid var(--rule);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -266,13 +170,13 @@ body {
   right: 368px;
   top: 10px;
   z-index: 1000;
-  background: #FFFFFF;
-  border: 1px solid #E8E4DF;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
   border-radius: 4px;
   padding: 4px 8px;
   cursor: pointer;
   font-size: 0.75rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   transition: right 0.3s;
 }
 .info-panel.collapsed ~ .info-toggle { right: 8px; }
@@ -282,9 +186,9 @@ body {
   border-bottom: 1px solid #F0ECE7;
 }
 .info-header h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-size: 1rem;
-  color: #2C2C2C;
+  color: var(--ink);
 }
 .info-body {
   flex: 1;
@@ -292,7 +196,7 @@ body {
   padding: 12px 16px;
 }
 .info-empty {
-  color: #9B9B9B;
+  color: var(--ink-3);
   font-size: 0.85rem;
   font-style: italic;
   padding-top: 20px;
@@ -300,29 +204,29 @@ body {
 }
 .info-letter-id {
   font-size: 0.7rem;
-  color: #9B9B9B;
+  color: var(--ink-3);
   font-family: monospace;
 }
 .info-meta {
   font-size: 0.8rem;
-  color: #6B6B6B;
+  color: var(--ink-2);
   margin: 8px 0;
   line-height: 1.6;
 }
 .info-excerpt {
   font-size: 0.85rem;
-  color: #2C2C2C;
+  color: var(--ink);
   line-height: 1.65;
   margin-top: 10px;
   padding: 10px 12px;
-  background: #FAF8F5;
+  background: var(--bg);
   border-left: 3px solid #B8860B;
   border-radius: 2px;
   font-style: italic;
 }
 .info-source {
   font-size: 0.75rem;
-  color: #6B6B6B;
+  color: var(--ink-2);
   margin-top: 10px;
   padding: 8px 10px;
   background: #F8F6F3;
@@ -352,7 +256,7 @@ body {
 }
 .flag-battle { background: #FDE8E8; color: #C44E52; }
 .flag-illness { background: #FFF3CD; color: #856404; }
-.flag-death { background: #2C2C2C; color: #FFFFFF; }
+.flag-death { background: var(--ink); color: var(--bg-elev); }
 .flag-wound { background: #F8D7DA; color: #721C24; }
 
 .info-section {
@@ -364,17 +268,17 @@ body {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.4px;
-  color: #9B9B9B;
+  color: var(--ink-3);
   margin-bottom: 6px;
 }
 .info-recent-item {
   font-size: 0.75rem;
   padding: 4px 0;
-  color: #6B6B6B;
+  color: var(--ink-2);
   border-bottom: 1px solid #F8F6F3;
   line-height: 1.4;
 }
-.info-recent-item .date { font-weight: 600; color: #2C2C2C; }
+.info-recent-item .date { font-weight: 600; color: var(--ink); }
 
 /* ── Legend (on map) ── */
 .map-legend {
@@ -423,10 +327,10 @@ body {
   transform: translateX(-50%);
   z-index: 1000;
   background: rgba(44, 44, 44, 0.92);
-  color: #FAF8F5;
+  color: var(--bg);
   padding: 8px 20px;
   border-radius: 6px;
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-size: 0.95rem;
   font-style: italic;
   max-width: 500px;
@@ -439,8 +343,8 @@ body {
 
 /* ── Controls Bar ── */
 .controls {
-  background: #FFFFFF;
-  border-top: 1px solid #E8E4DF;
+  background: var(--bg-elev);
+  border-top: 1px solid var(--rule);
   padding: 14px 24px 12px;
   display: flex;
   flex-direction: column;
@@ -452,7 +356,7 @@ body {
   font-family: 'Source Serif 4', serif;
   font-size: 0.82rem;
   font-style: italic;
-  color: #9B9B9B;
+  color: var(--ink-3);
   letter-spacing: 0.2px;
   transition: opacity 0.4s;
 }
@@ -464,11 +368,11 @@ body {
 }
 .cta-kbd {
   display: inline-block;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-style: normal;
   font-size: 0.62rem;
   font-weight: 600;
-  color: #6B6B6B;
+  color: var(--ink-2);
   background: #F0ECE7;
   border: 1px solid #DDD8D2;
   border-radius: 4px;
@@ -484,9 +388,9 @@ body {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  border: 1px solid #E8E4DF;
+  border: 1px solid var(--rule);
   background: #FAFAFA;
-  color: #2C2C2C;
+  color: var(--ink);
   font-size: 1.1rem;
   cursor: pointer;
   display: flex;
@@ -502,7 +406,7 @@ body {
 }
 .step-btn:active {
   transform: scale(0.92);
-  background: #E8E4DF;
+  background: var(--rule);
 }
 .step-btn:focus-visible {
   outline: 2px solid #2D5F8A;
@@ -525,16 +429,16 @@ body {
   min-width: 0;
 }
 .date-display {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 600;
-  color: #2C2C2C;
+  color: var(--ink);
   text-align: center;
 }
 .timeline-slider {
   width: 100%;
   cursor: pointer;
-  accent-color: #2C2C2C;
+  accent-color: var(--ink);
   height: 6px;
 }
 
@@ -542,7 +446,7 @@ body {
 .leaflet-control-attribution { font-size: 0.6rem !important; }
 .leaflet-popup-content-wrapper {
   border-radius: 6px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.8rem;
 }
 .leaflet-popup-content { margin: 10px 12px; line-height: 1.5; }
@@ -562,7 +466,7 @@ body {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  border: 3px solid #FFFFFF;
+  border: 3px solid var(--bg-elev);
   box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 .node-pin.verified {
@@ -572,7 +476,7 @@ body {
   background: rgba(255, 255, 255, 0.95);
   padding: 3px 10px;
   border-radius: 5px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 1.05rem;
   font-weight: 600;
   box-shadow: 0 2px 6px rgba(0,0,0,0.18);
@@ -605,9 +509,9 @@ body {
   box-shadow: 0 2px 6px rgba(0,0,0,0.35);
 }
 .node-trail-label {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.55rem;
-  color: #6B6B6B;
+  color: var(--ink-2);
   white-space: nowrap;
   margin-top: 1px;
   text-align: center;
@@ -629,7 +533,7 @@ body {
   background: rgba(255, 255, 255, 0.9);
   padding: 2px 8px;
   border-radius: 4px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.6rem;
   font-weight: 500;
   color: #8B3A3A;
@@ -644,23 +548,23 @@ body {
   top: 10px;
   right: 10px;
   z-index: 1000;
-  background: #FFFFFF;
-  border: 1px solid #E8E4DF;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
   border-radius: 4px;
   padding: 5px 10px;
   cursor: pointer;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.7rem;
   font-weight: 500;
-  color: #6B6B6B;
+  color: var(--ink-2);
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-.recenter-btn:hover { background: #FAF8F5; color: #2C2C2C; }
+.recenter-btn:hover { background: var(--bg); color: var(--ink); }
 
 /* Days since letter badge */
 .days-since-letter {
   font-size: 0.6rem;
-  color: #9B9B9B;
+  color: var(--ink-3);
   font-weight: 400;
   font-style: italic;
   margin-left: 6px;
@@ -680,8 +584,8 @@ body {
   border-radius: 4px;
   border: 1.5px solid #B8B2AA;
   background: #F0ECE7;
-  color: #6B6B6B;
-  font-family: 'Inter', sans-serif;
+  color: var(--ink-2);
+  font-family: var(--font-sans);
   font-weight: 600;
   transition: all 0.15s;
   white-space: nowrap;
@@ -689,12 +593,12 @@ body {
 }
 .lock-btn:hover {
   background: #E0DCD7;
-  color: #2C2C2C;
-  border-color: #9B9B9B;
+  color: var(--ink);
+  border-color: var(--ink-3);
 }
 .status-panel.locked .lock-btn {
   background: #2D5F8A;
-  color: #FFFFFF;
+  color: var(--bg-elev);
   border-color: #2D5F8A;
   box-shadow: 0 1px 4px rgba(45, 95, 138, 0.3);
 }
@@ -709,7 +613,7 @@ body {
 /* ── Days since letter (in status panel) ── */
 .days-since {
   font-size: 0.6rem;
-  color: #9B9B9B;
+  color: var(--ink-3);
   font-style: italic;
   margin-top: 2px;
 }
@@ -717,10 +621,10 @@ body {
 /* ── New Letter Badge (map overlay) ── */
 .new-letter-badge {
   background: #B8860B;
-  color: #FFFFFF;
+  color: var(--bg-elev);
   padding: 3px 8px;
   border-radius: 4px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.6rem;
   font-weight: 500;
   box-shadow: 0 2px 8px rgba(0,0,0,0.25);
@@ -752,8 +656,8 @@ body {
   pointer-events: auto;
 }
 .letter-overlay-content {
-  background: #FFFFFF;
-  border-radius: 8px;
+  background: var(--bg-elev);
+  border-radius: 4px;
   max-width: 640px;
   width: 90vw;
   max-height: 80vh;
@@ -770,25 +674,25 @@ body {
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
-  color: #9B9B9B;
+  color: var(--ink-3);
   padding: 4px;
 }
-.letter-overlay-close:hover { color: #2C2C2C; }
+.letter-overlay-close:hover { color: var(--ink); }
 .letter-overlay-header {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-size: 1.1rem;
   margin-bottom: 4px;
 }
 .letter-overlay-meta {
   font-size: 0.8rem;
-  color: #6B6B6B;
+  color: var(--ink-2);
   margin-bottom: 12px;
   line-height: 1.5;
 }
 .letter-overlay-body {
   font-size: 0.88rem;
   line-height: 1.75;
-  color: #2C2C2C;
+  color: var(--ink);
   white-space: pre-wrap;
   border-top: 1px solid #F0ECE7;
   padding-top: 12px;
@@ -800,7 +704,7 @@ body {
   margin-bottom: 6px;
   background: #FAFAFA;
   border-radius: 4px;
-  border-left: 3px solid #E8E4DF;
+  border-left: 3px solid var(--rule);
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
   font-size: 0.75rem;
@@ -812,10 +716,10 @@ body {
 }
 .recent-letter-card .letter-date {
   font-weight: 600;
-  color: #2C2C2C;
+  color: var(--ink);
 }
 .recent-letter-card .letter-recipient {
-  color: #6B6B6B;
+  color: var(--ink-2);
 }
 .recent-letter-card .letter-context {
   color: #4A4A4A;
@@ -823,9 +727,9 @@ body {
 }
 .recent-letter-card .letter-quote {
   font-style: italic;
-  color: #6B6B6B;
+  color: var(--ink-2);
   margin-top: 3px;
-  border-left: 2px solid #E8E4DF;
+  border-left: 2px solid var(--rule);
   padding-left: 6px;
 }
 
@@ -834,12 +738,11 @@ body {
   .info-panel { display: none; }
   .info-toggle { display: none; }
   .status-bar { overflow-x: auto; }
-  .status-panel { min-width: 140px; padding: 8px 10px; }
+  .status-panel { min-width: 140px; padding: 8px 10px; height: 110px; }
   .controls { padding: 10px 12px; }
   .controls-cta .cta-keys { display: none; }
   .step-btn { width: 34px; height: 34px; }
   .narrative-caption { max-width: 85vw; font-size: 0.85rem; padding: 6px 14px; }
-  .header h1 { font-size: 1.2rem; }
   .map-legend { font-size: 0.6rem; padding: 6px 10px; }
 }
 @media (max-width: 600px) {
@@ -847,7 +750,6 @@ body {
   .status-name { font-size: 0.75rem; }
   .status-regiment { display: none; }
   .status-context { display: none; }
-  .header { padding: 6px 12px 4px; }
   .controls { padding: 8px 8px; }
   .controls-cta { font-size: 0.74rem; }
   .step-btn { width: 30px; height: 30px; }
@@ -859,30 +761,8 @@ body {
 </head>
 <body>
 
-<nav class="site-nav">
-  <div class="nav-links">
-    <span class="nav-label">Explore:</span>
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="hubbell-dashboard.html" class="nav-link">Parallel Lives</a>
-    <a href="viz-emotional-arcs.html" class="nav-link">Emotional Arcs</a>
-    <a href="viz-map-fullwar.html" class="nav-link active">Map That Moves</a>
-    <a href="viz-health-ledger.html" class="nav-link">Health Ledger</a>
-    <a href="viz-money-story.html" class="nav-link">Money Story</a>
-    <a href="viz-people-web.html" class="nav-link">People Web</a>
-    <a href="viz-what-they-wrote-about.html" class="nav-link">What They Wrote</a>
-    <a href="who-they-were.html" class="nav-link">Who They Were</a>
-  </div>
-  <div class="nav-spacer"></div>
-  <div class="search-container">
-    <span class="search-icon">&#x1F50D;</span>
-    <input type="text" class="search-input" id="searchInput" placeholder="Search 274 letters..." autocomplete="off">
-  </div>
-</nav>
+<div id="site-nav"></div>
 
-<div class="header">
-  <h1>The Map That Moves</h1>
-  <div class="subtitle">Four brothers, four years, a thousand miles of war — 1861 to 1865</div>
-</div>
 
 <!-- Status Bar: 4 brother panels -->
 <div class="status-bar" id="statusBar">
@@ -934,10 +814,10 @@ body {
       <div class="legend-row"><span class="legend-node" style="background:#B8860B"></span> Alexander (60th NY)</div>
       <div class="legend-row"><span class="legend-node" style="background:#8B3A3A"></span> Charles (153rd NY)</div>
       <div class="legend-row"><span class="legend-node" style="background:#4A7C59"></span> James (153rd NY)</div>
-      <div class="legend-row" style="margin-top:4px;padding-top:4px;border-top:1px solid #E8E4DF">
+      <div class="legend-row" style="margin-top:4px;padding-top:4px;border-top:1px solid var(--rule)">
         <span class="legend-node" style="background:#3A6B3A;box-shadow:0 0 0 2px rgba(45,107,45,0.4),0 0 0 1px rgba(0,0,0,0.2)"></span> Letter-verified
       </div>
-      <div class="legend-row"><span class="legend-trail" style="background:#9B9B9B"></span> 30-day trail</div>
+      <div class="legend-row"><span class="legend-trail" style="background:var(--ink-3)"></span> 30-day trail</div>
       <div class="legend-row"><span style="font-size:0.85rem">&#10013;</span> Memorial (KIA)</div>
     </div>
 
@@ -1146,7 +1026,10 @@ function dayToDate(day) {
 }
 
 function dateStr(d) {
-  return d.toISOString().slice(0, 10);
+  var y = d.getFullYear();
+  var m = ('0' + (d.getMonth() + 1)).slice(-2);
+  var day = ('0' + d.getDate()).slice(-2);
+  return y + '-' + m + '-' + day;
 }
 
 function formatDate(d) {
@@ -1257,28 +1140,36 @@ function updateToDate(day) {
     // Update status panel
     locEl.textContent = current.placeName;
     const isVerified = current.source === 'letter';
-    badgeEl.textContent = isVerified ? '★ Letter verified' : 'Estimated position';
-    badgeEl.className = isVerified ? 'status-badge badge-letter' : 'status-badge badge-estimated';
-
-    // Context: recent letter or notable event + READ IT button if letter-verified
     const contextText = getContextText(brotherId, currentDateStr, current);
-    if (isVerified && current.letterId && current.transcription) {
-      ctxEl.innerHTML = contextText + `<br><span class="read-letter-btn" onclick="event.stopPropagation();openLetterOverlay('${current.letterId}','${brotherId}')">READ IT</span>`;
-    } else {
-      ctxEl.textContent = contextText;
-    }
 
-    // Days since last letter (updates on every slider change)
+    // Days since last letter
     const lastLetter = DATA.movements
       .filter(m => m.brother === brotherId && m.source === 'letter' && m.date <= currentDateStr)
       .sort((a, b) => b.date.localeCompare(a.date))[0];
-    if (lastLetter) {
-      const daysSince = daysBetween(lastLetter.date, currentDateStr);
-      daysEl.textContent = daysSince === 0
-        ? '✉ Letter today!'
-        : `✉ Last letter: ${daysSince} day${daysSince !== 1 ? 's' : ''} ago`;
+    const daysSince = lastLetter ? daysBetween(lastLetter.date, currentDateStr) : -1;
+
+    // Simplified panel state — no redundant indicators
+    if (isVerified && current.letterId) {
+      if (daysSince === 0) {
+        // Letter today — badge is the action
+        badgeEl.textContent = '✉ Read letter';
+        badgeEl.className = 'status-badge badge-letter badge-clickable';
+        badgeEl.onclick = function(e) { e.stopPropagation(); openLetterOverlay(current.letterId, brotherId); };
+        ctxEl.textContent = contextText;
+        daysEl.textContent = '';
+      } else {
+        badgeEl.textContent = '★ Verified';
+        badgeEl.className = 'status-badge badge-letter';
+        badgeEl.onclick = null;
+        ctxEl.innerHTML = `<span class="ctx-clickable" onclick="event.stopPropagation();openLetterOverlay('${current.letterId}','${brotherId}')">${contextText}</span>`;
+        daysEl.textContent = `Last letter: ${daysSince} day${daysSince !== 1 ? 's' : ''} ago`;
+      }
     } else {
-      daysEl.textContent = '✉ No letters yet';
+      badgeEl.textContent = 'Estimated';
+      badgeEl.className = 'status-badge badge-estimated';
+      badgeEl.onclick = null;
+      ctxEl.textContent = contextText;
+      daysEl.textContent = lastLetter ? `Last letter: ${daysSince} day${daysSince !== 1 ? 's' : ''} ago` : '';
     }
 
     // Draw 30-day trail: up to 5 most recent nodes, connected to current position
@@ -1559,9 +1450,9 @@ function refreshInfoPanel(currentDateStr) {
     const body = document.getElementById('infoPanelBody');
     title.textContent = `${brotherInfo.name}`;
     title.style.color = COLORS[brotherId];
-    body.innerHTML = `<div class="info-empty" style="font-style:normal;color:#6B6B6B">
+    body.innerHTML = `<div class="info-empty" style="font-style:normal;color:var(--ink-2)">
       <strong>${brotherInfo.name}</strong> has not yet enlisted.<br>
-      <span style="font-size:0.78rem;color:#9B9B9B">Service begins ${formatDateStr(brotherInfo.serviceStart)}</span>
+      <span style="font-size:0.78rem;color:var(--ink-3)">Service begins ${formatDateStr(brotherInfo.serviceStart)}</span>
     </div>`;
     return;
   }
@@ -1662,7 +1553,7 @@ function showInfoPanel(movement, brotherId) {
 
   // Notes
   if (movement.notes) {
-    html += `<div style="font-size:0.75rem;color:#9B9B9B;margin-top:10px;font-style:italic">${movement.notes}</div>`;
+    html += `<div style="font-size:0.75rem;color:var(--ink-3);margin-top:10px;font-style:italic">${movement.notes}</div>`;
   }
 
   // 3 Most Recent Letters for this brother
@@ -1848,46 +1739,18 @@ function toggleLock(brotherId) {
 // LETTER OVERLAY
 // ============================================================
 function openLetterOverlay(letterId, brotherId) {
-  const movement = DATA.movements.find(m => m.letterId === letterId);
-  if (!movement) return;
-
-  const overlay = document.getElementById('letterOverlay');
-  const header = document.getElementById('letterOverlayHeader');
-  const meta = document.getElementById('letterOverlayMeta');
-  const body = document.getElementById('letterOverlayBody');
-
-  header.textContent = `${DATA.brothers[brotherId].name} — ${formatDate(new Date(movement.date))}`;
-  header.style.color = COLORS[brotherId];
-
-  meta.innerHTML = `
-    <strong>From:</strong> ${movement.placeName}<br>
-    <strong>To:</strong> ${movement.recipient || 'Unknown'}<br>
-    <strong>ID:</strong> ${movement.letterId}
-    ${movement.sigSummary ? '<br><strong>Significance:</strong> ' + movement.sigSummary : ''}
-  `;
-
-  body.textContent = movement.transcription || 'Full transcription not available.';
-
-  // Inject letter share button
-  if (window.HubbellDeepLink) {
-    const closeBtn = overlay.querySelector('.letter-overlay-close');
-    const existing = overlay.querySelector('.dl-modal-share');
-    if (existing) existing.remove();
-    if (closeBtn) closeBtn.insertAdjacentHTML('afterend', HubbellDeepLink.letterShareBtn(letterId));
-  }
-
-  overlay.classList.add('visible');
   _mapCurrentLetterId = letterId;
-
-  // Bind overlay links on letter overlay metadata
-  if (window.HubbellOverlay) HubbellOverlay.bindDynamic(overlay);
   _mapSyncUrl();
+  HubbellReader.open(letterId, {
+    onClose: function() {
+      _mapCurrentLetterId = null;
+      _mapSyncUrl();
+    }
+  });
 }
 
 function closeLetterOverlay() {
-  document.getElementById('letterOverlay').classList.remove('visible');
-  _mapCurrentLetterId = null;
-  _mapSyncUrl();
+  HubbellReader.close();
 }
 
 function toggleInfoPanel() {
@@ -1998,23 +1861,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<!-- Letter Detail Overlay -->
-<div class="letter-overlay" id="letterOverlay" onclick="if(event.target===this)closeLetterOverlay()">
-  <div class="letter-overlay-content">
-    <button class="letter-overlay-close" onclick="closeLetterOverlay()">&times;</button>
-    <div class="letter-overlay-header" id="letterOverlayHeader"></div>
-    <div class="letter-overlay-meta" id="letterOverlayMeta"></div>
-    <div class="letter-overlay-body" id="letterOverlayBody"></div>
-  </div>
-</div>
-<script>
-document.getElementById('searchInput').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && this.value.trim()) {
-    window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
-  }
-});
-</script>
-
+<script src="_design-data.js"></script>
+<script src="_design-ui.js"></script>
+<script src="_search-data.js"></script>
+<script src="_reader.js"></script>
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=1775363534"></script>
 <script src="_overlay.js?v=1775363534"></script>

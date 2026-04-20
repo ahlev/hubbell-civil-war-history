@@ -4,24 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Money Story &mdash; Hubbell Brothers Civil War Letters</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_design.css">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --henry:#2D5F8A;--alexander:#B8860B;--james:#4A7C59;--charles:#8B3A3A;--mother:#7B5EA7;
-  --bg:#FAF8F5;--card:#FFFFFF;
-  --text:#2C2C2C;--text-mid:#6B6B6B;--text-light:#9B9B9B;
-  --border:#E8E4DF;--border-light:#F0ECE7;
+  --card:var(--bg-elev);
+  --text:var(--ink);--text-mid:var(--ink-2);--text-light:var(--ink-3);
+  --border:var(--rule);--border-light:var(--rule-2);
 }
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden}
-h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3}
 
 .hero{text-align:center;padding:56px 24px 36px;max-width:900px;margin:0 auto}
 .hero h1{font-size:clamp(2rem,4vw,3rem);margin-bottom:10px;letter-spacing:-0.5px}
 .hero .subtitle{font-size:1.02rem;color:var(--text-mid);max-width:660px;margin:0 auto 20px;font-weight:300}
 .hero .stat-row{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:16px}
 .hero .stat{text-align:center}
-.hero .stat .num{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;display:block}
+.hero .stat .num{font-family:var(--font-display);font-size:1.75rem;font-weight:700;display:block}
 .hero .stat .lbl{font-size:0.75rem;color:var(--text-light);text-transform:uppercase;letter-spacing:1px}
 
 .controls{max-width:1200px;margin:0 auto 14px;padding:10px 24px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
@@ -36,14 +34,14 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 .summary-section{max-width:1200px;margin:0 auto 32px;padding:0 24px}
 .summary-section h2{font-size:1.45rem;margin-bottom:14px;text-align:center}
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-.brother-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;position:relative;overflow:hidden}
+.brother-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px 20px;position:relative;overflow:hidden}
 .brother-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;border-radius:4px 0 0 4px}
 .brother-card.henry::before{background:var(--henry)}
 .brother-card.alexander::before{background:var(--alexander)}
 .brother-card.james::before{background:var(--james)}
 .brother-card.charles::before{background:var(--charles)}
 .brother-card.mother::before{background:var(--mother)}
-.brother-card .bname{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;margin-bottom:8px}
+.brother-card .bname{font-family:var(--font-display);font-size:1.1rem;font-weight:600;margin-bottom:8px}
 .brother-card .bname.henry{color:var(--henry)}
 .brother-card .bname.alexander{color:var(--alexander)}
 .brother-card .bname.james{color:var(--james)}
@@ -57,9 +55,9 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 
 .highlights{max-width:1000px;margin:0 auto 36px;padding:0 24px}
 .highlights h2{font-size:1.45rem;margin-bottom:14px;text-align:center}
-.highlight-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:12px;cursor:pointer;transition:transform 0.15s, box-shadow 0.15s}
+.highlight-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:16px 20px;margin-bottom:12px;cursor:pointer;transition:transform 0.15s, box-shadow 0.15s}
 .highlight-card:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.06)}
-.highlight-card .hq{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.93rem;color:var(--text);line-height:1.7;margin-bottom:8px}
+.highlight-card .hq{font-family:var(--font-serif);font-style:italic;font-size:0.93rem;color:var(--text);line-height:1.7;margin-bottom:8px}
 .highlight-card .hm{font-size:0.79rem;color:var(--text-mid)}
 .highlight-card .hm strong{color:var(--text)}
 .highlight-card .h-cite{cursor:pointer}
@@ -73,28 +71,28 @@ svg.tl-svg{display:block;width:100%}
 .tl-node{cursor:pointer;transition:opacity 0.15s}
 .tl-node:hover{opacity:1 !important}
 .tl-zoom-controls{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.tl-zoom-btn{padding:4px 10px;border:1px solid var(--border);border-radius:6px;background:var(--card);cursor:pointer;font-size:0.75rem;font-weight:500;color:var(--text-mid);font-family:'Inter',sans-serif;transition:all 0.15s}
+.tl-zoom-btn{padding:4px 10px;border:1px solid var(--border);border-radius:6px;background:var(--card);cursor:pointer;font-size:0.75rem;font-weight:500;color:var(--text-mid);font-family:var(--font-sans);transition:all 0.15s}
 .tl-zoom-btn:hover{background:var(--border-light);color:var(--text);border-color:var(--text-light)}
 .tl-zoom-range{font-size:0.78rem;color:var(--text-mid);font-weight:500;margin-left:auto}
 .tl-brush-rect{fill:rgba(45,95,138,0.08);stroke:rgba(45,95,138,0.3);stroke-width:1;rx:3}
 
-.tooltip{position:fixed;z-index:1000;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;box-shadow:0 8px 30px rgba(0,0,0,0.12);max-width:380px;pointer-events:none;opacity:0;transition:opacity 0.12s;font-size:0.83rem}
+.tooltip{position:fixed;z-index:1000;background:var(--card);border:1px solid var(--border);border-radius:4px;padding:14px 16px;box-shadow:0 8px 30px rgba(0,0,0,0.12);max-width:380px;pointer-events:none;opacity:0;transition:opacity 0.12s;font-size:0.83rem}
 .tooltip.show{opacity:1}
-.tooltip .tt-amount{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;margin-bottom:2px}
+.tooltip .tt-amount{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:2px}
 .tooltip .tt-modern{font-size:0.73rem;color:var(--text-light);margin-bottom:6px}
-.tooltip .tt-quote{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.86rem;line-height:1.6;color:var(--text-mid);margin-bottom:8px;border-left:3px solid var(--border);padding-left:10px}
+.tooltip .tt-quote{font-family:var(--font-serif);font-style:italic;font-size:0.86rem;line-height:1.6;color:var(--text-mid);margin-bottom:8px;border-left:3px solid var(--border);padding-left:10px}
 .tooltip .tt-meta{font-size:0.73rem;color:var(--text-light)}
 
 .detail-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.35);display:none;align-items:center;justify-content:center;padding:24px}
 .detail-overlay.show{display:flex}
-.detail-panel{background:var(--card);border-radius:14px;max-width:640px;width:100%;max-height:80vh;overflow-y:auto;padding:26px 30px;position:relative;box-shadow:0 16px 50px rgba(0,0,0,0.18)}
+.detail-panel{background:var(--card);border-radius:4px;max-width:640px;width:100%;max-height:80vh;overflow-y:auto;padding:26px 30px;position:relative;box-shadow:0 16px 50px rgba(0,0,0,0.18)}
 .detail-panel .dp-close{position:absolute;top:12px;right:14px;border:none;background:none;font-size:1.4rem;cursor:pointer;color:var(--text-light);line-height:1}
 .detail-panel .dp-close:hover{color:var(--text)}
 .detail-panel h3{font-size:1.2rem;margin-bottom:3px}
 .detail-panel .dp-meta{font-size:0.8rem;color:var(--text-mid);margin-bottom:12px}
-.detail-panel .dp-amount{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:2px}
+.detail-panel .dp-amount{font-family:var(--font-display);font-size:1.5rem;font-weight:700;margin-bottom:2px}
 .detail-panel .dp-modern{font-size:0.8rem;color:var(--text-light);margin-bottom:12px}
-.detail-panel .dp-context{font-family:'Source Serif 4',serif;font-size:0.93rem;line-height:1.8;color:var(--text);background:var(--bg);border-radius:8px;padding:14px;margin-bottom:12px}
+.detail-panel .dp-context{font-family:var(--font-serif);font-size:0.93rem;line-height:1.8;color:var(--text);background:var(--bg);border-radius:8px;padding:14px;margin-bottom:12px}
 
 .cat-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.3px}
 .cat-PAY{background:#E3F2FD;color:#1565C0}
@@ -107,7 +105,7 @@ svg.tl-svg{display:block;width:100%}
 
 .table-section{max-width:1100px;margin:0 auto 44px;padding:0 24px}
 .table-section h2{font-size:1.45rem;margin-bottom:12px;text-align:center}
-.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:var(--card);max-height:480px;overflow-y:auto}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:4px;background:var(--card);max-height:480px;overflow-y:auto}
 table.ref-table{width:100%;border-collapse:collapse;font-size:0.81rem}
 table.ref-table th{background:var(--bg);font-weight:600;text-transform:uppercase;font-size:0.71rem;letter-spacing:0.8px;color:var(--text-mid);padding:10px 12px;text-align:left;border-bottom:2px solid var(--border);position:sticky;top:0;z-index:1}
 table.ref-table td{padding:8px 12px;border-bottom:1px solid var(--border-light);vertical-align:top}
@@ -126,11 +124,11 @@ table.ref-table tr{cursor:pointer}
 .conf-keyword{background:#F5F5F5;color:#9E9E9E}
 
 .source-context{background:var(--bg);border-radius:8px;padding:14px;margin-top:12px;border-left:3px solid var(--border)}
-.source-context h4{font-size:0.82rem;margin-bottom:8px;color:var(--text-mid);font-family:'Inter',sans-serif;font-weight:600}
-.source-context .src-text{font-family:'Source Serif 4',serif;font-size:0.88rem;line-height:1.8;color:var(--text)}
+.source-context h4{font-size:0.82rem;margin-bottom:8px;color:var(--text-mid);font-family:var(--font-sans);font-weight:600}
+.source-context .src-text{font-family:var(--font-serif);font-size:0.88rem;line-height:1.8;color:var(--text)}
 .source-context .src-cite{font-size:0.72rem;color:var(--text-light);margin-top:8px;font-style:italic}
 
-.dp-full-letter{background:var(--bg);border-radius:8px;padding:14px;margin-top:12px;font-family:'Source Serif 4',serif;font-size:0.88rem;line-height:1.8;color:var(--text);white-space:pre-wrap;max-height:300px;overflow-y:auto;border:1px solid var(--border-light)}
+.dp-full-letter{background:var(--bg);border-radius:8px;padding:14px;margin-top:12px;font-family:var(--font-serif);font-size:0.88rem;line-height:1.8;color:var(--text);white-space:pre-wrap;max-height:300px;overflow-y:auto;border:1px solid var(--border-light)}
 .dp-full-letter .hl-money{font-weight:700;background:rgba(255,220,100,0.25);padding:1px 2px;border-radius:2px}
 .dp-section-label{font-size:0.78rem;font-weight:600;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.5px;margin:14px 0 6px}
 .dp-other-refs{margin-top:8px}
@@ -155,90 +153,13 @@ table.ref-table tr{cursor:pointer}
   .hero .stat-row{gap:14px}
   .controls{justify-content:flex-start}
 }
-/* ===== SITE NAV ===== */
-.site-nav {
-  position: sticky;
-  top: 0;
-  z-index: 9000;
-  background: #2C2C2C;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 8px 20px;
-  gap: 6px 0;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-}
-.nav-links {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 3px 14px;
-}
-.nav-label {
-  color: #9B9B9B;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-}
-.nav-link {
-  color: #B8B2AA;
-  text-decoration: none;
-  padding: 2px 0;
-  transition: color 0.15s;
-  white-space: nowrap;
-}
-.nav-link:hover { color: #FFFFFF; }
-.nav-link.active {
-  color: #FFFFFF;
-  font-weight: 600;
-}
-.nav-spacer { flex: 1; min-width: 8px; }
-.search-container {
-  position: relative;
-  flex-shrink: 0;
-}
-.search-input {
-  width: 180px;
-  padding: 5px 10px 5px 28px;
-  border: 1px solid #555;
-  border-radius: 14px;
-  background: #3a3a3a;
-  color: #eee;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  outline: none;
-  transition: border-color 0.2s, background 0.2s;
-}
-.search-input::placeholder { color: #888; }
-.search-input:focus { border-color: #888; background: #444; }
-.search-icon {
-  position: absolute;
-  left: 9px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #888;
-  font-size: 0.7rem;
-  pointer-events: none;
-}
-@media (max-width: 700px) {
-  .site-nav { padding: 6px 12px; }
-  .nav-links { gap: 2px 10px; }
-  .nav-label { display: none; }
-  .nav-link { font-size: 0.68rem; }
-  .search-container { order: 99; width: 100%; margin-top: 2px; }
-  .search-input { width: 100%; }
-  .nav-spacer { display: none; }
-}
-}
 .viz-provenance {
-  background: #FAF8F5;
-  border-top: 1px solid #E8E4DF;
+  background: var(--bg);
+  border-top: 1px solid var(--rule);
   padding: 16px 24px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.72rem;
-  color: #9B9B9B;
+  color: var(--ink-3);
   text-align: center;
   line-height: 1.5;
 }
@@ -246,25 +167,7 @@ table.ref-table tr{cursor:pointer}
 <link rel="stylesheet" href="_overlay.css?v=1775363534">
 </head>
 <body>
-<nav class="site-nav">
-  <div class="nav-links">
-    <span class="nav-label">Explore:</span>
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="hubbell-dashboard.html" class="nav-link">Parallel Lives</a>
-    <a href="viz-emotional-arcs.html" class="nav-link">Emotional Arcs</a>
-    <a href="viz-map-fullwar.html" class="nav-link">Map That Moves</a>
-    <a href="viz-health-ledger.html" class="nav-link">Health Ledger</a>
-    <a href="viz-money-story.html" class="nav-link active">Money Story</a>
-    <a href="viz-people-web.html" class="nav-link">People Web</a>
-    <a href="viz-what-they-wrote-about.html" class="nav-link">What They Wrote</a>
-    <a href="who-they-were.html" class="nav-link">Who They Were</a>
-  </div>
-  <div class="nav-spacer"></div>
-  <div class="search-container">
-    <span class="search-icon">&#x1F50D;</span>
-    <input type="text" class="search-input" id="searchInput" placeholder="Search 274 letters..." autocomplete="off">
-  </div>
-</nav>
+<div id="site-nav"></div>
 
 <div class="hero">
   <h1>The Money Story</h1>
@@ -326,7 +229,10 @@ table.ref-table tr{cursor:pointer}
   Dollar amounts adjusted to 2024 values using year-specific CPI multipliers based on Bureau of Labor Statistics data.
 </div>
 
+<script src="_design-data.js"></script>
+<script src="_design-ui.js"></script>
 <script src="_search-data.js"></script>
+<script src="_reader.js"></script>
 <script>
 var RAW_LETTERS = LETTERS;
 
@@ -1080,7 +986,10 @@ function showDetail(ref, sourceHighlight) {
       '<div class="src-text">' + highlightedContext + '</div>' +
     '</div>' : '') +
     otherRefsHtml +
-    fullLetterHtml;
+    fullLetterHtml +
+    '<div style="margin-top:12px;text-align:center">' +
+      '<button class="read-full-btn" onclick="event.stopPropagation();HubbellReader.open(\'' + esc(ref.letterId) + '\')" style="font-family:var(--font-sans);font-size:0.78rem;color:#2D5F8A;background:#E3F2FD;border:1px solid #BBDEFB;border-radius:10px;padding:5px 14px;cursor:pointer;font-weight:500;transition:background 0.15s">Read full letter \u2192</button>' +
+    '</div>';
 
   overlay.classList.add('show');
 
@@ -1196,14 +1105,6 @@ document.getElementById('tlPanRightBtn').addEventListener('click', tlPanRight);
 <footer class="viz-provenance">
   Based on 274 transcribed letters from the Hubbell family collection, 1861–1870. Financial figures are extracted from letter text via pattern matching. Modern dollar equivalents use BLS CPI data.
 </footer>
-<script>
-document.getElementById('searchInput').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && this.value.trim()) {
-    window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
-  }
-});
-</script>
-
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=1775363534"></script>
 <script src="_overlay.js?v=1775363534"></script>

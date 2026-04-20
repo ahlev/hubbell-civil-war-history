@@ -138,13 +138,36 @@ Hubbell Civil War Ancestry/
 
 ---
 
-## Current Status
+## Current Status (Updated 2026-04-19)
 
+### Original Phases
 - [x] Project folder structure created
 - [x] Markdown templates designed (letter, document, person)
 - [x] External source catalog compiled (50+ sources)
-- [ ] **Awaiting document uploads to begin transcription**
-- [ ] Entity extraction
-- [ ] External cross-referencing
-- [ ] Narrative synthesis
-- [ ] Web application development
+- [x] **Phase 1: Document Ingestion** — 274 letters + 21 supporting documents transcribed
+- [x] **Phase 2: Entity Extraction** — 596 people, 513 places, 15 event flags, 0 schema violations
+- [ ] **Phase 3: External Cross-Referencing** — Regiment histories done; NPS CWSS, Chronicling America, FindAGrave, pension records NOT STARTED
+- [x] **Phase 4: Narrative Synthesis** — EXCEEDED: 18-chapter novel + epilogue (3,334 lines)
+- [x] **Phase 5: Web Application (Core)** — 9 interactive visualizations, full-text search, deep linking, story pages, OG sharing
+- [ ] **Phase 5: Web Application (Advanced)** — Upload-your-own, ML tagging, collaboration, export NOT STARTED (descoped)
+
+### Beyond Original Scope (Built)
+- 9 standalone interactive visualizations (original plan envisioned ~3)
+- 18-chapter novel with epilogue grounded in primary sources
+- Full design system (_design.css, _design-ui.js, _design-data.js)
+- Deep linking & Open Graph social sharing for every letter
+- Letter overlay system (read full transcriptions from any page)
+- Individual story pages for each family member
+- Metadata validation pipeline with parallel subagent verification
+- Corpus-wide gap fix (427 verified additions across 172 files)
+
+### Remaining (Priority Order)
+1. Commit current work (22 modified + 3 new files unstaged)
+2. Emotional Arcs: decide v1 vs v2 vs merge; re-add to nav
+3. Move HTML files to `05-web-app/` subdirectory
+4. Place coordinate enrichment (26% → 50%+)
+5. Entity disambiguation (97 people groups, 60 place inconsistencies)
+6. Novel editorial review
+7. Tier 2 documents: G07, G08, R07, W03
+8. External cross-referencing (Phase 3)
+9. Mobile/touch optimization & accessibility audit

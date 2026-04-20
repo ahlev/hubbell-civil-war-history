@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Mother's War — Information Delay in the Hubbell Letters</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_design.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
   --henry: #2D5F8A;
   --alexander: #B8860B;
@@ -27,9 +27,6 @@
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
   overflow-x: auto;
 }
 
@@ -41,7 +38,7 @@ body {
 }
 
 .page-header h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 2.4rem;
   color: var(--text);
@@ -49,7 +46,7 @@ body {
 }
 
 .page-header .subtitle {
-  font-family: 'Source Serif 4', serif;
+  font-family: var(--font-serif);
   font-size: 1.1rem;
   color: var(--text-secondary);
   font-weight: 300;
@@ -59,7 +56,7 @@ body {
 }
 
 .page-header .epigraph {
-  font-family: 'Source Serif 4', serif;
+  font-family: var(--font-serif);
   font-style: italic;
   font-size: 0.95rem;
   color: var(--text-muted);
@@ -153,7 +150,7 @@ body {
 }
 
 .axis-label {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 10px;
   fill: var(--text-muted);
 }
@@ -164,21 +161,21 @@ body {
 }
 
 .month-label {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 11px;
   fill: var(--text-secondary);
   font-weight: 500;
 }
 
 .layer-label {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-size: 13px;
   fill: var(--text-secondary);
   font-weight: 600;
 }
 
 .layer-sublabel {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 10px;
   fill: var(--text-muted);
 }
@@ -189,7 +186,7 @@ body {
   pointer-events: none;
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 14px 16px;
   max-width: 340px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
@@ -203,7 +200,7 @@ body {
 .tooltip.visible { opacity: 1; }
 
 .tooltip-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: 0.95rem;
   margin-bottom: 6px;
@@ -258,7 +255,7 @@ body {
 }
 
 .knowledge-card h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: 1.15rem;
   margin-bottom: 16px;
@@ -273,7 +270,7 @@ body {
 .irony-item {
   background: var(--bg);
   border: 1px solid var(--border-light);
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 14px 16px;
   cursor: pointer;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -294,7 +291,7 @@ body {
 }
 
 .irony-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: 0.92rem;
   margin-bottom: 6px;
@@ -332,7 +329,7 @@ body {
 }
 
 .stat-value {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.8rem;
   color: var(--text);
@@ -382,6 +379,8 @@ body {
 </style>
 </head>
 <body>
+
+<div id="site-nav"></div>
 
 <div class="page-header">
   <h1>The Mother's War</h1>
@@ -1136,5 +1135,7 @@ document.addEventListener('DOMContentLoaded', () => {
   buildIronyPanel();
 });
 </script>
+<script src="_design-data.js"></script>
+<script src="_design-ui.js"></script>
 </body>
 </html>

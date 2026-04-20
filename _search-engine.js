@@ -197,12 +197,14 @@ function search(query, opts) {
     // Multi-term bonus
     if (matchedTerms.length > 1) score += matchedTerms.length * 3;
 
-    // Flag bonus
-    if (entry.letter.bat) score += 1;
-    if (entry.letter.ill) score += 1;
+    // Flag bonus — boost letters with dramatic content
+    if (entry.letter.bat) score += 3;
+    if (entry.letter.ill) score += 2;
+    if (entry.letter.dth) score += 4;
+    if (entry.letter.wnd) score += 3;
 
-    // --- NEW: Significance weight ---
-    var sigMult = entry.letter.sig === 'major' ? 1.15 : (entry.letter.sig === 'routine' ? 0.85 : 1.0);
+    // --- Significance weight — major letters surface first ---
+    var sigMult = entry.letter.sig === 'major' ? 1.35 : (entry.letter.sig === 'notable' ? 1.1 : (entry.letter.sig === 'routine' ? 0.75 : 1.0));
     score = score * sigMult;
 
     // --- NEW: Emotional intensity bonus ---

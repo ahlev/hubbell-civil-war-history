@@ -4,167 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Henry Hubbell &mdash; Co. D, 34th New York</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_design.css">
+<link rel="stylesheet" href="_bio.css">
+<link rel="stylesheet" href="_overlay.css">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --henry:#2D5F8A;--henry-soft:#E8F0F8;--henry-bg:#F4F8FC;
-  --alexander:#B8860B;--james:#4A7C59;--charles:#8B3A3A;--mother:#7B5EA7;
-  --bg:#FAF8F5;--card:#FFFFFF;
-  --text:#2C2C2C;--text-mid:#6B6B6B;--text-light:#9B9B9B;
-  --border:#E8E4DF;--border-light:#F0ECE7;
-}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6}
-h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3}
-
-/* ===== SITE NAV ===== */
-.site-nav{position:sticky;top:0;z-index:9000;background:#2C2C2C;display:flex;align-items:center;flex-wrap:wrap;padding:8px 20px;gap:6px 0;font-family:'Inter',sans-serif;font-size:0.75rem}
-.nav-links{display:flex;align-items:center;flex-wrap:wrap;gap:3px 14px}
-.nav-label{color:#9B9B9B;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
-.nav-link{color:#B8B2AA;text-decoration:none;padding:2px 0;transition:color 0.15s;white-space:nowrap}
-.nav-link:hover{color:#FFFFFF}
-.nav-link.active{color:#FFFFFF;font-weight:600}
-.nav-spacer{flex:1;min-width:8px}
-.search-container{position:relative;flex-shrink:0}
-.search-input{width:180px;padding:5px 10px 5px 28px;border:1px solid #555;border-radius:14px;background:#3a3a3a;color:#eee;font-family:'Inter',sans-serif;font-size:0.72rem;outline:none;transition:border-color 0.2s,background 0.2s,width 0.2s}
-.search-input::placeholder{color:#888}
-.search-input:focus{border-color:#888;background:#444;width:280px}
-.search-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#888;font-size:0.7rem;pointer-events:none}
-@media(max-width:700px){
-  .site-nav{padding:6px 12px}.nav-links{gap:2px 10px}.nav-label{display:none}.nav-link{font-size:0.68rem}
-  .search-container{order:99;width:100%;margin-top:2px}.search-input{width:100%}.search-input:focus{width:100%}.nav-spacer{display:none}
-}
-
-/* ===== HERO BANNER ===== */
-.hero-banner{background:var(--henry-bg);border-bottom:3px solid var(--henry);padding:56px 32px 40px;text-align:center}
-.hero-banner h1{font-size:clamp(2rem,5vw,2.8rem);color:var(--henry);margin-bottom:6px}
-.hero-subtitle{font-family:'Source Serif 4',serif;font-size:1.1rem;color:var(--text-mid);font-style:italic;margin-bottom:16px}
-.hero-vitals{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
-.hv{text-align:center}
-.hv-val{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--henry);display:block}
-.hv-lbl{font-size:0.68rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.8px}
-.hero-epitaph{font-family:'Source Serif 4',serif;font-size:0.92rem;color:var(--text-mid);max-width:600px;margin:0 auto;line-height:1.7}
-
-/* ===== LETTERS DROPDOWN ===== */
-.letters-section{max-width:1060px;margin:0 auto;padding:28px 32px 0}
-.letters-toggle{display:flex;align-items:center;gap:8px;width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;background:var(--card);cursor:pointer;font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:500;color:var(--text);transition:background 0.15s,border-color 0.15s}
-.letters-toggle:hover{background:var(--henry-bg);border-color:var(--henry)}
-.letters-toggle .lt-icon{font-size:0.9rem;transition:transform 0.2s}
-.letters-toggle.open .lt-icon{transform:rotate(90deg)}
-.letters-toggle .lt-count{margin-left:auto;font-size:0.72rem;color:var(--text-light)}
-.letters-drawer{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
-.letters-drawer.open{max-height:500px;overflow-y:auto}
-.letters-list{padding:8px 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2px 16px}
-.letter-row{display:flex;align-items:center;gap:8px;padding:6px 14px;cursor:pointer;border-radius:6px;transition:background 0.1s;font-size:0.78rem}
-.letter-row:hover{background:var(--henry-bg)}
-.lr-date{font-weight:500;color:var(--text);min-width:80px;flex-shrink:0}
-.lr-to{color:var(--text-mid);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.lr-loc{color:var(--text-light);font-size:0.72rem;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0}
-.lr-flags{display:flex;gap:3px;flex-shrink:0}
-.lr-flag{width:6px;height:6px;border-radius:50%}
-.lr-flag.battle{background:#C44E52}.lr-flag.illness{background:#E58A00}.lr-flag.death{background:#5D4037}.lr-flag.wound{background:#7B1FA2}
-
-/* ===== NARRATIVE ===== */
-.narrative{max-width:1060px;margin:0 auto;padding:40px 32px}
-.chapter{margin-bottom:44px}
-.chapter:last-child{margin-bottom:0}
-.chapter h2{font-size:1.35rem;color:var(--henry);margin-bottom:4px}
-.chapter .ch-date{font-family:'Inter',sans-serif;font-size:0.7rem;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
-.chapter p{font-family:'Source Serif 4',serif;font-size:0.98rem;line-height:1.85;color:var(--text-mid);margin-bottom:14px}
-.chapter p:last-child{margin-bottom:0}
-
-/* Quotes */
-.letter-quote{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.98rem;line-height:1.8;color:var(--text);border-left:3px solid var(--henry);padding:12px 0 12px 20px;margin:20px 0;background:var(--henry-bg);border-radius:0 8px 8px 0;padding-right:20px}
-.letter-quote cite{display:block;font-style:normal;font-family:'Inter',sans-serif;font-size:0.72rem;color:var(--text-light);margin-top:8px}
-.letter-quote .lq-link{color:var(--henry);text-decoration:none;border-bottom:1px dotted var(--henry);cursor:pointer;transition:border-color 0.15s}
-.letter-quote .lq-link:hover{border-bottom-style:solid}
-
-/* Inline letter references */
-.ref{color:var(--henry);text-decoration:none;border-bottom:1px dotted var(--henry);cursor:pointer;font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:500;transition:border-color 0.15s}
-.ref:hover{border-bottom-style:solid}
-
-/* Mother's voice notes */
-.mother-note{border-left:3px solid var(--mother);background:#F8F5FC;border-radius:0 8px 8px 0;padding:14px 20px;margin:20px 0}
-.mother-note .mn-label{font-family:'Inter',sans-serif;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--mother);font-weight:600;margin-bottom:6px}
-.mother-note p{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.95rem;line-height:1.75;color:var(--text);margin-bottom:6px}
-.mother-note p:last-child{margin-bottom:0}
-.mother-note cite{font-style:normal;font-family:'Inter',sans-serif;font-size:0.7rem;color:var(--text-light)}
-
-/* Context boxes */
-.context-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0;font-size:0.88rem}
-.context-box .cb-label{font-family:'Inter',sans-serif;font-size:0.62rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-light);font-weight:600;margin-bottom:6px}
-.context-box p{font-family:'Source Serif 4',serif;font-size:0.88rem;line-height:1.7;color:var(--text-mid)}
-
-/* Silence section */
-.silence{text-align:center;padding:40px 20px;margin:30px 0}
-.silence-line{width:60px;height:2px;background:var(--henry);margin:0 auto 16px;opacity:0.4}
-.silence h2{color:var(--henry);font-size:1.4rem;margin-bottom:8px}
-.silence p{font-family:'Source Serif 4',serif;font-size:0.95rem;color:var(--text-mid);max-width:600px;margin:0 auto;line-height:1.75}
-
-/* Two-column for mid-story */
-.two-col{columns:2;column-gap:40px}
-.two-col p{break-inside:avoid}
-
-/* ===== LETTER READER OVERLAY ===== */
-.reader-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;padding:24px}
-.reader-overlay.open{display:flex}
-.reader-panel{background:var(--card);border-radius:14px;max-width:720px;width:100%;max-height:85vh;overflow-y:auto;padding:28px 32px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.25)}
-.reader-close{position:absolute;top:12px;right:14px;border:none;background:none;font-size:1.5rem;cursor:pointer;color:var(--text-light);line-height:1}
-.reader-close:hover{color:var(--text)}
-.reader-header{border-bottom:3px solid var(--henry);padding-bottom:10px;margin-bottom:14px}
-.reader-header h3{font-size:1.15rem;margin-bottom:4px}
-.reader-meta{font-size:0.8rem;color:var(--text-mid);margin-bottom:14px;line-height:1.6}
-.reader-meta .rm-id{font-size:0.7rem;color:var(--text-light)}
-.reader-flags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.reader-flag{font-size:0.65rem;padding:2px 8px;border-radius:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px}
-.rf-battle{background:#FCE4EC;color:#C62828}.rf-illness{background:#FFF3E0;color:#E65100}.rf-death{background:#EFEBE9;color:#4E342E}.rf-wound{background:#F3E5F5;color:#7B1FA2}
-.reader-people,.reader-places{margin-bottom:14px}
-.reader-people h4,.reader-places h4{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-light);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:6px}
-.reader-tags{display:flex;gap:4px;flex-wrap:wrap}
-.reader-tag{font-size:0.73rem;padding:2px 8px;border-radius:10px;background:var(--border-light);color:var(--text-mid)}
-.reader-tag.person{background:#E3F2FD;color:#1565C0}.reader-tag.place{background:#E8F5E9;color:#2E7D32}
-.reader-body{font-family:'Source Serif 4',serif;font-size:0.92rem;line-height:1.85;color:var(--text);background:var(--bg);border-radius:8px;padding:18px;white-space:pre-wrap;border:1px solid var(--border-light);max-height:420px;overflow-y:auto}
-.reader-body mark{background:rgba(45,95,138,0.15);color:inherit;font-weight:500;border-radius:2px;padding:0 1px}
-
-/* ===== FOOTER ===== */
-.provenance{background:var(--bg);border-top:1px solid var(--border);padding:20px 24px;font-family:'Inter',sans-serif;font-size:0.72rem;color:var(--text-light);text-align:center;line-height:1.5}
-
-@media(max-width:900px){.two-col{columns:1}.letters-list{grid-template-columns:1fr}}
-@media(max-width:600px){.hero-banner{padding:40px 20px 30px}.narrative{padding:30px 20px}.letters-section{padding:20px 20px 0}}
+:root { --person: var(--henry); --person-soft: #E8F0F8; --person-bg: #F4F8FC; }
 </style>
 </head>
 <body>
 
-<nav class="site-nav">
-  <div class="nav-links">
-    <span class="nav-label">Explore:</span>
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="hubbell-dashboard.html" class="nav-link">Parallel Lives</a>
-    <a href="viz-emotional-arcs.html" class="nav-link">Emotional Arcs</a>
-    <a href="viz-map-fullwar.html" class="nav-link">Map That Moves</a>
-    <a href="viz-health-ledger.html" class="nav-link">Health Ledger</a>
-    <a href="viz-money-story.html" class="nav-link">Money Story</a>
-    <a href="viz-people-web.html" class="nav-link">People Web</a>
-    <a href="who-they-were.html" class="nav-link active">Who They Were</a>
-  </div>
-  <div class="nav-spacer"></div>
-  <div class="search-container">
-    <span class="search-icon">&#x1F50D;</span>
-    <input type="text" class="search-input" id="searchInput" placeholder="Search 274 letters..." autocomplete="off">
-  </div>
-</nav>
+<div id="site-nav"></div>
 
 <!-- ===== HERO ===== -->
-<div class="hero-banner">
+<div class="bio-hero">
   <h1>Henry Hubbell</h1>
-  <div class="hero-subtitle">Co. D, 34th Regiment, New York Volunteers</div>
-  <div class="hero-vitals">
-    <div class="hv"><span class="hv-val">22</span><span class="hv-lbl">Age at Death</span></div>
-    <div class="hv"><span class="hv-val">15 mo.</span><span class="hv-lbl">Service</span></div>
-    <div class="hv"><span class="hv-val" id="letterCount">--</span><span class="hv-lbl">Letters</span></div>
-    <div class="hv"><span class="hv-val">Private</span><span class="hv-lbl">Rank</span></div>
+  <div class="hero-rule"></div>
+  <div class="hero-epithet">Co. D, 34th Regiment, New York Volunteers</div>
+
+  <div class="service-record">
+    <span class="sr-label">Service Record</span>
+    <div class="sr-grid">
+      <div class="sr-item"><span class="sr-val">Nov 1839</span><span class="sr-lbl">Born</span></div>
+      <div class="sr-item"><span class="sr-val">June 1861</span><span class="sr-lbl">Enlisted</span></div>
+      <div class="sr-item"><span class="sr-val">Co. D, 34th NY</span><span class="sr-lbl">Unit</span></div>
+      <div class="sr-item"><span class="sr-val">Private</span><span class="sr-lbl">Rank</span></div>
+      <div class="sr-item"><span class="sr-val">15 months</span><span class="sr-lbl">Service</span></div>
+      <div class="sr-item"><span class="sr-val" id="letterCount">--</span><span class="sr-lbl">Letters</span></div>
+      <div class="sr-item"><span class="sr-val">Sept 17, 1862</span><span class="sr-lbl">Died (Antietam)</span></div>
+      <div class="sr-item"><span class="sr-val">22</span><span class="sr-lbl">Age at Death</span></div>
+    </div>
   </div>
-  <div class="hero-epitaph">Born November 1839 in Champlain, New York. Enlisted June 1861 at age 21. Killed at the Battle of Antietam, September 17, 1862. His body was never recovered.</div>
+</div>
+
+<div class="bio-lede">
+  <p>Born November 1839 in Champlain, New York. Enlisted June 1861 at age 21. Killed at the Battle of Antietam, September 17, 1862. His body was never recovered.</p>
 </div>
 
 <!-- ===== LETTER DROPDOWN ===== -->
@@ -286,11 +161,8 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 
 <!-- ===== SILENCE ===== -->
 <div class="silence">
-  <div class="silence-line"></div>
-  <div class="silence-line"></div>
   <h2>Forty-Three Days of Silence</h2>
   <p>No letters from Henry survive between July 28 and September 17, 1862. The 34th New York moved north from the Peninsula to join Pope's army, then marched into Maryland as Lee's forces crossed the Potomac. On September 17, at the Battle of Antietam &mdash; the bloodiest single day of the war &mdash; Henry was wounded. He did not survive. His body was never recovered.</p>
-  <div class="silence-line" style="margin-top:16px"></div>
 </div>
 
 <!-- CH 6: THE FAMILY LEARNS -->
@@ -336,22 +208,22 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600;line-height:1.3
 
 </div><!-- /narrative -->
 
-<!-- ===== READER OVERLAY ===== -->
-<div class="reader-overlay" id="readerOverlay">
-  <div class="reader-panel" id="readerPanel">
-    <button class="reader-close" onclick="closeReader()">&times;</button>
-    <div id="readerContent"></div>
+<!-- ===== FOOTER ===== -->
+<div class="bio-footer">
+  <div class="bio-footer-inner">
+    <a href="who-they-were.html">Back to Who They Were</a>
+    <div class="bf-sep"></div>
+    <a class="bf-home" href="index.html">The Hubbell Brothers</a>
+    <div class="bf-sep"></div>
+    <a href="index.html">274 Civil War letters, transcribed and visualized</a>
   </div>
 </div>
 
-<!-- ===== FOOTER ===== -->
-<div class="provenance">
-  Part of <a href="index.html" style="color:var(--henry)">The Hubbell Brothers</a> &mdash; 274 Civil War letters, transcribed and visualized.<br>
-  <a href="who-they-were.html" style="color:inherit;text-decoration:underline">Back to Who They Were</a>
-</div>
-
 <!-- ===== DATA + SCRIPTS ===== -->
+<script src="_design-data.js"></script>
+<script src="_design-ui.js"></script>
 <script src="_search-data.js"></script>
+<script src="_reader.js"></script>
 <script>
 var AUTHOR_COLORS = {henry:'#2D5F8A',alexander:'#B8860B',james:'#4A7C59',charles:'#8B3A3A',mother:'#7B5EA7'};
 var AUTHOR_NAMES = {henry:'Henry Hubbell',alexander:'Alexander F. Hubbell',james:'James Hubbell',charles:'Charles F. Hubbell',mother:'Frances Hubbell (Mother)'};
@@ -404,104 +276,22 @@ function buildLettersList() {
   list.innerHTML = html;
 }
 
-// Open letter in reader panel
 function openLetter(id, highlight) {
-  var letter = LETTERS.find(function(l) { return l.id === id; });
-  if (!letter) return;
-  var color = AUTHOR_COLORS[letter.a] || '#666';
-  var name = AUTHOR_NAMES[letter.a] || letter.an || letter.a;
-  var d = letter.d.replace(/-/g, '/').replace(/^(\d{4})\/(\d{2})\/(\d{2})$/, function(m,y,mo,dy) {
-    var months = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
-    return months[parseInt(mo)] + ' ' + parseInt(dy) + ', ' + y;
-  });
-
-  var flags = '';
-  if (letter.bat) flags += '<span class="reader-flag rf-battle">Battle</span>';
-  if (letter.ill) flags += '<span class="reader-flag rf-illness">Illness</span>';
-  if (letter.dth) flags += '<span class="reader-flag rf-death">Death</span>';
-  if (letter.wnd) flags += '<span class="reader-flag rf-wound">Wound</span>';
-
-  var ppl = '', plc = '';
-  if (letter.ppl && letter.ppl.length) {
-    ppl = '<div class="reader-people"><h4>People Mentioned</h4><div class="reader-tags">' +
-      letter.ppl.map(function(p){ return '<span class="reader-tag person">' + p + '</span>'; }).join('') + '</div></div>';
-  }
-  if (letter.plc && letter.plc.length) {
-    plc = '<div class="reader-places"><h4>Places Mentioned</h4><div class="reader-tags">' +
-      letter.plc.map(function(p){ return '<span class="reader-tag place">' + p + '</span>'; }).join('') + '</div></div>';
-  }
-
-  var bodyText = letter.t || '';
-  // Collapse single newlines to spaces, keep double newlines as paragraph breaks
-  bodyText = bodyText.replace(/([^\n])\n([^\n])/g, '$1 $2');
-
-  if (highlight) {
-    try {
-      var re = new RegExp('(' + highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-      bodyText = bodyText.replace(re, '<mark>$1</mark>');
-    } catch(e) {}
-  }
-
-  document.getElementById('readerContent').innerHTML =
-    '<div class="reader-header" style="border-bottom-color:' + color + '">' +
-      '<h3 style="color:' + color + '">' + name + '</h3>' +
-      '<div class="reader-meta">' + d + ' &mdash; ' + (letter.loc || 'Unknown location') +
-        '<br>To: ' + (letter.r || 'Unknown') +
-        '<br><span class="rm-id">' + letter.id + '</span></div>' +
-    '</div>' +
-    (flags ? '<div class="reader-flags">' + flags + '</div>' : '') +
-    ppl + plc +
-    '<div class="reader-body">' + bodyText + '</div>';
-
-  // Inject letter share button
-  if (window.HubbellDeepLink) {
-    var closeBtn = document.querySelector('.reader-close');
-    if (closeBtn && !closeBtn.parentNode.querySelector('.dl-modal-share')) {
-      closeBtn.insertAdjacentHTML('afterend', HubbellDeepLink.letterShareBtn(letter.id));
-    }
-  }
-
-  document.getElementById('readerOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-
-  if (highlight) {
-    setTimeout(function() {
-      var mark = document.querySelector('.reader-body mark');
-      if (mark) mark.scrollIntoView({ block: 'center', behavior: 'smooth' });
-    }, 100);
-  }
+  HubbellReader.open(id, { highlight: highlight });
 }
 
 function closeReader() {
-  document.getElementById('readerOverlay').classList.remove('open');
-  document.body.style.overflow = '';
+  HubbellReader.close();
 }
 
-// Close on overlay click or Escape
-document.getElementById('readerOverlay').addEventListener('click', function(e) {
-  if (e.target === this) closeReader();
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeReader();
-});
-
-// Cross-page search redirect
-document.getElementById('searchInput').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && this.value.trim()) {
-    window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
-  }
-});
 </script>
 <script src="_deeplink.js"></script>
 <script>
 HubbellDeepLink.injectShareButton();
 HubbellDeepLink.registerStateReader(function() {
   var s = {};
-  var overlay = document.getElementById('readerOverlay');
-  if (overlay && overlay.classList.contains('open')) {
-    var idEl = overlay.querySelector('.rm-id');
-    if (idEl) s.letter = idEl.textContent;
-  }
+  var lid = HubbellReader.getCurrentLetterId();
+  if (lid) s.letter = lid;
   return s;
 });
 HubbellDeepLink.registerStateApplier(function(p) {

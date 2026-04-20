@@ -4,39 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Map That Moves — Hubbell Brothers in the Civil War</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="_design.css">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
 body {
-  font-family: 'Inter', sans-serif;
-  background: #FAF8F5;
-  color: #2C2C2C;
-  overflow-x: hidden;
-  height: 100vh;
   display: flex;
   flex-direction: column;
 }
-
 .header {
   text-align: center;
   padding: 16px 24px 10px;
-  border-bottom: 1px solid #E8E4DF;
-  background: #FFFFFF;
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg-elev);
   flex-shrink: 0;
 }
 
 .header h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-size: 1.75rem;
   font-weight: 700;
-  color: #2C2C2C;
+  color: var(--ink);
   margin-bottom: 2px;
 }
 
 .header .subtitle {
   font-size: 0.9rem;
-  color: #6B6B6B;
+  color: var(--ink-2);
   font-weight: 300;
 }
 
@@ -51,13 +50,13 @@ body {
   flex: 1;
   position: relative;
   overflow: hidden;
-  background: #FAF8F5;
+  background: var(--bg);
 }
 
 .side-panel {
   width: 340px;
-  background: #FFFFFF;
-  border-left: 1px solid #E8E4DF;
+  background: var(--bg-elev);
+  border-left: 1px solid var(--rule);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -65,8 +64,8 @@ body {
 
 /* Controls bar */
 .controls {
-  background: #FFFFFF;
-  border-top: 1px solid #E8E4DF;
+  background: var(--bg-elev);
+  border-top: 1px solid var(--rule);
   padding: 12px 24px;
   display: flex;
   align-items: center;
@@ -75,12 +74,12 @@ body {
 }
 
 .controls button {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.85rem;
   font-weight: 500;
-  border: 1px solid #E8E4DF;
-  background: #FFFFFF;
-  color: #2C2C2C;
+  border: 1px solid var(--rule);
+  background: var(--bg-elev);
+  color: var(--ink);
   padding: 6px 16px;
   border-radius: 4px;
   cursor: pointer;
@@ -89,14 +88,14 @@ body {
 }
 
 .controls button:hover {
-  background: #FAF8F5;
-  border-color: #9B9B9B;
+  background: var(--bg);
+  border-color: var(--ink-3);
 }
 
 .controls button.active {
-  background: #2C2C2C;
-  color: #FFFFFF;
-  border-color: #2C2C2C;
+  background: var(--ink);
+  color: var(--bg-elev);
+  border-color: var(--ink);
 }
 
 .speed-control {
@@ -104,17 +103,17 @@ body {
   align-items: center;
   gap: 8px;
   font-size: 0.8rem;
-  color: #6B6B6B;
+  color: var(--ink-2);
 }
 
 .speed-control select {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.8rem;
   padding: 4px 8px;
-  border: 1px solid #E8E4DF;
+  border: 1px solid var(--rule);
   border-radius: 4px;
-  background: #FFFFFF;
-  color: #2C2C2C;
+  background: var(--bg-elev);
+  color: var(--ink);
   cursor: pointer;
 }
 
@@ -130,7 +129,7 @@ body {
   -webkit-appearance: none;
   appearance: none;
   height: 4px;
-  background: #E8E4DF;
+  background: var(--rule);
   border-radius: 2px;
   outline: none;
   cursor: pointer;
@@ -141,17 +140,17 @@ body {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #2C2C2C;
+  background: var(--ink);
   cursor: pointer;
-  border: 2px solid #FFFFFF;
+  border: 2px solid var(--bg-elev);
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .date-display {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 600;
-  color: #2C2C2C;
+  color: var(--ink);
   min-width: 140px;
   text-align: center;
 }
@@ -163,11 +162,11 @@ body {
 }
 
 .legend h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 10px;
-  color: #2C2C2C;
+  color: var(--ink);
 }
 
 .legend-item {
@@ -176,7 +175,7 @@ body {
   gap: 8px;
   margin-bottom: 6px;
   font-size: 0.8rem;
-  color: #6B6B6B;
+  color: var(--ink-2);
 }
 
 .legend-dot {
@@ -203,15 +202,15 @@ body {
 }
 
 .event-feed h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 12px;
-  color: #2C2C2C;
+  color: var(--ink);
 }
 
 .event-card {
-  background: #FAF8F5;
+  background: var(--bg);
   border: 1px solid #F0ECE7;
   border-radius: 6px;
   padding: 12px;
@@ -227,7 +226,7 @@ body {
 
 .event-card .date {
   font-size: 0.7rem;
-  color: #9B9B9B;
+  color: var(--ink-3);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -236,7 +235,7 @@ body {
 .event-card .title {
   font-size: 0.85rem;
   font-weight: 500;
-  color: #2C2C2C;
+  color: var(--ink);
   margin-top: 2px;
 }
 
@@ -267,22 +266,22 @@ body {
 .letter-detail.visible { display: block; }
 
 .letter-detail h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 8px;
-  color: #2C2C2C;
+  color: var(--ink);
 }
 
 .letter-detail .meta {
   font-size: 0.75rem;
-  color: #9B9B9B;
+  color: var(--ink-3);
   margin-bottom: 8px;
 }
 
 .letter-detail .excerpt {
   font-size: 0.8rem;
-  color: #6B6B6B;
+  color: var(--ink-2);
   line-height: 1.5;
   font-style: italic;
 }
@@ -293,17 +292,17 @@ body {
   border: none;
   font-size: 1rem;
   cursor: pointer;
-  color: #9B9B9B;
+  color: var(--ink-3);
   padding: 0 4px;
 }
 
-.letter-detail .close-btn:hover { color: #2C2C2C; }
+.letter-detail .close-btn:hover { color: var(--ink); }
 
 /* Tooltip */
 .tooltip {
   position: absolute;
-  background: #FFFFFF;
-  border: 1px solid #E8E4DF;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
   border-radius: 6px;
   padding: 10px 14px;
   pointer-events: none;
@@ -324,12 +323,12 @@ body {
 
 .tooltip .location {
   font-size: 0.75rem;
-  color: #6B6B6B;
+  color: var(--ink-2);
 }
 
 .tooltip .letter-info {
   font-size: 0.7rem;
-  color: #9B9B9B;
+  color: var(--ink-3);
   margin-top: 4px;
 }
 
@@ -341,7 +340,7 @@ body {
 }
 
 .state-label {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 11px;
   fill: #B8B2AA;
   font-weight: 400;
@@ -350,9 +349,9 @@ body {
 }
 
 .location-label {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 8px;
-  fill: #6B6B6B;
+  fill: var(--ink-2);
   pointer-events: none;
 }
 
@@ -392,7 +391,7 @@ body {
 @media (max-width: 900px) {
   body { height: auto; min-height: 100vh; }
   .main-container { flex-direction: column; flex: none; height: auto; }
-  .side-panel { width: 100%; border-left: none; border-top: 1px solid #E8E4DF; max-height: 300px; overflow-y: auto; }
+  .side-panel { width: 100%; border-left: none; border-top: 1px solid var(--rule); max-height: 300px; overflow-y: auto; }
   .map-panel { min-height: 400px; }
   .controls { position: sticky; bottom: 0; z-index: 50; box-shadow: 0 -2px 8px rgba(0,0,0,0.08); flex-wrap: wrap; gap: 8px 16px; padding: 8px 16px; }
   .date-display { min-width: 120px; font-size: 0.95rem; }
@@ -405,12 +404,12 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background: rgba(44,44,44,0.92);
-  color: #FAF8F5;
-  font-family: 'Playfair Display', serif;
+  color: var(--bg);
+  font-family: var(--font-display);
   font-size: 0.95rem;
   line-height: 1.5;
   padding: 14px 24px;
-  border-radius: 8px;
+  border-radius: 4px;
   max-width: 480px;
   text-align: center;
   opacity: 0;
@@ -426,8 +425,8 @@ body {
   top: 12px;
   right: 12px;
   background: rgba(255,255,255,0.92);
-  border: 1px solid #E8E4DF;
-  border-radius: 8px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
   padding: 10px 14px;
   font-size: 0.75rem;
   z-index: 15;
@@ -435,12 +434,12 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 .where-legend-title {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-weight: 600;
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #9B9B9B;
+  color: var(--ink-3);
   margin-bottom: 6px;
 }
 .where-item {
@@ -448,8 +447,8 @@ body {
   align-items: center;
   gap: 6px;
   margin-bottom: 3px;
-  font-family: 'Inter', sans-serif;
-  color: #2C2C2C;
+  font-family: var(--font-sans);
+  color: var(--ink);
   transition: opacity 0.3s;
 }
 .where-item.inactive { opacity: 0.3; }
@@ -465,7 +464,7 @@ body {
   min-width: 68px;
 }
 .where-loc {
-  color: #6B6B6B;
+  color: var(--ink-2);
   font-size: 0.7rem;
   white-space: nowrap;
   overflow: hidden;
@@ -493,23 +492,23 @@ body {
   max-width: 400px;
 }
 .intro-content h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-size: 2.2rem;
   font-weight: 700;
-  color: #2C2C2C;
+  color: var(--ink);
   margin-bottom: 10px;
 }
 .intro-content p {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 1rem;
-  color: #6B6B6B;
+  color: var(--ink-2);
   line-height: 1.6;
   margin-bottom: 16px;
 }
 .intro-hint {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.8rem;
-  color: #9B9B9B;
+  color: var(--ink-3);
   font-style: italic;
 }
 
@@ -520,54 +519,16 @@ body {
 .controls button#replayBtn.visible {
   display: inline-block;
   background: #B8860B;
-  color: #FFFFFF;
+  color: var(--bg-elev);
   border-color: #B8860B;
 }
 .controls button#replayBtn.visible:hover {
   background: #9A7209;
 }
-.viz-nav {
-  background: #2C2C2C;
-  padding: 6px 20px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  flex-shrink: 0;
-}
-.viz-nav-label {
-  color: #9B9B9B;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.viz-nav-link {
-  color: #B8B2AA;
-  text-decoration: none;
-  padding: 2px 0;
-  transition: color 0.15s;
-}
-.viz-nav-link:hover { color: #FFFFFF; }
-.viz-nav-link.active {
-  color: #FFFFFF;
-  font-weight: 600;
-  cursor: default;
-}
 </style>
 </head>
 <body>
-<nav class="viz-nav">
-  <span class="viz-nav-label">Explore:</span>
-  <a href="hubbell-dashboard.html" class="viz-nav-link">Parallel Lives</a>
-  <a href="viz-emotional-arcs.html" class="viz-nav-link">Emotional Arcs</a>
-  <a href="viz-map-fullwar.html" class="viz-nav-link active">Map That Moves</a>
-  <a href="viz-health-ledger.html" class="viz-nav-link">Health Ledger</a>
-  <a href="viz-money-story.html" class="viz-nav-link">Money Story</a>
-  <a href="viz-people-web.html" class="viz-nav-link">People Web</a>
-  <a href="viz-what-they-didnt-know.html" class="viz-nav-link">What They Didn't Know</a>
-</nav>
+<div id="site-nav"></div>
 
 <div class="header">
   <h1>The Map That Moves</h1>
@@ -608,7 +569,7 @@ body {
       <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid #F0ECE7;">
         <div class="legend-item"><div class="legend-icon"><svg width="12" height="12"><polygon points="6,1 8,5 12,5 9,8 10,12 6,10 2,12 3,8 0,5 4,5" fill="#B8860B" opacity="0.7"/></svg></div> Home (Champlain, NY)</div>
         <div class="legend-item"><div class="legend-icon"><svg width="12" height="12"><circle cx="6" cy="6" r="4" fill="none" stroke="#C44E52" stroke-width="1.5"/></svg></div> Battle site</div>
-        <div class="legend-item"><div class="legend-icon"><svg width="12" height="12"><circle cx="6" cy="6" r="3" fill="#9B9B9B"/></svg></div> City / Camp</div>
+        <div class="legend-item"><div class="legend-icon"><svg width="12" height="12"><circle cx="6" cy="6" r="3" fill="var(--ink-3)"/></svg></div> City / Camp</div>
       </div>
     </div>
 
@@ -643,6 +604,8 @@ body {
   </div>
 </div>
 
+<script src="_design-data.js"></script>
+<script src="_design-ui.js"></script>
 <script>
 // ============================================================
 // EMBEDDED DATA
@@ -788,7 +751,7 @@ const COLORS = {
   alexander: '#B8860B',
   james: '#4A7C59',
   charles: '#8B3A3A',
-  unknown: '#9B9B9B'
+  unknown: 'var(--ink-3)'
 };
 
 const AUTHOR_NAMES = {
@@ -872,7 +835,7 @@ function el(tag, attrs, parent) {
 }
 
 // Background
-el('rect', { x: 0, y: 0, width: 800, height: 620, fill: '#FAF8F5' }, svg);
+el('rect', { x: 0, y: 0, width: 800, height: 620, fill: 'var(--bg)' }, svg);
 
 // ---- WATER BODIES ----
 const waterGroup = el('g', null, svg);
@@ -945,7 +908,7 @@ el('path', {
 // Maryland
 el('path', {
   d: 'M445,238 L462,236 L490,240 L520,240 L540,242 L550,252 L548,270 L530,275 L508,282 L490,280 L470,272 L458,262 L448,252 Z',
-  class: 'state-outline', fill: '#E8E4DF'
+  class: 'state-outline', fill: 'var(--rule)'
 }, statesGroup);
 
 // West Virginia
@@ -1051,7 +1014,7 @@ locationMarkers.forEach(lm => {
     el('polygon', {
       points: '0,-9 3,-3 9,-3 4,1.5 6,8 0,4.5 -6,8 -4,1.5 -9,-3 -3,-3',
       fill: '#B8860B',
-      stroke: '#FFFFFF',
+      stroke: 'var(--bg-elev)',
       'stroke-width': 1.2,
       opacity: 0.85
     }, g);
@@ -1077,7 +1040,7 @@ locationMarkers.forEach(lm => {
     // Regular city dot
     el('circle', {
       cx: c.x, cy: c.y, r: 2.5,
-      fill: '#9B9B9B',
+      fill: 'var(--ink-3)',
       opacity: 0.35
     }, locationsGroup);
   }
@@ -1160,7 +1123,7 @@ let activeCaption = null;
   el('circle', {
     cx: 0, cy: 0, r: 8,
     fill: COLORS[author],
-    stroke: '#FFFFFF',
+    stroke: 'var(--bg-elev)',
     'stroke-width': 2.5
   }, g);
 
@@ -1171,7 +1134,7 @@ let activeCaption = null;
     'font-family': 'Inter, sans-serif',
     'font-size': '8',
     'font-weight': '600',
-    fill: '#FFFFFF',
+    fill: 'var(--bg-elev)',
     'pointer-events': 'none'
   }, g);
   t.textContent = AUTHOR_NAMES[author][0];
@@ -1412,7 +1375,7 @@ function showTooltip(evt, author) {
     '<div class="author-name" style="color:' + COLORS[author] + '">' + AUTHOR_NAMES[author] + ' Hubbell</div>' +
     '<div class="location">' + l.location + '</div>' +
     '<div class="letter-info">' + formatDate(l.date) + ' — To ' + l.recipient + '</div>' +
-    (l.sigSummary ? '<div style="font-size:0.7rem;color:#6B6B6B;margin-top:4px;line-height:1.4">' + l.sigSummary.substring(0, 150) + (l.sigSummary.length > 150 ? '...' : '') + '</div>' : '');
+    (l.sigSummary ? '<div style="font-size:0.7rem;color:var(--ink-2);margin-top:4px;line-height:1.4">' + l.sigSummary.substring(0, 150) + (l.sigSummary.length > 150 ? '...' : '') + '</div>' : '');
 
   tooltipEl.classList.add('visible');
 
@@ -1471,29 +1434,29 @@ function closeLetterDetail() {
 // COMPASS & DECORATIONS
 // ============================================================
 const compassGroup = el('g', { transform: 'translate(60, 540)' }, svg);
-el('circle', { cx: 0, cy: 0, r: 22, fill: '#FFFFFF', stroke: '#E8E4DF', 'stroke-width': 1, opacity: 0.8 }, compassGroup);
-el('polygon', { points: '0,-18 -4,-5 0,-7 4,-5', fill: '#2C2C2C', opacity: 0.6 }, compassGroup);
+el('circle', { cx: 0, cy: 0, r: 22, fill: 'var(--bg-elev)', stroke: 'var(--rule)', 'stroke-width': 1, opacity: 0.8 }, compassGroup);
+el('polygon', { points: '0,-18 -4,-5 0,-7 4,-5', fill: 'var(--ink)', opacity: 0.6 }, compassGroup);
 el('polygon', { points: '0,18 -4,5 0,7 4,5', fill: '#C5C0BA', opacity: 0.4 }, compassGroup);
 el('polygon', { points: '-18,0 -5,-4 -7,0 -5,4', fill: '#C5C0BA', opacity: 0.4 }, compassGroup);
 el('polygon', { points: '18,0 5,-4 7,0 5,4', fill: '#C5C0BA', opacity: 0.4 }, compassGroup);
-const nt = el('text', { x: 0, y: -24, 'text-anchor': 'middle', 'font-family': 'Inter', 'font-size': '9', fill: '#6B6B6B', 'font-weight': '600' }, compassGroup);
+const nt = el('text', { x: 0, y: -24, 'text-anchor': 'middle', 'font-family': 'Inter', 'font-size': '9', fill: 'var(--ink-2)', 'font-weight': '600' }, compassGroup);
 nt.textContent = 'N';
 
 // Scale bar
 const scaleGroup = el('g', { transform: 'translate(32, 585)' }, svg);
-el('line', { x1: 0, y1: 0, x2: 65, y2: 0, stroke: '#9B9B9B', 'stroke-width': 1 }, scaleGroup);
-el('line', { x1: 0, y1: -3, x2: 0, y2: 3, stroke: '#9B9B9B', 'stroke-width': 1 }, scaleGroup);
-el('line', { x1: 65, y1: -3, x2: 65, y2: 3, stroke: '#9B9B9B', 'stroke-width': 1 }, scaleGroup);
-const st = el('text', { x: 32, y: 12, 'text-anchor': 'middle', 'font-family': 'Inter', 'font-size': '7', fill: '#9B9B9B' }, scaleGroup);
+el('line', { x1: 0, y1: 0, x2: 65, y2: 0, stroke: 'var(--ink-3)', 'stroke-width': 1 }, scaleGroup);
+el('line', { x1: 0, y1: -3, x2: 0, y2: 3, stroke: 'var(--ink-3)', 'stroke-width': 1 }, scaleGroup);
+el('line', { x1: 65, y1: -3, x2: 65, y2: 3, stroke: 'var(--ink-3)', 'stroke-width': 1 }, scaleGroup);
+const st = el('text', { x: 32, y: 12, 'text-anchor': 'middle', 'font-family': 'Inter', 'font-size': '7', fill: 'var(--ink-3)' }, scaleGroup);
 st.textContent = '~100 miles';
 
 // Map title
 const mapTitle = el('text', {
   x: 400, y: 24,
   'text-anchor': 'middle',
-  'font-family': 'Playfair Display, serif',
+  'font-family': 'Source Serif 4, serif',
   'font-size': '13',
-  fill: '#9B9B9B',
+  fill: 'var(--ink-3)',
   'font-weight': '400',
   'font-style': 'italic'
 }, svg);
