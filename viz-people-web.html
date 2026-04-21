@@ -319,6 +319,14 @@ body {
   color: var(--ink-2);
   margin-bottom: 8px;
 }
+.pw-person-summary {
+  color: #3a3a3a;
+  font-size: 0.85em;
+  line-height: 1.6;
+  border-left: 3px solid #d4c5a9;
+  padding-left: 12px;
+  margin: 10px 0 14px;
+}
 
 /* ---- Letter Overlay ---- */
 .letter-overlay {
@@ -996,14 +1004,26 @@ canvas.grabbing {
   color: var(--ink-3);
 }
 
-/* Temporal filter styles */
+/* Temporal filter — positioned top-right of canvas */
 #temporal-filter {
-  padding: 12px 20px;
-  border-bottom: 1px solid var(--rule-2);
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 12;
+  background: rgba(255,255,255,0.94);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 10px 16px 12px;
+  width: 220px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+[data-theme="dark"] #temporal-filter {
+  background: rgba(30,30,30,0.94);
 }
 
 #temporal-filter .filter-label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   color: var(--ink-2);
   text-transform: uppercase;
@@ -1014,13 +1034,13 @@ canvas.grabbing {
 .temporal-range-wrap {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .temporal-range-wrap input[type="range"] {
   width: 100%;
   -webkit-appearance: none;
-  height: 6px;
+  height: 5px;
   border-radius: 3px;
   background: var(--rule);
   outline: none;
@@ -1028,8 +1048,8 @@ canvas.grabbing {
 
 .temporal-range-wrap input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: #2D5F8A;
   cursor: pointer;
@@ -1040,12 +1060,12 @@ canvas.grabbing {
 .temporal-labels {
   display: flex;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: 9px;
   color: var(--ink-3);
 }
 
 .temporal-current {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   color: var(--ink);
   text-align: center;
@@ -1056,7 +1076,7 @@ canvas.grabbing {
   background: none;
   border: 1px solid var(--rule);
   border-radius: 4px;
-  font-size: 10px;
+  font-size: 9px;
   color: var(--ink-2);
   cursor: pointer;
   padding: 2px 8px;
@@ -1100,20 +1120,6 @@ canvas.grabbing {
     <div id="search-box">
       <input type="text" id="search-input" placeholder="Search people by name...">
     </div>
-    <!-- Filters moved to canvas overlay -->
-    <div id="temporal-filter">
-      <div class="filter-label">Filter by date range</div>
-      <div class="temporal-range-wrap">
-        <input type="range" id="temporal-start" min="0" max="100" value="0" oninput="updateTemporalFilter()">
-        <input type="range" id="temporal-end" min="0" max="100" value="100" oninput="updateTemporalFilter()">
-        <div class="temporal-labels">
-          <span>Jun 1861</span>
-          <span>Jul 1865</span>
-        </div>
-        <div class="temporal-current" id="temporal-label">All dates</div>
-        <button class="temporal-reset-btn" onclick="resetTemporalFilter()">Reset</button>
-      </div>
-    </div>
     <div id="detail-panel">
       <button id="detail-back" onclick="closeDetail()">← Back to network</button>
       <h3 id="detail-name"></h3>
@@ -1128,6 +1134,19 @@ canvas.grabbing {
       <div class="link-btn-label">Link &amp; Explore</div>
       <div class="link-btn-sub">Select a second node</div>
     </button>
+    <div id="temporal-filter">
+      <div class="filter-label">Date Range</div>
+      <div class="temporal-range-wrap">
+        <input type="range" id="temporal-start" min="0" max="100" value="0" oninput="updateTemporalFilter()">
+        <input type="range" id="temporal-end" min="0" max="100" value="100" oninput="updateTemporalFilter()">
+        <div class="temporal-labels">
+          <span>Jun 1861</span>
+          <span>Jul 1865</span>
+        </div>
+        <div class="temporal-current" id="temporal-label">All dates</div>
+        <button class="temporal-reset-btn" onclick="resetTemporalFilter()">Reset</button>
+      </div>
+    </div>
     <canvas id="graph"></canvas>
     <div id="stats-bar"></div>
     <div id="controls">
@@ -2024,6 +2043,46 @@ function draw() {
     ctx.stroke();
   }
 
+  // Helper: draw brother-specific shapes
+  function drawBrotherShape(ctx, x, y, r, key) {
+    ctx.beginPath();
+    if (key === 'henry') {
+      // Diamond
+      ctx.moveTo(x, y - r);
+      ctx.lineTo(x + r, y);
+      ctx.lineTo(x, y + r);
+      ctx.lineTo(x - r, y);
+      ctx.closePath();
+    } else if (key === 'alexander') {
+      // Rounded square
+      var s = r * 0.82;
+      ctx.moveTo(x - s, y - s + 3);
+      ctx.arcTo(x - s, y - s, x - s + 3, y - s, 3);
+      ctx.lineTo(x + s - 3, y - s);
+      ctx.arcTo(x + s, y - s, x + s, y - s + 3, 3);
+      ctx.lineTo(x + s, y + s - 3);
+      ctx.arcTo(x + s, y + s, x + s - 3, y + s, 3);
+      ctx.lineTo(x - s + 3, y + s);
+      ctx.arcTo(x - s, y + s, x - s, y + s - 3, 3);
+      ctx.closePath();
+    } else if (key === 'james') {
+      // Triangle (pointing up)
+      ctx.moveTo(x, y - r);
+      ctx.lineTo(x + r * 0.95, y + r * 0.7);
+      ctx.lineTo(x - r * 0.95, y + r * 0.7);
+      ctx.closePath();
+    } else if (key === 'charles') {
+      // Hexagon
+      for (var a = 0; a < 6; a++) {
+        var angle = Math.PI / 6 + a * Math.PI / 3;
+        var px = x + r * Math.cos(angle);
+        var py = y + r * Math.sin(angle);
+        if (a === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+    }
+  }
+
   // Draw nodes
   for (let i = 0; i < nodes.length; i++) {
     const node = nodes[i];
@@ -2032,8 +2091,13 @@ function draw() {
     const highlighted = highlightSet.has(i);
     const dimmed = hasFocus && !highlighted;
 
-    ctx.beginPath();
-    ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+    // Draw shape: brothers get unique shapes, others get circles
+    if (node.isBrother) {
+      drawBrotherShape(ctx, node.x, node.y, node.radius, node.brotherKey);
+    } else {
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+    }
 
     if (dimmed) {
       ctx.fillStyle = hexToRgba(node.color, 0.1);
@@ -2042,7 +2106,6 @@ function draw() {
       // Glow for highlighted
       const isLinkedNode = linkedPair && (i === linkedPair.a || i === linkedPair.b);
       if (isLinkedNode) {
-        // Enhanced glow for linked pair nodes
         ctx.save();
         ctx.shadowColor = '#B8860B';
         ctx.shadowBlur = 18;
@@ -2065,12 +2128,6 @@ function draw() {
         ctx.strokeStyle = '#FFFFFF';
         ctx.lineWidth = 3;
         ctx.stroke();
-        // Outer ring
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, node.radius + 2, 0, Math.PI * 2);
-        ctx.strokeStyle = hexToRgba(node.color, 0.4);
-        ctx.lineWidth = 1;
-        ctx.stroke();
       } else if (highlighted || i === selectedNode) {
         ctx.strokeStyle = '#FFFFFF';
         ctx.lineWidth = 2;
@@ -2084,7 +2141,7 @@ function draw() {
       ctx.font = 'bold 10px Inter';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(BROTHER_NAMES[node.brotherKey], node.x, node.y);
+      ctx.fillText(BROTHER_NAMES[node.brotherKey], node.x, node.y + (node.brotherKey === 'james' ? 2 : 0));
     } else if ((highlighted || scale > 1.2) && !dimmed) {
       const labelScale = Math.max(0.7, 1 / scale);
       ctx.save();
@@ -2442,9 +2499,27 @@ function showPersonDetail(node) {
   document.getElementById('detail-name').innerHTML = node.id +
     ` <span class="detail-category-badge" style="background:${hexToRgba(catColor, 0.15)};color:${catColor}">${node.category}</span>`;
 
-  // Roles
-  const uniqueRoles = node.roles ? [...new Set(node.roles)].filter(r => r && r !== 'undefined') : [];
-  document.getElementById('detail-role').textContent = uniqueRoles.join(', ');
+  // Look up editorial profile (summary + compact relationship)
+  const _opIdx = window.OVERLAY_PEOPLE_LOOKUP && OVERLAY_PEOPLE_LOOKUP[node.id.toLowerCase()];
+  const _opProf = _opIdx !== undefined && window.OVERLAY_PEOPLE_PROFILES ? OVERLAY_PEOPLE_PROFILES[_opIdx] : null;
+
+  // Role line: prefer compact relationship label, fall back to deduplicated short roles
+  if (_opProf && _opProf.rel) {
+    document.getElementById('detail-role').textContent = _opProf.rel;
+  } else {
+    const uniqueRoles = node.roles ? [...new Set(node.roles)].filter(r => r && r !== 'undefined') : [];
+    // Show at most 3 short distinct role labels
+    const shortRoles = uniqueRoles.filter(r => r.length < 50).slice(0, 3);
+    document.getElementById('detail-role').textContent = shortRoles.join(', ') || '';
+  }
+
+  // Editorial summary — show prominently below the role line
+  const _prevSummary = panel.querySelector('.pw-person-summary');
+  if (_prevSummary) _prevSummary.remove();
+  if (_opProf && _opProf.s) {
+    document.getElementById('detail-role').insertAdjacentHTML('afterend',
+      '<p class="pw-person-summary">' + _opProf.s.replace(/</g,'&lt;') + '</p>');
+  }
 
   const letters = node.letters || [];
   const sorted = [...letters].sort((a, b) => a.date.localeCompare(b.date));
@@ -2529,8 +2604,30 @@ function showPersonDetailByName(name) {
   const catColor = CAT_COLORS[data.category] || CAT_COLORS.UNKNOWN;
   document.getElementById('detail-name').innerHTML = name +
     ` <span class="detail-category-badge" style="background:${hexToRgba(catColor, 0.15)};color:${catColor}">${data.category}</span>`;
-  const uniqueRoles = data.roles ? [...data.roles].filter(r => r && r !== 'undefined') : [];
-  document.getElementById('detail-role').textContent = uniqueRoles.join(', ');
+
+  // Look up editorial profile for compact role + summary
+  const _fbKey = name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  const _fbIdx = window.OVERLAY_PEOPLE_LOOKUP && (
+    OVERLAY_PEOPLE_LOOKUP[name.toLowerCase()] ||
+    OVERLAY_PEOPLE_LOOKUP['per-' + _fbKey]
+  );
+  const _fbProf = _fbIdx !== undefined && window.OVERLAY_PEOPLE_PROFILES ? OVERLAY_PEOPLE_PROFILES[_fbIdx] : null;
+
+  if (_fbProf && _fbProf.rel) {
+    document.getElementById('detail-role').textContent = _fbProf.rel;
+  } else {
+    const uniqueRoles = data.roles ? [...data.roles].filter(r => r && r !== 'undefined') : [];
+    const shortRoles = uniqueRoles.filter(r => r.length < 50).slice(0, 3);
+    document.getElementById('detail-role').textContent = shortRoles.join(', ') || '';
+  }
+
+  // Editorial summary
+  const _prevSummary2 = panel.querySelector('.pw-person-summary');
+  if (_prevSummary2) _prevSummary2.remove();
+  if (_fbProf && _fbProf.s) {
+    document.getElementById('detail-role').insertAdjacentHTML('afterend',
+      '<p class="pw-person-summary">' + _fbProf.s.replace(/</g,'&lt;') + '</p>');
+  }
 
   const sorted = [...(data.letters || [])].sort((a, b) => a.date.localeCompare(b.date));
   let html = `<div class="pw-mentions-title">Mentioned in ${sorted.length} letter${sorted.length !== 1 ? 's' : ''}</div>`;
@@ -2603,6 +2700,21 @@ function showBrotherDetail(node) {
   const key = node.brotherKey;
   document.getElementById('detail-name').textContent = BROTHER_NAMES[key] + ' Hubbell';
   document.getElementById('detail-role').textContent = 'Hubbell brother, letter author';
+
+  // Editorial summary for brothers
+  const _prevBroSummary = panel.querySelector('.pw-person-summary');
+  if (_prevBroSummary) _prevBroSummary.remove();
+  const _broName = BROTHER_NAMES[key] + ' Hubbell';
+  const _broKey = 'per-' + key + '-hubbell';
+  const _broIdx = window.OVERLAY_PEOPLE_LOOKUP && (
+    OVERLAY_PEOPLE_LOOKUP[_broName.toLowerCase()] ||
+    OVERLAY_PEOPLE_LOOKUP[_broKey]
+  );
+  const _broProf = _broIdx !== undefined && window.OVERLAY_PEOPLE_PROFILES ? OVERLAY_PEOPLE_PROFILES[_broIdx] : null;
+  if (_broProf && _broProf.s) {
+    document.getElementById('detail-role').insertAdjacentHTML('afterend',
+      '<p class="pw-person-summary">' + _broProf.s.replace(/</g,'&lt;') + '</p>');
+  }
 
   const peopleMentioned = [];
   for (const [name, data] of Object.entries(people)) {
@@ -3124,23 +3236,14 @@ function buildSidebar() {
 function buildLegend() {
   const legend = document.getElementById('legend');
   const brothers = [
-    { label: 'Henry', color: BROTHER_COLORS.henry },
-    { label: 'Alexander', color: BROTHER_COLORS.alexander },
-    { label: 'James', color: BROTHER_COLORS.james },
-    { label: 'Charles', color: BROTHER_COLORS.charles },
+    { label: 'Henry', color: BROTHER_COLORS.henry, shape: '◆' },
+    { label: 'Alexander', color: BROTHER_COLORS.alexander, shape: '■' },
+    { label: 'James', color: BROTHER_COLORS.james, shape: '▲' },
+    { label: 'Charles', color: BROTHER_COLORS.charles, shape: '⬡' },
   ];
-  const roles = [
-    { label: 'Family', color: CAT_COLORS.FAMILY },
-    { label: 'Military', color: CAT_COLORS.MILITARY },
-    { label: 'Civilian', color: CAT_COLORS.CIVILIAN },
-    { label: 'Unknown', color: CAT_COLORS.UNKNOWN },
-  ];
-  const dot = (i) => `<div class="legend-item"><div class="legend-dot" style="background:${i.color}"></div>${i.label}</div>`;
+  const item = (b) => `<div class="legend-item"><span style="color:${b.color};font-size:13px;line-height:1">${b.shape}</span>${b.label}</div>`;
   legend.innerHTML =
-    `<div class="legend-section-title">Brothers</div>` +
-    `<div class="legend-row">${brothers.map(dot).join('')}</div>` +
-    `<div class="legend-section-title">Roles</div>` +
-    `<div class="legend-row">${roles.map(dot).join('')}</div>`;
+    `<div class="legend-row">${brothers.map(item).join('')}</div>`;
 }
 
 // Stats bar
