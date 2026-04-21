@@ -49,9 +49,10 @@
     var here = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
     var links = [
       { href: 'index.html',                      label: 'Home' },
+      { href: 'the-collection.html',              label: 'The Collection' },
       { href: 'hubbell-dashboard.html',           label: 'Parallel Lives' },
       { href: 'viz-map-fullwar.html',             label: 'Map That Moves' },
-      { href: 'viz-health-ledger.html',           label: 'Health Ledger' },
+      { href: 'viz-health-ledger.html',           label: 'Wellness Ledger' },
       { href: 'viz-money-story.html',             label: 'Money Story' },
       { href: 'viz-people-web.html',              label: 'People Web' },
       { href: 'who-they-were.html',               label: 'Who They Were' }
