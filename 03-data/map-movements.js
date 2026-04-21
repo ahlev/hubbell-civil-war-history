@@ -7241,7 +7241,7 @@ window.__MAP_MOVEMENTS__ = {
     {
       "id": "mov-222",
       "brother": "alexander",
-      "date": "1864-07-00",
+      "date": "1864-07-01",
       "endDate": null,
       "lat": 33.9526,
       "lon": -84.5499,

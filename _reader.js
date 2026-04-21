@@ -36,13 +36,25 @@ window.HubbellReader = (function () {
   function formatDate(dateStr) {
     var months = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
     return dateStr.replace(/^(\d{4})-(\d{2})-(\d{2})$/, function (m, y, mo, dy) {
-      return months[parseInt(mo)] + ' ' + parseInt(dy) + ', ' + y;
+      var day = parseInt(dy);
+      if (day === 0) return months[parseInt(mo)] + ' ' + y + ' (approx.)';
+      return months[parseInt(mo)] + ' ' + day + ', ' + y;
     });
   }
 
   function formatBody(text) {
     // Collapse single newlines to spaces, preserve double newlines as paragraph breaks
     return text.replace(/([^\n])\n([^\n])/g, '$1 $2');
+  }
+
+  function stripLetterHeader(text) {
+    // Remove date/location block at the top of transcriptions.
+    // The header is everything before the first \n\n, if it contains a year (18xx).
+    var idx = text.indexOf('\n\n');
+    if (idx < 0 || idx > 300) return text;
+    var header = text.substring(0, idx);
+    if (/\b18\d{2}\b/.test(header)) return text.substring(idx + 2);
+    return text;
   }
 
   function highlightTerms(text, terms) {
@@ -56,6 +68,70 @@ window.HubbellReader = (function () {
       } catch (e) {}
     });
     return result;
+  }
+
+  function buildHealthHtml(h) {
+    var hasContent = (h.status && h.status !== 'nodata') ||
+      (h.confidence && h.confidence !== 'nodata') ||
+      (h.symptoms && h.symptoms.length);
+    if (!hasContent) return '';
+
+    var html = '<div class="reader-health">';
+
+    // Status badge
+    if (h.status && h.status !== 'nodata') {
+      html += '<span class="reader-health-status" style="background:' + esc(h.statusColor || '#D0D0D0') + '">' +
+        esc(h.statusLabel || h.status) + '</span>';
+    }
+
+    // Confidence
+    if (h.confidence && h.confidence !== 'nodata') {
+      html += '<span class="reader-health-conf" style="border-color:' + esc(h.confColor || '#9B9B9B') +
+        ';color:' + esc(h.confColor || '#9B9B9B') + '">' + esc(h.confLabel || h.confidence) + '</span>';
+      if (h.confExplanation) {
+        html += '<span class="reader-health-conf-desc">' + esc(h.confExplanation) + '</span>';
+      }
+    }
+
+    // Symptom keywords
+    if (h.symptoms && h.symptoms.length) {
+      html += '<div class="reader-health-symptoms">' +
+        h.symptoms.map(function (s) { return '<span class="reader-health-symptom">' + esc(s) + '</span>'; }).join('') +
+        '</div>';
+    }
+
+    html += '</div>';
+    return html;
+  }
+
+  function highlightHealthSentences(text, sentences) {
+    if (!sentences) return esc(text);
+    // Process paragraph by paragraph to preserve \n\n breaks
+    var paragraphs = text.split(/\n\n+/);
+    var result = [];
+    for (var p = 0; p < paragraphs.length; p++) {
+      var para = paragraphs[p].replace(/\n/g, ' ').trim();
+      if (!para) continue;
+      // Split into sentences within this paragraph
+      var parts = para.split(/(?<=[.!?])\s+/);
+      var paraResult = [];
+      for (var i = 0; i < parts.length; i++) {
+        var sent = parts[i];
+        var key = sent.trim().replace(/[.!?]+$/, '').substring(0, 40);
+        var cls = null;
+        if (sentences.hospital && sentences.hospital.has(key)) cls = 'rhl-hospital';
+        else if (sentences.wound && sentences.wound.has(key)) cls = 'rhl-hospital';
+        else if (sentences.sick && sentences.sick.has(key)) cls = 'rhl-sick';
+        else if (sentences.healthy && sentences.healthy.has(key)) cls = 'rhl-healthy';
+        if (cls) {
+          paraResult.push('<span class="' + cls + '">' + esc(sent) + '</span>');
+        } else {
+          paraResult.push(esc(sent));
+        }
+      }
+      result.push(paraResult.join(' '));
+    }
+    return result.join('\n\n');
   }
 
   function ensureOverlay() {
@@ -94,9 +170,18 @@ window.HubbellReader = (function () {
     opts = opts || {};
     currentOpts = opts;
 
-    // Find letter data
+    // Find letter data — merge with LETTERS for ppl/plc/transcription if needed
     var letter = opts.letter || findLetter(letterId);
     if (!letter) return;
+    var full = findLetter(letterId);
+    if (full) {
+      var mergeFields = {};
+      if (!letter.ppl && full.ppl) mergeFields.ppl = full.ppl;
+      if (!letter.plc && full.plc) mergeFields.plc = full.plc;
+      // Prefer LETTERS transcription — it preserves original paragraph breaks
+      if (full.t) mergeFields.t = full.t;
+      if (Object.keys(mergeFields).length) letter = Object.assign({}, letter, mergeFields);
+    }
 
     ensureOverlay();
 
@@ -129,19 +214,32 @@ window.HubbellReader = (function () {
         }).join('') + '</div></div>';
     }
 
-    // Place tags — clickable links to Map
+    // Place tags — clickable links to Map, centered on location
     var plc = '';
     if (letter.plc && letter.plc.length) {
       plc = '<div class="reader-places"><h4>Places Mentioned</h4><div class="reader-tags">' +
         letter.plc.map(function (p) {
           return '<a href="viz-map-fullwar.html?date=' + encodeURIComponent(letter.d) +
             '&brother=' + encodeURIComponent(letter.a) +
+            '&place=' + encodeURIComponent(p) +
             '" class="reader-tag place" onclick="event.stopPropagation()">' + esc(p) + '</a>';
         }).join('') + '</div></div>';
     }
 
-    // Body text
-    var bodyText = formatBody(esc(letter.t || ''));
+    // Health context section
+    var healthHtml = '';
+    if (opts.health) {
+      healthHtml = buildHealthHtml(opts.health);
+    }
+
+    // Body text — strip redundant date/location header
+    var rawText = stripLetterHeader(letter.t || '');
+    var bodyText;
+    if (opts.health && opts.health.sentences) {
+      bodyText = formatBody(highlightHealthSentences(rawText, opts.health.sentences));
+    } else {
+      bodyText = formatBody(esc(rawText));
+    }
 
     // Apply highlights
     var highlightTermsList = [];
@@ -157,13 +255,17 @@ window.HubbellReader = (function () {
 
     contentEl.innerHTML =
       '<div class="reader-header" style="border-bottom-color:' + color + '">' +
-        '<h3 style="color:' + color + '">' + esc(name) + '</h3>' +
-        '<div class="reader-meta">' + d + ' &mdash; ' + esc(letter.loc || 'Unknown location') +
-          '<br>To: ' + esc(letter.r || 'Unknown') +
+        '<h3 style="color:' + color + '">' + esc(name) +
+          ' <span style="color:var(--ink-3,#999);font-weight:400">\u2192</span> ' +
+          esc(letter.r || 'Unknown') + '</h3>' +
+        '<div class="reader-meta">' +
+          '<span class="rm-date">' + d + '</span>' +
+          ' <span class="rm-loc">from ' + esc(letter.loc || 'Unknown location') + '</span>' +
           '<br>' + mapLink +
-          '<br><span class="rm-id">' + esc(letter.id) + '</span></div>' +
+          ' <span class="rm-id">' + esc(letter.id) + '</span></div>' +
       '</div>' +
       (flags ? '<div class="reader-flags">' + flags + '</div>' : '') +
+      healthHtml +
       ppl + plc +
       '<div class="reader-body">' + bodyText + '</div>';
 

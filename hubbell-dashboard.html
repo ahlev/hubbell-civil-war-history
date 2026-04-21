@@ -1061,11 +1061,17 @@
         }
     }
 
-    function parseDate(str) { return new Date(str + 'T12:00:00'); }
+    function parseDate(str) {
+        // Handle unknown day (YYYY-MM-00) — use mid-month for plotting
+        var s = str.replace(/-00$/, '-15');
+        return new Date(s + 'T12:00:00');
+    }
 
     function formatDate(str) {
         const d = parseDate(str);
         const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        // Omit day if original date had unknown day
+        if (/-00$/.test(str)) return months[d.getMonth()] + ' ' + d.getFullYear() + ' (approx.)';
         return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
     }
 

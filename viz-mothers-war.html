@@ -552,6 +552,7 @@ const motherLetters = LETTERS.filter(l =>
 const allLetters = LETTERS;
 
 function parseDate(s) {
+  if (s && s.endsWith('-00')) s = s.slice(0, -2) + '15';
   const [y, m, d] = s.split('-').map(Number);
   return new Date(y, m - 1, d);
 }

@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alexander F. Hubbell &mdash; Co. H, 60th New York Infantry</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;0,8..60,800;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="_design.css">
 <link rel="stylesheet" href="_bio.css">
 <link rel="stylesheet" href="_overlay.css">
@@ -40,6 +41,14 @@
 
 <div class="bio-lede">
   <p>Born March 28, 1844 in Champlain, New York. Enlisted September 1861 at age seventeen &mdash; ignoring his older brother Henry's advice to stay home and go to college. Wounded at Antietam, hospitalized twice, survived scurvy during the Atlanta Campaign. Mustered out June 27, 1865. Died December 7, 1894 on his farm at Fonda, Iowa. The only brother to live to old age.</p>
+</div>
+
+<!-- ===== FOOTPRINT MAP ===== -->
+<div class="bio-map-section">
+  <div class="bio-map-wrap">
+    <div class="bio-map-label">Wartime Footprint</div>
+    <div class="bio-map" id="bioMap"></div>
+  </div>
 </div>
 
 <!-- ===== LETTER DROPDOWN ===== -->
@@ -247,6 +256,8 @@
 </div>
 
 <!-- ===== DATA + SCRIPTS ===== -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="03-data/map-movements.js"></script>
 <script src="_design-data.js"></script>
 <script src="_design-ui.js"></script>
 <script src="_search-data.js"></script>
@@ -262,6 +273,7 @@ document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('letterCount').textContent=a.length;
   document.getElementById('lettersCount').textContent=a.length+' letters written by Alexander';
   buildLettersList();
+  buildFootprintMap('alexander', '#B8860B');
 });
 
 function toggleDrawer(){
@@ -283,6 +295,75 @@ function buildLettersList(){
     html+='<div class="letter-row" onclick="openLetter(\''+l.id+'\')"><span class="lr-date">'+d+'</span><span class="lr-to">'+(l.r||'')+'</span><span class="lr-loc">'+(l.loc||'')+'</span><span class="lr-flags">'+flags+'</span></div>';
   });
   list.innerHTML=html;
+}
+
+// Footprint map — aggregate locations by place, size by duration
+function buildFootprintMap(brotherId, color) {
+  if (!window.__MAP_MOVEMENTS__ || !document.getElementById('bioMap')) return;
+  var moves = window.__MAP_MOVEMENTS__.movements.filter(function(m) { return m.brother === brotherId; });
+  if (!moves.length) return;
+
+  // Aggregate by placeName
+  var places = {};
+  moves.forEach(function(m) {
+    var key = m.placeName || (m.lat + ',' + m.lon);
+    if (!places[key]) places[key] = { lat: m.lat, lon: m.lon, name: m.placeName, days: 0, hasBattle: false, first: m.date, last: m.endDate || m.date };
+    var start = new Date(m.date + 'T12:00:00');
+    var end = new Date((m.endDate || m.date) + 'T12:00:00');
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) return;
+    var days = Math.max(1, Math.round((end - start) / 86400000));
+    places[key].days += days;
+    if (m.hasBattle) places[key].hasBattle = true;
+    if (m.date < places[key].first) places[key].first = m.date;
+    if ((m.endDate || m.date) > places[key].last) places[key].last = m.endDate || m.date;
+  });
+
+  var pts = Object.values(places);
+  var maxDays = Math.max.apply(null, pts.map(function(p) { return p.days; }));
+
+  var map = L.map('bioMap', {
+    zoomControl: false,
+    attributionControl: true,
+    scrollWheelZoom: false,
+    dragging: true
+  });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OSM &amp; CARTO',
+    maxZoom: 18
+  }).addTo(map);
+
+  // Draw movement path (chronological)
+  var sorted = moves.slice().sort(function(a, b) { return a.date < b.date ? -1 : 1; });
+  var pathCoords = [];
+  var seen = {};
+  sorted.forEach(function(m) {
+    var key = m.lat + ',' + m.lon;
+    if (!seen[key]) {
+      pathCoords.push([m.lat, m.lon]);
+      seen[key] = true;
+    }
+  });
+  if (pathCoords.length > 1) {
+    L.polyline(pathCoords, { color: color, weight: 1.5, opacity: 0.3, dashArray: '4 6' }).addTo(map);
+  }
+
+  // Draw circles sized by duration
+  pts.forEach(function(p) {
+    var r = 6 + Math.sqrt(p.days / maxDays) * 20;
+    var fillColor = p.hasBattle ? '#C44E52' : color;
+    L.circleMarker([p.lat, p.lon], {
+      radius: r,
+      fillColor: fillColor,
+      fillOpacity: 0.25,
+      color: fillColor,
+      weight: 1.5,
+      opacity: 0.6
+    }).bindTooltip(p.name + ' (' + p.days + ' days)', { direction: 'top', offset: [0, -r] }).addTo(map);
+  });
+
+  // Fit bounds with padding
+  var bounds = L.latLngBounds(pts.map(function(p) { return [p.lat, p.lon]; }));
+  map.fitBounds(bounds, { padding: [30, 30] });
 }
 
 function openLetter(id, highlight) {

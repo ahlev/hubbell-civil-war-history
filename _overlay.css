@@ -153,6 +153,17 @@
   color: #C0B8B0;
 }
 
+/* Editorial summary */
+.hubbell-overlay-summary {
+  font-style: italic;
+  color: #4a4a4a;
+  font-size: 0.9em;
+  line-height: 1.5;
+  border-left: 2px solid #d4c5a9;
+  padding-left: 12px;
+  margin: 0;
+}
+
 /* Stats row */
 .hubbell-overlay-stats {
   display: flex;
@@ -333,6 +344,93 @@
 }
 @keyframes hubbell-spin {
   to { transform: rotate(360deg); }
+}
+
+/* ─── Health Context (Wellness Ledger overlay) ─── */
+.hubbell-overlay-health-status {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 10px;
+  color: #fff;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.hubbell-overlay-health {
+  padding: 0 0 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #EDEAE5;
+}
+.hubbell-overlay-hflags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.hubbell-overlay-hflag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+.hubbell-overlay-hflag.illness  { background: #FEF3E2; color: #D4860B; }
+.hubbell-overlay-hflag.wound    { background: #FDE8E8; color: #C44E52; }
+.hubbell-overlay-hflag.death    { background: #F0F0F0; color: #6B6B6B; }
+.hubbell-overlay-hflag.battle   { background: #FDE8E8; color: #C44E52; }
+.hubbell-overlay-hconf {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.hubbell-overlay-hconf-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 2px 10px;
+  border-radius: 10px;
+  border: 1.5px solid;
+  white-space: nowrap;
+}
+.hubbell-overlay-hconf-desc {
+  font-size: 0.78rem;
+  color: #6B6560;
+  line-height: 1.4;
+}
+.hubbell-overlay-hsymptoms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.hubbell-overlay-hsymptom {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: #F5F3EF;
+  color: #4A4640;
+}
+
+/* Health sentence highlights in overlay reader */
+.hubbell-overlay-hl-hospital {
+  background: rgba(196, 78, 82, 0.12);
+  color: #C44E52;
+  padding: 1px 2px;
+  border-radius: 2px;
+}
+.hubbell-overlay-hl-sick {
+  background: rgba(212, 134, 11, 0.12);
+  color: #B87708;
+  padding: 1px 2px;
+  border-radius: 2px;
+}
+.hubbell-overlay-hl-healthy {
+  background: rgba(74, 124, 89, 0.15);
+  color: #4A7C59;
+  padding: 1px 2px;
+  border-radius: 2px;
 }
 
 /* ─── Responsive ─── */

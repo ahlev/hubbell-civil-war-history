@@ -15,6 +15,143 @@
   .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
   #letters .container > .letters-columns { grid-template-columns: 1fr !important; gap: 32px !important; }
 }
+
+/* ===== Exploration Card Icons ===== */
+.explore-icon {
+  width: 140px;
+  height: 100%;
+  min-height: 80px;
+  overflow: hidden;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.explore-icon svg { width: 100%; height: 80px; display: block; }
+
+/* ── 01 Timeline: dots appearing along lanes ── */
+.ei-lane { stroke: var(--rule); stroke-width: 0.7; }
+.ei-dot { opacity: 0; animation: eiDotIn 12s ease infinite; }
+@keyframes eiDotIn {
+  0%, 2% { opacity: 0; transform: scale(0); }
+  6%, 82% { opacity: 1; transform: scale(1.15); }
+  90%, 100% { opacity: 0.35; transform: scale(0.9); }
+}
+.ei-scan { animation: eiScan 12s ease-in-out infinite; }
+@keyframes eiScan {
+  0% { transform: translateX(-10px); opacity: 0; }
+  3% { opacity: 0.6; }
+  80% { opacity: 0.3; }
+  88% { transform: translateX(200px); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* ── 02 Map: drifting dots in varied directions ── */
+.ei-coast { fill: none; stroke: var(--ink-3,#9B9B9B); stroke-width: 1; opacity: 0.5; }
+.ei-mdot-se { animation: eiMapSE 14s ease-in-out infinite; }
+.ei-mdot-sw { animation: eiMapSW 14s ease-in-out infinite; }
+.ei-mdot-e  { animation: eiMapE  14s ease-in-out infinite; }
+.ei-mdot-ne { animation: eiMapNE 14s ease-in-out infinite; }
+@keyframes eiMapSE {
+  0% { transform: translateX(0) translateY(0); opacity: 0; }
+  5% { opacity: 1; }
+  50% { transform: translateX(50px) translateY(18px); }
+  92% { opacity: 1; }
+  100% { transform: translateX(70px) translateY(26px); opacity: 0; }
+}
+@keyframes eiMapSW {
+  0% { transform: translateX(0) translateY(0); opacity: 0; }
+  5% { opacity: 1; }
+  50% { transform: translateX(-35px) translateY(22px); }
+  92% { opacity: 1; }
+  100% { transform: translateX(-55px) translateY(32px); opacity: 0; }
+}
+@keyframes eiMapE {
+  0% { transform: translateX(0) translateY(0); opacity: 0; }
+  5% { opacity: 1; }
+  50% { transform: translateX(55px) translateY(-3px); }
+  92% { opacity: 1; }
+  100% { transform: translateX(80px) translateY(2px); opacity: 0; }
+}
+@keyframes eiMapNE {
+  0% { transform: translateX(0) translateY(0); opacity: 0; }
+  5% { opacity: 1; }
+  50% { transform: translateX(40px) translateY(-16px); }
+  92% { opacity: 1; }
+  100% { transform: translateX(60px) translateY(-22px); opacity: 0; }
+}
+
+/* ── 03 Wellness: pulse line + cycling symbols ── */
+.ei-pulse { fill: none; stroke-width: 1.6; stroke-linecap: round;
+  stroke-dasharray: 200; stroke-dashoffset: 200;
+  animation: eiPulseDraw 10s ease infinite; }
+@keyframes eiPulseDraw {
+  0% { stroke-dashoffset: 200; opacity: 0.7; }
+  50% { stroke-dashoffset: 0; opacity: 1; }
+  70% { stroke-dashoffset: 0; opacity: 0.6; }
+  100% { stroke-dashoffset: -200; opacity: 0; }
+}
+.ei-sym { opacity: 0; animation: eiSymCycle 10s ease infinite; }
+@keyframes eiSymCycle {
+  0%, 15% { opacity: 0; transform: scale(0.7); }
+  25%, 55% { opacity: 0.9; transform: scale(1.1); }
+  65%, 100% { opacity: 0; transform: scale(0.7); }
+}
+
+/* ── 04 Money: rising/falling bars ── */
+.ei-bar { transform-origin: bottom; animation: eiBarRise 8s ease-in-out infinite; }
+@keyframes eiBarRise {
+  0%, 10% { transform: scaleY(0.05); opacity: 0.4; }
+  30%, 55% { transform: scaleY(1); opacity: 0.9; }
+  75%, 100% { transform: scaleY(0.05); opacity: 0.25; }
+}
+.ei-baseline { stroke: var(--ink-3,#9B9B9B); stroke-width: 0.7; }
+
+/* ── 05 People: nodes + edges ── */
+.ei-node { opacity: 0; animation: eiNodeIn 12s ease infinite; }
+@keyframes eiNodeIn {
+  0%, 5% { opacity: 0; }
+  15%, 75% { opacity: 1; }
+  85%, 100% { opacity: 0; }
+}
+.ei-edge { stroke-dasharray: 80; stroke-dashoffset: 80;
+  animation: eiEdgeDraw 12s ease infinite; }
+@keyframes eiEdgeDraw {
+  0%, 20% { stroke-dashoffset: 80; opacity: 0; }
+  35%, 60% { stroke-dashoffset: 0; opacity: 0.4; }
+  65%, 75% { stroke-dashoffset: 0; opacity: 0.2; }
+  85%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+.ei-edge-glow { stroke-dasharray: 80; stroke-dashoffset: 80;
+  animation: eiEdgeGlow 12s ease infinite; }
+@keyframes eiEdgeGlow {
+  0%, 30% { stroke-dashoffset: 80; opacity: 0; }
+  45%, 55% { stroke-dashoffset: 0; opacity: 0.8; stroke-width: 2.5; }
+  70% { stroke-dashoffset: 0; opacity: 0.25; }
+  85%, 100% { opacity: 0; }
+}
+
+/* ── 06 Archive: chain of generations ── */
+.ei-gen { opacity: 0; animation: eiGenIn 10s ease infinite; }
+@keyframes eiGenIn {
+  0%, 5% { opacity: 0; transform: scale(0); }
+  15%, 70% { opacity: 1; transform: scale(1); }
+  85%, 100% { opacity: 0; transform: scale(0.5); }
+}
+.ei-chain { stroke-dasharray: 40; stroke-dashoffset: 40;
+  animation: eiChainDraw 10s ease infinite; }
+@keyframes eiChainDraw {
+  0%, 10% { stroke-dashoffset: 40; opacity: 0; }
+  30%, 65% { stroke-dashoffset: 0; opacity: 0.6; }
+  80%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+.ei-torch { animation: eiTorch 10s ease-in-out infinite; opacity: 0; }
+@keyframes eiTorch {
+  0%, 15% { cx: 28; opacity: 0; }
+  25% { opacity: 0.6; }
+  70% { cx: 172; opacity: 0.4; }
+  85%, 100% { cx: 172; opacity: 0; }
+}
 </style>
 </head>
 <body>
@@ -55,7 +192,7 @@
             <div class="mono" id="heroMonth" style="position:absolute; bottom:14px; right:16px; font-size:10px;">&mdash;</div>
           </div>
           <figcaption class="mono" style="margin-top:10px; text-align:right; max-width: 560px; margin-left:auto;">
-            Each dot is a letter. Watch them arrive. <span style="color:var(--accent); font-weight:500;">Explore the timeline &rarr;</span>
+            Each dot is a letter. Watch them arrive.<br><span style="color:var(--accent); font-weight:500;">Explore the timeline &rarr;</span>
           </figcaption>
           </a>
         </figure>
@@ -101,6 +238,43 @@
     </p>
     <div class="explore-grid reveal">
       <a class="explore-card" href="hubbell-dashboard.html">
+        <div class="explore-icon">
+          <svg viewBox="0 0 200 56" preserveAspectRatio="xMidYMid meet">
+            <line class="ei-lane" x1="10" x2="190" y1="10" y2="10"/>
+            <line class="ei-lane" x1="10" x2="190" y1="22" y2="22"/>
+            <line class="ei-lane" x1="10" x2="190" y1="34" y2="34"/>
+            <line class="ei-lane" x1="10" x2="190" y1="46" y2="46"/>
+            <!-- Henry (blue) -->
+            <circle cx="24" cy="10" r="2" fill="#2D5F8A" class="ei-dot" style="animation-delay:0.3s"/>
+            <circle cx="48" cy="10" r="2.5" fill="#2D5F8A" class="ei-dot" style="animation-delay:1.0s"/>
+            <circle cx="68" cy="10" r="2" fill="#2D5F8A" class="ei-dot" style="animation-delay:1.8s"/>
+            <circle cx="88" cy="10" r="3" fill="#2D5F8A" class="ei-dot" style="animation-delay:2.5s"/>
+            <circle cx="112" cy="10" r="2" fill="#2D5F8A" class="ei-dot" style="animation-delay:3.2s"/>
+            <!-- Alexander (gold) -->
+            <circle cx="20" cy="22" r="2" fill="#B8860B" class="ei-dot" style="animation-delay:0.2s"/>
+            <circle cx="40" cy="22" r="3" fill="#B8860B" class="ei-dot" style="animation-delay:0.8s"/>
+            <circle cx="58" cy="22" r="2.5" fill="#B8860B" class="ei-dot" style="animation-delay:1.5s"/>
+            <circle cx="80" cy="22" r="2" fill="#B8860B" class="ei-dot" style="animation-delay:2.2s"/>
+            <circle cx="100" cy="22" r="3" fill="#B8860B" class="ei-dot" style="animation-delay:2.8s"/>
+            <circle cx="124" cy="22" r="2" fill="#B8860B" class="ei-dot" style="animation-delay:3.5s"/>
+            <circle cx="148" cy="22" r="2.5" fill="#B8860B" class="ei-dot" style="animation-delay:3.8s"/>
+            <circle cx="170" cy="22" r="2" fill="#B8860B" class="ei-dot" style="animation-delay:4.4s"/>
+            <!-- James (green) -->
+            <circle cx="56" cy="34" r="2" fill="#4A7C59" class="ei-dot" style="animation-delay:1.4s"/>
+            <circle cx="78" cy="34" r="2.5" fill="#4A7C59" class="ei-dot" style="animation-delay:2.1s"/>
+            <circle cx="100" cy="34" r="2" fill="#4A7C59" class="ei-dot" style="animation-delay:3.0s"/>
+            <circle cx="130" cy="34" r="3" fill="#4A7C59" class="ei-dot" style="animation-delay:3.8s"/>
+            <circle cx="158" cy="34" r="2" fill="#4A7C59" class="ei-dot" style="animation-delay:4.2s"/>
+            <!-- Charles (red) -->
+            <circle cx="52" cy="46" r="2" fill="#8B3A3A" class="ei-dot" style="animation-delay:1.3s"/>
+            <circle cx="76" cy="46" r="2.5" fill="#8B3A3A" class="ei-dot" style="animation-delay:2.0s"/>
+            <circle cx="98" cy="46" r="3" fill="#8B3A3A" class="ei-dot" style="animation-delay:2.8s"/>
+            <circle cx="120" cy="46" r="2" fill="#8B3A3A" class="ei-dot" style="animation-delay:3.5s"/>
+            <circle cx="146" cy="46" r="2.5" fill="#8B3A3A" class="ei-dot" style="animation-delay:4.0s"/>
+            <!-- Scan line -->
+            <line x1="0" x2="0" y1="2" y2="54" stroke="var(--ink-3)" stroke-width="0.5" class="ei-scan"/>
+          </svg>
+        </div>
         <div class="mono" style="color: var(--ink-3); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">01 &middot; Timeline</div>
         <h3>Parallel Lives</h3>
         <p>Every letter plotted by date and author &mdash; four brothers writing from four different theaters of war, their lives diverging and intersecting.</p>
@@ -108,6 +282,24 @@
         <svg class="explore-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
       </a>
       <a class="explore-card" href="viz-map-fullwar.html">
+        <div class="explore-icon">
+          <svg viewBox="0 0 200 56" preserveAspectRatio="xMidYMid meet">
+            <!-- Eastern US outline: Great Lakes top-left, Atlantic coast right, Gulf bottom -->
+            <path class="ei-coast" d="M10,8 Q20,4 35,6 Q48,8 55,4 Q62,2 70,6 L78,8"/>
+            <path class="ei-coast" d="M78,8 Q82,6 88,8 L95,6 Q100,4 108,6"/>
+            <path class="ei-coast" d="M108,6 L125,4 Q140,3 155,6 Q162,8 168,6 L180,4 Q188,6 192,10"/>
+            <path class="ei-coast" d="M192,10 Q194,16 190,20 L186,24 Q188,28 184,32 Q180,36 176,38 L170,42 Q164,46 158,48"/>
+            <path class="ei-coast" d="M158,48 Q148,52 135,50 Q120,48 105,52 L85,50 Q70,48 55,50 L35,52 Q20,50 10,52"/>
+            <!-- Henry: NY→Virginia/Antietam (NE starts high-right, moves south) -->
+            <circle cx="170" cy="10" r="3" fill="#2D5F8A" class="ei-mdot-sw" style="animation-delay:0s"/>
+            <!-- Alexander: Kentucky/Tennessee (center, moves SE) -->
+            <circle cx="80" cy="20" r="3" fill="#B8860B" class="ei-mdot-se" style="animation-delay:3s"/>
+            <!-- James: Tennessee→Georgia→Carolinas (center-south, moves east) -->
+            <circle cx="70" cy="36" r="2.5" fill="#4A7C59" class="ei-mdot-e" style="animation-delay:6s"/>
+            <!-- Charles: Virginia/DC area (right-center, moves south) -->
+            <circle cx="160" cy="14" r="2.5" fill="#8B3A3A" class="ei-mdot-se" style="animation-delay:9s"/>
+          </svg>
+        </div>
         <div class="mono" style="color: var(--ink-3); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">02 &middot; Geography</div>
         <h3>The Map That Moves</h3>
         <p>Follow four soldiers across the eastern theater. From Champlain to Antietam, Chattanooga to Savannah &mdash; every letter placed where it was written.</p>
@@ -115,6 +307,11 @@
         <svg class="explore-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
       </a>
       <a class="explore-card" href="viz-health-ledger.html">
+        <div class="explore-icon">
+          <svg viewBox="0 0 200 56" preserveAspectRatio="xMidYMid meet">
+            <path class="ei-pulse" d="M10,32 L40,32 L48,32 L52,14 L56,44 L60,24 L64,36 L68,28 L80,28 L100,28 L108,28 L112,10 L116,46 L120,20 L124,34 L128,28 L140,28 L160,28 L168,28 L172,16 L176,40 L180,28 L190,28" stroke="#4A7C59"/>
+          </svg>
+        </div>
         <div class="mono" style="color: var(--ink-3); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">03 &middot; Wellness</div>
         <h3>The Wellness Ledger</h3>
         <p>For every soldier killed in battle, two died of disease. Track each brother&rsquo;s physical condition through their own words &mdash; fever, scurvy, night blindness, exhaustion.</p>
@@ -122,6 +319,20 @@
         <svg class="explore-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
       </a>
       <a class="explore-card" href="viz-money-story.html">
+        <div class="explore-icon">
+          <svg viewBox="0 0 200 56" preserveAspectRatio="xMidYMid meet">
+            <line class="ei-baseline" x1="20" x2="180" y1="50" y2="50"/>
+            <!-- Rising/falling bars — green for dollars -->
+            <rect class="ei-bar" x="28" y="14" width="10" height="36" rx="1" fill="#3D7A4A" opacity="0.7" style="animation-delay:0.2s"/>
+            <rect class="ei-bar" x="48" y="22" width="10" height="28" rx="1" fill="#4A8C57" opacity="0.55" style="animation-delay:0.6s"/>
+            <rect class="ei-bar" x="68" y="8" width="10" height="42" rx="1" fill="#3D7A4A" opacity="0.8" style="animation-delay:1.0s"/>
+            <rect class="ei-bar" x="88" y="28" width="10" height="22" rx="1" fill="#5A9C67" opacity="0.45" style="animation-delay:1.4s"/>
+            <rect class="ei-bar" x="108" y="18" width="10" height="32" rx="1" fill="#4A8C57" opacity="0.65" style="animation-delay:1.8s"/>
+            <rect class="ei-bar" x="128" y="10" width="10" height="40" rx="1" fill="#3D7A4A" opacity="0.75" style="animation-delay:2.2s"/>
+            <rect class="ei-bar" x="148" y="26" width="10" height="24" rx="1" fill="#5A9C67" opacity="0.5" style="animation-delay:2.6s"/>
+            <rect class="ei-bar" x="168" y="20" width="10" height="30" rx="1" fill="#4A8C57" opacity="0.6" style="animation-delay:3.0s"/>
+          </svg>
+        </div>
         <div class="mono" style="color: var(--ink-3); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">04 &middot; Economy</div>
         <h3>The Money Story</h3>
         <p>Every dollar mentioned &mdash; pay, bounties, expenses, money begged from home when the army didn&rsquo;t pay for months. The private economy of a private&rsquo;s war.</p>
@@ -129,10 +340,77 @@
         <svg class="explore-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
       </a>
       <a class="explore-card" href="viz-people-web.html">
+        <div class="explore-icon">
+          <svg viewBox="0 0 200 56" preserveAspectRatio="xMidYMid meet">
+            <!-- Branches from central hub outward -->
+            <line class="ei-edge" x1="100" y1="28" x2="40" y2="10" stroke="#2D5F8A" stroke-width="1" style="animation-delay:0s"/>
+            <line class="ei-edge" x1="100" y1="28" x2="160" y2="12" stroke="#4A7C59" stroke-width="1" style="animation-delay:0.3s"/>
+            <line class="ei-edge" x1="100" y1="28" x2="50" y2="46" stroke="#8B3A3A" stroke-width="1" style="animation-delay:0.6s"/>
+            <line class="ei-edge" x1="100" y1="28" x2="155" y2="44" stroke="#7B5EA7" stroke-width="1" style="animation-delay:0.9s"/>
+            <!-- Secondary branches forking off -->
+            <line class="ei-edge" x1="40" y1="10" x2="14" y2="20" stroke="var(--ink-3)" stroke-width="1" style="animation-delay:1.4s"/>
+            <line class="ei-edge" x1="40" y1="10" x2="30" y2="32" stroke="var(--ink-3)" stroke-width="1" style="animation-delay:1.6s"/>
+            <line class="ei-edge" x1="160" y1="12" x2="185" y2="24" stroke="var(--ink-3)" stroke-width="1" style="animation-delay:1.8s"/>
+            <line class="ei-edge" x1="155" y1="44" x2="180" y2="38" stroke="var(--ink-3)" stroke-width="1" style="animation-delay:2.0s"/>
+            <line class="ei-edge" x1="50" y1="46" x2="72" y2="50" stroke="var(--ink-3)" stroke-width="1" style="animation-delay:2.2s"/>
+            <!-- Glow on primary branches -->
+            <line class="ei-edge-glow" x1="100" y1="28" x2="40" y2="10" stroke="#2D5F8A" stroke-width="1.5" style="animation-delay:0s"/>
+            <line class="ei-edge-glow" x1="100" y1="28" x2="155" y2="44" stroke="#7B5EA7" stroke-width="1.5" style="animation-delay:2s"/>
+            <!-- Central hub -->
+            <circle cx="100" cy="28" r="6" fill="#B8860B" class="ei-node" style="animation-delay:0s"/>
+            <!-- Primary nodes -->
+            <circle cx="40" cy="10" r="4" fill="#2D5F8A" class="ei-node" style="animation-delay:0.3s"/>
+            <circle cx="160" cy="12" r="4" fill="#4A7C59" class="ei-node" style="animation-delay:0.6s"/>
+            <circle cx="50" cy="46" r="3.5" fill="#8B3A3A" class="ei-node" style="animation-delay:0.9s"/>
+            <circle cx="155" cy="44" r="4" fill="#7B5EA7" class="ei-node" style="animation-delay:1.2s"/>
+            <!-- Outer leaf nodes -->
+            <circle cx="14" cy="20" r="2.5" fill="var(--ink-3)" class="ei-node" style="animation-delay:1.6s"/>
+            <circle cx="30" cy="32" r="2.5" fill="var(--ink-3)" class="ei-node" style="animation-delay:1.8s"/>
+            <circle cx="185" cy="24" r="2.5" fill="var(--ink-3)" class="ei-node" style="animation-delay:2.0s"/>
+            <circle cx="180" cy="38" r="2.5" fill="var(--ink-3)" class="ei-node" style="animation-delay:2.2s"/>
+            <circle cx="72" cy="50" r="2.5" fill="var(--ink-3)" class="ei-node" style="animation-delay:2.4s"/>
+          </svg>
+        </div>
         <div class="mono" style="color: var(--ink-3); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">05 &middot; Network</div>
         <h3>The People Web</h3>
         <p>Officers, comrades, family, strangers &mdash; the network of nearly 600 people mentioned across the letters, and the connections between them.</p>
         <div class="meta">Network graph &middot; Person identity</div>
+        <svg class="explore-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="explore-card card-collection" href="the-collection.html">
+        <div class="explore-icon">
+          <svg viewBox="0 0 200 56" preserveAspectRatio="xMidYMid meet">
+            <!-- Chain links between generations -->
+            <line class="ei-chain" x1="36" y1="28" x2="64" y2="28" stroke="var(--accent)" stroke-width="1" style="animation-delay:1.0s"/>
+            <line class="ei-chain" x1="72" y1="28" x2="100" y2="28" stroke="var(--accent)" stroke-width="1" style="animation-delay:2.0s"/>
+            <line class="ei-chain" x1="108" y1="28" x2="136" y2="28" stroke="var(--accent)" stroke-width="1" style="animation-delay:3.0s"/>
+            <line class="ei-chain" x1="144" y1="28" x2="172" y2="28" stroke="var(--accent)" stroke-width="1" style="animation-delay:4.0s"/>
+            <!-- Generation nodes -->
+            <circle cx="28" cy="28" r="5" fill="none" stroke="var(--accent)" stroke-width="1.2" class="ei-gen" style="animation-delay:0.3s"/>
+            <circle cx="64" cy="28" r="5" fill="none" stroke="var(--accent)" stroke-width="1.2" class="ei-gen" style="animation-delay:1.3s"/>
+            <circle cx="100" cy="28" r="5" fill="none" stroke="var(--accent)" stroke-width="1.2" class="ei-gen" style="animation-delay:2.3s"/>
+            <circle cx="136" cy="28" r="5" fill="none" stroke="var(--accent)" stroke-width="1.2" class="ei-gen" style="animation-delay:3.3s"/>
+            <circle cx="172" cy="28" r="5" fill="none" stroke="var(--accent)" stroke-width="1.2" class="ei-gen" style="animation-delay:4.3s"/>
+            <!-- Inner fill — grows with each generation -->
+            <circle cx="28" cy="28" r="3" fill="var(--accent)" class="ei-gen" style="animation-delay:0.5s;opacity:0.3"/>
+            <circle cx="64" cy="28" r="3" fill="var(--accent)" class="ei-gen" style="animation-delay:1.5s;opacity:0.3"/>
+            <circle cx="100" cy="28" r="3" fill="var(--accent)" class="ei-gen" style="animation-delay:2.5s;opacity:0.3"/>
+            <circle cx="136" cy="28" r="3" fill="var(--accent)" class="ei-gen" style="animation-delay:3.5s;opacity:0.3"/>
+            <circle cx="172" cy="28" r="3" fill="var(--accent)" class="ei-gen" style="animation-delay:4.5s;opacity:0.3"/>
+            <!-- Torch glow passing left to right -->
+            <circle r="8" fill="var(--accent)" opacity="0.08" class="ei-torch" cy="28"/>
+            <!-- Era labels -->
+            <text x="28" y="46" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--ink-3)" letter-spacing="0.05em" class="ei-gen" style="animation-delay:0.5s">1861</text>
+            <text x="64" y="46" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--ink-3)" letter-spacing="0.05em" class="ei-gen" style="animation-delay:1.5s">1947</text>
+            <text x="100" y="46" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--ink-3)" letter-spacing="0.05em" class="ei-gen" style="animation-delay:2.5s">1996</text>
+            <text x="136" y="46" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--ink-3)" letter-spacing="0.05em" class="ei-gen" style="animation-delay:3.5s">2010</text>
+            <text x="172" y="46" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--ink-3)" letter-spacing="0.05em" class="ei-gen" style="animation-delay:4.5s">2026</text>
+          </svg>
+        </div>
+        <div class="mono" style="color: var(--ink-3); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">The Archive</div>
+        <h3>Five Generations of Stewardship</h3>
+        <p>How 274 letters survived 160 years &mdash; from a trunk of fading paper to a structured digital archive. The chain of care that kept one family&rsquo;s story alive.</p>
+        <div class="meta">Provenance &middot; Preservation &middot; Approach</div>
         <svg class="explore-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
       </a>
     </div>

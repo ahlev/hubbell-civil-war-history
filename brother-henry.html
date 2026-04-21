@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Henry Hubbell &mdash; Co. D, 34th New York</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;0,8..60,800;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="_design.css">
 <link rel="stylesheet" href="_bio.css">
 <link rel="stylesheet" href="_overlay.css">
@@ -40,6 +41,14 @@
 
 <div class="bio-lede">
   <p>Born November 1839 in Champlain, New York. Enlisted June 1861 at age 21. Killed at the Battle of Antietam, September 17, 1862. His body was never recovered.</p>
+</div>
+
+<!-- ===== FOOTPRINT MAP ===== -->
+<div class="bio-map-section">
+  <div class="bio-map-wrap">
+    <div class="bio-map-label">Wartime Footprint</div>
+    <div class="bio-map" id="bioMap"></div>
+  </div>
 </div>
 
 <!-- ===== LETTER DROPDOWN ===== -->
@@ -220,6 +229,8 @@
 </div>
 
 <!-- ===== DATA + SCRIPTS ===== -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="03-data/map-movements.js"></script>
 <script src="_design-data.js"></script>
 <script src="_design-ui.js"></script>
 <script src="_search-data.js"></script>
@@ -238,12 +249,13 @@ function getHenryAuthored() {
   return LETTERS.filter(function(l) { return l.a === 'henry'; });
 }
 
-// Populate letter count
+// Populate letter count + build footprint map
 document.addEventListener('DOMContentLoaded', function() {
   var authored = getHenryAuthored();
   document.getElementById('letterCount').textContent = authored.length;
   document.getElementById('lettersCount').textContent = authored.length + ' letters written by Henry';
   buildLettersList();
+  buildFootprintMap('henry', '#2D5F8A');
 });
 
 // Letters drawer
@@ -274,6 +286,75 @@ function buildLettersList() {
       '<span class="lr-flags">' + flags + '</span></div>';
   });
   list.innerHTML = html;
+}
+
+// Footprint map — aggregate locations by place, size by duration
+function buildFootprintMap(brotherId, color) {
+  if (!window.__MAP_MOVEMENTS__ || !document.getElementById('bioMap')) return;
+  var moves = window.__MAP_MOVEMENTS__.movements.filter(function(m) { return m.brother === brotherId; });
+  if (!moves.length) return;
+
+  // Aggregate by placeName
+  var places = {};
+  moves.forEach(function(m) {
+    var key = m.placeName || (m.lat + ',' + m.lon);
+    if (!places[key]) places[key] = { lat: m.lat, lon: m.lon, name: m.placeName, days: 0, hasBattle: false, first: m.date, last: m.endDate || m.date };
+    var start = new Date(m.date + 'T12:00:00');
+    var end = new Date((m.endDate || m.date) + 'T12:00:00');
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) return;
+    var days = Math.max(1, Math.round((end - start) / 86400000));
+    places[key].days += days;
+    if (m.hasBattle) places[key].hasBattle = true;
+    if (m.date < places[key].first) places[key].first = m.date;
+    if ((m.endDate || m.date) > places[key].last) places[key].last = m.endDate || m.date;
+  });
+
+  var pts = Object.values(places);
+  var maxDays = Math.max.apply(null, pts.map(function(p) { return p.days; }));
+
+  var map = L.map('bioMap', {
+    zoomControl: false,
+    attributionControl: true,
+    scrollWheelZoom: false,
+    dragging: true
+  });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OSM &amp; CARTO',
+    maxZoom: 18
+  }).addTo(map);
+
+  // Draw movement path (chronological)
+  var sorted = moves.slice().sort(function(a, b) { return a.date < b.date ? -1 : 1; });
+  var pathCoords = [];
+  var seen = {};
+  sorted.forEach(function(m) {
+    var key = m.lat + ',' + m.lon;
+    if (!seen[key]) {
+      pathCoords.push([m.lat, m.lon]);
+      seen[key] = true;
+    }
+  });
+  if (pathCoords.length > 1) {
+    L.polyline(pathCoords, { color: color, weight: 1.5, opacity: 0.3, dashArray: '4 6' }).addTo(map);
+  }
+
+  // Draw circles sized by duration
+  pts.forEach(function(p) {
+    var r = 6 + Math.sqrt(p.days / maxDays) * 20;
+    var fillColor = p.hasBattle ? '#C44E52' : color;
+    L.circleMarker([p.lat, p.lon], {
+      radius: r,
+      fillColor: fillColor,
+      fillOpacity: 0.25,
+      color: fillColor,
+      weight: 1.5,
+      opacity: 0.6
+    }).bindTooltip(p.name + ' (' + p.days + ' days)', { direction: 'top', offset: [0, -r] }).addTo(map);
+  });
+
+  // Fit bounds with padding
+  var bounds = L.latLngBounds(pts.map(function(p) { return [p.lat, p.lon]; }));
+  map.fitBounds(bounds, { padding: [30, 30] });
 }
 
 function openLetter(id, highlight) {

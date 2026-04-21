@@ -109,15 +109,25 @@
       var style = document.createElement('style');
       style.id = 'dl-styles';
       style.textContent =
-        /* Share button */
+        /* Share button — fixed bottom-right circle */
         '.dl-share-btn{' +
-          'background:none;border:none;cursor:pointer;padding:4px 8px;' +
-          'font-size:16px;color:#b0a89a;transition:color .2s;' +
-          'display:inline-flex;align-items:center;gap:4px;' +
-          'font-family:inherit;vertical-align:middle;' +
+          'position:fixed;bottom:24px;right:24px;z-index:9000;' +
+          'width:42px;height:42px;border-radius:50%;' +
+          'background:var(--bg-elev,#fff);border:1px solid rgba(0,0,0,0.1);' +
+          'cursor:pointer;padding:0;' +
+          'display:flex;align-items:center;justify-content:center;' +
+          'box-shadow:0 3px 12px rgba(0,0,0,0.16),0 1px 3px rgba(0,0,0,0.08);' +
+          'color:var(--ink-2,#6B6B6B);transition:all .25s cubic-bezier(.4,0,.2,1);' +
+          'font-family:inherit;' +
         '}' +
-        '.dl-share-btn:hover{color:#e8d5b7;}' +
-        '.dl-share-btn svg{width:16px;height:16px;fill:currentColor;}' +
+        '.dl-share-btn:hover{' +
+          'color:#fff;background:var(--accent,#B8860B);border-color:var(--accent,#B8860B);' +
+          'box-shadow:0 6px 20px rgba(184,134,11,0.35),0 2px 6px rgba(0,0,0,0.1);' +
+          'transform:translateY(-2px) scale(1.08);' +
+        '}' +
+        '.dl-share-btn:active{transform:translateY(0) scale(0.95);}' +
+        '.dl-share-btn svg{width:18px;height:18px;fill:currentColor;}' +
+        '.dl-share-btn span{display:none;}' +
 
         /* Toast */
         '#dl-toast{' +
@@ -143,13 +153,9 @@
       document.head.appendChild(style);
     }
 
-    // Wait for navbar to exist (may be deferred)
     function tryInject() {
-      var nav = document.querySelector('.site-nav');
-      if (!nav) return setTimeout(tryInject, 100);
-
       // Don't inject twice
-      if (nav.querySelector('.dl-share-btn')) return;
+      if (document.querySelector('.dl-share-btn')) return;
 
       var btn = document.createElement('button');
       btn.className = 'dl-share-btn';
@@ -166,13 +172,7 @@
         copyShareUrl();
       };
 
-      // Insert after search container (or at end of nav)
-      var searchContainer = nav.querySelector('.search-container');
-      if (searchContainer) {
-        searchContainer.parentNode.insertBefore(btn, searchContainer.nextSibling);
-      } else {
-        nav.appendChild(btn);
-      }
+      document.body.appendChild(btn);
     }
 
     if (document.readyState === 'loading') {

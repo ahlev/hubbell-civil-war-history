@@ -17,6 +17,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PEOPLE_PATH = os.path.join(ROOT, "03-data", "people", "people-registry.json")
 PLACES_PATH = os.path.join(ROOT, "03-data", "places", "places-gazetteer.json")
 LETTERS_PATH = os.path.join(ROOT, "03-data", "all-letters.json")
+SUMMARIES_PATH = os.path.join(ROOT, "03-data", "entity-summaries.json")
 OUTPUT_PATH = os.path.join(ROOT, "_overlay-data.js")
 
 
@@ -39,15 +40,16 @@ def build_letter_index(letters):
     return index
 
 
-def build_people(people):
+def build_people(people, summaries=None):
     """Build people profiles array + variant→index lookup."""
+    summaries = summaries or {}
     profiles = []
     lookup = {}
     for person in people:
         idx = len(profiles)
         # Store just letter IDs — metadata resolved at render time via LETTER_INDEX
         letter_ids = sorted(person.get("letters", []))
-        profiles.append({
+        profile = {
             "id": person["id"],
             "n": person["canonicalName"],
             "cat": person.get("category", "civilian"),
@@ -57,7 +59,11 @@ def build_people(people):
             "ltrs": letter_ids,
             "first": person.get("firstAppearance", ""),
             "last": person.get("lastAppearance", ""),
-        })
+        }
+        s = summaries.get(person["id"], "")
+        if s:
+            profile["s"] = s
+        profiles.append(profile)
         for variant in person.get("variants", []):
             key = variant.strip().lower()
             if key and key not in lookup:
@@ -69,8 +75,9 @@ def build_people(people):
     return profiles, lookup
 
 
-def build_places(places):
+def build_places(places, summaries=None):
     """Build places profiles array + variant→index lookup."""
+    summaries = summaries or {}
     profiles = []
     lookup = {}
     skip = {"`inferred`", "`stated`", "`unclear`", "`envelope`"}
@@ -79,7 +86,7 @@ def build_places(places):
         idx = len(profiles)
         coords = place.get("coordinates", {})
         letter_ids = sorted(place.get("letters", []))
-        profiles.append({
+        profile = {
             "id": place["id"],
             "n": place["canonicalName"],
             "aw": [v for v in place.get("asWritten", []) if v not in skip],
@@ -87,7 +94,11 @@ def build_places(places):
             "co": {"lat": coords.get("lat"), "lon": coords.get("lon")} if coords else None,
             "lc": place.get("letterCount", 0),
             "ltrs": letter_ids,
-        })
+        }
+        s = summaries.get(place["id"], "")
+        if s:
+            profile["s"] = s
+        profiles.append(profile)
         for variant in place.get("asWritten", []):
             key = variant.strip().lower()
             if key and key not in skip and key not in lookup:
@@ -108,12 +119,15 @@ def main():
     people = load_json(PEOPLE_PATH)
     places = load_json(PLACES_PATH)
     letters = load_json(LETTERS_PATH)
+    summaries = load_json(SUMMARIES_PATH) if os.path.exists(SUMMARIES_PATH) else {}
+    if summaries:
+        print(f"  {len(summaries)} entity summaries loaded")
 
     print(f"  {len(people)} people, {len(places)} places, {len(letters)} letters")
 
     letter_index = build_letter_index(letters)
-    people_profiles, people_lookup = build_people(people)
-    places_profiles, places_lookup = build_places(places)
+    people_profiles, people_lookup = build_people(people, summaries)
+    places_profiles, places_lookup = build_places(places, summaries)
 
     print(f"  {len(people_profiles)} person profiles, {len(people_lookup)} person variants")
     print(f"  {len(places_profiles)} place profiles, {len(places_lookup)} place variants")

@@ -256,6 +256,7 @@
             (dateRange ? '<span>' + dateRange + '</span>' : '') +
           '</div>' +
         '</div>' +
+        (person.s ? '<div class="hubbell-overlay-section"><p class="hubbell-overlay-summary">' + esc(person.s) + '</p></div>' : '') +
         rolesHtml +
         (person.ltrs.length > 0 ? '<div class="hubbell-overlay-section">' +
           '<div class="hubbell-overlay-section-title">Timeline</div>' +
@@ -306,6 +307,7 @@
             '<span>Referenced in <span class="hubbell-overlay-stat-value">' + place.lc + '</span> letters</span>' +
           '</div>' +
         '</div>' +
+        (place.s ? '<div class="hubbell-overlay-section"><p class="hubbell-overlay-summary">' + esc(place.s) + '</p></div>' : '') +
         (place.ltrs.length > 0 ? '<div class="hubbell-overlay-section">' +
           '<div class="hubbell-overlay-section-title">When &amp; Who</div>' +
           miniTimeline(place.ltrs) +
@@ -324,20 +326,31 @@
   }
 
   /* ── Letter Sub-Reader ── */
-  function showLetterReader(letterId) {
-    const meta = letterMeta(letterId);
+  function showLetterReader(letterId, opts) {
+    var meta = letterMeta(letterId);
     if (!meta) return;
+
+    var healthCtx = (opts && opts.health) ? opts.health : null;
 
     pushStack('letter', letterId);
 
-    // Show loading state first
-    const headerHtml =
+    // Build subtitle line
+    var subtitleParts = fmtDate(meta.d);
+    if (meta.l) subtitleParts += ' &middot; ' + esc(meta.l);
+
+    // Health status badge in subtitle
+    var subtitleExtra = '';
+    if (healthCtx && healthCtx.status && healthCtx.status !== 'nodata') {
+      subtitleExtra = ' <span class="hubbell-overlay-health-status" style="background:' +
+        esc(healthCtx.statusColor || '#D0D0D0') + '">' +
+        esc(healthCtx.statusLabel || healthCtx.status) + '</span>';
+    }
+
+    var headerHtml =
       '<div class="hubbell-overlay-header">' +
         '<div class="hubbell-overlay-header-left">' +
           '<h2 class="hubbell-overlay-title">' + esc(meta.an) + ' \u2192 ' + esc(meta.r) + '</h2>' +
-          '<div class="hubbell-overlay-subtitle">' + fmtDate(meta.d) +
-            (meta.l ? ' &middot; ' + esc(meta.l) : '') +
-          '</div>' +
+          '<div class="hubbell-overlay-subtitle">' + subtitleParts + subtitleExtra + '</div>' +
         '</div>' +
         headerActions() +
       '</div>';
@@ -346,7 +359,7 @@
 
     // Load transcription
     loadTranscription(letterId, function (text) {
-      const body = panel.querySelector('.hubbell-overlay-body');
+      var body = panel.querySelector('.hubbell-overlay-body');
       if (!body) return;
 
       if (!text) {
@@ -357,17 +370,91 @@
         return;
       }
 
-      // Format: collapse single \n to space, \n\n = paragraph break
-      const paragraphs = text.split(/\n\n+/);
-      const formatted = paragraphs
-        .map(p => '<p>' + esc(p.replace(/\n/g, ' ').trim()) + '</p>')
-        .filter(p => p !== '<p></p>')
-        .join('');
+      // Build health context section if provided
+      var healthHtml = '';
+      if (healthCtx) {
+        healthHtml = buildHealthSection(healthCtx);
+      }
 
-      body.innerHTML = '<div class="hubbell-overlay-reader-body">' + formatted + '</div>';
+      // Format: collapse single \n to space, \n\n = paragraph break
+      var paragraphs = text.split(/\n\n+/);
+      var formatted;
+
+      if (healthCtx && healthCtx.sentences) {
+        // Apply health sentence highlighting
+        formatted = paragraphs
+          .map(function (p) {
+            return '<p>' + highlightHealthSentences(p.replace(/\n/g, ' ').trim(), healthCtx.sentences) + '</p>';
+          })
+          .filter(function (p) { return p !== '<p></p>'; })
+          .join('');
+      } else {
+        formatted = paragraphs
+          .map(function (p) { return '<p>' + esc(p.replace(/\n/g, ' ').trim()) + '</p>'; })
+          .filter(function (p) { return p !== '<p></p>'; })
+          .join('');
+      }
+
+      body.innerHTML = healthHtml + '<div class="hubbell-overlay-reader-body">' + formatted + '</div>';
       autoLinkProse(body.querySelector('.hubbell-overlay-reader-body'));
       bindInternalLinks(body);
     });
+  }
+
+  /* ── Health Context Rendering ── */
+  function buildHealthSection(ctx) {
+    var html = '<div class="hubbell-overlay-health">';
+
+    // Flags row
+    var flags = [];
+    if (ctx.ill) flags.push('<span class="hubbell-overlay-hflag illness">Illness flagged</span>');
+    if (ctx.wnd) flags.push('<span class="hubbell-overlay-hflag wound">Wound flagged</span>');
+    if (ctx.dth) flags.push('<span class="hubbell-overlay-hflag death">Death mentioned</span>');
+    if (ctx.bat) flags.push('<span class="hubbell-overlay-hflag battle">Battle</span>');
+    if (flags.length) {
+      html += '<div class="hubbell-overlay-hflags">' + flags.join('') + '</div>';
+    }
+
+    // Evidence confidence
+    if (ctx.confidence && ctx.confidence !== 'nodata') {
+      html += '<div class="hubbell-overlay-hconf">' +
+        '<span class="hubbell-overlay-hconf-label" style="border-color:' + esc(ctx.confColor || '#9B9B9B') +
+        ';color:' + esc(ctx.confColor || '#9B9B9B') + '">' + esc(ctx.confLabel || ctx.confidence) + '</span>' +
+        (ctx.confExplanation ? '<span class="hubbell-overlay-hconf-desc">' + esc(ctx.confExplanation) + '</span>' : '') +
+        '</div>';
+    }
+
+    // Detected symptom keywords
+    if (ctx.symptoms && ctx.symptoms.length) {
+      html += '<div class="hubbell-overlay-hsymptoms">' +
+        ctx.symptoms.map(function (s) { return '<span class="hubbell-overlay-hsymptom">' + esc(s) + '</span>'; }).join('') +
+        '</div>';
+    }
+
+    html += '</div>';
+    return html;
+  }
+
+  function highlightHealthSentences(text, sentences) {
+    if (!sentences) return esc(text);
+    // Split into sentences preserving delimiters
+    var parts = text.split(/(?<=[.!?])\s+/);
+    var result = [];
+    for (var i = 0; i < parts.length; i++) {
+      var sent = parts[i];
+      var key = sent.trim().replace(/[.!?]+$/, '').substring(0, 40);
+      var cls = null;
+      if (sentences.hospital && sentences.hospital.has(key)) cls = 'hl-hospital';
+      else if (sentences.wound && sentences.wound.has(key)) cls = 'hl-hospital';
+      else if (sentences.sick && sentences.sick.has(key)) cls = 'hl-sick';
+      else if (sentences.healthy && sentences.healthy.has(key)) cls = 'hl-healthy';
+      if (cls) {
+        result.push('<span class="hubbell-overlay-' + cls + '">' + esc(sent) + '</span>');
+      } else {
+        result.push(esc(sent));
+      }
+    }
+    return result.join(' ');
   }
 
   /* ── Transcription Loader ── */
@@ -646,6 +733,7 @@
     showPerson: showPerson,
     showPlace: showPlace,
     showLetter: showLetterReader,
+    showHealthLetter: function (id, healthCtx) { showLetterReader(id, { health: healthCtx }); },
     close: closeOverlay,
 
     bindPage: function (options) {

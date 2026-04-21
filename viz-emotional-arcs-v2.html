@@ -320,7 +320,7 @@ var currentMode = 'lanes';
 var visibleAuthors = { henry: true, alexander: true, james: true, charles: true };
 
 // === HELPERS ===
-function parseDate(s) { return new Date(s + 'T00:00:00'); }
+function parseDate(s) { if (s && s.endsWith('-00')) s = s.slice(0, -2) + '15'; return new Date(s + 'T00:00:00'); }
 function daysBetween(a, b) { return Math.round((b - a) / 86400000); }
 function fmtDate(d) {
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];

@@ -2744,6 +2744,7 @@ function showBrotherDetail(node) {
     el.addEventListener('click', () => {
       showPersonDetailByName(el.dataset.personName);
     });
+    el._overlayBound = true;
   });
 
   // Wire in-panel Link & Explore button
@@ -3230,6 +3231,12 @@ function buildSidebar() {
       showPersonDetailByName(el.dataset.personName);
     });
   });
+
+  // Prevent the overlay system from double-binding these elements
+  // (the sidebar already handles person clicks via showPersonDetailByName)
+  content.querySelectorAll('[data-person-name]').forEach(el => {
+    el._overlayBound = true;
+  });
 }
 
 // Legend
@@ -3297,7 +3304,12 @@ function _pwSelectPerson(name) {
   const canon = getCanonName(name);
   const idx = nodeIndex[canon];
   if (idx === undefined) return;
-  setTimeout(function() {
+  // Wait for simulation to settle before centering
+  function centerWhenReady() {
+    if (simRunning && simAlpha > 0.05) {
+      requestAnimationFrame(centerWhenReady);
+      return;
+    }
     selectedNode = idx;
     const node = nodes[idx];
     panX = canvas.width / 2 - node.x * scale;
@@ -3305,7 +3317,12 @@ function _pwSelectPerson(name) {
     if (node.isBrother) showBrotherDetail(node);
     else showPersonDetail(node);
     updateLinkButton();
-  }, 600);
+  }
+  // Show info panel immediately, center after settling
+  var node = nodes[idx];
+  if (node.isBrother) showBrotherDetail(node);
+  else showPersonDetail(node);
+  centerWhenReady();
 }
 
 function _pwCreateLink(nameA, nameB) {
@@ -3314,15 +3331,20 @@ function _pwCreateLink(nameA, nameB) {
   const idxA = nodeIndex[canonA];
   const idxB = nodeIndex[canonB];
   if (idxA === undefined || idxB === undefined) return;
-  setTimeout(function() {
+  function centerWhenReady() {
+    if (simRunning && simAlpha > 0.05) {
+      requestAnimationFrame(centerWhenReady);
+      return;
+    }
     linkedPair = { a: idxA, b: idxB };
     selectedNode = null;
     showLinkedPairDetail(idxA, idxB);
-    // Center between the two nodes
     const nA = nodes[idxA], nB = nodes[idxB];
     panX = canvas.width / 2 - ((nA.x + nB.x) / 2) * scale;
     panY = canvas.height / 2 - ((nA.y + nB.y) / 2) * scale;
-  }, 600);
+  }
+  showLinkedPairDetail(idxA, idxB);
+  centerWhenReady();
 }
 
 function _pwSyncUrl() {

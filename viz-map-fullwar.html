@@ -733,6 +733,120 @@ body {
   padding-left: 6px;
 }
 
+/* ── Place Pin Marker (from ?place= navigation) ── */
+.place-pin-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: auto;
+}
+.place-pin-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #B8860B;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 3px rgba(184,134,11,0.35), 0 2px 8px rgba(0,0,0,0.4);
+  animation: place-pin-pulse 2s ease-in-out 3;
+}
+@keyframes place-pin-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(184,134,11,0.35), 0 2px 8px rgba(0,0,0,0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(184,134,11,0.15), 0 2px 8px rgba(0,0,0,0.4); }
+}
+.place-pin-label {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+  white-space: nowrap;
+  margin-top: 4px;
+  border-left: 3px solid #B8860B;
+}
+
+/* Place Pin Popup */
+.place-pin-popup-container .leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+}
+.place-pin-popup-container .leaflet-popup-content {
+  margin: 0;
+  padding: 0;
+}
+.place-pin-popup {
+  padding: 14px 16px;
+  font-family: var(--font-sans);
+}
+.place-pin-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin: 0 0 8px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #B8860B;
+}
+.place-pin-stats {
+  display: flex;
+  gap: 12px;
+  font-size: 0.72rem;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+.place-pin-stats span {
+  background: #F5F0EB;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+.place-pin-range {
+  font-size: 0.7rem;
+  color: var(--ink-3);
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.place-pin-letters {
+  border-top: 1px solid #F0ECE7;
+  padding-top: 10px;
+}
+.place-pin-letter {
+  padding: 6px 0;
+  border-bottom: 1px solid #F5F0EB;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.place-pin-letter:hover {
+  background: #FDFBF8;
+  margin: 0 -8px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.place-pin-letter:last-child { border-bottom: none; }
+.place-pin-author {
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+.place-pin-date {
+  font-size: 0.7rem;
+  color: var(--ink-3);
+  margin-left: 6px;
+}
+.place-pin-excerpt {
+  font-size: 0.7rem;
+  color: var(--ink-2);
+  font-style: italic;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+.place-pin-more {
+  font-size: 0.68rem;
+  color: var(--ink-3);
+  padding: 6px 0 2px;
+  font-style: italic;
+}
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .info-panel { display: none; }
@@ -962,16 +1076,14 @@ async function init() {
     toggleLock(paramBrother);
   }
 
-  // Handle ?place= parameter: fly to matching location
+  // Handle ?place= parameter: fly to matching location with labeled pin
   const paramPlace = params.get('place');
   if (paramPlace) {
-    const placeLower = paramPlace.toLowerCase();
-    const match = DATA.movements.find(function(m) {
-      return m.placeName && m.placeName.toLowerCase() === placeLower;
-    });
+    var match = matchPlaceName(paramPlace);
     if (match && match.lat && match.lon) {
       setTimeout(function() {
         map.flyTo([match.lat, match.lon], 10, { duration: 1.2 });
+        showPlacePin(paramPlace, match);
       }, 400);
     }
   }
@@ -1491,6 +1603,239 @@ function refreshInfoPanel(currentDateStr) {
 
   // Re-render the full info panel with current movement
   showInfoPanel(current, brotherId);
+}
+
+// ========== PLACE NAME MATCHING ==========
+// Robust matching: handles state name vs abbreviation, "Camp near X" prefixes,
+// apostrophe/spelling variants, and spacing differences.
+var STATE_ABBREVS = {
+  'alabama':'al','arkansas':'ar','california':'ca','colorado':'co','connecticut':'ct',
+  'delaware':'de','florida':'fl','georgia':'ga','illinois':'il','indiana':'in',
+  'iowa':'ia','kansas':'ks','kentucky':'ky','louisiana':'la','maine':'me',
+  'maryland':'md','massachusetts':'ma','michigan':'mi','minnesota':'mn',
+  'mississippi':'ms','missouri':'mo','montana':'mt','nebraska':'ne','nevada':'nv',
+  'new hampshire':'nh','new jersey':'nj','new mexico':'nm','new york':'ny',
+  'north carolina':'nc','ohio':'oh','oregon':'or','pennsylvania':'pa',
+  'rhode island':'ri','south carolina':'sc','tennessee':'tn','texas':'tx',
+  'utah':'ut','vermont':'vt','virginia':'va','washington':'wa',
+  'west virginia':'wv','wisconsin':'wi','district of columbia':'dc'
+};
+// Period abbreviations used in 1860s letters
+var STATE_PERIOD_ABBREVS = {
+  'tenn':'tn','penn':'pa','penna':'pa','va':'va','ga':'ga','ala':'al',
+  'la':'la','md':'md','conn':'ct','mass':'ma','minn':'mn','miss':'ms',
+  'mo':'mo','ind':'in','ill':'il','wisc':'wi','wis':'wi','mich':'mi',
+  'calif':'ca','ark':'ar','ky':'ky','tex':'tx','fla':'fl','ore':'or'
+};
+
+// Aliases for place names that differ historically from movement data
+var PLACE_ALIASES = {
+  'fortress monroe': 'fort monroe', 'fort royal': 'front royal',
+  'sharpsburgh': 'antietam', 'sharpsburg': 'antietam',
+  'bolivar heights': 'harpers ferry', 'bollever heights': 'harpers ferry',
+  'aquia creek': 'aquia landing', 'aquia creek landing': 'aquia landing',
+  'aquila creek': 'aquia landing', 'relay house': 'relay'
+};
+
+function resolveState(s) {
+  if (!s) return '';
+  s = s.replace(/\./g, '').trim();
+  if (s.length <= 2) return s;
+  if (STATE_ABBREVS[s]) return STATE_ABBREVS[s];
+  if (STATE_PERIOD_ABBREVS[s]) return STATE_PERIOD_ABBREVS[s];
+  return '';
+}
+
+function extractCandidates(raw) {
+  // Returns array of { core, state } candidate interpretations of a place string
+  var s = raw.toLowerCase().trim();
+  // Normalize apostrophes, collapse spaces
+  s = s.replace(/[''`]/g, '').replace(/\s+/g, ' ').trim();
+  // Split on commas
+  var parts = s.split(/,\s*/);
+  // Identify state from the last part
+  var stateAbbr = parts.length > 1 ? resolveState(parts[parts.length - 1]) : '';
+  // Also check second-to-last part as state (for "Hospital, City, State" patterns)
+  var stateAbbr2 = parts.length > 2 ? resolveState(parts[parts.length - 2]) : '';
+
+  var candidates = [];
+
+  // Strategy 1: full string after stripping prefixes
+  var stripped = s;
+  stripped = stripped.replace(/^(?:camp\s+(?:near|at|within|on|in|of\s+the)\s+|near\s+|in\s+the\s+field\s+(?:near|at)\s+|in\s+camp\s+(?:near|at)\s+)/i, '');
+  stripped = stripped.replace(/^(?:u\.?s\.?a?\.?\s+(?:general\s+|field\s+)?(?:hospital|barracks)\s*(?:no\.?\s*\d+)?,?\s*)/i, '');
+  stripped = stripped.replace(/^(?:\w+\s+(?:hospital|barracks)),?\s*/i, '');
+  var sp = stripped.split(/,\s*/);
+  candidates.push({ core: sp[0], state: stateAbbr || resolveState(sp.length > 1 ? sp[sp.length - 1] : '') });
+
+  // Strategy 2: try each comma-separated segment as the city name
+  for (var i = 0; i < parts.length; i++) {
+    var part = parts[i].trim();
+    // Skip if it looks like a state, unit number, or generic qualifier
+    if (resolveState(part) || /^\d|^no\b|^camp\b|hospital|barracks|regiment|corps|div\b|hq\b|hdqrs/i.test(part)) continue;
+    // Strip "camp [name]" → try the name without "camp" prefix too
+    var cleaned = part.replace(/^camp\s+/i, '');
+    candidates.push({ core: part, state: stateAbbr });
+    if (cleaned !== part) candidates.push({ core: cleaned, state: stateAbbr });
+    // If this part has its own state suffix in next part
+    if (i + 1 < parts.length) {
+      var nextState = resolveState(parts[i + 1]);
+      if (nextState) candidates.push({ core: part, state: nextState });
+    }
+  }
+
+  // Strategy 3: strip "Camp [Name], " prefix entirely, use remainder
+  var campMatch = s.match(/^camp\s+\w+,\s*(.+)/i);
+  if (campMatch) {
+    var remainder = campMatch[1].split(/,\s*/);
+    var rState = remainder.length > 1 ? resolveState(remainder[remainder.length - 1]) : stateAbbr;
+    candidates.push({ core: remainder[0], state: rState });
+  }
+
+  // Strategy 4: "near X" mid-string — extract X
+  var nearMatch = s.match(/(?:,\s*)?near\s+([^,]+)/i);
+  if (nearMatch) {
+    candidates.push({ core: nearMatch[1].trim(), state: stateAbbr });
+  }
+
+  // Apply aliases to all candidates
+  for (var c = 0; c < candidates.length; c++) {
+    if (PLACE_ALIASES[candidates[c].core]) {
+      candidates.push({ core: PLACE_ALIASES[candidates[c].core], state: candidates[c].state });
+    }
+  }
+
+  return candidates;
+}
+
+function scoreCorePair(inputCore, mvCore) {
+  if (inputCore === mvCore) return 80;
+  // Substring containment
+  if (inputCore.indexOf(mvCore) > -1 || mvCore.indexOf(inputCore) > -1) return 60;
+  // Levenshtein-lite for spelling variants (1-2 char difference)
+  if (Math.abs(inputCore.length - mvCore.length) <= 2 && inputCore.length >= 4) {
+    var shorter = inputCore.length <= mvCore.length ? inputCore : mvCore;
+    var longer = inputCore.length > mvCore.length ? inputCore : mvCore;
+    var diffs = 0, si = 0;
+    for (var li = 0; li < longer.length && si < shorter.length; li++) {
+      if (longer[li] === shorter[si]) si++;
+      else { diffs++; if (diffs > 2) break; }
+    }
+    if (diffs <= 2 && si >= shorter.length - 1) return 50;
+  }
+  return 0;
+}
+
+function matchPlaceName(inputPlace) {
+  var candidates = extractCandidates(inputPlace);
+  var movements = DATA.movements;
+  var best = null, bestScore = 0;
+
+  for (var i = 0; i < movements.length; i++) {
+    var m = movements[i];
+    if (!m.placeName) continue;
+    var mv = extractCandidates(m.placeName)[0]; // movement names are clean, first candidate suffices
+
+    for (var c = 0; c < candidates.length; c++) {
+      var cand = candidates[c];
+      var score = scoreCorePair(cand.core, mv.core);
+      if (score === 0) continue;
+      // State match bonus
+      if (cand.state && mv.state) {
+        if (cand.state === mv.state) score = Math.min(score + 10, 100);
+        else score = Math.max(score - 10, 0); // penalize state mismatch
+      }
+      if (score > bestScore) { bestScore = score; best = m; }
+    }
+    if (bestScore >= 90) break; // good enough, stop early
+  }
+
+  return bestScore >= 50 ? best : null;
+}
+
+// ========== PLACE PIN (from ?place= parameter) ==========
+var placePinMarker = null;
+function showPlacePin(placeName, movement) {
+  // Remove any existing place pin
+  if (placePinMarker) { map.removeLayer(placePinMarker); placePinMarker = null; }
+
+  // Gather all mentions of this place across movements (using normalized matching)
+  var matchedCore = extractCandidates(movement.placeName || placeName)[0].core;
+  const mentions = DATA.movements.filter(function(m) {
+    if (!m.placeName) return false;
+    var mv = extractCandidates(m.placeName)[0].core;
+    return mv === matchedCore;
+  });
+
+  // Build popup content
+  let popupHtml = '<div class="place-pin-popup">';
+  popupHtml += '<h3 class="place-pin-title">' + escHtml(movement.placeName || placeName) + '</h3>';
+
+  // Summary stats
+  const letterMentions = mentions.filter(m => m.source === 'letter');
+  const brotherSet = new Set(mentions.map(m => m.brother));
+  const dateRange = mentions.length > 0
+    ? formatDateStr(mentions[0].date) + ' – ' + formatDateStr(mentions[mentions.length - 1].date)
+    : '';
+  popupHtml += '<div class="place-pin-stats">';
+  popupHtml += '<span>' + mentions.length + ' movement' + (mentions.length !== 1 ? 's' : '') + '</span>';
+  popupHtml += '<span>' + letterMentions.length + ' letter' + (letterMentions.length !== 1 ? 's' : '') + '</span>';
+  popupHtml += '<span>' + brotherSet.size + ' brother' + (brotherSet.size !== 1 ? 's' : '') + '</span>';
+  popupHtml += '</div>';
+  if (dateRange) popupHtml += '<div class="place-pin-range">' + dateRange + '</div>';
+
+  // List letter mentions (up to 6)
+  const letterItems = letterMentions.slice(0, 6);
+  if (letterItems.length > 0) {
+    popupHtml += '<div class="place-pin-letters">';
+    letterItems.forEach(function(m) {
+      const bName = DATA.brothers[m.brother] ? DATA.brothers[m.brother].name.split(' ')[0] : m.brother;
+      const bColor = COLORS[m.brother] || '#666';
+      const excerpt = m.letterExcerpt ? m.letterExcerpt.slice(0, 70) + (m.letterExcerpt.length > 70 ? '…' : '') : '';
+      popupHtml += '<div class="place-pin-letter" onclick="openLetterOverlay(\'' + m.letterId + '\',\'' + m.brother + '\')">';
+      popupHtml += '<span class="place-pin-author" style="color:' + bColor + '">' + escHtml(bName) + '</span>';
+      popupHtml += '<span class="place-pin-date">' + formatDateStr(m.date) + '</span>';
+      if (excerpt) popupHtml += '<div class="place-pin-excerpt">"' + escHtml(excerpt) + '"</div>';
+      popupHtml += '</div>';
+    });
+    if (letterMentions.length > 6) {
+      popupHtml += '<div class="place-pin-more">+ ' + (letterMentions.length - 6) + ' more</div>';
+    }
+    popupHtml += '</div>';
+  }
+
+  // Flags summary
+  const hasBattle = mentions.some(m => m.hasBattle);
+  const hasIllness = mentions.some(m => m.hasIllness);
+  const hasDeath = mentions.some(m => m.hasDeath);
+  const hasWound = mentions.some(m => m.hasWound);
+  let flagsHtml = '';
+  if (hasBattle) flagsHtml += '<span class="info-flag flag-battle">Battle</span>';
+  if (hasIllness) flagsHtml += '<span class="info-flag flag-illness">Illness</span>';
+  if (hasDeath) flagsHtml += '<span class="info-flag flag-death">Death</span>';
+  if (hasWound) flagsHtml += '<span class="info-flag flag-wound">Wound</span>';
+  if (flagsHtml) popupHtml += '<div class="info-flags" style="margin-top:8px">' + flagsHtml + '</div>';
+
+  popupHtml += '</div>';
+
+  // Create labeled pin marker
+  const pinIcon = L.divIcon({
+    className: 'place-pin-icon',
+    html: '<div class="place-pin-dot"></div><div class="place-pin-label">' + escHtml(movement.placeName || placeName) + '</div>',
+    iconSize: [0, 0],
+    iconAnchor: [0, 0]
+  });
+
+  placePinMarker = L.marker([movement.lat, movement.lon], { icon: pinIcon })
+    .addTo(map)
+    .bindPopup(popupHtml, { maxWidth: 360, minWidth: 280, className: 'place-pin-popup-container' })
+    .openPopup();
+}
+
+function escHtml(s) {
+  var el = document.createElement('span');
+  el.textContent = s;
+  return el.innerHTML;
 }
 
 function showInfoPanel(movement, brotherId) {
