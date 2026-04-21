@@ -1606,7 +1606,7 @@ for (const [key, name] of Object.entries(BROTHER_CANON)) {
     id: name,
     isBrother: true,
     brotherKey: key,
-    radius: 18,
+    radius: 30,
     color: BROTHER_COLORS[key],
     category: 'BROTHER',
     mentions: 0,
@@ -2138,7 +2138,7 @@ function draw() {
     // Labels
     if (node.isBrother) {
       ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 10px Inter';
+      ctx.font = 'bold 12px Inter';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(BROTHER_NAMES[node.brotherKey], node.x, node.y + (node.brotherKey === 'james' ? 2 : 0));
