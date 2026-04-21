@@ -26,12 +26,11 @@
     <div class="hero-grid" style="display:grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center;">
       <div class="hero-copy reveal">
         <div class="eyebrow" style="margin-bottom: 24px;">Hubbell Family Archive &middot; Est. 1861</div>
-        <h1 class="hero-title">
+        <h1 class="hero-title" style="font-size: clamp(32px, 5vw, 72px);">
           Four brothers<br/>
-          wrote home from<br/>
-          the <em>Civil War.</em><br/>
-          Their words<br/>
-          survived.
+          connected by letters<br/>
+          written throughout<br/>
+          the <em>Civil War.</em>
         </h1>
         <p class="prose" style="margin-top: 28px; max-width: 44ch;">
           Between 1861 and 1865, Henry, Alexander, James, and Charles Hubbell &mdash; sons of a widowed
@@ -52,7 +51,7 @@
           <div id="heroCanvasWrap" style="aspect-ratio: 4/5; width:100%; background: var(--bg-sunken); border: 1px solid var(--rule); border-radius: 4px; position: relative; overflow: hidden; cursor:pointer; transition: border-color .2s;">
             <svg id="heroCanvas" class="chart" viewBox="0 0 560 700" preserveAspectRatio="xMidYMid meet" style="width:100%; height:100%;"></svg>
             <div class="mono" style="position:absolute; top:14px; left:16px; font-size:10px; letter-spacing:.12em; text-transform:uppercase;">Fig. 01 &middot; Every letter, by date</div>
-            <div class="mono" style="position:absolute; bottom:14px; left:16px; font-size:10px;">274 letters &middot; 1861 &ndash; 1865</div>
+            <div class="mono" style="position:absolute; bottom:56px; left:16px; font-size:10px;">274 letters &middot; 1861 &ndash; 1865</div>
             <div class="mono" id="heroMonth" style="position:absolute; bottom:14px; right:16px; font-size:10px;">&mdash;</div>
           </div>
           <figcaption class="mono" style="margin-top:10px; text-align:right; max-width: 560px; margin-left:auto;">
@@ -116,10 +115,10 @@
         <svg class="explore-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
       </a>
       <a class="explore-card" href="viz-health-ledger.html">
-        <div class="mono" style="color: var(--ink-3); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">03 &middot; Health</div>
-        <h3>The Health Ledger</h3>
+        <div class="mono" style="color: var(--ink-3); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">03 &middot; Wellness</div>
+        <h3>The Wellness Ledger</h3>
         <p>For every soldier killed in battle, two died of disease. Track each brother&rsquo;s physical condition through their own words &mdash; fever, scurvy, night blindness, exhaustion.</p>
-        <div class="meta">Health classification &middot; Text-mined reports</div>
+        <div class="meta">Wellness classification &middot; Text-mined reports</div>
         <svg class="explore-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
       </a>
       <a class="explore-card" href="viz-money-story.html">
@@ -185,19 +184,24 @@
   </div>
 </section>
 
-<!-- ===== THE PRESERVATION ===== -->
+<!-- ===== THE COLLECTION ===== -->
 <section class="section" id="preservation" style="padding-top: 40px;">
   <div class="container">
     <div class="section-header reveal">
       <div class="eyebrow">The Preservation</div>
       <h2>A trunk in a basement. Five generations of care.</h2>
     </div>
-    <p class="prose reveal">
+    <p class="prose reveal" style="margin-bottom: 32px;">
       After the war the letters were bundled and put away. They sat in a trunk for eighty years &mdash;
       water-stained, fading, and largely forgotten. They might easily have been lost. Instead, a
-      remarkable chain of stewardship carried them forward.
+      remarkable chain of stewardship carried them forward: transcribed, introduced, digitized, and
+      finally analyzed &mdash; each by a different family member, each in a different decade.
     </p>
-    <ol id="stewardshipList" class="reveal" style="list-style:none; padding:0; margin: 56px 0 0; display:flex; flex-direction:column;"></ol>
+    <div class="reveal" style="margin-top: 8px;">
+      <a href="the-collection.html" class="btn">The full story of the collection
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -224,14 +228,14 @@
 <script src="_reader.js"></script>
 <script src="_search-engine.js"></script>
 <script>
-/* ===================== HERO — Letters as Dots ===================== */
+/* ===================== HERO — Animated Timeline ===================== */
 (function () {
   var svg = document.getElementById('heroCanvas');
   var monthLabel = document.getElementById('heroMonth');
   if (!svg) return;
 
   var W = 560, H = 700;
-  var pad = { l: 48, r: 75, t: 64, b: 80 };
+  var pad = { l: 100, r: 28, t: 60, b: 80 };
   var innerW = W - pad.l - pad.r;
   var innerH = H - pad.t - pad.b;
 
@@ -239,6 +243,7 @@
   var byId = {};
   brothers.forEach(function (b) { byId[b.id] = b; });
 
+  /* Time range */
   var startY = 1861, startM = 6;
   var endY = 1865, endM = 10;
   var months = [];
@@ -248,15 +253,17 @@
   }
   var nMonths = months.length;
 
-  var spans = {
-    henry:     [0,  12],
-    alexander: [0,  nMonths - 5],
-    james:     [14, nMonths - 2],
-    charles:   [14, nMonths - 4]
-  };
+  /* Lane layout — horizontal lanes for each brother */
+  var laneGap = innerH / (brothers.length + 1);
+  var laneY = {};
+  brothers.forEach(function (b, i) { laneY[b.id] = pad.t + laneGap * (i + 1); });
+
+  /* Generate letters, then consolidate to one dot per brother per month */
+  var spans = { henry: [0, 12], alexander: [0, nMonths - 5], james: [14, nMonths - 2], charles: [14, nMonths - 4] };
   var totals = { henry: 42, alexander: 98, james: 62, charles: 72 };
-  var letters = [];
-  var id = 0;
+
+  /* Count letters per brother per month */
+  var countMap = {}; /* key: "brother-monthIdx" → count */
   brothers.forEach(function (b) {
     var s = spans[b.id][0], e = spans[b.id][1];
     var n = totals[b.id];
@@ -265,26 +272,38 @@
       var bias = 0.5 + 0.5 * Math.sin(Math.PI * t - Math.PI / 2);
       var jitter = ((i * 2654435761) % 7) / 7 - 0.5;
       var mi = Math.max(s, Math.min(e - 1, Math.floor(s + bias * (e - s) + jitter * 1.5)));
-      letters.push({ id: id++, brother: b.id, monthIdx: mi });
+      var key = b.id + '-' + mi;
+      countMap[key] = (countMap[key] || 0) + 1;
     }
   });
 
-  var xScale = function (mi) { return pad.l + (mi + 0.5) * (innerW / nMonths); };
-  var laneOffset = { henry: -18, alexander: -6, james: 6, charles: 18 };
-  var stackSlot = {};
-
-  letters.forEach(function (L) {
-    var k = L.monthIdx + '-' + L.brother;
-    var slot = stackSlot[k] || 0;
-    stackSlot[k] = slot + 1;
-    L.slot = slot;
-    var baseY = pad.t + innerH * 0.5 + laneOffset[L.brother] * 4;
-    var dir = (slot % 2 === 0 ? -1 : 1);
-    var stackLevel = Math.floor(slot / 2);
-    L.x = xScale(L.monthIdx);
-    L.y = baseY + dir * (stackLevel * 8 + 2);
+  /* Build consolidated dots: one per brother per month */
+  var dots = [];
+  brothers.forEach(function (b) {
+    var s = spans[b.id][0], e = spans[b.id][1];
+    for (var mi = s; mi < e; mi++) {
+      var key = b.id + '-' + mi;
+      var count = countMap[key] || 0;
+      if (count > 0) {
+        dots.push({ brother: b.id, monthIdx: mi, count: count });
+      }
+    }
   });
 
+  /* Sort by month for sequential reveal */
+  dots.sort(function (a, b) { return a.monthIdx - b.monthIdx; });
+
+  /* Compute positions — one dot per brother per month, on their lane */
+  var xScale = function (mi) { return pad.l + (mi + 0.5) * (innerW / nMonths); };
+  function count2r(c) { return c <= 1 ? 0 : Math.sqrt(c) * 1.4; }
+  dots.forEach(function (d) {
+    d.x = xScale(d.monthIdx);
+    d.y = laneY[d.brother];
+    /* Radius scales with letter count: base 2.5, larger for months with multiple letters */
+    d.r = 2.5 + Math.min(count2r(d.count), 4);
+  });
+
+  /* SVG helpers */
   var NS = 'http://www.w3.org/2000/svg';
   function el(tag, attrs, parent) {
     var n = document.createElementNS(NS, tag);
@@ -293,103 +312,162 @@
     return n;
   }
 
-  el('line', { x1: pad.l, x2: W - pad.r, y1: H - pad.b + 18, y2: H - pad.b + 18, stroke: 'var(--rule)', 'stroke-width': 1 });
+  /* --- Static elements --- */
 
-  [1861,1862,1863,1864,1865].forEach(function (yr) {
+  /* Subtle lane lines */
+  brothers.forEach(function (b) {
+    el('line', { x1: pad.l, x2: W - pad.r, y1: laneY[b.id], y2: laneY[b.id],
+      stroke: 'var(--rule)', 'stroke-width': 0.5, 'stroke-opacity': 0.35 });
+  });
+
+  /* Year ticks + labels along the bottom */
+  var axisY = H - pad.b + 20;
+  el('line', { x1: pad.l, x2: W - pad.r, y1: axisY, y2: axisY,
+    stroke: 'var(--rule)', 'stroke-width': 1, 'stroke-opacity': 0.5 });
+
+  [1861, 1862, 1863, 1864, 1865].forEach(function (yr) {
     var mi = -1;
     for (var i = 0; i < months.length; i++) { if (months[i].y === yr) { mi = i; break; } }
     if (mi < 0) return;
     var x = xScale(mi);
-    el('line', { x1: x, x2: x, y1: H - pad.b + 14, y2: H - pad.b + 22, stroke: 'var(--rule-2)', 'stroke-width': 1 });
-    var txt = el('text', { x: x, y: H - pad.b + 40, 'text-anchor': 'middle',
-      'font-family': 'var(--font-mono)', 'font-size': 10, fill: 'var(--ink-3)' });
+    el('line', { x1: x, x2: x, y1: axisY - 4, y2: axisY + 4,
+      stroke: 'var(--ink-3)', 'stroke-width': 1 });
+    var txt = el('text', { x: x, y: axisY + 18, 'text-anchor': 'middle',
+      'font-family': 'var(--font-mono)', 'font-size': 10, fill: 'var(--ink-3)',
+      'letter-spacing': '0.05em' });
     txt.textContent = yr;
   });
 
-  HUBBELL.battles.forEach(function (ev) {
-    var d = new Date(ev.date);
-    var mi = (d.getUTCFullYear() - startY) * 12 + d.getUTCMonth() - startM;
-    if (mi < 0 || mi >= nMonths) return;
-    var x = xScale(mi);
-    el('line', { x1: x, x2: x, y1: pad.t - 8, y2: H - pad.b + 10,
-      stroke: 'var(--rule-2)', 'stroke-width': 1, 'stroke-dasharray': '2 3' });
-    var lbl = el('text', { x: x + 4, y: pad.t - 2, 'font-family': 'var(--font-mono)',
-      'font-size': 9, fill: 'var(--ink-3)' });
-    lbl.textContent = ev.name;
-  });
-
+  /* Brother labels on left */
   brothers.forEach(function (b) {
-    var yy = pad.t + innerH * 0.5 + laneOffset[b.id] * 4;
-    var g = el('g', { transform: 'translate(' + (W - pad.r + 4) + ', ' + yy + ')' });
-    el('circle', { cx: 0, cy: 0, r: 3, fill: b.color }, g);
-    var txt = el('text', { x: 8, y: 3, 'font-family': 'var(--font-mono)', 'font-size': 9,
-      fill: 'var(--ink-3)' }, g);
+    var txt = el('text', { x: pad.l - 14, y: laneY[b.id] + 4, 'text-anchor': 'end',
+      'font-family': 'var(--font-mono)', 'font-size': 10, fill: b.color,
+      'font-weight': 500, 'letter-spacing': '0.03em' });
     txt.textContent = b.first;
   });
 
-  var dots = letters.map(function (L) {
+  /* --- Animated elements --- */
+
+  /* Cursor / scanline */
+  var cursor = el('line', { x1: pad.l, x2: pad.l,
+    y1: pad.t, y2: H - pad.b + 8,
+    stroke: 'var(--ink-3)', 'stroke-width': 1, 'stroke-opacity': 0 });
+
+  /* Dot group */
+  var dotGroup = el('g', {});
+
+  /* Create dot elements (all hidden initially) */
+  var dotEls = dots.map(function (d) {
     return el('circle', {
-      cx: L.x, cy: L.y, r: 0,
-      fill: byId[L.brother].color,
-      'fill-opacity': 0.85,
-      'data-month': L.monthIdx
-    });
+      cx: d.x, cy: d.y, r: d.r,
+      fill: byId[d.brother].color,
+      opacity: 0
+    }, dotGroup);
   });
 
-  /* Track which dots are visible with a JS array — avoids DOM read-back issues */
-  var shown = new Array(dots.length);
+  /* --- Animation engine --- */
+  var FILL_DURATION = 8000;
+  var HOLD_DURATION = 2800;
+  var FADE_DURATION = 1400;
+  var REST_DURATION = 1800;
 
-  function resetDots() {
-    for (var i = 0; i < dots.length; i++) {
-      dots[i].style.transition = 'none';
-      dots[i].setAttribute('r', 0);
-      dots[i].setAttribute('fill-opacity', 0.85);
-      shown[i] = false;
+  var revealed = 0;
+  var phase = 'rest';
+  var running = false;
+
+  function resetAll() {
+    for (var i = 0; i < dotEls.length; i++) {
+      dotEls[i].setAttribute('opacity', 0);
+      dotEls[i].style.transition = 'none';
     }
+    cursor.setAttribute('stroke-opacity', 0);
+    revealed = 0;
+    monthLabel.textContent = '\u2014';
   }
 
-  function animate() {
-    resetDots();
-    var duration = 4200;
-    var linger = 2200;
+  function loop() {
+    if (!running) return;
+    resetAll();
+    phase = 'fill';
     var t0 = performance.now();
 
     function frame(now) {
+      if (!running) return;
       var elapsed = now - t0;
-      var p = Math.min(1, elapsed / duration);
-      var ep = 1 - Math.pow(1 - p, 2.2);
-      var activeMonth = Math.floor(ep * nMonths);
-      var mm = months[Math.min(nMonths - 1, activeMonth)];
-      var monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      monthLabel.textContent = monthNames[mm.m] + ' ' + mm.y;
 
-      for (var i = 0; i < dots.length; i++) {
-        var mi = +dots[i].getAttribute('data-month');
-        if (mi <= activeMonth && !shown[i]) {
-          shown[i] = true;
-          dots[i].setAttribute('r', 3.4);
+      if (phase === 'fill') {
+        var p = Math.min(1, elapsed / FILL_DURATION);
+        var ep = p < 0.5
+          ? 2 * p * p
+          : 1 - Math.pow(-2 * p + 2, 2) / 2;
+
+        /* Cursor */
+        var curX = pad.l + ep * innerW;
+        cursor.setAttribute('x1', curX);
+        cursor.setAttribute('x2', curX);
+        cursor.setAttribute('stroke-opacity', 0.3);
+
+        /* Reveal dots whose x position the cursor has passed */
+        var targetIdx = 0;
+        for (var i = 0; i < dots.length; i++) {
+          if (dots[i].x <= curX) targetIdx = i + 1;
+          else break;
+        }
+        while (revealed < targetIdx && revealed < dotEls.length) {
+          dotEls[revealed].setAttribute('opacity', 0.85);
+          dotEls[revealed].style.transition = 'opacity .2s ease-out';
+          revealed++;
+        }
+
+        /* Month label */
+        var activeMonth = Math.min(nMonths - 1, Math.floor(ep * nMonths));
+        var mm = months[activeMonth];
+        var monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        monthLabel.textContent = monthNames[mm.m] + ' ' + mm.y;
+
+        if (p >= 1) {
+          phase = 'hold';
+          cursor.setAttribute('stroke-opacity', 0);
+          t0 = now;
+        }
+      } else if (phase === 'hold') {
+        if (now - t0 > HOLD_DURATION) {
+          phase = 'fade';
+          t0 = now;
+          for (var j = 0; j < dotEls.length; j++) {
+            dotEls[j].style.transition = 'opacity ' + FADE_DURATION + 'ms ease-in';
+            dotEls[j].setAttribute('opacity', 0);
+          }
+        }
+      } else if (phase === 'fade') {
+        if (now - t0 > FADE_DURATION) {
+          phase = 'rest';
+          t0 = now;
+          monthLabel.textContent = '\u2014';
+        }
+      } else if (phase === 'rest') {
+        if (now - t0 > REST_DURATION) {
+          loop();
+          return;
         }
       }
 
-      if (p < 1) {
-        requestAnimationFrame(frame);
-      } else {
-        /* Fade out, then restart */
-        for (var j = 0; j < dots.length; j++) {
-          dots[j].style.transition = 'fill-opacity .6s ease';
-          dots[j].setAttribute('fill-opacity', 0);
-        }
-        setTimeout(animate, linger);
-      }
+      requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
   }
 
+  /* Visibility-aware start/stop */
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
-      if (e.isIntersecting) { animate(); io.disconnect(); }
+      if (e.isIntersecting && !running) {
+        running = true;
+        loop();
+      } else if (!e.isIntersecting && running) {
+        running = false;
+      }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.2 });
   io.observe(svg);
 })();
 
@@ -420,35 +498,7 @@
   });
 })();
 
-/* ===================== STEWARDSHIP LIST ===================== */
-(function () {
-  var mount = document.getElementById('stewardshipList');
-  if (!mount) return;
-  HUBBELL.stewardship.forEach(function (s, i) {
-    var li = document.createElement('li');
-    li.style.cssText = 'display:grid; grid-template-columns: 160px 1fr; gap: 40px; padding: 36px 0; border-top: 1px solid var(--rule);';
-    li.innerHTML =
-      '<div>' +
-        '<div class="mono" style="color:var(--ink-3); font-size: 11px; letter-spacing:.08em;">Era 0' + (i+1) + '</div>' +
-        '<div style="font-family: var(--font-display); font-size: 28px; letter-spacing:-.02em; margin-top:8px; color: var(--accent);">' + s.year + '</div>' +
-      '</div>' +
-      '<div>' +
-        '<h3 style="margin:0 0 12px; font-size: 22px;">' + s.title + '</h3>' +
-        '<p class="prose" style="margin:0;">' + s.body + '</p>' +
-      '</div>';
-    mount.appendChild(li);
-  });
-  var last = mount.lastElementChild;
-  if (last) last.style.borderBottom = '1px solid var(--rule)';
-  var mq = window.matchMedia('(max-width: 700px)');
-  function respond() {
-    mount.querySelectorAll('li').forEach(function (li) {
-      li.style.gridTemplateColumns = mq.matches ? '1fr' : '160px 1fr';
-      li.style.gap = mq.matches ? '12px' : '40px';
-    });
-  }
-  respond(); mq.addEventListener('change', respond);
-})();
+/* (Stewardship list moved to the-collection.html) */
 
 /* ===================== LETTER READER (used by shared search dropdown) ===================== */
 (function () {

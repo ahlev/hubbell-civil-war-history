@@ -37,6 +37,7 @@ export const config = {
     '/viz-people-web',
     '/viz-what-they-didnt-know',
     '/viz-what-they-wrote-about',
+    '/the-collection',
     '/index',
   ],
 };
@@ -61,11 +62,12 @@ const PAGE_TITLES = {
   '/who-they-were': 'Who They Were — The Hubbell Family',
   '/viz-emotional-arcs': 'Emotional Arcs — Civil War Letters',
   '/viz-map-fullwar': 'A Map That Moves — Following the Hubbells',
-  '/viz-health-ledger': 'The Body\'s Ledger — Health in the Civil War',
+  '/viz-health-ledger': 'The Wellness Ledger — Physical Well-Being in the Civil War',
   '/viz-money-story': 'The Money Story — Wartime Finances',
   '/viz-people-web': 'The People Web — Connections Across 274 Letters',
   '/viz-what-they-didnt-know': 'What They Didn\'t Know — Dramatic Irony',
   '/viz-what-they-wrote-about': 'What They Wrote About — Topic Landscape',
+  '/the-collection': 'The Collection — Five Generations of Stewardship',
   '/index': 'Hubbell Civil War Letters',
 };
 
