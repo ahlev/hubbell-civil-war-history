@@ -95,6 +95,9 @@
     // Bind internal links
     bindInternalLinks(panel);
 
+    // Bind timeline dot hover interactions
+    bindTimelineDots(panel);
+
     // Sync overlay param in URL
     _syncOverlayParam();
   }
@@ -190,7 +193,9 @@
       if (!meta) continue;
       const x = pad + dateFrac(meta.d) * innerW;
       const color = AUTHOR_COLORS[meta.a] || '#999';
-      dots += '<circle cx="' + x.toFixed(1) + '" cy="20" r="3.5" fill="' + color + '" opacity="0.8"/>';
+      dots += '<circle cx="' + x.toFixed(1) + '" cy="20" r="4" fill="' + color +
+        '" opacity="0.8" class="hubbell-overlay-tl-dot" data-letter-id="' + lid +
+        '" style="cursor:pointer;transition:r 0.1s"/>';
     }
     return '<div class="hubbell-overlay-timeline">' +
       '<svg viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="xMidYMid meet">' +
@@ -199,6 +204,72 @@
       '<text x="' + (w - pad) + '" y="36" font-size="9" fill="#9B9590" text-anchor="end" font-family="Inter,sans-serif">1865</text>' +
       dots +
       '</svg></div>';
+  }
+
+  /* ── Timeline dot + letter row hover: show summary tooltip ── */
+  function bindTimelineDots(container) {
+    if (!container) return;
+    // Timeline dots
+    container.querySelectorAll('.hubbell-overlay-tl-dot').forEach(function (dot) {
+      dot.addEventListener('mouseenter', function (e) {
+        dot.setAttribute('r', '6');
+        dot.setAttribute('opacity', '1');
+        showDotTooltip(e, dot.getAttribute('data-letter-id'));
+      });
+      dot.addEventListener('mouseleave', function () {
+        dot.setAttribute('r', '4');
+        dot.setAttribute('opacity', '0.8');
+        hideDotTooltip();
+      });
+      dot.addEventListener('click', function () {
+        showLetterReader(dot.getAttribute('data-letter-id'));
+      });
+    });
+    // Letter list rows
+    container.querySelectorAll('.hubbell-overlay-letter-row[data-letter-id]').forEach(function (row) {
+      row.addEventListener('mouseenter', function (e) {
+        showDotTooltip(e, row.getAttribute('data-letter-id'));
+      });
+      row.addEventListener('mousemove', function (e) {
+        if (dotTip && dotTip.style.display !== 'none') {
+          var x = e.clientX + 12, y = e.clientY - 10;
+          if (x + 300 > window.innerWidth) x = e.clientX - 310;
+          dotTip.style.left = x + 'px';
+          dotTip.style.top = y + 'px';
+        }
+      });
+      row.addEventListener('mouseleave', function () {
+        hideDotTooltip();
+      });
+    });
+  }
+
+  var dotTip = null;
+  function showDotTooltip(e, lid) {
+    var meta = letterMeta(lid);
+    if (!meta) return;
+    if (!dotTip) {
+      dotTip = document.createElement('div');
+      dotTip.className = 'hubbell-overlay-dot-tip';
+      document.body.appendChild(dotTip);
+    }
+    var color = AUTHOR_COLORS[meta.a] || '#999';
+    var summary = meta.ss ? '<div class="hubbell-overlay-dot-tip-summary">' + esc(meta.ss) + '</div>' : '';
+    dotTip.innerHTML =
+      '<div style="display:flex;align-items:center;gap:5px;margin-bottom:2px">' +
+        '<span style="width:8px;height:8px;border-radius:50%;background:' + color + ';display:inline-block"></span>' +
+        '<strong>' + fmtDate(meta.d) + '</strong>' +
+      '</div>' +
+      '<div style="font-size:0.72rem;opacity:0.7">' + esc(meta.an) + ' \u2192 ' + esc(meta.r) + '</div>' +
+      summary;
+    dotTip.style.display = 'block';
+    var x = e.clientX + 12, y = e.clientY - 10;
+    if (x + 300 > window.innerWidth) x = e.clientX - 310;
+    dotTip.style.left = x + 'px';
+    dotTip.style.top = y + 'px';
+  }
+  function hideDotTooltip() {
+    if (dotTip) dotTip.style.display = 'none';
   }
 
   /* ── Letter List HTML ── */
@@ -247,6 +318,9 @@
             (person.rel ? esc(person.rel) : '') +
           '</div>' +
         '</div>' +
+        '<a class="hubbell-overlay-nav-btn hubbell-overlay-nav-btn--header ' + person.cat + '" href="viz-people-web.html?person=' + encodeURIComponent(person.n) + '">' +
+          'View in People Web <span class="arrow">\u2192</span>' +
+        '</a>' +
         headerActions() +
       '</div>' +
       '<div class="hubbell-overlay-body">' +
@@ -256,7 +330,10 @@
             (dateRange ? '<span>' + dateRange + '</span>' : '') +
           '</div>' +
         '</div>' +
-        (person.s ? '<div class="hubbell-overlay-section"><p class="hubbell-overlay-summary">' + esc(person.s) + '</p></div>' : '') +
+        (person.s ? '<div class="hubbell-overlay-section"><p class="hubbell-overlay-summary">' +
+          '<span class="hubbell-overlay-summary-text">' + esc(person.s) + '</span>' +
+          (person.s.length > 150 ? '<button class="hubbell-overlay-expand-btn" onclick="var t=this.previousElementSibling;var ex=t.classList.toggle(\'expanded\');this.textContent=ex?\'Show less\':\'Read more\u2026\'">Read more\u2026</button>' : '') +
+        '</p></div>' : '') +
         rolesHtml +
         (person.ltrs.length > 0 ? '<div class="hubbell-overlay-section">' +
           '<div class="hubbell-overlay-section-title">Timeline</div>' +
@@ -266,9 +343,6 @@
           '<div class="hubbell-overlay-section-title">Letters (' + person.lc + ')</div>' +
           letterListHTML(person.ltrs) +
         '</div>' +
-        '<a class="hubbell-overlay-nav-btn" href="viz-people-web.html?person=' + encodeURIComponent(person.n) + '">' +
-          'View in People Web <span class="arrow">\u2192</span>' +
-        '</a>' +
       '</div>';
 
     openPanel(html);
@@ -307,7 +381,10 @@
             '<span>Referenced in <span class="hubbell-overlay-stat-value">' + place.lc + '</span> letters</span>' +
           '</div>' +
         '</div>' +
-        (place.s ? '<div class="hubbell-overlay-section"><p class="hubbell-overlay-summary">' + esc(place.s) + '</p></div>' : '') +
+        (place.s ? '<div class="hubbell-overlay-section"><p class="hubbell-overlay-summary">' +
+          '<span class="hubbell-overlay-summary-text">' + esc(place.s) + '</span>' +
+          (place.s.length > 150 ? '<button class="hubbell-overlay-expand-btn" onclick="var t=this.previousElementSibling;var ex=t.classList.toggle(\'expanded\');this.textContent=ex?\'Show less\':\'Read more\u2026\'">Read more\u2026</button>' : '') +
+        '</p></div>' : '') +
         (place.ltrs.length > 0 ? '<div class="hubbell-overlay-section">' +
           '<div class="hubbell-overlay-section-title">When &amp; Who</div>' +
           miniTimeline(place.ltrs) +
@@ -323,6 +400,22 @@
 
     openPanel(html);
     return true;
+  }
+
+  /* ── Person pill helper ── */
+  function personPill(displayName, color) {
+    var person = lookupPerson(displayName);
+    // If direct lookup fails, try the portion before parenthetical
+    if (!person && displayName.indexOf('(') > 1) {
+      person = lookupPerson(displayName.replace(/\s*\(.*$/, '').trim());
+    }
+    var bg = color || (person && person.cat === 'family' ? '#2D5F8A' : '#6B6560');
+    if (person) {
+      return '<span class="hubbell-overlay-person-pill" data-person-name="' + esc(person.n) + '" ' +
+        'style="--pill-color:' + bg + '">' + esc(displayName) + '</span>';
+    }
+    return '<span class="hubbell-overlay-person-pill hubbell-overlay-person-pill--inert" ' +
+      'style="--pill-color:' + bg + '">' + esc(displayName) + '</span>';
   }
 
   /* ── Letter Sub-Reader ── */
@@ -346,12 +439,25 @@
         esc(healthCtx.statusLabel || healthCtx.status) + '</span>';
     }
 
+    var authorColor = AUTHOR_COLORS[meta.a] || '#6B6560';
+    var fromPill = personPill(meta.an, authorColor);
+    var toPill = personPill(meta.r, null);
+
+    var mapBtn = '<a class="hubbell-overlay-nav-btn hubbell-overlay-nav-btn--header" ' +
+      'href="viz-map-fullwar.html?date=' + encodeURIComponent(meta.d) +
+      '&brother=' + encodeURIComponent(meta.a) +
+      '&letter=' + encodeURIComponent(letterId) + '">' +
+      '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
+      ' View on Map</a>';
+
     var headerHtml =
       '<div class="hubbell-overlay-header">' +
         '<div class="hubbell-overlay-header-left">' +
-          '<h2 class="hubbell-overlay-title">' + esc(meta.an) + ' \u2192 ' + esc(meta.r) + '</h2>' +
+          '<h2 class="hubbell-overlay-title">' + fromPill + ' <span class="hubbell-overlay-arrow">\u2192</span> ' + toPill + '</h2>' +
           '<div class="hubbell-overlay-subtitle">' + subtitleParts + subtitleExtra + '</div>' +
         '</div>' +
+        mapBtn +
         headerActions() +
       '</div>';
 
@@ -529,6 +635,17 @@
         e.stopPropagation();
         if (el.dataset.overlayType === 'person') showPerson(el.dataset.overlayKey);
         else if (el.dataset.overlayType === 'place') showPlace(el.dataset.overlayKey);
+      });
+    });
+
+    // Bind person pills (clickable name chips in reader header)
+    container.querySelectorAll('.hubbell-overlay-person-pill[data-person-name]').forEach(function (el) {
+      if (el._overlayBound) return;
+      el._overlayBound = true;
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        showPerson(el.dataset.personName);
       });
     });
   }

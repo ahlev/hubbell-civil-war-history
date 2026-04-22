@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Money Story &mdash; Hubbell Brothers Civil War Letters</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="_design.css">
 <style>
 :root{
@@ -14,8 +14,8 @@
   --border:var(--rule);--border-light:var(--rule-2);
 }
 
-.hero{text-align:center;padding:56px 24px 36px;max-width:900px;margin:0 auto}
-.hero h1{font-size:clamp(2rem,4vw,3rem);margin-bottom:10px;letter-spacing:-0.5px}
+.hero{text-align:center;padding:72px 32px 36px;max-width:900px;margin:0 auto}
+.hero h1{/* uses shared .page-title from _design.css */}
 .hero .subtitle{font-size:1.02rem;color:var(--text-mid);max-width:660px;margin:0 auto 20px;font-weight:300}
 .hero .stat-row{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:16px}
 .hero .stat{text-align:center}
@@ -170,7 +170,7 @@ table.ref-table tr{cursor:pointer}
 <div id="site-nav"></div>
 
 <div class="hero">
-  <h1>The Money Story</h1>
+  <h1 class="page-title">The Money Story</h1>
   <p class="subtitle">Financial references across 274 Civil War letters from the Hubbell family, 1861&ndash;1870. Every dollar mentioned &mdash; pay, bounties, expenses, money sent home &mdash; traced and visualized.</p>
   <div class="stat-row" id="heroStats"></div>
   <p class="caveat" id="heroCaveat"></p>
@@ -180,9 +180,16 @@ table.ref-table tr{cursor:pointer}
 
 <div class="legend" id="legend"></div>
 
-<div class="highlights">
-  <h2><span class="story-header">This is the story</span>Key Financial Moments</h2>
-  <div id="highlightsList"></div>
+<div class="table-section">
+  <h2>All Financial References</h2>
+  <div class="table-wrap">
+    <table class="ref-table" id="refTable">
+      <thead><tr>
+        <th>Date</th><th>Brother</th><th>Amount</th><th>2024 Value</th><th>Category</th><th>Context</th>
+      </tr></thead>
+      <tbody id="refBody"></tbody>
+    </table>
+  </div>
 </div>
 
 <div class="summary-section">
@@ -207,16 +214,9 @@ table.ref-table tr{cursor:pointer}
   </div>
 </div>
 
-<div class="table-section">
-  <h2>All Financial References</h2>
-  <div class="table-wrap">
-    <table class="ref-table" id="refTable">
-      <thead><tr>
-        <th>Date</th><th>Brother</th><th>Amount</th><th>2024 Value</th><th>Category</th><th>Context</th>
-      </tr></thead>
-      <tbody id="refBody"></tbody>
-    </table>
-  </div>
+<div class="highlights">
+  <h2><span class="story-header">This is the story</span>Key Financial Moments</h2>
+  <div id="highlightsList"></div>
 </div>
 
 <div class="tooltip" id="tooltip"></div>
@@ -370,12 +370,30 @@ function mineFinancialRefs(letters) {
 }
 
 function getContext(text, pos, radius) {
-  var start = Math.max(0, pos - radius);
-  var end = Math.min(text.length, pos + radius);
+  // Tighter window centered on the financial mention
+  var r = Math.min(radius, 120);
+  var start = Math.max(0, pos - r);
+  var end = Math.min(text.length, pos + r);
+  // Expand to sentence boundaries for readability
   while (start > 0 && !/[.!?\n]/.test(text[start - 1])) start--;
   while (end < text.length && !/[.!?\n]/.test(text[end])) end++;
   if (end < text.length) end++;
   var ctx = text.substring(start, end).trim();
+  // Trim to the most relevant sentences if too long
+  if (ctx.length > 220) {
+    var sentences = ctx.match(/[^.!?]+[.!?]+/g) || [ctx];
+    // Find which sentence contains the money reference
+    var offset = pos - start;
+    var cumLen = 0, bestIdx = 0;
+    for (var i = 0; i < sentences.length; i++) {
+      cumLen += sentences[i].length;
+      if (cumLen >= offset) { bestIdx = i; break; }
+    }
+    // Take the sentence with the money mention + one neighbor for context
+    var from = Math.max(0, bestIdx - 1);
+    var to = Math.min(sentences.length, bestIdx + 2);
+    ctx = sentences.slice(from, to).join('').trim();
+  }
   if (start > 2) ctx = '...' + ctx;
   if (end < text.length - 2) ctx = ctx + '...';
   return ctx;
@@ -401,6 +419,13 @@ function filtered() {
 
 function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 function trunc(s, n) { return s.length > n ? s.substring(0, n) + '...' : s; }
+function highlightMoney(html) {
+  // Bold dollar amounts and written-out amounts in context strings (already escaped)
+  return html
+    .replace(/(\$\d+(?:\.\d{1,2})?)/g, '<strong style="color:var(--text);font-weight:600">$1</strong>')
+    .replace(/(\d+\s*(?:cts|cents?))/gi, '<strong style="color:var(--text);font-weight:600">$1</strong>')
+    .replace(/(bounty|bounties|pay\s*day|back\s*pay|per\s*month)/gi, '<strong style="color:var(--text);font-weight:600">$1</strong>');
+}
 
 /* ===== HERO STATS ===== */
 function renderHero() {
@@ -879,7 +904,7 @@ function renderTable() {
       '<td style="font-weight:600">' + amtStr + ' ' + confBadge + '</td>' +
       '<td style="color:var(--text-light)">' + modern + '</td>' +
       '<td><span class="cat-badge cat-' + r.category + '">' + r.category + '</span></td>' +
-      '<td style="max-width:300px;font-family:Source Serif 4,serif;font-size:0.78rem;color:var(--text-mid);line-height:1.5">' + esc(trunc(r.context, 130)) + '</td>' +
+      '<td style="max-width:340px;font-family:Source Serif 4,serif;font-size:0.78rem;color:var(--text-mid);line-height:1.5">' + highlightMoney(esc(trunc(r.context, 160))) + '</td>' +
       '</tr>';
   });
   tbody.innerHTML = html;
@@ -988,7 +1013,7 @@ function showDetail(ref, sourceHighlight) {
     otherRefsHtml +
     fullLetterHtml +
     '<div style="margin-top:12px;text-align:center">' +
-      '<button class="read-full-btn" onclick="event.stopPropagation();HubbellReader.open(\'' + esc(ref.letterId) + '\')" style="font-family:var(--font-sans);font-size:0.78rem;color:#2D5F8A;background:#E3F2FD;border:1px solid #BBDEFB;border-radius:10px;padding:5px 14px;cursor:pointer;font-weight:500;transition:background 0.15s">Read full letter \u2192</button>' +
+      '<button class="read-full-btn" data-lid="' + esc(ref.letterId) + '"' + (ref.context ? ' data-hl="' + esc(ref.context.slice(0, 80)) + '"' : '') + ' onclick="event.stopPropagation();HubbellReader.open(this.dataset.lid,{highlight:this.dataset.hl?[this.dataset.hl]:[]})" style="font-family:var(--font-sans);font-size:0.78rem;color:#2D5F8A;background:#E3F2FD;border:1px solid #BBDEFB;border-radius:10px;padding:5px 14px;cursor:pointer;font-weight:500;transition:background 0.15s">Read full letter \u2192</button>' +
     '</div>';
 
   overlay.classList.add('show');

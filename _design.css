@@ -446,9 +446,23 @@ h1, h2, h3, h4 {
   color: var(--ink);
   text-wrap: balance;
 }
-h1 { font-size: var(--fs-h1); line-height: 1.08; }
+h1 {
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
 h2 { font-size: var(--fs-h2); line-height: 1.12; }
 h3 { font-size: var(--fs-h3); line-height: 1.2; }
+
+/* Legacy alias — mirrors base h1, kept for pages that add margin */
+.page-title {
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  margin: 0 0 16px;
+}
 
 .hero-title {
   font-family: var(--font-display);

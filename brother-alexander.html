@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alexander F. Hubbell &mdash; Co. H, 60th New York Infantry</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;0,8..60,800;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="_design.css">
 <link rel="stylesheet" href="_bio.css">
@@ -373,6 +373,55 @@ function openLetter(id, highlight) {
 function closeReader() {
   HubbellReader.close();
 }
+
+// Auto-extract highlight context from surrounding DOM when opening letters
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.lq-link').forEach(function(link) {
+    var origOnclick = link.getAttribute('onclick');
+    if (!origOnclick) return;
+    var match = origOnclick.match(/openLetter\('([^']+)'\)/);
+    if (!match) return;
+    var letterId = match[1];
+    link.removeAttribute('onclick');
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var quoteBox = link.closest('.letter-quote');
+      var hl = [];
+      if (quoteBox) {
+        var clone = quoteBox.cloneNode(true);
+        var cite = clone.querySelector('cite');
+        if (cite) cite.remove();
+        var text = clone.textContent.trim();
+        var words = text.split(/\s+/);
+        if (words.length > 8) { hl.push(words.slice(-8).join(' ')); hl.push(words.slice(0, 8).join(' ')); }
+        else { hl.push(text); }
+      }
+      openLetter(letterId, hl);
+    });
+  });
+  document.querySelectorAll('a.ref[onclick]').forEach(function(link) {
+    var origOnclick = link.getAttribute('onclick');
+    if (!origOnclick) return;
+    var match = origOnclick.match(/openLetter\('([^']+)'\)/);
+    if (!match) return;
+    var letterId = match[1];
+    link.removeAttribute('onclick');
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var para = link.closest('p') || link.parentElement;
+      var hl = [];
+      para.querySelectorAll('em').forEach(function(em) {
+        var t = em.textContent.trim().replace(/^[""\u201C\u201D]+|[""\u201C\u201D]+$/g, '').trim();
+        if (t.length < 10) return;
+        var words = t.split(/\s+/);
+        if (words.length > 6) { hl.push(words.slice(0, 6).join(' ')); }
+        else { hl.push(t); }
+      });
+      openLetter(letterId, hl);
+    });
+  });
+});
+
 </script>
 <script src="_deeplink.js"></script>
 <script>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Who They Were &mdash; The Hubbell Family</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="_design.css">
 <link rel="stylesheet" href="_overlay.css">
 <style>
@@ -17,17 +17,9 @@
 
 /* ===== HERO ===== */
 .wtw-hero {
-  padding: 80px 32px 56px;
+  padding: 72px 32px 48px;
   text-align: center;
   border-bottom: 1px solid var(--rule);
-}
-.wtw-hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2.8rem, 6vw, 4.2rem);
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  margin-bottom: 16px;
-  color: var(--ink);
 }
 .wtw-hero .hero-rule {
   width: 48px;
@@ -335,7 +327,7 @@
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 700px) {
-  .wtw-hero { padding: 56px 20px 40px; }
+  .wtw-hero { padding: 48px 20px 32px; }
   .family-lede { padding: 36px 20px 40px; }
   .lede-stat { flex-wrap: wrap; gap: 24px; }
   .person-section { padding: 40px 20px 36px; }
@@ -351,7 +343,7 @@
 
 <!-- ===== HERO ===== -->
 <div class="wtw-hero">
-  <h1>Who They Were</h1>
+  <h1 class="page-title">Who They Were</h1>
   <div class="hero-rule"></div>
   <p class="hero-sub">A widowed mother. Four soldier sons. A sister who kept the home together.<br>These are the people behind the 274 letters.</p>
 </div>
@@ -631,7 +623,7 @@
     <div class="ps-top-left">
       <div class="ps-accent" style="background: var(--fannie);"></div>
       <h2 class="ps-name" style="color: var(--fannie);">Frances &ldquo;Fannie&rdquo; Hubbell</h2>
-      <div class="ps-epithet">Anchor of the Home Front</div>
+      <div class="ps-epithet">The Sister They All Wrote To</div>
       <div class="ps-lifespan">b. Apr 1837, Champlain, NY &bull; d. after 1872, Iowa</div>
     </div>
   </div>
@@ -644,20 +636,20 @@
   </div>
 
   <div class="ps-bio">
-    <p>Fannie was the eldest child and only daughter, four years older than Henry and seven years older than Alexander. She worked as a teacher in Dover Township, helping support the family after their father&rsquo;s death.</p>
-    <p>Though none of Fannie&rsquo;s own letters survive, her presence is vivid in what the brothers wrote. She received at least 38 letters &mdash; addressed as &ldquo;dear sister,&rdquo; sometimes sharing different details or a more informal tone than letters to their mother. She was confidante as much as sister.</p>
-    <p>Fannie never married. Around 1872 she followed the family west to Iowa. The details of her later life are sparse &mdash; she appears in the record primarily through the eyes of the brothers who loved her.</p>
+    <p>Fannie was the eldest child and only daughter, four years older than Henry and seven years older than Alexander. In early 1862 she took a teaching position in Canada &mdash; Henry noted &ldquo;Frances teaching in Montreal&rdquo; <small>(LTR-1862-01-09)</small>, and Alexander addressed a letter to her at &ldquo;Longale, Canada,&rdquo; encouraging her to &ldquo;perfect yourself in the French language&rdquo; <small>(LTR-1862-01-25)</small>.</p>
+    <p>By spring 1864 she had returned home and risen to preceptress of Champlain Academy, prompting Charles to write, &ldquo;Frances is preceptress of the Academy. She is rising in the world, but I am afraid it is too hard work for her&rdquo; <small>(LTR-1864-04-23)</small>.</p>
+    <p>Though none of Fannie&rsquo;s own letters survive, the brothers craved hers. She received at least 38 letters across the war years &mdash; addressed as &ldquo;dear sister,&rdquo; often sharing a more informal tone than letters to their mother. She never married. Around 1872 she followed the family west to Iowa; the details of her later life are sparse.</p>
   </div>
 
   <div class="ps-quotes">
     <div class="ps-quote">
-      <blockquote>The brothers wrote to Fannie separately from their mother &mdash; sharing camp mischief, personal frustrations, and opinions they might not put in a letter home.</blockquote>
-      <cite>Pattern across 38+ letters addressed to &ldquo;Sister&rdquo; or &ldquo;Fannie&rdquo;</cite>
+      <blockquote>&ldquo;I have had nothing from her but a little scribble on a little scrap of paper for a long time. I shall have to pull her ears when I return.&rdquo;</blockquote>
+      <cite>Alexander to Mother, July 8, 1862 <small>(LTR-1862-07-08)</small></cite>
     </div>
   </div>
 
 
-  <div class="ps-fate civilian">Stayed on the home front throughout the war, teaching and supporting her mother. Moved to Iowa around 1872 with the surviving family.</div>
+  <div class="ps-fate civilian">Taught in Montreal and at Champlain Academy during the war. Moved to Iowa around 1872 with the surviving family.</div>
 
   <button class="letters-toggle" style="--person: var(--fannie);" data-recipient="fannie" onclick="toggleLetters(this)">
     <span class="lt-icon">&#9654;</span> Letters Written to Her <span class="lt-count"></span>

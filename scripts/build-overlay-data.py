@@ -30,13 +30,23 @@ def build_letter_index(letters):
     """Build lightweight letter index (no transcriptions)."""
     index = {}
     for ltr in letters:
-        index[ltr["id"]] = {
+        entry = {
             "d": ltr.get("date", ""),
             "a": ltr.get("author", ""),
             "an": ltr.get("authorName", ""),
             "r": ltr.get("recipient", ""),
             "l": ltr.get("location", ""),
         }
+        sig = ltr.get("sigSummary", "")
+        if sig:
+            # Strip bold markdown, truncate to ~160 chars
+            sig = sig.replace("**", "")
+            if len(sig) > 160:
+                cut = sig[:160]
+                last = max(cut.rfind("."), cut.rfind("!"), cut.rfind("?"))
+                sig = sig[: last + 1] if last > 60 else cut.rstrip() + "..."
+            entry["ss"] = sig
+        index[ltr["id"]] = entry
     return index
 
 

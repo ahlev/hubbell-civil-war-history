@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Hubbell Brothers — Parallel Lives, 1861–1862</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="_design.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
         :root {
             --henry-light: #2D5F8A18;
@@ -44,17 +44,12 @@
         /* Header */
         .header {
             text-align: center;
-            padding: 48px 24px 40px;
-            margin-bottom: 32px;
+            padding: 72px 32px 48px;
+            margin-bottom: 16px;
         }
 
-        .header h1 {
-            font-family: var(--font-display);
-            font-size: 42px;
-            font-weight: 700;
+        .header h1 { /* uses shared .page-title from _design.css */
             color: var(--bg-header);
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
         }
 
         .header .subtitle {
@@ -401,16 +396,26 @@
             justify-content: center;
             transition: all 0.15s ease;
             flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(74,144,217,0.15);
+            position: relative;
+            z-index: 2;
         }
         .detail-nav-btn:hover:not(:disabled) {
             background: var(--accent-blue);
             color: #fff;
+            box-shadow: 0 4px 14px rgba(74,144,217,0.3);
+            transform: translateY(-1px);
+        }
+        .detail-nav-btn:active:not(:disabled) {
+            transform: translateY(0);
+            box-shadow: 0 1px 4px rgba(74,144,217,0.2);
         }
         .detail-nav-btn:disabled {
             opacity: 0.2;
             cursor: default;
             border-color: var(--border);
             color: var(--text-muted);
+            box-shadow: none;
         }
 
         /* Nav mode toggle — compact, below arrows */
@@ -681,6 +686,58 @@
             color: var(--text);
             border-color: var(--text-muted);
         }
+        .letter-overlay-panel .lo-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 2px solid var(--accent-blue, #4A90D9);
+            background: var(--bg-elev);
+            border-radius: 8px;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-blue, #4A90D9);
+            transition: all 0.15s;
+            margin-bottom: 14px;
+        }
+        .letter-overlay-panel .lo-back:hover {
+            background: var(--accent-blue, #4A90D9);
+            color: #fff;
+        }
+        .letter-overlay-panel .lo-back svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .letter-overlay-panel .lo-map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--accent-blue, #4A90D9);
+            text-decoration: none;
+            margin-top: 4px;
+        }
+        .letter-overlay-panel .lo-map-link:hover { text-decoration: underline; }
+        .letter-overlay-panel .lo-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 4px;
+        }
+        .letter-overlay-panel .lo-tag {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 3px;
+            background: var(--bg);
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+        }
         .letter-overlay-panel .lo-date {
             font-family: var(--font-display);
             font-size: 18px;
@@ -932,7 +989,6 @@
 
         @media (max-width: 900px) {
             .kpi-card { flex: 0 1 calc(50% - 16px); }
-            .header h1 { font-size: 28px; }
             .detail-inner { grid-template-columns: 1fr; }
             .detail-right { border-left: none; padding-left: 0; border-top: 1px solid var(--border-light); padding-top: 24px; }
             .detail-meta-row { flex-direction: column; gap: 12px; }
@@ -1914,65 +1970,11 @@
     function togglePersonInfo(chipEl, letterIdx, personIdx) {
         const l = LETTERS[letterIdx];
         const person = l.people[personIdx];
-        const slot = document.getElementById('person-info-slot');
 
-        // Toggle off if same chip clicked
-        const wasActive = chipEl.classList.contains('active');
-        document.querySelectorAll('.people-chip').forEach(c => c.classList.remove('active'));
-        if (wasActive) {
-            slot.innerHTML = '';
-            return;
+        // Open the shared person overlay panel
+        if (window.HubbellOverlay) {
+            HubbellOverlay.showPerson(person.name);
         }
-        chipEl.classList.add('active');
-
-        const mentions = findPersonMentions(person.name);
-        // Collect all name variants for this person (for searching transcriptions)
-        const canonical = getCanonicalName(person.name);
-        const allVariants = canonical ? PERSON_ALIASES.find(g => g[0] === canonical) || [person.name] : [person.name];
-
-        let mentionLines = '';
-        mentions.forEach(m => {
-            const author = NAMES[m.letter.author].split(' ')[0];
-            const dateStr = formatDate(m.letter.date);
-            // Search for the matched variant name first, then all known variants
-            const searchNames = [m.matchedName, ...allVariants.filter(v => v !== m.matchedName)];
-            let excerptData = null;
-            let usedName = m.matchedName;
-            for (const tryName of searchNames) {
-                excerptData = findPersonExcerpt(m.letter.transcription, tryName);
-                if (excerptData) { usedName = tryName; break; }
-            }
-            let excerptHtml = '';
-            if (excerptData) {
-                let excText = escapeHtml(excerptData.excerpt);
-                excText = highlightPersonInText(excText, usedName, 'pi-highlight');
-                excerptHtml = `<div class="pi-excerpt">"${excText}"</div>`;
-            }
-            mentionLines += `<div class="pi-mention" data-letter-idx="${m.idx}"><span class="pi-arrow">View letter ›</span><span class="pi-date">${dateStr}</span> — ${author}${excerptHtml}</div>`;
-        });
-
-        const _piIdx = window.OVERLAY_PEOPLE_LOOKUP && OVERLAY_PEOPLE_LOOKUP[person.name.trim().toLowerCase()];
-        const _piProf = _piIdx !== undefined && window.OVERLAY_PEOPLE_PROFILES ? OVERLAY_PEOPLE_PROFILES[_piIdx] : null;
-        const _piSummary = _piProf && _piProf.s ? `<div class="pi-summary">${escapeHtml(_piProf.s)}</div>` : '';
-
-        slot.innerHTML = `<div class="person-info-panel visible">
-            <div class="pi-role">${escapeHtml(person.role)}</div>
-            ${_piSummary}
-            <div class="pi-mentions-title">Mentioned in ${mentions.length} letter${mentions.length !== 1 ? 's' : ''}</div>
-            ${mentionLines}
-        </div>`;
-
-        // Attach click handlers — store variants in a closure to avoid JSON parse issues
-        const mentionEls = slot.querySelectorAll('.pi-mention[data-letter-idx]');
-        mentions.forEach((m, mi) => {
-            const el = mentionEls[mi];
-            if (!el) return;
-            const searchNames = [m.matchedName, ...allVariants.filter(v => v !== m.matchedName)];
-            el.addEventListener('click', (e) => {
-                e.stopPropagation();
-                openLetterOverlay(m.idx, searchNames);
-            });
-        });
     }
 
     // Open letter as overlay panel with person name variants highlighted
@@ -2011,6 +2013,21 @@
                 <div class="lo-editorial">${editText}</div>`;
         }
 
+        // Map link
+        const mapLink = `<a class="lo-map-link" href="viz-map-fullwar.html?date=${encodeURIComponent(l.date)}&brother=${encodeURIComponent(l.author)}&letter=${encodeURIComponent(l.id)}"><span>📍</span>View on map →</a>`;
+
+        // People mentioned
+        let peopleTags = '';
+        if (l.people && l.people.length > 0) {
+            peopleTags = `<div class="lo-section-label">People Mentioned</div><div class="lo-tags">${l.people.map(p => `<span class="lo-tag">${escapeHtml(p.name)}</span>`).join('')}</div>`;
+        }
+
+        // Places mentioned
+        let placeTags = '';
+        if (l.places && l.places.length > 0) {
+            placeTags = `<div class="lo-section-label">Places Mentioned</div><div class="lo-tags">${l.places.map(p => `<span class="lo-tag">${escapeHtml(p.written)}${p.modern && p.modern !== p.written ? ' — ' + escapeHtml(p.modern) : ''}</span>`).join('')}</div>`;
+        }
+
         const backdrop = document.createElement('div');
         backdrop.className = 'letter-overlay-backdrop';
         backdrop.id = 'letter-overlay-backdrop';
@@ -2019,10 +2036,17 @@
         backdrop.innerHTML = `
             <div class="letter-overlay-panel">
                 <button class="lo-close" onclick="closeLetterOverlay()" title="Close (Esc)">✕</button>
+                <button class="lo-back" onclick="closeLetterOverlay()" title="Back to letter detail">
+                    <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back
+                </button>
                 <div class="lo-date" style="color:${color}">${formatDate(l.date)}</div>
-                <div class="lo-meta">${NAMES[l.author]} → ${l.recipient}${locDisplay ? ' · ' + l.location : ''}</div>
+                <div class="lo-meta">${NAMES[l.author]} → ${l.recipient}${locDisplay ? ' · from ' + escapeHtml(l.location) : ''}</div>
+                ${mapLink}
                 <div class="lo-badges">${badges}</div>
                 ${editorialSection}
+                ${peopleTags}
+                ${placeTags}
                 <div class="lo-section-label">Full Transcription</div>
                 <div class="lo-body">${highlightedText}</div>
             </div>
@@ -2053,8 +2077,10 @@
         }
     }, true);
 
+    var _detailWasOpen = false; // track if navigating within open panel
     function openDetail(idx) {
         hideTooltip();
+        _detailWasOpen = document.getElementById('detail-panel').classList.contains('open');
         activeLetterIdx = idx;
         const l = LETTERS[idx];
         const color = COLORS[l.author];
@@ -2183,7 +2209,8 @@
             panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }, 100);
 
-        if (window.HubbellDeepLink) _dlSyncUrl();
+        // Replace (not push) history when navigating ←/→ within open panel
+        if (window.HubbellDeepLink) _dlSyncUrl(_detailWasOpen ? { replace: true } : {});
     }
 
     function closeDetail() {

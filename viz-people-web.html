@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The People Web — Hubbell Civil War Letter Collection</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="_design.css">
 <style>
 body {
@@ -1606,7 +1606,7 @@ for (const [key, name] of Object.entries(BROTHER_CANON)) {
     id: name,
     isBrother: true,
     brotherKey: key,
-    radius: 30,
+    radius: 42,
     color: BROTHER_COLORS[key],
     category: 'BROTHER',
     mentions: 0,
@@ -2091,13 +2091,9 @@ function draw() {
     const highlighted = highlightSet.has(i);
     const dimmed = hasFocus && !highlighted;
 
-    // Draw shape: brothers get unique shapes, others get circles
-    if (node.isBrother) {
-      drawBrotherShape(ctx, node.x, node.y, node.radius, node.brotherKey);
-    } else {
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-    }
+    // Draw shape: all nodes are circles
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
 
     if (dimmed) {
       ctx.fillStyle = hexToRgba(node.color, 0.1);
@@ -2138,10 +2134,10 @@ function draw() {
     // Labels
     if (node.isBrother) {
       ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 12px Inter';
+      ctx.font = 'bold 14px Inter';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(BROTHER_NAMES[node.brotherKey], node.x, node.y + (node.brotherKey === 'james' ? 2 : 0));
+      ctx.fillText(BROTHER_NAMES[node.brotherKey], node.x, node.y);
     } else if ((highlighted || scale > 1.2) && !dimmed) {
       const labelScale = Math.max(0.7, 1 / scale);
       ctx.save();
@@ -3312,8 +3308,8 @@ function _pwSelectPerson(name) {
     }
     selectedNode = idx;
     const node = nodes[idx];
-    panX = canvas.width / 2 - node.x * scale;
-    panY = canvas.height / 2 - node.y * scale;
+    panX = -node.x * scale;
+    panY = -node.y * scale;
     if (node.isBrother) showBrotherDetail(node);
     else showPersonDetail(node);
     updateLinkButton();
@@ -3340,8 +3336,8 @@ function _pwCreateLink(nameA, nameB) {
     selectedNode = null;
     showLinkedPairDetail(idxA, idxB);
     const nA = nodes[idxA], nB = nodes[idxB];
-    panX = canvas.width / 2 - ((nA.x + nB.x) / 2) * scale;
-    panY = canvas.height / 2 - ((nA.y + nB.y) / 2) * scale;
+    panX = -((nA.x + nB.x) / 2) * scale;
+    panY = -((nA.y + nB.y) / 2) * scale;
   }
   showLinkedPairDetail(idxA, idxB);
   centerWhenReady();

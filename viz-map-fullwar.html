@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Map That Moves — Full War, 1861–1865</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="03-data/map-movements.js"></script>
@@ -846,6 +846,111 @@ body {
   padding: 6px 0 2px;
   font-style: italic;
 }
+.place-pin-summary-wrap {
+  margin: 8px 0 10px;
+  background: #F8F6F3;
+  border-radius: 4px;
+  border-left: 3px solid #B8860B;
+  padding: 8px 10px;
+}
+.place-pin-summary {
+  font-size: 0.72rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+  max-height: 4.5em;
+  overflow: hidden;
+  position: relative;
+  transition: max-height 0.3s ease;
+}
+.place-pin-summary.collapsed::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.5em;
+  background: linear-gradient(transparent, #F8F6F3);
+  pointer-events: none;
+}
+.place-pin-summary.expanded {
+  max-height: 600px;
+}
+.place-pin-summary.expanded::after {
+  display: none;
+}
+.place-pin-expand {
+  display: none;
+  font-size: 0.65rem;
+  color: #B8860B;
+  cursor: pointer;
+  margin-top: 4px;
+  font-weight: 500;
+  user-select: none;
+}
+.place-pin-expand:hover {
+  color: #8B6914;
+  text-decoration: underline;
+}
+.place-pin-section-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ink-3);
+  margin: 10px 0 4px;
+  padding-top: 8px;
+  border-top: 1px solid #F0ECE7;
+}
+
+/* ── Place Labels Layer ── */
+.place-label-icon {
+  pointer-events: auto;
+}
+.place-label-pill {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  white-space: nowrap;
+  border: 1px solid rgba(184, 134, 11, 0.3);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  letter-spacing: 0.01em;
+}
+.place-label-pill:hover {
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--ink);
+  border-color: #B8860B;
+  box-shadow: 0 1px 6px rgba(184, 134, 11, 0.25);
+}
+.place-label-pill::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #B8860B;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.place-labels-toggle {
+  cursor: pointer;
+  transition: opacity 0.2s;
+  user-select: none;
+}
+.place-labels-toggle:hover {
+  opacity: 0.7;
+}
+.place-labels-toggle input {
+  margin-right: 4px;
+  vertical-align: middle;
+  cursor: pointer;
+}
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
@@ -933,6 +1038,9 @@ body {
       </div>
       <div class="legend-row"><span class="legend-trail" style="background:var(--ink-3)"></span> 30-day trail</div>
       <div class="legend-row"><span style="font-size:0.85rem">&#10013;</span> Memorial (KIA)</div>
+      <div class="legend-row place-labels-toggle" style="margin-top:4px;padding-top:4px;border-top:1px solid var(--rule)">
+        <label style="display:flex;align-items:center;cursor:pointer;font-size:0.65rem"><input type="checkbox" id="placeLabelsToggle" checked onchange="togglePlaceLabels(this.checked)"> Place labels</label>
+      </div>
     </div>
 
     <!-- Recenter button -->
@@ -976,6 +1084,8 @@ body {
 // ============================================================
 let DATA = null;
 let map, trailLayers = {}, markerLayers = {}, memorialMarker = null;
+let placeLabelsLayer = null;
+let placeLabelsVisible = true;
 
 const COLORS = {
   henry: '#2D5F8A',
@@ -1054,6 +1164,7 @@ async function init() {
 
   initMap();
   initTimeline();
+  buildPlaceLabels();
 
   // Handle URL parameters: ?date=YYYY-MM-DD&brother=henry
   const params = new URLSearchParams(window.location.search);
@@ -1755,60 +1866,118 @@ function matchPlaceName(inputPlace) {
 
 // ========== PLACE PIN (from ?place= parameter) ==========
 var placePinMarker = null;
+
+// Look up overlay profile for a place by trying name and aliases
+function findOverlayPlace(placeName) {
+  if (!window.OVERLAY_PLACES_PROFILES || !window.OVERLAY_PLACES_LOOKUP) return null;
+  var core = extractCandidates(placeName)[0].core;
+  // Try direct lookup first
+  var idx = OVERLAY_PLACES_LOOKUP[placeName.trim().toLowerCase()];
+  if (idx !== undefined) return OVERLAY_PLACES_PROFILES[idx];
+  // Try core name
+  idx = OVERLAY_PLACES_LOOKUP[core];
+  if (idx !== undefined) return OVERLAY_PLACES_PROFILES[idx];
+  // Search by alias
+  for (var i = 0; i < OVERLAY_PLACES_PROFILES.length; i++) {
+    var op = OVERLAY_PLACES_PROFILES[i];
+    if (op.aw && op.aw.some(function(a) { return a.toLowerCase() === core; })) return op;
+    if (op.n.toLowerCase().indexOf(core) > -1) return op;
+  }
+  return null;
+}
+
 function showPlacePin(placeName, movement) {
   // Remove any existing place pin
   if (placePinMarker) { map.removeLayer(placePinMarker); placePinMarker = null; }
 
-  // Gather all mentions of this place across movements (using normalized matching)
+  // Gather movements AT this place (letters written FROM here)
   var matchedCore = extractCandidates(movement.placeName || placeName)[0].core;
-  const mentions = DATA.movements.filter(function(m) {
+  const fromHere = DATA.movements.filter(function(m) {
     if (!m.placeName) return false;
-    var mv = extractCandidates(m.placeName)[0].core;
-    return mv === matchedCore;
+    return extractCandidates(m.placeName)[0].core === matchedCore;
   });
+  const fromHereLetters = fromHere.filter(function(m) { return m.source === 'letter'; });
+
+  // Look up overlay data for letters MENTIONING this place
+  var overlayPlace = findOverlayPlace(movement.placeName || placeName);
+  var fromHereIds = new Set(fromHereLetters.map(function(m) { return m.letterId; }));
+  var aboutHereLetters = [];
+  if (overlayPlace && overlayPlace.ltrs) {
+    aboutHereLetters = overlayPlace.ltrs.filter(function(id) { return !fromHereIds.has(id); });
+  }
 
   // Build popup content
   let popupHtml = '<div class="place-pin-popup">';
   popupHtml += '<h3 class="place-pin-title">' + escHtml(movement.placeName || placeName) + '</h3>';
 
   // Summary stats
-  const letterMentions = mentions.filter(m => m.source === 'letter');
-  const brotherSet = new Set(mentions.map(m => m.brother));
-  const dateRange = mentions.length > 0
-    ? formatDateStr(mentions[0].date) + ' – ' + formatDateStr(mentions[mentions.length - 1].date)
+  const brotherSet = new Set(fromHere.map(function(m) { return m.brother; }));
+  const dateRange = fromHere.length > 0
+    ? formatDateStr(fromHere[0].date) + ' – ' + formatDateStr(fromHere[fromHere.length - 1].date)
     : '';
   popupHtml += '<div class="place-pin-stats">';
-  popupHtml += '<span>' + mentions.length + ' movement' + (mentions.length !== 1 ? 's' : '') + '</span>';
-  popupHtml += '<span>' + letterMentions.length + ' letter' + (letterMentions.length !== 1 ? 's' : '') + '</span>';
+  if (fromHereLetters.length > 0) popupHtml += '<span>' + fromHereLetters.length + ' written from</span>';
+  if (aboutHereLetters.length > 0) popupHtml += '<span>' + aboutHereLetters.length + ' mentioning</span>';
+  if (fromHereLetters.length === 0 && aboutHereLetters.length === 0) popupHtml += '<span>' + fromHere.length + ' movement' + (fromHere.length !== 1 ? 's' : '') + '</span>';
   popupHtml += '<span>' + brotherSet.size + ' brother' + (brotherSet.size !== 1 ? 's' : '') + '</span>';
   popupHtml += '</div>';
   if (dateRange) popupHtml += '<div class="place-pin-range">' + dateRange + '</div>';
 
-  // List letter mentions (up to 6)
-  const letterItems = letterMentions.slice(0, 6);
-  if (letterItems.length > 0) {
+  // Overlay summary if available
+  if (overlayPlace && overlayPlace.s) {
+    popupHtml += '<div class="place-pin-summary-wrap">' +
+      '<div class="place-pin-summary collapsed">' + escHtml(overlayPlace.s) + '</div>' +
+      '<div class="place-pin-expand" onclick="togglePlaceSummary(this)">Read more \u25BE</div>' +
+      '</div>';
+  }
+
+  // Letters written FROM this place
+  if (fromHereLetters.length > 0) {
+    popupHtml += '<div class="place-pin-section-label">Written from here</div>';
     popupHtml += '<div class="place-pin-letters">';
-    letterItems.forEach(function(m) {
+    fromHereLetters.slice(0, 4).forEach(function(m) {
       const bName = DATA.brothers[m.brother] ? DATA.brothers[m.brother].name.split(' ')[0] : m.brother;
       const bColor = COLORS[m.brother] || '#666';
       const excerpt = m.letterExcerpt ? m.letterExcerpt.slice(0, 70) + (m.letterExcerpt.length > 70 ? '…' : '') : '';
-      popupHtml += '<div class="place-pin-letter" onclick="openLetterOverlay(\'' + m.letterId + '\',\'' + m.brother + '\')">';
+      popupHtml += '<div class="place-pin-letter" data-lid="' + escHtml(m.letterId) + '" data-bro="' + escHtml(m.brother) + '"' + (m.letterExcerpt ? ' data-excerpt="' + escHtml(m.letterExcerpt.slice(0, 80)) + '"' : '') + '>';
       popupHtml += '<span class="place-pin-author" style="color:' + bColor + '">' + escHtml(bName) + '</span>';
       popupHtml += '<span class="place-pin-date">' + formatDateStr(m.date) + '</span>';
       if (excerpt) popupHtml += '<div class="place-pin-excerpt">"' + escHtml(excerpt) + '"</div>';
       popupHtml += '</div>';
     });
-    if (letterMentions.length > 6) {
-      popupHtml += '<div class="place-pin-more">+ ' + (letterMentions.length - 6) + ' more</div>';
+    if (fromHereLetters.length > 4) {
+      popupHtml += '<div class="place-pin-more">+ ' + (fromHereLetters.length - 4) + ' more</div>';
+    }
+    popupHtml += '</div>';
+  }
+
+  // Letters MENTIONING this place (written from elsewhere)
+  if (aboutHereLetters.length > 0) {
+    popupHtml += '<div class="place-pin-section-label">Mentions this place</div>';
+    popupHtml += '<div class="place-pin-letters">';
+    aboutHereLetters.slice(0, 4).forEach(function(id) {
+      var meta = window.LETTER_INDEX ? LETTER_INDEX[id] : null;
+      if (!meta) return;
+      var bro = meta.a || '';
+      var bName = NAMES[bro] || bro;
+      var bColor = COLORS[bro] || '#666';
+      popupHtml += '<div class="place-pin-letter" data-lid="' + escHtml(id) + '" data-bro="' + escHtml(bro) + '" data-hl="' + escHtml(movement.placeName || placeName) + '">';
+      popupHtml += '<span class="place-pin-author" style="color:' + bColor + '">' + escHtml(bName) + '</span>';
+      popupHtml += '<span class="place-pin-date">' + (meta.d ? formatDateStr(meta.d) : '') + '</span>';
+      if (meta.l) popupHtml += '<div class="place-pin-excerpt">from ' + escHtml(meta.l) + '</div>';
+      popupHtml += '</div>';
+    });
+    if (aboutHereLetters.length > 4) {
+      popupHtml += '<div class="place-pin-more">+ ' + (aboutHereLetters.length - 4) + ' more</div>';
     }
     popupHtml += '</div>';
   }
 
   // Flags summary
-  const hasBattle = mentions.some(m => m.hasBattle);
-  const hasIllness = mentions.some(m => m.hasIllness);
-  const hasDeath = mentions.some(m => m.hasDeath);
-  const hasWound = mentions.some(m => m.hasWound);
+  const hasBattle = fromHere.some(function(m) { return m.hasBattle; });
+  const hasIllness = fromHere.some(function(m) { return m.hasIllness; });
+  const hasDeath = fromHere.some(function(m) { return m.hasDeath; });
+  const hasWound = fromHere.some(function(m) { return m.hasWound; });
   let flagsHtml = '';
   if (hasBattle) flagsHtml += '<span class="info-flag flag-battle">Battle</span>';
   if (hasIllness) flagsHtml += '<span class="info-flag flag-illness">Illness</span>';
@@ -1829,13 +1998,100 @@ function showPlacePin(placeName, movement) {
   placePinMarker = L.marker([movement.lat, movement.lon], { icon: pinIcon })
     .addTo(map)
     .bindPopup(popupHtml, { maxWidth: 360, minWidth: 280, className: 'place-pin-popup-container' })
+    .on('popupopen', function() {
+      // Show expand toggle only if summary actually overflows
+      var sum = document.querySelector('.place-pin-summary');
+      var btn = document.querySelector('.place-pin-expand');
+      if (sum && btn && sum.scrollHeight > sum.clientHeight + 2) {
+        btn.style.display = 'block';
+      }
+    })
     .openPopup();
+}
+
+function togglePlaceSummary(btn) {
+  var sum = btn.previousElementSibling;
+  var expanding = sum.classList.toggle('expanded');
+  sum.classList.toggle('collapsed', !expanding);
+  btn.textContent = expanding ? 'Show less \u25B4' : 'Read more \u25BE';
+  // Reposition popup after content size change (without re-rendering content)
+  if (placePinMarker && placePinMarker.getPopup()) {
+    var popup = placePinMarker.getPopup();
+    setTimeout(function() {
+      // Update wrapper size and pan map to keep popup visible
+      if (popup._container) {
+        popup._container.style.bottom = '';
+        popup._updateLayout();
+        popup._updatePosition();
+        popup._adjustPan();
+      }
+    }, 80);
+  }
 }
 
 function escHtml(s) {
   var el = document.createElement('span');
   el.textContent = s;
   return el.innerHTML;
+}
+
+// ========== PLACE LABELS LAYER ==========
+function buildPlaceLabels() {
+  if (placeLabelsLayer) { map.removeLayer(placeLabelsLayer); }
+  placeLabelsLayer = L.layerGroup();
+
+  // Deduplicate places by normalized core name → pick best representative
+  var placeMap = {};
+  DATA.movements.forEach(function(m) {
+    if (!m.placeName || m.lat == null || m.lon == null) return;
+    var core = extractCandidates(m.placeName)[0].core;
+    if (!placeMap[core]) {
+      placeMap[core] = { name: m.placeName, lat: m.lat, lon: m.lon, count: 0, letterCount: 0 };
+    }
+    placeMap[core].count++;
+    if (m.source === 'letter') placeMap[core].letterCount++;
+  });
+
+  // Filter: only show places that have letters FROM or overlay mentions ABOUT
+  var places = Object.values(placeMap).filter(function(p) {
+    if (p.letterCount > 0) return true;
+    var overlay = findOverlayPlace(p.name);
+    return overlay && overlay.lc > 0;
+  });
+
+  places.forEach(function(p) {
+    var icon = L.divIcon({
+      className: 'place-label-icon',
+      html: '<span class="place-label-pill">' + escHtml(p.name) + '</span>',
+      iconSize: [0, 0],
+      iconAnchor: [0, 6]
+    });
+
+    var marker = L.marker([p.lat, p.lon], { icon: icon, zIndexOffset: -100 });
+    marker.on('click', function() {
+      // Reuse showPlacePin for full detail popup
+      var match = matchPlaceName(p.name);
+      if (match) {
+        map.flyTo([match.lat, match.lon], Math.max(map.getZoom(), 9), { duration: 0.6 });
+        showPlacePin(p.name, match);
+      }
+    });
+    marker.addTo(placeLabelsLayer);
+  });
+
+  if (placeLabelsVisible) {
+    placeLabelsLayer.addTo(map);
+  }
+}
+
+function togglePlaceLabels(show) {
+  placeLabelsVisible = show;
+  if (!placeLabelsLayer) return;
+  if (show) {
+    placeLabelsLayer.addTo(map);
+  } else {
+    map.removeLayer(placeLabelsLayer);
+  }
 }
 
 function showInfoPanel(movement, brotherId) {
@@ -1878,7 +2134,7 @@ function showInfoPanel(movement, brotherId) {
 
   // "Read full letter" link if transcription available
   if (movement.transcription) {
-    html += `<div style="margin-top:6px"><a href="#" onclick="event.preventDefault();openLetterOverlay('${movement.letterId}','${brotherId}')" style="font-size:0.75rem;color:#2D5F8A;font-weight:500">Read full letter &rarr;</a></div>`;
+    html += `<div style="margin-top:6px"><a href="#" class="map-letter-link" data-lid="${escHtml(movement.letterId)}" data-bro="${escHtml(brotherId)}"${movement.letterExcerpt ? ' data-excerpt="'+escHtml(movement.letterExcerpt.slice(0,80))+'"' : ''} style="font-size:0.75rem;color:#2D5F8A;font-weight:500">Read full letter &rarr;</a></div>`;
   }
 
   // Citation with hyperlinks
@@ -1917,7 +2173,7 @@ function showInfoPanel(movement, brotherId) {
       const quote = l.letterExcerpt ? `"${l.letterExcerpt.slice(0, 60)}${l.letterExcerpt.length > 60 ? '...' : ''}"` : '';
       const recipient = l.recipient || 'Unknown';
       const context = l.sigSummary ? l.sigSummary.slice(0, 80) + (l.sigSummary.length > 80 ? '...' : '') : l.placeName;
-      html += `<div class="recent-letter-card" onclick="openLetterOverlay('${l.letterId}','${brotherId}')">
+      html += `<div class="recent-letter-card map-letter-link" data-lid="${escHtml(l.letterId)}" data-bro="${escHtml(brotherId)}"${l.letterExcerpt ? ' data-excerpt="'+escHtml(l.letterExcerpt.slice(0,80))+'"' : ''}>
         <div><span class="letter-date">${formatDateStr(l.date)}</span> <span class="letter-recipient">to ${recipient}</span></div>
         <div class="letter-context">${context}</div>
         ${quote ? `<div class="letter-quote">${quote}</div>` : ''}
@@ -2083,15 +2339,17 @@ function toggleLock(brotherId) {
 // ============================================================
 // LETTER OVERLAY
 // ============================================================
-function openLetterOverlay(letterId, brotherId) {
+function openLetterOverlay(letterId, brotherId, highlight) {
   _mapCurrentLetterId = letterId;
   _mapSyncUrl();
-  HubbellReader.open(letterId, {
+  var opts = {
     onClose: function() {
       _mapCurrentLetterId = null;
       _mapSyncUrl();
     }
-  });
+  };
+  if (highlight) opts.highlight = Array.isArray(highlight) ? highlight : [highlight];
+  HubbellReader.open(letterId, opts);
 }
 
 function closeLetterOverlay() {
@@ -2174,6 +2432,23 @@ document.getElementById('timelineSlider').addEventListener('input', fadeCta);
 document.addEventListener('DOMContentLoaded', () => {
   init();
 
+  // Delegate clicks on map letter links (popups and info panel are dynamic)
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('[data-lid]');
+    if (!el || (!el.classList.contains('place-pin-letter') && !el.classList.contains('map-letter-link'))) return;
+    e.preventDefault();
+    var hl = [];
+    if (el.dataset.excerpt) hl.push(el.dataset.excerpt.slice(0, 60));
+    if (el.dataset.hl) {
+      var placeName = el.dataset.hl;
+      hl.push(placeName);
+      // Also add city name without state for broader matching
+      var commaIdx = placeName.indexOf(',');
+      if (commaIdx > 0) hl.push(placeName.substring(0, commaIdx));
+    }
+    openLetterOverlay(el.dataset.lid, el.dataset.bro, hl.length > 0 ? hl : null);
+  });
+
   // Lock button clicks (stop propagation so panel click doesn't also fire)
   document.querySelectorAll('.lock-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -2245,6 +2520,15 @@ HubbellDeepLink.registerStateApplier(function(p) {
     var movement = DATA.movements.find(function(m) { return m.letterId === p.letter; });
     if (movement) {
       setTimeout(function() { openLetterOverlay(p.letter, movement.brotherId); }, 300);
+    }
+  }
+  if (p.place) {
+    var match = matchPlaceName(p.place);
+    if (match && match.lat && match.lon) {
+      setTimeout(function() {
+        map.flyTo([match.lat, match.lon], 10, { duration: 1.2 });
+        showPlacePin(p.place, match);
+      }, 400);
     }
   }
 });
