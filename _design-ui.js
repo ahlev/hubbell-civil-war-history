@@ -40,7 +40,6 @@
     prefs[k] = v;
     save(prefs);
     applyPrefs();
-    renderTweakStates();
   }
 
   function renderNav() {
@@ -67,8 +66,9 @@
               '<circle cx="32" cy="68" r="15" fill="#4A7C59"/>' +
               '<circle cx="68" cy="68" r="15" fill="#8B3A3A"/>' +
             '</svg>' +
-            'The Hubbell Brothers' +
-            '<span class="dim">Civil War Letters &middot; 1861&ndash;1865</span>' +
+            '<span class="site-brand-text">The Hubbell Brothers' +
+              '<span class="dim">Civil War Letters &middot; 1861&ndash;1865</span>' +
+            '</span>' +
           '</a>' +
           '<div class="nav-spacer"></div>' +
           '<div class="nav-links" role="menubar">' +
@@ -84,24 +84,18 @@
             '<input type="text" class="search-input-nav" id="searchInput" placeholder="Search 274 letters\u2026" autocomplete="off">' +
             '<div class="search-dropdown" id="searchDropdown"></div>' +
           '</div>' +
-          '<button class="nav-tool" id="themeToggle" aria-label="Toggle light/dark">' +
-            '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
-              '<circle cx="12" cy="12" r="4.5"/>' +
-              '<path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>' +
-            '</svg>' +
-          '</button>' +
-          '<button class="nav-tool" id="tweaksToggle" aria-label="Design tweaks">' +
-            '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
-              '<circle cx="6" cy="7" r="2.2"/><path d="M6 2v2.8M6 9.2V22"/>' +
-              '<circle cx="18" cy="17" r="2.2"/><path d="M18 2v12.8M18 19.2V22"/>' +
-              '<circle cx="12" cy="12" r="2.2"/><path d="M12 2v7.8M12 14.2V22"/>' +
-            '</svg>' +
-          '</button>' +
           '<button class="nav-menu-btn" id="menuBtn" aria-label="Menu">' +
             '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>' +
           '</button>' +
         '</div>' +
         '<div class="mobile-drawer" id="mobileDrawer">' +
+          '<div class="mobile-drawer-search">' +
+            '<svg class="search-icon-nav" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">' +
+              '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>' +
+            '</svg>' +
+            '<input type="text" class="search-input-nav" id="searchInputMobile" placeholder="Search 274 letters\u2026" autocomplete="off">' +
+            '<div class="search-dropdown" id="searchDropdownMobile"></div>' +
+          '</div>' +
           links.map(function (l) {
             var active = (l.href.toLowerCase() === here);
             return '<a class="nav-link ' + (active ? 'active' : '') + '" href="' + l.href + '">' + l.label + '</a>';
@@ -111,74 +105,7 @@
     mount.outerHTML = navHTML;
   }
 
-  function renderTweaksPanel() {
-    if (document.getElementById('tweaksPanel')) return;
-    var panel = document.createElement('aside');
-    panel.className = 'tweaks-panel';
-    panel.id = 'tweaksPanel';
-    panel.innerHTML =
-      '<h4>Tweaks</h4>' +
-      '<div class="tweak-row">' +
-        '<div class="tweak-label">Theme</div>' +
-        '<div class="tweak-segment" data-tweak="theme">' +
-          '<button data-value="light">Paper</button>' +
-          '<button data-value="dark">Ink</button>' +
-        '</div>' +
-      '</div>' +
-      '<div class="tweak-row">' +
-        '<div class="tweak-label">Accent</div>' +
-        '<div class="tweak-colors" data-tweak="accent">' +
-          '<div class="tweak-color" data-value="rust"  title="Rust"  style="background: oklch(60% 0.13 24);"></div>' +
-          '<div class="tweak-color" data-value="moss"  title="Moss"  style="background: oklch(58% 0.12 150);"></div>' +
-          '<div class="tweak-color" data-value="slate" title="Slate" style="background: oklch(58% 0.10 240);"></div>' +
-          '<div class="tweak-color" data-value="ink"   title="Ink"   style="background: oklch(38% 0.02 60);"></div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="tweak-row">' +
-        '<div class="tweak-label">Body type</div>' +
-        '<div class="tweak-segment" data-tweak="typeface">' +
-          '<button data-value="serif-body">Serif</button>' +
-          '<button data-value="sans-body">Sans</button>' +
-        '</div>' +
-      '</div>' +
-      '<div class="tweak-row">' +
-        '<div class="tweak-label">Density</div>' +
-        '<div class="tweak-segment" data-tweak="density">' +
-          '<button data-value="compact">Compact</button>' +
-          '<button data-value="cozy">Cozy</button>' +
-          '<button data-value="spacious">Spacious</button>' +
-        '</div>' +
-      '</div>';
-    document.body.appendChild(panel);
-
-    panel.addEventListener('click', function (e) {
-      var seg = e.target.closest('[data-tweak]');
-      if (!seg) return;
-      var btn = e.target.closest('[data-value]');
-      if (!btn) return;
-      setPref(seg.getAttribute('data-tweak'), btn.getAttribute('data-value'));
-    });
-  }
-
-  function renderTweakStates() {
-    var panel = document.getElementById('tweaksPanel');
-    if (!panel) return;
-    panel.querySelectorAll('[data-tweak]').forEach(function (seg) {
-      var k = seg.getAttribute('data-tweak');
-      var cur = prefs[k];
-      seg.querySelectorAll('[data-value]').forEach(function (b) {
-        b.classList.toggle('active', b.getAttribute('data-value') === cur);
-      });
-    });
-  }
-
   function wireToggles() {
-    var theme = document.getElementById('themeToggle');
-    if (theme) theme.addEventListener('click', function () { setPref('theme', prefs.theme === 'light' ? 'dark' : 'light'); });
-    var tk = document.getElementById('tweaksToggle');
-    if (tk) tk.addEventListener('click', function () {
-      document.getElementById('tweaksPanel').classList.toggle('open');
-    });
     var mb = document.getElementById('menuBtn');
     if (mb) mb.addEventListener('click', function () {
       document.getElementById('mobileDrawer').classList.toggle('open');
@@ -236,7 +163,7 @@
     { label: 'Letters from 1864',    query: '1864',           desc: 'The war\u2019s hardest year' }
   ];
 
-  function renderSuggestions(dd) {
+  function renderSuggestions(dd, linkedInput) {
     var html = '<div class="search-suggestions">' +
       '<div class="ss-label">Try searching for</div>';
     SEARCH_SUGGESTIONS.forEach(function (s) {
@@ -251,8 +178,7 @@
     dd.querySelectorAll('.ss-item').forEach(function (el) {
       el.addEventListener('click', function () {
         var q = this.dataset.query;
-        var si = document.getElementById('searchInput');
-        si.value = q;
+        if (linkedInput) linkedInput.value = q;
         dd.classList.remove('open');
         window.location.href = 'search.html?q=' + encodeURIComponent(q);
       });
@@ -332,18 +258,14 @@
     });
   }
 
-  function wireSearch() {
-    var si = document.getElementById('searchInput');
-    var dd = document.getElementById('searchDropdown');
+  function _wireOneSearch(si, dd) {
     if (!si || !dd) return;
     var ddTimeout = null;
-
-    // On search.html the page's own script handles search — skip dropdown there
     var here = (location.pathname.split('/').pop() || '').toLowerCase();
     var isSearchPage = (here === 'search.html');
 
     si.addEventListener('input', function () {
-      if (isSearchPage) return; // search.html handles its own dropdown
+      if (isSearchPage) return;
       clearTimeout(ddTimeout);
       var q = this.value.trim();
       if (q.length < 2) { dd.classList.remove('open'); return; }
@@ -356,8 +278,7 @@
       if (q.length >= 2) {
         renderSearchDropdown(q, dd);
       } else {
-        // Show suggestions when empty
-        renderSuggestions(dd);
+        renderSuggestions(dd, si);
       }
     });
 
@@ -372,16 +293,36 @@
         si.blur();
       }
     });
+  }
 
+  function wireSearch() {
+    // Desktop search
+    _wireOneSearch(
+      document.getElementById('searchInput'),
+      document.getElementById('searchDropdown')
+    );
+    // Mobile drawer search
+    _wireOneSearch(
+      document.getElementById('searchInputMobile'),
+      document.getElementById('searchDropdownMobile')
+    );
+
+    // Close any open dropdown when clicking outside
     document.addEventListener('click', function (e) {
-      if (!e.target.closest('.search-wrap')) dd.classList.remove('open');
+      if (!e.target.closest('.search-wrap') && !e.target.closest('.mobile-drawer-search')) {
+        var dd = document.getElementById('searchDropdown');
+        var ddm = document.getElementById('searchDropdownMobile');
+        if (dd) dd.classList.remove('open');
+        if (ddm) ddm.classList.remove('open');
+      }
     });
 
+    // Ctrl+K focuses desktop search
     document.addEventListener('keydown', function (e) {
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
-        si.focus();
-        si.select();
+        var si = document.getElementById('searchInput');
+        if (si) { si.focus(); si.select(); }
       }
     });
   }
@@ -492,8 +433,6 @@
   document.addEventListener('DOMContentLoaded', function () {
     applyPrefs();
     renderNav();
-    renderTweaksPanel();
-    renderTweakStates();
     wireToggles();
     wireSearch();
     wireReveals();

@@ -1032,17 +1032,45 @@ canvas.grabbing {
 }
 
 .temporal-range-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  position: relative;
+  width: 100%;
+  height: 20px;
+  margin-bottom: 2px;
+}
+
+.temporal-range-track {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--rule);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.temporal-range-fill {
+  position: absolute;
+  top: 8px;
+  height: 4px;
+  background: #2D5F8A;
+  border-radius: 2px;
+  z-index: 2;
+  opacity: 0.5;
 }
 
 .temporal-range-wrap input[type="range"] {
+  position: absolute;
   width: 100%;
+  height: 4px;
+  top: 8px;
+  margin: 0;
+  padding: 0;
   -webkit-appearance: none;
-  height: 5px;
-  border-radius: 3px;
-  background: var(--rule);
+  appearance: none;
+  background: none;
+  pointer-events: none;
+  z-index: 3;
   outline: none;
 }
 
@@ -1055,6 +1083,20 @@ canvas.grabbing {
   cursor: pointer;
   border: 2px solid #FFF;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  pointer-events: auto;
+  position: relative;
+  z-index: 3;
+}
+
+.temporal-range-wrap input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #2D5F8A;
+  cursor: pointer;
+  border: 2px solid #FFF;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  pointer-events: auto;
 }
 
 .temporal-labels {
@@ -1137,6 +1179,8 @@ canvas.grabbing {
     <div id="temporal-filter">
       <div class="filter-label">Date Range</div>
       <div class="temporal-range-wrap">
+        <div class="temporal-range-track"></div>
+        <div class="temporal-range-fill" id="temporal-fill"></div>
         <input type="range" id="temporal-start" min="0" max="100" value="0" oninput="updateTemporalFilter()">
         <input type="range" id="temporal-end" min="0" max="100" value="100" oninput="updateTemporalFilter()">
         <div class="temporal-labels">
@@ -1275,6 +1319,8 @@ const MERGE_MAP = {
   'henry': 'Henry Hubbell',
   'henry author': 'Henry Hubbell',
   'alexander hubbell': 'Alexander Hubbell',
+  'alexander f. hubbell': 'Alexander Hubbell',
+  'alexander f hubbell': 'Alexander Hubbell',
   'alexander': 'Alexander Hubbell',
   'alexander alex': 'Alexander Hubbell',
   'the colonel': 'The Colonel',
@@ -1857,6 +1903,14 @@ function sliderToDate(val) {
   return `${y}-${m}-${day}`;
 }
 
+function updateTemporalFill() {
+  const s = parseInt(document.getElementById('temporal-start').value);
+  const e = parseInt(document.getElementById('temporal-end').value);
+  const fill = document.getElementById('temporal-fill');
+  fill.style.left = Math.min(s, e) + '%';
+  fill.style.width = (Math.abs(e - s)) + '%';
+}
+
 function updateTemporalFilter() {
   const startVal = parseInt(document.getElementById('temporal-start').value);
   const endVal = parseInt(document.getElementById('temporal-end').value);
@@ -1865,6 +1919,8 @@ function updateTemporalFilter() {
   temporalStart = sliderToDate(actualStart);
   temporalEnd = sliderToDate(actualEnd);
   temporalActive = (actualStart > 0 || actualEnd < 100);
+
+  updateTemporalFill();
 
   const label = document.getElementById('temporal-label');
   if (temporalActive) {
@@ -1881,6 +1937,7 @@ function resetTemporalFilter() {
   temporalEnd = DATE_MAX;
   temporalActive = false;
   document.getElementById('temporal-label').textContent = 'All dates';
+  updateTemporalFill();
 }
 
 function nodeHasLettersInRange(node) {
@@ -2684,7 +2741,8 @@ function buildMiniTimeline(sortedLetters) {
     const ts = new Date(l.date).getTime();
     const x = pad + ((ts - minTs) / rangeTs) * usable;
     const color = BROTHER_COLORS[l.author] || '#9B9B9B';
-    svg += `<circle cx="${x}" cy="${height / 2}" r="4" fill="${color}" opacity="0.85"/>`;
+    const tip = formatDate(l.date) + ' — ' + (l.authorName || l.author);
+    svg += `<circle cx="${x}" cy="${height / 2}" r="4" fill="${color}" opacity="0.85" data-letter-id="${l.id}" style="cursor:pointer;transition:r 0.15s,opacity 0.15s"><title>${tip}</title></circle>`;
   }
 
   svg += '</svg>';
@@ -3080,10 +3138,42 @@ document.addEventListener('keydown', (e) => {
 });
 
 function attachLetterClickHandlers(container, personName) {
-  container.querySelectorAll('.pw-mention[data-letter-id]').forEach(el => {
+  const mentions = container.querySelectorAll('.pw-mention[data-letter-id]');
+  const timelineDots = container.querySelectorAll('.detail-timeline-svg circle[data-letter-id]');
+
+  // Click handlers
+  mentions.forEach(el => {
     el.addEventListener('click', () => {
       openLetterOverlay(el.dataset.letterId, personName);
     });
+  });
+  timelineDots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openLetterOverlay(dot.dataset.letterId, personName);
+    });
+  });
+
+  // Cross-highlight: mention ↔ timeline dot
+  function highlightLetter(id, on) {
+    mentions.forEach(m => {
+      if (m.dataset.letterId === id) m.style.background = on ? 'rgba(45,95,138,0.08)' : '';
+    });
+    timelineDots.forEach(d => {
+      if (d.dataset.letterId === id) {
+        d.setAttribute('r', on ? '6' : '4');
+        d.setAttribute('opacity', on ? '1' : '0.85');
+      }
+    });
+  }
+
+  mentions.forEach(el => {
+    el.addEventListener('mouseenter', () => highlightLetter(el.dataset.letterId, true));
+    el.addEventListener('mouseleave', () => highlightLetter(el.dataset.letterId, false));
+  });
+  timelineDots.forEach(dot => {
+    dot.addEventListener('mouseenter', () => highlightLetter(dot.dataset.letterId, true));
+    dot.addEventListener('mouseleave', () => highlightLetter(dot.dataset.letterId, false));
   });
 }
 
