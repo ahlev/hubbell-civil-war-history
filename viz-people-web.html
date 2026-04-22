@@ -36,25 +36,24 @@ body {
   overflow: hidden;
 }
 
-#sidebar-header {
-  padding: 24px 20px 16px;
-  border-bottom: 1px solid var(--rule-2);
+.pw-hero {
+  text-align: center;
+  padding: 48px 32px 24px;
+  border-bottom: 1px solid var(--rule);
+  flex-shrink: 0;
 }
-
-#sidebar-header h1 {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 4px;
-}
-
-#sidebar-header .subtitle {
-  font-size: 12px;
+.pw-hero-sub {
+  font-size: 0.85rem;
   color: var(--ink-3);
   font-weight: 400;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  margin-top: 6px;
+}
+
+#sidebar-header {
+  padding: 0;
+  border-bottom: none;
 }
 
 /* Search */
@@ -1111,12 +1110,13 @@ canvas.grabbing {
 <body>
 <div id="app">
   <div id="site-nav"></div>
+  <div class="pw-hero">
+    <h1>The People Web</h1>
+    <div class="pw-hero-sub">Hubbell Civil War Letter Collection</div>
+  </div>
   <div class="app-main">
   <div id="sidebar">
-    <div id="sidebar-header">
-      <h1>The People Web</h1>
-      <div class="subtitle">Hubbell Civil War Letter Collection</div>
-    </div>
+    <div id="sidebar-header"></div>
     <div id="search-box">
       <input type="text" id="search-input" placeholder="Search people by name...">
     </div>
