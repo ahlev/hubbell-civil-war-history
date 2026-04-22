@@ -12,8 +12,8 @@ window.HUBBELL = (function () {
       role: 'Co. D \u00B7 34th NY',
       span: '1861 \u2013 1862',
       fate: 'Killed at Antietam, September 17, 1862. His body was never recovered.',
-      color: 'oklch(62% 0.13 30)',
-      colorLight: 'oklch(74% 0.12 30)',
+      color: 'oklch(47.1% 0.088 247)',
+      colorLight: 'oklch(62% 0.07 247)',
       paragraph:
         "Henry was the brother who went silent. He wrote home through the first year of the war \u2014 from camps, from marches, from the long wait between engagements \u2014 and then, in July 1862, the letters stopped. His name appeared on a casualty list after Antietam. Conflicting reports followed: wounded in the leg, or killed outright. A soldier later reported seeing his name on a headboard at a grave. His body was never recovered.",
       pullQuote: 'I think there is not the least doubt that Henry was killed.',
@@ -27,8 +27,8 @@ window.HUBBELL = (function () {
       role: 'Co. H \u00B7 60th NY',
       span: '1861 \u2013 1865',
       fate: 'Color bearer at Chancellorsville. Wounded at Lookout Mountain. Nearly four years of continuous service. Died on his farm in Iowa, 1894.',
-      color: 'oklch(60% 0.13 150)',
-      colorLight: 'oklch(72% 0.12 150)',
+      color: 'oklch(65.2% 0.132 82)',
+      colorLight: 'oklch(76% 0.10 82)',
       paragraph:
         "Alexander carried the colors at Chancellorsville and took a wound at Lookout Mountain. He served nearly four continuous years and outlived his brothers by three decades. His letters make up the spine of the collection \u2014 patient, observant, and by turn wry. He wrote as though his mother were sitting across the room, and in the later years of the war his humor, when it surfaces, feels hard-won.",
       pullQuote: 'Please excuse me, Mother, but I did have a hearty laugh when I took in the idea of your three hopeful sons being in the hospital at the one and same time.',
@@ -42,8 +42,8 @@ window.HUBBELL = (function () {
       role: 'Co. I \u00B7 153rd NY',
       span: '1862 \u2013 1865',
       fate: 'Wounded at Cedar Creek. Died returning home from Savannah, October 19, 1865 \u2014 the war already over.',
-      color: 'oklch(58% 0.13 240)',
-      colorLight: 'oklch(72% 0.12 240)',
+      color: 'oklch(54.1% 0.077 153)',
+      colorLight: 'oklch(68% 0.06 153)',
       paragraph:
         "James was wounded at Cedar Creek and survived the war. In October 1865, with the Confederacy collapsed and his enlistment ending, he began the journey home from Savannah. He did not make it. He died en route, after the guns had already fallen silent \u2014 a casualty of the war that counted after the war was over.",
       pullQuote: 'The war is over, or so they tell us. I mean to be home soon.',
@@ -57,8 +57,8 @@ window.HUBBELL = (function () {
       role: 'Co. I \u00B7 153rd NY',
       span: '1862 \u2013 1865',
       fate: 'Remarkably healthy through four years of service. Died in 1875 from disease contracted during the war.',
-      color: 'oklch(58% 0.13 65)',
-      colorLight: 'oklch(72% 0.12 65)',
+      color: 'oklch(45.8% 0.111 22)',
+      colorLight: 'oklch(60% 0.09 22)',
       paragraph:
         "Charles served alongside James in the 153rd New York. Through four years of marching, mud, and close quarters he was the one who seemed to stay well \u2014 a fact the family noticed and the letters record. He came home. He lived another decade. In 1875 he died of disease his own family came to believe he had first contracted in the army.",
       pullQuote: "I have had my share of the mud and the rain, but not, thank heaven, the sickness that has taken so many.",
