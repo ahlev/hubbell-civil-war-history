@@ -61,6 +61,12 @@
       '<nav class="site-nav" aria-label="Primary">' +
         '<div class="site-nav-inner">' +
           '<a href="index.html" class="site-brand" aria-label="Hubbell Brothers, home">' +
+            '<svg class="site-brand-logo" viewBox="0 0 100 100" width="20" height="20" aria-hidden="true">' +
+              '<circle cx="32" cy="32" r="15" fill="#2D5F8A"/>' +
+              '<circle cx="68" cy="32" r="15" fill="#B8860B"/>' +
+              '<circle cx="32" cy="68" r="15" fill="#4A7C59"/>' +
+              '<circle cx="68" cy="68" r="15" fill="#8B3A3A"/>' +
+            '</svg>' +
             'The Hubbell Brothers' +
             '<span class="dim">Civil War Letters &middot; 1861&ndash;1865</span>' +
           '</a>' +
@@ -380,6 +386,109 @@
     });
   }
 
+  var LOGO_SVG_MINI = '<svg class="hubbell-logo-mini" viewBox="0 0 100 100" width="14" height="14" aria-hidden="true">' +
+    '<circle cx="32" cy="32" r="15" fill="#2D5F8A"/>' +
+    '<circle cx="68" cy="32" r="15" fill="#B8860B"/>' +
+    '<circle cx="32" cy="68" r="15" fill="#4A7C59"/>' +
+    '<circle cx="68" cy="68" r="15" fill="#8B3A3A"/>' +
+    '</svg>';
+
+  function brandPageTitles() {
+    var h1 = document.querySelector('h1');
+    if (!h1) return;
+    // Skip if already branded
+    if (h1.querySelector('.hubbell-logo-mini')) return;
+    h1.insertAdjacentHTML('beforeend', ' ' + LOGO_SVG_MINI);
+  }
+
+  /* ── Global letter hover tooltip ── */
+  var AUTHOR_COLORS = {
+    henry: '#2D5F8A', alexander: '#B8860B',
+    james: '#4A7C59', charles: '#8B3A3A', mother: '#7B5EA7'
+  };
+  var AUTHOR_NAMES = {
+    henry: 'Henry', alexander: 'Alexander',
+    james: 'James', charles: 'Charles', mother: 'Mother'
+  };
+  var _ltip = null;
+  var _ltipActive = null;
+
+  function _fmtDate(d) {
+    if (!d) return '';
+    var p = d.split('-');
+    if (p.length < 3) return d;
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return months[parseInt(p[1], 10) - 1] + ' ' + parseInt(p[2], 10) + ', ' + p[0];
+  }
+  function _esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+  function _showLetterTip(e, lid) {
+    if (!window.LETTER_INDEX) return;
+    var meta = LETTER_INDEX[lid];
+    if (!meta) return;
+    if (!_ltip) {
+      _ltip = document.createElement('div');
+      _ltip.className = 'hubbell-letter-tip';
+      document.body.appendChild(_ltip);
+    }
+    var color = AUTHOR_COLORS[meta.a] || '#999';
+    var dot = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + color + ';margin-right:4px;vertical-align:middle"></span>';
+    var summary = meta.ss ? '<div class="hubbell-letter-tip-summary">' + _esc(meta.ss) + '</div>' : '';
+    var loc = meta.l ? '<div class="hubbell-letter-tip-loc">' + _esc(meta.l) + '</div>' : '';
+    _ltip.innerHTML =
+      '<div class="hubbell-letter-tip-date">' + dot + _fmtDate(meta.d) + '</div>' +
+      '<div class="hubbell-letter-tip-author">' + _esc(meta.an || '') + ' \u2192 ' + _esc(meta.r || '') + '</div>' +
+      loc + summary;
+    _ltip.style.display = 'block';
+    _posLetterTip(e);
+  }
+  function _posLetterTip(e) {
+    if (!_ltip) return;
+    var x = e.clientX + 14, y = e.clientY - 10;
+    if (x + 340 > window.innerWidth) x = e.clientX - 354;
+    if (y + _ltip.offsetHeight > window.innerHeight) y = window.innerHeight - _ltip.offsetHeight - 8;
+    if (y < 4) y = 4;
+    _ltip.style.left = x + 'px';
+    _ltip.style.top = y + 'px';
+  }
+  function _hideLetterTip() {
+    if (_ltip) _ltip.style.display = 'none';
+    _ltipActive = null;
+  }
+
+  function _getLetterIdFromEl(el) {
+    // Walk up to 3 levels to find a letter ID attribute
+    for (var i = 0; i < 4 && el; i++, el = el.parentElement) {
+      var lid = el.getAttribute('data-letter-id') || el.getAttribute('data-lid');
+      if (lid) return lid;
+    }
+    return null;
+  }
+
+  function wireLetterTooltips() {
+    if (!window.LETTER_INDEX) return;
+    // Use event delegation on body for maximum coverage (including dynamically rendered content)
+    document.body.addEventListener('mouseover', function (e) {
+      var lid = _getLetterIdFromEl(e.target);
+      if (!lid) return;
+      // Don't override page-specific tooltips on SVG circles (dashboard, health ledger, money story)
+      if (e.target.tagName === 'circle' && e.target.hasAttribute('onmouseenter')) return;
+      // Don't double-up with the overlay panel's own tooltip system
+      if (e.target.closest && e.target.closest('.hubbell-overlay-panel')) return;
+      if (_ltipActive === lid) return;
+      _ltipActive = lid;
+      _showLetterTip(e, lid);
+    });
+    document.body.addEventListener('mousemove', function (e) {
+      if (_ltipActive) _posLetterTip(e);
+    });
+    document.body.addEventListener('mouseout', function (e) {
+      if (!_ltipActive) return;
+      var lid = _getLetterIdFromEl(e.target);
+      if (lid === _ltipActive) _hideLetterTip();
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     applyPrefs();
     renderNav();
@@ -388,6 +497,8 @@
     wireToggles();
     wireSearch();
     wireReveals();
+    brandPageTitles();
+    wireLetterTooltips();
   });
 
   // Apply ASAP to avoid FOUC

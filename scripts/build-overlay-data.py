@@ -96,9 +96,17 @@ def build_places(places, summaries=None):
         idx = len(profiles)
         coords = place.get("coordinates", {})
         letter_ids = sorted(place.get("letters", []))
+
+        # Guard against metadata tags leaking into display name
+        canon = place["canonicalName"]
+        if canon in skip:
+            alts = [v for v in place.get("modernIdentifications", []) if v not in skip]
+            aw = [v for v in place.get("asWritten", []) if v not in skip]
+            canon = alts[0] if alts else (aw[0] if aw else place["id"].replace("PLC-", ""))
+
         profile = {
             "id": place["id"],
-            "n": place["canonicalName"],
+            "n": canon,
             "aw": [v for v in place.get("asWritten", []) if v not in skip],
             "st": place.get("state", ""),
             "co": {"lat": coords.get("lat"), "lon": coords.get("lon")} if coords else None,

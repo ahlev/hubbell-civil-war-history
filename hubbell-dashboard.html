@@ -38,14 +38,14 @@
         .dashboard {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 24px;
+            padding: 0 24px 24px;
         }
 
         /* Header */
         .header {
             text-align: center;
-            padding: 72px 32px 48px;
-            margin-bottom: 16px;
+            padding: 72px 32px 32px;
+            margin-bottom: 0;
         }
 
         .header h1 { /* uses shared .page-title from _design.css */
@@ -58,12 +58,14 @@
             color: var(--text-secondary);
             font-weight: 300;
             font-style: italic;
+            line-height: 1.3;
+            margin-top: 4px;
         }
 
         .header .date-range {
             font-size: 13px;
             color: var(--text-muted);
-            margin-top: 12px;
+            margin-top: 6px;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
@@ -1011,7 +1013,7 @@
 <div id="site-nav"></div>
     <div class="dashboard">
         <header class="header">
-            <h1>The Hubbell Brothers</h1>
+            <h1 class="page-title">The Hubbell Brothers</h1>
             <div class="subtitle">Four brothers, four journeys, one war</div>
             <div class="date-range">July 1861 — November 1870 · 274 Letters Transcribed</div>
         </header>

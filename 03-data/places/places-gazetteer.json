@@ -769,7 +769,7 @@
   },
   {
     "id": "PLC-texas",
-    "canonicalName": "`stated`",
+    "canonicalName": "Texas",
     "asWritten": [
       "Texas"
     ],
@@ -971,7 +971,7 @@
   },
   {
     "id": "PLC-mississippi",
-    "canonicalName": "`stated`",
+    "canonicalName": "Mississippi",
     "asWritten": [
       "Mississippi"
     ],
@@ -1287,7 +1287,7 @@
   },
   {
     "id": "PLC-philadelphia",
-    "canonicalName": "`stated`",
+    "canonicalName": "Philadelphia",
     "asWritten": [
       "Philadelphia"
     ],
@@ -1305,7 +1305,7 @@
   },
   {
     "id": "PLC-maryland",
-    "canonicalName": "`stated`",
+    "canonicalName": "Maryland",
     "asWritten": [
       "Maryland"
     ],
@@ -1398,7 +1398,7 @@
   },
   {
     "id": "PLC-louisiana",
-    "canonicalName": "`stated`",
+    "canonicalName": "Louisiana",
     "asWritten": [
       "Louisiana"
     ],
@@ -1434,7 +1434,7 @@
   },
   {
     "id": "PLC-strasburg",
-    "canonicalName": "`stated`",
+    "canonicalName": "Strasburg",
     "asWritten": [
       "Strasburg"
     ],
@@ -1452,7 +1452,7 @@
   },
   {
     "id": "PLC-newtown",
-    "canonicalName": "`stated`",
+    "canonicalName": "Newtown",
     "asWritten": [
       "Newtown"
     ],
@@ -1625,8 +1625,8 @@
     ],
     "state": null,
     "coordinates": {
-      "lat": 34.0,
-      "lon": -81.0
+      "lat": 34,
+      "lon": -81
     },
     "letterCount": 2,
     "letters": [
@@ -1848,7 +1848,7 @@
   },
   {
     "id": "PLC-chicago",
-    "canonicalName": "`stated`",
+    "canonicalName": "Chicago",
     "asWritten": [
       "Chicago"
     ],
@@ -1865,7 +1865,7 @@
   },
   {
     "id": "PLC-gettysburg",
-    "canonicalName": "`stated`",
+    "canonicalName": "Gettysburg",
     "asWritten": [
       "Gettysburg"
     ],
@@ -1916,7 +1916,7 @@
   },
   {
     "id": "PLC-corbeau",
-    "canonicalName": "`stated`",
+    "canonicalName": "Corbeau",
     "asWritten": [
       "Corbeau"
     ],
@@ -1950,7 +1950,7 @@
   },
   {
     "id": "PLC-lookout-mountain",
-    "canonicalName": "`stated`",
+    "canonicalName": "Lookout Mountain",
     "asWritten": [
       "Lookout Mountain"
     ],
@@ -1967,7 +1967,7 @@
   },
   {
     "id": "PLC-savannah",
-    "canonicalName": "`stated`",
+    "canonicalName": "Savannah",
     "asWritten": [
       "Savannah"
     ],
@@ -2036,7 +2036,7 @@
   },
   {
     "id": "PLC-cedar-creek",
-    "canonicalName": "`stated`",
+    "canonicalName": "Cedar Creek",
     "asWritten": [
       "Cedar Creek"
     ],
@@ -4551,7 +4551,7 @@
   },
   {
     "id": "PLC-vicksburg",
-    "canonicalName": "`stated`",
+    "canonicalName": "Vicksburg",
     "asWritten": [
       "Vicksburg"
     ],
@@ -4567,7 +4567,7 @@
   },
   {
     "id": "PLC-rutland",
-    "canonicalName": "`stated`",
+    "canonicalName": "Rutland",
     "asWritten": [
       "Rutland"
     ],
@@ -4599,7 +4599,7 @@
   },
   {
     "id": "PLC-garrettstown",
-    "canonicalName": "`stated`",
+    "canonicalName": "Garrettstown",
     "asWritten": [
       "Garrettstown"
     ],
@@ -4615,7 +4615,7 @@
   },
   {
     "id": "PLC-williamsburg",
-    "canonicalName": "`stated`",
+    "canonicalName": "Williamsburg",
     "asWritten": [
       "Williamsburg"
     ],
@@ -4679,7 +4679,7 @@
   },
   {
     "id": "PLC-chancellorsville",
-    "canonicalName": "`stated`",
+    "canonicalName": "Chancellorsville",
     "asWritten": [
       "Chancellorsville"
     ],
@@ -4711,7 +4711,7 @@
   },
   {
     "id": "PLC-falmouth",
-    "canonicalName": "`stated`",
+    "canonicalName": "Falmouth",
     "asWritten": [
       "Falmouth"
     ],
@@ -4775,7 +4775,7 @@
   },
   {
     "id": "PLC-warrenton",
-    "canonicalName": "`stated`",
+    "canonicalName": "Warrenton",
     "asWritten": [
       "Warrenton"
     ],
@@ -4791,7 +4791,7 @@
   },
   {
     "id": "PLC-warrenton-junction",
-    "canonicalName": "`stated`",
+    "canonicalName": "Warrenton Junction",
     "asWritten": [
       "Warrenton Junction"
     ],
@@ -4839,7 +4839,7 @@
   },
   {
     "id": "PLC-raccoon-ford",
-    "canonicalName": "`stated`",
+    "canonicalName": "Raccoon Ford",
     "asWritten": [
       "Raccoon Ford"
     ],
@@ -4855,7 +4855,7 @@
   },
   {
     "id": "PLC-rapidan",
-    "canonicalName": "`stated`",
+    "canonicalName": "Rapidan",
     "asWritten": [
       "Rapidan"
     ],
@@ -4871,7 +4871,7 @@
   },
   {
     "id": "PLC-moorestown",
-    "canonicalName": "`stated`",
+    "canonicalName": "Moorestown",
     "asWritten": [
       "Moorestown"
     ],
@@ -4919,7 +4919,7 @@
   },
   {
     "id": "PLC-sandusky",
-    "canonicalName": "`stated`",
+    "canonicalName": "Sandusky",
     "asWritten": [
       "Sandusky"
     ],
@@ -4951,7 +4951,7 @@
   },
   {
     "id": "PLC-whiteside",
-    "canonicalName": "`stated`",
+    "canonicalName": "Whiteside",
     "asWritten": [
       "Whiteside"
     ],
@@ -4967,7 +4967,7 @@
   },
   {
     "id": "PLC-missionary-ridge",
-    "canonicalName": "`stated`",
+    "canonicalName": "Missionary Ridge",
     "asWritten": [
       "Missionary Ridge"
     ],
@@ -5015,7 +5015,7 @@
   },
   {
     "id": "PLC-dalton",
-    "canonicalName": "`stated`",
+    "canonicalName": "Dalton",
     "asWritten": [
       "Dalton"
     ],
@@ -5047,7 +5047,7 @@
   },
   {
     "id": "PLC-point-lookout",
-    "canonicalName": "`stated`",
+    "canonicalName": "Point Lookout",
     "asWritten": [
       "Point Lookout"
     ],
@@ -5079,7 +5079,7 @@
   },
   {
     "id": "PLC-louisville",
-    "canonicalName": "`stated`",
+    "canonicalName": "Louisville",
     "asWritten": [
       "Louisville"
     ],
@@ -5159,7 +5159,7 @@
   },
   {
     "id": "PLC-elmira",
-    "canonicalName": "`stated`",
+    "canonicalName": "Elmira",
     "asWritten": [
       "Elmira"
     ],
@@ -5175,7 +5175,7 @@
   },
   {
     "id": "PLC-western-louisiana",
-    "canonicalName": "`stated`",
+    "canonicalName": "Western Louisiana",
     "asWritten": [
       "Western Louisiana"
     ],
@@ -5191,7 +5191,7 @@
   },
   {
     "id": "PLC-illinois",
-    "canonicalName": "`stated`",
+    "canonicalName": "Illinois",
     "asWritten": [
       "Illinois"
     ],
@@ -5207,7 +5207,7 @@
   },
   {
     "id": "PLC-indiana",
-    "canonicalName": "`stated`",
+    "canonicalName": "Indiana",
     "asWritten": [
       "Indiana"
     ],
@@ -5335,7 +5335,7 @@
   },
   {
     "id": "PLC-altoona",
-    "canonicalName": "`stated`",
+    "canonicalName": "Altoona",
     "asWritten": [
       "Altoona"
     ],
@@ -5351,7 +5351,7 @@
   },
   {
     "id": "PLC-cobb-co",
-    "canonicalName": "`stated`",
+    "canonicalName": "Cobb Co",
     "asWritten": [
       "Cobb Co"
     ],
@@ -5399,7 +5399,7 @@
   },
   {
     "id": "PLC-oostanaula",
-    "canonicalName": "`stated`",
+    "canonicalName": "Oostanaula",
     "asWritten": [
       "Oostanaula"
     ],
@@ -5431,7 +5431,7 @@
   },
   {
     "id": "PLC-kingston",
-    "canonicalName": "`stated`",
+    "canonicalName": "Kingston",
     "asWritten": [
       "Kingston"
     ],
@@ -5479,7 +5479,7 @@
   },
   {
     "id": "PLC-dallas",
-    "canonicalName": "`stated`",
+    "canonicalName": "Dallas",
     "asWritten": [
       "Dallas"
     ],
@@ -5511,7 +5511,7 @@
   },
   {
     "id": "PLC-clinton-co",
-    "canonicalName": "`stated`",
+    "canonicalName": "Clinton Co",
     "asWritten": [
       "Clinton Co"
     ],
@@ -5527,7 +5527,7 @@
   },
   {
     "id": "PLC-new-york-city",
-    "canonicalName": "`stated`",
+    "canonicalName": "New York City",
     "asWritten": [
       "New York City"
     ],
@@ -5591,7 +5591,7 @@
   },
   {
     "id": "PLC-lost-mountain",
-    "canonicalName": "`stated`",
+    "canonicalName": "Lost Mountain",
     "asWritten": [
       "Lost Mountain"
     ],
@@ -5655,7 +5655,7 @@
   },
   {
     "id": "PLC-morganza",
-    "canonicalName": "`stated`",
+    "canonicalName": "Morganza",
     "asWritten": [
       "Morganza"
     ],
@@ -5719,7 +5719,7 @@
   },
   {
     "id": "PLC-macon",
-    "canonicalName": "`stated`",
+    "canonicalName": "Macon",
     "asWritten": [
       "Macon"
     ],
@@ -5783,7 +5783,7 @@
   },
   {
     "id": "PLC-shenandoah",
-    "canonicalName": "`stated`",
+    "canonicalName": "Shenandoah",
     "asWritten": [
       "Shenandoah"
     ],
@@ -5847,7 +5847,7 @@
   },
   {
     "id": "PLC-bunker-hill",
-    "canonicalName": "`stated`",
+    "canonicalName": "Bunker Hill",
     "asWritten": [
       "Bunker Hill"
     ],
@@ -5863,7 +5863,7 @@
   },
   {
     "id": "PLC-fresseville",
-    "canonicalName": "`stated`",
+    "canonicalName": "Fresseville",
     "asWritten": [
       "Fresseville"
     ],
@@ -5911,7 +5911,7 @@
   },
   {
     "id": "PLC-fisher-s-hill",
-    "canonicalName": "`stated`",
+    "canonicalName": "Fisher's Hill",
     "asWritten": [
       "Fisher's Hill"
     ],
@@ -5927,7 +5927,7 @@
   },
   {
     "id": "PLC-harrisburg",
-    "canonicalName": "`stated`",
+    "canonicalName": "Harrisburg",
     "asWritten": [
       "Harrisburg"
     ],
@@ -5975,7 +5975,7 @@
   },
   {
     "id": "PLC-cedar-run",
-    "canonicalName": "`stated`",
+    "canonicalName": "Cedar Run",
     "asWritten": [
       "Cedar Run"
     ],
@@ -6087,7 +6087,7 @@
   },
   {
     "id": "PLC-russell",
-    "canonicalName": "`stated`",
+    "canonicalName": "Russell",
     "asWritten": [
       "Russell"
     ],

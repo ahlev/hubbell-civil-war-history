@@ -149,6 +149,58 @@ a.inline:hover { color: var(--accent); border-bottom-color: var(--accent); }
   font-size: 15px;
   line-height: 1.1;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.site-brand-logo {
+  flex-shrink: 0;
+}
+.hubbell-logo-mini {
+  display: inline-block;
+  vertical-align: baseline;
+  margin-left: 1px;
+  opacity: 1;
+  position: relative;
+  top: 2px;
+}
+/* Global letter hover tooltip */
+.hubbell-letter-tip {
+  position: fixed;
+  z-index: 10002;
+  background: oklch(22% 0.01 60);
+  color: #F5F3F0;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 12px;
+  max-width: 340px;
+  pointer-events: none;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  line-height: 1.5;
+  display: none;
+  font-family: var(--font-sans);
+}
+.hubbell-letter-tip-date {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+}
+.hubbell-letter-tip-author {
+  font-size: 11px;
+  opacity: 0.7;
+}
+.hubbell-letter-tip-loc {
+  font-size: 10px;
+  opacity: 0.6;
+  margin-top: 2px;
+  font-style: italic;
+}
+.hubbell-letter-tip-summary {
+  font-size: 11px;
+  opacity: 0.85;
+  margin-top: 6px;
+  line-height: 1.5;
+  font-family: var(--font-serif);
 }
 .site-brand .dim {
   display: block;
