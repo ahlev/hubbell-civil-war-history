@@ -435,11 +435,70 @@ body {
   color: var(--ink);
   text-align: center;
 }
-.timeline-slider {
+/* Dual-handle range slider */
+.range-slider {
+  position: relative;
   width: 100%;
-  cursor: pointer;
-  accent-color: var(--ink);
+  height: 24px;
+}
+.range-slider input[type="range"] {
+  position: absolute;
+  width: 100%;
   height: 6px;
+  top: 9px;
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  pointer-events: none;
+  z-index: 3;
+}
+.range-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 3;
+}
+.range-slider input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  cursor: pointer;
+  pointer-events: auto;
+}
+.range-slider input[type="range"]:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid #2D5F8A;
+  outline-offset: 2px;
+}
+.range-track {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--rule);
+  border-radius: 2px;
+  z-index: 1;
+}
+.range-fill {
+  position: absolute;
+  top: 10px;
+  height: 4px;
+  background: var(--ink);
+  border-radius: 2px;
+  z-index: 2;
+  opacity: 0.5;
 }
 
 /* ── Leaflet Overrides ── */
@@ -777,23 +836,23 @@ body {
   padding: 0;
 }
 .place-pin-popup {
-  padding: 14px 16px;
+  padding: 12px 14px;
   font-family: var(--font-sans);
 }
 .place-pin-title {
   font-family: var(--font-display);
   font-size: 1.05rem;
   color: var(--ink);
-  margin: 0 0 8px;
-  padding-bottom: 8px;
+  margin: 0 0 5px;
+  padding-bottom: 5px;
   border-bottom: 2px solid #B8860B;
 }
 .place-pin-stats {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   font-size: 0.72rem;
   color: var(--ink-2);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 .place-pin-stats span {
   background: #F5F0EB;
@@ -805,14 +864,14 @@ body {
   font-size: 0.7rem;
   color: var(--ink-3);
   font-style: italic;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 .place-pin-letters {
   border-top: 1px solid #F0ECE7;
-  padding-top: 10px;
+  padding-top: 6px;
 }
 .place-pin-letter {
-  padding: 6px 0;
+  padding: 4px 0;
   border-bottom: 1px solid #F5F0EB;
   cursor: pointer;
   transition: background 0.15s;
@@ -837,27 +896,27 @@ body {
   font-size: 0.7rem;
   color: var(--ink-2);
   font-style: italic;
-  margin-top: 2px;
-  line-height: 1.4;
+  margin-top: 1px;
+  line-height: 1.35;
 }
 .place-pin-more {
   font-size: 0.68rem;
   color: var(--ink-3);
-  padding: 6px 0 2px;
+  padding: 4px 0 2px;
   font-style: italic;
 }
 .place-pin-summary-wrap {
-  margin: 8px 0 10px;
+  margin: 5px 0 6px;
   background: #F8F6F3;
   border-radius: 4px;
   border-left: 3px solid #B8860B;
-  padding: 8px 10px;
+  padding: 6px 10px;
 }
 .place-pin-summary {
   font-size: 0.72rem;
   color: var(--ink-2);
-  line-height: 1.5;
-  max-height: 4.5em;
+  line-height: 1.45;
+  max-height: 4.35em;
   overflow: hidden;
   position: relative;
   transition: max-height 0.3s ease;
@@ -897,7 +956,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--ink-3);
-  margin: 10px 0 4px;
+  margin: 6px 0 3px;
   padding-top: 8px;
   border-top: 1px solid #F0ECE7;
 }
@@ -927,6 +986,15 @@ body {
   color: var(--ink);
   border-color: #B8860B;
   box-shadow: 0 1px 6px rgba(184, 134, 11, 0.25);
+}
+.place-label-pill.active {
+  background: rgba(251, 241, 210, 0.95);
+  color: var(--ink);
+  border-color: #B8860B;
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.35);
+  transform: scale(1.15);
+  transform-origin: center;
+  z-index: 600 !important;
 }
 .place-label-pill::before {
   content: '';
@@ -1070,7 +1138,12 @@ body {
     </button>
     <div class="timeline-container">
       <div class="date-display" id="dateDisplay">June 15, 1861</div>
-      <input type="range" class="timeline-slider" id="timelineSlider" min="0" max="1000" value="0" oninput="scrubTimeline(this.value)">
+      <div class="range-slider" id="rangeSlider">
+        <div class="range-track"></div>
+        <div class="range-fill" id="rangeFill"></div>
+        <input type="range" id="rangeStart" min="0" max="1000" value="0">
+        <input type="range" id="rangeEnd" min="0" max="1000" value="0">
+      </div>
     </div>
     <button class="step-btn" id="stepForward" title="Step forward one day (Right arrow)" aria-label="Step forward one day">
       <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
@@ -1105,6 +1178,8 @@ const START_DATE = new Date('1861-06-15');
 const END_DATE = new Date('1865-08-01');
 const TOTAL_DAYS = Math.floor((END_DATE - START_DATE) / 86400000);
 let currentDay = 0;
+let rangeStartDay = 0;
+let rangeEndDay = 0;
 let lockedBrother = null; // Lock-on state
 let newLetterMarkers = []; // "New Letter!" badges on map
 let infoPanelBrother = null; // Which brother is shown in info panel (auto-refreshes on date change)
@@ -1118,6 +1193,12 @@ function _mapSyncUrl(opts) {
     state.date = d.getFullYear() + '-' +
       String(d.getMonth() + 1).padStart(2, '0') + '-' +
       String(d.getDate()).padStart(2, '0');
+  }
+  if (rangeStartDay > 0) {
+    var ds = dayToDate(rangeStartDay);
+    state.from = ds.getFullYear() + '-' +
+      String(ds.getMonth() + 1).padStart(2, '0') + '-' +
+      String(ds.getDate()).padStart(2, '0');
   }
   if (lockedBrother) state.brother = lockedBrother;
   if (_mapCurrentLetterId) state.letter = _mapCurrentLetterId;
@@ -1166,9 +1247,10 @@ async function init() {
   initTimeline();
   buildPlaceLabels();
 
-  // Handle URL parameters: ?date=YYYY-MM-DD&brother=henry
+  // Handle URL parameters: ?date=YYYY-MM-DD&from=YYYY-MM-DD&brother=henry
   const params = new URLSearchParams(window.location.search);
   const paramDate = params.get('date');
+  const paramFrom = params.get('from');
   const paramBrother = params.get('brother');
   let startDay = 0;
 
@@ -1179,9 +1261,15 @@ async function init() {
       startDay = Math.max(0, Math.min(startDay, TOTAL_DAYS));
     }
   }
+  if (paramFrom) {
+    const fromDate = new Date(paramFrom + 'T12:00:00');
+    if (!isNaN(fromDate.getTime())) {
+      rangeStartDay = Math.max(0, Math.min(Math.round((fromDate - START_DATE) / 86400000), TOTAL_DAYS));
+    }
+  }
 
+  rangeEndDay = startDay;
   updateToDate(startDay);
-  document.getElementById('timelineSlider').value = startDay;
 
   if (paramBrother && NAMES[paramBrother]) {
     toggleLock(paramBrother);
@@ -1234,9 +1322,33 @@ function initMap() {
 }
 
 function initTimeline() {
-  const slider = document.getElementById('timelineSlider');
-  slider.max = TOTAL_DAYS;
-  slider.value = 0;
+  const startEl = document.getElementById('rangeStart');
+  const endEl = document.getElementById('rangeEnd');
+  startEl.max = TOTAL_DAYS;
+  endEl.max = TOTAL_DAYS;
+  startEl.value = 0;
+  endEl.value = 0;
+
+  function onRangeInput() {
+    let s = parseInt(startEl.value);
+    let e = parseInt(endEl.value);
+    // Enforce start <= end
+    if (s > e) { if (this === startEl) { endEl.value = s; e = s; } else { startEl.value = e; s = e; } }
+    scrubRange(s, e);
+  }
+  startEl.addEventListener('input', onRangeInput);
+  endEl.addEventListener('input', onRangeInput);
+}
+
+function updateRangeFill() {
+  const fill = document.getElementById('rangeFill');
+  const startEl = document.getElementById('rangeStart');
+  const endEl = document.getElementById('rangeEnd');
+  const max = parseInt(startEl.max) || TOTAL_DAYS;
+  const s = parseInt(startEl.value) / max * 100;
+  const e = parseInt(endEl.value) / max * 100;
+  fill.style.left = s + '%';
+  fill.style.width = (e - s) + '%';
 }
 
 // ============================================================
@@ -1276,10 +1388,19 @@ function updateToDate(day) {
   currentDay = day;
   const currentDate = dayToDate(day);
   const currentDateStr = dateStr(currentDate);
-  const thirtyDaysAgo = dateStr(dayToDate(Math.max(0, day - 30)));
+  const trailStartStr = dateStr(dayToDate(Math.max(0, day - 30)));
 
-  document.getElementById('dateDisplay').textContent = formatDate(currentDate);
-  document.getElementById('timelineSlider').value = day;
+  // Date display — show range if start handle is dragged past 0
+  if (rangeStartDay > 0 && rangeStartDay < rangeEndDay) {
+    document.getElementById('dateDisplay').textContent = formatDate(dayToDate(rangeStartDay)) + ' \u2014 ' + formatDate(currentDate);
+  } else {
+    document.getElementById('dateDisplay').textContent = formatDate(currentDate);
+  }
+
+  // Sync slider handles
+  document.getElementById('rangeStart').value = rangeStartDay;
+  document.getElementById('rangeEnd').value = rangeEndDay;
+  updateRangeFill();
 
   // Clear all layers
   for (const b of Object.keys(COLORS)) {
@@ -1395,14 +1516,14 @@ function updateToDate(day) {
       daysEl.textContent = lastLetter ? `Last letter: ${daysSince} day${daysSince !== 1 ? 's' : ''} ago` : '';
     }
 
-    // Draw 30-day trail: up to 5 most recent nodes, connected to current position
-    const trailMovements = allMovements.filter(m => m.date >= thirtyDaysAgo && m !== current);
-    // Take the 5 most recent (end of array = most recent)
+    // Draw trail: last 5 movements within 30-day fading window
+    const trailMovements = allMovements.filter(m => m.date >= trailStartStr && m !== current);
+    const rangeSpan = 30;
     const recentTrail = trailMovements.slice(-5);
     for (let i = 0; i < recentTrail.length; i++) {
       const m = recentTrail[i];
       const age = (new Date(currentDateStr) - new Date(m.date)) / 86400000;
-      const opacity = Math.max(0.3, 1 - (age / 30) * 0.7);
+      const opacity = Math.max(0.3, 1 - (age / Math.max(rangeSpan, 1)) * 0.7);
       addTrailNode(m, brotherId, opacity);
     }
 
@@ -1411,7 +1532,7 @@ function updateToDate(day) {
       const chain = [...recentTrail, current];
       for (let i = 0; i < chain.length - 1; i++) {
         const age = (new Date(currentDateStr) - new Date(chain[i].date)) / 86400000;
-        const opacity = Math.max(0.2, 0.6 * (1 - age / 30));
+        const opacity = Math.max(0.2, 0.6 * (1 - age / Math.max(rangeSpan, 1)));
         L.polyline(
           [[chain[i].lat, chain[i].lon], [chain[i+1].lat, chain[i+1].lon]],
           { color: COLORS[brotherId], weight: 2.5, opacity }
@@ -1866,6 +1987,7 @@ function matchPlaceName(inputPlace) {
 
 // ========== PLACE PIN (from ?place= parameter) ==========
 var placePinMarker = null;
+var activePlaceLabelMarker = null; // track which place-label is active
 
 // Look up overlay profile for a place by trying name and aliases
 function findOverlayPlace(placeName) {
@@ -1886,9 +2008,25 @@ function findOverlayPlace(placeName) {
   return null;
 }
 
-function showPlacePin(placeName, movement) {
-  // Remove any existing place pin
-  if (placePinMarker) { map.removeLayer(placePinMarker); placePinMarker = null; }
+function clearActivePlaceLabel() {
+  if (activePlaceLabelMarker) {
+    var el = activePlaceLabelMarker.getElement();
+    if (el) { var pill = el.querySelector('.place-label-pill'); if (pill) pill.classList.remove('active'); }
+    activePlaceLabelMarker = null;
+  }
+}
+
+function showPlacePin(placeName, movement, existingMarker) {
+  // Clean up previous pin: only remove from map if it was a standalone pin (not a reused label)
+  if (placePinMarker) {
+    placePinMarker.unbindPopup();
+    placePinMarker.off('popupopen').off('popupclose');
+    if (placePinMarker !== activePlaceLabelMarker) {
+      map.removeLayer(placePinMarker);
+    }
+    placePinMarker = null;
+  }
+  clearActivePlaceLabel();
 
   // Gather movements AT this place (letters written FROM here)
   var matchedCore = extractCandidates(movement.placeName || placeName)[0].core;
@@ -1939,7 +2077,7 @@ function showPlacePin(placeName, movement) {
       const bName = DATA.brothers[m.brother] ? DATA.brothers[m.brother].name.split(' ')[0] : m.brother;
       const bColor = COLORS[m.brother] || '#666';
       const excerpt = m.letterExcerpt ? m.letterExcerpt.slice(0, 70) + (m.letterExcerpt.length > 70 ? '…' : '') : '';
-      popupHtml += '<div class="place-pin-letter" data-lid="' + escHtml(m.letterId) + '" data-bro="' + escHtml(m.brother) + '"' + (m.letterExcerpt ? ' data-excerpt="' + escHtml(m.letterExcerpt.slice(0, 80)) + '"' : '') + '>';
+      popupHtml += '<div class="place-pin-letter" data-lid="' + escHtml(m.letterId) + '" data-bro="' + escHtml(m.brother) + '">';
       popupHtml += '<span class="place-pin-author" style="color:' + bColor + '">' + escHtml(bName) + '</span>';
       popupHtml += '<span class="place-pin-date">' + formatDateStr(m.date) + '</span>';
       if (excerpt) popupHtml += '<div class="place-pin-excerpt">"' + escHtml(excerpt) + '"</div>';
@@ -1987,24 +2125,50 @@ function showPlacePin(placeName, movement) {
 
   popupHtml += '</div>';
 
-  // Create labeled pin marker
-  const pinIcon = L.divIcon({
-    className: 'place-pin-icon',
-    html: '<div class="place-pin-dot"></div><div class="place-pin-label">' + escHtml(movement.placeName || placeName) + '</div>',
-    iconSize: [0, 0],
-    iconAnchor: [0, 0]
-  });
+  var popupOpts = { maxWidth: 500, minWidth: 390, className: 'place-pin-popup-container' };
 
-  placePinMarker = L.marker([movement.lat, movement.lon], { icon: pinIcon })
-    .addTo(map)
-    .bindPopup(popupHtml, { maxWidth: 360, minWidth: 280, className: 'place-pin-popup-container' })
-    .on('popupopen', function() {
+  // If called from an existing place label marker, reuse it instead of creating a duplicate
+  if (existingMarker) {
+    activePlaceLabelMarker = existingMarker;
+    var el = existingMarker.getElement();
+    if (el) { var pill = el.querySelector('.place-label-pill'); if (pill) pill.classList.add('active'); }
+    existingMarker.unbindPopup();
+    placePinMarker = existingMarker
+      .bindPopup(popupHtml, popupOpts);
+  } else {
+    // Create labeled pin marker (for ?place= param or other non-label sources)
+    const pinIcon = L.divIcon({
+      className: 'place-pin-icon',
+      html: '<div class="place-pin-dot"></div><div class="place-pin-label">' + escHtml(movement.placeName || placeName) + '</div>',
+      iconSize: [0, 0],
+      iconAnchor: [0, 0]
+    });
+    placePinMarker = L.marker([movement.lat, movement.lon], { icon: pinIcon })
+      .addTo(map)
+      .bindPopup(popupHtml, popupOpts);
+  }
+
+  placePinMarker
+    .on('popupopen', function(e) {
       // Show expand toggle only if summary actually overflows
-      var sum = document.querySelector('.place-pin-summary');
-      var btn = document.querySelector('.place-pin-expand');
-      if (sum && btn && sum.scrollHeight > sum.clientHeight + 2) {
-        btn.style.display = 'block';
+      var container = e.popup._contentNode || e.popup.getElement();
+      if (!container) return;
+      var sum = container.querySelector('.place-pin-summary');
+      var btn = container.querySelector('.place-pin-expand');
+      if (sum && btn) {
+        // Reset state for fresh popup
+        sum.classList.remove('expanded');
+        sum.classList.add('collapsed');
+        btn.textContent = 'Read more \u25BE';
+        if (sum.scrollHeight > sum.clientHeight + 2) {
+          btn.style.display = 'block';
+        } else {
+          btn.style.display = 'none';
+        }
       }
+    })
+    .on('popupclose', function() {
+      clearActivePlaceLabel();
     })
     .openPopup();
 }
@@ -2069,11 +2233,11 @@ function buildPlaceLabels() {
 
     var marker = L.marker([p.lat, p.lon], { icon: icon, zIndexOffset: -100 });
     marker.on('click', function() {
-      // Reuse showPlacePin for full detail popup
+      // Reuse showPlacePin for full detail popup, passing existing marker
       var match = matchPlaceName(p.name);
       if (match) {
         map.flyTo([match.lat, match.lon], Math.max(map.getZoom(), 9), { duration: 0.6 });
-        showPlacePin(p.name, match);
+        showPlacePin(p.name, match, marker);
       }
     });
     marker.addTo(placeLabelsLayer);
@@ -2296,8 +2460,20 @@ function updateNarrative(currentDateStr) {
 // CONTROLS
 // ============================================================
 function scrubTimeline(val) {
-  if (!DATA || !map) return; // Guard against pre-init slider interaction
-  updateToDate(parseInt(val));
+  if (!DATA || !map) return;
+  rangeStartDay = 0;
+  rangeEndDay = parseInt(val);
+  updateToDate(rangeEndDay);
+  _mapSyncUrl({ replace: true });
+}
+
+function scrubRange(s, e) {
+  if (!DATA || !map) return;
+  rangeStartDay = Math.max(0, Math.min(s, TOTAL_DAYS));
+  rangeEndDay = Math.max(0, Math.min(e, TOTAL_DAYS));
+  currentDay = rangeEndDay;
+  updateToDate(rangeEndDay);
+  fadeCta();
   _mapSyncUrl({ replace: true });
 }
 
@@ -2390,7 +2566,10 @@ function handleKeyboard(e) {
 // STEP BUTTONS + CTA FADE
 // ============================================================
 function stepDay(delta) {
-  currentDay = Math.max(0, Math.min(currentDay + delta, TOTAL_DAYS));
+  const span = rangeEndDay - rangeStartDay;
+  rangeEndDay = Math.max(0, Math.min(rangeEndDay + delta, TOTAL_DAYS));
+  rangeStartDay = Math.max(0, rangeEndDay - span);
+  currentDay = rangeEndDay;
   updateToDate(currentDay);
   fadeCta();
   _mapSyncUrl({ replace: true });
@@ -2424,7 +2603,8 @@ document.getElementById('stepForward').addEventListener('click', () => stepDay(1
 });
 
 // Fade CTA on first slider interaction or keyboard use
-document.getElementById('timelineSlider').addEventListener('input', fadeCta);
+document.getElementById('rangeStart').addEventListener('input', fadeCta);
+document.getElementById('rangeEnd').addEventListener('input', fadeCta);
 
 // ============================================================
 // STATUS PANEL CLICK → FLY TO BROTHER
@@ -2499,18 +2679,30 @@ HubbellDeepLink.registerStateReader(function() {
       String(d.getMonth() + 1).padStart(2, '0') + '-' +
       String(d.getDate()).padStart(2, '0');
   }
+  if (rangeStartDay > 0) {
+    var ds = dayToDate(rangeStartDay);
+    state.from = ds.getFullYear() + '-' +
+      String(ds.getMonth() + 1).padStart(2, '0') + '-' +
+      String(ds.getDate()).padStart(2, '0');
+  }
   if (lockedBrother) state.brother = lockedBrother;
   if (_mapCurrentLetterId) state.letter = _mapCurrentLetterId;
   return state;
 });
 HubbellDeepLink.registerStateApplier(function(p) {
+  if (p.from) {
+    var fromDate = new Date(p.from + 'T12:00:00');
+    if (!isNaN(fromDate.getTime())) {
+      rangeStartDay = Math.max(0, Math.min(Math.round((fromDate - START_DATE) / 86400000), TOTAL_DAYS));
+    }
+  }
   if (p.date) {
     var targetDate = new Date(p.date + 'T12:00:00');
     if (!isNaN(targetDate.getTime())) {
       var day = Math.round((targetDate - START_DATE) / 86400000);
       day = Math.max(0, Math.min(day, TOTAL_DAYS));
+      rangeEndDay = day;
       updateToDate(day);
-      document.getElementById('timelineSlider').value = day;
     }
   }
   if (p.brother && NAMES[p.brother]) {

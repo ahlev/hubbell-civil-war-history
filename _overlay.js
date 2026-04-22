@@ -393,9 +393,10 @@
           '<div class="hubbell-overlay-section-title">Letters (' + place.lc + ')</div>' +
           letterListHTML(place.ltrs) +
         '</div>' +
-        '<a class="hubbell-overlay-nav-btn" href="viz-map-fullwar.html?date=' + encodeURIComponent(firstDate) + '&place=' + encodeURIComponent(place.n) + '">' +
-          'View on Map <span class="arrow">\u2192</span>' +
-        '</a>' +
+        (place.co && place.co.lat != null ?
+          '<a class="hubbell-overlay-nav-btn" href="viz-map-fullwar.html?date=' + encodeURIComponent(firstDate) + '&place=' + encodeURIComponent(place.n) + '">' +
+            'View on Map <span class="arrow">\u2192</span>' +
+          '</a>' : '') +
       '</div>';
 
     openPanel(html);
@@ -670,6 +671,12 @@
     var skipRe = /--|`|possibly|unknown|unclear|inferred|false|misread|\bthe\b.*\bof\b/i;
     // Skip common English words that happen to be place/person variants
     var skipWords = { home: 1, hospital: 1, camp: 1, ford: 1, church: 1, mill: 1, point: 1 };
+    // Skip places that can't meaningfully center on a map or display useful info:
+    // states, countries, metadata entries, and "Near X" descriptors
+    var placeSkipRe = /^(error|unknown|uncertain|anticipated|pursued|near |two miles|us-canadian|frances|farm near|river near)/i;
+    var stateNames = { texas:1, mississippi:1, maryland:1, louisiana:1, georgia:1, kentucky:1,
+      illinois:1, indiana:1, vermont:1, massachusetts:1, virginia:1, tennessee:1, canada:1,
+      'new york':1, ohio:1, 'south carolina':1, 'north carolina':1, connecticut:1, michigan:1 };
     for (var key in OVERLAY_PEOPLE_LOOKUP) {
       if (key.length >= 4 && key.length <= 50 && !skipRe.test(key) && !skipWords[key]) {
         variants.push({ text: key, type: 'person' });
@@ -677,6 +684,10 @@
     }
     for (var key in OVERLAY_PLACES_LOOKUP) {
       if (key.length >= 4 && key.length <= 50 && !skipRe.test(key) && !skipWords[key]) {
+        // Skip state/country names and metadata place entries
+        if (stateNames[key]) continue;
+        var placeProfile = OVERLAY_PLACES_PROFILES[OVERLAY_PLACES_LOOKUP[key]];
+        if (placeProfile && placeSkipRe.test(placeProfile.n)) continue;
         variants.push({ text: key, type: 'place' });
       }
     }
