@@ -123,7 +123,7 @@ window.CinematicPlayer = (function () {
     },
     {
       id: 'charles-enlists',
-      day: 446,
+      day: 449,
       title: 'Charles Enlists',
       body: 'September 1862. A third Hubbell brother joins the war. Charles musters into the 153rd New York at Plattsburgh Barracks. He is near-sighted — the army doctor nearly rejects him — but an advocate convinces the examiner, and Charles passes. Within a week he is promoted to 1st Corporal. His first letter home is vivid and blunt: the barracks, the hard cases, the swearing.',
       quote: 'Nearly every man swears. There are a good many hard cases.',
