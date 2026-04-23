@@ -234,8 +234,8 @@ body {
 .info-meta {
   font-size: 0.8rem;
   color: var(--ink-2);
-  margin: 8px 0;
-  line-height: 1.6;
+  margin: 6px 0;
+  line-height: 1.45;
 }
 .info-excerpt {
   font-size: 0.85rem;
@@ -284,16 +284,17 @@ body {
 .flag-wound { background: #F8D7DA; color: #721C24; }
 
 .info-section {
-  margin-top: 14px;
-  padding-top: 12px;
+  margin-top: 10px;
+  padding-top: 8px;
   border-top: 1px solid #F0ECE7;
 }
 .info-section h4 {
   font-size: 0.7rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.4px;
-  color: var(--ink-3);
-  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+  color: var(--ink-2);
+  margin-bottom: 4px;
 }
 .info-recent-item {
   font-size: 0.75rem;
@@ -806,15 +807,15 @@ body {
 
 /* ── Recent Letters in info panel ── */
 .recent-letter-card {
-  padding: 8px 12px;
-  margin-bottom: 6px;
+  padding: 5px 10px;
+  margin-bottom: 3px;
   background: #FAFAFA;
-  border-radius: 4px;
+  border-radius: 3px;
   border-left: 3px solid var(--rule);
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
-  font-size: 0.75rem;
-  line-height: 1.5;
+  font-size: 0.73rem;
+  line-height: 1.4;
 }
 .recent-letter-card:hover {
   background: #F0F4F8;
@@ -829,12 +830,12 @@ body {
 }
 .recent-letter-card .letter-context {
   color: #4A4A4A;
-  margin-top: 2px;
+  margin-top: 1px;
 }
 .recent-letter-card .letter-quote {
   font-style: italic;
   color: var(--ink-2);
-  margin-top: 3px;
+  margin-top: 2px;
   border-left: 2px solid var(--rule);
   padding-left: 6px;
 }
@@ -993,6 +994,18 @@ body {
   user-select: none;
 }
 .place-pin-expand:hover {
+  color: #8B6914;
+  text-decoration: underline;
+}
+.place-show-more {
+  font-size: 0.7rem;
+  color: #B8860B;
+  cursor: pointer;
+  margin-top: 4px;
+  font-weight: 500;
+  user-select: none;
+}
+.place-show-more:hover {
   color: #8B6914;
   text-decoration: underline;
 }
@@ -2337,38 +2350,44 @@ function showPlaceInfoPanel(placeName, movement) {
 
   // Letters written FROM this place
   if (fromHereLetters.length > 0) {
+    var INITIAL = 6;
     html += '<div class="info-section"><h4>Written from here</h4>';
-    fromHereLetters.slice(0, 6).forEach(function(m) {
+    fromHereLetters.forEach(function(m, idx) {
       const bName = DATA.brothers[m.brother] ? DATA.brothers[m.brother].name.split(' ')[0] : m.brother;
       const bColor = COLORS[m.brother] || '#666';
       const excerpt = m.letterExcerpt ? m.letterExcerpt.slice(0, 70) + (m.letterExcerpt.length > 70 ? '…' : '') : '';
+      if (idx === INITIAL) html += '<div class="place-overflow" style="display:none">';
       html += '<div class="recent-letter-card place-pin-letter" data-lid="' + escHtml(m.letterId) + '" data-bro="' + escHtml(m.brother) + '">';
       html += '<div><span class="letter-date">' + formatDateStr(m.date) + '</span> <span class="place-pin-author" style="color:' + bColor + '">' + escHtml(bName) + '</span></div>';
       if (excerpt) html += '<div class="letter-quote">"' + escHtml(excerpt) + '"</div>';
       html += '</div>';
     });
-    if (fromHereLetters.length > 6) {
-      html += '<div style="font-size:0.75rem;color:var(--ink-3);margin-top:4px">+ ' + (fromHereLetters.length - 6) + ' more</div>';
+    if (fromHereLetters.length > INITIAL) {
+      html += '</div>'; // close .place-overflow
+      html += '<div class="place-show-more" onclick="togglePlaceOverflow(this)">+ ' + (fromHereLetters.length - INITIAL) + ' more ▾</div>';
     }
     html += '</div>';
   }
 
   // Letters MENTIONING this place
   if (aboutHereLetters.length > 0) {
+    var INITIAL2 = 6;
     html += '<div class="info-section"><h4>Mentions this place</h4>';
-    aboutHereLetters.slice(0, 6).forEach(function(id) {
+    aboutHereLetters.forEach(function(id, idx) {
       var meta = window.LETTER_INDEX ? LETTER_INDEX[id] : null;
       if (!meta) return;
       var bro = meta.a || '';
       var bName = NAMES[bro] || bro;
       var bColor = COLORS[bro] || '#666';
+      if (idx === INITIAL2) html += '<div class="place-overflow" style="display:none">';
       html += '<div class="recent-letter-card place-pin-letter" data-lid="' + escHtml(id) + '" data-bro="' + escHtml(bro) + '" data-hl="' + escHtml(movement.placeName || placeName) + '">';
       html += '<div><span class="letter-date">' + (meta.d ? formatDateStr(meta.d) : '') + '</span> <span class="place-pin-author" style="color:' + bColor + '">' + escHtml(bName) + '</span></div>';
       if (meta.l) html += '<div class="letter-context">from ' + escHtml(meta.l) + '</div>';
       html += '</div>';
     });
-    if (aboutHereLetters.length > 6) {
-      html += '<div style="font-size:0.75rem;color:var(--ink-3);margin-top:4px">+ ' + (aboutHereLetters.length - 6) + ' more</div>';
+    if (aboutHereLetters.length > INITIAL2) {
+      html += '</div>'; // close .place-overflow
+      html += '<div class="place-show-more" onclick="togglePlaceOverflow(this)">+ ' + (aboutHereLetters.length - INITIAL2) + ' more ▾</div>';
     }
     html += '</div>';
   }
@@ -2395,6 +2414,15 @@ function showPlaceInfoPanel(placeName, movement) {
   if (panel.classList.contains('collapsed')) {
     toggleInfoPanel();
   }
+}
+
+function togglePlaceOverflow(btn) {
+  var overflow = btn.previousElementSibling;
+  if (!overflow || !overflow.classList.contains('place-overflow')) return;
+  var showing = overflow.style.display !== 'none';
+  overflow.style.display = showing ? 'none' : '';
+  var count = overflow.querySelectorAll('.recent-letter-card').length;
+  btn.textContent = showing ? '+ ' + count + ' more \u25BE' : 'Show fewer \u25B4';
 }
 
 function togglePlaceSummary(btn) {
