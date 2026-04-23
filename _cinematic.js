@@ -373,15 +373,15 @@ window.CinematicPlayer = (function () {
     },
     {
       id: 'james-dies',
-      day: 1487,
-      title: 'James Dies En Route Home',
-      body: 'October 19, 1865. Exactly one year to the day after the dawn attack at Cedar Creek that shattered his company and wounded him. James Hubbell dies on the journey home from Savannah. The war is over, but it claims one final brother. No letter survives from his last days. Of four Hubbell brothers who served, two do not return. The silence in the archive is the loudest thing in it.',
+      day: 1505,
+      title: 'The Cost',
+      body: 'The war is over. Alexander has mustered out at Ogdensburg and gone home. Charles is still in Savannah, waiting for discharge. And James — James never makes it back. On October 19, 1865, exactly one year to the day after Cedar Creek shattered his company and left him wounded, James Hubbell dies en route home. No letter survives from his last days. Of four Hubbell brothers who served, two do not return. Henry fell at Antietam. James fell to what came after. The silence in the archive where their voices should be is the loudest thing in it.',
       quote: null,
       quoteCite: null,
       letterId: null,
-      brothers: ['james'],
-      fly: { lat: 36.0, lon: -79.0, zoom: 6 },
-      pause: 15000,
+      brothers: ['alexander', 'charles', 'james'],
+      fly: { lat: 38.0, lon: -78.0, zoom: 5 },
+      pause: 18000,
       category: 'death'
     }
   ];
