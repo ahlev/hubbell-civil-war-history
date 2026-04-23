@@ -1339,13 +1339,18 @@ function initMap() {
     center: [38.5, -78.5],
     zoom: 7,
     zoomControl: true,
-    attributionControl: true
+    attributionControl: true,
+    zoomAnimation: true,
+    markerZoomAnimation: true,
+    preferCanvas: false
   });
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
     subdomains: 'abcd',
-    maxZoom: 19
+    maxZoom: 19,
+    keepBuffer: 6,
+    updateWhenZooming: false
   }).addTo(map);
 
   // Click on empty map area closes the info panel
@@ -1409,6 +1414,87 @@ function formatDateStr(s) {
     return `${months[parseInt(m) - 1]} ${y}`;
   }
   return formatDate(new Date(s));
+}
+
+// ── Viewport smoothing: prevent jittery camera on small/frequent moves ──
+let _lastViewCenter = null;   // [lat, lon] of last camera target
+let _lastViewZoom = null;
+let _viewportTimer = null;    // debounce timer
+const VIEW_DEAD_ZONE = 0.005; // ~0.5 km — skip camera moves smaller than this (degrees)
+
+function _boundsCenter(activeBounds) {
+  if (activeBounds.length === 0) return null;
+  if (activeBounds.length === 1) return activeBounds[0];
+  let lat = 0, lon = 0;
+  for (const b of activeBounds) { lat += b[0]; lon += b[1]; }
+  return [lat / activeBounds.length, lon / activeBounds.length];
+}
+
+function _viewportMoved(center, zoom) {
+  if (!_lastViewCenter) return true;
+  const dLat = Math.abs(center[0] - _lastViewCenter[0]);
+  const dLon = Math.abs(center[1] - _lastViewCenter[1]);
+  if (dLat > VIEW_DEAD_ZONE || dLon > VIEW_DEAD_ZONE) return true;
+  if (zoom !== _lastViewZoom) return true;
+  return false;
+}
+
+function _smoothViewport(activeBounds, isCinematic, isLocked, lockedPos) {
+  // Cancel any queued viewport update
+  if (_viewportTimer) { clearTimeout(_viewportTimer); _viewportTimer = null; }
+
+  // During cinematic waypoint flyTo, don't interfere
+  if (window.CinematicPlayer && CinematicPlayer.isFlyingToWaypoint()) return;
+
+  let targetCenter, targetZoom, useFitBounds = false, fitBoundsObj = null;
+
+  if (isCinematic) {
+    if (activeBounds.length === 1) {
+      targetCenter = activeBounds[0];
+      targetZoom = Math.max(map.getZoom(), 7);
+    } else if (activeBounds.length > 1) {
+      useFitBounds = true;
+      fitBoundsObj = L.latLngBounds(activeBounds).pad(0.1);
+      targetCenter = _boundsCenter(activeBounds);
+      targetZoom = 9;
+    } else return;
+  } else if (isLocked && lockedPos) {
+    targetCenter = lockedPos;
+    targetZoom = Math.max(map.getZoom(), 7);
+  } else if (activeBounds.length > 0) {
+    if (activeBounds.length === 1) {
+      targetCenter = activeBounds[0];
+      targetZoom = Math.max(map.getZoom(), 7);
+    } else {
+      useFitBounds = true;
+      fitBoundsObj = L.latLngBounds(activeBounds).pad(0.08);
+      targetCenter = _boundsCenter(activeBounds);
+      targetZoom = 9;
+    }
+  } else return;
+
+  // Skip if camera hasn't meaningfully moved
+  if (!_viewportMoved(targetCenter, targetZoom)) return;
+
+  // Debounce: wait a beat so rapid ticks don't queue overlapping animations
+  const delay = isCinematic ? 60 : 30;
+  _viewportTimer = setTimeout(function() {
+    _viewportTimer = null;
+    // Recheck — movement may have been superseded
+    if (!_viewportMoved(targetCenter, targetZoom)) return;
+
+    _lastViewCenter = targetCenter;
+    _lastViewZoom = targetZoom;
+
+    // Stop any in-progress Leaflet animation before starting a new one
+    map.stop();
+
+    if (useFitBounds && fitBoundsObj) {
+      map.fitBounds(fitBoundsObj, { animate: true, duration: isCinematic ? 1.0 : 0.5, maxZoom: 9 });
+    } else {
+      map.setView(targetCenter, targetZoom, { animate: true, duration: isCinematic ? 1.0 : 0.5 });
+    }
+  }, delay);
 }
 
 function updateToDate(day) {
@@ -1605,31 +1691,10 @@ function updateToDate(day) {
   // Update narrative
   updateNarrative(currentDateStr);
 
-  // Viewport: if locked on a brother, follow them; otherwise fit all living brothers
-  // During cinematic waypoint flyTo, suppress auto-viewport to avoid fighting the animation
-  if (window.CinematicPlayer && CinematicPlayer.isFlyingToWaypoint()) {
-    // skip — waypoint flyTo in progress
-  } else if (window.CinematicPlayer && CinematicPlayer.isPlaying() && !CinematicPlayer.isPaused()) {
-    // Cinematic ticking — gentle follow with minimal reframing
-    if (activeBounds.length === 1) {
-      map.setView(activeBounds[0], Math.max(map.getZoom(), 7), { animate: true, duration: 0.8 });
-    } else if (activeBounds.length > 1) {
-      const bounds = L.latLngBounds(activeBounds).pad(0.1);
-      map.fitBounds(bounds, { animate: true, duration: 0.8, maxZoom: 9 });
-    }
-  } else if (lockedBrother) {
-    const lockedPos = getLockedBrotherPosition(currentDateStr);
-    if (lockedPos) {
-      map.setView(lockedPos, Math.max(map.getZoom(), 7), { animate: true, duration: 0.4 });
-    }
-  } else if (activeBounds.length > 0) {
-    if (activeBounds.length === 1) {
-      map.setView(activeBounds[0], Math.max(map.getZoom(), 7), { animate: true, duration: 0.4 });
-    } else {
-      const bounds = L.latLngBounds(activeBounds).pad(0.08);
-      map.fitBounds(bounds, { animate: true, duration: 0.4, maxZoom: 9 });
-    }
-  }
+  // Viewport: smoothed camera with dead-zone + debounce to prevent jitter
+  const isCinematic = window.CinematicPlayer && CinematicPlayer.isPlaying() && !CinematicPlayer.isPaused();
+  const lockedPos = lockedBrother ? getLockedBrotherPosition(currentDateStr) : null;
+  _smoothViewport(activeBounds, isCinematic, !!lockedBrother, lockedPos);
 
   // Auto-refresh info panel if showing a brother
   refreshInfoPanel(currentDateStr);
