@@ -255,14 +255,14 @@ window.CinematicPlayer = (function () {
     // ── 1864 — The Grind ──
     {
       id: 'brothers-apart',
-      day: 990,
+      day: 1012,
       title: 'A Thousand Miles Apart',
-      body: 'March 1864. Look at the map. Charles is in Louisiana with the 153rd New York, deep in the bayou country. Alexander is in northern Alabama, recovering and regrouping with Sherman\'s forces. James is in the Shenandoah Valley of Virginia. Three surviving Hubbell brothers, scattered across a thousand miles of continent. The war has become continental.',
+      body: 'Look at the map. Charles and James are deep in Louisiana with the 153rd New York, marching up the Red River toward Sabine Cross Roads. Alexander is in northern Alabama, regrouping with Sherman\'s forces at Stevenson. Three surviving Hubbell brothers — two in the bayou, one in the Tennessee Valley — scattered across the breadth of the Confederacy. The war has become continental.',
       quote: null,
       quoteCite: null,
-      letterId: 'LTR-1864-03-01-001',
+      letterId: 'LTR-1864-03-21-001',
       brothers: ['charles', 'alexander', 'james'],
-      fly: { lat: 34.0, lon: -88.0, zoom: 5 },
+      fly: { lat: 33.0, lon: -87.0, zoom: 5 },
       pause: 9000,
       category: 'turning_point'
     },
