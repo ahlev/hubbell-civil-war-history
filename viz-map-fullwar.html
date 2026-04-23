@@ -744,6 +744,18 @@ body {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
 }
+.letter-summary-tip {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 10px 14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  max-width: 280px;
+}
 
 /* ── Letter Detail Overlay ── */
 .letter-overlay {
@@ -1433,7 +1445,9 @@ function formatDateStr(s) {
 let _lastViewCenter = null;   // [lat, lon] of last camera target
 let _lastViewZoom = null;
 let _viewportTimer = null;    // debounce timer
+let _viewportBusy = false;    // true while a flyTo is in-flight
 const VIEW_DEAD_ZONE = 0.005; // ~0.5 km — skip camera moves smaller than this (degrees)
+const VIEW_DEAD_ZONE_CINE = 0.04; // ~4 km — wider dead-zone during cinematic play for smoother pans
 
 function _boundsCenter(activeBounds) {
   if (activeBounds.length === 0) return null;
@@ -1443,11 +1457,12 @@ function _boundsCenter(activeBounds) {
   return [lat / activeBounds.length, lon / activeBounds.length];
 }
 
-function _viewportMoved(center, zoom) {
+function _viewportMoved(center, zoom, isCinematic) {
   if (!_lastViewCenter) return true;
+  const dz = isCinematic ? VIEW_DEAD_ZONE_CINE : VIEW_DEAD_ZONE;
   const dLat = Math.abs(center[0] - _lastViewCenter[0]);
   const dLon = Math.abs(center[1] - _lastViewCenter[1]);
-  if (dLat > VIEW_DEAD_ZONE || dLon > VIEW_DEAD_ZONE) return true;
+  if (dLat > dz || dLon > dz) return true;
   if (zoom !== _lastViewZoom) return true;
   return false;
 }
@@ -1458,6 +1473,9 @@ function _smoothViewport(activeBounds, isCinematic, isLocked, lockedPos) {
 
   // During cinematic waypoint flyTo, don't interfere
   if (window.CinematicPlayer && CinematicPlayer.isFlyingToWaypoint()) return;
+
+  // If a previous flyTo is still animating during cinematic, skip — don't fight it
+  if (isCinematic && _viewportBusy) return;
 
   let targetCenter, targetZoom, useFitBounds = false, fitBoundsObj = null;
 
@@ -1487,25 +1505,36 @@ function _smoothViewport(activeBounds, isCinematic, isLocked, lockedPos) {
   } else return;
 
   // Skip if camera hasn't meaningfully moved
-  if (!_viewportMoved(targetCenter, targetZoom)) return;
+  if (!_viewportMoved(targetCenter, targetZoom, isCinematic)) return;
 
-  // Debounce: wait a beat so rapid ticks don't queue overlapping animations
-  const delay = isCinematic ? 60 : 30;
+  // Debounce: longer in cinematic mode so the camera glides rather than jitters
+  const delay = isCinematic ? 150 : 30;
   _viewportTimer = setTimeout(function() {
     _viewportTimer = null;
     // Recheck — movement may have been superseded
-    if (!_viewportMoved(targetCenter, targetZoom)) return;
+    if (!_viewportMoved(targetCenter, targetZoom, isCinematic)) return;
 
     _lastViewCenter = targetCenter;
     _lastViewZoom = targetZoom;
 
-    // Stop any in-progress Leaflet animation before starting a new one
-    map.stop();
-
-    if (useFitBounds && fitBoundsObj) {
-      map.fitBounds(fitBoundsObj, { animate: true, duration: isCinematic ? 1.0 : 0.5, maxZoom: 9 });
+    if (isCinematic) {
+      // Use flyTo for cinematic — smooth eased pan, no abrupt stop()
+      _viewportBusy = true;
+      var dur = 1.6;
+      if (useFitBounds && fitBoundsObj) {
+        map.flyToBounds(fitBoundsObj, { duration: dur, maxZoom: 9, padding: [30, 30] });
+      } else {
+        map.flyTo(targetCenter, targetZoom, { duration: dur });
+      }
+      setTimeout(function() { _viewportBusy = false; }, dur * 1000 + 100);
     } else {
-      map.setView(targetCenter, targetZoom, { animate: true, duration: isCinematic ? 1.0 : 0.5 });
+      // Manual scrub: quick animated move
+      map.stop();
+      if (useFitBounds && fitBoundsObj) {
+        map.fitBounds(fitBoundsObj, { animate: true, duration: 0.5, maxZoom: 9 });
+      } else {
+        map.setView(targetCenter, targetZoom, { animate: true, duration: 0.5 });
+      }
     }
   }, delay);
 }
@@ -1687,8 +1716,18 @@ function updateToDate(day) {
           } else {
             showInfoPanel(letter, brotherId);
           }
-        })
-        .addTo(markerLayers[brotherId]);
+        });
+      // Hover tooltip with letter summary
+      const summary = letter.sigSummary || letter.significance || '';
+      if (summary) {
+        badge.bindTooltip(summary, {
+          direction: 'bottom',
+          offset: [0, 8],
+          className: 'letter-summary-tip',
+          maxWidth: 280
+        });
+      }
+      badge.addTo(markerLayers[brotherId]);
       newLetterMarkers.push(badge);
     });
 
