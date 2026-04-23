@@ -505,6 +505,8 @@
       body.innerHTML = healthHtml + '<div class="hubbell-overlay-reader-body">' + formatted + '</div>';
       autoLinkProse(body.querySelector('.hubbell-overlay-reader-body'));
       bindInternalLinks(body);
+      // Scroll to top of letter content
+      body.scrollTop = 0;
     });
   }
 

@@ -1745,9 +1745,12 @@
         updateScrollbar();
     }
 
-    // Tooltip (lightweight on hover)
+    // Tooltip (lightweight on hover — suppressed on touch devices)
+    let _isTouchDevice = false;
+    window.addEventListener('touchstart', function() { _isTouchDevice = true; }, { once: true });
     const tooltip = document.getElementById('tooltip');
     function showTooltip(event, idx) {
+        if (_isTouchDevice) return;
         const l = LETTERS[idx];
         const color = COLORS[l.author] || COLORS.unknown;
 
@@ -1803,6 +1806,7 @@
         tooltip.classList.add('visible');
     }
     function hideTooltip() { tooltip.classList.remove('visible'); }
+    document.addEventListener('touchstart', function() { tooltip.classList.remove('visible'); });
 
     // ===== DETAIL PANEL =====
 

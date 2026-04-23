@@ -2451,7 +2451,11 @@ canvas.addEventListener('wheel', (e) => {
 // Tooltip
 const tooltip = document.getElementById('tooltip');
 
+let _pwIsTouch = false;
+window.addEventListener('touchstart', function() { _pwIsTouch = true; }, { once: true });
+
 function showTooltip(idx, cx, cy) {
+  if (_pwIsTouch) return;
   const node = nodes[idx];
   tooltip.querySelector('.tt-name').textContent = node.id;
 

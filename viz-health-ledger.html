@@ -399,6 +399,55 @@ header .epigraph .attribution {
 
 .tl-ctrl-btn:hover { border-color: var(--ink-3); }
 
+/* Wellness filter pills */
+.wellness-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 4px;
+  flex-wrap: wrap;
+}
+.wellness-filters-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-right: 2px;
+}
+.wf-pill {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 3px 12px;
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+  background: var(--card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+.wf-pill:hover { border-color: var(--ink-3); }
+.wf-pill.active {
+  color: #fff;
+  border-color: transparent;
+}
+.wf-pill[data-filter="all"].active { background: var(--text-primary); }
+.wf-pill[data-filter="positive"].active { background: var(--status-healthy); }
+.wf-pill[data-filter="negative"].active { background: var(--status-sick); }
+.wf-pill[data-filter="declining"].active { background: var(--status-declining); }
+.wf-pill .wf-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: middle;
+  position: relative;
+  top: -0.5px;
+}
+
 .tl-hint {
   font-size: 0.72rem;
   color: var(--text-tertiary);
@@ -842,6 +891,14 @@ footer p {
     <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="var(--text-primary)" stroke="var(--text-primary)" stroke-width="2" stroke-dasharray="3,2" opacity="0.5"/></svg> Indirect/inferred</div>
   </div>
 
+  <div class="wellness-filters" id="wellnessFilters">
+    <span class="wellness-filters-label">Show:</span>
+    <button class="wf-pill active" data-filter="all" onclick="setWellnessFilter('all')">All</button>
+    <button class="wf-pill" data-filter="positive" onclick="setWellnessFilter('positive')"><span class="wf-dot" style="background:var(--status-healthy)"></span>Positive</button>
+    <button class="wf-pill" data-filter="negative" onclick="setWellnessFilter('negative')"><span class="wf-dot" style="background:var(--status-sick)"></span>Negative</button>
+    <button class="wf-pill" data-filter="declining" onclick="setWellnessFilter('declining')"><span class="wf-dot" style="background:var(--status-declining)"></span>Declining</button>
+  </div>
+
   <div class="timeline-section">
     <h2>Wellness Timeline</h2>
     <div class="tl-controls">
@@ -1113,6 +1170,29 @@ function mineHealth(letters) {
 // ========== GLOBALS ==========
 let DATA;
 let activeBrother = 'all';
+let wellnessFilter = 'all'; // 'all' | 'positive' | 'negative' | 'declining'
+
+// Wellness filter categories
+const POSITIVE_STATUSES = ['healthy'];
+const NEGATIVE_STATUSES = ['sick', 'hospitalized', 'wounded'];
+const DECLINING_STATUSES = ['declining'];
+
+function statusPassesFilter(status) {
+  if (wellnessFilter === 'all') return true;
+  if (wellnessFilter === 'positive') return POSITIVE_STATUSES.includes(status);
+  if (wellnessFilter === 'negative') return NEGATIVE_STATUSES.includes(status) || DECLINING_STATUSES.includes(status);
+  if (wellnessFilter === 'declining') return DECLINING_STATUSES.includes(status);
+  return true;
+}
+
+function setWellnessFilter(filter) {
+  wellnessFilter = filter;
+  // Update pill active states
+  document.querySelectorAll('.wf-pill').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-filter') === filter);
+  });
+  drawTimeline();
+}
 const tooltip = document.getElementById('tooltip');
 const detailPanel = document.getElementById('detail-panel');
 const detailContent = document.getElementById('detail-content');
@@ -1343,21 +1423,23 @@ function drawTimeline() {
     svg.appendChild(laneLine);
 
     // Health status segments (connect consecutive letters)
+    const isFiltered = wellnessFilter !== 'all';
     for (let j = 0; j < broLetters.length - 1; j++) {
       const curr = broLetters[j];
       const next = broLetters[j + 1];
       const x1 = x(curr.d);
       const x2 = x(next.d);
       const segColor = STATUS_COLORS[curr.status] || STATUS_COLORS.nodata;
+      const segMatch = !isFiltered || statusPassesFilter(curr.status);
 
       const seg = document.createElementNS(ns, 'line');
       seg.setAttribute('x1', x1);
       seg.setAttribute('x2', x2);
       seg.setAttribute('y1', yCenter);
       seg.setAttribute('y2', yCenter);
-      seg.setAttribute('stroke', segColor);
-      seg.setAttribute('stroke-width', curr.status === 'nodata' ? 2 : 4);
-      seg.setAttribute('opacity', curr.status === 'nodata' ? 0.3 : 0.6);
+      seg.setAttribute('stroke', segMatch ? segColor : '#E8E4DE');
+      seg.setAttribute('stroke-width', curr.status === 'nodata' ? 2 : (segMatch ? 4 : 2));
+      seg.setAttribute('opacity', segMatch ? (curr.status === 'nodata' ? 0.3 : 0.6) : 0.2);
       seg.setAttribute('stroke-linecap', 'round');
       svg.appendChild(seg);
     }
@@ -1366,11 +1448,12 @@ function drawTimeline() {
     broLetters.forEach(letter => {
       const cx = x(letter.d);
       const isHealthRelevant = letter.status !== 'nodata';
+      const dotMatch = !isFiltered || statusPassesFilter(letter.status);
       const r = isHealthRelevant ? 6 : 4;
       const conf = letter.confidence || 'nodata';
 
-      // Outer glow for health-relevant
-      if (isHealthRelevant && letter.status !== 'healthy') {
+      // Outer glow for health-relevant (only when matching filter)
+      if (isHealthRelevant && letter.status !== 'healthy' && dotMatch) {
         const glow = document.createElementNS(ns, 'circle');
         glow.setAttribute('cx', cx);
         glow.setAttribute('cy', yCenter);
@@ -1383,11 +1466,17 @@ function drawTimeline() {
       const dot = document.createElementNS(ns, 'circle');
       dot.setAttribute('cx', cx);
       dot.setAttribute('cy', yCenter);
-      dot.setAttribute('r', r);
+      dot.setAttribute('r', dotMatch ? r : 3);
       dot.setAttribute('cursor', 'pointer');
       dot.setAttribute('data-id', letter.id);
 
-      if (conf === 'direct') {
+      if (!dotMatch) {
+        // Dimmed dot for non-matching status
+        dot.setAttribute('fill', '#E0DCD6');
+        dot.setAttribute('stroke', '#FFFFFF');
+        dot.setAttribute('stroke-width', 1);
+        dot.setAttribute('opacity', '0.4');
+      } else if (conf === 'direct') {
         // Solid filled circle
         dot.setAttribute('fill', STATUS_COLORS[letter.status]);
         dot.setAttribute('stroke', '#FFFFFF');
@@ -1411,15 +1500,15 @@ function drawTimeline() {
         dot.setAttribute('stroke-width', 1.5);
       }
 
-      // Hover
+      // Hover + click (always interactive, even when dimmed)
       dot.addEventListener('mouseenter', (e) => showTooltip(e, letter));
       dot.addEventListener('mouseleave', hideTooltip);
       dot.addEventListener('click', () => openHealthOverlay(letter));
 
       svg.appendChild(dot);
 
-      // "?" mark for nodata confidence
-      if (conf === 'nodata' && letter.status === 'nodata') {
+      // "?" mark for nodata confidence (only when not filtered or matching)
+      if (conf === 'nodata' && letter.status === 'nodata' && dotMatch) {
         const qMark = document.createElementNS(ns, 'text');
         qMark.setAttribute('x', cx);
         qMark.setAttribute('y', yCenter + 3.5);

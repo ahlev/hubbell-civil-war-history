@@ -184,11 +184,35 @@ body {
 .info-header {
   padding: 14px 16px 10px;
   border-bottom: 1px solid #F0ECE7;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .info-header h3 {
   font-family: var(--font-display);
   font-size: 1rem;
   color: var(--ink);
+  flex: 1;
+  min-width: 0;
+}
+.info-close-btn {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--ink-3, #999);
+  transition: background 0.15s, color 0.15s;
+  line-height: 1;
+}
+.info-close-btn:hover {
+  background: var(--rule-2, #f0f0f0);
+  color: var(--ink, #333);
 }
 .info-body {
   flex: 1;
@@ -434,25 +458,32 @@ body {
   font-weight: 600;
   color: var(--ink);
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
-/* Dual-handle range slider */
+.season-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+/* Timeline slider */
 .range-slider {
   position: relative;
   width: 100%;
   height: 24px;
 }
 .range-slider input[type="range"] {
-  position: absolute;
   width: 100%;
-  height: 6px;
-  top: 9px;
-  margin: 0;
+  height: 16px;
+  margin: 4px 0 0;
   padding: 0;
   -webkit-appearance: none;
   appearance: none;
   background: none;
-  pointer-events: none;
   z-index: 3;
+  position: relative;
 }
 .range-slider input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -463,9 +494,11 @@ body {
   border: 2px solid #fff;
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
   cursor: pointer;
-  pointer-events: auto;
-  position: relative;
-  z-index: 3;
+  margin-top: -6px;
+}
+.range-slider input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: transparent;
 }
 .range-slider input[type="range"]::-moz-range-thumb {
   width: 16px;
@@ -475,7 +508,10 @@ body {
   border: 2px solid #fff;
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
   cursor: pointer;
-  pointer-events: auto;
+}
+.range-slider input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: transparent;
 }
 .range-slider input[type="range"]:focus-visible::-webkit-slider-thumb {
   outline: 2px solid #2D5F8A;
@@ -490,15 +526,6 @@ body {
   background: var(--rule);
   border-radius: 2px;
   z-index: 1;
-}
-.range-fill {
-  position: absolute;
-  top: 10px;
-  height: 4px;
-  background: var(--ink);
-  border-radius: 2px;
-  z-index: 2;
-  opacity: 0.5;
 }
 
 /* ── Leaflet Overrides ── */
@@ -619,6 +646,26 @@ body {
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 .recenter-btn:hover { background: var(--bg); color: var(--ink); }
+.places-btn {
+  position: absolute;
+  top: 10px;
+  right: 90px;
+  z-index: 1000;
+  background: var(--bg-elev);
+  border: 1px solid #B8860B44;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #B8860B;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.places-btn:hover { background: #FDF6E3; border-color: #B8860B88; }
+.places-btn.hidden-state { color: var(--ink-3); border-color: var(--rule); }
+.places-btn.hidden-state:hover { color: var(--ink-2); }
 
 /* Days since letter badge */
 .days-since-letter {
@@ -759,7 +806,7 @@ body {
 
 /* ── Recent Letters in info panel ── */
 .recent-letter-card {
-  padding: 8px 10px;
+  padding: 8px 12px;
   margin-bottom: 6px;
   background: #FAFAFA;
   border-radius: 4px;
@@ -836,7 +883,7 @@ body {
   padding: 0;
 }
 .place-pin-popup {
-  padding: 12px 14px;
+  padding: 14px 18px;
   font-family: var(--font-sans);
 }
 .place-pin-title {
@@ -870,19 +917,18 @@ body {
   border-top: 1px solid #F0ECE7;
   padding-top: 6px;
 }
-.place-pin-letter {
-  padding: 4px 0;
+.place-pin-popup .place-pin-letter {
+  padding: 5px 8px;
+  margin: 0 -4px;
   border-bottom: 1px solid #F5F0EB;
+  border-radius: 3px;
   cursor: pointer;
   transition: background 0.15s;
 }
-.place-pin-letter:hover {
-  background: #FDFBF8;
-  margin: 0 -8px;
-  padding-left: 8px;
-  padding-right: 8px;
+.place-pin-popup .place-pin-letter:hover {
+  background: #F5F0EB;
 }
-.place-pin-letter:last-child { border-bottom: none; }
+.place-pin-popup .place-pin-letter:last-child { border-bottom: none; }
 .place-pin-author {
   font-weight: 600;
   font-size: 0.78rem;
@@ -1108,22 +1154,21 @@ body {
       </div>
       <div class="legend-row"><span class="legend-trail" style="background:var(--ink-3)"></span> 30-day trail</div>
       <div class="legend-row"><span style="font-size:0.85rem">&#10013;</span> Memorial (KIA)</div>
-      <div class="legend-row place-labels-toggle" style="margin-top:4px;padding-top:4px;border-top:1px solid var(--rule)">
-        <label style="display:flex;align-items:center;cursor:pointer;font-size:0.65rem"><input type="checkbox" id="placeLabelsToggle" checked onchange="togglePlaceLabels(this.checked)"> Place labels</label>
-      </div>
     </div>
 
-    <!-- Recenter button -->
+    <!-- Map top buttons -->
+    <button class="places-btn" id="placesBtn" onclick="togglePlacesBtn()">&#9673; Places</button>
     <button class="recenter-btn" id="recenterBtn" onclick="recenterMap()">Re-center</button>
 
     <!-- Info panel toggle -->
-    <button class="info-toggle" id="infoToggle" onclick="toggleInfoPanel()">&#9664; Info</button>
+    <button class="info-toggle" id="infoToggle" onclick="toggleInfoPanel()">&#9654; Info</button>
   </div>
 
   <!-- Info Panel (right side) -->
-  <div class="info-panel" id="infoPanel">
+  <div class="info-panel collapsed" id="infoPanel">
     <div class="info-header">
       <h3 id="infoPanelTitle">Selected Location</h3>
+      <button class="info-close-btn" onclick="closeInfoPanel()" title="Close panel (Esc)">&times;</button>
     </div>
     <div class="info-body" id="infoPanelBody">
       <div class="info-empty">Click a node on the map to explore details</div>
@@ -1142,8 +1187,6 @@ body {
       <div class="date-display" id="dateDisplay">June 15, 1861</div>
       <div class="range-slider" id="rangeSlider">
         <div class="range-track"></div>
-        <div class="range-fill" id="rangeFill"></div>
-        <input type="range" id="rangeStart" min="0" max="1000" value="0">
         <input type="range" id="rangeEnd" min="0" max="1000" value="0">
       </div>
     </div>
@@ -1166,14 +1209,16 @@ const COLORS = {
   henry: '#2D5F8A',
   alexander: '#B8860B',
   charles: '#8B3A3A',
-  james: '#4A7C59'
+  james: '#4A7C59',
+  mother: '#7B5EA7'
 };
 
 const NAMES = {
   henry: 'Henry',
   alexander: 'Alexander',
   charles: 'Charles',
-  james: 'James'
+  james: 'James',
+  mother: 'Mother'
 };
 
 const START_DATE = new Date('1861-06-15');
@@ -1195,12 +1240,6 @@ function _mapSyncUrl(opts) {
     state.date = d.getFullYear() + '-' +
       String(d.getMonth() + 1).padStart(2, '0') + '-' +
       String(d.getDate()).padStart(2, '0');
-  }
-  if (rangeStartDay > 0) {
-    var ds = dayToDate(rangeStartDay);
-    state.from = ds.getFullYear() + '-' +
-      String(ds.getMonth() + 1).padStart(2, '0') + '-' +
-      String(ds.getDate()).padStart(2, '0');
   }
   if (lockedBrother) state.brother = lockedBrother;
   if (_mapCurrentLetterId) state.letter = _mapCurrentLetterId;
@@ -1252,7 +1291,6 @@ async function init() {
   // Handle URL parameters: ?date=YYYY-MM-DD&from=YYYY-MM-DD&brother=henry
   const params = new URLSearchParams(window.location.search);
   const paramDate = params.get('date');
-  const paramFrom = params.get('from');
   const paramBrother = params.get('brother');
   let startDay = 0;
 
@@ -1263,13 +1301,6 @@ async function init() {
       startDay = Math.max(0, Math.min(startDay, TOTAL_DAYS));
     }
   }
-  if (paramFrom) {
-    const fromDate = new Date(paramFrom + 'T12:00:00');
-    if (!isNaN(fromDate.getTime())) {
-      rangeStartDay = Math.max(0, Math.min(Math.round((fromDate - START_DATE) / 86400000), TOTAL_DAYS));
-    }
-  }
-
   rangeEndDay = startDay;
   updateToDate(startDay);
 
@@ -1284,7 +1315,7 @@ async function init() {
     if (match && match.lat && match.lon) {
       setTimeout(function() {
         map.flyTo([match.lat, match.lon], 10, { duration: 1.2 });
-        showPlacePin(paramPlace, match);
+        showPlaceInfoPanel(paramPlace, match);
       }, 400);
     }
   }
@@ -1317,6 +1348,9 @@ function initMap() {
     maxZoom: 19
   }).addTo(map);
 
+  // Click on empty map area closes the info panel
+  map.on('click', function() { closeInfoPanel(); });
+
   for (const b of Object.keys(COLORS)) {
     trailLayers[b] = L.layerGroup().addTo(map);
     markerLayers[b] = L.layerGroup().addTo(map);
@@ -1324,34 +1358,15 @@ function initMap() {
 }
 
 function initTimeline() {
-  const startEl = document.getElementById('rangeStart');
   const endEl = document.getElementById('rangeEnd');
-  startEl.max = TOTAL_DAYS;
   endEl.max = TOTAL_DAYS;
-  startEl.value = 0;
   endEl.value = 0;
 
-  function onRangeInput() {
-    let s = parseInt(startEl.value);
-    let e = parseInt(endEl.value);
-    // Enforce start <= end
-    if (s > e) { if (this === startEl) { endEl.value = s; e = s; } else { startEl.value = e; s = e; } }
-    scrubRange(s, e);
-  }
-  startEl.addEventListener('input', onRangeInput);
-  endEl.addEventListener('input', onRangeInput);
+  endEl.addEventListener('input', function() {
+    scrubTimeline(parseInt(endEl.value));
+  });
 }
 
-function updateRangeFill() {
-  const fill = document.getElementById('rangeFill');
-  const startEl = document.getElementById('rangeStart');
-  const endEl = document.getElementById('rangeEnd');
-  const max = parseInt(startEl.max) || TOTAL_DAYS;
-  const s = parseInt(startEl.value) / max * 100;
-  const e = parseInt(endEl.value) / max * 100;
-  fill.style.left = s + '%';
-  fill.style.width = (e - s) + '%';
-}
 
 // ============================================================
 // CORE: UPDATE MAP TO DATE
@@ -1375,6 +1390,16 @@ function formatDate(d) {
   return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
 }
 
+function seasonIcon(d) {
+  if (!d || isNaN(d.getTime())) return '';
+  const m = d.getMonth(); // 0-11
+  // Spring: Mar-May, Summer: Jun-Aug, Autumn: Sep-Nov, Winter: Dec-Feb
+  if (m >= 2 && m <= 4) return '🌿';
+  if (m >= 5 && m <= 7) return '☀️';
+  if (m >= 8 && m <= 10) return '🍂';
+  return '❄️';
+}
+
 function formatDateStr(s) {
   // Handle dates like "1864-07-00" where day is unknown
   if (!s) return 'Unknown date';
@@ -1392,17 +1417,15 @@ function updateToDate(day) {
   const currentDateStr = dateStr(currentDate);
   const trailStartStr = dateStr(dayToDate(Math.max(0, day - 30)));
 
-  // Date display — show range if start handle is dragged past 0
-  if (rangeStartDay > 0 && rangeStartDay < rangeEndDay) {
-    document.getElementById('dateDisplay').textContent = formatDate(dayToDate(rangeStartDay)) + ' \u2014 ' + formatDate(currentDate);
-  } else {
-    document.getElementById('dateDisplay').textContent = formatDate(currentDate);
-  }
+  // Date display with seasonal icon
+  document.getElementById('dateDisplay').innerHTML =
+    '<span class="season-icon">' + seasonIcon(currentDate) + '</span>' + formatDate(currentDate);
 
-  // Sync slider handles
-  document.getElementById('rangeStart').value = rangeStartDay;
+  // Season icon (updated by CinematicPlayer if loaded)
+  if (window.CinematicPlayer && CinematicPlayer.updateSeasonIcon) CinematicPlayer.updateSeasonIcon();
+
+  // Sync slider
   document.getElementById('rangeEnd').value = rangeEndDay;
-  updateRangeFill();
 
   // Clear all layers
   for (const b of Object.keys(COLORS)) {
@@ -1526,7 +1549,7 @@ function updateToDate(day) {
       const m = recentTrail[i];
       const age = (new Date(currentDateStr) - new Date(m.date)) / 86400000;
       const opacity = Math.max(0.3, 1 - (age / Math.max(rangeSpan, 1)) * 0.7);
-      addTrailNode(m, brotherId, opacity);
+      addTrailNode(m, brotherId, opacity, age, rangeSpan);
     }
 
     // Draw solid connecting lines from trail to current position
@@ -1576,26 +1599,35 @@ function updateToDate(day) {
     }
   }
 
-  // Always include memorial in bounds if active
-  if (isHenryDead) {
-    activeBounds.push([39.4747, -77.7447]);
-  }
+  // Memorial stays on map but does NOT pull camera — only living brothers drive viewport
+  // (Users can still click the memorial marker to fly to it)
 
   // Update narrative
   updateNarrative(currentDateStr);
 
-  // Viewport: if locked on a brother, follow them; otherwise fit all
-  if (lockedBrother) {
+  // Viewport: if locked on a brother, follow them; otherwise fit all living brothers
+  // During cinematic waypoint flyTo, suppress auto-viewport to avoid fighting the animation
+  if (window.CinematicPlayer && CinematicPlayer.isFlyingToWaypoint()) {
+    // skip — waypoint flyTo in progress
+  } else if (window.CinematicPlayer && CinematicPlayer.isPlaying() && !CinematicPlayer.isPaused()) {
+    // Cinematic ticking — gentle follow with minimal reframing
+    if (activeBounds.length === 1) {
+      map.setView(activeBounds[0], Math.max(map.getZoom(), 7), { animate: true, duration: 0.8 });
+    } else if (activeBounds.length > 1) {
+      const bounds = L.latLngBounds(activeBounds).pad(0.1);
+      map.fitBounds(bounds, { animate: true, duration: 0.8, maxZoom: 9 });
+    }
+  } else if (lockedBrother) {
     const lockedPos = getLockedBrotherPosition(currentDateStr);
     if (lockedPos) {
-      map.setView(lockedPos, Math.max(map.getZoom(), 8), { animate: true, duration: 0.3 });
+      map.setView(lockedPos, Math.max(map.getZoom(), 7), { animate: true, duration: 0.4 });
     }
   } else if (activeBounds.length > 0) {
     if (activeBounds.length === 1) {
-      map.setView(activeBounds[0], 9, { animate: true, duration: 0.3 });
+      map.setView(activeBounds[0], Math.max(map.getZoom(), 7), { animate: true, duration: 0.4 });
     } else {
-      const bounds = L.latLngBounds(activeBounds).pad(0.15);
-      map.fitBounds(bounds, { animate: true, duration: 0.3, maxZoom: 10 });
+      const bounds = L.latLngBounds(activeBounds).pad(0.08);
+      map.fitBounds(bounds, { animate: true, duration: 0.4, maxZoom: 9 });
     }
   }
 
@@ -1658,7 +1690,7 @@ function addCurrentNode(movement, brotherId, pixelOffsetX) {
   const starHtml = isVerified ? '<span class="verified-star">★</span>' : '';
 
   const icon = L.divIcon({
-    html: `<div class="node-current">
+    html: `<div class="node-current" data-brother="${brotherId}">
       <div class="node-pin${verifiedClass}" style="background:${color}"></div>
       <div class="node-label${verifiedClass}">${name}${starHtml}</div>
     </div>`,
@@ -1672,9 +1704,11 @@ function addCurrentNode(movement, brotherId, pixelOffsetX) {
     .addTo(markerLayers[brotherId]);
 }
 
-function addTrailNode(movement, brotherId, opacity) {
+function addTrailNode(movement, brotherId, opacity, age, rangeSpan) {
   const color = COLORS[brotherId];
-  const size = 12;
+  // Size diminishes with age: 12px (recent) → 5px (oldest in window)
+  const ageFrac = Math.min(age / Math.max(rangeSpan, 1), 1);
+  const size = Math.round(12 - ageFrac * 7);
 
   const icon = L.divIcon({
     html: `<div style="display:flex;flex-direction:column;align-items:center">
@@ -1989,6 +2023,7 @@ function matchPlaceName(inputPlace) {
 
 // ========== PLACE PIN (from ?place= parameter) ==========
 var placePinMarker = null;
+var placePinIsReused = false;     // true when placePinMarker is a reused place-label (don't remove from map)
 var activePlaceLabelMarker = null; // track which place-label is active
 
 // Look up overlay profile for a place by trying name and aliases
@@ -2021,12 +2056,14 @@ function clearActivePlaceLabel() {
 function showPlacePin(placeName, movement, existingMarker) {
   // Clean up previous pin: only remove from map if it was a standalone pin (not a reused label)
   if (placePinMarker) {
+    placePinMarker.closePopup();
     placePinMarker.unbindPopup();
     placePinMarker.off('popupopen').off('popupclose');
-    if (placePinMarker !== activePlaceLabelMarker) {
+    if (!placePinIsReused) {
       map.removeLayer(placePinMarker);
     }
     placePinMarker = null;
+    placePinIsReused = false;
   }
   clearActivePlaceLabel();
 
@@ -2131,6 +2168,7 @@ function showPlacePin(placeName, movement, existingMarker) {
 
   // If called from an existing place label marker, reuse it instead of creating a duplicate
   if (existingMarker) {
+    placePinIsReused = true;
     activePlaceLabelMarker = existingMarker;
     var el = existingMarker.getElement();
     if (el) { var pill = el.querySelector('.place-label-pill'); if (pill) pill.classList.add('active'); }
@@ -2173,6 +2211,125 @@ function showPlacePin(placeName, movement, existingMarker) {
       clearActivePlaceLabel();
     })
     .openPopup();
+}
+
+function showPlaceInfoPanel(placeName, movement) {
+  // Clear any existing place popup
+  if (placePinMarker) {
+    placePinMarker.closePopup();
+    placePinMarker.unbindPopup();
+    placePinMarker.off('popupopen').off('popupclose');
+    if (!placePinIsReused) map.removeLayer(placePinMarker);
+    placePinMarker = null;
+    placePinIsReused = false;
+  }
+  clearActivePlaceLabel();
+
+  infoPanelBrother = null; // Place panel — don't auto-refresh as brother
+
+  const title = document.getElementById('infoPanelTitle');
+  const body = document.getElementById('infoPanelBody');
+
+  title.textContent = movement.placeName || placeName;
+  title.style.color = '#5B4636';
+
+  // Gather movements AT this place
+  var matchedCore = extractCandidates(movement.placeName || placeName)[0].core;
+  const fromHere = DATA.movements.filter(function(m) {
+    if (!m.placeName) return false;
+    return extractCandidates(m.placeName)[0].core === matchedCore;
+  });
+  const fromHereLetters = fromHere.filter(function(m) { return m.source === 'letter'; });
+
+  // Look up overlay data for letters MENTIONING this place
+  var overlayPlace = findOverlayPlace(movement.placeName || placeName);
+  var fromHereIds = new Set(fromHereLetters.map(function(m) { return m.letterId; }));
+  var aboutHereLetters = [];
+  if (overlayPlace && overlayPlace.ltrs) {
+    aboutHereLetters = overlayPlace.ltrs.filter(function(id) { return !fromHereIds.has(id); });
+  }
+
+  let html = '';
+
+  // Summary stats
+  const brotherSet = new Set(fromHere.map(function(m) { return m.brother; }));
+  const dateRange = fromHere.length > 0
+    ? formatDateStr(fromHere[0].date) + ' – ' + formatDateStr(fromHere[fromHere.length - 1].date)
+    : '';
+
+  html += '<div class="info-meta">';
+  if (fromHereLetters.length > 0) html += '<strong>' + fromHereLetters.length + '</strong> letters written from here<br>';
+  if (aboutHereLetters.length > 0) html += '<strong>' + aboutHereLetters.length + '</strong> letters mentioning this place<br>';
+  if (fromHereLetters.length === 0 && aboutHereLetters.length === 0) html += fromHere.length + ' movement' + (fromHere.length !== 1 ? 's' : '') + '<br>';
+  html += '<strong>' + brotherSet.size + '</strong> brother' + (brotherSet.size !== 1 ? 's' : '') + ' present';
+  if (dateRange) html += '<br>' + dateRange;
+  html += '</div>';
+
+  // Overlay summary if available
+  if (overlayPlace && overlayPlace.s) {
+    html += '<div class="info-excerpt">' + escHtml(overlayPlace.s) + '</div>';
+  }
+
+  // Letters written FROM this place
+  if (fromHereLetters.length > 0) {
+    html += '<div class="info-section"><h4>Written from here</h4>';
+    fromHereLetters.slice(0, 6).forEach(function(m) {
+      const bName = DATA.brothers[m.brother] ? DATA.brothers[m.brother].name.split(' ')[0] : m.brother;
+      const bColor = COLORS[m.brother] || '#666';
+      const excerpt = m.letterExcerpt ? m.letterExcerpt.slice(0, 70) + (m.letterExcerpt.length > 70 ? '…' : '') : '';
+      html += '<div class="recent-letter-card place-pin-letter" data-lid="' + escHtml(m.letterId) + '" data-bro="' + escHtml(m.brother) + '">';
+      html += '<div><span class="letter-date">' + formatDateStr(m.date) + '</span> <span class="place-pin-author" style="color:' + bColor + '">' + escHtml(bName) + '</span></div>';
+      if (excerpt) html += '<div class="letter-quote">"' + escHtml(excerpt) + '"</div>';
+      html += '</div>';
+    });
+    if (fromHereLetters.length > 6) {
+      html += '<div style="font-size:0.75rem;color:var(--ink-3);margin-top:4px">+ ' + (fromHereLetters.length - 6) + ' more</div>';
+    }
+    html += '</div>';
+  }
+
+  // Letters MENTIONING this place
+  if (aboutHereLetters.length > 0) {
+    html += '<div class="info-section"><h4>Mentions this place</h4>';
+    aboutHereLetters.slice(0, 6).forEach(function(id) {
+      var meta = window.LETTER_INDEX ? LETTER_INDEX[id] : null;
+      if (!meta) return;
+      var bro = meta.a || '';
+      var bName = NAMES[bro] || bro;
+      var bColor = COLORS[bro] || '#666';
+      html += '<div class="recent-letter-card place-pin-letter" data-lid="' + escHtml(id) + '" data-bro="' + escHtml(bro) + '" data-hl="' + escHtml(movement.placeName || placeName) + '">';
+      html += '<div><span class="letter-date">' + (meta.d ? formatDateStr(meta.d) : '') + '</span> <span class="place-pin-author" style="color:' + bColor + '">' + escHtml(bName) + '</span></div>';
+      if (meta.l) html += '<div class="letter-context">from ' + escHtml(meta.l) + '</div>';
+      html += '</div>';
+    });
+    if (aboutHereLetters.length > 6) {
+      html += '<div style="font-size:0.75rem;color:var(--ink-3);margin-top:4px">+ ' + (aboutHereLetters.length - 6) + ' more</div>';
+    }
+    html += '</div>';
+  }
+
+  // Flags summary
+  const hasBattle = fromHere.some(function(m) { return m.hasBattle; });
+  const hasIllness = fromHere.some(function(m) { return m.hasIllness; });
+  const hasDeath = fromHere.some(function(m) { return m.hasDeath; });
+  const hasWound = fromHere.some(function(m) { return m.hasWound; });
+  let flagsHtml = '';
+  if (hasBattle) flagsHtml += '<span class="info-flag flag-battle">Battle</span>';
+  if (hasIllness) flagsHtml += '<span class="info-flag flag-illness">Illness</span>';
+  if (hasDeath) flagsHtml += '<span class="info-flag flag-death">Death</span>';
+  if (hasWound) flagsHtml += '<span class="info-flag flag-wound">Wound</span>';
+  if (flagsHtml) html += '<div class="info-flags">' + flagsHtml + '</div>';
+
+  body.innerHTML = html;
+
+  // Bind overlay links on dynamically-rendered content
+  if (window.HubbellOverlay) HubbellOverlay.bindDynamic(body);
+
+  // Ensure panel is open
+  const panel = document.getElementById('infoPanel');
+  if (panel.classList.contains('collapsed')) {
+    toggleInfoPanel();
+  }
 }
 
 function togglePlaceSummary(btn) {
@@ -2235,11 +2392,11 @@ function buildPlaceLabels() {
 
     var marker = L.marker([p.lat, p.lon], { icon: icon, zIndexOffset: -100 });
     marker.on('click', function() {
-      // Reuse showPlacePin for full detail popup, passing existing marker
+      // Show place details in the right info panel
       var match = matchPlaceName(p.name);
       if (match) {
         map.flyTo([match.lat, match.lon], Math.max(map.getZoom(), 9), { duration: 0.6 });
-        showPlacePin(p.name, match, marker);
+        showPlaceInfoPanel(p.name, match);
       }
     });
     marker.addTo(placeLabelsLayer);
@@ -2258,6 +2415,13 @@ function togglePlaceLabels(show) {
   } else {
     map.removeLayer(placeLabelsLayer);
   }
+  // Sync button state
+  var btn = document.getElementById('placesBtn');
+  if (btn) btn.classList.toggle('hidden-state', !show);
+}
+
+function togglePlacesBtn() {
+  togglePlaceLabels(!placeLabelsVisible);
 }
 
 function showInfoPanel(movement, brotherId) {
@@ -2448,6 +2612,7 @@ const NARRATIVES = [
 ];
 
 function updateNarrative(currentDateStr) {
+  if (window.CinematicPlayer && CinematicPlayer.isPlaying()) return;
   const caption = document.getElementById('narrativeCaption');
   const active = NARRATIVES.find(n => currentDateStr >= n.start && currentDateStr <= n.end);
   if (active) {
@@ -2463,17 +2628,7 @@ function updateNarrative(currentDateStr) {
 // ============================================================
 function scrubTimeline(val) {
   if (!DATA || !map) return;
-  rangeStartDay = 0;
   rangeEndDay = parseInt(val);
-  updateToDate(rangeEndDay);
-  _mapSyncUrl({ replace: true });
-}
-
-function scrubRange(s, e) {
-  if (!DATA || !map) return;
-  rangeStartDay = Math.max(0, Math.min(s, TOTAL_DAYS));
-  rangeEndDay = Math.max(0, Math.min(e, TOTAL_DAYS));
-  currentDay = rangeEndDay;
   updateToDate(rangeEndDay);
   fadeCta();
   _mapSyncUrl({ replace: true });
@@ -2539,8 +2694,16 @@ function toggleInfoPanel() {
   const btn = document.getElementById('infoToggle');
   panel.classList.toggle('collapsed');
   btn.innerHTML = panel.classList.contains('collapsed') ? '&#9654; Info' : '&#9664; Info';
-  // Clear tracking when panel is collapsed so we don't refresh a hidden panel
   if (panel.classList.contains('collapsed')) infoPanelBrother = null;
+}
+
+function closeInfoPanel() {
+  const panel = document.getElementById('infoPanel');
+  if (panel.classList.contains('collapsed')) return;
+  const btn = document.getElementById('infoToggle');
+  panel.classList.add('collapsed');
+  btn.innerHTML = '&#9654; Info';
+  infoPanelBrother = null;
 }
 
 // ============================================================
@@ -2559,18 +2722,106 @@ function handleKeyboard(e) {
       stepDay(-1);
       break;
     case 'Escape':
-      closeLetterOverlay();
+      if (window.HubbellReader && HubbellReader.isOpen()) {
+        closeLetterOverlay();
+      } else {
+        closeInfoPanel();
+      }
+      break;
+    case ' ':
+      e.preventDefault();
+      toggleMapPlay();
       break;
   }
 }
 
 // ============================================================
+// MAP AUTO-PLAY (timeline play/pause)
+// ============================================================
+let _mapPlayTimer = null;
+let _mapPlaying = false;
+
+function toggleMapPlay() {
+  if (_mapPlaying) {
+    stopMapPlay();
+  } else {
+    startMapPlay();
+  }
+}
+
+function startMapPlay() {
+  // If CinematicPlayer is available and not playing, defer to it
+  if (window.CinematicPlayer && !CinematicPlayer.isPlaying()) {
+    CinematicPlayer.toggle();
+    _mapPlaying = true;
+    updatePlayBtn();
+    // Sync button state when cinematic ends
+    return;
+  }
+  if (window.CinematicPlayer && CinematicPlayer.isPlaying() && CinematicPlayer.isPaused()) {
+    CinematicPlayer.toggle(); // unpause
+    _mapPlaying = true;
+    updatePlayBtn();
+    return;
+  }
+  // Fallback: simple day-step auto-play
+  _mapPlaying = true;
+  updatePlayBtn();
+  fadeCta();
+  _mapPlayTimer = setInterval(function() {
+    if (currentDay >= TOTAL_DAYS) {
+      stopMapPlay();
+      return;
+    }
+    stepDay(1);
+  }, 120);
+}
+
+function stopMapPlay() {
+  _mapPlaying = false;
+  if (_mapPlayTimer) {
+    clearInterval(_mapPlayTimer);
+    _mapPlayTimer = null;
+  }
+  if (window.CinematicPlayer && CinematicPlayer.isPlaying()) {
+    CinematicPlayer.toggle(); // pause cinematic
+  }
+  updatePlayBtn();
+}
+
+function updatePlayBtn() {
+  // Sync state with CinematicPlayer if it stopped externally
+  if (_mapPlaying && window.CinematicPlayer && !CinematicPlayer.isPlaying() && !_mapPlayTimer) {
+    _mapPlaying = false;
+  }
+  const btn = document.getElementById('mapPlayBtn');
+  const icon = document.getElementById('mapPlayIcon');
+  if (!btn) return;
+  if (_mapPlaying) {
+    btn.classList.add('playing');
+    btn.title = 'Pause timeline (Space)';
+    icon.innerHTML = '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>';
+  } else {
+    btn.classList.remove('playing');
+    btn.title = 'Play timeline (Space)';
+    icon.innerHTML = '<polygon points="8,5 19,12 8,19"/>';
+  }
+}
+
+// Periodically sync play button with CinematicPlayer state
+setInterval(function() {
+  if (!_mapPlaying) return;
+  if (window.CinematicPlayer && !CinematicPlayer.isPlaying() && !_mapPlayTimer) {
+    _mapPlaying = false;
+    updatePlayBtn();
+  }
+}, 500);
+
+// ============================================================
 // STEP BUTTONS + CTA FADE
 // ============================================================
 function stepDay(delta) {
-  const span = rangeEndDay - rangeStartDay;
   rangeEndDay = Math.max(0, Math.min(rangeEndDay + delta, TOTAL_DAYS));
-  rangeStartDay = Math.max(0, rangeEndDay - span);
   currentDay = rangeEndDay;
   updateToDate(currentDay);
   fadeCta();
@@ -2605,7 +2856,6 @@ document.getElementById('stepForward').addEventListener('click', () => stepDay(1
 });
 
 // Fade CTA on first slider interaction or keyboard use
-document.getElementById('rangeStart').addEventListener('input', fadeCta);
 document.getElementById('rangeEnd').addEventListener('input', fadeCta);
 
 // ============================================================
@@ -2681,23 +2931,11 @@ HubbellDeepLink.registerStateReader(function() {
       String(d.getMonth() + 1).padStart(2, '0') + '-' +
       String(d.getDate()).padStart(2, '0');
   }
-  if (rangeStartDay > 0) {
-    var ds = dayToDate(rangeStartDay);
-    state.from = ds.getFullYear() + '-' +
-      String(ds.getMonth() + 1).padStart(2, '0') + '-' +
-      String(ds.getDate()).padStart(2, '0');
-  }
   if (lockedBrother) state.brother = lockedBrother;
   if (_mapCurrentLetterId) state.letter = _mapCurrentLetterId;
   return state;
 });
 HubbellDeepLink.registerStateApplier(function(p) {
-  if (p.from) {
-    var fromDate = new Date(p.from + 'T12:00:00');
-    if (!isNaN(fromDate.getTime())) {
-      rangeStartDay = Math.max(0, Math.min(Math.round((fromDate - START_DATE) / 86400000), TOTAL_DAYS));
-    }
-  }
   if (p.date) {
     var targetDate = new Date(p.date + 'T12:00:00');
     if (!isNaN(targetDate.getTime())) {
@@ -2721,12 +2959,14 @@ HubbellDeepLink.registerStateApplier(function(p) {
     if (match && match.lat && match.lon) {
       setTimeout(function() {
         map.flyTo([match.lat, match.lon], 10, { duration: 1.2 });
-        showPlacePin(p.place, match);
+        showPlaceInfoPanel(p.place, match);
       }, 400);
     }
   }
 });
 HubbellDeepLink.enableHistory();
 </script>
+<script src="_cinematic.js"></script>
+<script>if (window.CinematicPlayer) CinematicPlayer.init();</script>
 </body>
 </html>

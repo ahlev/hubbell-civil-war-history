@@ -184,33 +184,37 @@ function search(query, opts) {
       }
     }
 
-    // Thematic expansion matches (lower weight)
-    expandedTerms.forEach(function(syn) {
-      if (terms.indexOf(syn) !== -1) return;
-      var synMatches = (entry.textLower.match(new RegExp(syn.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length;
-      if (synMatches > 0) {
-        score += 1 + Math.min(synMatches, 3);
-        matchTypes.add('text');
-      }
-    });
+    // Thematic expansion matches (lower weight) — only boost already-matching letters
+    if (score > 0) {
+      expandedTerms.forEach(function(syn) {
+        if (terms.indexOf(syn) !== -1) return;
+        var synMatches = (entry.textLower.match(new RegExp(syn.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length;
+        if (synMatches > 0) {
+          score += 1 + Math.min(synMatches, 3);
+        }
+      });
+    }
 
     // Multi-term bonus
     if (matchedTerms.length > 1) score += matchedTerms.length * 3;
 
-    // Flag bonus — boost letters with dramatic content
-    if (entry.letter.bat) score += 3;
-    if (entry.letter.ill) score += 2;
-    if (entry.letter.dth) score += 4;
-    if (entry.letter.wnd) score += 3;
+    // Only apply ranking bonuses to letters that actually matched on content
+    if (score > 0) {
+      // Flag bonus — boost letters with dramatic content
+      if (entry.letter.bat) score += 3;
+      if (entry.letter.ill) score += 2;
+      if (entry.letter.dth) score += 4;
+      if (entry.letter.wnd) score += 3;
 
-    // --- Significance weight — major letters surface first ---
-    var sigMult = entry.letter.sig === 'major' ? 1.35 : (entry.letter.sig === 'notable' ? 1.1 : (entry.letter.sig === 'routine' ? 0.75 : 1.0));
-    score = score * sigMult;
+      // Significance weight — major letters surface first
+      var sigMult = entry.letter.sig === 'major' ? 1.35 : (entry.letter.sig === 'notable' ? 1.1 : (entry.letter.sig === 'routine' ? 0.75 : 1.0));
+      score = score * sigMult;
 
-    // --- NEW: Emotional intensity bonus ---
-    if (hasEmotionalTerm) {
-      var emoBonus = entry.letter.emo === 'high' ? 5 : (entry.letter.emo === 'moderate' ? 2 : 0);
-      score += emoBonus;
+      // Emotional intensity bonus
+      if (hasEmotionalTerm) {
+        var emoBonus = entry.letter.emo === 'high' ? 5 : (entry.letter.emo === 'moderate' ? 2 : 0);
+        score += emoBonus;
+      }
     }
 
     if (score > 0) {

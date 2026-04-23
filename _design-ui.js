@@ -238,9 +238,13 @@
       dd.innerHTML = html;
       dd.classList.add('open');
 
-      // Wire result clicks → navigate to search page with letter open
+      // Wire result hover tooltips + clicks
       dd.querySelectorAll('.search-result').forEach(function (el) {
+        el.addEventListener('mouseenter', function (e) { _showNavTooltip(e, this.dataset.lid); });
+        el.addEventListener('mousemove', function (e) { _moveNavTooltip(e); });
+        el.addEventListener('mouseleave', _hideNavTooltip);
         el.addEventListener('click', function () {
+          _hideNavTooltip();
           var lid = this.dataset.lid;
           dd.classList.remove('open');
           // Use shared reader if available, else fall back to page reader
@@ -256,6 +260,49 @@
         });
       });
     });
+  }
+
+  /* ── Nav search hover tooltip (suppressed on touch) ── */
+  var _navTip = null;
+  var _navIsTouch = false;
+  window.addEventListener('touchstart', function () { _navIsTouch = true; }, { once: true });
+  function _ensureNavTip() {
+    if (_navTip) return;
+    _navTip = document.createElement('div');
+    _navTip.style.cssText = 'position:fixed;z-index:100000;pointer-events:none;opacity:0;transition:opacity .15s;max-width:320px;padding:10px 12px;background:var(--bg-elev,#fff);border:1px solid var(--rule,#e0e0e0);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.12);font-family:var(--font-sans,Inter,system-ui,sans-serif)';
+    document.body.appendChild(_navTip);
+  }
+  function _showNavTooltip(e, lid) {
+    if (_navIsTouch) return;
+    if (typeof LETTERS === 'undefined') return;
+    var letter = LETTERS.find(function (l) { return l.id === lid; });
+    if (!letter || !letter.ss) return;
+    _ensureNavTip();
+    var color = (window.AUTHOR_COLORS || {})[letter.a] || '#999';
+    var name = (window.AUTHOR_NAMES || {})[letter.a] || letter.an || letter.a;
+    var summary = letter.ss.replace(/\*\*/g, '');
+    var sents = summary.match(/[^.!?]+[.!?]+/g);
+    if (sents && sents.length > 2) summary = sents.slice(0, 2).join('').trim();
+    if (summary.length > 200) summary = summary.slice(0, 197) + '...';
+    _navTip.innerHTML =
+      '<div style="font-size:0.74rem;font-weight:600;color:' + color + ';margin-bottom:2px">' + esc(name) + ' \u2192 ' + esc(letter.r) + '</div>' +
+      '<div style="font-size:0.68rem;color:var(--ink-2,#777);margin-bottom:6px">' + esc(letter.d) + ' \u00b7 ' + esc(letter.loc) + '</div>' +
+      '<div style="font-size:0.76rem;color:var(--ink,#333);line-height:1.45;font-style:italic">' + esc(summary) + '</div>';
+    _moveNavTooltip(e);
+    _navTip.style.opacity = '1';
+  }
+  function _moveNavTooltip(e) {
+    if (!_navTip) return;
+    var x = e.clientX + 16, y = e.clientY - 10;
+    var r = _navTip.getBoundingClientRect();
+    if (x + r.width > window.innerWidth - 12) x = e.clientX - r.width - 12;
+    if (y + r.height > window.innerHeight - 12) y = e.clientY - r.height - 8;
+    if (y < 8) y = 8;
+    _navTip.style.left = x + 'px';
+    _navTip.style.top = y + 'px';
+  }
+  function _hideNavTooltip() {
+    if (_navTip) _navTip.style.opacity = '0';
   }
 
   function _wireOneSearch(si, dd) {

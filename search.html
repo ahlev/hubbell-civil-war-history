@@ -65,6 +65,19 @@
 .load-more{display:block;width:100%;padding:12px;margin-top:16px;border:1px solid var(--rule);border-radius:4px;background:var(--bg-elev);font-family:var(--font-sans);font-size:0.85rem;color:var(--ink-2);cursor:pointer;text-align:center;transition:background 0.15s}
 .load-more:hover{background:var(--rule-2)}
 
+/* Hover tooltip */
+.search-tooltip{position:fixed;z-index:10001;pointer-events:none;opacity:0;transition:opacity 0.15s;max-width:340px;padding:12px 14px;background:var(--bg-elev,#fff);border:1px solid var(--rule,#e0e0e0);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.12)}
+.search-tooltip.visible{opacity:1}
+.search-tooltip .stt-author{font-size:0.74rem;font-weight:600;margin-bottom:2px}
+.search-tooltip .stt-date{font-size:0.68rem;color:var(--ink-2);margin-bottom:6px}
+.search-tooltip .stt-summary{font-size:0.78rem;color:var(--ink);line-height:1.5;font-style:italic}
+.search-tooltip .stt-tags{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.search-tooltip .stt-tag{font-family:var(--font-sans,Inter,system-ui,sans-serif);font-size:0.6rem;font-weight:600;padding:1px 6px;border-radius:999px;text-transform:uppercase;letter-spacing:0.02em}
+.search-tooltip .stt-battle{background:#FDE8E8;color:#9B2C2C}
+.search-tooltip .stt-illness{background:#FEFCBF;color:#975A16}
+.search-tooltip .stt-death{background:#EDF2F7;color:#4A5568}
+.search-tooltip .stt-wound{background:#FAF5FF;color:#6B46C1}
+
 /* Empty state */
 .search-empty{text-align:center;padding:60px 20px;color:var(--ink-3)}
 .search-empty h2{font-family:var(--font-display);font-size:1.2rem;margin-bottom:8px;color:var(--ink-2)}
@@ -234,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function renderDropdown(query) {
-  var ddResults = search(query, { maxResults: 40 });
+  var ddResults = search(query, { maxResults: 40 }).filter(function(r) { return r.score >= 8; });
   if (ddResults.length === 0) {
     searchDropdown.innerHTML = '<div class="search-empty">No results for &ldquo;' + esc(query) + '&rdquo;</div>';
     searchDropdown.classList.add('open');
@@ -297,9 +310,13 @@ function renderDropdown(query) {
   searchDropdown.innerHTML = html;
   searchDropdown.classList.add('open');
 
-  // Wire up result clicks → open reader
+  // Wire up result clicks + hover → open reader
   searchDropdown.querySelectorAll('.search-result').forEach(function(el) {
+    el.addEventListener('mouseenter', function(e) { showSearchTooltip(e, this.dataset.lid); });
+    el.addEventListener('mousemove', function(e) { moveSearchTooltip(e); });
+    el.addEventListener('mouseleave', hideSearchTooltip);
     el.addEventListener('click', function() {
+      hideSearchTooltip();
       var lid = this.dataset.lid;
       var letter = LETTERS.find(function(l) { return l.id === lid; });
       if (letter) openReader(letter, terms);
@@ -338,7 +355,7 @@ function renderDropdown(query) {
 function runSearch(query) {
   currentQuery = query;
   currentTerms = query.toLowerCase().split(/\s+/).filter(function(t) { return t.length > 1; });
-  allResults = search(query).filter(function(r) { return r.score >= 6; });
+  allResults = search(query).filter(function(r) { return r.score >= 8; });
   displayCount = 20;
 
   // Reset filters
@@ -456,15 +473,79 @@ function renderResults() {
   loadMoreBtn.style.display = limit < filteredResults.length ? 'block' : 'none';
   loadMoreBtn.textContent = 'Load more (' + (filteredResults.length - limit) + ' remaining)';
 
-  // Wire up clicks
+  // Wire up clicks + hover tooltips
   listEl.querySelectorAll('.result-card').forEach(function(el) {
     el.addEventListener('click', function() {
       var lid = this.dataset.lid;
       var letter = LETTERS.find(function(l) { return l.id === lid; });
       if (letter) openReader(letter, currentTerms);
     });
+    el.addEventListener('mouseenter', function(e) { showSearchTooltip(e, this.dataset.lid); });
+    el.addEventListener('mousemove', function(e) { moveSearchTooltip(e); });
+    el.addEventListener('mouseleave', hideSearchTooltip);
   });
 }
+
+/* ===== SEARCH HOVER TOOLTIP ===== */
+var searchTooltipEl = null;
+function ensureSearchTooltip() {
+  if (searchTooltipEl) return;
+  searchTooltipEl = document.createElement('div');
+  searchTooltipEl.className = 'search-tooltip';
+  document.body.appendChild(searchTooltipEl);
+}
+
+var _searchIsTouch = false;
+window.addEventListener('touchstart', function() { _searchIsTouch = true; }, { once: true });
+
+function showSearchTooltip(e, lid) {
+  if (_searchIsTouch) return;
+  var letter = LETTERS.find(function(l) { return l.id === lid; });
+  if (!letter || !letter.ss) return;
+  ensureSearchTooltip();
+
+  var color = AUTHOR_COLORS[letter.a] || '#999';
+  var name = AUTHOR_NAMES[letter.a] || letter.an || letter.a;
+
+  // Truncate summary to ~2 sentences
+  var summary = letter.ss.replace(/\*\*/g, '');
+  var sentences = summary.match(/[^.!?]+[.!?]+/g);
+  if (sentences && sentences.length > 2) summary = sentences.slice(0, 2).join('').trim();
+  if (summary.length > 200) summary = summary.slice(0, 197) + '...';
+
+  var tags = '';
+  if (letter.bat) tags += '<span class="stt-tag stt-battle">Battle</span>';
+  if (letter.ill) tags += '<span class="stt-tag stt-illness">Illness</span>';
+  if (letter.dth) tags += '<span class="stt-tag stt-death">Death</span>';
+  if (letter.wnd) tags += '<span class="stt-tag stt-wound">Wound</span>';
+
+  searchTooltipEl.innerHTML =
+    '<div class="stt-author" style="color:' + color + '">' + esc(name) + ' \u2192 ' + esc(letter.r) + '</div>' +
+    '<div class="stt-date">' + esc(letter.d) + ' \u00b7 ' + esc(letter.loc) + '</div>' +
+    '<div class="stt-summary">' + esc(summary) + '</div>' +
+    (tags ? '<div class="stt-tags">' + tags + '</div>' : '');
+
+  moveSearchTooltip(e);
+  searchTooltipEl.classList.add('visible');
+}
+
+function moveSearchTooltip(e) {
+  if (!searchTooltipEl) return;
+  var x = e.clientX + 16;
+  var y = e.clientY - 10;
+  // Keep within viewport
+  var rect = searchTooltipEl.getBoundingClientRect();
+  if (x + rect.width > window.innerWidth - 12) x = e.clientX - rect.width - 12;
+  if (y + rect.height > window.innerHeight - 12) y = e.clientY - rect.height - 8;
+  if (y < 8) y = 8;
+  searchTooltipEl.style.left = x + 'px';
+  searchTooltipEl.style.top = y + 'px';
+}
+
+function hideSearchTooltip() {
+  if (searchTooltipEl) searchTooltipEl.classList.remove('visible');
+}
+document.addEventListener('touchstart', hideSearchTooltip);
 
 /* ===== LOAD MORE ===== */
 document.getElementById('loadMore').addEventListener('click', function() {

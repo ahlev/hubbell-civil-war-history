@@ -19,6 +19,12 @@ window.HubbellReader = (function () {
     mother: 'Frances Hubbell (Mother)'
   };
 
+  var BIO_PAGES = {
+    henry: 'brother-henry.html', alexander: 'brother-alexander.html',
+    james: 'brother-james.html', charles: 'brother-charles.html',
+    mother: 'mother-frances.html'
+  };
+
   function getColor(author) {
     if (window.AUTHOR_COLORS) return window.AUTHOR_COLORS[author] || '#666';
     return COLORS[author] || '#666';
@@ -26,6 +32,15 @@ window.HubbellReader = (function () {
   function getName(author, fallback) {
     if (window.AUTHOR_NAMES) return window.AUTHOR_NAMES[author] || fallback || author;
     return NAMES[author] || fallback || author;
+  }
+  function resolveAuthorKey(nameStr) {
+    if (!nameStr) return null;
+    var lower = nameStr.toLowerCase();
+    for (var key in NAMES) {
+      if (lower.indexOf(key) !== -1) return key;
+    }
+    if (lower.indexOf('frances') !== -1 || lower.indexOf('mother') !== -1) return 'mother';
+    return null;
   }
 
   function esc(s) {
@@ -43,8 +58,13 @@ window.HubbellReader = (function () {
   }
 
   function formatBody(text) {
-    // Collapse single newlines to spaces, preserve double newlines as paragraph breaks
-    return text.replace(/([^\n])\n([^\n])/g, '$1 $2');
+    // Collapse single newlines to spaces, split on double newlines into paragraphs
+    var collapsed = text.replace(/([^\n])\n([^\n])/g, '$1 $2');
+    var paragraphs = collapsed.split(/\n\n+/);
+    return paragraphs.map(function(p) {
+      var trimmed = p.trim();
+      return trimmed ? '<p class="reader-para">' + trimmed + '</p>' : '';
+    }).filter(Boolean).join('');
   }
 
   function stripLetterHeader(text) {
@@ -253,16 +273,32 @@ window.HubbellReader = (function () {
     }
     bodyText = highlightTerms(bodyText, highlightTermsList);
 
+    // Build sender pill
+    var senderPage = BIO_PAGES[letter.a] || '';
+    var senderPill = senderPage
+      ? '<a href="' + senderPage + '" class="reader-pill" style="background:' + color + '" onclick="event.stopPropagation()">' + esc(name) + '</a>'
+      : '<span class="reader-pill" style="background:' + color + '">' + esc(name) + '</span>';
+
+    // Build recipient pill
+    var recipientName = letter.r || 'Unknown';
+    var recipientKey = resolveAuthorKey(recipientName);
+    var recipientColor = recipientKey ? getColor(recipientKey) : '#666';
+    var recipientPage = recipientKey ? BIO_PAGES[recipientKey] : '';
+    var recipientPill = recipientPage
+      ? '<a href="' + recipientPage + '" class="reader-pill" style="background:' + recipientColor + '" onclick="event.stopPropagation()">' + esc(recipientName) + '</a>'
+      : '<span class="reader-pill" style="background:' + recipientColor + '">' + esc(recipientName) + '</span>';
+
     contentEl.innerHTML =
       '<div class="reader-header" style="border-bottom-color:' + color + '">' +
-        '<h3 style="color:' + color + '">' + esc(name) +
-          ' <span style="color:var(--ink-3,#999);font-weight:400">\u2192</span> ' +
-          esc(letter.r || 'Unknown') + '</h3>' +
+        '<div class="reader-correspondence">' +
+          '<span class="reader-pill-label">From</span>' + senderPill +
+          '<span class="reader-pill-label" style="min-width:auto">To</span>' + recipientPill +
+        '</div>' +
         '<div class="reader-meta">' +
           '<span class="rm-date">' + d + '</span>' +
           ' <span class="rm-loc">from ' + esc(letter.loc || 'Unknown location') + '</span>' +
-          '<br>' + mapLink +
-          ' <span class="rm-id">' + esc(letter.id) + '</span></div>' +
+          mapLink +
+          '<span class="rm-id">' + esc(letter.id) + '</span></div>' +
       '</div>' +
       (flags ? '<div class="reader-flags">' + flags + '</div>' : '') +
       healthHtml +
@@ -283,13 +319,16 @@ window.HubbellReader = (function () {
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
 
-    // Scroll to first highlight
-    if (highlightTermsList.length > 0) {
-      setTimeout(function () {
-        var mark = contentEl.querySelector('.reader-body mark');
-        if (mark) mark.scrollIntoView({ block: 'center', behavior: 'smooth' });
-      }, 100);
-    }
+    // Scroll: to first highlight if present, otherwise to the top of the letter
+    setTimeout(function () {
+      var mark = highlightTermsList.length > 0 ? contentEl.querySelector('.reader-body mark') : null;
+      if (mark) {
+        mark.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      } else {
+        var panelEl = overlay.querySelector('.reader-panel');
+        if (panelEl) panelEl.scrollTop = 0;
+      }
+    }, 100);
   }
 
   function close() {
