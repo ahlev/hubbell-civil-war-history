@@ -3130,6 +3130,26 @@
       "hasWound": false
     },
     {
+      "id": "mov-106a",
+      "brother": "charles",
+      "date": "1862-09-01",
+      "endDate": "1862-09-08",
+      "lat": 44.6995,
+      "lon": -73.4529,
+      "placeName": "Plattsburgh, NY",
+      "source": "unit_history",
+      "letterId": null,
+      "letterExcerpt": null,
+      "citation": "Service records; muster roll, 153rd NY Infantry",
+      "status": "in_camp",
+      "notes": "Charles musters into 153rd New York Volunteer Infantry at Plattsburgh Barracks.",
+      "significance": "major",
+      "hasBattle": false,
+      "hasIllness": false,
+      "hasDeath": false,
+      "hasWound": false
+    },
+    {
       "id": "mov-282",
       "brother": "henry",
       "date": "1862-09-04",

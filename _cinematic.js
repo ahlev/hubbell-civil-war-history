@@ -31,14 +31,14 @@ window.CinematicPlayer = (function () {
     },
     {
       id: 'james-west-point',
-      day: 16,
+      day: 18,
       title: 'James Enters West Point',
       body: 'Two weeks after Henry musters in as a private, his younger brother James reports to the United States Military Academy at West Point. James will spend a year training as an officer while Henry marches south. Two brothers in the war, two very different paths — one through the barracks, one through the academy.',
       quote: null,
       quoteCite: null,
       letterId: 'LTR-1861-08-06-001',
       brothers: ['james'],
-      fly: { lat: 41.39, lon: -73.95, zoom: 10 },
+      fly: { lat: 41.39, lon: -73.95, zoom: 9 },
       pause: 7000,
       category: 'enlist'
     },
@@ -123,14 +123,14 @@ window.CinematicPlayer = (function () {
     },
     {
       id: 'charles-enlists',
-      day: 444,
+      day: 446,
       title: 'Charles Enlists',
       body: 'September 1862. A third Hubbell brother joins the war. Charles musters into the 153rd New York at Plattsburgh Barracks. He is near-sighted — the army doctor nearly rejects him — but an advocate convinces the examiner, and Charles passes. Within a week he is promoted to 1st Corporal. His first letter home is vivid and blunt: the barracks, the hard cases, the swearing.',
       quote: 'Nearly every man swears. There are a good many hard cases.',
       quoteCite: 'Charles to his mother, September 9, 1862',
       letterId: 'LTR-1862-09-09-001',
       brothers: ['charles'],
-      fly: { lat: 44.70, lon: -73.45, zoom: 8 },
+      fly: { lat: 44.70, lon: -73.45, zoom: 9 },
       pause: 8000,
       category: 'enlist'
     },
