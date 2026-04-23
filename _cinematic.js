@@ -309,12 +309,12 @@ window.CinematicPlayer = (function () {
       id: 'three-brothers-hospital',
       day: 1172,
       title: 'Three Brothers in Hospital',
-      body: 'August 1864. Alexander, Charles, and James are all wounded or ill simultaneously — three Hubbell brothers in hospital at the same time, scattered across different states. Alexander writes home to their mother with dark humor, refusing to let the absurdity of it break him. Even laughter is an act of survival now.',
+      body: 'August 1864. Alexander, Charles, and James are all wounded or ill simultaneously — three Hubbell brothers in hospital at the same time, scattered across different states. Alexander is outside Atlanta, Charles at Harpers Ferry, James in Baltimore. Alexander writes home to their mother with dark humor, refusing to let the absurdity of it break him.',
       quote: 'Please excuse me, Mother, but I did have a hearty laugh\u2026',
       quoteCite: 'Alexander to his mother, August 30, 1864',
       letterId: 'LTR-1864-08-30-001',
       brothers: ['alexander', 'charles', 'james'],
-      fly: { lat: 34.0, lon: -84.5, zoom: 7 },
+      fly: { lat: 37.0, lon: -80.0, zoom: 5 },
       pause: 10000,
       category: 'turning_point'
     },
@@ -349,12 +349,12 @@ window.CinematicPlayer = (function () {
       id: 'lee-surrenders',
       day: 1394,
       title: 'Lee Surrenders',
-      body: 'April 9, 1865. Appomattox Court House, Virginia. Robert E. Lee surrenders the Army of Northern Virginia to Ulysses S. Grant. After four years of war — 620,000 dead, a nation torn apart and stitched back together with blood — the guns fall silent. Alexander is still in the field when the news arrives.',
+      body: 'April 9, 1865. Appomattox Court House, Virginia. Robert E. Lee surrenders the Army of Northern Virginia to Ulysses S. Grant. After four years of war — 620,000 dead, a nation torn apart and stitched back together with blood — the guns fall silent. Alexander is still in the field at Chattanooga when the news arrives.',
       quote: 'After four years of unparalleled struggling we stand a free and united nation.',
       quoteCite: 'Alexander, April 1865',
       letterId: null,
       brothers: ['alexander'],
-      fly: { lat: 37.38, lon: -78.80, zoom: 9 },
+      fly: { lat: 37.38, lon: -78.80, zoom: 7 },
       pause: 12000,
       category: 'turning_point'
     },
@@ -367,7 +367,7 @@ window.CinematicPlayer = (function () {
       quoteCite: null,
       letterId: 'LTR-1865-06-12-001',
       brothers: ['alexander'],
-      fly: { lat: 38.89, lon: -77.01, zoom: 11 },
+      fly: { lat: 38.89, lon: -77.01, zoom: 10 },
       pause: 10000,
       category: 'homecoming'
     },
@@ -375,12 +375,12 @@ window.CinematicPlayer = (function () {
       id: 'james-dies',
       day: 1487,
       title: 'James Dies En Route Home',
-      body: 'October 19, 1865. Exactly one year to the day after the dawn attack at Cedar Creek that shattered his company and wounded him. James Hubbell dies on the journey home. The war is over, but it claims one final brother. No letter survives from his last days. Of four Hubbell brothers who served, two do not return. The silence in the archive is the loudest thing in it.',
+      body: 'October 19, 1865. Exactly one year to the day after the dawn attack at Cedar Creek that shattered his company and wounded him. James Hubbell dies on the journey home from Savannah. The war is over, but it claims one final brother. No letter survives from his last days. Of four Hubbell brothers who served, two do not return. The silence in the archive is the loudest thing in it.',
       quote: null,
       quoteCite: null,
       letterId: null,
       brothers: ['james'],
-      fly: { lat: 43.0, lon: -75.5, zoom: 7 },
+      fly: { lat: 36.0, lon: -79.0, zoom: 6 },
       pause: 15000,
       category: 'death'
     }
@@ -827,16 +827,19 @@ window.CinematicPlayer = (function () {
         }
       }
 
+      // Cancel any in-progress tick animation before waypoint fly
+      map.stop();
+
       if (points.length === 1) {
         // Only the waypoint coords — simple flyTo
-        map.flyTo(points[0], wp.fly.zoom || 9, { duration: 1.2 });
+        map.flyTo(points[0], wp.fly.zoom || 9, { duration: 2.0, easeLinearity: 0.25 });
       } else {
         // Fit bounds to include waypoint + all relevant brothers
         var bounds = L.latLngBounds(points).pad(0.15);
         var minZoom = wp.fly.zoom || 9;
-        map.flyToBounds(bounds, { duration: 1.2, maxZoom: minZoom, padding: [40, 40] });
+        map.flyToBounds(bounds, { duration: 2.0, easeLinearity: 0.25, maxZoom: minZoom, padding: [40, 40] });
       }
-      setTimeout(function () { _flyingToWaypoint = false; }, 1400);
+      setTimeout(function () { _flyingToWaypoint = false; }, 2200);
     } else {
       _flyingToWaypoint = false;
     }
