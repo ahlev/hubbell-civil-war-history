@@ -740,6 +740,25 @@
             border: 1px solid var(--border-light);
             color: var(--text-secondary);
         }
+        .reader-tag.place {
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .reader-tag.place:hover {
+            background: rgba(218, 165, 32, 0.15);
+            border-color: rgba(218, 165, 32, 0.4);
+            color: var(--text);
+        }
+        .lo-tag-wrap {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0;
+        }
+        .lo-tag-modern {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-left: 4px;
+        }
         .letter-overlay-panel .lo-date {
             font-family: var(--font-display);
             font-size: 18px;
@@ -1806,6 +1825,7 @@
         tooltip.classList.add('visible');
     }
     function hideTooltip() { tooltip.classList.remove('visible'); }
+    window.hideTooltip = hideTooltip;
     document.addEventListener('touchstart', function() { tooltip.classList.remove('visible'); });
 
     // ===== DETAIL PANEL =====
@@ -1988,6 +2008,7 @@
         const l = LETTERS[idx];
         const color = COLORS[l.author];
         closeLetterOverlay();
+        hideTooltip();
 
         // Format and highlight person in transcription
         let highlightedText = formatTranscription(l.transcription || 'Transcription not available.');
@@ -2031,7 +2052,7 @@
         // Places mentioned
         let placeTags = '';
         if (l.places && l.places.length > 0) {
-            placeTags = `<div class="lo-section-label">Places Mentioned</div><div class="lo-tags">${l.places.map(p => `<span class="lo-tag">${escapeHtml(p.written)}${p.modern && p.modern !== p.written ? ' — ' + escapeHtml(p.modern) : ''}</span>`).join('')}</div>`;
+            placeTags = `<div class="lo-section-label">Places Mentioned</div><div class="lo-tags">${l.places.map(p => `<span class="lo-tag-wrap"><span class="lo-tag reader-tag place">${escapeHtml(p.written)}</span>${p.modern && p.modern !== p.written ? '<span class="lo-tag-modern"> — ' + escapeHtml(p.modern) + '</span>' : ''}</span>`).join('')}</div>`;
         }
 
         const backdrop = document.createElement('div');
@@ -2132,7 +2153,7 @@
         if (l.places && l.places.length > 0) {
             placesMetaHtml = '<div class="detail-meta-group"><div class="detail-meta-label">Places</div><ul class="detail-meta-list">';
             l.places.forEach(p => {
-                placesMetaHtml += `<li><span class="reader-tag place">${escapeHtml(p.written)}</span><span class="place-modern">${escapeHtml(p.modern)}</span></li>`;
+                placesMetaHtml += `<li><span class="reader-tag place" title="View place info">${escapeHtml(p.written)}</span><span class="place-modern">${escapeHtml(p.modern)}</span></li>`;
             });
             placesMetaHtml += '</ul></div>';
         }
