@@ -85,6 +85,7 @@
   /* ── Open / Close ── */
   function openPanel(html) {
     ensureDOM();
+    hideDotTooltip();
     panel.innerHTML = html;
     // Force reflow before adding visible class for transition
     void panel.offsetWidth;
@@ -104,6 +105,7 @@
 
   function closeOverlay() {
     if (!panel) return;
+    hideDotTooltip();
     backdrop.classList.remove('visible');
     panel.classList.remove('visible');
     document.body.style.overflow = '';

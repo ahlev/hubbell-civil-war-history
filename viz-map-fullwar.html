@@ -2808,6 +2808,8 @@ function toggleLock(brotherId) {
 // LETTER OVERLAY
 // ============================================================
 function openLetterOverlay(letterId, brotherId, highlight) {
+  // Close any sticky Leaflet tooltips on map markers
+  newLetterMarkers.forEach(function(m) { if (m.isTooltipOpen()) m.closeTooltip(); });
   _mapCurrentLetterId = letterId;
   _mapSyncUrl();
   var opts = {
