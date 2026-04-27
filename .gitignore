@@ -15,3 +15,5 @@ tasks/
 # Tool artifacts
 .claude/
 .playwright-mcp/
+
+.vercel

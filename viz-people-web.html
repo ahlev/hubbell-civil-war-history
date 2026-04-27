@@ -480,6 +480,75 @@ body {
 }
 .link-summary strong { color: var(--ink); }
 
+/* Portrait cards for linked pair view */
+.link-portrait {
+  background: #fff;
+  border: 1px solid var(--rule-2);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.link-portrait:hover {
+  background: rgba(45,95,138,0.03);
+  border-color: #2D5F8A;
+}
+.link-portrait-name {
+  font-family: var(--font-display, Inter, sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: #2D5F8A;
+}
+.link-portrait-rel {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--ink-2);
+  margin-top: 2px;
+}
+.link-portrait-roles {
+  font-size: 11px;
+  color: var(--ink-2);
+  margin-top: 2px;
+}
+.link-portrait-summary {
+  font-size: 12px;
+  font-family: var(--font-serif, Georgia, serif);
+  line-height: 1.55;
+  color: #4A4A4A;
+  margin-top: 6px;
+}
+
+/* Relationship context band */
+.link-context {
+  border-left: 3px solid #2D5F8A;
+  background: rgba(45,95,138,0.04);
+  border-radius: 0 6px 6px 0;
+  padding: 10px 12px;
+  margin: 8px 0 12px;
+}
+.link-context-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.link-context-row:last-child { margin-bottom: 0; }
+.link-context-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ink-2);
+  min-width: 48px;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+.link-context-value {
+  font-size: 12px;
+  color: var(--ink);
+}
+.link-context-value strong { font-weight: 600; }
+
 /* Excerpt cards */
 .excerpt-card {
   padding: 12px 10px;
@@ -2926,43 +2995,103 @@ function highlightName(text, personName, preEscaped) {
   return result;
 }
 
-function buildRelationshipSummary(nodeA, nodeB, sharedLetters) {
-  const parts = [];
+function lookupProfile(node) {
+  if (!window.OVERLAY_PEOPLE_LOOKUP || !window.OVERLAY_PEOPLE_PROFILES) return null;
+  // Try direct lowercase name
+  let idx = OVERLAY_PEOPLE_LOOKUP[node.id.toLowerCase()];
+  // For brothers, try "henry hubbell" and "per-henry-hubbell" keys
+  if (idx === undefined && node.isBrother && node.brotherKey) {
+    const fullName = BROTHER_NAMES[node.brotherKey] + ' Hubbell';
+    idx = OVERLAY_PEOPLE_LOOKUP[fullName.toLowerCase()] ||
+          OVERLAY_PEOPLE_LOOKUP['per-' + node.brotherKey + '-hubbell'];
+  }
+  // Try slug-form fallback for non-brothers
+  if (idx === undefined) {
+    const slug = node.id.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    idx = OVERLAY_PEOPLE_LOOKUP['per-' + slug];
+  }
+  return idx !== undefined ? OVERLAY_PEOPLE_PROFILES[idx] : null;
+}
 
-  // Categories
-  const catA = nodeA.isBrother ? 'Brother' : (nodeA.category || 'Unknown');
-  const catB = nodeB.isBrother ? 'Brother' : (nodeB.category || 'Unknown');
-  parts.push(`<strong>${nodeA.id}</strong> (${catA}) and <strong>${nodeB.id}</strong> (${catB})`);
-
-  // Shared roles — deduplicated from shared letters
-  const rolesA = new Set(), rolesB = new Set();
-  for (const l of sharedLetters) {
-    if (!l.people) continue;
-    for (const p of l.people) {
-      const cn = getCanonName(p.name);
-      if (cn === nodeA.id && p.role) rolesA.add(p.role);
-      if (cn === nodeB.id && p.role) rolesB.add(p.role);
+function buildPortraitCard(node, profile, tag) {
+  const catLabel = node.isBrother ? 'Brother' : (node.category || 'Unknown');
+  const catColor = node.isBrother ? BROTHER_COLORS[node.brotherKey] || '#2D5F8A'
+                                  : CAT_COLORS[node.category] || CAT_COLORS.UNKNOWN;
+  let html = `<div class="link-portrait" data-portrait="${tag}">`;
+  html += `<span class="link-portrait-name">${escapeHtml(node.id)}</span>`;
+  html += ` <span class="detail-category-badge" style="background:${hexToRgba(catColor, 0.15)};color:${catColor}">${catLabel}</span>`;
+  if (profile && profile.rel) {
+    html += `<div class="link-portrait-rel">${escapeHtml(profile.rel)}</div>`;
+  } else {
+    const uniqueRoles = node.roles ? [...new Set(node.roles)].filter(r => r && r !== 'undefined' && r.length < 50).slice(0, 3) : [];
+    if (uniqueRoles.length > 0) {
+      html += `<div class="link-portrait-roles">${escapeHtml(uniqueRoles.join(', '))}</div>`;
     }
   }
-  if (rolesA.size > 0 || rolesB.size > 0) {
-    const roleStr = [];
-    if (rolesA.size > 0) roleStr.push(`${nodeA.id}: ${[...rolesA].slice(0, 2).join(', ')}`);
-    if (rolesB.size > 0) roleStr.push(`${nodeB.id}: ${[...rolesB].slice(0, 2).join(', ')}`);
-    parts.push(roleStr.join(' · '));
+  if (profile && profile.s) {
+    html += `<div class="link-portrait-summary">${profile.s.replace(/</g, '&lt;')}</div>`;
   }
+  html += '</div>';
+  return html;
+}
+
+function buildRelationshipContext(nodeA, nodeB, sharedLetters) {
+  let html = '<div class="link-context">';
+
+  // Letter count
+  const count = sharedLetters.length;
+  html += `<div class="link-context-row">
+    <span class="link-context-label">Letters</span>
+    <span class="link-context-value"><strong>${count}</strong> shared letter${count !== 1 ? 's' : ''}</span>
+  </div>`;
 
   // Date range
-  if (sharedLetters.length > 0) {
-    const first = sharedLetters[0].date, last = sharedLetters[sharedLetters.length - 1].date;
-    parts.push(`Mentioned together in ${sharedLetters.length} letter${sharedLetters.length !== 1 ? 's' : ''}, ${formatDate(first)} – ${formatDate(last)}`);
+  if (count > 0) {
+    const first = sharedLetters[0].date, last = sharedLetters[count - 1].date;
+    html += `<div class="link-context-row">
+      <span class="link-context-label">Dates</span>
+      <span class="link-context-value">${formatDate(first)} – ${formatDate(last)}</span>
+    </div>`;
   }
 
-  // Which brothers connect them
-  const brotherSet = new Set();
-  for (const l of sharedLetters) brotherSet.add(l.authorName || l.author);
-  if (brotherSet.size > 0) parts.push('Via: ' + [...brotherSet].join(', '));
+  // Brother chips with counts
+  const brotherCounts = {};
+  for (const l of sharedLetters) {
+    const key = l.author;
+    if (BROTHER_NAMES[key]) brotherCounts[key] = (brotherCounts[key] || 0) + 1;
+  }
+  const brotherEntries = Object.entries(brotherCounts).sort((a, b) => b[1] - a[1]);
+  if (brotherEntries.length > 0) {
+    let chips = '';
+    for (const [key, c] of brotherEntries) {
+      const color = BROTHER_COLORS[key] || '#9B9B9B';
+      chips += `<span class="detail-brother-chip" style="background:${hexToRgba(color, 0.12)};color:${color}">${BROTHER_NAMES[key]}: ${c}</span> `;
+    }
+    html += `<div class="link-context-row">
+      <span class="link-context-label">Via</span>
+      <span class="link-context-value" style="display:flex;flex-wrap:wrap;gap:4px">${chips}</span>
+    </div>`;
+  }
 
-  return parts.join('<br>');
+  // Connection type
+  let hasCorrespondence = false, hasCoMention = false;
+  for (const l of sharedLetters) {
+    const authorCanon = nodeA.isBrother && l.author === nodeA.brotherKey ? nodeA.id :
+                        nodeB.isBrother && l.author === nodeB.brotherKey ? nodeB.id : null;
+    const recipCanon = getCanonName(l.recipient);
+    const isCorr = (authorCanon === nodeA.id && recipCanon === nodeB.id) ||
+                   (authorCanon === nodeB.id && recipCanon === nodeA.id);
+    if (isCorr) hasCorrespondence = true; else hasCoMention = true;
+  }
+  const typeLabel = hasCorrespondence && hasCoMention ? 'Correspondent & Co-mentioned'
+                  : hasCorrespondence ? 'Correspondent' : 'Co-mentioned';
+  html += `<div class="link-context-row">
+    <span class="link-context-label">Type</span>
+    <span class="link-context-value">${typeLabel}</span>
+  </div>`;
+
+  html += '</div>';
+  return html;
 }
 
 async function showLinkedPairDetail(idxA, idxB) {
@@ -2994,6 +3123,8 @@ async function showLinkedPairDetail(idxA, idxB) {
   });
 
   document.getElementById('detail-role').textContent = '';
+  const _prevSummaryLink = panel.querySelector('.pw-person-summary');
+  if (_prevSummaryLink) _prevSummaryLink.remove();
 
   // Find shared letters (where both appear)
   const sharedLetters = [];
@@ -3014,8 +3145,14 @@ async function showLinkedPairDetail(idxA, idxB) {
   });
   sharedLetters.sort((a, b) => a.date.localeCompare(b.date));
 
-  // Relationship summary
-  let html = `<div class="link-summary">${buildRelationshipSummary(nodeA, nodeB, sharedLetters)}</div>`;
+  // Portrait cards
+  const profA = lookupProfile(nodeA);
+  const profB = lookupProfile(nodeB);
+  let html = buildPortraitCard(nodeA, profA, 'a');
+  html += buildPortraitCard(nodeB, profB, 'b');
+
+  // Relationship context band
+  html += buildRelationshipContext(nodeA, nodeB, sharedLetters);
 
   // Mini timeline of shared letters
   if (sharedLetters.length > 0) {
@@ -3084,6 +3221,22 @@ async function showLinkedPairDetail(idxA, idxB) {
   const linkHighlight = !nodeA.isBrother ? nameA : (!nodeB.isBrother ? nameB : nameA);
   panel.querySelectorAll('.excerpt-card[data-letter-id]').forEach(el => {
     el.addEventListener('click', () => openLetterOverlay(el.dataset.letterId, linkHighlight));
+  });
+
+  // Wire portrait card clicks to navigate to individual views
+  const portraitA = panel.querySelector('[data-portrait="a"]');
+  const portraitB = panel.querySelector('[data-portrait="b"]');
+  if (portraitA) portraitA.addEventListener('click', () => {
+    linkedPair = null; linkPulsePhase = 0;
+    selectedNode = idxA;
+    if (nodeA.isBrother) showBrotherDetail(nodeA); else showPersonDetail(nodeA);
+    updateLinkButton();
+  });
+  if (portraitB) portraitB.addEventListener('click', () => {
+    linkedPair = null; linkPulsePhase = 0;
+    selectedNode = idxB;
+    if (nodeB.isBrother) showBrotherDetail(nodeB); else showPersonDetail(nodeB);
+    updateLinkButton();
   });
 }
 
@@ -3464,6 +3617,7 @@ function _pwSyncUrl() {
 <script src="_design-data.js"></script>
 <script src="_design-ui.js"></script>
 <script src="_search-data.js"></script>
+<script src="_letter-nav.js"></script>
 <script src="_reader.js"></script>
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=1775363534"></script>

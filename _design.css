@@ -930,20 +930,26 @@ svg.chart { display: block; }
   background: var(--bg-elev);
   border-radius: 12px;
   max-width: 875px; width: 100%;
-  max-height: 88vh; overflow-y: auto;
-  padding: 28px 36px;
+  height: 88vh;
+  padding: 0;
   position: relative;
   box-shadow: 0 20px 60px -20px rgba(0,0,0,.3);
+  display: flex; flex-direction: column;
+}
+#hubbellReaderContent {
+  flex: 1; overflow-y: auto;
+  padding: 0 36px 28px;
 }
 .reader-close {
   position: absolute; top: 12px; right: 14px;
   border: none; background: none;
   font-size: 1.5rem; cursor: pointer;
   color: var(--ink-3); line-height: 1;
+  z-index: 2;
 }
 .reader-close:hover { color: var(--ink); }
 /* ─── Reader header: FROM / TO pills ─── */
-.reader-header { position: relative; }
+.reader-header { position: relative; min-height: 70px; }
 .reader-header h3 { display: none; }
 .reader-correspondence {
   display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
@@ -1102,6 +1108,87 @@ a.reader-tag:hover { filter: brightness(0.88); }
   border: 1px solid var(--rule) !important; box-shadow: var(--shadow-lg) !important;
   font-family: var(--font-sans) !important; font-size: 13px !important;
   border-radius: 6px !important;
+}
+
+/* ───── Letter nav bar (shared reader + overlay) ───── */
+.reader-nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 44px 36px 12px;
+  border-bottom: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+.reader-nav-arrow {
+  width: 40px; height: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 2px solid #2C2A26;
+  border-radius: 10px;
+  background: #2C2A26;
+  color: #FDFCFA;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
+  flex-shrink: 0;
+  font-family: var(--font-sans);
+  line-height: 1;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.reader-nav-arrow:hover:not(:disabled) {
+  background: #4A4640;
+  border-color: #4A4640;
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+}
+.reader-nav-arrow:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+.reader-nav-arrow:disabled {
+  opacity: 0.15;
+  cursor: default;
+  box-shadow: none;
+}
+.reader-nav-mode {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  gap: 0;
+  background: var(--bg-sunken);
+  border-radius: 8px;
+  padding: 3px;
+  border: 1px solid var(--rule);
+}
+.reader-nav-mode-btn {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 14px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+.reader-nav-mode-btn.active {
+  background: var(--bg-elev);
+  color: var(--ink);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.reader-nav-mode-btn:hover:not(.active) {
+  color: var(--ink-2);
+}
+.nav-author-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 /* Hero link hover */

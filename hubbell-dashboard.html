@@ -318,6 +318,7 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 8px;
+            min-height: 56px;
         }
 
         .detail-header-text {}
@@ -420,47 +421,44 @@
             box-shadow: none;
         }
 
-        /* Nav mode toggle — compact, below arrows */
+        /* Nav mode segmented control */
         .nav-mode-wrap {
             display: flex;
             align-items: center;
-            gap: 5px;
-            font-size: 9px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-        }
-        .nav-mode-toggle {
-            position: relative;
-            width: 36px;
-            height: 18px;
+            gap: 0;
             background: var(--bg);
-            border: 1.5px solid var(--border);
-            border-radius: 9px;
+            border-radius: 8px;
+            padding: 2px;
+            border: 1px solid var(--border);
+        }
+        .nav-mode-btn {
+            font-family: Inter, system-ui, sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 5px 12px;
+            border: none;
+            border-radius: 6px;
+            background: transparent;
+            color: var(--text-muted);
             cursor: pointer;
-            transition: background 0.2s, border-color 0.2s;
+            transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
         }
-        .nav-mode-toggle.date-mode {
-            background: var(--accent-blue);
-            border-color: var(--accent-blue);
-        }
-        .nav-mode-toggle .toggle-knob {
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 12px;
-            height: 12px;
+        .nav-mode-btn.active {
             background: #fff;
-            border-radius: 50%;
-            transition: left 0.2s;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-        }
-        .nav-mode-toggle.date-mode .toggle-knob {
-            left: 20px;
-        }
-        .nav-mode-label.active {
             color: var(--text);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .nav-mode-btn:hover:not(.active) {
+            color: var(--text-secondary);
+        }
+        .nav-mode-btn .nav-author-dot {
+            display: inline-block;
+            width: 8px; height: 8px;
+            border-radius: 50%;
         }
 
         .detail-badges {
@@ -497,6 +495,7 @@
             gap: 8px;
             flex-wrap: wrap;
             margin-bottom: 10px;
+            min-height: 28px;
         }
         .detail-loc-badges-row .detail-location {
             margin: 0;
@@ -2202,11 +2201,11 @@
                             ${window.HubbellDeepLink ? HubbellDeepLink.letterShareBtn(l.id) : ''}
                         </div>
                         <div class="nav-mode-wrap">
-                            <span class="nav-mode-label ${navMode === 'author' ? 'active' : ''}">Author</span>
-                            <div class="nav-mode-toggle ${navMode === 'date' ? 'date-mode' : ''}" onclick="toggleNavMode()" title="Toggle: navigate by same author or by date">
-                                <div class="toggle-knob"></div>
-                            </div>
-                            <span class="nav-mode-label ${navMode === 'date' ? 'active' : ''}">Date</span>
+                            <button class="nav-mode-btn ${navMode === 'author' ? 'active' : ''}" onclick="setNavMode('author')">
+                                <span class="nav-author-dot" style="background:${color}"></span>
+                                ${NAMES[l.author]}'s Letters
+                            </button>
+                            <button class="nav-mode-btn ${navMode === 'date' ? 'active' : ''}" onclick="setNavMode('date')">All Letters</button>
                         </div>
                     </div>
                 </div>
@@ -2253,11 +2252,12 @@
 
     let navMode = 'author'; // 'author' = same author, 'date' = all letters by date
 
-    function toggleNavMode() {
-        navMode = navMode === 'author' ? 'date' : 'author';
+    function setNavMode(m) {
+        navMode = m;
         // Re-render the current detail to update toggle state and nav targets
         if (activeLetterIdx !== null) openDetail(activeLetterIdx);
     }
+    function toggleNavMode() { setNavMode(navMode === 'author' ? 'date' : 'author'); }
 
     function findAdjacentLetter(idx, dir) {
         const l = LETTERS[idx];
@@ -2377,6 +2377,7 @@
   Based on the Hubbell family letter collection, 1861–1862. Health, emotion, and significance assessments are editorial judgments by the researcher. Financial figures are extracted from letter text via pattern matching.
 </footer>
 <script src="_overlay-data.js?v=1775363534"></script>
+<script src="_letter-nav.js"></script>
 <script src="_overlay.js?v=1775363534"></script>
 <script>HubbellOverlay.bindPage({ tags: true, locations: true });</script>
 <script>HubbellDeepLink.injectShareButton();</script>

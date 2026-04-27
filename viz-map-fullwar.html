@@ -1336,14 +1336,25 @@ async function init() {
     toggleLock(paramBrother);
   }
 
-  // Handle ?place= parameter: fly to matching location with labeled pin
+  // Handle ?place= parameter: fly to matching location with labeled pin + info panel
   const paramPlace = params.get('place');
   if (paramPlace) {
     var match = matchPlaceName(paramPlace);
-    if (match && match.lat && match.lon) {
+    var paramLat = parseFloat(params.get('lat'));
+    var paramLon = parseFloat(params.get('lon'));
+    // Use movement match if available, otherwise fall back to URL coordinates
+    var lat = (match && match.lat) ? match.lat : (isFinite(paramLat) ? paramLat : null);
+    var lon = (match && match.lon) ? match.lon : (isFinite(paramLon) ? paramLon : null);
+    if (lat != null && lon != null) {
+      var movement = match || { placeName: paramPlace, lat: lat, lon: lon };
       setTimeout(function() {
-        map.flyTo([match.lat, match.lon], 10, { duration: 1.2 });
-        showPlaceInfoPanel(paramPlace, match);
+        map.flyTo([lat, lon], 10, { duration: 1.2 });
+        showPlacePin(paramPlace, movement);
+        showPlaceInfoPanel(paramPlace, movement);
+        // Open the popup after the fly animation completes
+        setTimeout(function() {
+          if (placePinMarker) placePinMarker.openPopup();
+        }, 1300);
       }, 400);
     }
   }
@@ -3053,6 +3064,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <script src="_design-data.js"></script>
 <script src="_design-ui.js"></script>
 <script src="_search-data.js"></script>
+<script src="_letter-nav.js"></script>
 <script src="_reader.js"></script>
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=1775363534"></script>

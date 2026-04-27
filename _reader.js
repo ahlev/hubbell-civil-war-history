@@ -7,6 +7,7 @@ window.HubbellReader = (function () {
   var overlay = null;
   var contentEl = null;
   var currentOpts = {};
+  var currentLetterId = null;
 
   // Color and name lookups — use search-engine constants if available, else fallback
   var COLORS = {
@@ -162,6 +163,16 @@ window.HubbellReader = (function () {
     overlay.innerHTML =
       '<div class="reader-panel" id="hubbellReaderPanel">' +
         '<button class="reader-close" id="hubbellReaderClose">&times;</button>' +
+        '<div class="reader-nav-bar" id="hubbellReaderNav">' +
+          '<button class="reader-nav-arrow" id="readerPrev">\u2190</button>' +
+          '<div class="reader-nav-mode" id="readerNavMode">' +
+            '<button class="reader-nav-mode-btn active" data-mode="author">' +
+              '<span class="nav-author-dot"></span> Letters' +
+            '</button>' +
+            '<button class="reader-nav-mode-btn" data-mode="date">All Letters</button>' +
+          '</div>' +
+          '<button class="reader-nav-arrow" id="readerNext">\u2192</button>' +
+        '</div>' +
         '<div id="hubbellReaderContent"></div>' +
       '</div>';
     document.body.appendChild(overlay);
@@ -173,10 +184,73 @@ window.HubbellReader = (function () {
     });
     // Close button
     document.getElementById('hubbellReaderClose').addEventListener('click', close);
-    // Escape key — only if this overlay is open
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+    // Nav arrows
+    document.getElementById('readerPrev').addEventListener('click', function () { navigateReader(-1); });
+    document.getElementById('readerNext').addEventListener('click', function () { navigateReader(1); });
+
+    // Mode buttons
+    document.getElementById('readerNavMode').addEventListener('click', function (e) {
+      var btn = e.target.closest('.reader-nav-mode-btn');
+      if (!btn || !btn.dataset.mode) return;
+      if (window.HubbellLetterNav) HubbellLetterNav.setMode(btn.dataset.mode);
+      updateNavBar();
     });
+
+    // Keyboard: Escape, ArrowLeft, ArrowRight
+    document.addEventListener('keydown', function (e) {
+      if (!overlay.classList.contains('open')) return;
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); navigateReader(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); navigateReader(1); }
+    });
+  }
+
+  function navigateReader(dir) {
+    if (!currentLetterId || !window.HubbellLetterNav) return;
+    var nextId = HubbellLetterNav.findAdjacent(currentLetterId, dir);
+    if (!nextId) return;
+    // Strip stale letter/health from opts so open() fetches fresh data
+    var navOpts = {};
+    for (var k in currentOpts) {
+      if (k !== 'letter' && k !== 'health') navOpts[k] = currentOpts[k];
+    }
+    open(nextId, navOpts);
+  }
+
+  function updateNavBar() {
+    if (!overlay || !currentLetterId) return;
+    var Nav = window.HubbellLetterNav;
+    if (!Nav) {
+      var bar = document.getElementById('hubbellReaderNav');
+      if (bar) bar.style.display = 'none';
+      return;
+    }
+
+    var mode = Nav.getMode();
+    var authorName = Nav.getAuthorName(currentLetterId);
+    var authorColor = Nav.getAuthorColor(currentLetterId);
+    var prevId = Nav.findAdjacent(currentLetterId, -1);
+    var nextId = Nav.findAdjacent(currentLetterId, 1);
+
+    document.getElementById('readerPrev').disabled = !prevId;
+    document.getElementById('readerNext').disabled = !nextId;
+
+    // Update mode buttons
+    var modeWrap = document.getElementById('readerNavMode');
+    var btns = modeWrap.querySelectorAll('.reader-nav-mode-btn');
+    btns.forEach(function (b) {
+      b.classList.toggle('active', b.dataset.mode === mode);
+    });
+
+    // Update author button label + dot color
+    var authorBtn = modeWrap.querySelector('[data-mode="author"]');
+    if (authorBtn) {
+      var dot = authorBtn.querySelector('.nav-author-dot');
+      if (dot) dot.style.background = authorColor;
+      // Set text: "{Name}'s Letters"
+      authorBtn.innerHTML = '<span class="nav-author-dot" style="background:' + authorColor + '"></span> ' +
+        (authorName ? authorName + '\u2019s Letters' : 'Author\u2019s Letters');
+    }
   }
 
   function findLetter(id) {
@@ -189,6 +263,12 @@ window.HubbellReader = (function () {
   function open(letterId, opts) {
     opts = opts || {};
     currentOpts = opts;
+    currentLetterId = letterId;
+
+    // Apply initial nav mode if specified by caller
+    if (opts.initialNavMode && window.HubbellLetterNav) {
+      HubbellLetterNav.setMode(opts.initialNavMode);
+    }
 
     // Find letter data — merge with LETTERS for ppl/plc/transcription if needed
     var letter = opts.letter || findLetter(letterId);
@@ -318,17 +398,17 @@ window.HubbellReader = (function () {
 
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+    updateNavBar();
 
-    // Scroll: to first highlight if present, otherwise to the top of the letter
+    // Scroll: to first highlight if present, otherwise to the top of the content
     setTimeout(function () {
       var mark = highlightTermsList.length > 0 ? contentEl.querySelector('.reader-body mark') : null;
       if (mark) {
         mark.scrollIntoView({ block: 'center', behavior: 'smooth' });
       } else {
-        var panelEl = overlay.querySelector('.reader-panel');
-        if (panelEl) panelEl.scrollTop = 0;
+        contentEl.scrollTop = 0;
       }
-    }, 100);
+    }, 50);
   }
 
   function close() {
@@ -337,6 +417,7 @@ window.HubbellReader = (function () {
     document.body.style.overflow = '';
     if (currentOpts.onClose) currentOpts.onClose();
     currentOpts = {};
+    currentLetterId = null;
   }
 
   function isOpen() {

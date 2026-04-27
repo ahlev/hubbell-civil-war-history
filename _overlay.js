@@ -75,9 +75,19 @@
     document.body.appendChild(panel);
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && panel.classList.contains('visible')) {
+      if (!panel.classList.contains('visible')) return;
+      if (e.key === 'Escape') {
         e.stopPropagation();
         closeOverlay();
+        return;
+      }
+      // Arrow keys for letter navigation when top-of-stack is a letter
+      if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && overlayStack.length > 0) {
+        var top = overlayStack[overlayStack.length - 1];
+        if (top.type === 'letter') {
+          e.preventDefault();
+          _navigateOverlayLetter(e.key === 'ArrowLeft' ? -1 : 1);
+        }
       }
     });
   }
@@ -112,6 +122,8 @@
     panel.classList.remove('visible');
     document.body.style.overflow = '';
     overlayStack = [];
+    currentOverlayLetterId = null;
+    currentLetterOpts = null;
 
     // Remove overlay param from URL
     if (window.HubbellDeepLink) HubbellDeepLink.remove('overlay');
@@ -366,6 +378,9 @@
 
     const firstDate = place.ltrs.length > 0 ? (letterMeta(place.ltrs[0]) || {}).d || '' : '';
 
+    const stateRedundant = place.st && place.n.toLowerCase().includes(place.st.toLowerCase());
+    const showSt = place.st && !stateRedundant && place.st.length < 30;
+
     const html =
       '<div class="hubbell-overlay-header">' +
         '<div class="hubbell-overlay-header-left">' +
@@ -373,10 +388,14 @@
             '<span class="hubbell-overlay-badge place">Place</span>' +
           '</h2>' +
           '<div class="hubbell-overlay-subtitle">' +
-            (place.st ? esc(place.st) : '') +
-            (coordStr ? (place.st ? ' &middot; ' : '') + '<span class="hubbell-overlay-coords">' + coordStr + '</span>' : '') +
+            (showSt ? esc(place.st) : '') +
+            (coordStr ? (showSt ? ' &middot; ' : '') + '<span class="hubbell-overlay-coords">' + coordStr + '</span>' : '') +
           '</div>' +
         '</div>' +
+        (place.co && place.co.lat != null ?
+          '<a class="hubbell-overlay-nav-btn hubbell-overlay-nav-btn--header place" href="viz-map-fullwar.html?date=' + encodeURIComponent(firstDate) + '&place=' + encodeURIComponent(place.n) + '&lat=' + place.co.lat + '&lon=' + place.co.lon + '">' +
+            'View on Map <span class="arrow">\u2192</span>' +
+          '</a>' : '') +
         headerActions() +
       '</div>' +
       '<div class="hubbell-overlay-body">' +
@@ -397,10 +416,6 @@
           '<div class="hubbell-overlay-section-title">Letters (' + place.lc + ')</div>' +
           letterListHTML(place.ltrs) +
         '</div>' +
-        (place.co && place.co.lat != null ?
-          '<a class="hubbell-overlay-nav-btn" href="viz-map-fullwar.html?date=' + encodeURIComponent(firstDate) + '&place=' + encodeURIComponent(place.n) + '">' +
-            'View on Map <span class="arrow">\u2192</span>' +
-          '</a>' : '') +
       '</div>';
 
     openPanel(html);
@@ -424,13 +439,29 @@
   }
 
   /* ── Letter Sub-Reader ── */
+  var currentLetterOpts = null;
+  var currentOverlayLetterId = null;
+
   function showLetterReader(letterId, opts) {
+    var meta = letterMeta(letterId);
+    if (!meta) return;
+    pushStack('letter', letterId);
+    currentLetterOpts = opts || null;
+    currentOverlayLetterId = letterId;
+
+    // Apply initial nav mode if caller specified
+    if (opts && opts.initialNavMode && window.HubbellLetterNav) {
+      HubbellLetterNav.setMode(opts.initialNavMode);
+    }
+
+    _renderLetterReader(letterId, opts);
+  }
+
+  function _renderLetterReader(letterId, opts) {
     var meta = letterMeta(letterId);
     if (!meta) return;
 
     var healthCtx = (opts && opts.health) ? opts.health : null;
-
-    pushStack('letter', letterId);
 
     // Build subtitle line
     var subtitleParts = fmtDate(meta.d);
@@ -466,7 +497,13 @@
         headerActions() +
       '</div>';
 
-    openPanel(headerHtml + '<div class="hubbell-overlay-body"><div class="hubbell-overlay-loading">Loading letter</div></div>');
+    // Nav bar
+    var navBarHtml = _buildOverlayNavBar(letterId);
+
+    openPanel(headerHtml + navBarHtml + '<div class="hubbell-overlay-body"><div class="hubbell-overlay-loading">Loading letter</div></div>');
+
+    // Wire nav bar events
+    _bindOverlayNav(letterId);
 
     // Load transcription
     loadTranscription(letterId, function (text) {
@@ -512,6 +549,94 @@
       // Scroll to top of letter content
       body.scrollTop = 0;
     });
+  }
+
+  function _buildOverlayNavBar(letterId) {
+    var Nav = window.HubbellLetterNav;
+    if (!Nav) return '';
+
+    var mode = Nav.getMode();
+    var authorName = Nav.getAuthorName(letterId);
+    var authorColor = Nav.getAuthorColor(letterId);
+    var prevId = Nav.findAdjacent(letterId, -1);
+    var nextId = Nav.findAdjacent(letterId, 1);
+
+    return '<div class="overlay-letter-nav" id="overlayLetterNav">' +
+      '<button class="reader-nav-arrow" id="overlayNavPrev"' + (prevId ? '' : ' disabled') + '>\u2190</button>' +
+      '<div class="reader-nav-mode" id="overlayNavMode">' +
+        '<button class="reader-nav-mode-btn' + (mode === 'author' ? ' active' : '') + '" data-mode="author">' +
+          '<span class="nav-author-dot" style="background:' + authorColor + '"></span> ' +
+          (authorName ? authorName + '\u2019s Letters' : 'Author\u2019s Letters') +
+        '</button>' +
+        '<button class="reader-nav-mode-btn' + (mode === 'date' ? ' active' : '') + '" data-mode="date">All Letters</button>' +
+      '</div>' +
+      '<button class="reader-nav-arrow" id="overlayNavNext"' + (nextId ? '' : ' disabled') + '>\u2192</button>' +
+    '</div>';
+  }
+
+  function _bindOverlayNav(letterId) {
+    var Nav = window.HubbellLetterNav;
+    if (!Nav || !panel) return;
+
+    var prevBtn = panel.querySelector('#overlayNavPrev');
+    var nextBtn = panel.querySelector('#overlayNavNext');
+    var modeWrap = panel.querySelector('#overlayNavMode');
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { _navigateOverlayLetter(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { _navigateOverlayLetter(1); });
+    if (modeWrap) modeWrap.addEventListener('click', function (e) {
+      var btn = e.target.closest('.reader-nav-mode-btn');
+      if (!btn || !btn.dataset.mode) return;
+      Nav.setMode(btn.dataset.mode);
+      _updateOverlayNavBar();
+    });
+  }
+
+  function _navigateOverlayLetter(dir) {
+    var Nav = window.HubbellLetterNav;
+    if (!Nav || !currentOverlayLetterId) return;
+    var nextId = Nav.findAdjacent(currentOverlayLetterId, dir);
+    if (!nextId) return;
+
+    // Lateral navigation: replace top of stack
+    if (overlayStack.length > 0) {
+      overlayStack[overlayStack.length - 1] = { type: 'letter', key: nextId, scrollPos: 0 };
+    }
+    currentOverlayLetterId = nextId;
+    // Strip stale health context when navigating to a different letter
+    var navOpts = currentLetterOpts ? {} : null;
+    if (currentLetterOpts) {
+      for (var k in currentLetterOpts) {
+        if (k !== 'health') navOpts[k] = currentLetterOpts[k];
+      }
+    }
+    _renderLetterReader(nextId, navOpts);
+    _syncOverlayParam();
+  }
+
+  function _updateOverlayNavBar() {
+    var Nav = window.HubbellLetterNav;
+    if (!Nav || !panel || !currentOverlayLetterId) return;
+
+    var mode = Nav.getMode();
+    var authorName = Nav.getAuthorName(currentOverlayLetterId);
+    var authorColor = Nav.getAuthorColor(currentOverlayLetterId);
+    var prevId = Nav.findAdjacent(currentOverlayLetterId, -1);
+    var nextId = Nav.findAdjacent(currentOverlayLetterId, 1);
+
+    var prevBtn = panel.querySelector('#overlayNavPrev');
+    var nextBtn = panel.querySelector('#overlayNavNext');
+    if (prevBtn) prevBtn.disabled = !prevId;
+    if (nextBtn) nextBtn.disabled = !nextId;
+
+    var btns = panel.querySelectorAll('#overlayNavMode .reader-nav-mode-btn');
+    btns.forEach(function (b) { b.classList.toggle('active', b.dataset.mode === mode); });
+
+    var authorBtn = panel.querySelector('#overlayNavMode [data-mode="author"]');
+    if (authorBtn) {
+      authorBtn.innerHTML = '<span class="nav-author-dot" style="background:' + authorColor + '"></span> ' +
+        (authorName ? authorName + '\u2019s Letters' : 'Author\u2019s Letters');
+    }
   }
 
   /* ── Health Context Rendering ── */
