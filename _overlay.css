@@ -193,8 +193,8 @@
 .hubbell-overlay-summary {
   font-style: italic;
   color: #4a4a4a;
-  font-size: 0.82em;
-  line-height: 1.6;
+  font-size: 0.74em;
+  line-height: 1.5;
   border-left: 2px solid #d4c5a9;
   padding-left: 12px;
   margin: 0;
@@ -606,9 +606,9 @@
   white-space: nowrap;
 }
 .overlay-letter-nav .reader-nav-mode-btn.active {
-  background: #FDFCFA;
-  color: #2C2A26;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  background: #2C2A26;
+  color: #FDFCFA;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 .overlay-letter-nav .reader-nav-mode-btn:hover:not(.active) {
   color: #6B6560;

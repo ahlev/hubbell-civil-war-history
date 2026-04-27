@@ -308,17 +308,21 @@
             gap: 24px;
             padding-top: 16px;
             border-top: 1px solid var(--border);
+            height: 620px;
         }
 
-        /* Left: transcription */
-        .detail-left {}
+        /* Left: pinned controls + scrollable content */
+        .detail-left {
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
 
         .detail-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 8px;
-            min-height: 56px;
+            align-items: center;
+            margin-bottom: 6px;
         }
 
         .detail-header-text {}
@@ -369,55 +373,56 @@
             border-color: var(--text-muted);
         }
 
-        /* Nav controls group */
-        .detail-nav-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            flex-shrink: 0;
-        }
         .detail-nav-arrows {
             display: flex;
             align-items: center;
             gap: 6px;
+            flex-shrink: 0;
         }
-
-        /* Prominent nav arrows */
-        .detail-nav-btn {
-            background: var(--bg);
-            border: 2px solid var(--accent-blue);
-            border-radius: 10px;
-            width: 48px;
-            height: 48px;
-            cursor: pointer;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--accent-blue);
+        .detail-meta-row-inline {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .detail-meta-row-inline .reader-meta {
+            margin-bottom: 0;
+        }
+
+        /* Nav arrows — dark contrast, matching reader overlay */
+        .detail-nav-btn {
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
             justify-content: center;
-            transition: all 0.15s ease;
+            border: 2px solid #2C2A26;
+            border-radius: 10px;
+            background: #2C2A26;
+            color: #FDFCFA;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
             flex-shrink: 0;
-            box-shadow: 0 2px 8px rgba(74,144,217,0.15);
-            position: relative;
-            z-index: 2;
+            font-family: Inter, system-ui, sans-serif;
+            line-height: 1;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
         .detail-nav-btn:hover:not(:disabled) {
-            background: var(--accent-blue);
+            background: #4A4640;
+            border-color: #4A4640;
             color: #fff;
-            box-shadow: 0 4px 14px rgba(74,144,217,0.3);
-            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.25);
         }
         .detail-nav-btn:active:not(:disabled) {
-            transform: translateY(0);
-            box-shadow: 0 1px 4px rgba(74,144,217,0.2);
+            transform: translateY(1px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
         }
         .detail-nav-btn:disabled {
-            opacity: 0.2;
+            opacity: 0.15;
             cursor: default;
-            border-color: var(--border);
-            color: var(--text-muted);
             box-shadow: none;
         }
 
@@ -870,35 +875,61 @@
             margin-left: 3px;
         }
 
-        .detail-transcription-label {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-            font-weight: 600;
+        /* Reader classes scoped inside detail panel */
+        .detail-panel .detail-header {
+            flex-shrink: 0;
         }
-
-        .detail-transcription {
-            font-family: var(--font-serif);
-            font-size: 14px;
-            line-height: 1.5;
-            color: var(--text);
-            max-height: 480px;
+        .detail-panel .detail-meta-row-inline {
+            flex-shrink: 0;
+        }
+        .detail-scroll {
+            flex: 1;
             overflow-y: auto;
-            padding-right: 16px;
+            min-height: 0;
         }
-        .detail-transcription p {
-            margin-bottom: 6px;
+        .detail-scroll::-webkit-scrollbar { width: 4px; }
+        .detail-scroll::-webkit-scrollbar-track { background: transparent; }
+        .detail-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        .detail-scroll::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+        .detail-panel .reader-body {
+            max-height: none;
         }
-        .detail-transcription p:last-child {
+        .detail-panel .reader-correspondence {
             margin-bottom: 0;
+            gap: 7px;
         }
-
-        .detail-transcription::-webkit-scrollbar { width: 4px; }
-        .detail-transcription::-webkit-scrollbar-track { background: transparent; }
-        .detail-transcription::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-        .detail-transcription::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+        .detail-panel .reader-pill {
+            font-size: 0.7rem;
+            padding: 3px 10px;
+        }
+        .detail-panel .reader-pill-label {
+            font-size: 9px;
+        }
+        .detail-panel .reader-people,
+        .detail-panel .reader-places {
+            margin-bottom: 10px;
+        }
+        .detail-panel .nav-mode-wrap {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 3px;
+        }
+        .detail-panel .nav-mode-btn {
+            font-size: 11px;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 6px;
+            gap: 5px;
+        }
+        .detail-panel .nav-mode-btn.active {
+            background: #2C2A26;
+            color: #FDFCFA;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        }
+        .detail-panel .nav-mode-btn .nav-author-dot {
+            width: 7px; height: 7px;
+        }
 
         /* Right: editorial + metadata column */
         .detail-right {
@@ -906,6 +937,8 @@
             padding-left: 28px;
             display: flex;
             flex-direction: column;
+            overflow-y: auto;
+            min-height: 0;
         }
 
         .sidebar-section { margin-bottom: 14px; }
@@ -1041,11 +1074,11 @@
 
         <section class="timeline-section" id="timeline-section">
             <h2>Parallel Lives</h2>
-            <div class="section-subtitle">Each circle is a letter. Size reflects historical significance. Click to read.</div>
+            <div class="section-subtitle" style="line-height:1.7;">Each dot on the timeline below is a letter written by one of the Hubbell family during the Civil War.<br><b>Click a dot to read and explore. Use your arrow keys to navigate.</b><br><i>Click and drag to zoom into a range on the timeline.</i></div>
             <div class="timeline-controls" style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
               <button id="colorByAuthorBtn" class="tl-ctrl-btn active" onclick="setColorMode('author')">Color by Author</button>
               <button id="colorByRecipientBtn" class="tl-ctrl-btn" onclick="setColorMode('recipient')">Color by Recipient</button>
-              <span style="color:var(--ink-3);font-size:0.75rem;margin-left:8px;">Drag on timeline to zoom</span>
+              <span style="flex:0;"></span>
               <span style="flex:1;"></span>
               <button id="zoomInBtn" class="tl-ctrl-btn" onclick="zoomInCenter()" title="Zoom in">+</button>
               <button id="zoomOutBtn" class="tl-ctrl-btn" onclick="zoomOutCenter()" title="Zoom out" style="opacity:0.4;">−</button>
@@ -2040,7 +2073,7 @@
         }
 
         // Map link
-        const mapLink = `<a class="lo-map-link" href="viz-map-fullwar.html?date=${encodeURIComponent(l.date)}&brother=${encodeURIComponent(l.author)}&letter=${encodeURIComponent(l.id)}"><span>📍</span>View on map →</a>`;
+        const mapLink = `<a class="lo-map-link" href="viz-map-fullwar?date=${encodeURIComponent(l.date)}&brother=${encodeURIComponent(l.author)}&letter=${encodeURIComponent(l.id)}"><span>📍</span>View on map →</a>`;
 
         // People mentioned
         let peopleTags = '';
@@ -2122,45 +2155,50 @@
             activeDot.setAttribute('stroke', COLORS[l.author]);
         }
 
-        // Badges
-        let badges = '';
-        const sigClass = ['critical','major'].includes(l.significance) ? 'sig-'+l.significance : (['notable'].includes(l.significance) ? 'sig-notable' : 'sig-other');
-        badges += `<span class="detail-badge ${sigClass}">${l.significance}</span>`;
-        const emoClass = 'emo-' + l.emotion;
-        badges += `<span class="detail-badge ${emoClass}">${l.emotion} emotion</span>`;
-        if (l.hasBattle) badges += `<span class="detail-badge event">Battle</span>`;
-        if (l.hasIllness) badges += `<span class="detail-badge event">Illness</span>`;
-        if (l.hasDeath) badges += `<span class="detail-badge event">Death</span>`;
-        if (l.hasWound) badges += `<span class="detail-badge event">Wound</span>`;
+        // Flags (reader format)
+        let flags = '';
+        if (l.hasBattle) flags += '<span class="reader-flag rf-battle">Battle</span>';
+        if (l.hasIllness) flags += '<span class="reader-flag rf-illness">Illness</span>';
+        if (l.hasDeath) flags += '<span class="reader-flag rf-death">Death</span>';
+        if (l.hasWound) flags += '<span class="reader-flag rf-wound">Wound</span>';
 
         // Enrich location with bracketed details
         const enrichedLocation = enrichLocation(l.location || '');
 
-        // People — build interactive chips with cross-letter mention counts
-        let peopleChipsHtml = '';
+        // Bio page links for pills
+        const BIO = { henry: 'brother-henry.html', alexander: 'brother-alexander.html', james: 'brother-james.html', charles: 'brother-charles.html', mother: 'mother-frances.html' };
+
+        // Sender pill
+        const senderPage = BIO[l.author] || '';
+        const senderPill = senderPage
+            ? `<a href="${senderPage}" class="reader-pill" style="background:${color}">${escapeHtml(NAMES[l.author])}</a>`
+            : `<span class="reader-pill" style="background:${color}">${escapeHtml(NAMES[l.author])}</span>`;
+
+        // Recipient pill
+        const recipientKey = Object.keys(NAMES).find(k => l.recipient && l.recipient.toLowerCase().indexOf(k) !== -1) || null;
+        const recipientColor = recipientKey ? COLORS[recipientKey] : '#666';
+        const recipientPage = recipientKey ? BIO[recipientKey] : '';
+        const recipientPill = recipientPage
+            ? `<a href="${recipientPage}" class="reader-pill" style="background:${recipientColor}">${escapeHtml(l.recipient)}</a>`
+            : `<span class="reader-pill" style="background:${recipientColor}">${escapeHtml(l.recipient)}</span>`;
+
+        // Map link (reader format)
+        const mapLink = `<a class="reader-map-link" href="viz-map-fullwar?date=${encodeURIComponent(l.date)}&brother=${encodeURIComponent(l.author)}&letter=${encodeURIComponent(l.id)}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> View on map →</a>`;
+
+        // People tags (reader format)
+        let pplHtml = '';
         if (l.people && l.people.length > 0) {
-            const chips = l.people.map((p, pi) => {
-                const mentions = findPersonMentions(p.name);
-                const countBadge = mentions.length > 1 ? `<span class="chip-count">${mentions.length}</span>` : '';
-                return `<span class="people-chip" data-person-idx="${pi}" onclick="togglePersonInfo(this, ${idx}, ${pi})">${escapeHtml(p.name)}${countBadge}</span>`;
-            }).join('');
-            peopleChipsHtml = `<div class="detail-meta-group"><div class="detail-meta-label">People Mentioned</div><div style="display:flex;flex-wrap:wrap;gap:4px;">${chips}</div></div>`;
+            pplHtml = '<div class="reader-people"><h4>People Mentioned</h4><div class="reader-tags">' +
+                l.people.map(p => `<a href="viz-people-web?person=${encodeURIComponent(p.name)}" class="reader-tag person">${escapeHtml(p.name)}</a>`).join('') +
+                '</div></div>';
         }
 
-        // Places list (inline metadata)
-        let placesMetaHtml = '';
+        // Place tags (reader format)
+        let plcHtml = '';
         if (l.places && l.places.length > 0) {
-            placesMetaHtml = '<div class="detail-meta-group"><div class="detail-meta-label">Places</div><ul class="detail-meta-list">';
-            l.places.forEach(p => {
-                placesMetaHtml += `<li><span class="reader-tag place" title="View place info">${escapeHtml(p.written)}</span><span class="place-modern">${escapeHtml(p.modern)}</span></li>`;
-            });
-            placesMetaHtml += '</ul></div>';
-        }
-
-        // Metadata section (people & places — compact, below editorial in right column)
-        let metadataHtml = '';
-        if (peopleChipsHtml || placesMetaHtml) {
-            metadataHtml = `<div class="detail-meta-section"><div class="detail-meta-row">${peopleChipsHtml}${placesMetaHtml}</div><div id="person-info-slot"></div></div>`;
+            plcHtml = '<div class="reader-places"><h4>Places Mentioned</h4><div class="reader-tags">' +
+                l.places.map(p => `<a href="viz-map-fullwar?date=${encodeURIComponent(l.date)}&brother=${encodeURIComponent(l.author)}&place=${encodeURIComponent(p.written)}" class="reader-tag place">${escapeHtml(p.written)}</a>`).join('') +
+                '</div></div>';
         }
 
         // Editorial — split into paragraphs for visible spacing
@@ -2191,36 +2229,40 @@
             <div class="detail-left">
                 <div class="detail-header">
                     <div class="detail-header-text">
-                        <div class="detail-date" style="color:${color}">${formatDate(l.date)} <span style="font-size:13px;font-weight:400;color:var(--text-secondary);font-family:Inter,sans-serif;margin-left:6px;">${NAMES[l.author]} → ${l.recipient}</span></div>
-                    </div>
-                    <div class="detail-nav-group">
-                        <div class="detail-nav-arrows">
-                            <button class="detail-nav-btn" onclick="openDetail(${prevIdx})" ${prevIdx === null ? 'disabled' : ''} title="Previous letter">←</button>
-                            <button class="detail-nav-btn" onclick="openDetail(${nextIdx})" ${nextIdx === null ? 'disabled' : ''} title="Next letter">→</button>
-                            <button class="detail-close" onclick="closeDetail()" title="Close (Esc)">✕</button>
-                            ${window.HubbellDeepLink ? HubbellDeepLink.letterShareBtn(l.id) : ''}
-                        </div>
-                        <div class="nav-mode-wrap">
-                            <button class="nav-mode-btn ${navMode === 'author' ? 'active' : ''}" onclick="setNavMode('author')">
-                                <span class="nav-author-dot" style="background:${color}"></span>
-                                ${NAMES[l.author]}'s Letters
-                            </button>
-                            <button class="nav-mode-btn ${navMode === 'date' ? 'active' : ''}" onclick="setNavMode('date')">All Letters</button>
+                        <div class="reader-correspondence">
+                            <span class="reader-pill-label">From</span>${senderPill}
+                            <span class="reader-pill-label" style="min-width:auto">To</span>${recipientPill}
                         </div>
                     </div>
+                    <div class="detail-nav-arrows">
+                        <button class="detail-nav-btn" onclick="openDetail(${prevIdx})" ${prevIdx === null ? 'disabled' : ''} title="Previous letter">←</button>
+                        <button class="detail-nav-btn" onclick="openDetail(${nextIdx})" ${nextIdx === null ? 'disabled' : ''} title="Next letter">→</button>
+                        <button class="detail-close" onclick="closeDetail()" title="Close (Esc)">✕</button>
+                        ${window.HubbellDeepLink ? HubbellDeepLink.letterShareBtn(l.id) : ''}
+                    </div>
                 </div>
-                <div class="detail-loc-badges-row">
-                    ${enrichedLocation ? `<span class="detail-location">${enrichedLocation}</span>` : ''}
-                    <a href="viz-map-fullwar.html?date=${l.date}&brother=${l.author}" class="detail-map-link" title="See ${NAMES[l.author]}'s position and recent movements on this date"><span class="map-icon">📍</span>View on Map</a>
-                    ${enrichedLocation || true ? `<span style="color:#D5D0C8;">|</span>` : ''}
-                    <div class="detail-badges">${badges}</div>
+                <div class="detail-meta-row-inline">
+                    <div class="reader-meta">
+                        <span class="rm-date">${formatDate(l.date)}</span>
+                        <span class="rm-loc">from ${enrichedLocation || escapeHtml(l.location || 'Unknown location')}</span>
+                        ${mapLink}
+                    </div>
+                    <div class="nav-mode-wrap">
+                        <button class="nav-mode-btn ${navMode === 'author' ? 'active' : ''}" onclick="setNavMode('author')">
+                            <span class="nav-author-dot" style="background:${color}"></span>
+                            ${NAMES[l.author]}'s Letters
+                        </button>
+                        <button class="nav-mode-btn ${navMode === 'date' ? 'active' : ''}" onclick="setNavMode('date')">All Letters</button>
+                    </div>
                 </div>
-                <div class="detail-transcription-label">Full Transcription</div>
-                <div class="detail-transcription">${transText}</div>
+                <div class="detail-scroll">
+                    ${flags ? `<div class="reader-flags">${flags}</div>` : ''}
+                    ${pplHtml}${plcHtml}
+                    <div class="reader-body">${transText}</div>
+                </div>
             </div>
             <div class="detail-right">
                 ${editorialHtml || '<div class="sidebar-section"><div class="sidebar-label">Editorial Notes</div><div class="sidebar-editorial"><p style="color:var(--text-muted);font-style:italic;">No editorial notes for this letter.</p></div></div>'}
-                ${metadataHtml}
             </div>
         `;
 

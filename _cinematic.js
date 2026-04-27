@@ -570,7 +570,7 @@ window.CinematicPlayer = (function () {
   100% { box-shadow: 0 0 0 0 var(--pulse-color, rgba(184,134,11,0)); }
 }
 .cine-pulsing .node-pin {
-  animation: cine-pulse 1.2s ease-out 3;
+  animation: cine-pulse 1.8s ease-in-out infinite;
 }
 
 /* ── Mobile ── */
@@ -799,6 +799,7 @@ window.CinematicPlayer = (function () {
     _flyingToWaypoint = true;
     clearInterval(_interval);
     _interval = null;
+    _clearPulse();
 
     // Fly map to show waypoint location + the relevant brothers' actual positions
     if (wp.fly && typeof map !== 'undefined' && map) {
@@ -986,6 +987,7 @@ window.CinematicPlayer = (function () {
 
   function _resumeAfterWaypoint() {
     if (!_playing) return;
+    _clearPulse();
     _paused = false;
     _flyingToWaypoint = false;
     _updatePlayBtn(true);

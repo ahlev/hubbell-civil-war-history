@@ -334,7 +334,7 @@
             (person.rel ? esc(person.rel) : '') +
           '</div>' +
         '</div>' +
-        '<a class="hubbell-overlay-nav-btn hubbell-overlay-nav-btn--header ' + person.cat + '" href="viz-people-web.html?person=' + encodeURIComponent(person.n) + '">' +
+        '<a class="hubbell-overlay-nav-btn hubbell-overlay-nav-btn--header ' + person.cat + '" href="viz-people-web?person=' + encodeURIComponent(person.n) + '">' +
           'View in People Web <span class="arrow">\u2192</span>' +
         '</a>' +
         headerActions() +
@@ -370,6 +370,14 @@
     const place = lookupPlace(name);
     if (!place) return false;
 
+    // On the map page, navigate directly instead of opening place overlay
+    if (window._mapNavigateToPlace && place.co && place.co.lat != null) {
+      closeOverlay();
+      if (window.HubbellReader && HubbellReader.isOpen()) HubbellReader.close();
+      window._mapNavigateToPlace(place);
+      return true;
+    }
+
     pushStack('place', name);
 
     const coordStr = place.co && place.co.lat != null
@@ -393,7 +401,7 @@
           '</div>' +
         '</div>' +
         (place.co && place.co.lat != null ?
-          '<a class="hubbell-overlay-nav-btn hubbell-overlay-nav-btn--header place" href="viz-map-fullwar.html?date=' + encodeURIComponent(firstDate) + '&place=' + encodeURIComponent(place.n) + '&lat=' + place.co.lat + '&lon=' + place.co.lon + '">' +
+          '<a class="hubbell-overlay-nav-btn hubbell-overlay-nav-btn--header place" href="viz-map-fullwar?date=' + encodeURIComponent(firstDate) + '&place=' + encodeURIComponent(place.n) + '&lat=' + place.co.lat + '&lon=' + place.co.lon + '">' +
             'View on Map <span class="arrow">\u2192</span>' +
           '</a>' : '') +
         headerActions() +
@@ -480,7 +488,7 @@
     var toPill = personPill(meta.r, null);
 
     var mapBtn = '<a class="hubbell-overlay-nav-btn hubbell-overlay-nav-btn--header" ' +
-      'href="viz-map-fullwar.html?date=' + encodeURIComponent(meta.d) +
+      'href="viz-map-fullwar?date=' + encodeURIComponent(meta.d) +
       '&brother=' + encodeURIComponent(meta.a) +
       '&letter=' + encodeURIComponent(letterId) + '">' +
       '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +

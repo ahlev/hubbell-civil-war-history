@@ -180,7 +180,7 @@
         var q = this.dataset.query;
         if (linkedInput) linkedInput.value = q;
         dd.classList.remove('open');
-        window.location.href = 'search.html?q=' + encodeURIComponent(q);
+        window.location.href = 'search?q=' + encodeURIComponent(q);
       });
     });
   }
@@ -232,7 +232,7 @@
       }
 
       if (results.length > 8) {
-        html += '<a href="search.html?q=' + encodeURIComponent(query) + '" style="display:block;padding:10px 16px;font-family:var(--font-mono);font-size:12px;color:var(--accent);text-align:center;text-decoration:none;border-top:1px solid var(--rule);letter-spacing:.04em">View all ' + results.length + ' results \u2192</a>';
+        html += '<a href="search?q=' + encodeURIComponent(query) + '" style="display:block;padding:10px 16px;font-family:var(--font-mono);font-size:12px;color:var(--accent);text-align:center;text-decoration:none;border-top:1px solid var(--rule);letter-spacing:.04em">View all ' + results.length + ' results \u2192</a>';
       }
 
       dd.innerHTML = html;
@@ -256,7 +256,7 @@
             var letter = LETTERS.find(function (ll) { return ll.id === lid; });
             if (letter) { openReader(letter, terms); return; }
           }
-          window.location.href = 'search.html?q=' + encodeURIComponent(query) + '&letter=' + encodeURIComponent(lid);
+          window.location.href = 'search?q=' + encodeURIComponent(query) + '&letter=' + encodeURIComponent(lid);
         });
       });
     });
@@ -333,7 +333,7 @@
       if (e.key === 'Enter' && this.value.trim()) {
         e.preventDefault();
         dd.classList.remove('open');
-        window.location.href = 'search.html?q=' + encodeURIComponent(this.value.trim());
+        window.location.href = 'search?q=' + encodeURIComponent(this.value.trim());
       }
       if (e.key === 'Escape') {
         dd.classList.remove('open');

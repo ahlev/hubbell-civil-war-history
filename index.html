@@ -169,11 +169,13 @@
           written throughout<br/>
           the <em>Civil War</em><svg class="hubbell-logo-mini" viewBox="0 0 100 100" width="14" height="14" aria-hidden="true"><circle cx="32" cy="32" r="15" fill="#2D5F8A"/><circle cx="68" cy="32" r="15" fill="#B8860B"/><circle cx="32" cy="68" r="15" fill="#4A7C59"/><circle cx="68" cy="68" r="15" fill="#8B3A3A"/></svg>
         </h1>
-        <p class="prose" style="margin-top: 28px; max-width: 44ch;">
+        <p class="prose" style="margin-top: 28px; max-width: 48ch;">
           Between 1861 and 1865, Henry, Alexander, James, and Charles Hubbell &mdash; sons of a widowed
-          mother in upstate New York &mdash; wrote letters from camps, hospitals, marches, and
-          battlefields. They are not memoirs or histories. They are unfiltered, unedited, and
-          unaware of how the story ends.
+          mother in upstate New York &mdash; wrote 274 letters from camps, hospitals, marches, and
+          battlefields. This <a href="the-collection.html" class="hero-collection-link">rare family collection</a>, preserved across five generations, has never been published or studied at scale &mdash; until now.
+        </p>
+        <p class="prose" style="margin-top: 14px; max-width: 48ch;">
+          Using modern data science and interactive visualization, this project brings their words to life in ways the letters alone cannot &mdash; mapping movements, tracing relationships, and revealing patterns hidden across hundreds of handwritten pages.
         </p>
         <div class="flex gap-8 mt-32" style="align-items:center; flex-wrap: wrap;">
           <a href="hubbell-dashboard.html" class="btn">Enter the archive
@@ -788,7 +790,7 @@
       '</div>' +
       '<div>' +
         '<p class="prose" style="margin:0 0 16px;">' + b.paragraph + '</p>' +
-        '<a href="brother-' + b.id + '.html" style="display:inline-block; font-weight:500; color:' + hex + '; margin-bottom:28px;">Read his story \u2192</a>' +
+        '<a href="brother-' + b.id + '.html" class="brother-story-cta" style="--cta-color:' + hex + ';">Read his story \u2192</a>' +
         '<blockquote class="pull-quote" style="border-left-color: ' + hex + ';">' +
           b.pullQuote +
           '<cite>' + b.pullCite + '</cite>' +
@@ -804,7 +806,7 @@
 (function () {
   // Handle ?q= param — redirect to search.html
   var urlQ = new URLSearchParams(window.location.search).get('q');
-  if (urlQ) window.location.replace('search.html?q=' + encodeURIComponent(urlQ));
+  if (urlQ) window.location.replace('search?q=' + encodeURIComponent(urlQ));
 
   // Expose openReader for nav search dropdown compatibility
   window.openReader = function openReader(letter, terms) {

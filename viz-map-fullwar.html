@@ -187,7 +187,7 @@ body {
 .info-panel.collapsed ~ .info-toggle { right: 8px; }
 
 .info-header {
-  padding: 14px 16px 10px;
+  padding: 10px 16px 6px;
   border-bottom: 1px solid #F0ECE7;
   display: flex;
   align-items: center;
@@ -195,11 +195,39 @@ body {
 }
 .info-header h3 {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--ink);
   flex: 1;
   min-width: 0;
 }
+/* ── Place mini timeline ── */
+.place-mini-tl {
+  width: 100%;
+  height: 36px;
+  margin: 4px 0 2px;
+}
+.place-mini-tl svg { width: 100%; height: 100%; }
+.place-mini-tl-dot {
+  cursor: pointer;
+  transition: r 0.12s, opacity 0.12s;
+}
+.place-mini-tl-dot:hover { r: 6; opacity: 1; }
+.place-mini-tl-tip {
+  position: absolute;
+  background: #2d2a23;
+  color: #e8d5b7;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.15s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.place-mini-tl-tip.visible { opacity: 1; }
 .info-close-btn {
   flex-shrink: 0;
   width: 28px; height: 28px;
@@ -222,7 +250,7 @@ body {
 .info-body {
   flex: 1;
   overflow-y: auto;
-  padding: 12px 16px;
+  padding: 8px 16px;
 }
 .info-empty {
   color: var(--ink-3);
@@ -375,10 +403,10 @@ body {
 .controls {
   background: var(--bg-elev);
   border-top: 1px solid var(--rule);
-  padding: 14px 24px 12px;
+  padding: 8px 24px 6px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   flex-shrink: 0;
 }
 .controls-cta {
@@ -412,11 +440,11 @@ body {
 .slider-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 .step-btn {
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   border: 1px solid var(--rule);
   background: #FAFAFA;
@@ -455,7 +483,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   min-width: 0;
 }
 .date-display {
@@ -478,18 +506,54 @@ body {
 .range-slider {
   position: relative;
   width: 100%;
-  height: 24px;
+  height: 28px;
+}
+/* Tick marks */
+.slider-ticks {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.slider-tick {
+  position: absolute;
+  bottom: 0;
+  width: 1px;
+}
+.slider-tick--year {
+  height: 12px;
+  background: var(--ink-2, #666);
+  opacity: 0.7;
+}
+.slider-tick--month {
+  height: 6px;
+  background: var(--ink-3, #999);
+  opacity: 0.4;
+}
+.slider-tick-label {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  font-family: var(--font-sans, Inter, system-ui, sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink-2, #666);
+  white-space: nowrap;
+  letter-spacing: 0.03em;
 }
 .range-slider input[type="range"] {
   width: 100%;
   height: 16px;
-  margin: 4px 0 0;
+  margin: 0;
   padding: 0;
   -webkit-appearance: none;
   appearance: none;
   background: none;
   z-index: 3;
-  position: relative;
+  position: absolute;
+  bottom: 2px;
+  left: 0;
 }
 .range-slider input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -525,7 +589,7 @@ body {
 }
 .range-track {
   position: absolute;
-  top: 10px;
+  bottom: 8px;
   left: 0;
   right: 0;
   height: 4px;
@@ -672,6 +736,104 @@ body {
 .places-btn:hover { background: #FDF6E3; border-color: #B8860B88; }
 .places-btn.hidden-state { color: var(--ink-3); border-color: var(--rule); }
 .places-btn.hidden-state:hover { color: var(--ink-2); }
+
+/* ── Place Search ── */
+.place-search {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 240px;
+}
+.place-search-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 6px 10px 6px 28px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--ink);
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.place-search-input::placeholder { color: var(--ink-3); }
+.place-search-input:focus {
+  border-color: #B8860B88;
+  box-shadow: 0 1px 6px rgba(184,134,11,0.15);
+}
+.place-search-icon {
+  position: absolute;
+  left: 9px;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  color: var(--ink-3);
+}
+.place-search-results {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 3px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  max-height: 340px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.place-search-results.open { display: block; }
+.search-result {
+  padding: 7px 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #F0ECE7;
+  transition: background 0.1s;
+}
+.search-result:last-child { border-bottom: none; }
+.search-result:hover, .search-result.active { background: #FDF6E3; }
+.search-result-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.search-result-name mark {
+  background: #FFEEBB;
+  color: inherit;
+  border-radius: 1px;
+  padding: 0 1px;
+}
+.search-result-meta {
+  font-size: 0.62rem;
+  color: var(--ink-3);
+  margin-top: 1px;
+  line-height: 1.3;
+  display: flex;
+  gap: 6px;
+}
+.search-result-letters {
+  font-weight: 500;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.search-result-snippet {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.search-no-results {
+  padding: 12px 10px;
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  text-align: center;
+}
 
 /* Days since letter badge */
 .days-since-letter {
@@ -1074,6 +1236,31 @@ body {
   transform-origin: center;
   z-index: 600 !important;
 }
+/* Secondary place labels: hidden by default, shown on selection */
+.place-label-pill.secondary {
+  background: rgba(240, 237, 232, 0.85);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: var(--ink-3);
+  display: none;
+}
+.place-label-pill.secondary::before {
+  background: #999;
+}
+.place-label-pill.secondary.revealed {
+  display: inline-block;
+}
+.place-label-pill.secondary.active {
+  display: inline-block;
+  background: rgba(251, 241, 210, 0.95);
+  color: var(--ink);
+  border-color: #B8860B;
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.35);
+  transform: scale(1.15);
+  z-index: 600 !important;
+}
+.place-label-pill.secondary.active::before {
+  background: #B8860B;
+}
 .place-label-pill::before {
   content: '';
   display: inline-block;
@@ -1104,7 +1291,7 @@ body {
   .info-toggle { display: none; }
   .status-bar { overflow-x: auto; }
   .status-panel { min-width: 140px; padding: 8px 10px; height: 110px; }
-  .controls { padding: 10px 12px; }
+  .controls { padding: 6px 12px; }
   .controls-cta .cta-keys { display: none; }
   .step-btn { width: 34px; height: 34px; }
   .narrative-caption { max-width: 85vw; font-size: 0.85rem; padding: 6px 14px; }
@@ -1115,7 +1302,7 @@ body {
   .status-name { font-size: 0.75rem; }
   .status-regiment { display: none; }
   .status-context { display: none; }
-  .controls { padding: 8px 8px; }
+  .controls { padding: 6px 8px; }
   .controls-cta { font-size: 0.74rem; }
   .step-btn { width: 30px; height: 30px; }
   .step-btn svg { width: 13px; height: 13px; }
@@ -1123,6 +1310,85 @@ body {
 }
 /* Push share button above controls bar */
 .dl-share-btn { bottom: 110px !important; }
+
+/* ── Onboarding Overlay ── */
+.onboard-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(20, 18, 15, 0.7);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  animation: onboardFadeIn 0.4s ease;
+}
+@keyframes onboardFadeIn { from { opacity: 0; } to { opacity: 1; } }
+.onboard-card {
+  background: #FDFCFA;
+  border-radius: 12px;
+  padding: 36px 40px 32px;
+  max-width: 480px;
+  width: 90vw;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+  cursor: default;
+  position: relative;
+}
+.onboard-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2C2A26;
+  margin: 0 0 18px;
+}
+.onboard-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+.onboard-items li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #EDEAE5;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #4A4640;
+}
+.onboard-items li:last-child { border-bottom: none; }
+.onboard-icon {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  background: #F0ECE7;
+  color: #6B6560;
+}
+.onboard-icon.map { background: #E3F2FD; color: #2D5F8A; }
+.onboard-icon.timeline { background: #FFF3E0; color: #E65100; }
+.onboard-icon.places { background: #E8F5E9; color: #2E7D32; }
+.onboard-icon.search { background: #F3E5F5; color: #6A1B9A; }
+.onboard-icon.play { background: #FDE8E8; color: #C44E52; }
+.onboard-items b { color: #2C2A26; }
+.onboard-dismiss {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #2C2A26;
+  color: #FDFCFA;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.onboard-dismiss:hover { background: #4A4640; }
+.onboard-hint {
+  text-align: center;
+  font-size: 0.72rem;
+  color: #9B9590;
+  margin-top: 10px;
+}
 </style>
 <link rel="stylesheet" href="_overlay.css?v=1775363534">
 </head>
@@ -1130,6 +1396,36 @@ body {
 
 <div id="site-nav"></div>
 
+<!-- Onboarding overlay (first visit only) -->
+<div class="onboard-overlay" id="mapOnboard" style="display:none;">
+  <div class="onboard-card" onclick="event.stopPropagation()">
+    <h2 class="onboard-title">The Map That Moves</h2>
+    <ul class="onboard-items">
+      <li>
+        <span class="onboard-icon map">🗺️</span>
+        <span>This is an <b>interactive map</b>. Pan, zoom, and explore the eastern United States as the war unfolds day by day.</span>
+      </li>
+      <li>
+        <span class="onboard-icon timeline">📅</span>
+        <span>Use the <b>timeline slider</b> at the bottom to scrub through the war. Arrow keys step one day at a time.</span>
+      </li>
+      <li>
+        <span class="onboard-icon places">📍</span>
+        <span><b>Click place names</b> on the map to see what happened there &mdash; battles, camps, hospitals &mdash; and which letters mention them.</span>
+      </li>
+      <li>
+        <span class="onboard-icon search">🔍</span>
+        <span>Use the <b>search bar</b> at the top to find any place by name and fly directly to it.</span>
+      </li>
+      <li>
+        <span class="onboard-icon play">▶</span>
+        <span>Press the <b>play button</b> for a guided cinematic experience &mdash; narrated waypoints walk you through the key moments of the war.</span>
+      </li>
+    </ul>
+    <button class="onboard-dismiss" id="mapOnboardDismiss">Start exploring</button>
+    <div class="onboard-hint">Press Escape or click outside to close</div>
+  </div>
+</div>
 
 <!-- Status Bar: 4 brother panels -->
 <div class="status-bar" id="statusBar">
@@ -1184,6 +1480,13 @@ body {
       <div class="legend-row"><span style="font-size:0.85rem">&#10013;</span> Memorial (KIA)</div>
     </div>
 
+    <!-- Place search -->
+    <div class="place-search" id="placeSearch">
+      <svg class="place-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.5" y1="15.5" x2="21" y2="21"/></svg>
+      <input class="place-search-input" id="placeSearchInput" type="text" placeholder="Search places..." autocomplete="off" spellcheck="false">
+      <div class="place-search-results" id="placeSearchResults"></div>
+    </div>
+
     <!-- Map top buttons -->
     <button class="places-btn" id="placesBtn" onclick="togglePlacesBtn()">&#9673; Places</button>
     <button class="recenter-btn" id="recenterBtn" onclick="recenterMap()">Re-center</button>
@@ -1232,6 +1535,7 @@ let DATA = null;
 let map, trailLayers = {}, markerLayers = {}, memorialMarker = null;
 let placeLabelsLayer = null;
 let placeLabelsVisible = true;
+let primaryLabelLookup = {}; // core name -> marker
 
 const COLORS = {
   henry: '#2D5F8A',
@@ -1315,6 +1619,21 @@ async function init() {
   initMap();
   initTimeline();
   buildPlaceLabels();
+  initPlaceSearch();
+
+  // Register map-page hook so overlay place clicks navigate the map directly
+  window._mapNavigateToPlace = function(place) {
+    var movement = matchPlaceName(place.n) || { placeName: place.n, lat: place.co.lat, lon: place.co.lon };
+    var lat = movement.lat || place.co.lat;
+    var lon = movement.lon || place.co.lon;
+    _viewportSuppressed = true;
+    if (_viewportTimer) { clearTimeout(_viewportTimer); _viewportTimer = null; }
+    setTimeout(function() { _viewportSuppressed = false; }, 2000);
+    map.stop();
+    map.flyTo([lat, lon], 10, { duration: 0.8 });
+    showPlacePin(place.n, movement);
+    showPlaceInfoPanel(place.n, movement);
+  };
 
   // Handle URL parameters: ?date=YYYY-MM-DD&from=YYYY-MM-DD&brother=henry
   const params = new URLSearchParams(window.location.search);
@@ -1347,15 +1666,23 @@ async function init() {
     var lon = (match && match.lon) ? match.lon : (isFinite(paramLon) ? paramLon : null);
     if (lat != null && lon != null) {
       var movement = match || { placeName: paramPlace, lat: lat, lon: lon };
+      // Suppress viewport smoother and cancel any pending timer
+      _viewportSuppressed = true;
+      if (_viewportTimer) { clearTimeout(_viewportTimer); _viewportTimer = null; }
+      // Set view immediately, show pin and panel
+      map.setView([lat, lon], 10, { animate: false });
+      showPlacePin(paramPlace, movement);
+      showPlaceInfoPanel(paramPlace, movement);
+      // Safety: re-apply after a delay in case anything overrides the view
+      var _plat = lat, _plon = lon, _pmove = movement, _pname = paramPlace;
       setTimeout(function() {
-        map.flyTo([lat, lon], 10, { duration: 1.2 });
-        showPlacePin(paramPlace, movement);
-        showPlaceInfoPanel(paramPlace, movement);
-        // Open the popup after the fly animation completes
-        setTimeout(function() {
-          if (placePinMarker) placePinMarker.openPopup();
-        }, 1300);
-      }, 400);
+        _viewportSuppressed = true;
+        if (_viewportTimer) { clearTimeout(_viewportTimer); _viewportTimer = null; }
+        map.setView([_plat, _plon], 10, { animate: false });
+        showPlacePin(_pname, _pmove);
+        showPlaceInfoPanel(_pname, _pmove);
+        setTimeout(function() { _viewportSuppressed = false; }, 3000);
+      }, 800);
     }
   }
 
@@ -1371,6 +1698,77 @@ async function init() {
   }
 
   document.addEventListener('keydown', handleKeyboard);
+
+  // Intercept "View on Map" links when already on the map page —
+  // navigate in-place instead of reloading the whole page
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href*="viz-map-fullwar"]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href) return;
+
+    var url;
+    try { url = new URL(href, window.location.href); } catch (_) { return; }
+    var p = url.searchParams;
+    var place = p.get('place');
+    var lat = parseFloat(p.get('lat'));
+    var lon = parseFloat(p.get('lon'));
+    var date = p.get('date');
+    var brother = p.get('brother');
+    var letter = p.get('letter');
+
+    // Only intercept if there's a place or letter to navigate to
+    if (!place && !letter) return;
+
+    e.preventDefault();
+
+    // Close any open overlay or letter reader
+    if (window.HubbellOverlay) HubbellOverlay.close();
+    if (window.HubbellReader && HubbellReader.isOpen()) HubbellReader.close();
+
+    // Suppress viewport smoother and cancel any pending timer
+    _viewportSuppressed = true;
+    if (_viewportTimer) { clearTimeout(_viewportTimer); _viewportTimer = null; }
+    setTimeout(function() { _viewportSuppressed = false; }, 3000);
+
+    // Apply date if provided
+    if (date) {
+      var targetDate = new Date(date + 'T12:00:00');
+      if (!isNaN(targetDate.getTime())) {
+        var day = Math.round((targetDate - START_DATE) / 86400000);
+        day = Math.max(0, Math.min(day, TOTAL_DAYS));
+        rangeEndDay = day;
+        updateToDate(day);
+      }
+    }
+
+    // Apply brother lock if provided
+    if (brother && NAMES[brother]) {
+      if (lockedBrother !== brother) toggleLock(brother);
+    }
+
+    // Navigate to place
+    if (place) {
+      var match = matchPlaceName(place);
+      var pLat = (match && match.lat) ? match.lat : (isFinite(lat) ? lat : null);
+      var pLon = (match && match.lon) ? match.lon : (isFinite(lon) ? lon : null);
+      if (pLat != null && pLon != null) {
+        var movement = match || { placeName: place, lat: pLat, lon: pLon };
+        map.stop();
+        map.flyTo([pLat, pLon], 10, { duration: 0.8 });
+        showPlacePin(place, movement);
+        showPlaceInfoPanel(place, movement);
+      }
+    }
+
+    // Open letter overlay if specified
+    if (letter) {
+      var lm = DATA.movements.find(function(m) { return m.letterId === letter; });
+      if (lm) {
+        setTimeout(function() { openLetterOverlay(letter, lm.brotherId); }, 300);
+      }
+    }
+  });
 }
 
 function initMap() {
@@ -1409,6 +1807,33 @@ function initTimeline() {
   endEl.addEventListener('input', function() {
     scrubTimeline(parseInt(endEl.value));
   });
+
+  // Build tick marks for years and months
+  const ticksEl = document.createElement('div');
+  ticksEl.className = 'slider-ticks';
+  const startYear = START_DATE.getFullYear();
+  const endYear = END_DATE.getFullYear();
+  for (let y = startYear; y <= endYear; y++) {
+    for (let m = 0; m < 12; m++) {
+      const d = new Date(y, m, 1);
+      if (d < START_DATE || d > END_DATE) continue;
+      const day = Math.round((d - START_DATE) / 86400000);
+      const pct = (day / TOTAL_DAYS) * 100;
+      const isYear = m === 0;
+      const tick = document.createElement('div');
+      tick.className = 'slider-tick ' + (isYear ? 'slider-tick--year' : 'slider-tick--month');
+      tick.style.left = pct + '%';
+      ticksEl.appendChild(tick);
+      if (isYear && y > startYear) {
+        const label = document.createElement('span');
+        label.className = 'slider-tick-label';
+        label.style.left = pct + '%';
+        label.textContent = y;
+        ticksEl.appendChild(label);
+      }
+    }
+  }
+  document.getElementById('rangeSlider').appendChild(ticksEl);
 }
 
 
@@ -1460,6 +1885,7 @@ let _lastViewCenter = null;   // [lat, lon] of last camera target
 let _lastViewZoom = null;
 let _viewportTimer = null;    // debounce timer
 let _viewportBusy = false;    // true while a flyTo is in-flight
+let _viewportSuppressed = false; // true when place navigation owns the camera
 const VIEW_DEAD_ZONE = 0.005; // ~0.5 km — skip camera moves smaller than this (degrees)
 const VIEW_DEAD_ZONE_CINE = 0.04; // ~4 km — wider dead-zone during cinematic play for smoother pans
 
@@ -1484,6 +1910,9 @@ function _viewportMoved(center, zoom, isCinematic) {
 function _smoothViewport(activeBounds, isCinematic, isLocked, lockedPos) {
   // Cancel any queued viewport update
   if (_viewportTimer) { clearTimeout(_viewportTimer); _viewportTimer = null; }
+
+  // Don't override place navigation flyTo
+  if (_viewportSuppressed) return;
 
   // During cinematic waypoint flyTo, don't interfere
   if (window.CinematicPlayer && CinematicPlayer.isFlyingToWaypoint()) return;
@@ -1562,9 +1991,6 @@ function updateToDate(day) {
   // Date display with seasonal icon
   document.getElementById('dateDisplay').innerHTML =
     '<span class="season-icon">' + seasonIcon(currentDate) + '</span>' + formatDate(currentDate);
-
-  // Season icon (updated by CinematicPlayer if loaded)
-  if (window.CinematicPlayer && CinematicPlayer.updateSeasonIcon) CinematicPlayer.updateSeasonIcon();
 
   // Sync slider
   document.getElementById('rangeEnd').value = rangeEndDay;
@@ -2179,182 +2605,111 @@ function findOverlayPlace(placeName) {
 function clearActivePlaceLabel() {
   if (activePlaceLabelMarker) {
     var el = activePlaceLabelMarker.getElement();
-    if (el) { var pill = el.querySelector('.place-label-pill'); if (pill) pill.classList.remove('active'); }
+    if (el) {
+      var pill = el.querySelector('.place-label-pill');
+      if (pill) {
+        pill.classList.remove('active');
+        // Secondary labels stay visible in grey — only gold active state is removed
+      }
+    }
     activePlaceLabelMarker = null;
   }
 }
 
 function showPlacePin(placeName, movement, existingMarker) {
-  // Clean up previous pin: only remove from map if it was a standalone pin (not a reused label)
+  // Clean up previous pin — standalone markers stay visible in grey (like secondary labels)
   if (placePinMarker) {
-    placePinMarker.closePopup();
-    placePinMarker.unbindPopup();
-    placePinMarker.off('popupopen').off('popupclose');
     if (!placePinIsReused) {
-      map.removeLayer(placePinMarker);
+      // Standalone marker: deactivate but keep on map as grey secondary label
+      var el = placePinMarker.getElement();
+      if (el) {
+        var pill = el.querySelector('.place-label-pill');
+        if (pill) pill.classList.remove('active');
+      }
     }
     placePinMarker = null;
     placePinIsReused = false;
   }
   clearActivePlaceLabel();
 
-  // Gather movements AT this place (letters written FROM here)
-  var matchedCore = extractCandidates(movement.placeName || placeName)[0].core;
-  const fromHere = DATA.movements.filter(function(m) {
-    if (!m.placeName) return false;
-    return extractCandidates(m.placeName)[0].core === matchedCore;
-  });
-  const fromHereLetters = fromHere.filter(function(m) { return m.source === 'letter'; });
-
-  // Look up overlay data for letters MENTIONING this place
-  var overlayPlace = findOverlayPlace(movement.placeName || placeName);
-  var fromHereIds = new Set(fromHereLetters.map(function(m) { return m.letterId; }));
-  var aboutHereLetters = [];
-  if (overlayPlace && overlayPlace.ltrs) {
-    aboutHereLetters = overlayPlace.ltrs.filter(function(id) { return !fromHereIds.has(id); });
-  }
-
-  // Build popup content
-  let popupHtml = '<div class="place-pin-popup">';
-  popupHtml += '<h3 class="place-pin-title">' + escHtml(movement.placeName || placeName) + '</h3>';
-
-  // Summary stats
-  const brotherSet = new Set(fromHere.map(function(m) { return m.brother; }));
-  const dateRange = fromHere.length > 0
-    ? formatDateStr(fromHere[0].date) + ' – ' + formatDateStr(fromHere[fromHere.length - 1].date)
-    : '';
-  popupHtml += '<div class="place-pin-stats">';
-  if (fromHereLetters.length > 0) popupHtml += '<span>' + fromHereLetters.length + ' written from</span>';
-  if (aboutHereLetters.length > 0) popupHtml += '<span>' + aboutHereLetters.length + ' mentioning</span>';
-  if (fromHereLetters.length === 0 && aboutHereLetters.length === 0) popupHtml += '<span>' + fromHere.length + ' movement' + (fromHere.length !== 1 ? 's' : '') + '</span>';
-  popupHtml += '<span>' + brotherSet.size + ' brother' + (brotherSet.size !== 1 ? 's' : '') + '</span>';
-  popupHtml += '</div>';
-  if (dateRange) popupHtml += '<div class="place-pin-range">' + dateRange + '</div>';
-
-  // Overlay summary if available
-  if (overlayPlace && overlayPlace.s) {
-    popupHtml += '<div class="place-pin-summary-wrap">' +
-      '<div class="place-pin-summary collapsed">' + escHtml(overlayPlace.s) + '</div>' +
-      '<div class="place-pin-expand" onclick="togglePlaceSummary(this)">Read more \u25BE</div>' +
-      '</div>';
-  }
-
-  // Letters written FROM this place
-  if (fromHereLetters.length > 0) {
-    popupHtml += '<div class="place-pin-section-label">Written from here</div>';
-    popupHtml += '<div class="place-pin-letters">';
-    fromHereLetters.slice(0, 4).forEach(function(m) {
-      const bName = DATA.brothers[m.brother] ? DATA.brothers[m.brother].name.split(' ')[0] : m.brother;
-      const bColor = COLORS[m.brother] || '#666';
-      const excerpt = m.letterExcerpt ? m.letterExcerpt.slice(0, 70) + (m.letterExcerpt.length > 70 ? '…' : '') : '';
-      popupHtml += '<div class="place-pin-letter" data-lid="' + escHtml(m.letterId) + '" data-bro="' + escHtml(m.brother) + '">';
-      popupHtml += '<span class="place-pin-author" style="color:' + bColor + '">' + escHtml(bName) + '</span>';
-      popupHtml += '<span class="place-pin-date">' + formatDateStr(m.date) + '</span>';
-      if (excerpt) popupHtml += '<div class="place-pin-excerpt">"' + escHtml(excerpt) + '"</div>';
-      popupHtml += '</div>';
-    });
-    if (fromHereLetters.length > 4) {
-      popupHtml += '<div class="place-pin-more">+ ' + (fromHereLetters.length - 4) + ' more</div>';
-    }
-    popupHtml += '</div>';
-  }
-
-  // Letters MENTIONING this place (written from elsewhere)
-  if (aboutHereLetters.length > 0) {
-    popupHtml += '<div class="place-pin-section-label">Mentions this place</div>';
-    popupHtml += '<div class="place-pin-letters">';
-    aboutHereLetters.slice(0, 4).forEach(function(id) {
-      var meta = window.LETTER_INDEX ? LETTER_INDEX[id] : null;
-      if (!meta) return;
-      var bro = meta.a || '';
-      var bName = NAMES[bro] || bro;
-      var bColor = COLORS[bro] || '#666';
-      popupHtml += '<div class="place-pin-letter" data-lid="' + escHtml(id) + '" data-bro="' + escHtml(bro) + '" data-hl="' + escHtml(movement.placeName || placeName) + '">';
-      popupHtml += '<span class="place-pin-author" style="color:' + bColor + '">' + escHtml(bName) + '</span>';
-      popupHtml += '<span class="place-pin-date">' + (meta.d ? formatDateStr(meta.d) : '') + '</span>';
-      if (meta.l) popupHtml += '<div class="place-pin-excerpt">from ' + escHtml(meta.l) + '</div>';
-      popupHtml += '</div>';
-    });
-    if (aboutHereLetters.length > 4) {
-      popupHtml += '<div class="place-pin-more">+ ' + (aboutHereLetters.length - 4) + ' more</div>';
-    }
-    popupHtml += '</div>';
-  }
-
-  // Flags summary
-  const hasBattle = fromHere.some(function(m) { return m.hasBattle; });
-  const hasIllness = fromHere.some(function(m) { return m.hasIllness; });
-  const hasDeath = fromHere.some(function(m) { return m.hasDeath; });
-  const hasWound = fromHere.some(function(m) { return m.hasWound; });
-  let flagsHtml = '';
-  if (hasBattle) flagsHtml += '<span class="info-flag flag-battle">Battle</span>';
-  if (hasIllness) flagsHtml += '<span class="info-flag flag-illness">Illness</span>';
-  if (hasDeath) flagsHtml += '<span class="info-flag flag-death">Death</span>';
-  if (hasWound) flagsHtml += '<span class="info-flag flag-wound">Wound</span>';
-  if (flagsHtml) popupHtml += '<div class="info-flags" style="margin-top:8px">' + flagsHtml + '</div>';
-
-  popupHtml += '</div>';
-
-  var popupOpts = { maxWidth: 500, minWidth: 390, className: 'place-pin-popup-container' };
-
-  // If called from an existing place label marker, reuse it instead of creating a duplicate
-  if (existingMarker) {
+  // Find or create a label marker — no popup, info goes in right panel only
+  // Check primary labels first, then secondary, then create standalone
+  var nameForLookup = movement.placeName || placeName;
+  var lookupCore = extractCandidates(nameForLookup)[0].core;
+  var useMarker = existingMarker || primaryLabelLookup[lookupCore] || findSecondaryMarker(nameForLookup);
+  if (useMarker) {
     placePinIsReused = true;
-    activePlaceLabelMarker = existingMarker;
-    var el = existingMarker.getElement();
-    if (el) { var pill = el.querySelector('.place-label-pill'); if (pill) pill.classList.add('active'); }
-    existingMarker.unbindPopup();
-    placePinMarker = existingMarker
-      .bindPopup(popupHtml, popupOpts);
-  } else {
-    // Create labeled pin marker (for ?place= param or other non-label sources)
-    const pinIcon = L.divIcon({
-      className: 'place-pin-icon',
-      html: '<div class="place-pin-dot"></div><div class="place-pin-label">' + escHtml(movement.placeName || placeName) + '</div>',
-      iconSize: [0, 0],
-      iconAnchor: [0, 0]
-    });
-    placePinMarker = L.marker([movement.lat, movement.lon], { icon: pinIcon })
-      .addTo(map)
-      .bindPopup(popupHtml, popupOpts);
-  }
-
-  placePinMarker
-    .on('popupopen', function(e) {
-      // Show expand toggle only if summary actually overflows
-      var container = e.popup._contentNode || e.popup.getElement();
-      if (!container) return;
-      var sum = container.querySelector('.place-pin-summary');
-      var btn = container.querySelector('.place-pin-expand');
-      if (sum && btn) {
-        // Reset state for fresh popup
-        sum.classList.remove('expanded');
-        sum.classList.add('collapsed');
-        btn.textContent = 'Read more \u25BE';
-        if (sum.scrollHeight > sum.clientHeight + 2) {
-          btn.style.display = 'block';
-        } else {
-          btn.style.display = 'none';
-        }
+    activePlaceLabelMarker = useMarker;
+    var el = useMarker.getElement();
+    if (el) {
+      var pill = el.querySelector('.place-label-pill');
+      if (pill) {
+        pill.classList.add('active');
+        if (pill.classList.contains('secondary')) pill.classList.add('revealed');
       }
-    })
-    .on('popupclose', function() {
-      clearActivePlaceLabel();
-    })
-    .openPopup();
+    }
+    placePinMarker = useMarker;
+  } else {
+    // Create a standalone label for places not in either layer
+    const pinIcon = L.divIcon({
+      className: 'place-label-icon',
+      html: '<span class="place-label-pill secondary revealed active">' + escHtml(movement.placeName || placeName) + '</span>',
+      iconSize: [0, 0],
+      iconAnchor: [0, 6]
+    });
+    placePinMarker = L.marker([movement.lat, movement.lon], { icon: pinIcon, zIndexOffset: -200 })
+      .addTo(map);
+    activePlaceLabelMarker = placePinMarker;
+  }
+}
+
+// Build a compact SVG mini-timeline of letter dots for the info panel
+function buildPlaceMiniTimeline(fromHereLetters, aboutHereLetters) {
+  var allLetters = [];
+  // From-here letters (from movement data)
+  fromHereLetters.forEach(function(m) {
+    allLetters.push({ id: m.letterId, date: m.date, brother: m.brother, type: 'from' });
+  });
+  // About-here letters (from overlay data, via LETTER_INDEX)
+  aboutHereLetters.forEach(function(id) {
+    var meta = window.LETTER_INDEX ? LETTER_INDEX[id] : null;
+    if (!meta) return;
+    allLetters.push({ id: id, date: meta.d, brother: meta.a, type: 'about' });
+  });
+  if (allLetters.length === 0) return '';
+
+  allLetters.sort(function(a, b) { return a.date.localeCompare(b.date); });
+
+  var w = 300, h = 32, pad = 16;
+  var innerW = w - pad * 2;
+  var startMs = START_DATE.getTime(), rangeMs = END_DATE.getTime() - startMs;
+
+  var dots = '';
+  allLetters.forEach(function(lt) {
+    var d = new Date(lt.date + 'T12:00:00');
+    var frac = Math.max(0, Math.min(1, (d.getTime() - startMs) / rangeMs));
+    var x = pad + frac * innerW;
+    var color = COLORS[lt.brother] || '#999';
+    var bName = NAMES[lt.brother] || lt.brother || '?';
+    dots += '<circle cx="' + x.toFixed(1) + '" cy="14" r="3.5" fill="' + color +
+      '" opacity="0.8" class="place-mini-tl-dot" data-lid="' + (lt.id || '') +
+      '" data-bro="' + (lt.brother || '') +
+      '" data-tip="' + escHtml(formatDateStr(lt.date) + ' — ' + bName) + '"/>';
+  });
+
+  return '<div class="place-mini-tl">' +
+    '<svg viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="xMidYMid meet">' +
+    '<line x1="' + pad + '" y1="14" x2="' + (w - pad) + '" y2="14" stroke="#E8E4DF" stroke-width="1"/>' +
+    '<text x="' + pad + '" y="28" font-size="8" fill="#9B9590" font-family="Inter,sans-serif">1861</text>' +
+    '<text x="' + (w - pad) + '" y="28" font-size="8" fill="#9B9590" text-anchor="end" font-family="Inter,sans-serif">1865</text>' +
+    dots +
+    '</svg></div>';
 }
 
 function showPlaceInfoPanel(placeName, movement) {
-  // Clear any existing place popup
-  if (placePinMarker) {
-    placePinMarker.closePopup();
-    placePinMarker.unbindPopup();
-    placePinMarker.off('popupopen').off('popupclose');
-    if (!placePinIsReused) map.removeLayer(placePinMarker);
-    placePinMarker = null;
-    placePinIsReused = false;
-  }
-  clearActivePlaceLabel();
+  // Note: pin/label cleanup is handled by showPlacePin() which is called before this.
+  // Do NOT clear placePinMarker or activePlaceLabelMarker here — it would destroy
+  // the pin and label that showPlacePin just set up.
 
   infoPanelBrother = null; // Place panel — don't auto-refresh as brother
 
@@ -2391,10 +2746,19 @@ function showPlaceInfoPanel(placeName, movement) {
   html += '<div class="info-meta">';
   if (fromHereLetters.length > 0) html += '<strong>' + fromHereLetters.length + '</strong> letters written from here<br>';
   if (aboutHereLetters.length > 0) html += '<strong>' + aboutHereLetters.length + '</strong> letters mentioning this place<br>';
-  if (fromHereLetters.length === 0 && aboutHereLetters.length === 0) html += fromHere.length + ' movement' + (fromHere.length !== 1 ? 's' : '') + '<br>';
-  html += '<strong>' + brotherSet.size + '</strong> brother' + (brotherSet.size !== 1 ? 's' : '') + ' present';
-  if (dateRange) html += '<br>' + dateRange;
+  if (fromHereLetters.length === 0 && aboutHereLetters.length === 0 && overlayPlace && overlayPlace.lc > 0) {
+    html += '<strong>' + overlayPlace.lc + '</strong> letters in the collection<br>';
+  } else if (fromHereLetters.length === 0 && aboutHereLetters.length === 0 && fromHere.length > 0) {
+    html += fromHere.length + ' movement' + (fromHere.length !== 1 ? 's' : '') + '<br>';
+  }
+  if (brotherSet.size > 0) {
+    html += '<strong>' + brotherSet.size + '</strong> brother' + (brotherSet.size !== 1 ? 's' : '') + ' present';
+    if (dateRange) html += '<br>' + dateRange;
+  }
   html += '</div>';
+
+  // Mini timeline: color-coded dots for all letters related to this place
+  html += buildPlaceMiniTimeline(fromHereLetters, aboutHereLetters);
 
   // Overlay summary if available
   if (overlayPlace && overlayPlace.s) {
@@ -2459,6 +2823,33 @@ function showPlaceInfoPanel(placeName, movement) {
 
   body.innerHTML = html;
 
+  // Bind timeline dot interactions (hover tooltip + click to open letter)
+  var tip = document.getElementById('placeMiniTlTip');
+  if (!tip) {
+    tip = document.createElement('div');
+    tip.id = 'placeMiniTlTip';
+    tip.className = 'place-mini-tl-tip';
+    document.body.appendChild(tip);
+  }
+  body.querySelectorAll('.place-mini-tl-dot').forEach(function(dot) {
+    dot.addEventListener('mouseenter', function(e) {
+      tip.textContent = dot.getAttribute('data-tip') || '';
+      tip.classList.add('visible');
+      var r = dot.getBoundingClientRect();
+      tip.style.left = (r.left + r.width / 2 - tip.offsetWidth / 2) + 'px';
+      tip.style.top = (r.top - 28) + 'px';
+    });
+    dot.addEventListener('mouseleave', function() {
+      tip.classList.remove('visible');
+    });
+    dot.addEventListener('click', function() {
+      tip.classList.remove('visible');
+      var lid = dot.getAttribute('data-lid');
+      var bro = dot.getAttribute('data-bro');
+      if (lid) openLetterOverlay(lid, bro);
+    });
+  });
+
   // Bind overlay links on dynamically-rendered content
   if (window.HubbellOverlay) HubbellOverlay.bindDynamic(body);
 
@@ -2508,6 +2899,7 @@ function escHtml(s) {
 function buildPlaceLabels() {
   if (placeLabelsLayer) { map.removeLayer(placeLabelsLayer); }
   placeLabelsLayer = L.layerGroup();
+  primaryLabelLookup = {};
 
   // Deduplicate places by normalized core name → pick best representative
   var placeMap = {};
@@ -2521,11 +2913,22 @@ function buildPlaceLabels() {
     if (m.source === 'letter') placeMap[core].letterCount++;
   });
 
-  // Filter: only show places that have letters FROM or overlay mentions ABOUT
-  var places = Object.values(placeMap).filter(function(p) {
-    if (p.letterCount > 0) return true;
+  // Compute total relevance (letters from + overlay mentions) per place
+  Object.values(placeMap).forEach(function(p) {
     var overlay = findOverlayPlace(p.name);
-    return overlay && overlay.lc > 0;
+    p.overlayCount = overlay ? (overlay.lc || 0) : 0;
+    p.totalMentions = p.letterCount + p.overlayCount;
+  });
+
+  // Primary: mentioned or written from >= 2 times
+  var places = Object.values(placeMap).filter(function(p) {
+    return p.totalMentions >= 2;
+  });
+
+  // Track which cores made it into the primary layer
+  var primaryCores = {};
+  places.forEach(function(p) {
+    primaryCores[extractCandidates(p.name)[0].core] = true;
   });
 
   places.forEach(function(p) {
@@ -2541,16 +2944,85 @@ function buildPlaceLabels() {
       // Show place details in the right info panel
       var match = matchPlaceName(p.name);
       if (match) {
-        map.flyTo([match.lat, match.lon], Math.max(map.getZoom(), 9), { duration: 0.6 });
+        _viewportSuppressed = true;
+        if (_viewportTimer) { clearTimeout(_viewportTimer); _viewportTimer = null; }
+        setTimeout(function() { _viewportSuppressed = false; }, 2000);
+        map.stop();
+        map.flyTo([match.lat, match.lon], Math.max(map.getZoom(), 10), { duration: 0.6 });
+        showPlacePin(p.name, match, marker);
         showPlaceInfoPanel(p.name, match);
       }
     });
     marker.addTo(placeLabelsLayer);
+    primaryLabelLookup[extractCandidates(p.name)[0].core] = marker;
   });
 
   if (placeLabelsVisible) {
     placeLabelsLayer.addTo(map);
   }
+
+  // Build secondary layer: all coordinated places NOT in primary layer
+  // Includes both low-mention movement places AND gazetteer-only places
+  buildSecondaryPlaceLabels(primaryCores);
+}
+
+var secondaryLabelsLayer = null;
+var secondaryLabelLookup = {}; // core name -> marker
+
+function buildSecondaryPlaceLabels(primaryCores) {
+  if (secondaryLabelsLayer) { map.removeLayer(secondaryLabelsLayer); }
+  secondaryLabelsLayer = L.layerGroup();
+  secondaryLabelLookup = {};
+
+  // Source 1: movement places that didn't meet the >=2 threshold
+  // Source 2: gazetteer-only places with coordinates
+  var seen = {};
+
+  // Add low-mention movement places
+  DATA.movements.forEach(function(m) {
+    if (!m.placeName || m.lat == null || m.lon == null) return;
+    var core = extractCandidates(m.placeName)[0].core;
+    if (primaryCores[core] || seen[core]) return;
+    seen[core] = true;
+    addSecondaryMarker(m.placeName, m.lat, m.lon, core);
+  });
+
+  // Add gazetteer places not covered by movements at all
+  if (window.OVERLAY_PLACES_PROFILES) {
+    OVERLAY_PLACES_PROFILES.forEach(function(p) {
+      if (!p.co || p.co.lat == null) return;
+      var core = extractCandidates(p.n)[0].core;
+      if (primaryCores[core] || seen[core]) return;
+      seen[core] = true;
+      addSecondaryMarker(p.n, p.co.lat, p.co.lon, core);
+    });
+  }
+
+  secondaryLabelsLayer.addTo(map);
+}
+
+function addSecondaryMarker(name, lat, lon, core) {
+  var icon = L.divIcon({
+    className: 'place-label-icon',
+    html: '<span class="place-label-pill secondary">' + escHtml(name) + '</span>',
+    iconSize: [0, 0],
+    iconAnchor: [0, 6]
+  });
+
+  var marker = L.marker([lat, lon], { icon: icon, zIndexOffset: -200 });
+  marker.on('click', function() {
+    var movement = matchPlaceName(name) || { placeName: name, lat: lat, lon: lon };
+    showPlacePin(name, movement, marker);
+    showPlaceInfoPanel(name, movement);
+  });
+  marker.addTo(secondaryLabelsLayer);
+  secondaryLabelLookup[core] = marker;
+}
+
+function findSecondaryMarker(placeName) {
+  if (!secondaryLabelLookup) return null;
+  var core = extractCandidates(placeName)[0].core;
+  return secondaryLabelLookup[core] || null;
 }
 
 function togglePlaceLabels(show) {
@@ -2568,6 +3040,208 @@ function togglePlaceLabels(show) {
 
 function togglePlacesBtn() {
   togglePlaceLabels(!placeLabelsVisible);
+}
+
+// ========== PLACE SEARCH ==========
+var searchActiveIdx = -1;
+
+function buildSearchIndex() {
+  // Build a searchable list from overlay place profiles (only those with coordinates)
+  if (!window.OVERLAY_PLACES_PROFILES) return [];
+  var seen = {};
+  var results = [];
+  OVERLAY_PLACES_PROFILES.forEach(function(p) {
+    if (!p.co || p.co.lat == null) return;
+    // Deduplicate by coordinates (rounded to 3 decimals) + first few chars of name
+    var dedup = Math.round(p.co.lat * 1000) + ',' + Math.round(p.co.lon * 1000) + '|' + p.n.slice(0, 20).toLowerCase();
+    if (seen[dedup]) {
+      // Keep the one with more letters
+      if (p.lc > seen[dedup].lc) {
+        seen[dedup].n = p.n;
+        seen[dedup].lc = p.lc;
+        if (p.s) seen[dedup].s = p.s;
+      }
+      // Merge aliases for search matching
+      if (p.aw) p.aw.forEach(function(a) { seen[dedup].aliases.push(a.toLowerCase()); });
+      return;
+    }
+    var entry = {
+      n: p.n,
+      lat: p.co.lat,
+      lon: p.co.lon,
+      lc: p.lc || 0,
+      s: p.s || '',
+      st: p.st || '',
+      aliases: [p.n.toLowerCase()].concat((p.aw || []).map(function(a) { return a.toLowerCase(); }))
+    };
+    seen[dedup] = entry;
+    results.push(entry);
+  });
+  // Sort by letter count descending (most relevant places first)
+  results.sort(function(a, b) { return b.lc - a.lc; });
+  return results;
+}
+
+var searchIndex = null;
+
+function getSearchIndex() {
+  if (!searchIndex) searchIndex = buildSearchIndex();
+  return searchIndex;
+}
+
+function searchPlaces(query) {
+  var q = query.trim().toLowerCase();
+  if (!q) return [];
+  var index = getSearchIndex();
+  var terms = q.split(/\s+/);
+
+  var scored = [];
+  index.forEach(function(entry) {
+    var nameL = entry.n.toLowerCase();
+    // Check if all terms match name or aliases
+    var allMatch = terms.every(function(t) {
+      if (nameL.indexOf(t) > -1) return true;
+      return entry.aliases.some(function(a) { return a.indexOf(t) > -1; });
+    });
+    if (!allMatch) return;
+
+    // Score: exact prefix match > contains, weighted by letter count
+    var score = 0;
+    if (nameL.indexOf(q) === 0) score = 100;           // Full query is prefix of name
+    else if (nameL.indexOf(q) > -1) score = 80;        // Full query substring
+    else score = 60;                                     // Term-by-term match
+    score += Math.min(entry.lc, 30);                    // Bonus for letter count (cap 30)
+    scored.push({ entry: entry, score: score });
+  });
+
+  scored.sort(function(a, b) { return b.score - a.score; });
+  return scored.slice(0, 10).map(function(s) { return s.entry; });
+}
+
+function highlightMatch(text, query) {
+  if (!query) return escHtml(text);
+  var idx = text.toLowerCase().indexOf(query.toLowerCase());
+  if (idx === -1) return escHtml(text);
+  return escHtml(text.slice(0, idx)) + '<mark>' + escHtml(text.slice(idx, idx + query.length)) + '</mark>' + escHtml(text.slice(idx + query.length));
+}
+
+function renderSearchResults(results, query) {
+  var container = document.getElementById('placeSearchResults');
+  if (results.length === 0) {
+    container.innerHTML = '<div class="search-no-results">No places found</div>';
+    container.classList.add('open');
+    searchActiveIdx = -1;
+    return;
+  }
+  var html = '';
+  results.forEach(function(r, i) {
+    var snippet = r.s ? r.s.slice(0, 80) + (r.s.length > 80 ? '...' : '') : '';
+    html += '<div class="search-result" data-idx="' + i + '">';
+    html += '<div class="search-result-name">' + highlightMatch(r.n, query) + '</div>';
+    html += '<div class="search-result-meta">';
+    if (r.lc > 0) html += '<span class="search-result-letters">' + r.lc + ' letter' + (r.lc !== 1 ? 's' : '') + '</span>';
+    if (snippet) html += '<span class="search-result-snippet">' + escHtml(snippet) + '</span>';
+    html += '</div></div>';
+  });
+  container.innerHTML = html;
+  container.classList.add('open');
+  searchActiveIdx = -1;
+
+  // Bind click handlers
+  container.querySelectorAll('.search-result').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var idx = parseInt(el.getAttribute('data-idx'));
+      selectSearchResult(results[idx]);
+    });
+  });
+}
+
+function selectSearchResult(place) {
+  // Close search
+  closeSearch();
+
+  // Build a movement-like object for the existing place pin/panel functions
+  var movement = matchPlaceName(place.n) || { placeName: place.n, lat: place.lat, lon: place.lon };
+  var lat = movement.lat || place.lat;
+  var lon = movement.lon || place.lon;
+
+  // Ensure place labels are visible
+  if (!placeLabelsVisible) togglePlaceLabels(true);
+
+  _viewportSuppressed = true;
+  if (_viewportTimer) { clearTimeout(_viewportTimer); _viewportTimer = null; }
+  setTimeout(function() { _viewportSuppressed = false; }, 2000);
+  map.stop();
+  map.flyTo([lat, lon], 10, { duration: 0.8 });
+  showPlacePin(place.n, movement);
+  showPlaceInfoPanel(place.n, movement);
+}
+
+function closeSearch() {
+  var container = document.getElementById('placeSearchResults');
+  container.classList.remove('open');
+  searchActiveIdx = -1;
+  document.getElementById('placeSearchInput').value = '';
+}
+
+function initPlaceSearch() {
+  var input = document.getElementById('placeSearchInput');
+  var container = document.getElementById('placeSearchResults');
+  var currentResults = [];
+
+  input.addEventListener('input', function() {
+    var q = input.value.trim();
+    if (q.length < 2) {
+      container.classList.remove('open');
+      currentResults = [];
+      return;
+    }
+    currentResults = searchPlaces(q);
+    renderSearchResults(currentResults, q);
+  });
+
+  input.addEventListener('keydown', function(e) {
+    var items = container.querySelectorAll('.search-result');
+    if (!items.length || !container.classList.contains('open')) {
+      if (e.key === 'Escape') { closeSearch(); input.blur(); e.stopPropagation(); }
+      return;
+    }
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      searchActiveIdx = Math.min(searchActiveIdx + 1, items.length - 1);
+      items.forEach(function(el, i) { el.classList.toggle('active', i === searchActiveIdx); });
+      items[searchActiveIdx].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      searchActiveIdx = Math.max(searchActiveIdx - 1, 0);
+      items.forEach(function(el, i) { el.classList.toggle('active', i === searchActiveIdx); });
+      items[searchActiveIdx].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (searchActiveIdx >= 0 && currentResults[searchActiveIdx]) {
+        selectSearchResult(currentResults[searchActiveIdx]);
+      } else if (currentResults.length > 0) {
+        selectSearchResult(currentResults[0]);
+      }
+    } else if (e.key === 'Escape') {
+      closeSearch();
+      input.blur();
+      e.stopPropagation();
+    }
+  });
+
+  // Close on click outside
+  document.addEventListener('click', function(e) {
+    if (!document.getElementById('placeSearch').contains(e.target)) {
+      container.classList.remove('open');
+    }
+  });
+
+  // Stop map keyboard shortcuts while typing in search
+  input.addEventListener('keydown', function(e) {
+    e.stopPropagation();
+  });
 }
 
 function showInfoPanel(movement, brotherId) {
@@ -3012,6 +3686,29 @@ document.getElementById('rangeEnd').addEventListener('input', fadeCta);
 document.addEventListener('DOMContentLoaded', () => {
   init();
 
+  // Onboarding overlay — show on first visit
+  (function() {
+    var key = 'hubbell_map_onboarded';
+    if (!localStorage.getItem(key)) {
+      var overlay = document.getElementById('mapOnboard');
+      overlay.style.display = '';
+      function dismiss() {
+        overlay.style.display = 'none';
+        localStorage.setItem(key, '1');
+      }
+      document.getElementById('mapOnboardDismiss').addEventListener('click', dismiss);
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) dismiss();
+      });
+      document.addEventListener('keydown', function handler(e) {
+        if (e.key === 'Escape' && overlay.style.display !== 'none') {
+          dismiss();
+          document.removeEventListener('keydown', handler);
+        }
+      });
+    }
+  })();
+
   // Delegate clicks on map letter links (popups and info panel are dynamic)
   document.addEventListener('click', function(e) {
     var el = e.target.closest('[data-lid]');
@@ -3105,11 +3802,17 @@ HubbellDeepLink.registerStateApplier(function(p) {
   }
   if (p.place) {
     var match = matchPlaceName(p.place);
-    if (match && match.lat && match.lon) {
-      setTimeout(function() {
-        map.flyTo([match.lat, match.lon], 10, { duration: 1.2 });
-        showPlaceInfoPanel(p.place, match);
-      }, 400);
+    var pLat = (match && match.lat) ? match.lat : parseFloat(p.lat);
+    var pLon = (match && match.lon) ? match.lon : parseFloat(p.lon);
+    if (isFinite(pLat) && isFinite(pLon)) {
+      var movement = match || { placeName: p.place, lat: pLat, lon: pLon };
+      _viewportSuppressed = true;
+      if (_viewportTimer) { clearTimeout(_viewportTimer); _viewportTimer = null; }
+      map.stop();
+      map.flyTo([pLat, pLon], 10, { duration: 0.8 });
+      showPlacePin(p.place, movement);
+      showPlaceInfoPanel(p.place, movement);
+      setTimeout(function() { _viewportSuppressed = false; }, 2000);
     }
   }
 });

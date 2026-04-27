@@ -551,6 +551,18 @@ h3 { font-size: var(--fs-h3); line-height: 1.2; }
   color: var(--accent);
   font-weight: 400;
 }
+.hero-collection-link {
+  color: #2D5F8A;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(45, 95, 138, 0.3);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.15s, color 0.15s;
+}
+.hero-collection-link:hover {
+  color: #1E4468;
+  text-decoration-color: #2D5F8A;
+}
 
 /* ───── Body prose ───── */
 .prose p {
@@ -790,6 +802,24 @@ hr.rule {
   width: 32px; height: 4px;
   background: var(--brother-color, var(--accent));
   margin-bottom: 16px;
+}
+.brother-story-cta {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--cta-color, var(--accent));
+  background: color-mix(in srgb, var(--cta-color, var(--accent)) 10%, transparent);
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-bottom: 28px;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.brother-story-cta:hover {
+  background: color-mix(in srgb, var(--cta-color, var(--accent)) 18%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--cta-color, var(--accent)) 25%, transparent);
 }
 
 /* ───── Footer ───── */
@@ -1177,9 +1207,9 @@ a.reader-tag:hover { filter: brightness(0.88); }
   white-space: nowrap;
 }
 .reader-nav-mode-btn.active {
-  background: var(--bg-elev);
-  color: var(--ink);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  background: #2C2A26;
+  color: #FDFCFA;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 .reader-nav-mode-btn:hover:not(.active) {
   color: var(--ink-2);

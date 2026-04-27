@@ -290,7 +290,7 @@ window.HubbellReader = (function () {
     var d = formatDate(letter.d);
 
     // Map link
-    var mapLink = '<a class="reader-map-link" href="viz-map-fullwar.html?date=' +
+    var mapLink = '<a class="reader-map-link" href="viz-map-fullwar?date=' +
       encodeURIComponent(letter.d) + '&brother=' + encodeURIComponent(letter.a) +
       '&letter=' + encodeURIComponent(letter.id) + '">' +
       '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
@@ -309,7 +309,7 @@ window.HubbellReader = (function () {
     if (letter.ppl && letter.ppl.length) {
       ppl = '<div class="reader-people"><h4>People Mentioned</h4><div class="reader-tags">' +
         letter.ppl.map(function (p) {
-          return '<a href="viz-people-web.html?person=' + encodeURIComponent(p) +
+          return '<a href="viz-people-web?person=' + encodeURIComponent(p) +
             '" class="reader-tag person" onclick="event.stopPropagation()">' + esc(p) + '</a>';
         }).join('') + '</div></div>';
     }
@@ -319,7 +319,7 @@ window.HubbellReader = (function () {
     if (letter.plc && letter.plc.length) {
       plc = '<div class="reader-places"><h4>Places Mentioned</h4><div class="reader-tags">' +
         letter.plc.map(function (p) {
-          return '<a href="viz-map-fullwar.html?date=' + encodeURIComponent(letter.d) +
+          return '<a href="viz-map-fullwar?date=' + encodeURIComponent(letter.d) +
             '&brother=' + encodeURIComponent(letter.a) +
             '&place=' + encodeURIComponent(p) +
             '" class="reader-tag place" onclick="event.stopPropagation()">' + esc(p) + '</a>';

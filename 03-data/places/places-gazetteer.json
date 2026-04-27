@@ -110,7 +110,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.9072,
+      "lon": -77.0369
+    },
     "letterCount": 19,
     "letters": [
       "LTR-1861-11-13-001",
@@ -151,7 +154,10 @@
       "Winter quarters, Washington/Harpers Ferry area"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.41,
+      "lon": -77.37
+    },
     "letterCount": 18,
     "letters": [
       "LTR-1861-11-15-001",
@@ -187,7 +193,10 @@
       "Where McDonald talked to \"Charles of the 60th\""
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.3251,
+      "lon": -77.7286
+    },
     "letterCount": 16,
     "letters": [
       "LTR-1862-02-05-001",
@@ -221,7 +230,10 @@
       "`stated`"
     ],
     "state": "Louisiana",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 31.3113,
+      "lon": -92.4451
+    },
     "letterCount": 16,
     "letters": [
       "LTR-1862-04-02-001",
@@ -252,7 +264,10 @@
       "Capitol Hill, Washington, D.C."
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.8899,
+      "lon": -77.0091
+    },
     "letterCount": 15,
     "letters": [
       "LTR-1863-07-25-001",
@@ -322,7 +337,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.5407,
+      "lon": -77.436
+    },
     "letterCount": 13,
     "letters": [
       "LTR-1861-10-17-001",
@@ -350,7 +368,10 @@
       "Alexandria, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.8048,
+      "lon": -77.0469
+    },
     "letterCount": 13,
     "letters": [
       "LTR-1863-02-22-001",
@@ -380,7 +401,10 @@
       "`stated`"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.0049,
+      "lon": -76.3062
+    },
     "letterCount": 10,
     "letters": [
       "LTR-1862-03-11-001",
@@ -405,7 +429,10 @@
       "Aquia Landing"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.4523,
+      "lon": -77.3892
+    },
     "letterCount": 9,
     "letters": [
       "LTR-1863-02-28-001",
@@ -430,7 +457,10 @@
       "`stated`"
     ],
     "state": "TN",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.1627,
+      "lon": -86.7816
+    },
     "letterCount": 9,
     "letters": [
       "LTR-1863-10-11-001",
@@ -454,7 +484,10 @@
       "Stevenson, Alabama"
     ],
     "state": "Alabama",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.8687,
+      "lon": -85.8394
+    },
     "letterCount": 9,
     "letters": [
       "LTR-1864-03-07-001",
@@ -567,7 +600,10 @@
       "`stated`"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.1857,
+      "lon": -78.1633
+    },
     "letterCount": 8,
     "letters": [
       "LTR-1862-03-16-001",
@@ -591,7 +627,10 @@
       "Champlain, N.Y."
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.9862,
+      "lon": -73.4468
+    },
     "letterCount": 8,
     "letters": [
       "LTR-1862-09-21-002",
@@ -691,7 +730,10 @@
       "`stated`"
     ],
     "state": "Louisiana",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 29.9511,
+      "lon": -90.0715
+    },
     "letterCount": 6,
     "letters": [
       "LTR-1862-04-01-001",
@@ -712,7 +754,10 @@
       "Yorktown, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.2387,
+      "lon": -76.5098
+    },
     "letterCount": 6,
     "letters": [
       "LTR-1862-04-02-002",
@@ -734,7 +779,10 @@
       "`stated`"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.9545,
+      "lon": -74.3735
+    },
     "letterCount": 6,
     "letters": [
       "LTR-1862-10-15-001",
@@ -756,7 +804,10 @@
       "`stated`"
     ],
     "state": "TN",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.0456,
+      "lon": -85.3097
+    },
     "letterCount": 6,
     "letters": [
       "LTR-1863-12-13-001",
@@ -797,7 +848,10 @@
       "Near Atlanta, Georgia"
     ],
     "state": "Georgia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 33.749,
+      "lon": -84.388
+    },
     "letterCount": 5,
     "letters": [
       "LTR-1864-07-24-001",
@@ -879,7 +933,10 @@
       "Relay, MD"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.2237,
+      "lon": -76.7125
+    },
     "letterCount": 4,
     "letters": [
       "LTR-1861-11-13-001",
@@ -922,7 +979,10 @@
       "`stated`"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.4747,
+      "lon": -77.7447
+    },
     "letterCount": 4,
     "letters": [
       "LTR-1862-09-21-002",
@@ -941,7 +1001,10 @@
       "Champlain, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.9862,
+      "lon": -73.4468
+    },
     "letterCount": 4,
     "letters": [
       "LTR-1862-10-10-001",
@@ -960,7 +1023,10 @@
       "Camp near Alexandria, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.8048,
+      "lon": -77.0469
+    },
     "letterCount": 4,
     "letters": [
       "LTR-1862-11-10-001",
@@ -998,7 +1064,10 @@
       "Morganza, Louisiana"
     ],
     "state": "Louisiana",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 30.7382,
+      "lon": -91.5903
+    },
     "letterCount": 4,
     "letters": [
       "LTR-1864-06-13-001",
@@ -1019,7 +1088,10 @@
       "Ogdensburg, NY"
     ],
     "state": "Ogdensburg",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.694,
+      "lon": -75.4863
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1861-09-27-002",
@@ -1039,7 +1111,10 @@
       "Poolesville, Montgomery County, Maryland"
     ],
     "state": "Maryland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.1457,
+      "lon": -77.4172
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1861-10-17-001",
@@ -1102,7 +1177,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 45.5017,
+      "lon": -73.5673
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1862-01-09-002",
@@ -1165,7 +1243,10 @@
       "Hampton, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.0299,
+      "lon": -76.3452
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1862-04-02-002",
@@ -1183,7 +1264,10 @@
       "Relay, MD"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.2237,
+      "lon": -76.7125
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1862-04-11-001",
@@ -1202,7 +1286,10 @@
       "`stated`"
     ],
     "state": "VT",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.4759,
+      "lon": -73.2121
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1862-07-27-001",
@@ -1241,7 +1328,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.9076,
+      "lon": -77.0723
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1862-12-08-001",
@@ -1259,7 +1349,10 @@
       "Fairfax Station, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.7934,
+      "lon": -77.3268
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1862-12-21-001",
@@ -1277,7 +1370,10 @@
       "Aquia Creek, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.4523,
+      "lon": -77.3892
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1863-01-02-001",
@@ -1295,7 +1391,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.9526,
+      "lon": -75.1652
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1863-04-27-001",
@@ -1332,7 +1431,10 @@
       "`stated`"
     ],
     "state": "GA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.9156,
+      "lon": -85.1096
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1863-12-13-001",
@@ -1350,7 +1452,10 @@
       "New Orleans, Louisiana"
     ],
     "state": "Louisiana",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 29.9511,
+      "lon": -90.0715
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1864-03-06-001",
@@ -1388,7 +1493,10 @@
       "`stated`"
     ],
     "state": "Georgia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 33.749,
+      "lon": -84.388
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1864-06-08-001",
@@ -1424,7 +1532,10 @@
       "U.S. Field Hospital No. 2, Chattanooga, Tennessee"
     ],
     "state": "Tennessee",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.0456,
+      "lon": -85.3097
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1864-09-18-001",
@@ -1442,7 +1553,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.9885,
+      "lon": -78.3586
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1864-09-21-001",
@@ -1460,7 +1574,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.0876,
+      "lon": -78.2022
+    },
     "letterCount": 3,
     "letters": [
       "LTR-1864-11-30-001",
@@ -1500,7 +1617,10 @@
       "Ogdensburg, St. Lawrence County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.694,
+      "lon": -75.4863
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1861-09-20-001",
@@ -1535,7 +1655,10 @@
       "Ogdensburg, St. Lawrence County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.694,
+      "lon": -75.4863
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1861-10-03-001",
@@ -1552,7 +1675,10 @@
       "Champlain, Clinton County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.9862,
+      "lon": -73.4468
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1861-10-19-001",
@@ -1570,7 +1696,10 @@
       "Whitehall, Washington County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.5554,
+      "lon": -73.4037
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1861-11-13-001",
@@ -1589,7 +1718,10 @@
       "Camden Station, Baltimore, MD -- railroad station where Alexander was posted"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.2838,
+      "lon": -76.6232
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1861-12-22-001",
@@ -1644,7 +1776,10 @@
       "Manassas, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.7509,
+      "lon": -77.4753
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1862-03-11-001",
@@ -1662,7 +1797,10 @@
       "`stated`"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.1515,
+      "lon": -77.9822
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1862-03-16-001",
@@ -1698,7 +1836,10 @@
       "Hampton, Virginia"
     ],
     "state": "Virginia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.0299,
+      "lon": -76.3452
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1862-04-02-001",
@@ -1733,7 +1874,10 @@
       "Siege lines, Yorktown, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.2387,
+      "lon": -76.5098
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1862-04-21-001",
@@ -1803,7 +1947,10 @@
       "`stated`"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.4143,
+      "lon": -77.4105
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1862-10-01-001",
@@ -1821,7 +1968,10 @@
       "Where Albert Cook was"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.9784,
+      "lon": -76.4922
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1862-11-10-001",
@@ -1839,7 +1989,10 @@
       "`stated`"
     ],
     "state": "Alabama",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.8687,
+      "lon": -85.8394
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1863-05-06-001",
@@ -1856,7 +2009,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 41.8781,
+      "lon": -87.6298
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1863-07-06-001",
@@ -1873,7 +2029,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.8309,
+      "lon": -77.2311
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1863-07-25-001",
@@ -1890,7 +2049,10 @@
       "Capitol Hill Barracks, Washington, D.C."
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.8899,
+      "lon": -77.0091
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1863-08-16-001",
@@ -1907,7 +2069,10 @@
       "Ellis Ford"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.54,
+      "lon": -77.78
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1863-08-25-001",
@@ -1924,7 +2089,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.95,
+      "lon": -73.42
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1863-10-31-001",
@@ -1941,7 +2109,10 @@
       "Wauhatchie, East Tennessee"
     ],
     "state": "East Tennessee",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.02,
+      "lon": -85.38
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1863-11-21-001",
@@ -1958,7 +2129,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.0087,
+      "lon": -85.3444
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1863-12-01-001",
@@ -1975,7 +2149,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 32.0809,
+      "lon": -81.0912
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1864-01-08-001",
@@ -1992,7 +2169,10 @@
       "Fort DeRussy, Louisiana"
     ],
     "state": "Louisiana",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 31.275,
+      "lon": -92.075
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1864-03-25-001",
@@ -2009,7 +2189,10 @@
       "Camp in field near Marietta, Georgia"
     ],
     "state": "Georgia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 33.9526,
+      "lon": -84.5499
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1864-06-20-001",
@@ -2044,7 +2227,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.0286,
+      "lon": -78.3147
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1864-10-04-001",
@@ -2061,7 +2247,10 @@
       "Camp near Newtown, Virginia"
     ],
     "state": "Virginia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.0876,
+      "lon": -78.2022
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1864-11-30-001",
@@ -2078,7 +2267,10 @@
       "Champlain, New York"
     ],
     "state": "New York",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.9862,
+      "lon": -73.4468
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1865-01-11-001",
@@ -2095,7 +2287,10 @@
       "Savannah, Georgia"
     ],
     "state": "Georgia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 32.0809,
+      "lon": -81.0912
+    },
     "letterCount": 2,
     "letters": [
       "LTR-1865-06-12-001",
@@ -2147,7 +2342,10 @@
       "Likely Middleburgh, Schoharie County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.5987,
+      "lon": -74.3329
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-09-05-001"
@@ -2163,7 +2361,10 @@
       "Fort Hatteras, Hatteras Inlet, NC"
     ],
     "state": "NC",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.2088,
+      "lon": -75.691
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-09-11-001"
@@ -2195,7 +2396,10 @@
       "Military barracks near railroad, Ogdensburg"
     ],
     "state": "Ogdensburg",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.694,
+      "lon": -75.4863
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-09-20-001"
@@ -2211,7 +2415,10 @@
       "Chazy, Clinton County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.8859,
+      "lon": -73.4348
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-09-21-001"
@@ -2227,7 +2434,10 @@
       "Camp Wheeler, Ogdensburg, St. Lawrence County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.694,
+      "lon": -75.4863
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-09-23-001"
@@ -2243,7 +2453,10 @@
       "Ogdensburg, St. Lawrence County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.694,
+      "lon": -75.4863
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-09-26-001"
@@ -2291,7 +2504,10 @@
       "Ogdensburg, St. Lawrence County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.694,
+      "lon": -75.4863
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-09-27-002"
@@ -2307,7 +2523,10 @@
       "Watertown, Jefferson County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.9748,
+      "lon": -75.9108
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-09-27-002"
@@ -2339,7 +2558,10 @@
       "Ogdensburg"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.694,
+      "lon": -75.4863
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-10-03-002"
@@ -2403,7 +2625,10 @@
       "Rouses Point, Clinton County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.9934,
+      "lon": -73.3651
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-11-13-001"
@@ -2419,7 +2644,10 @@
       "Jersey City, NJ"
     ],
     "state": "NJ",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 40.7178,
+      "lon": -74.0431
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-11-13-001"
@@ -2435,7 +2663,10 @@
       "Philadelphia, PA"
     ],
     "state": "PA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.9526,
+      "lon": -75.1652
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-11-13-001"
@@ -2451,7 +2682,10 @@
       "Kalorama Heights, Washington, D.C."
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.9214,
+      "lon": -77.0503
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-11-13-001"
@@ -2499,7 +2733,10 @@
       "Camp Jackson, near Baltimore, MD"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.2904,
+      "lon": -76.6122
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-12-08-002"
@@ -2515,7 +2752,10 @@
       "Kalorama Heights, Washington, D.C."
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.9214,
+      "lon": -77.0503
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-12-08-002"
@@ -2531,7 +2771,10 @@
       "Chazy, Clinton County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.8859,
+      "lon": -73.4348
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-12-16-001"
@@ -2563,7 +2806,10 @@
       "Chazy, Clinton County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.8859,
+      "lon": -73.4348
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1861-12-19-001"
@@ -2643,7 +2889,10 @@
       "Bolivar Heights, above Harpers Ferry, WV"
     ],
     "state": "WV",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.326,
+      "lon": -77.744
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-02-05-001"
@@ -2659,7 +2908,10 @@
       "Adamstown, MD"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.3109,
+      "lon": -77.4725
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-02-05-001"
@@ -2675,7 +2927,10 @@
       "Charleston, WV"
     ],
     "state": "WV",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.3498,
+      "lon": -81.6326
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-02-05-001"
@@ -2691,7 +2946,10 @@
       "Heights above Harpers Ferry, WV"
     ],
     "state": "WV",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.3251,
+      "lon": -77.7286
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-02-05-002"
@@ -2707,7 +2965,10 @@
       "Adamstown, MD"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.3109,
+      "lon": -77.4725
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-02-05-002"
@@ -2723,7 +2984,10 @@
       "Barnesville, MD"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.2204,
+      "lon": -77.3778
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-02-05-002"
@@ -2879,7 +3143,10 @@
       "Barnesville, MD"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.2204,
+      "lon": -77.3778
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-02-28-001"
@@ -2895,7 +3162,10 @@
       "Adamstown, MD"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.3109,
+      "lon": -77.4725
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-02-28-001"
@@ -2911,7 +3181,10 @@
       "Longueuil or Longale, Canada"
     ],
     "state": "Canada",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 45.5312,
+      "lon": -73.5185
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-03-03-001"
@@ -2927,7 +3200,10 @@
       "Columbus, KY"
     ],
     "state": "KY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.7598,
+      "lon": -89.1032
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-03-03-001"
@@ -2943,7 +3219,10 @@
       "Malone, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.8484,
+      "lon": -74.2935
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-03-11-001"
@@ -2959,7 +3238,10 @@
       "Potsdam, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.6698,
+      "lon": -74.9813
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-03-11-001"
@@ -3007,7 +3289,10 @@
       "Budd's Ferry, MD"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.4763,
+      "lon": -77.2103
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-03-17-001"
@@ -3023,7 +3308,10 @@
       "Ogdensburg, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.694,
+      "lon": -75.4863
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-03-17-001"
@@ -3087,7 +3375,10 @@
       "Corinth, MS"
     ],
     "state": "MS",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.9342,
+      "lon": -88.5223
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-04-01-001"
@@ -3103,7 +3394,10 @@
       "Mobile, AL"
     ],
     "state": "AL",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 30.6954,
+      "lon": -88.0399
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-04-01-001"
@@ -3151,7 +3445,10 @@
       "Annapolis Junction, MD"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.1185,
+      "lon": -76.7772
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-04-11-001"
@@ -3167,7 +3464,10 @@
       "Fort Corcoran, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.887,
+      "lon": -77.077
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-04-11-001"
@@ -3183,7 +3483,10 @@
       "Shiloh/Pittsburg Landing, TN"
     ],
     "state": "TN",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.1495,
+      "lon": -88.3406
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-04-11-001"
@@ -3215,7 +3518,10 @@
       "Siege lines, Yorktown, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.2387,
+      "lon": -76.5098
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-04-21-002"
@@ -3231,7 +3537,10 @@
       "Fort Monroe, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.0049,
+      "lon": -76.3062
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-05-01-002"
@@ -3247,7 +3556,10 @@
       "Yorktown, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.2387,
+      "lon": -76.5098
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-05-06-001"
@@ -3279,7 +3591,10 @@
       "West Point, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.5313,
+      "lon": -76.7958
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-05-09-002"
@@ -3295,7 +3610,10 @@
       "Yorktown battlefield, 1781"
     ],
     "state": "1781",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.2387,
+      "lon": -76.5098
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-05-09-002"
@@ -3311,7 +3629,10 @@
       "West Point, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.5313,
+      "lon": -76.7958
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-05-12-001"
@@ -3359,7 +3680,10 @@
       "Winchester, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.1857,
+      "lon": -78.1633
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-06-08-001"
@@ -3375,7 +3699,10 @@
       "Charles Town, WV"
     ],
     "state": "WV",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.2887,
+      "lon": -77.8597
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-06-08-001"
@@ -3391,7 +3718,10 @@
       "Smithfield, WV"
     ],
     "state": "WV",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.3837,
+      "lon": -77.7958
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-06-08-001"
@@ -3407,7 +3737,10 @@
       "Battle of Fair Oaks / Seven Pines, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.5501,
+      "lon": -77.3117
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-06-13-002"
@@ -3471,7 +3804,10 @@
       "Strasburg, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.9885,
+      "lon": -78.3586
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-06-30-001"
@@ -3487,7 +3823,10 @@
       "Strasburg, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.9885,
+      "lon": -78.3586
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-07-04-001"
@@ -3503,7 +3842,10 @@
       "Front Royal, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.9182,
+      "lon": -78.1944
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-07-08-001"
@@ -3551,7 +3893,10 @@
       "Harrison's Landing area, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.3339,
+      "lon": -77.2198
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-07-08-002"
@@ -3567,7 +3912,10 @@
       "Harrison's Landing, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.3339,
+      "lon": -77.2198
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-07-12-001"
@@ -3583,7 +3931,10 @@
       "Middletown, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.0298,
+      "lon": -78.2808
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-07-12-001"
@@ -3647,7 +3998,10 @@
       "Washington, Rappahannock County, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.7135,
+      "lon": -78.1594
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-07-26-001"
@@ -3663,7 +4017,10 @@
       "U.S. Military Academy, West Point, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 41.3915,
+      "lon": -73.9565
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-07-27-001"
@@ -3695,7 +4052,10 @@
       "Harrison's Landing (Berkeley Plantation), VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.3339,
+      "lon": -77.2198
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-07-28-001"
@@ -3711,7 +4071,10 @@
       "U.S. Military Barracks, Plattsburgh, Clinton County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.6995,
+      "lon": -73.4529
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-09-09-001"
@@ -3759,7 +4122,10 @@
       "Antietam battlefield, near Sharpsburg, MD"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.4747,
+      "lon": -77.7447
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-09-19-001"
@@ -3775,7 +4141,10 @@
       "Maryland Heights, above Harpers Ferry, MD"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.324,
+      "lon": -77.734
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-09-19-001"
@@ -3791,7 +4160,10 @@
       "U.S. Military Academy, West Point, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 41.3915,
+      "lon": -73.9565
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-09-21-001"
@@ -3807,7 +4179,10 @@
       "Military hospital, Harpers Ferry, WV"
     ],
     "state": "WV",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.3251,
+      "lon": -77.7286
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-09-27-001"
@@ -3823,7 +4198,10 @@
       "Plattsburgh Barracks, Plattsburgh, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.6995,
+      "lon": -73.4529
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-09-30-001"
@@ -3839,7 +4217,10 @@
       "Plattsburgh Barracks, Plattsburgh, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.6995,
+      "lon": -73.4529
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-09-30-002"
@@ -3855,7 +4236,10 @@
       "Plattsburgh, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.6995,
+      "lon": -73.4529
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-09-30-002"
@@ -3887,7 +4271,10 @@
       "Bolivar Heights, near Harpers Ferry, WV"
     ],
     "state": "WV",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.326,
+      "lon": -77.744
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-10-01-001"
@@ -3903,7 +4290,10 @@
       "Champlain, Clinton County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.9862,
+      "lon": -73.4468
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-10-01-001"
@@ -3951,7 +4341,10 @@
       "Shepherdstown, WV"
     ],
     "state": "WV",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.4307,
+      "lon": -77.8042
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-10-06-001"
@@ -3967,7 +4360,10 @@
       "Chazy, Clinton County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.8859,
+      "lon": -73.4348
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-10-06-001"
@@ -3983,7 +4379,10 @@
       "Plattsburgh, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.6995,
+      "lon": -73.4529
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-10-10-001"
@@ -3999,7 +4398,10 @@
       "Military hospital in Eckington neighborhood, D.C."
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.917,
+      "lon": -77.001
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-10-12-001"
@@ -4015,7 +4417,10 @@
       "Military camp near Fonda, Montgomery County, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.9545,
+      "lon": -74.3735
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-10-15-001"
@@ -4031,7 +4436,10 @@
       "Saratoga Springs, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.0831,
+      "lon": -73.7846
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-10-15-001"
@@ -4047,7 +4455,10 @@
       "Schenectady, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.8142,
+      "lon": -73.9396
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-10-15-001"
@@ -4111,7 +4522,10 @@
       "Camp near Alexandria, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.8048,
+      "lon": -77.0469
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-11-18-001"
@@ -4127,7 +4541,10 @@
       "Georgetown, Washington, D.C."
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.9076,
+      "lon": -77.0723
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-11-19-001"
@@ -4143,7 +4560,10 @@
       "Rockville, MD"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.084,
+      "lon": -77.1528
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-11-19-001"
@@ -4175,7 +4595,10 @@
       "Yorktown, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.2387,
+      "lon": -76.5098
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-12-08-001"
@@ -4191,7 +4614,10 @@
       "Corbeau(x), Clinton County, NY area"
     ],
     "state": "NY area",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.95,
+      "lon": -73.42
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-12-08-001"
@@ -4207,7 +4633,10 @@
       "Falmouth, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.3218,
+      "lon": -77.4689
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-12-09-002"
@@ -4239,7 +4668,10 @@
       "Hillsboro, Loudoun County, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.2101,
+      "lon": -77.7272
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-12-21-001"
@@ -4255,7 +4687,10 @@
       "Leesburg, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.1157,
+      "lon": -77.5636
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-12-21-001"
@@ -4271,7 +4706,10 @@
       "Fairfax, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.8462,
+      "lon": -77.3064
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-12-21-001"
@@ -4287,7 +4725,10 @@
       "Dumfries, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.5676,
+      "lon": -77.3272
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-12-21-001"
@@ -4303,7 +4744,10 @@
       "Aquia Creek, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.4523,
+      "lon": -77.3892
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-12-21-001"
@@ -4319,7 +4763,10 @@
       "Fredericksburg, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.3032,
+      "lon": -77.4605
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-12-21-001"
@@ -4351,7 +4798,10 @@
       "Mount Vernon, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.7082,
+      "lon": -77.0861
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1862-12-26-001"
@@ -4367,7 +4817,10 @@
       "Camp near Fairfax Station"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.7934,
+      "lon": -77.3268
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-01-13-001"
@@ -4383,7 +4836,10 @@
       "Camp near Fairfax Station, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.7934,
+      "lon": -77.3268
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-01-14-001"
@@ -4399,7 +4855,10 @@
       "Likely Christ Church Alexandria"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.8065,
+      "lon": -77.0435
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-01-31-001"
@@ -4415,7 +4874,10 @@
       "Stafford County, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.422,
+      "lon": -77.4083
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-02-06-001"
@@ -4447,7 +4909,10 @@
       "Aquia Creek, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.4523,
+      "lon": -77.3892
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-02-21-001"
@@ -4463,7 +4928,10 @@
       "Rouse's Point, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.9934,
+      "lon": -73.3651
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-02-21-001"
@@ -4479,7 +4947,10 @@
       "White River Junction, VT"
     ],
     "state": "VT",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.649,
+      "lon": -72.3193
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-02-21-001"
@@ -4495,7 +4966,10 @@
       "Springfield, MA"
     ],
     "state": "MA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.1015,
+      "lon": -72.5898
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-02-21-001"
@@ -4511,7 +4985,10 @@
       "Hartford, CT"
     ],
     "state": "CT",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 41.7658,
+      "lon": -72.6734
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-02-21-001"
@@ -4527,7 +5004,10 @@
       "New Haven, CT"
     ],
     "state": "CT",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 41.3083,
+      "lon": -72.9279
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-02-21-001"
@@ -4559,7 +5039,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 32.3526,
+      "lon": -90.8779
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-03-19-001"
@@ -4591,7 +5074,10 @@
       "Atlas"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.9014,
+      "lon": -83.5385
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-04-13-001"
@@ -4623,7 +5109,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.2705,
+      "lon": -76.7075
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-04-30-001"
@@ -4655,7 +5144,10 @@
       "Bridgeport, Alabama"
     ],
     "state": "Alabama",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.947,
+      "lon": -85.7144
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-05-06-001"
@@ -4671,7 +5163,10 @@
       "Aquia Landing, Va."
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.4523,
+      "lon": -77.3892
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-05-11-001"
@@ -4687,7 +5182,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.3048,
+      "lon": -77.6387
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-05-16-001"
@@ -4719,7 +5217,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.3218,
+      "lon": -77.4689
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-06-10-001"
@@ -4735,7 +5236,10 @@
       "Near Gettysburg, Pennsylvania"
     ],
     "state": "Pennsylvania",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.8309,
+      "lon": -77.2311
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-07-04-001"
@@ -4751,7 +5255,10 @@
       "Near Crampton's Gap, MD"
     ],
     "state": "MD",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.4073,
+      "lon": -77.6367
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-07-08-001"
@@ -4767,7 +5274,10 @@
       "Camp near Warrenton Junction"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.6432,
+      "lon": -77.7262
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-07-30-001"
@@ -4783,7 +5293,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.7135,
+      "lon": -77.7953
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-07-30-001"
@@ -4799,7 +5312,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.6432,
+      "lon": -77.7262
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-07-30-001"
@@ -4815,7 +5331,10 @@
       "Camp Davis, Capitol Hill, Washington, D.C."
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.8899,
+      "lon": -77.0091
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-09-15-001"
@@ -4831,7 +5350,10 @@
       "Raccoon Ford, Rapidan River, VA"
     ],
     "state": "VA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.41,
+      "lon": -77.95
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-09-18-001"
@@ -4847,7 +5369,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.41,
+      "lon": -77.95
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-09-18-001"
@@ -4895,7 +5420,10 @@
       "Army of the Cumberland, HQ 60th NY Vol., Murfreesboro, TN"
     ],
     "state": "TN",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.8456,
+      "lon": -86.3903
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-10-11-001"
@@ -4911,7 +5439,10 @@
       "White Side, Georgia"
     ],
     "state": "Georgia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.88,
+      "lon": -85.5
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-11-01-001"
@@ -4943,7 +5474,10 @@
       "General Hospital, Tullahoma, TN"
     ],
     "state": "TN",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.362,
+      "lon": -86.2094
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-12-01-001"
@@ -4959,7 +5493,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.88,
+      "lon": -85.5
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-12-13-001"
@@ -4975,7 +5512,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.0139,
+      "lon": -85.2522
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-12-13-001"
@@ -4991,7 +5531,10 @@
       "Wauhatchie, TN"
     ],
     "state": "TN",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.02,
+      "lon": -85.38
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1863-12-16-001"
@@ -5007,7 +5550,10 @@
       "Lolliecoffer House, Nashville, TN"
     ],
     "state": "TN",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.1627,
+      "lon": -86.7816
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-01-08-001"
@@ -5023,7 +5569,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.7698,
+      "lon": -84.9702
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-01-08-001"
@@ -5039,7 +5588,10 @@
       "Point Lookout, Maryland"
     ],
     "state": "Maryland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.0505,
+      "lon": -76.3227
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-02-15-001"
@@ -5055,7 +5607,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.0505,
+      "lon": -76.3227
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-02-15-001"
@@ -5071,7 +5626,10 @@
       "Nashville, Tennessee"
     ],
     "state": "Tennessee",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.1627,
+      "lon": -86.7816
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-02-18-001"
@@ -5087,7 +5645,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.2527,
+      "lon": -85.7585
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-02-18-001"
@@ -5103,7 +5664,10 @@
       "Stephenson, Alabama"
     ],
     "state": "Alabama",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.8687,
+      "lon": -85.8394
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-02-21-001"
@@ -5119,7 +5683,10 @@
       "Charleston, S.C."
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 32.7765,
+      "lon": -79.9311
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-02-24-001"
@@ -5135,7 +5702,10 @@
       "Algiers, New Orleans"
     ],
     "state": "New Orleans",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 29.9425,
+      "lon": -90.0318
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-03-01-001"
@@ -5231,7 +5801,10 @@
       "Fort Jefferson, Dry Tortugas, Florida"
     ],
     "state": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 24.6285,
+      "lon": -82.8732
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-04-23-001"
@@ -5247,7 +5820,10 @@
       "Grand Ecore, Louisiana"
     ],
     "state": "Louisiana",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 31.743,
+      "lon": -93.177
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-04-25-001"
@@ -5263,7 +5839,10 @@
       "Fort Jefferson, Dry Tortugas, Florida"
     ],
     "state": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 24.6285,
+      "lon": -82.8732
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-04-25-001"
@@ -5279,7 +5858,10 @@
       "Port Hudson, Louisiana"
     ],
     "state": "Louisiana",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 30.6949,
+      "lon": -91.2551
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-05-03-001"
@@ -5327,7 +5909,10 @@
       "Camp near Altoona Creek, Georgia"
     ],
     "state": "Georgia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.4812,
+      "lon": -84.7224
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-05-08-001"
@@ -5343,7 +5928,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.4812,
+      "lon": -84.7224
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-05-08-001"
@@ -5375,7 +5963,10 @@
       "Camp near Buzzard's Roost, Georgia"
     ],
     "state": "Georgia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.74,
+      "lon": -84.98
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-05-10-001"
@@ -5391,7 +5982,10 @@
       "Camp South of the Oostanaula River, Georgia"
     ],
     "state": "Georgia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.52,
+      "lon": -84.92
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-05-17-001"
@@ -5407,7 +6001,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.52,
+      "lon": -84.92
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-05-17-001"
@@ -5423,7 +6020,10 @@
       "Camp near Kingston, Georgia"
     ],
     "state": "Georgia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.2362,
+      "lon": -84.9427
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-05-20-001"
@@ -5439,7 +6039,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.2362,
+      "lon": -84.9427
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-05-20-001"
@@ -5471,7 +6074,10 @@
       "Entrenchments near Dallas, Georgia"
     ],
     "state": "Georgia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 33.9243,
+      "lon": -84.8413
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-05-31-001"
@@ -5487,7 +6093,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 33.9243,
+      "lon": -84.8413
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-05-31-001"
@@ -5503,7 +6112,10 @@
       "Morganza Bend, Louisiana"
     ],
     "state": "Louisiana",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 30.7382,
+      "lon": -91.5903
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-06-02-001"
@@ -5535,7 +6147,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 40.7128,
+      "lon": -74.006
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-06-02-001"
@@ -5551,7 +6166,10 @@
       "Marietta, Georgia"
     ],
     "state": "Georgia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 33.9526,
+      "lon": -84.5499
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-06-08-001"
@@ -5567,7 +6185,10 @@
       "In the Field near Marietta, Georgia"
     ],
     "state": "Georgia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 33.9526,
+      "lon": -84.5499
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-07-02-001"
@@ -5663,7 +6284,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 30.7382,
+      "lon": -91.5903
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-08-15-001"
@@ -5743,7 +6367,10 @@
       "U.S. General Hospital, Chattanooga, Tennessee"
     ],
     "state": "Tennessee",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.0456,
+      "lon": -85.3097
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-09-02-001"
@@ -5759,7 +6386,10 @@
       "In the field near Strasburg, Virginia"
     ],
     "state": "Virginia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.9885,
+      "lon": -78.3586
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-09-21-001"
@@ -5775,7 +6405,10 @@
       "U.S. Hospital No. 2, Chattanooga, Tennessee"
     ],
     "state": "Tennessee",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.0456,
+      "lon": -85.3097
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-09-21-002"
@@ -5807,7 +6440,10 @@
       "Harrisonburg, Virginia"
     ],
     "state": "Virginia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.4496,
+      "lon": -78.8689
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-10-04-001"
@@ -5823,7 +6459,10 @@
       "Cedar Creek, Virginia"
     ],
     "state": "Virginia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.0286,
+      "lon": -78.3147
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-10-04-001"
@@ -5839,7 +6478,10 @@
       "Harrisonburg, Shenandoah Valley"
     ],
     "state": "Shenandoah Valley",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.4496,
+      "lon": -78.8689
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-10-04-002"
@@ -5887,7 +6529,10 @@
       "Fort near Nashville"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.1439,
+      "lon": -86.7811
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-10-10-001"
@@ -5903,7 +6548,10 @@
       "Camp near Strasburg, Virginia"
     ],
     "state": "Virginia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.9885,
+      "lon": -78.3586
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-10-22-001"
@@ -5919,7 +6567,10 @@
       "`stated`"
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.995,
+      "lon": -78.37
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-10-22-001"
@@ -5951,7 +6602,10 @@
       "U.S.A. Hospital No. 3, Nashville, Tennessee"
     ],
     "state": "Tennessee",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.1627,
+      "lon": -86.7816
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-10-26-001"
@@ -5967,7 +6621,10 @@
       "Patterson Park Hospital, Baltimore, Maryland"
     ],
     "state": "Maryland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.2898,
+      "lon": -76.584
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-10-29-001"
@@ -5999,7 +6656,10 @@
       "Camp at Cedar Creek, Virginia"
     ],
     "state": "Virginia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.0286,
+      "lon": -78.3147
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-11-04-001"
@@ -6015,7 +6675,10 @@
       "Fort Negley, Nashville"
     ],
     "state": "Nashville",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.1439,
+      "lon": -86.7811
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-12-05-001"
@@ -6031,7 +6694,10 @@
       "Chestnut Hill Hospital, Philadelphia"
     ],
     "state": "Philadelphia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 40.0759,
+      "lon": -75.1904
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-12-09-001"
@@ -6047,7 +6713,10 @@
       "Burlington, Vermont"
     ],
     "state": "Vermont",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.4759,
+      "lon": -73.2121
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-12-12-002"
@@ -6079,7 +6748,10 @@
       "Camp Russell, near Newtown, Virginia"
     ],
     "state": "Virginia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.0876,
+      "lon": -78.2022
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1864-12-27-001"
@@ -6111,7 +6783,10 @@
       "Boston, MA"
     ],
     "state": "MA",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.3601,
+      "lon": -71.0589
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1865-01-11-001"
@@ -6127,7 +6802,10 @@
       "Plattsburgh, NY"
     ],
     "state": "NY",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.6995,
+      "lon": -73.4529
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1865-01-11-001"
@@ -6159,7 +6837,10 @@
       "Wauhatchie, TN"
     ],
     "state": "TN",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.02,
+      "lon": -85.38
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1865-06-16-001"
@@ -6175,7 +6856,10 @@
       "Near Alexandria, Virginia"
     ],
     "state": "Virginia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.8048,
+      "lon": -77.0469
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1865-06-27-001"
@@ -6191,7 +6875,10 @@
       "Camp Wheeler, Ogdensburgh, N.Y."
     ],
     "state": null,
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.694,
+      "lon": -75.4863
+    },
     "letterCount": 1,
     "letters": [
       "LTR-1865-07-27-001"
