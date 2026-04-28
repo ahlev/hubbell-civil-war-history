@@ -622,9 +622,9 @@ h3 { font-size: var(--fs-h3); line-height: 1.2; }
   padding: 48px 56px 40px;
 }
 .featured-letter-body {
-  font-family: 'Dancing Script', cursive;
-  font-size: clamp(16px, 1.6vw, 19px);
-  font-weight: 400;
+  font-family: 'Kalam', cursive;
+  font-size: clamp(15px, 1.5vw, 18px);
+  font-weight: 300;
   line-height: 1.45;
   color: #3A3530;
   text-wrap: pretty;
@@ -760,14 +760,18 @@ hr.rule {
 }
 .explore-card {
   padding: 32px;
-  background: var(--bg);
+  background: oklch(97% 0.008 240);
   display: grid;
   grid-template-columns: 1fr 140px;
   grid-template-rows: auto auto 1fr auto;
   gap: 0 24px;
-  transition: background .3s var(--ease);
+  border-radius: 6px;
+  transition: background .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease);
   position: relative;
   cursor: pointer;
+}
+[data-theme="dark"] .explore-card {
+  background: oklch(20% 0.01 240);
 }
 .explore-card > .mono,
 .explore-card > h3,
@@ -776,14 +780,14 @@ hr.rule {
 .explore-card > .explore-icon { grid-column: 2; grid-row: 1 / -1; align-self: center; }
 .explore-card > .explore-arrow { grid-column: 2; }
 .explore-card:hover {
-  background: oklch(96.5% 0.025 240);
-  border-left: 3px solid oklch(55% 0.14 240);
-  padding-left: 29px;
+  background: oklch(95.5% 0.025 240);
+  transform: scale(1.015);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 [data-theme="dark"] .explore-card:hover {
-  background: oklch(22% 0.03 240);
-  border-left: 3px solid oklch(55% 0.14 240);
-  padding-left: 29px;
+  background: oklch(24% 0.03 240);
+  transform: scale(1.015);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 .explore-card:hover h3 { color: oklch(35% 0.10 240); }
 [data-theme="dark"] .explore-card:hover h3 { color: oklch(78% 0.10 240); }
