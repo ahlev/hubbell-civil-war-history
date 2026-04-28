@@ -760,7 +760,7 @@ hr.rule {
 }
 .explore-card {
   padding: 32px;
-  background: oklch(95.5% 0.015 230);
+  background: oklch(97% 0.008 240);
   display: grid;
   grid-template-columns: 1fr 140px;
   grid-template-rows: auto auto 1fr auto;
