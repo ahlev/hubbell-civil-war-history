@@ -7,7 +7,7 @@
 <meta name="description" content="274 letters from four brothers writing home during the American Civil War. An interactive archive."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Dancing+Script:wght@400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="_design.css"/>
 <link rel="stylesheet" href="_overlay.css"/>
 <style>
@@ -169,13 +169,16 @@
           written throughout<br/>
           the <em>Civil War</em><svg class="hubbell-logo-mini" viewBox="0 0 100 100" width="14" height="14" aria-hidden="true"><circle cx="32" cy="32" r="15" fill="#2D5F8A"/><circle cx="68" cy="32" r="15" fill="#B8860B"/><circle cx="32" cy="68" r="15" fill="#4A7C59"/><circle cx="68" cy="68" r="15" fill="#8B3A3A"/></svg>
         </h1>
-        <p class="prose" style="margin-top: 28px; max-width: 48ch;">
+        <p class="prose" style="margin-top: 20px; max-width: 48ch; font-style: italic; opacity: 0.85;">
+          Using modern data science and interactive visualization, this project brings their words to life in ways the letters alone cannot.
+        </p>
+        <p class="prose" style="margin-top: 24px; max-width: 48ch;">
           Between 1861 and 1865, Henry, Alexander, James, and Charles Hubbell &mdash; sons of a widowed
           mother in upstate New York &mdash; wrote 274 letters from camps, hospitals, marches, and
-          battlefields. This <a href="the-collection.html" class="hero-collection-link">rare family collection</a>, preserved across five generations, has never been published or studied at scale &mdash; until now.
+          battlefields.
         </p>
         <p class="prose" style="margin-top: 14px; max-width: 48ch;">
-          Using modern data science and interactive visualization, this project brings their words to life in ways the letters alone cannot &mdash; mapping movements, tracing relationships, and revealing patterns hidden across hundreds of handwritten pages.
+          This <a href="the-collection.html" class="hero-collection-link">rare collection</a> of family and American history, cared for by generations of descendants, has never been published &mdash; until now. This project maps their movements, traces their relationships, and reveals patterns hidden within hundreds of handwritten pages.
         </p>
         <div class="flex gap-8 mt-32" style="align-items:center; flex-wrap: wrap;">
           <a href="hubbell-dashboard.html" class="btn">Enter the archive
@@ -211,6 +214,28 @@
       <div><div class="stat-number" data-count="4">4</div><div class="stat-label">Brothers</div></div>
       <div><div class="stat-number">1861&ndash;65</div><div class="stat-label">Span of correspondence</div></div>
       <div><div class="stat-number" data-count="5">5</div><div class="stat-label">Generations of stewardship</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURED EXCERPT ===== -->
+<section class="section" style="padding: 0 0 56px;">
+  <div class="container">
+    <div class="featured-letter reveal">
+      <div class="featured-letter-inner">
+        <div class="featured-letter-body">
+          <p>&ldquo;Way down South in Dixie.&rdquo; That is where I am. And a beautiful country too if it were not cursed by the existence of slavery. I am encamped on the summit of a high hill or rather a mountain from which I can see a long distance and the view is very fine. Green fields, meadows, large farms, patches of woods, roads winding here and there, little villages in the distance, and all of this spread out before me like a beautiful painting.</p>
+          <p>I was sitting on the hill just now watching the sun as it was setting behind the Blue Ridge. The soft notes of the bugle were floating through the air when I almost forgot I was a soldier. I seemed for a moment to be transported to the green fields and quiet scenes of old Clinton County.</p>
+          <p>But then again I thought if the drum should beat to arms tomorrow morning, there will be a different scene. Troops will be forming in line of battle. The sun will be glistening on the bright steel of ten thousand breastplates. The artillery will be wheeled into position and the skirmishers will be thrown out, and then the earth will fairly rock.</p>
+        </div>
+        <div class="featured-letter-attrib">
+          <div class="featured-letter-credit">
+            <a href="brother-alexander.html" class="featured-letter-author">Alexander Hubbell</a>
+            <span class="featured-letter-detail">Corporal, Co. H, 60th New York &middot; Age 18<br>Pine Mountain, Virginia &middot; July 14, 1862</span>
+          </div>
+          <a class="featured-letter-link" href="#" onclick="event.preventDefault(); if(window.HubbellReader) HubbellReader.open('LTR-1862-07-14-001');">Read the full letter &rarr;</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -473,9 +498,11 @@
           <cite>Alexander &middot; Hospital at Harper&rsquo;s Ferry &middot; Sept 27, 1862</cite>
         </blockquote>
         <blockquote class="pull-quote">
-          Please excuse me, Mother, but I did have a hearty laugh when I took in the idea of your
-          three hopeful sons being in the hospital at the one and same time.
-          <cite>Alexander &middot; Hospital at Chattanooga &middot; Aug 30, 1864</cite>
+          I was sitting on the hill just now watching the sun as it was setting behind the Blue Ridge.
+          The soft notes of the bugle were floating through the air when I almost forgot I was a
+          soldier&hellip; But then again I thought if the drum should beat to arms tomorrow morning,
+          there will be a different scene&hellip; and then the earth will fairly rock.
+          <cite>Alexander &middot; Pine Mountain, Virginia &middot; July 14, 1862</cite>
         </blockquote>
       </aside>
     </div>

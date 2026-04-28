@@ -1216,10 +1216,126 @@ canvas.grabbing {
   flex: 1;
   min-height: 0;
 }
+
+/* ── Onboarding Overlay ── */
+.onboard-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(20, 18, 15, 0.7);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  animation: onboardFadeIn 0.4s ease;
+}
+@keyframes onboardFadeIn { from { opacity: 0; } to { opacity: 1; } }
+.onboard-card {
+  background: #FDFCFA;
+  border-radius: 12px;
+  padding: 36px 40px 32px;
+  max-width: 500px;
+  width: 90vw;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+  cursor: default;
+}
+.onboard-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2C2A26;
+  margin: 0 0 8px;
+}
+.onboard-intro {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.88rem;
+  color: #6B6560;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+.onboard-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+.onboard-items li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #EDEAE5;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #4A4640;
+}
+.onboard-items li:last-child { border-bottom: none; }
+.onboard-icon {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+.onboard-icon.network { background: #FFF3E0; color: #E65100; }
+.onboard-icon.sidebar { background: #E3F2FD; color: #2D5F8A; }
+.onboard-icon.filter  { background: #E8F5E9; color: #2E7D32; }
+.onboard-icon.link    { background: #F3E5F5; color: #6A1B9A; }
+.onboard-icon.time    { background: #FDE8E8; color: #C44E52; }
+.onboard-items b { color: #2C2A26; }
+.onboard-dismiss {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #2C2A26;
+  color: #FDFCFA;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.onboard-dismiss:hover { background: #4A4640; }
+.onboard-hint {
+  text-align: center;
+  font-size: 0.72rem;
+  color: #9B9590;
+  margin-top: 10px;
+}
 </style>
 <link rel="stylesheet" href="_overlay.css?v=1775363534">
 </head>
 <body>
+
+<!-- Onboarding overlay (first visit only) -->
+<div class="onboard-overlay" id="pwOnboard" style="display:none;">
+  <div class="onboard-card" onclick="event.stopPropagation()">
+    <h2 class="onboard-title">The People Web</h2>
+    <p class="onboard-intro">Every person mentioned across 274 Civil War letters, mapped as an interactive network. Nodes are people; connections form when two people appear in the same letter.</p>
+    <ul class="onboard-items">
+      <li>
+        <span class="onboard-icon network">🕸️</span>
+        <span>The <b>network graph</b> is interactive &mdash; drag nodes to rearrange, scroll to zoom, and pan to explore. Larger nodes appear in more letters.</span>
+      </li>
+      <li>
+        <span class="onboard-icon sidebar">👤</span>
+        <span><b>Click any node</b> to open their profile in the sidebar &mdash; see who they were, which letters mention them, and their connections.</span>
+      </li>
+      <li>
+        <span class="onboard-icon filter">🏷️</span>
+        <span>Use the <b>category filters</b> to show or hide Family, Military, and Civilian figures. Adjust the <b>minimum mentions</b> slider to focus on key figures.</span>
+      </li>
+      <li>
+        <span class="onboard-icon link">🔗</span>
+        <span>The <b>Link &amp; Explore</b> button lets you select two people and see every letter where they appear together.</span>
+      </li>
+      <li>
+        <span class="onboard-icon time">📅</span>
+        <span>Use the <b>date range</b> filter to see how the network changes over the course of the war &mdash; who appears early, who emerges later.</span>
+      </li>
+    </ul>
+    <button class="onboard-dismiss" id="pwOnboardDismiss">Explore the network</button>
+    <div class="onboard-hint">Press Escape or click outside to close</div>
+  </div>
+</div>
+
 <div id="app">
   <div id="site-nav"></div>
   <div class="app-main">
@@ -3643,6 +3759,29 @@ HubbellDeepLink.registerStateApplier(function(p) {
   }
 });
 HubbellDeepLink.enableHistory();
+</script>
+<script>
+// Onboarding overlay — show on first visit
+(function() {
+  var key = 'hubbell_pw_onboarded';
+  if (localStorage.getItem(key)) return;
+  var overlay = document.getElementById('pwOnboard');
+  overlay.style.display = '';
+  function dismiss() {
+    overlay.style.display = 'none';
+    localStorage.setItem(key, '1');
+  }
+  document.getElementById('pwOnboardDismiss').addEventListener('click', dismiss);
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) dismiss();
+  });
+  document.addEventListener('keydown', function handler(e) {
+    if (e.key === 'Escape' && overlay.style.display !== 'none') {
+      dismiss();
+      document.removeEventListener('keydown', handler);
+    }
+  });
+})();
 </script>
 </body>
 </html>

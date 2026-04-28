@@ -567,14 +567,14 @@
   border-bottom: 2px solid var(--person);
   padding-bottom: 10px;
   margin-bottom: 14px;
-  min-height: 70px;
+  min-height: 52px;
 }
 .reader-header h3 { font-size: 1.15rem; margin-bottom: 4px; }
 .reader-meta {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--ink-2);
-  margin-bottom: 14px;
-  line-height: 1.6;
+  margin-bottom: 8px;
+  line-height: 1.5;
 }
 .reader-meta .rm-id {
   font-size: 0.7rem;
@@ -582,9 +582,9 @@
 }
 .reader-flags {
   display: flex;
-  gap: 6px;
+  gap: 5px;
   flex-wrap: wrap;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 .reader-flag {
   font-size: 0.65rem;
@@ -598,15 +598,15 @@
 .rf-illness { background: #FFF3E0; color: #E65100; }
 .rf-death { background: #EFEBE9; color: #4E342E; }
 .rf-wound { background: #F3E5F5; color: #7B1FA2; }
-.reader-people, .reader-places { margin-bottom: 14px; }
+.reader-people, .reader-places { margin-bottom: 6px; }
 .reader-people h4, .reader-places h4 {
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.8px;
   color: var(--ink-3);
   font-family: var(--font-sans);
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 3px;
 }
 .reader-tags {
   display: flex;

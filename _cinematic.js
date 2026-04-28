@@ -541,7 +541,7 @@ window.CinematicPlayer = (function () {
 }
 .cine-card-actions {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
 }
 .cine-btn {
@@ -557,11 +557,32 @@ window.CinematicPlayer = (function () {
 }
 .cine-btn:hover { background: rgba(255,255,255,0.15); }
 .cine-btn-letter {
-  margin-left: auto;
   border-color: rgba(184,134,11,0.4);
   color: #D4A843;
 }
 .cine-btn-letter:hover { background: rgba(184,134,11,0.15); }
+.cine-nav-arrows {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+.cine-nav-arrow {
+  width: 28px; height: 28px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.08);
+  color: #F5F0E8;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  padding: 0;
+  line-height: 1;
+  font-family: Inter, system-ui, sans-serif;
+}
+.cine-nav-arrow:hover { background: rgba(255,255,255,0.2); color: #fff; }
+.cine-nav-arrow:disabled { opacity: 0.2; cursor: default; }
 
 /* ── Brother Pulse Animation ── */
 @keyframes cine-pulse {
@@ -635,6 +656,10 @@ window.CinematicPlayer = (function () {
         <button class="cine-btn cine-btn-pause">Pause</button>
         <button class="cine-btn cine-btn-continue">Continue</button>
         <button class="cine-btn cine-btn-letter" style="display:none">Read the letter &rarr;</button>
+        <div class="cine-nav-arrows">
+          <button class="cine-nav-arrow cine-nav-prev" title="Previous moment">&larr;</button>
+          <button class="cine-nav-arrow cine-nav-next" title="Next moment">&rarr;</button>
+        </div>
       </div>
     `;
     mapContainer.appendChild(_cardEl);
@@ -669,6 +694,37 @@ window.CinematicPlayer = (function () {
       if (pauseBtn) pauseBtn.textContent = 'Pause';
       _resumeAfterWaypoint();
     });
+
+    // Nav arrows — jump between waypoints
+    _cardEl.querySelector('.cine-nav-prev').addEventListener('click', function () {
+      _jumpToWaypoint(_wpIndex - 2); // _wpIndex was incremented after showing current
+    });
+    _cardEl.querySelector('.cine-nav-next').addEventListener('click', function () {
+      _jumpToWaypoint(_wpIndex); // _wpIndex points to the next unshown waypoint
+    });
+  }
+
+  function _jumpToWaypoint(idx) {
+    if (idx < 0 || idx >= WAYPOINTS.length) return;
+    _hideCard();
+    _cardFrozen = false;
+    var pauseBtn = _cardEl ? _cardEl.querySelector('.cine-btn-pause') : null;
+    if (pauseBtn) pauseBtn.textContent = 'Pause';
+    // Advance timeline to waypoint day
+    var wp = WAYPOINTS[idx];
+    _wpIndex = idx + 1;
+    if (typeof rangeEndDay !== 'undefined') rangeEndDay = wp.day;
+    if (typeof currentDay !== 'undefined') currentDay = wp.day;
+    if (typeof updateToDate === 'function') updateToDate(wp.day);
+    _showWaypoint(wp);
+  }
+
+  function _updateNavArrows() {
+    if (!_cardEl) return;
+    var prev = _cardEl.querySelector('.cine-nav-prev');
+    var next = _cardEl.querySelector('.cine-nav-next');
+    if (prev) prev.disabled = (_wpIndex <= 1);
+    if (next) next.disabled = (_wpIndex >= WAYPOINTS.length);
   }
 
   /* ── Play / Pause / Stop ── */
@@ -775,7 +831,6 @@ window.CinematicPlayer = (function () {
     rangeEndDay = next;
     currentDay = next;
     if (typeof updateToDate === 'function') updateToDate(next);
-    _updateSeasonIcon();
 
     // Check waypoints
     if (_wpIndex < WAYPOINTS.length) {
@@ -886,6 +941,7 @@ window.CinematicPlayer = (function () {
 
     // Show card
     _cardEl.classList.add('visible');
+    _updateNavArrows();
 
     _syncUrl();
   }
