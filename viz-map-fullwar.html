@@ -1298,15 +1298,58 @@ body {
   .map-legend { font-size: 0.6rem; padding: 6px 10px; }
 }
 @media (max-width: 600px) {
-  .status-panel { min-width: 110px; }
-  .status-name { font-size: 0.75rem; }
+  /* ── Status bar: 2×2 grid instead of overflow scroll ── */
+  .status-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: visible;
+    gap: 0;
+  }
+  .status-panel {
+    min-width: 0;
+    height: auto;
+    min-height: 56px;
+    padding: 6px 10px;
+    border-right: 1px solid #F0ECE7;
+    border-bottom: 1px solid #F0ECE7;
+  }
+  .status-panel:nth-child(2n) { border-right: none; }
+  .status-panel:nth-child(n+3) { border-bottom: none; }
+  .status-name { font-size: 0.78rem; }
   .status-regiment { display: none; }
   .status-context { display: none; }
+  .status-location { font-size: 0.7rem; }
+  .status-badge { font-size: 0.5rem; }
+  /* ── Controls ── */
   .controls { padding: 6px 8px; }
   .controls-cta { font-size: 0.74rem; }
-  .step-btn { width: 30px; height: 30px; }
-  .step-btn svg { width: 13px; height: 13px; }
+  .step-btn { width: 44px; height: 44px; }
+  .step-btn svg { width: 14px; height: 14px; }
   .date-display { font-size: 0.9rem; }
+  .range-slider input[type="range"] { height: 28px; }
+  .range-slider input[type="range"]::-webkit-slider-thumb { width: 24px; height: 24px; margin-top: -10px; }
+  /* ── Legend: hide on phone (brother colors shown in status bar) ── */
+  .map-legend { display: none; }
+  /* ── Narrative caption: smaller on phone ── */
+  .narrative-caption {
+    top: 6px;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    max-width: 90vw;
+    border-radius: 4px;
+  }
+  /* ── Node labels: smaller on phone ── */
+  .node-label { font-size: 0.8rem; padding: 2px 6px; }
+  .node-pin { width: 14px !important; height: 14px !important; }
+  /* ── Place popups: constrain width ── */
+  .leaflet-popup-content-wrapper { max-width: calc(100vw - 40px); }
+  .leaflet-popup-content { margin: 8px 10px; font-size: 0.75rem; }
+  .place-pin-popup { padding: 10px 12px; }
+  .place-pin-title { font-size: 0.9rem; }
+  .place-pin-stats { font-size: 0.65rem; gap: 6px; }
+  /* ── Search/controls bar ── */
+  .map-search-bar { font-size: 0.75rem; padding: 6px 10px; }
+  .map-controls-row button { min-height: 36px; font-size: 0.7rem; padding: 4px 8px; }
 }
 /* Push share button above controls bar */
 .dl-share-btn { bottom: 110px !important; }
@@ -1399,7 +1442,7 @@ body {
 <!-- Onboarding overlay (first visit only) -->
 <div class="onboard-overlay" id="mapOnboard" style="display:none;">
   <div class="onboard-card" onclick="event.stopPropagation()">
-    <h2 class="onboard-title">The Map That Moves</h2>
+    <h1 class="onboard-title">The Map That Moves</h1>
     <ul class="onboard-items">
       <li>
         <span class="onboard-icon map">🗺️</span>
@@ -1459,6 +1502,7 @@ body {
   </div>
 </div>
 
+<main style="flex:1;display:flex;flex-direction:column;min-height:0;">
 <div class="main-container">
   <div class="map-container" id="mapContainer">
     <div id="map"></div>
@@ -3820,5 +3864,6 @@ HubbellDeepLink.enableHistory();
 </script>
 <script src="_cinematic.js"></script>
 <script>if (window.CinematicPlayer) CinematicPlayer.init();</script>
+</main>
 </body>
 </html>

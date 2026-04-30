@@ -1995,7 +1995,6 @@
     },
     "letterCount": 2,
     "letters": [
-      "LTR-1863-05-06-001",
       "LTR-1864-04-28-001"
     ]
   },
@@ -5130,9 +5129,7 @@
     "state": null,
     "coordinates": null,
     "letterCount": 1,
-    "letters": [
-      "LTR-1863-05-06-001"
-    ]
+    "letters": []
   },
   {
     "id": "PLC-bridgeport--ala",
@@ -5149,9 +5146,7 @@
       "lon": -85.7144
     },
     "letterCount": 1,
-    "letters": [
-      "LTR-1863-05-06-001"
-    ]
+    "letters": []
   },
   {
     "id": "PLC-aquia-landing--va",

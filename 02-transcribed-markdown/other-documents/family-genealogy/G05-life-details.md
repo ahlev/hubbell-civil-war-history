@@ -241,4 +241,4 @@ This is a **published, contemporaneous source** — written within 10 years of A
 
 The article's laudatory tone is typical of county biographical sketches of the era — families often paid for inclusion. However, the factual details are remarkably consistent with the letters, military records, and other genealogical sources.
 
-The portrait photographs on page 5 are the only known images in this collection of Alexander, Lois, and Mother — putting faces to the voices in 274 letters.
+The portrait photographs on page 5 are the only known images in this collection of Alexander, Lois, and Mother — putting faces to the voices in 273 letters.

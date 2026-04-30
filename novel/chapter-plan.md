@@ -657,7 +657,7 @@
 - Frances lives until 1890, age ~82. She outlives three of her four sons who went to war.
 - Alexander dies December 7, 1894, age 50. The last soldier.
 - Of the four brothers who marched away, only Alexander came home and lived past 35. And he died at 50.
-- The letters survive. Someone — Frances? Fannie? — saved every one. 274 letters, bundled and preserved, waiting 160 years to be read again.
+- The letters survive. Someone — Frances? Fannie? — saved every one. 273 letters, bundled and preserved, waiting 160 years to be read again.
 
 **Emotional beat:** The true cost. The war didn't end in 1865. It killed Henry in 1862, James in 1865, Charles in 1875, and Alexander in 1894. Frances buried them all.
 **Final line:** Something about the tea table, and the stories that were told there, and how they survived — not in memory, which dies with its keeper, but in letters, which endure.

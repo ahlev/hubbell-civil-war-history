@@ -54,7 +54,7 @@ The tea table was the goal. It had always been the goal. Every letter Alexander 
 
 *I will tell you all about it at the tea table.*
 
-The sentence ended the war. Not Lee's surrender, not Lincoln's assassination, not the order to muster out — this sentence. This was the moment the soldier became a son again, the moment the correspondent became a man sitting across from his mother, the moment the 274 letters became what they had always been: substitutes for presence, placeholders for the real thing, bridges built of paper and ink to span a distance that was now, at last, about to close.
+The sentence ended the war. Not Lee's surrender, not Lincoln's assassination, not the order to muster out — this sentence. This was the moment the soldier became a son again, the moment the correspondent became a man sitting across from his mother, the moment the 273 letters became what they had always been: substitutes for presence, placeholders for the real thing, bridges built of paper and ink to span a distance that was now, at last, about to close.
 
 ---
 
@@ -74,7 +74,7 @@ Frances was at the door.
 
 What happened next belonged to the tea table and to no one else.
 
-The letters could not record it because the letters had ended. The last seven lines had been written, the last postscript appended, the last postage stamp affixed. Alexander was home, and the distance that had required 274 letters to bridge was gone, and the bridge was no longer needed, and the things he had to say could be said in a voice rather than in ink.
+The letters could not record it because the letters had ended. The last seven lines had been written, the last postscript appended, the last postage stamp affixed. Alexander was home, and the distance that had required 273 letters to bridge was gone, and the bridge was no longer needed, and the things he had to say could be said in a voice rather than in ink.
 
 Did Frances cry? Probably. She was not a woman who cried easily — her letters were composed, dignified, precise — but four years of reading casualty lists before breakfast, four years of writing to sons who might be dead by the time the letter arrived, four years of managing the farm and the grief and the faith and the fear, had built a reservoir of tears that the sight of her youngest son alive in the doorway would have been sufficient to release.
 

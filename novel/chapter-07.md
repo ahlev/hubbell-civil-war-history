@@ -150,7 +150,7 @@ Alexander would write about this meeting three months later, in a letter from Ha
 
 *I laughed — I — well — I was so glad I did not know what to do.*
 
-The dash after "I" was the most eloquent punctuation mark in 274 letters. It was the place where language failed, where the feeling outran the words, where a seventeen-year-old — no, eighteen now — stood in the moonlight and looked at his brother and could not say what he felt because what he felt was too large for the English language and too private for a letter home.
+The dash after "I" was the most eloquent punctuation mark in 273 letters. It was the place where language failed, where the feeling outran the words, where a seventeen-year-old — no, eighteen now — stood in the moonlight and looked at his brother and could not say what he felt because what he felt was too large for the English language and too private for a letter home.
 
 ---
 

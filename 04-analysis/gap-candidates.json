@@ -1,6 +1,6 @@
 {
   "scan_date": "2026-03-31",
-  "total_letters": 274,
+  "total_letters": 273,
   "letters_with_gaps": 264,
   "stats": {
     "letters_with_people_gaps": 228,
@@ -4756,18 +4756,6 @@
           }
         ]
       }
-    },
-    {
-      "doc_id": "LTR-1863-05-06-001",
-      "file": "LTR-1863-05-06-001.md",
-      "existing_people_count": 11,
-      "existing_places_count": 8,
-      "existing_flags_yes_count": 2,
-      "candidate_people": [],
-      "candidate_places": [
-        "Champlain"
-      ],
-      "candidate_flags": {}
     },
     {
       "doc_id": "LTR-1863-05-11-001",

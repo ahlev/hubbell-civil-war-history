@@ -64,7 +64,7 @@ The letters survived.
 
 They survived because someone understood that they were not just personal correspondence but the record of something larger — a family's war, a nation's war, the cost of union measured in the particular currency of human lives.
 
-274 letters. Five voices. Four years. Three dead sons. Two empty chairs at the tea table. One mother who kept them together.
+273 letters. Five voices. Four years. Three dead sons. Two empty chairs at the tea table. One mother who kept them together.
 
 And one boy — seventeen years old, standing in a barracks in Ogdensburgh with the noise of seven hundred men around him and a pen in his hand and a sheet of paper on his knee — who wrote:
 

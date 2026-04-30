@@ -97,6 +97,29 @@ svg.chart-svg{display:block}
   .controls{justify-content:flex-start}
   .toggle-group{margin:4px 0}
 }
+@media(max-width:480px){
+  .hero{padding:40px 16px 20px}
+  .hero h1{font-size:1.3rem}
+  .hero .subtitle{font-size:0.85rem}
+  .hero .stat .num{font-size:1.35rem}
+  .hero .stat .lbl{font-size:0.62rem}
+  .controls{padding:8px 12px;gap:6px}
+  .chip{font-size:0.72rem;padding:4px 10px}
+  .chip .dot{width:8px;height:8px}
+  .toggle-group{gap:5px;margin:2px 0}
+  .toggle-label{font-size:0.68rem}
+  .chart-section{padding:0 10px}
+  .chart-wrapper{padding:4px 0 10px}
+  .legend{padding:0 12px;gap:8px;font-size:0.68rem}
+  .legend-swatch{width:11px;height:11px}
+  .tooltip{max-width:260px;font-size:0.78rem;padding:10px 12px}
+  .detail-panel{padding:18px 16px;margin-top:20px}
+  .detail-panel h3{font-size:1rem}
+  .dp-excerpt .ex-text{font-size:0.82rem}
+  .dp-excerpt .ex-meta{font-size:0.68rem}
+  .dp-full-letter{font-size:0.8rem;padding:10px}
+  .viz-provenance{padding:12px 16px;font-size:0.66rem}
+}
 
 </style>
 </head>
@@ -106,7 +129,7 @@ svg.chart-svg{display:block}
 
 <div class="hero">
   <h1>What They Wrote About</h1>
-  <p class="subtitle">What filled the pages changed as the war changed them &mdash; topic landscape of 274 letters, 1861&ndash;1865</p>
+  <p class="subtitle">What filled the pages changed as the war changed them &mdash; topic landscape of 273 letters, 1861&ndash;1865</p>
   <div class="stat-row" id="hero-stats"></div>
 </div>
 
@@ -137,7 +160,7 @@ svg.chart-svg{display:block}
 
 <div class="chart-section">
   <div class="chart-wrapper" id="chart-wrapper">
-    <svg class="chart-svg" id="chart-svg"></svg>
+    <svg class="chart-svg" id="chart-svg" role="img" aria-label="Stacked bar chart showing topic distribution across letters over time"></svg>
   </div>
 </div>
 
@@ -148,7 +171,7 @@ svg.chart-svg{display:block}
 </div>
 
 <footer class="viz-provenance">
-  Based on 274 transcribed letters from the Hubbell family collection, 1861&ndash;1865. Topic classification is performed by keyword matching at the sentence level. Categories are mutually exclusive; each sentence is assigned to its best-matching topic. Ambiguous sentences default to &ldquo;Other.&rdquo;
+  Based on 273 transcribed letters from the Hubbell family collection, 1861&ndash;1865. Topic classification is performed by keyword matching at the sentence level. Categories are mutually exclusive; each sentence is assigned to its best-matching topic. Ambiguous sentences default to &ldquo;Other.&rdquo;
 </footer>
 
 <script>

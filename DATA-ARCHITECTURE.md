@@ -1,6 +1,6 @@
 # Data Architecture & Design Philosophy
 
-**Hubbell Civil War Letter Collection — 274 Letters, 1861–1870**
+**Hubbell Civil War Letter Collection — 273 Letters, 1861–1870**
 
 *A living document describing how unstructured 19th-century handwriting becomes structured, queryable, visualizable data — and the design decisions that make it work.*
 
@@ -96,7 +96,7 @@ Several important data dimensions are **not stored in the schema** — they are 
 | **What They Didn't Know** | Dramatic irony moments | Cross-references letter `date` + `location` against external battle database |
 
 This is a deliberate design choice, not a gap. These computed fields are:
-- **Algorithmic** — they apply consistent rules across all 274 letters
+- **Algorithmic** — they apply consistent rules across all 273 letters
 - **Tunable** — adjusting the algorithm changes all results at once
 - **Domain-specific** — each visualization needs the data in a different shape
 
@@ -242,7 +242,7 @@ Build scripts read `all-letters.json` and produce compact subsets for each visua
 
 ### Fields That Exist But No Visualization Uses
 
-These eleven boolean flags and their `flagDetails` companions are fully populated across all 274 letters but currently invisible to users:
+These eleven boolean flags and their `flagDetails` companions are fully populated across all 273 letters but currently invisible to users:
 
 1. **`hasPromotion`** — Track career trajectories; overlay rank changes on timeline
 2. **`hasCapture`** — Alexander was captured by guerrillas; could drive a POW narrative thread

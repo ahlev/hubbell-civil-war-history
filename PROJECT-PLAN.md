@@ -144,7 +144,7 @@ Hubbell Civil War Ancestry/
 - [x] Project folder structure created
 - [x] Markdown templates designed (letter, document, person)
 - [x] External source catalog compiled (50+ sources)
-- [x] **Phase 1: Document Ingestion** — 274 letters + 21 supporting documents transcribed
+- [x] **Phase 1: Document Ingestion** — 273 letters + 21 supporting documents transcribed
 - [x] **Phase 2: Entity Extraction** — 596 people, 513 places, 15 event flags, 0 schema violations
 - [ ] **Phase 3: External Cross-Referencing** — Regiment histories done; NPS CWSS, Chronicling America, FindAGrave, pension records NOT STARTED
 - [x] **Phase 4: Narrative Synthesis** — EXCEEDED: 18-chapter novel + epilogue (3,334 lines)

@@ -194,7 +194,7 @@ window.CinematicPlayer = (function () {
       body: 'Lee\'s masterpiece. Hooker\'s grand flanking maneuver collapses when Stonewall Jackson\'s corps tears through the Union right. Alexander\'s 60th New York is engaged in the fighting. The regiment suffers seventy-three casualties. Another Union defeat in Virginia, another retreat across the Rappahannock. But Alexander survives.',
       quote: null,
       quoteCite: null,
-      letterId: 'LTR-1863-05-06-001',
+      letterId: 'LTR-1863-05-11-001',
       brothers: ['alexander'],
       fly: { lat: 38.31, lon: -77.63, zoom: 10 },
       pause: 7000,
@@ -603,9 +603,25 @@ window.CinematicPlayer = (function () {
   .cine-speed-label { font-size: 0.55rem; }
 }
 @media (max-width: 600px) {
-  .cine-play-btn { width: 30px; height: 30px; }
+  .cine-play-btn { width: 44px; height: 44px; }
   .cine-speed-label { display: none; }
-  .cine-card { left: 8px; bottom: 10px; padding: 12px 12px 10px; max-width: calc(100% - 16px); }
+  .cine-card {
+    left: 8px; right: 8px; bottom: 8px;
+    max-width: none; width: auto;
+    padding: 10px 12px 8px;
+    max-height: 40vh;
+    overflow-y: auto;
+    border-radius: 6px;
+  }
+  .cine-card-title { font-size: 0.95rem; margin-bottom: 4px; }
+  .cine-card-body { font-size: 0.75rem; line-height: 1.45; margin-bottom: 6px; }
+  .cine-card-quote { font-size: 0.8rem; padding: 6px 10px; margin-bottom: 4px; }
+  .cine-card-cite { font-size: 0.65rem; margin-bottom: 8px; }
+  .cine-card-category { font-size: 0.6rem; margin-bottom: 4px; }
+  .cine-card-actions { gap: 6px; flex-wrap: wrap; }
+  .cine-btn { padding: 6px 12px; font-size: 0.72rem; min-height: 36px; }
+  .cine-nav-arrow { width: 36px; height: 36px; }
+  .cine-card-close { min-width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
 }
 `;
     document.head.appendChild(style);

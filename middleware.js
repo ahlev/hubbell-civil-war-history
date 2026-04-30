@@ -46,7 +46,7 @@ export const config = {
 const BOT_PATTERN = /Slackbot|Twitterbot|facebookexternalhit|LinkedInBot|Discordbot|WhatsApp|Applebot|TelegramBot|Googlebot|bingbot/i;
 
 const SITE_NAME = 'Hubbell Civil War Letters';
-const DEFAULT_DESC = '274 letters from four brothers and their mother, 1861–1870 — an interactive exploration of the American Civil War through one family\'s words.';
+const DEFAULT_DESC = '273 letters from four brothers and their mother, 1861–1870 — an interactive exploration of the American Civil War through one family\'s words.';
 const OG_IMAGE = 'https://hubbell-civil-war.vercel.app/og-image.png'; // Static hero image
 
 // Page-specific default titles
@@ -64,7 +64,7 @@ const PAGE_TITLES = {
   '/viz-map-fullwar': 'A Map That Moves — Following the Hubbells',
   '/viz-health-ledger': 'The Wellness Ledger — Physical Well-Being in the Civil War',
   '/viz-money-story': 'The Money Story — Wartime Finances',
-  '/viz-people-web': 'The People Web — Connections Across 274 Letters',
+  '/viz-people-web': 'The People Web — Connections Across 273 Letters',
   '/viz-what-they-didnt-know': 'What They Didn\'t Know — Dramatic Irony',
   '/viz-what-they-wrote-about': 'What They Wrote About — Topic Landscape',
   '/the-collection': 'The Collection — Five Generations of Stewardship',

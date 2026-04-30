@@ -56,7 +56,7 @@
   background: var(--bg);
   padding: 0 8px;
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--person);
@@ -79,7 +79,7 @@
 }
 .sr-lbl {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--ink-3);
@@ -119,7 +119,7 @@
   left: 10px;
   z-index: 800;
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--ink-3);
@@ -198,6 +198,14 @@
   border-radius: 4px;
   transition: background 0.1s;
   font-size: 0.76rem;
+}
+button.letter-row {
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  font: inherit;
+  color: inherit;
 }
 .letter-row:hover {
   background: var(--person-bg);
@@ -378,7 +386,7 @@
 }
 .mother-note .mn-label {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--mother);
@@ -414,7 +422,7 @@
 .brother-note.henry { border-left-color: var(--henry); background: #F4F8FC; }
 .son-note .sn-label, .brother-note .bn-label {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-weight: 500;
@@ -463,7 +471,7 @@
 }
 .context-box .cb-label {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--ink-3);
@@ -749,6 +757,83 @@
 }
 .bio-sidebar-link.silence-link.active { opacity: 1; }
 
+/* ===== MOBILE CHAPTER NAV ===== */
+.bio-chapter-nav {
+  display: none;
+}
+@media (max-width: 1040px) {
+  .bio-chapter-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 8999;
+    background: color-mix(in oklch, var(--bg) 92%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--rule);
+    padding: 8px 16px 12px;
+    transform: translateY(100%);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: var(--font-sans);
+  }
+  .bio-chapter-nav.visible {
+    transform: translateY(0);
+  }
+  .bio-chapter-nav-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .bio-chapter-nav-dots {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .bio-chapter-nav-dots::-webkit-scrollbar { display: none; }
+  .bio-chapter-nav-dot {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    border: 1.5px solid var(--rule-2);
+    background: var(--bg-elev);
+    color: var(--ink-3);
+    font-size: 9px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: var(--font-mono);
+  }
+  .bio-chapter-nav-dot.active {
+    background: var(--person);
+    color: #fff;
+    border-color: var(--person);
+  }
+  .bio-chapter-nav-dot:hover:not(.active) {
+    border-color: var(--person);
+    color: var(--person);
+  }
+}
+
+/* ===== Prose line-length cap ===== */
+.chapter p, .bio-lede p, .context-box p,
+.mother-note p, .son-note p, .brother-note p {
+  max-width: 65ch;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1040px) {
   .bio-sidebar { display: none; }
@@ -772,4 +857,51 @@
   .chapter p:first-of-type::first-letter { font-size: 2.8em; }
   .context-box p:first-of-type::first-letter { font-size: inherit; }
   .letter-quote { padding: 18px 20px 18px 22px; margin-left: 0; }
+}
+
+/* ===== Phone (≤480px) ===== */
+@media (max-width: 480px) {
+  .bio-hero { padding: 36px 16px 24px; }
+  .bio-hero .hero-epithet { font-size: 1rem; line-height: 1.7; margin-bottom: 24px; }
+  .bio-lede { padding: 28px 16px 0; }
+  .bio-lede p { font-size: 1.05rem; }
+
+  .narrative { padding: 24px 16px; }
+  .chapter { margin-bottom: 48px; }
+  .chapter h2 { font-size: 1.5rem; }
+  .chapter p { font-size: 1rem; line-height: 1.85; }
+
+  .letter-quote { font-size: 1rem; padding: 16px 16px 16px 18px; margin: 24px 0; }
+  .letter-quote cite { font-size: 0.72rem; }
+  .letter-quote::before { font-size: 3rem; top: -4px; left: 10px; }
+
+  .two-col { columns: 1 !important; }
+
+  .letters-section { padding: 16px 16px 0; }
+  .letters-list { grid-template-columns: 1fr; }
+  .letter-row { padding: 7px 10px; font-size: 0.74rem; }
+  .lr-loc { display: none; }
+
+  .bio-map-section { padding: 20px 16px 0; }
+  .bio-map { height: 160px; }
+  .bio-map-wrap { aspect-ratio: 16 / 9; }
+
+  .service-record { padding: 14px 16px 12px; }
+  .sr-grid { grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+  .sr-val { font-size: 1rem; }
+
+  .context-box { padding: 16px 18px; margin: 20px 0; }
+  .mother-note, .son-note, .brother-note { padding: 12px 18px; margin: 18px 0; }
+
+  .silence { padding: 36px 16px; }
+  .silence h2 { font-size: 1.3rem; }
+
+  /* Reader overlay on bio pages */
+  .reader-overlay { padding: 0; }
+  .reader-panel {
+    height: 100vh; height: 100dvh;
+    border-radius: 0;
+    max-width: 100%;
+  }
+  #hubbellReaderContent { padding: 0 16px 20px; }
 }

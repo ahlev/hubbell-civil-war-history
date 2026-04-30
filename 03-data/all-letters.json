@@ -19024,93 +19024,6 @@
     }
   },
   {
-    "id": "LTR-1863-05-06-001",
-    "date": "1863-05-06",
-    "year": 1863,
-    "month": 5,
-    "day": 6,
-    "author": "alexander",
-    "authorName": "Alexander",
-    "recipient": "Mrs. Hubbell (Mother)",
-    "location": "\"Camp somewhere in the State of Georgia\" [error — Virginia]",
-    "significance": "major",
-    "emotion": "moderate",
-    "notes": "Alexander writes from \"Camp somewhere in the State of Georgia\" [sic — likely still in Virginia]. Marching hard since leaving Stevenson. Boots from Bridgeport, Ala. sold — too small. \"We are close upon the enemy. Our advance came upon them this morning but they fell back.\" Between 35,000 and 40,000 men under Hooker. Extreme right of the army. Culver Bostwick arrived. Short, urgent. \"P.S. Keep a stout heart.\"",
-    "hasBattle": false,
-    "hasIllness": false,
-    "hasDeath": false,
-    "hasWound": false,
-    "transcription": "May 6, 1863\nCamp somewhere in\nthe State of Georgia\n\nDear Mother:\n\nI now hasten to write you a few lines to let you know of my welfare. This is my first opportunity of writing you since I left Stevenson. We have been marching hard — very hard for the last few days.\n\nI rec'd the boots when I reached Bridgeport, Ala. I was very much pleased with them, but most unfortunately they proved a little too small for me (as my used to feet will testify) and I have sold them to young Lafountain from Champlain for $8.50. I have now an excellent pair of Govt. bootees and I find them much better for marching than boots.\n\nThe sugar was most excellent and you can well imagine how much I enjoyed it. I am very much obliged to you for sending it. The stripes are very nice indeed.\n\nWe are close upon the enemy. Our advance came upon them this morning but they fell back. I hardly think they are in much force. We have between thirty-five and forty thousand men here under Hooker. We are, I believe, on the extreme right of the army.\n\nI will write you as often as possible. Culver Bostwick is here. He reached the regt. yesterday morning and he wishes me to tell his friends that he would write with me but that he has drawn a new gun and is too busy cleaning it.\n\nThe mail is going out in a moment and I must close.\n\nYour aff. son,\n\nAlex F. Hubbell\n\nP.S. Keep a stout heart.",
-    "editorial": "A letter from the field — short, urgent, written as \"the mail is going out in a moment.\" The \"State of Georgia\" heading is puzzling: the 60th NY was at Chancellorsville in May 1863, not Georgia. The Alabama references (Stevenson, Bridgeport) complicate the picture — these are real places the 12th Corps would pass through, but not until fall 1863. The typewritten transcription may have conflated headers from different letters, or Alexander wrote the wrong state deliberately to confuse Confederate mail interceptors. \"Keep a stout heart\" — the last two words before battle.",
-    "sigSummary": "CHANCELLORSVILLE CAMPAIGN — ALEXANDER IN THE FIELD. Written three days after the main battle of Chancellorsville (May 1-3).",
-    "people": [
-      {
-        "name": "Culver Bostwick",
-        "role": "Arrived at regiment; drawn new gun, busy cleaning",
-        "confidence": "stated · clear · definite"
-      },
-      {
-        "name": "Lafountain",
-        "role": "From Champlain — bought Alexander's boots for $8.50",
-        "confidence": "stated · clear · definite"
-      }
-    ],
-    "places": [
-      {
-        "written": "\"State of Georgia\"",
-        "modern": "Error — likely Virginia near Chancellorsville"
-      },
-      {
-        "written": "Stevenson",
-        "modern": "Stevenson, Alabama (railroad junction)"
-      },
-      {
-        "written": "Bridgeport, Ala.",
-        "modern": "Bridgeport, Alabama (supply depot)"
-      }
-    ],
-    "hasPromotion": false,
-    "hasCapture": false,
-    "hasDesertion": false,
-    "hasDischarge": false,
-    "hasHomeNews": false,
-    "hasPolitical": false,
-    "hasMoraleCrisis": false,
-    "hasSupplyRequest": false,
-    "hasReceipt": false,
-    "hasCampMovement": false,
-    "hasEyewitness": false,
-    "direction": "front-to-home",
-    "militaryRefs": [
-      {
-        "field": "Contact with enemy",
-        "value": "Advance met rebels; they fell back"
-      },
-      {
-        "field": "Force size",
-        "value": "35,000-40,000 under Hooker"
-      },
-      {
-        "field": "Position",
-        "value": "Extreme right of the army"
-      },
-      {
-        "field": "Boots",
-        "value": "Sold for $8.50; now wearing govt. bootees — better for marching"
-      }
-    ],
-    "temporal": {
-      "warYear": "2nd",
-      "campaignPeriod": "Chancellorsville aftermath / continued operations",
-      "daysSinceLast": "12 (from LTR-1863-04-24-001)"
-    },
-    "confidence": {
-      "date_written": "stated · clear · definite",
-      "author": "stated · clear · definite",
-      "author_location": "stated · clear · definite"
-    }
-  },
-  {
     "id": "LTR-1863-05-11-001",
     "date": "1863-05-11",
     "year": 1863,
@@ -19193,7 +19106,7 @@
     "temporal": {
       "warYear": "2nd",
       "campaignPeriod": "Post-Chancellorsville (battle: May 1-3, 1863)",
-      "daysSinceLast": "5 (from LTR-1863-05-06-001)"
+      "daysSinceLast": "7 (from LTR-1863-05-04-001)"
     },
     "confidence": {
       "date_written": "stated · clear · definite",
@@ -19395,7 +19308,7 @@
     "temporal": {
       "warYear": "2nd/3rd",
       "campaignPeriod": "Post-Chancellorsville",
-      "daysSinceLast": "10 (from LTR-1863-05-06-001)"
+      "daysSinceLast": "3 (from LTR-1863-05-13-001)"
     },
     "confidence": {
       "date_written": "stated · clear · definite",

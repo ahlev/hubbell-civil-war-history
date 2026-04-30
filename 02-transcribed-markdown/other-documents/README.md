@@ -57,7 +57,7 @@ All four sons of Frederick Augustus Hubbell (d. Apr 1853) and their mother, rais
 ## Collection Guide
 
 ### The Letters (COMPLETE)
-**274 letters** spanning June 1861 to November 1870, transcribed from 260 pages across 9 source PDFs. Located in `../letters/`.
+**273 letters** spanning June 1861 to November 1870, transcribed from 260 pages across 9 source PDFs. Located in `../letters/`.
 
 ### The Introduction
 **[DOC-INTRO-1996-10-28-001.md](DOC-INTRO-1996-10-28-001.md)** — Fred Jr.'s 1996 introduction. The centerpiece provenance document.
@@ -92,7 +92,7 @@ Full source catalogue: See `SOURCE-CATALOGUE.md` in the Desktop `Hubbell Ancestr
 
 | Category | Total Sources | Transcribed | Remaining | Notes |
 |----------|-------------|-------------|-----------|-------|
-| Letters | 9 PDFs (260 pp) | **274 letters** | 0 | COMPLETE |
+| Letters | 9 PDFs (260 pp) | **273 letters** | 0 | COMPLETE |
 | Military Records | 4 files | 1 (M01) | 3 | M02-M03 high priority (OCR needed) |
 | Regimental History | 9 files | 5 (R01,R02,R05,R06,R08) | 4 | R03/R04 are DOCX variants of R02 |
 | Genealogy | 16 files | 6 (G01,G03,G09-G12) | 10 | G14/G15 Wolcott letters high priority |

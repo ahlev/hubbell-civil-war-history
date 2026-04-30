@@ -335,23 +335,34 @@
   .ps-story-link { align-self: flex-start; margin-top: 0; }
   .ps-quotes { grid-template-columns: 1fr; }
 }
+@media (max-width: 480px) {
+  .person-section { padding: 36px 16px; }
+  .ps-name { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+  .ps-top { gap: 10px; }
+  .ps-quotes { grid-template-columns: 1fr; }
+  .ps-quote { font-size: 0.9rem; padding: 14px 16px; }
+  .family-lede .lede-stat { gap: 16px; }
+  .letter-row { padding: 8px 10px; }
+  .lr-loc { display: none; }
+}
 </style>
 </head>
 <body>
 
 <div id="site-nav"></div>
 
+<main>
 <!-- ===== HERO ===== -->
 <div class="wtw-hero">
   <h1 class="page-title">Who They Were</h1>
   <div class="hero-rule"></div>
-  <p class="hero-sub">A widowed mother. Four soldier sons. A sister who kept the home together.<br>These are the people behind the 274 letters.</p>
+  <p class="hero-sub">A widowed mother. Four soldier sons. A sister who kept the home together.<br>These are the people behind the 273 letters.</p>
 </div>
 
 <!-- ===== FAMILY LEDE ===== -->
 <div class="family-lede">
   <p>The Hubbell family lived in Champlain, Clinton County, New York &mdash; a small farming town on the Canadian border near Lake Champlain. Frederick Augustus Hubbell died in 1853, leaving his wife Frances to raise five children alone. When the Civil War began eight years later, she sent every son she had.</p>
-  <p>What survives is not a family history written after the fact. It is 274 letters written during the war itself &mdash; by four brothers from camps, hospitals, marches, and battlefields, and by a mother who scanned the published casualty lists with trembling hands. They did not know how the story would end. Neither, reading them now, do we &mdash; until the letters stop.</p>
+  <p>What survives is not a family history written after the fact. It is 273 letters written during the war itself &mdash; by four brothers from camps, hospitals, marches, and battlefields, and by a mother who scanned the published casualty lists with trembling hands. They did not know how the story would end. Neither, reading them now, do we &mdash; until the letters stop.</p>
   <div class="lede-stat">
     <div><span class="ls-val">274</span><span class="ls-lbl">Letters</span></div>
     <div><span class="ls-val">4</span><span class="ls-lbl">Brothers</span></div>
@@ -663,8 +674,10 @@
 
 <!-- ===== LETTER READER ===== -->
 
+</main>
+
 <div class="viz-provenance">
-  Biographical details drawn from letter transcriptions, Fred Alexander Hubbell Jr.&rsquo;s 1996 introduction, military service records, and census data. &middot; 274 letters, 1861&ndash;1870 &middot;
+  Biographical details drawn from letter transcriptions, Fred Alexander Hubbell Jr.&rsquo;s 1996 introduction, military service records, and census data. &middot; 273 letters, 1861&ndash;1870 &middot;
   <a href="hubbell-dashboard.html" style="color:inherit;text-decoration:underline">Explore the full collection &rarr;</a>
 </div>
 

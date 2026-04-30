@@ -1063,18 +1063,6 @@
     }
   },
   {
-    "doc_id": "LTR-1863-05-06-001",
-    "file": "LTR-1863-05-06-001.md",
-    "existing_people_count": 11,
-    "existing_places_count": 8,
-    "existing_flags_yes_count": 2,
-    "candidate_people": [],
-    "candidate_places": [
-      "Champlain"
-    ],
-    "candidate_flags": {}
-  },
-  {
     "doc_id": "LTR-1863-05-11-001",
     "file": "LTR-1863-05-11-001.md",
     "existing_people_count": 11,

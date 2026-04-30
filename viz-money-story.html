@@ -153,6 +153,13 @@ table.ref-table tr{cursor:pointer}
   .hero .stat-row{gap:14px}
   .controls{justify-content:flex-start}
 }
+@media (max-width: 480px) {
+  .hero-stat-row { flex-direction: column; gap: 10px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .timeline-section { padding: 0 12px; }
+  .controls { gap: 8px; }
+  .control-group select, .control-group input { min-height: 40px; font-size: 14px; }
+}
 .viz-provenance {
   background: var(--bg);
   border-top: 1px solid var(--rule);
@@ -1129,7 +1136,7 @@ document.getElementById('tlPanLeftBtn').addEventListener('click', tlPanLeft);
 document.getElementById('tlPanRightBtn').addEventListener('click', tlPanRight);
 </script>
 <footer class="viz-provenance">
-  Based on 274 transcribed letters from the Hubbell family collection, 1861–1870. Financial figures are extracted from letter text via pattern matching. Modern dollar equivalents use BLS CPI data.
+  Based on 273 transcribed letters from the Hubbell family collection, 1861–1870. Financial figures are extracted from letter text via pattern matching. Modern dollar equivalents use BLS CPI data.
 </footer>
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=1775363534"></script>

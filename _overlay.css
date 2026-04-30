@@ -635,3 +635,37 @@
     font-size: 1.15rem;
   }
 }
+
+/* ─── Phone (≤480px) ─── */
+@media (max-width: 480px) {
+  .hubbell-overlay-header { padding: 12px 14px 10px; }
+  .hubbell-overlay-body { padding: 14px 14px 20px; }
+  .hubbell-overlay-title { font-size: 1.05rem; }
+  .hubbell-overlay-subtitle { font-size: 0.78rem; }
+  .hubbell-overlay-summary { font-size: 0.72em; }
+  .hubbell-overlay-close,
+  .hubbell-overlay-back {
+    min-width: 44px; min-height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 8px;
+  }
+  .hubbell-overlay-person-pill { font-size: 0.92rem; padding: 2px 10px; }
+  .hubbell-overlay-badge { font-size: 0.6rem; padding: 2px 6px; margin-left: 6px; }
+
+  /* Letter nav inside overlay */
+  .overlay-letter-nav { padding: 6px 14px 8px; gap: 5px; }
+  .overlay-letter-nav .reader-nav-arrow { width: 34px; height: 34px; font-size: 16px; }
+  .overlay-letter-nav .reader-nav-mode-btn { font-size: 10px; padding: 3px 10px; }
+
+  /* Letter reader inside overlay */
+  .hubbell-overlay-reader-header { padding: 12px 16px; }
+  .hubbell-overlay-reader-body { padding: 16px 16px 24px; font-size: 0.9rem; }
+  .hubbell-overlay-reader-meta { font-size: 0.74rem; }
+
+  /* Letter list rows */
+  .hubbell-overlay-letter-row { padding: 10px 10px; font-size: 0.76rem; }
+  .hubbell-overlay-letter-date { min-width: 70px; }
+
+  /* Nav buttons */
+  .hubbell-overlay-nav-btn { padding: 10px 14px; font-size: 0.78rem; min-height: 44px; }
+}

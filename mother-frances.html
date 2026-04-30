@@ -382,11 +382,11 @@ function buildLettersList() {
       var months = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       return months[parseInt(mo)] + ' ' + parseInt(dy) + ', ' + y;
     });
-    html += '<div class="letter-row" onclick="openLetter(\'' + l.id + '\')">' +
+    html += '<button class="letter-row" onclick="openLetter(\'' + l.id + '\')">' +
       '<span class="lr-date">' + d + '</span>' +
       '<span class="lr-to">' + (l.r || '') + '</span>' +
       '<span class="lr-loc">' + (l.loc || '') + '</span>' +
-      '<span class="lr-flags">' + flags + '</span></div>';
+      '<span class="lr-flags">' + flags + '</span></button>';
   });
   list.innerHTML = html;
 }
@@ -476,6 +476,75 @@ closeReader = function() {
   _origCloseReader();
   HubbellDeepLink.remove('letter');
 };
+</script>
+<!-- Mobile chapter navigation -->
+<nav class="bio-chapter-nav" id="bioChapterNav" aria-label="Chapter navigation">
+  <div class="bio-chapter-nav-label" id="bioChapterLabel">Chapter 1</div>
+  <div class="bio-chapter-nav-dots" id="bioChapterDots"></div>
+</nav>
+<script>
+(function() {
+  var nav = document.getElementById('bioChapterNav');
+  if (!nav) return;
+  var chapters = document.querySelectorAll('.chapter, .silence');
+  if (chapters.length < 2) return;
+  var dotsWrap = document.getElementById('bioChapterDots');
+  var label = document.getElementById('bioChapterLabel');
+  var dots = [];
+
+  chapters.forEach(function(ch, i) {
+    var h = ch.querySelector('h2');
+    var title = h ? h.textContent.trim() : ('Ch ' + (i + 1));
+    var dot = document.createElement('button');
+    dot.className = 'bio-chapter-nav-dot';
+    dot.textContent = i + 1;
+    dot.title = title;
+    dot.setAttribute('aria-label', title);
+    dot.addEventListener('click', function() {
+      ch.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    dotsWrap.appendChild(dot);
+    dots.push({ el: dot, chapter: ch, title: title });
+  });
+
+  var currentIdx = -1;
+  var narrativeTop = 0;
+  var narrative = document.querySelector('.narrative');
+  if (narrative) narrativeTop = narrative.getBoundingClientRect().top + window.scrollY - 200;
+
+  function update() {
+    var scrollY = window.scrollY;
+    // Show nav after scrolling past narrative start
+    if (scrollY > narrativeTop && narrativeTop > 0) {
+      nav.classList.add('visible');
+    } else {
+      nav.classList.remove('visible');
+    }
+    // Find active chapter
+    var active = 0;
+    for (var i = dots.length - 1; i >= 0; i--) {
+      var rect = dots[i].chapter.getBoundingClientRect();
+      if (rect.top <= 120) { active = i; break; }
+    }
+    if (active !== currentIdx) {
+      if (currentIdx >= 0) dots[currentIdx].el.classList.remove('active');
+      dots[active].el.classList.add('active');
+      label.textContent = dots[active].title;
+      // Scroll dot into view
+      dots[active].el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      currentIdx = active;
+    }
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() { update(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+  update();
+})();
 </script>
 </body>
 </html>

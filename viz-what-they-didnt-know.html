@@ -42,6 +42,24 @@ body{height:100vh;display:flex;flex-direction:column;overflow:hidden}
   .left-panel,.right-panel{max-height:45vh}
   .center-panel{min-height:50vh}
 }
+@media(max-width:480px){
+  .page-header{padding:28px 1rem 16px}
+  .page-header h1{font-size:1.2rem}
+  .page-header .subtitle{font-size:0.75rem}
+  .irony-bar{padding:0.45rem 0.75rem;gap:0.35rem}
+  .irony-btn{font-size:0.65rem;padding:0.2rem 0.5rem}
+  .timeline-ribbon{height:40px;padding:0 0.75rem}
+  .timeline-track{left:0.75rem;right:0.75rem}
+  .center-panel{padding:1rem 1rem}
+  .letter-date{font-size:1.1rem}
+  .letter-body{font-size:0.88rem;line-height:1.65}
+  .letter-editorial{padding:0.7rem 0.8rem;font-size:0.76rem}
+  .right-panel{padding:0.7rem 0.75rem}
+  .context-card .cc-title{font-size:0.72rem}
+  .context-card .cc-desc{font-size:0.66rem}
+  .irony-text{font-size:0.7rem}
+  .kbd-hint{display:none}
+}
 
 .left-panel{border-right:1px solid var(--border);overflow-y:auto;background:var(--card)}
 .left-panel .panel-title{font-family:var(--font-display);font-size:0.85rem;font-weight:600;padding:0.7rem 1rem 0.5rem;color:var(--text-mid);border-bottom:1px solid var(--border-light);position:sticky;top:0;background:var(--card);z-index:5}

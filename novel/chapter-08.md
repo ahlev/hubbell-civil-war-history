@@ -48,7 +48,7 @@ Then the sentence that would define the rest of the war:
 
 *I only wish I could report the same of Henry.*
 
-Six words. The most important six words in 274 letters. Everything that came before them was prologue. Everything that came after was consequence.
+Six words. The most important six words in 273 letters. Everything that came before them was prologue. Everything that came after was consequence.
 
 Henry was missing.
 
