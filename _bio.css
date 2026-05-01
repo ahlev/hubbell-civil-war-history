@@ -829,10 +829,8 @@ button.letter-row {
 }
 
 /* ===== Prose line-length cap ===== */
-.chapter p, .bio-lede p, .context-box p,
-.mother-note p, .son-note p, .brother-note p {
-  max-width: 82ch;
-}
+/* Removed — narrative max-width (940px) controls column width;
+   per-element ch caps created uneven gutters vs. letter-quotes. */
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1040px) {
