@@ -1,0 +1,8 @@
+node_modules
+.git
+.obsidian
+.claude
+.playwright-mcp
+tasks
+__pycache__
+*.pyc
