@@ -933,6 +933,20 @@ body {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
 }
+/* Aging steps: visible for 3 days, fading after day 1 and again after day 2.
+   Day 0 pulses (very fresh); stale days settle (no pulse) and dim. */
+.new-letter-badge.age-1 {
+  opacity: 0.62;
+  font-weight: 400;
+  animation: none;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.18);
+}
+.new-letter-badge.age-2 {
+  opacity: 0.36;
+  font-weight: 400;
+  animation: none;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.14);
+}
 .letter-summary-tip {
   font-family: var(--font-serif);
   font-size: 0.82rem;
@@ -2298,13 +2312,21 @@ function updateToDate(day) {
     addCurrentNode(current, brotherId, pxOffset);
     activeBounds.push([current.lat, current.lon]);
 
-    // "New Letter!" badge — if a letter falls exactly on today's date
+    // "New Letter!" badge — stays for 3 days, fading after day 1 and day 2
+    // so a fresh letter isn't missed but reads as progressively stale.
     const todaysLetters = DATA.movements.filter(m =>
-      m.brother === brotherId && m.source === 'letter' && m.date === currentDateStr
+      m.brother === brotherId && m.source === 'letter' &&
+      m.date <= currentDateStr && daysBetween(m.date, currentDateStr) <= 2
     );
     todaysLetters.forEach(letter => {
+      const letterAge = daysBetween(letter.date, currentDateStr); // 0, 1, or 2
+      const ageClass = letterAge === 0 ? '' : (letterAge === 1 ? ' age-1' : ' age-2');
+      const recip = formatRecipientShort(letter.recipient);
+      const badgeLabel = letterAge === 0
+        ? `&#9993; New letter to ${recip}`
+        : `&#9993; Letter to ${recip} &middot; ${letterAge === 1 ? '1 day' : '2 days'} ago`;
       const badgeIcon = L.divIcon({
-        html: `<div class="new-letter-badge">&#9993; New letter to ${formatRecipientShort(letter.recipient)}</div>`,
+        html: `<div class="new-letter-badge${ageClass}">${badgeLabel}</div>`,
         className: '',
         iconSize: [200, 24],
         iconAnchor: [100, 40]
