@@ -1404,15 +1404,21 @@ body {
   .status-state-icon {
     display: inline-block;
     flex: none;
-    font-size: 0.72rem;
-    line-height: 1.25;
-    width: 0.95em;
-    text-align: center;
+    order: 2;
+    font-size: 0.52rem;
+    font-weight: 700;
+    line-height: 1.5;
+    padding: 0 5px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
   }
-  .state-verified { color: #2D6B2D; }
-  .state-letter { color: #2D6B2D; }
-  .state-estimated { color: var(--ink-3); }
-  .state-kia { color: #8B3A3A; }
+  .status-state-icon:empty { display: none; }
+  .state-verified { color: #2D6B2D; background: #E8F5E8; border: 1px solid #C8E6C8; }
+  .state-letter { color: #2D6B2D; background: #E8F5E8; border: 1px solid #C8E6C8; }
+  .state-estimated { color: var(--ink-2); background: #F0ECE7; }
+  .state-kia { color: #8B3A3A; background: #F0E0D8; }
   /* ── Top map controls: keep search clear of Places / Re-center ── */
   .place-search {
     left: 8px;
@@ -2132,18 +2138,18 @@ function _smoothViewport(activeBounds, isCinematic, isLocked, lockedPos) {
   }, delay);
 }
 
-// Minimal inline status icon (mobile) — conveys position provenance beside the place name
+// Inline status callout (mobile) — verified/estimated label beside the place name
 function setStateIcon(el, kind) {
   if (!el) return;
   const MAP = {
-    none:      ['',        '',                ''],
-    verified:  ['✓',  'state-verified',  'Position confirmed by a letter'],
-    letter:    ['✉',  'state-letter',    'Letter written this day'],
-    estimated: ['∼',  'state-estimated', 'Position estimated between letters'],
-    kia:       ['✝',  'state-kia',       'Killed at Antietam, Sept 17, 1862'],
+    none:      ['',           '',                ''],
+    verified:  ['Verified',   'state-verified',  'Position confirmed by a letter'],
+    letter:    ['New letter', 'state-letter',    'Letter written this day'],
+    estimated: ['Estimated',  'state-estimated', 'Position estimated between letters'],
+    kia:       ['KIA',        'state-kia',       'Killed at Antietam, Sept 17, 1862'],
   };
-  const [glyph, cls, title] = MAP[kind] || MAP.none;
-  el.textContent = glyph;
+  const [label, cls, title] = MAP[kind] || MAP.none;
+  el.textContent = label;
   el.className = 'status-state-icon' + (cls ? ' ' + cls : '');
   el.title = title;
 }
