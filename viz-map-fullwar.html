@@ -78,6 +78,8 @@ body {
   gap: 6px;
   margin-bottom: 1px;
 }
+/* Inline state icon — desktop uses the text badge instead, so hide it here */
+.status-state-icon { display: none; }
 .status-location {
   font-size: 0.75rem;
   color: var(--ink);
@@ -352,10 +354,29 @@ body {
   line-height: 2;
 }
 .map-legend-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  font-family: inherit;
   font-weight: 600;
   font-size: 0.75rem;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
   margin-bottom: 4px;
+  cursor: pointer;
 }
+.map-legend-chevron {
+  font-size: 0.7rem;
+  color: var(--ink-3);
+  transition: transform 0.2s ease;
+}
+.map-legend.collapsed .map-legend-chevron { transform: rotate(-90deg); }
+.map-legend.collapsed .map-legend-title { margin-bottom: 0; }
+.map-legend.collapsed .map-legend-body { display: none; }
 .legend-row {
   display: flex;
   align-items: center;
@@ -1287,10 +1308,43 @@ body {
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .info-panel { display: none; }
+  /* Info panel becomes a bottom sheet docked over the lower map, above the slider */
   .info-toggle { display: none; }
+  .main-container { position: relative; }
+  .info-panel {
+    display: flex;
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    width: auto;
+    height: 36%;
+    max-height: 240px;
+    border-left: none;
+    border-top: 1px solid var(--rule);
+    box-shadow: 0 -6px 20px rgba(0,0,0,0.16);
+    z-index: 1200;
+    transition: transform 0.28s ease;
+    transform: translateY(0);
+  }
+  .info-panel.collapsed {
+    width: auto;
+    padding: 0;
+    border-top: none;
+    transform: translateY(108%);
+  }
+  /* Compact, vertical-friendly text inside the sheet */
+  .info-header { padding: 7px 12px 5px; }
+  .info-header h3 { font-size: 0.95rem; }
+  .info-body { padding: 6px 12px 10px; }
+  .info-meta { font-size: 0.74rem; margin: 4px 0; }
+  .info-excerpt { font-size: 0.78rem; line-height: 1.5; margin-top: 7px; padding: 8px 10px; }
+  .info-source { font-size: 0.68rem; margin-top: 7px; padding: 6px 8px; }
+  .info-section { margin-top: 7px; padding-top: 6px; }
+  .info-recent-item { font-size: 0.7rem; padding: 3px 0; }
   .status-bar { overflow-x: auto; }
-  .status-panel { min-width: 140px; padding: 8px 10px; height: 110px; }
+  .status-panel { min-width: 132px; padding: 6px 10px; height: 64px; }
+  .lock-btn { display: none; }
+  .status-regiment { display: none; }
+  .status-context { -webkit-line-clamp: 1; }
   .controls { padding: 6px 12px; }
   .controls-cta .cta-keys { display: none; }
   .step-btn { width: 34px; height: 34px; }
@@ -1308,18 +1362,52 @@ body {
   .status-panel {
     min-width: 0;
     height: auto;
-    min-height: 56px;
-    padding: 6px 10px;
+    min-height: 0;
+    padding: 4px 9px;
     border-right: 1px solid #F0ECE7;
     border-bottom: 1px solid #F0ECE7;
   }
   .status-panel:nth-child(2n) { border-right: none; }
   .status-panel:nth-child(n+3) { border-bottom: none; }
-  .status-name { font-size: 0.78rem; }
+  /* Lock-to-follow is a desktop power feature; panel tap still flies to brother */
+  .lock-btn { display: none; }
+  .status-name { font-size: 0.8rem; margin-bottom: 0; line-height: 1.2; }
   .status-regiment { display: none; }
   .status-context { display: none; }
-  .status-location { font-size: 0.7rem; }
-  .status-badge { font-size: 0.5rem; }
+  .status-loc-row { margin-bottom: 0; min-width: 0; gap: 4px; }
+  .status-location {
+    flex: 0 1 auto;
+    min-width: 0;
+    font-size: 0.68rem;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .days-since { display: none; }
+  /* Text badge replaced by a minimal inline icon on phone */
+  .status-badge { display: none; }
+  .status-state-icon {
+    display: inline-block;
+    flex: none;
+    font-size: 0.72rem;
+    line-height: 1.25;
+    width: 0.95em;
+    text-align: center;
+  }
+  .state-verified { color: #2D6B2D; }
+  .state-letter { color: #2D6B2D; }
+  .state-estimated { color: var(--ink-3); }
+  .state-kia { color: #8B3A3A; }
+  /* ── Top map controls: keep search clear of Places / Re-center ── */
+  .place-search {
+    left: 8px;
+    transform: none;
+    width: calc(100vw - 176px);
+    max-width: 230px;
+  }
+  .places-btn { right: 78px; padding: 4px 7px; font-size: 0.6rem; }
+  .recenter-btn { right: 8px; padding: 4px 7px; font-size: 0.6rem; }
   /* ── Controls ── */
   .controls { padding: 6px 8px; }
   .controls-cta { font-size: 0.74rem; }
@@ -1475,28 +1563,28 @@ body {
   <div class="status-panel" id="status-henry" data-brother="henry">
     <div class="status-name"><span class="status-dot" style="background:#2D5F8A"></span> Henry <span class="lock-btn" data-brother="henry">Lock to follow</span></div>
     <div class="status-regiment">34th NY Infantry</div>
-    <div class="status-loc-row"><span class="status-location" id="loc-henry">Not yet enlisted</span><span class="days-since" id="days-henry"></span></div>
+    <div class="status-loc-row"><span class="status-state-icon" id="state-henry"></span><span class="status-location" id="loc-henry">Not yet enlisted</span><span class="days-since" id="days-henry"></span></div>
     <div><span class="status-badge badge-not-enlisted" id="badge-henry">Not enlisted</span></div>
     <div class="status-context" id="ctx-henry"></div>
   </div>
   <div class="status-panel" id="status-alexander" data-brother="alexander">
     <div class="status-name"><span class="status-dot" style="background:#B8860B"></span> Alexander <span class="lock-btn" data-brother="alexander">Lock to follow</span></div>
     <div class="status-regiment">60th NY Infantry</div>
-    <div class="status-loc-row"><span class="status-location" id="loc-alexander">Not yet enlisted</span><span class="days-since" id="days-alexander"></span></div>
+    <div class="status-loc-row"><span class="status-state-icon" id="state-alexander"></span><span class="status-location" id="loc-alexander">Not yet enlisted</span><span class="days-since" id="days-alexander"></span></div>
     <div><span class="status-badge badge-not-enlisted" id="badge-alexander">Not enlisted</span></div>
     <div class="status-context" id="ctx-alexander"></div>
   </div>
   <div class="status-panel" id="status-charles" data-brother="charles">
     <div class="status-name"><span class="status-dot" style="background:#8B3A3A"></span> Charles <span class="lock-btn" data-brother="charles">Lock to follow</span></div>
     <div class="status-regiment">153rd NY Infantry</div>
-    <div class="status-loc-row"><span class="status-location" id="loc-charles">Not yet enlisted</span><span class="days-since" id="days-charles"></span></div>
+    <div class="status-loc-row"><span class="status-state-icon" id="state-charles"></span><span class="status-location" id="loc-charles">Not yet enlisted</span><span class="days-since" id="days-charles"></span></div>
     <div><span class="status-badge badge-not-enlisted" id="badge-charles">Not enlisted</span></div>
     <div class="status-context" id="ctx-charles"></div>
   </div>
   <div class="status-panel" id="status-james" data-brother="james">
     <div class="status-name"><span class="status-dot" style="background:#4A7C59"></span> James <span class="lock-btn" data-brother="james">Lock to follow</span></div>
     <div class="status-regiment">West Point / 153rd NY</div>
-    <div class="status-loc-row"><span class="status-location" id="loc-james">Not yet enlisted</span><span class="days-since" id="days-james"></span></div>
+    <div class="status-loc-row"><span class="status-state-icon" id="state-james"></span><span class="status-location" id="loc-james">Not yet enlisted</span><span class="days-since" id="days-james"></span></div>
     <div><span class="status-badge badge-not-enlisted" id="badge-james">Not enlisted</span></div>
     <div class="status-context" id="ctx-james"></div>
   </div>
@@ -1511,17 +1599,21 @@ body {
     <div id="narrativeCaption" class="narrative-caption"></div>
 
     <!-- Map legend -->
-    <div class="map-legend">
-      <div class="map-legend-title">Legend</div>
-      <div class="legend-row"><span class="legend-node" style="background:#2D5F8A"></span> Henry (34th NY)</div>
-      <div class="legend-row"><span class="legend-node" style="background:#B8860B"></span> Alexander (60th NY)</div>
-      <div class="legend-row"><span class="legend-node" style="background:#8B3A3A"></span> Charles (153rd NY)</div>
-      <div class="legend-row"><span class="legend-node" style="background:#4A7C59"></span> James (153rd NY)</div>
-      <div class="legend-row" style="margin-top:4px;padding-top:4px;border-top:1px solid var(--rule)">
-        <span class="legend-node" style="background:#3A6B3A;box-shadow:0 0 0 2px rgba(45,107,45,0.4),0 0 0 1px rgba(0,0,0,0.2)"></span> Letter-verified
+    <div class="map-legend" id="mapLegend">
+      <button class="map-legend-title" id="mapLegendToggle" onclick="toggleLegend()" aria-expanded="true" aria-controls="mapLegendBody">
+        <span>Legend</span><span class="map-legend-chevron" aria-hidden="true">&#9662;</span>
+      </button>
+      <div class="map-legend-body" id="mapLegendBody">
+        <div class="legend-row"><span class="legend-node" style="background:#2D5F8A"></span> Henry (34th NY)</div>
+        <div class="legend-row"><span class="legend-node" style="background:#B8860B"></span> Alexander (60th NY)</div>
+        <div class="legend-row"><span class="legend-node" style="background:#8B3A3A"></span> Charles (153rd NY)</div>
+        <div class="legend-row"><span class="legend-node" style="background:#4A7C59"></span> James (153rd NY)</div>
+        <div class="legend-row" style="margin-top:4px;padding-top:4px;border-top:1px solid var(--rule)">
+          <span class="legend-node" style="background:#3A6B3A;box-shadow:0 0 0 2px rgba(45,107,45,0.4),0 0 0 1px rgba(0,0,0,0.2)"></span> Letter-verified
+        </div>
+        <div class="legend-row"><span class="legend-trail" style="background:var(--ink-3)"></span> 30-day trail</div>
+        <div class="legend-row"><span style="font-size:0.85rem">&#10013;</span> Memorial (KIA)</div>
       </div>
-      <div class="legend-row"><span class="legend-trail" style="background:var(--ink-3)"></span> 30-day trail</div>
-      <div class="legend-row"><span style="font-size:0.85rem">&#10013;</span> Memorial (KIA)</div>
     </div>
 
     <!-- Place search -->
@@ -2026,6 +2118,22 @@ function _smoothViewport(activeBounds, isCinematic, isLocked, lockedPos) {
   }, delay);
 }
 
+// Minimal inline status icon (mobile) — conveys position provenance beside the place name
+function setStateIcon(el, kind) {
+  if (!el) return;
+  const MAP = {
+    none:      ['',        '',                ''],
+    verified:  ['✓',  'state-verified',  'Position confirmed by a letter'],
+    letter:    ['✉',  'state-letter',    'Letter written this day'],
+    estimated: ['∼',  'state-estimated', 'Position estimated between letters'],
+    kia:       ['✝',  'state-kia',       'Killed at Antietam, Sept 17, 1862'],
+  };
+  const [glyph, cls, title] = MAP[kind] || MAP.none;
+  el.textContent = glyph;
+  el.className = 'status-state-icon' + (cls ? ' ' + cls : '');
+  el.title = title;
+}
+
 function updateToDate(day) {
   currentDay = day;
   const currentDate = dayToDate(day);
@@ -2062,6 +2170,7 @@ function updateToDate(day) {
     const badgeEl = document.getElementById(`badge-${brotherId}`);
     const ctxEl = document.getElementById(`ctx-${brotherId}`);
     const daysEl = document.getElementById(`days-${brotherId}`);
+    const stateEl = document.getElementById(`state-${brotherId}`);
 
     const isThisLocked = lockedBrother === brotherId;
 
@@ -2071,6 +2180,7 @@ function updateToDate(day) {
       locEl.textContent = 'Not yet enlisted';
       badgeEl.textContent = 'Not enlisted';
       badgeEl.className = 'status-badge badge-not-enlisted';
+      setStateIcon(stateEl, 'none');
       ctxEl.textContent = '';
       daysEl.textContent = '';
       continue;
@@ -2082,6 +2192,7 @@ function updateToDate(day) {
       locEl.textContent = 'Killed at Antietam';
       badgeEl.textContent = 'KIA Sept 17, 1862';
       badgeEl.className = 'status-badge badge-kia';
+      setStateIcon(stateEl, 'kia');
       ctxEl.textContent = '34th NY suffered 48% casualties. Henry was among 150 killed or wounded.';
       daysEl.textContent = '';
       continue;
@@ -2093,6 +2204,7 @@ function updateToDate(day) {
       locEl.textContent = 'Mustered out';
       badgeEl.textContent = 'Mustered out';
       badgeEl.className = 'status-badge badge-not-enlisted';
+      setStateIcon(stateEl, 'none');
       ctxEl.textContent = '';
       daysEl.textContent = '';
       continue;
@@ -2106,6 +2218,7 @@ function updateToDate(day) {
       locEl.textContent = 'En route...';
       badgeEl.textContent = 'Active';
       badgeEl.className = 'status-badge badge-estimated';
+      setStateIcon(stateEl, 'estimated');
       ctxEl.textContent = '';
       daysEl.textContent = '✉ No letters yet';
       continue;
@@ -2136,12 +2249,14 @@ function updateToDate(day) {
         badgeEl.textContent = '✉ Read letter';
         badgeEl.className = 'status-badge badge-letter badge-clickable';
         badgeEl.onclick = function(e) { e.stopPropagation(); openLetterOverlay(current.letterId, brotherId); };
+        setStateIcon(stateEl, 'letter');
         ctxEl.textContent = contextText;
         daysEl.textContent = '';
       } else {
         badgeEl.textContent = '★ Verified';
         badgeEl.className = 'status-badge badge-letter';
         badgeEl.onclick = null;
+        setStateIcon(stateEl, 'verified');
         ctxEl.innerHTML = `<span class="ctx-clickable" onclick="event.stopPropagation();openLetterOverlay('${current.letterId}','${brotherId}')">${contextText}</span>`;
         daysEl.textContent = `Last letter: ${daysSince} day${daysSince !== 1 ? 's' : ''} ago`;
       }
@@ -2149,6 +2264,7 @@ function updateToDate(day) {
       badgeEl.textContent = 'Estimated';
       badgeEl.className = 'status-badge badge-estimated';
       badgeEl.onclick = null;
+      setStateIcon(stateEl, 'estimated');
       ctxEl.textContent = contextText;
       daysEl.textContent = lastLetter ? `Last letter: ${daysSince} day${daysSince !== 1 ? 's' : ''} ago` : '';
     }
@@ -3553,6 +3669,12 @@ function openLetterOverlay(letterId, brotherId, highlight) {
 
 function closeLetterOverlay() {
   HubbellReader.close();
+}
+
+function toggleLegend() {
+  const legend = document.getElementById('mapLegend');
+  const collapsed = legend.classList.toggle('collapsed');
+  document.getElementById('mapLegendToggle').setAttribute('aria-expanded', String(!collapsed));
 }
 
 function toggleInfoPanel() {
