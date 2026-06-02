@@ -620,8 +620,10 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
   }
   .cine-card-title { font-size: 0.95rem; margin-bottom: 4px; }
   .cine-card-body { font-size: 0.75rem; line-height: 1.45; margin-bottom: 6px; }
-  .cine-card-quote { font-size: 0.8rem; padding: 6px 10px; margin-bottom: 4px; }
-  .cine-card-cite { font-size: 0.65rem; margin-bottom: 8px; }
+  /* Hide supporting quote excerpts on phone — they crowd the map. The card
+     keeps title + summary; the full letter is one tap away via "Read". */
+  .cine-card-quote { display: none !important; }
+  .cine-card-cite { display: none !important; }
   .cine-card-category { font-size: 0.6rem; margin-bottom: 4px; }
   /* Keep actions on one row; arrows tuck right next to the buttons. */
   .cine-card-actions { gap: 6px; flex-wrap: nowrap; }

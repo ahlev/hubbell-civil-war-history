@@ -777,11 +777,16 @@ body {
   border-radius: 4px;
   padding: 6px 10px 6px 28px;
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  /* iOS Safari auto-zooms inputs with computed font-size < 16px on focus.
+     Use 16px to prevent that without disabling pinch zoom site-wide. */
+  font-size: 16px;
   color: var(--ink);
   outline: none;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   transition: border-color 0.15s, box-shadow 0.15s;
+}
+@media (min-width: 769px) {
+  .place-search-input { font-size: 0.75rem; }
 }
 .place-search-input::placeholder { color: var(--ink-3); }
 .place-search-input:focus {
@@ -966,6 +971,12 @@ body {
   white-space: normal;
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+/* Hard-suppress hover preview surfaces on phone-sized viewports regardless
+   of JS state. Hover affordance is desktop-only by intent. */
+@media (max-width: 768px) {
+  .letter-summary-tip,
+  .place-mini-tl-tip { display: none !important; }
 }
 /* Match Leaflet's tooltip caret to the dark background */
 .letter-summary-tip.leaflet-tooltip-bottom:before { border-bottom-color: #2d2a23; }
@@ -3051,22 +3062,26 @@ function showPlaceInfoPanel(placeName, movement) {
     tip.className = 'place-mini-tl-tip';
     document.body.appendChild(tip);
   }
+  // Only register hover handlers when a precise pointer (mouse/trackpad/stylus)
+  // is available. On phones, hover is meaningless and iOS Safari has shipped
+  // regressions where pointerType arrives as '' for touch — skipping
+  // registration entirely is the safest defense.
+  var _hasFinePointer = window.matchMedia && window.matchMedia('(any-pointer: fine)').matches;
   body.querySelectorAll('.place-mini-tl-dot').forEach(function(dot) {
-    // Use pointerenter/pointerleave so we can suppress the hover preview on
-    // touch input. iOS Safari fires mouseenter AFTER click on tap, which
-    // re-shows the tip even if we hide it during click — pointerType lets
-    // us reject touch up front.
-    dot.addEventListener('pointerenter', function(e) {
-      if (e.pointerType === 'touch') return;
-      tip.textContent = dot.getAttribute('data-tip') || '';
-      tip.classList.add('visible');
-      var r = dot.getBoundingClientRect();
-      tip.style.left = (r.left + r.width / 2 - tip.offsetWidth / 2) + 'px';
-      tip.style.top = (r.top - 28) + 'px';
-    });
-    dot.addEventListener('pointerleave', function() {
-      tip.classList.remove('visible');
-    });
+    if (_hasFinePointer) {
+      dot.addEventListener('pointerenter', function(e) {
+        // Stricter than e.pointerType === 'touch' — only mouse triggers hover
+        if (e.pointerType !== 'mouse') return;
+        tip.textContent = dot.getAttribute('data-tip') || '';
+        tip.classList.add('visible');
+        var r = dot.getBoundingClientRect();
+        tip.style.left = (r.left + r.width / 2 - tip.offsetWidth / 2) + 'px';
+        tip.style.top = (r.top - 28) + 'px';
+      });
+      dot.addEventListener('pointerleave', function() {
+        tip.classList.remove('visible');
+      });
+    }
     dot.addEventListener('click', function() {
       tip.classList.remove('visible');
       var lid = dot.getAttribute('data-lid');
@@ -3680,11 +3695,30 @@ function scrubTimeline(val) {
 }
 
 function recenterMap() {
+  const currentDateStr = dateStr(dayToDate(currentDay));
   if (lockedBrother) {
-    const pos = getLockedBrotherPosition(dateStr(dayToDate(currentDay)));
+    const pos = getLockedBrotherPosition(currentDateStr);
     if (pos) map.flyTo(pos, 9, { duration: 0.5 });
+    return;
+  }
+  // Unlocked: collect live brothers' current positions and fit bounds.
+  const isHenryDead = currentDateStr >= '1862-09-17';
+  const points = [];
+  for (const b of Object.keys(COLORS)) {
+    if (b === 'henry' && isHenryDead) continue;
+    const moves = DATA.movements.filter(m => m.brother === b && m.date <= currentDateStr);
+    if (moves.length === 0) continue;
+    let cur = moves[moves.length - 1];
+    for (let i = moves.length - 1; i >= 0; i--) {
+      if ((moves[i].endDate || moves[i].date) >= currentDateStr) { cur = moves[i]; break; }
+    }
+    points.push([cur.lat, cur.lon]);
+  }
+  if (points.length === 0) return;
+  if (points.length === 1) {
+    map.flyTo(points[0], 8, { duration: 0.5 });
   } else {
-    updateToDate(currentDay);
+    map.flyToBounds(L.latLngBounds(points), { padding: [60, 60], maxZoom: 9, duration: 0.5 });
   }
 }
 
