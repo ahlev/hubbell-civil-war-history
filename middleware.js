@@ -128,7 +128,7 @@ function generateOgMeta(pathname, params, ogData) {
   // Search query
   else if (queryParam && pathname === '/search') {
     title = `Search: ${queryParam} — ${SITE_NAME}`;
-    description = `Search results for "${queryParam}" across 274 Civil War letters from the Hubbell family.`;
+    description = `Search results for "${queryParam}" across 273 Civil War letters from the Hubbell family.`;
   }
 
   // Map: brother + date
