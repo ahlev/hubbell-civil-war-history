@@ -938,11 +938,16 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
 
     var quoteEl = _cardEl.querySelector('.cine-card-quote');
     var citeEl = _cardEl.querySelector('.cine-card-cite');
+    // Belt-and-suspenders: even with the CSS @media (max-width: 600px)
+    // display:none !important rule for these elements, some iOS Safari
+    // caches were observed showing the quote anyway. Force inline display:
+    // none on mobile here so the JS path can't accidentally un-hide them.
+    var _isPhone = window.matchMedia && window.matchMedia('(max-width: 600px)').matches;
     if (wp.quote) {
       quoteEl.textContent = '\u201C' + wp.quote + '\u201D';
-      quoteEl.style.display = '';
+      quoteEl.style.display = _isPhone ? 'none' : '';
       citeEl.textContent = wp.quoteCite ? '\u2014 ' + wp.quoteCite : '';
-      citeEl.style.display = wp.quoteCite ? '' : 'none';
+      citeEl.style.display = (_isPhone || !wp.quoteCite) ? 'none' : '';
     } else {
       quoteEl.style.display = 'none';
       citeEl.style.display = 'none';
