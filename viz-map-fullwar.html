@@ -958,6 +958,9 @@ body {
   padding: 10px 14px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.12);
   max-width: 280px;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* ── Letter Detail Overlay ── */
@@ -2345,8 +2348,11 @@ function updateToDate(day) {
             showInfoPanel(letter, brotherId);
           }
         });
-      // Hover tooltip with letter summary
-      const summary = letter.sigSummary || letter.significance || '';
+      // Hover tooltip with letter summary (capped so it stays succinct)
+      const rawSummary = letter.sigSummary || letter.significance || '';
+      const summary = rawSummary.length > 160
+        ? rawSummary.slice(0, 157).replace(/\s+\S*$/, '') + '…'
+        : rawSummary;
       if (summary) {
         badge.bindTooltip(summary, {
           direction: 'bottom',
