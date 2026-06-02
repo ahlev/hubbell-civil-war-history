@@ -948,16 +948,18 @@ body {
   box-shadow: 0 1px 4px rgba(0,0,0,0.14);
 }
 .letter-summary-tip {
-  font-family: var(--font-serif);
-  font-size: 0.82rem;
-  line-height: 1.5;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.62rem;
+  line-height: 1.3;
   color: var(--ink);
   background: var(--bg-elev);
   border: 1px solid var(--rule);
   border-radius: 6px;
-  padding: 10px 14px;
+  padding: 9px 13px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  max-width: 280px;
+  max-width: 360px;
   white-space: normal;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -2348,17 +2350,18 @@ function updateToDate(day) {
             showInfoPanel(letter, brotherId);
           }
         });
-      // Hover tooltip with letter summary (capped so it stays succinct)
+      // Hover tooltip with letter summary — desktop only (tap-to-open on mobile
+      // would leave a sticky tooltip behind the letter overlay).
       const rawSummary = letter.sigSummary || letter.significance || '';
       const summary = rawSummary.length > 160
         ? rawSummary.slice(0, 157).replace(/\s+\S*$/, '') + '…'
         : rawSummary;
-      if (summary) {
+      if (summary && !L.Browser.touch) {
         badge.bindTooltip(summary, {
           direction: 'bottom',
           offset: [0, 8],
           className: 'letter-summary-tip',
-          maxWidth: 280
+          maxWidth: 360
         });
       }
       badge.addTo(markerLayers[brotherId]);

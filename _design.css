@@ -1364,10 +1364,12 @@ button, a, [onclick], [role="button"] {
     max-width: 100%;
   }
   #hubbellReaderContent { padding: 0 16px 20px; }
-  .reader-nav-bar { padding: 16px 16px 10px; gap: 6px; }
+  /* Push nav bar down so prev/next don't collide with close/share at top-right */
+  .reader-nav-bar { padding: 52px 16px 10px; gap: 6px; }
   .reader-nav-arrow { width: 36px; height: 36px; font-size: 18px; border-radius: 8px; }
   .reader-nav-mode-btn { font-size: 10px; padding: 4px 10px; }
-  .reader-close { top: 8px; right: 10px; }
+  .reader-close { top: 6px; right: 8px; min-width: 40px; min-height: 40px; font-size: 1.4rem; }
+  .dl-modal-share { top: 12px !important; right: 54px !important; }
   .reader-pill { font-size: 0.68rem; padding: 3px 8px; }
   .reader-meta { font-size: 11px; }
   .reader-body { font-size: 14px; padding: 14px 16px; }
