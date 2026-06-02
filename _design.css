@@ -1061,21 +1061,29 @@ svg.chart { display: block; }
   padding: 0 36px 28px;
 }
 .reader-close {
-  position: absolute; top: 12px; right: 14px;
+  position: absolute; top: 14px; right: 14px;
   border: none; background: none;
-  font-size: 1.5rem; cursor: pointer;
+  font-size: 1.35rem; cursor: pointer;
   color: var(--ink-3); line-height: 1;
   z-index: 2;
-  min-width: 44px; min-height: 44px;
+  min-width: 36px; min-height: 36px;
   display: flex; align-items: center; justify-content: center;
 }
 .reader-close:hover { color: var(--ink); }
-/* ─── Reader header: FROM / TO pills ─── */
-.reader-header { position: relative; min-height: 52px; }
+/* ─── Reader header: FROM / TO pills ───
+   Subtle sunken background distinguishes FROM/TO row from the nav-bar
+   above, addressing the "crowding" issue. */
+.reader-header {
+  position: relative;
+  background: var(--bg-sunken);
+  border-radius: 8px;
+  padding: 14px 16px 12px;
+  margin-bottom: 12px;
+}
 .reader-header h3 { display: none; }
 .reader-correspondence {
   display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .reader-pill-label {
   font-family: var(--font-sans, Inter, system-ui, sans-serif);
@@ -1093,7 +1101,7 @@ svg.chart { display: block; }
   color: #fff;
 }
 .reader-pill:hover { filter: brightness(1.12); box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-.reader-meta { font-size: 10px; color: var(--ink-2); margin-bottom: 8px; line-height: 1.5; }
+.reader-meta { font-size: 10px; color: var(--ink-2); margin-bottom: 0; line-height: 1.5; }
 .reader-meta .rm-id { display: none; }
 /* ─── Reader flags — modern editorial ─── */
 .reader-flags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
@@ -1107,11 +1115,11 @@ svg.chart { display: block; }
 .rf-illness { background: #FEFCBF; color: #975A16; border-color: #F6E05E; }
 .rf-death   { background: #EDF2F7; color: #4A5568; border-color: #CBD5E0; }
 .rf-wound   { background: #FAF5FF; color: #6B46C1; border-color: #D6BCFA; }
-.reader-people, .reader-places { margin-bottom: 6px; }
+.reader-people, .reader-places { margin-bottom: 4px; }
 .reader-people h4, .reader-places h4 {
   font-family: var(--font-mono); font-size: 10px;
   text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--ink-3); font-weight: 500; margin-bottom: 3px;
+  color: var(--ink-3); font-weight: 500; margin-bottom: 2px;
 }
 .reader-tags { display: flex; gap: 4px; flex-wrap: wrap; }
 .reader-tag {
@@ -1124,8 +1132,10 @@ svg.chart { display: block; }
 a.reader-tag { text-decoration: none; cursor: pointer; transition: filter 0.15s; }
 a.reader-tag:hover { filter: brightness(0.88); }
 .reader-body {
-  font-family: var(--font-serif);
-  font-size: 13px; line-height: 1.1;
+  /* Lora is a cleaner reading serif than Source Serif 4 — modern but
+     period-appropriate. Iowan Old Style / Charter as system fallbacks. */
+  font-family: 'Lora', 'Iowan Old Style', 'Charter', 'Source Serif 4', Georgia, serif;
+  font-size: 13px; line-height: 1.15;
   color: var(--ink);
   background: var(--bg-sunken);
   border-radius: 8px; padding: 20px 22px;
@@ -1133,7 +1143,7 @@ a.reader-tag:hover { filter: brightness(0.88); }
   max-height: 520px; overflow-y: auto;
 }
 .reader-body p.reader-para {
-  margin: 0 0 1.1em 0;
+  margin: 0 0 1em 0;
 }
 .reader-body p.reader-para:last-child { margin-bottom: 0; }
 .reader-meta .rm-date {
@@ -1211,7 +1221,7 @@ a.reader-tag:hover { filter: brightness(0.88); }
 .dl-share-btn svg { width: 14px !important; height: 14px !important; }
 .dl-share-btn span { display: none !important; }
 .dl-modal-share {
-  position: absolute !important; top: 14px !important; right: 44px !important;
+  position: absolute !important; top: 16px !important; right: 52px !important;
   background: var(--bg-sunken, #f7f5f2) !important;
   border: none !important;
   border-radius: 999px !important; padding: 5px 11px !important;
