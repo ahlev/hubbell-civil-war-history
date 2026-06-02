@@ -584,6 +584,11 @@ window.CinematicPlayer = (function () {
 .cine-nav-arrow:hover { background: rgba(255,255,255,0.2); color: #fff; }
 .cine-nav-arrow:disabled { opacity: 0.2; cursor: default; }
 
+/* When the cinematic card is on screen, the global share circle would
+   overlap the card's right edge and bump the nav arrows to a new row.
+   Hide it while the card is visible; the card has its own actions. */
+body.cinematic-card-visible .dl-share-btn { display: none !important; }
+
 /* ── Brother Pulse Animation ── */
 @keyframes cine-pulse {
   0%   { box-shadow: 0 0 0 0 var(--pulse-color, rgba(184,134,11,0.6)); }
@@ -618,9 +623,11 @@ window.CinematicPlayer = (function () {
   .cine-card-quote { font-size: 0.8rem; padding: 6px 10px; margin-bottom: 4px; }
   .cine-card-cite { font-size: 0.65rem; margin-bottom: 8px; }
   .cine-card-category { font-size: 0.6rem; margin-bottom: 4px; }
-  .cine-card-actions { gap: 6px; flex-wrap: wrap; }
-  .cine-btn { padding: 6px 12px; font-size: 0.72rem; min-height: 36px; }
-  .cine-nav-arrow { width: 36px; height: 36px; }
+  /* Keep actions on one row; arrows tuck right next to the buttons. */
+  .cine-card-actions { gap: 6px; flex-wrap: nowrap; }
+  .cine-btn { padding: 6px 10px; font-size: 0.7rem; min-height: 36px; white-space: nowrap; }
+  .cine-nav-arrows { margin-left: 4px; gap: 4px; flex-shrink: 0; }
+  .cine-nav-arrow { width: 32px; height: 32px; font-size: 14px; }
   .cine-card-close { min-width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
 }
 `;
@@ -957,6 +964,8 @@ window.CinematicPlayer = (function () {
 
     // Show card
     _cardEl.classList.add('visible');
+    // Flag on body so global UI (e.g. dl-share-btn) can hide while card is up
+    document.body.classList.add('cinematic-card-visible');
     _updateNavArrows();
 
     _syncUrl();
@@ -1048,6 +1057,7 @@ window.CinematicPlayer = (function () {
     _cardFrozen = false;
     if (_cardEl) {
       _cardEl.classList.remove('visible');
+      document.body.classList.remove('cinematic-card-visible');
       // Reset pause button for next waypoint
       var pauseBtn = _cardEl.querySelector('.cine-btn-pause');
       if (pauseBtn) pauseBtn.textContent = 'Pause';
