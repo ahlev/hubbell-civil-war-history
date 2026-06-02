@@ -222,27 +222,35 @@
       '</svg></div>';
   }
 
-  /* ── Timeline dot + letter row hover: show summary tooltip ── */
+  /* ── Timeline dot + letter row hover: show summary tooltip ──
+     Hover affordance is desktop-only. Skip binding on devices without a
+     fine pointer so iOS Safari can't fire mouseenter on tap and leave a
+     sticky dark tip behind the letter reader. Click handlers still bind. */
   function bindTimelineDots(container) {
     if (!container) return;
+    var _hasFinePointer = window.matchMedia && window.matchMedia('(any-pointer: fine)').matches;
     // Timeline dots
     container.querySelectorAll('.hubbell-overlay-tl-dot').forEach(function (dot) {
-      dot.addEventListener('mouseenter', function (e) {
-        dot.setAttribute('r', '6');
-        dot.setAttribute('opacity', '1');
-        showDotTooltip(e, dot.getAttribute('data-letter-id'));
-      });
-      dot.addEventListener('mouseleave', function () {
-        dot.setAttribute('r', '4');
-        dot.setAttribute('opacity', '0.8');
-        hideDotTooltip();
-      });
+      if (_hasFinePointer) {
+        dot.addEventListener('mouseenter', function (e) {
+          dot.setAttribute('r', '6');
+          dot.setAttribute('opacity', '1');
+          showDotTooltip(e, dot.getAttribute('data-letter-id'));
+        });
+        dot.addEventListener('mouseleave', function () {
+          dot.setAttribute('r', '4');
+          dot.setAttribute('opacity', '0.8');
+          hideDotTooltip();
+        });
+      }
       dot.addEventListener('click', function () {
+        hideDotTooltip();
         showLetterReader(dot.getAttribute('data-letter-id'));
       });
     });
     // Letter list rows
     container.querySelectorAll('.hubbell-overlay-letter-row[data-letter-id]').forEach(function (row) {
+      if (!_hasFinePointer) return;
       row.addEventListener('mouseenter', function (e) {
         showDotTooltip(e, row.getAttribute('data-letter-id'));
       });

@@ -314,6 +314,18 @@
   box-shadow: 0 6px 20px rgba(0,0,0,0.2);
   display: none;
 }
+/* Belt-and-suspenders: hide the dot tip on phone-sized viewports (hover is
+   a desktop affordance) and whenever the letter reader is open (the tip
+   can otherwise linger after a tap and bleed into the reader's inset
+   margin on mobile). */
+@media (max-width: 768px) {
+  .hubbell-overlay-dot-tip { display: none !important; }
+}
+body.letter-reader-open .hubbell-overlay-dot-tip {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
 .hubbell-overlay-dot-tip-summary {
   font-size: 0.73rem;
   line-height: 1.5;
