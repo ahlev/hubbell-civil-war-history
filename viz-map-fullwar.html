@@ -3788,6 +3788,17 @@ function openLetterOverlay(letterId, brotherId, highlight) {
   // Flag the body so CSS can suppress the cinematic narrative card and any
   // other panel that could peek through the reader overlay's inset margin.
   document.body.classList.add('letter-reader-open');
+  // Aggressive JS-level cleanup of any dark hover preview that might be in
+  // the DOM regardless of CSS state (iOS Safari has been observed serving
+  // stale CSS while serving fresh HTML/JS — inline styles beat cached rules).
+  ['hubbell-overlay-dot-tip', 'letter-summary-tip', 'place-mini-tl-tip'].forEach(function(cls) {
+    document.querySelectorAll('.' + cls).forEach(function(el) {
+      el.style.display = 'none';
+      el.style.visibility = 'hidden';
+      el.style.opacity = '0';
+      el.classList.remove('visible');
+    });
+  });
   _mapCurrentLetterId = letterId;
   _mapSyncUrl();
   var opts = {
