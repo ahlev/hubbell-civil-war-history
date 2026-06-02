@@ -1356,11 +1356,12 @@ button, a, [onclick], [role="button"] {
   .stat-row > div { padding: 16px 14px; }
   .stat-number { font-size: 32px; }
 
-  /* Reader overlay */
-  .reader-overlay { padding: 0; }
+  /* Reader overlay — keep a small inset so backdrop is visible and tappable
+     to close, matching desktop's modal-overlay feel. */
+  .reader-overlay { padding: 12px; }
   .reader-panel {
-    height: 100vh; height: 100dvh;
-    border-radius: 0;
+    height: calc(100vh - 24px); height: calc(100dvh - 24px);
+    border-radius: 10px;
     max-width: 100%;
   }
   #hubbellReaderContent { padding: 0 16px 20px; }
