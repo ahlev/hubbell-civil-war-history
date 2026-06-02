@@ -2344,19 +2344,21 @@ function updateToDate(day) {
       });
       const badge = L.marker([letter.lat, letter.lon], { icon: badgeIcon, zIndexOffset: 2000 })
         .on('click', () => {
+          // Dismiss tooltip immediately so it doesn't bleed through under the
+          // overlay on mobile, where tap fires both the show and click events.
+          badge.closeTooltip();
           if (letter.letterId && letter.transcription) {
             openLetterOverlay(letter.letterId, brotherId);
           } else {
             showInfoPanel(letter, brotherId);
           }
         });
-      // Hover tooltip with letter summary — desktop only (tap-to-open on mobile
-      // would leave a sticky tooltip behind the letter overlay).
+      // Hover tooltip with letter summary, capped for readability
       const rawSummary = letter.sigSummary || letter.significance || '';
       const summary = rawSummary.length > 160
         ? rawSummary.slice(0, 157).replace(/\s+\S*$/, '') + '…'
         : rawSummary;
-      if (summary && !L.Browser.touch) {
+      if (summary) {
         badge.bindTooltip(summary, {
           direction: 'bottom',
           offset: [0, 8],
@@ -3690,8 +3692,9 @@ function toggleLock(brotherId) {
 // LETTER OVERLAY
 // ============================================================
 function openLetterOverlay(letterId, brotherId, highlight) {
-  // Close any sticky Leaflet tooltips on map markers
-  newLetterMarkers.forEach(function(m) { if (m.isTooltipOpen()) m.closeTooltip(); });
+  // Close any sticky Leaflet tooltips on map markers.
+  // closeTooltip() is null-safe; isTooltipOpen() is NOT (throws when no tooltip is bound).
+  newLetterMarkers.forEach(function(m) { m.closeTooltip(); });
   _mapCurrentLetterId = letterId;
   _mapSyncUrl();
   var opts = {
