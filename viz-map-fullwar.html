@@ -2188,7 +2188,13 @@ function updateToDate(day) {
     markerLayers[b].clearLayers();
   }
   if (memorialMarker) { map.removeLayer(memorialMarker); memorialMarker = null; }
-  newLetterMarkers.forEach(m => map.removeLayer(m));
+  // Close + unbind tooltips before removing markers so abandoned tooltip
+  // elements don't linger in the DOM and latch onto the cursor during drag.
+  newLetterMarkers.forEach(m => {
+    m.closeTooltip();
+    m.unbindTooltip();
+    map.removeLayer(m);
+  });
   newLetterMarkers = [];
 
   const activeBounds = [];
@@ -2368,12 +2374,12 @@ function updateToDate(day) {
       const summary = rawSummary.length > 160
         ? rawSummary.slice(0, 157).replace(/\s+\S*$/, '') + '…'
         : rawSummary;
-      // Skip the bind entirely on touch devices — Leaflet's bindTooltip
-      // doesn't expose a pointer-event hook, so an all-or-nothing gate is
-      // the only way to keep tap from triggering a sticky preview that
-      // blocks the reader. Safe now: openLetterOverlay's cleanup uses
-      // the null-safe closeTooltip() so missing tooltips don't throw.
-      if (summary && !L.Browser.touch) {
+      // Bind on any device with a precise pointer available (mouse, trackpad,
+      // stylus) — i.e. every desktop including touch-screen laptops, never
+      // phones/tablets. L.Browser.touch was too broad: it returns true on
+      // Windows Chrome even on plain desktops because of the touch-emulation
+      // layer, so it suppressed the desktop hover preview.
+      if (summary && window.matchMedia && window.matchMedia('(any-pointer: fine)').matches) {
         badge.bindTooltip(summary, {
           direction: 'bottom',
           offset: [0, 8],
