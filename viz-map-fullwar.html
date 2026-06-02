@@ -978,6 +978,20 @@ body {
   .letter-summary-tip,
   .place-mini-tl-tip { display: none !important; }
 }
+/* When the letter reader is open, suppress every panel that could bleed
+   through its inset backdrop on mobile: the cinematic narrative card,
+   any Leaflet tooltip still in the DOM, and our custom dot tip.
+   The reader's 12px inset margin + 40% backdrop opacity isn't enough
+   to fully obscure them on phone-sized viewports. */
+body.letter-reader-open .cine-card,
+body.letter-reader-open .leaflet-tooltip,
+body.letter-reader-open .letter-summary-tip,
+body.letter-reader-open .place-mini-tl-tip,
+body.letter-reader-open .narrative-caption {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
 /* Match Leaflet's tooltip caret to the dark background */
 .letter-summary-tip.leaflet-tooltip-bottom:before { border-bottom-color: #2d2a23; }
 .letter-summary-tip.leaflet-tooltip-top:before    { border-top-color:    #2d2a23; }
@@ -3764,12 +3778,16 @@ function openLetterOverlay(letterId, brotherId, highlight) {
     tlTip.style.opacity = '0';
     setTimeout(function() { tlTip.style.transition = ''; tlTip.style.opacity = ''; }, 100);
   }
+  // Flag the body so CSS can suppress the cinematic narrative card and any
+  // other panel that could peek through the reader overlay's inset margin.
+  document.body.classList.add('letter-reader-open');
   _mapCurrentLetterId = letterId;
   _mapSyncUrl();
   var opts = {
     onClose: function() {
       _mapCurrentLetterId = null;
       _mapSyncUrl();
+      document.body.classList.remove('letter-reader-open');
     }
   };
   if (highlight) opts.highlight = Array.isArray(highlight) ? highlight : [highlight];
