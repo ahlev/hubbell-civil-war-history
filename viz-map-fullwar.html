@@ -398,10 +398,12 @@ body {
   flex-shrink: 0;
 }
 
-/* ── Narrative Caption ── */
+/* ── Narrative Caption ──
+   Positioned below the centered Search bar (top: 10px, ~30px tall) so the
+   two don't stack at top-center. */
 .narrative-caption {
   position: absolute;
-  top: 12px;
+  top: 56px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
@@ -1449,9 +1451,9 @@ body {
   .range-slider input[type="range"]::-webkit-slider-thumb { width: 24px; height: 24px; margin-top: -10px; }
   /* ── Legend: hide on phone (brother colors shown in status bar) ── */
   .map-legend { display: none; }
-  /* ── Narrative caption: smaller on phone ── */
+  /* ── Narrative caption: smaller on phone, sit below search bar ── */
   .narrative-caption {
-    top: 6px;
+    top: 52px;
     font-size: 0.75rem;
     padding: 4px 10px;
     max-width: 90vw;
@@ -3701,6 +3703,15 @@ function openLetterOverlay(letterId, brotherId, highlight) {
   // Close any sticky Leaflet tooltips on map markers.
   // closeTooltip() is null-safe; isTooltipOpen() is NOT (throws when no tooltip is bound).
   newLetterMarkers.forEach(function(m) { m.closeTooltip(); });
+  // Also force-hide the InfoPanel mini-timeline tip. Its 0.15s opacity fade
+  // would otherwise let it bleed through the reader overlay's inset margin.
+  var tlTip = document.getElementById('placeMiniTlTip');
+  if (tlTip) {
+    tlTip.classList.remove('visible');
+    tlTip.style.transition = 'none';
+    tlTip.style.opacity = '0';
+    setTimeout(function() { tlTip.style.transition = ''; tlTip.style.opacity = ''; }, 100);
+  }
   _mapCurrentLetterId = letterId;
   _mapSyncUrl();
   var opts = {
