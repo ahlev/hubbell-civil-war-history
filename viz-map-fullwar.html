@@ -3587,6 +3587,8 @@ function showInfoPanel(movement, brotherId) {
   }
 
   body.innerHTML = html;
+  // Reset scroll on every fresh person load so the title/overview is in view
+  body.scrollTop = 0;
 
   // Bind overlay links on dynamically-rendered info panel
   if (window.HubbellOverlay) HubbellOverlay.bindDynamic(body);
@@ -3627,6 +3629,8 @@ function showMemorialPanel() {
       <div class="info-recent-item"><span class="date">1862-09-17</span> <strong style="color:#8B3A3A">Killed at Antietam</strong></div>
     </div>
   `;
+  // Reset scroll so the memorial title/overview is in view
+  body.scrollTop = 0;
 
   const panel = document.getElementById('infoPanel');
   if (panel.classList.contains('collapsed')) toggleInfoPanel();
