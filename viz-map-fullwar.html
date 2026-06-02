@@ -3068,6 +3068,9 @@ function showPlaceInfoPanel(placeName, movement) {
 
   body.innerHTML = html;
 
+  // Reset scroll on every fresh location load so the title/overview is in view
+  body.scrollTop = 0;
+
   // Bind timeline dot interactions (hover tooltip + click to open letter)
   var tip = document.getElementById('placeMiniTlTip');
   if (!tip) {
