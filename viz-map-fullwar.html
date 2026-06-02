@@ -2366,7 +2366,12 @@ function updateToDate(day) {
       const summary = rawSummary.length > 160
         ? rawSummary.slice(0, 157).replace(/\s+\S*$/, '') + '…'
         : rawSummary;
-      if (summary) {
+      // Skip the bind entirely on touch devices — Leaflet's bindTooltip
+      // doesn't expose a pointer-event hook, so an all-or-nothing gate is
+      // the only way to keep tap from triggering a sticky preview that
+      // blocks the reader. Safe now: openLetterOverlay's cleanup uses
+      // the null-safe closeTooltip() so missing tooltips don't throw.
+      if (summary && !L.Browser.touch) {
         badge.bindTooltip(summary, {
           direction: 'bottom',
           offset: [0, 8],
@@ -3039,14 +3044,19 @@ function showPlaceInfoPanel(placeName, movement) {
     document.body.appendChild(tip);
   }
   body.querySelectorAll('.place-mini-tl-dot').forEach(function(dot) {
-    dot.addEventListener('mouseenter', function(e) {
+    // Use pointerenter/pointerleave so we can suppress the hover preview on
+    // touch input. iOS Safari fires mouseenter AFTER click on tap, which
+    // re-shows the tip even if we hide it during click — pointerType lets
+    // us reject touch up front.
+    dot.addEventListener('pointerenter', function(e) {
+      if (e.pointerType === 'touch') return;
       tip.textContent = dot.getAttribute('data-tip') || '';
       tip.classList.add('visible');
       var r = dot.getBoundingClientRect();
       tip.style.left = (r.left + r.width / 2 - tip.offsetWidth / 2) + 'px';
       tip.style.top = (r.top - 28) + 'px';
     });
-    dot.addEventListener('mouseleave', function() {
+    dot.addEventListener('pointerleave', function() {
       tip.classList.remove('visible');
     });
     dot.addEventListener('click', function() {
