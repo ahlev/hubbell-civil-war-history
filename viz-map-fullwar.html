@@ -104,10 +104,30 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* Fade the "new letter" badge as the letter ages — mirrors how the
-   .new-letter-badge.age-1/.age-2 markers fade on the map itself. */
-.badge-letter.age-1 { opacity: 0.6; }
-.badge-letter.age-2 { opacity: 0.36; }
+/* Age the "new letter" pill: today is full-fresh; 1 day shifts to a
+   muted/neutral pill with lighter weight; 2 days shifts further into
+   a faded outline-only italic. Each tier reads distinctly at a glance,
+   not just dimmer. Color hierarchy mirrors the map's age-1/age-2 fade
+   intent but lands stronger visually on a small status-bar pill. */
+.badge-letter.age-1 {
+  background: #F1F4EE;
+  color: #6B7A5E;
+  border-color: #DDE2D5;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.85;
+}
+.badge-letter.age-2 {
+  background: transparent;
+  color: #8A8E80;
+  border: 1px dashed #C7CBBE;
+  font-weight: 400;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.7;
+}
 .badge-estimated {
   background: #F0ECE7;
   color: var(--ink-3);
