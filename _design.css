@@ -1301,7 +1301,6 @@ a.reader-tag:hover { filter: brightness(0.88); }
   transform: translateX(-50%) translateY(-1px) !important;
 }
 .dl-modal-share svg { width: 13px !important; height: 13px !important; fill: currentColor !important; }
-.dl-modal-share svg { width: 11px !important; height: 11px !important; fill: currentColor !important; }
 #dl-toast {
   background: var(--bg-elev) !important; color: var(--ink-1) !important;
   border: 1px solid var(--rule) !important; box-shadow: var(--shadow-lg) !important;
@@ -1478,7 +1477,14 @@ button, a, [onclick], [role="button"] {
   .reader-nav-arrow { width: 36px; height: 36px; font-size: 18px; border-radius: 8px; }
   .reader-nav-mode-btn { font-size: 10px; padding: 4px 10px; }
   .reader-close { top: 6px; right: 8px; min-width: 40px; min-height: 40px; font-size: 1.4rem; }
-  .dl-modal-share { top: 12px !important; right: 54px !important; }
+  /* Share stays centered above the toggle on mobile too — slightly tighter
+     padding / smaller text so it doesn't crowd the 52px nav-bar top band. */
+  .dl-modal-share {
+    top: 10px !important;
+    padding: 5px 12px !important;
+    font-size: 11px !important;
+  }
+  .dl-modal-share svg { width: 12px !important; height: 12px !important; }
   .reader-pill { font-size: 0.68rem; padding: 3px 8px; }
   .reader-meta { font-size: 11px; }
   .reader-body { font-size: 14px; padding: 14px 16px; }
