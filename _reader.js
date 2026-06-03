@@ -434,14 +434,15 @@ window.HubbellReader = (function () {
       ppl + plc +
       '<div class="reader-body">' + bodyText + '</div>';
 
-    // Inject share button inline at the right end of the FROM/TO meta row
-    // (next to "View on map →") so it lives with the letter's identity
-    // metadata rather than floating at the top-right corner of the panel.
+    // Inject share button at the very top of the reader panel, centered
+    // above the Letters/All Letters toggle. Sits as a sibling of the
+    // nav-bar so the absolute-positioned button is anchored to the panel,
+    // not the scrollable content.
     if (window.HubbellDeepLink) {
       var existing = overlay.querySelector('.dl-modal-share');
       if (existing) existing.remove();
-      var metaRow = contentEl.querySelector('.reader-meta');
-      if (metaRow) metaRow.insertAdjacentHTML('beforeend', HubbellDeepLink.letterShareBtn(letter.id));
+      var navBar = overlay.querySelector('.reader-nav-bar');
+      if (navBar) navBar.insertAdjacentHTML('beforebegin', HubbellDeepLink.letterShareBtn(letter.id));
     }
 
     // Bind overlay links (people/place tags rendered as overlays by _overlay.js)

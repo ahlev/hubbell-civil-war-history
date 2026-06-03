@@ -1142,6 +1142,7 @@ a.reader-tag:hover { filter: brightness(0.88); }
   border-radius: 8px; padding: 20px 22px;
   border: 1px solid var(--rule);
   max-height: 520px; overflow-y: auto;
+  margin-top: 2px;
 }
 .reader-body p.reader-para {
   margin: 0 0 1em 0;
@@ -1264,24 +1265,42 @@ a.reader-tag:hover { filter: brightness(0.88); }
 .dl-share-btn svg { width: 14px !important; height: 14px !important; }
 .dl-share-btn span { display: none !important; }
 .dl-modal-share {
-  /* Now rendered inline within the FROM/TO meta row (after View on map),
-     so drop the absolute positioning. */
-  position: static !important;
-  top: auto !important; right: auto !important;
-  background: var(--bg-elev, #fff) !important;
-  border: 1px solid var(--rule) !important;
-  border-radius: 999px !important; padding: 3px 10px !important;
+  /* Centered above the Letters/All Letters toggle — top of the reader
+     panel. Bigger, bolder, with a soft accent shadow so it reads as a
+     primary affordance rather than an afterthought. */
+  position: absolute !important;
+  top: 14px !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  background: #FBF6EB !important;
+  border: 1px solid #E8DCBE !important;
+  border-radius: 999px !important;
+  padding: 7px 16px !important;
   font-family: var(--font-sans, Inter, system-ui, sans-serif) !important;
-  font-size: 11px !important; font-weight: 500 !important;
-  color: var(--ink-2, #6B6B6B) !important; letter-spacing: 0.01em !important;
-  gap: 4px !important; transition: color .2s, background .2s, border-color .2s !important;
-  z-index: 1 !important; line-height: 1 !important;
-  display: inline-flex !important; align-items: center !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #6E5430 !important;
+  letter-spacing: 0.02em !important;
+  gap: 6px !important;
+  z-index: 3 !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
   cursor: pointer !important;
-  margin-left: 10px !important;
+  margin: 0 !important;
   vertical-align: middle !important;
+  box-shadow: 0 2px 8px rgba(184,134,11,0.15) !important;
+  transition: color .15s, background .15s, border-color .15s, box-shadow .15s, transform .15s !important;
 }
-.dl-modal-share:hover { color: var(--accent, #B8860B) !important; border-color: var(--accent, #B8860B) !important; background: var(--bg-elev, #fff) !important; }
+.dl-modal-share:hover {
+  background: #B8860B !important;
+  color: #FBF6EB !important;
+  border-color: #B8860B !important;
+  box-shadow: 0 4px 14px rgba(184,134,11,0.32) !important;
+  transform: translateX(-50%) translateY(-1px) !important;
+}
+.dl-modal-share svg { width: 13px !important; height: 13px !important; fill: currentColor !important; }
 .dl-modal-share svg { width: 11px !important; height: 11px !important; fill: currentColor !important; }
 #dl-toast {
   background: var(--bg-elev) !important; color: var(--ink-1) !important;
