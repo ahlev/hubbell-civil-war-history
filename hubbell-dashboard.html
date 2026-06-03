@@ -1575,37 +1575,41 @@
     }
 
     function updateLegend(mode) {
+        // Brother color identities are now visible directly on the y-axis
+        // labels of the timeline — no need to repeat them in the legend.
+        // Legend keeps only the cross-cutting visual semantics: battle
+        // line, key-event line, and the significance size scale.
+        // (Built via DOM methods rather than template strings — no
+        // dynamic strings, just static structural elements.)
         const legend = document.getElementById('timelineLegend');
         if (!legend) return;
-        if (mode === 'recipient') {
-            legend.innerHTML = `
-                <div class="legend-item"><div class="legend-dot" style="background:#7B5EA7"></div> Mother</div>
-                <div class="legend-item"><div class="legend-dot" style="background:#C44E52"></div> Frances (sister)</div>
-                <div class="legend-item"><div class="legend-dot" style="background:#2A9D8F"></div> Alexander</div>
-                <div class="legend-item"><div class="legend-dot" style="background:#E07A3A"></div> Charles</div>
-                <div class="legend-item"><div class="legend-dot" style="background:#5B7FB5"></div> James</div>
-                <div class="legend-item"><div class="legend-dot" style="background:#4A6670"></div> Henry</div>
-                <div class="legend-item"><div class="legend-dot" style="background:#8A9A7B"></div> Family / Other</div>
-                <div class="legend-item"><div class="legend-line" style="border-color:var(--battle)"></div> Battle</div>
-                <div class="legend-item"><div class="legend-line" style="border-color:var(--personal)"></div> Key event</div>
-                <div class="legend-item">
-                    <div class="legend-size"><div class="dot-sm"></div><div class="dot-md"></div><div class="dot-lg"></div></div>
-                    Significance
-                </div>`;
-        } else {
-            legend.innerHTML = `
-                <div class="legend-item"><div class="legend-dot" style="background:var(--henry)"></div> Henry (34th NY)</div>
-                <div class="legend-item"><div class="legend-dot" style="background:var(--alexander)"></div> Alexander (60th NY)</div>
-                <div class="legend-item"><div class="legend-dot" style="background:var(--james)"></div> James (West Point)</div>
-                <div class="legend-item"><div class="legend-dot" style="background:var(--charles)"></div> Charles (Plattsburgh)</div>
-                <div class="legend-item"><div class="legend-dot" style="background:var(--mother)"></div> Mother (Champlain)</div>
-                <div class="legend-item"><div class="legend-line" style="border-color:var(--battle)"></div> Battle</div>
-                <div class="legend-item"><div class="legend-line" style="border-color:var(--personal)"></div> Key event</div>
-                <div class="legend-item">
-                    <div class="legend-size"><div class="dot-sm"></div><div class="dot-md"></div><div class="dot-lg"></div></div>
-                    Significance
-                </div>`;
-        }
+        legend.textContent = '';
+        var lineItems = [
+            { color: 'var(--battle)',   label: 'Battle' },
+            { color: 'var(--personal)', label: 'Key event' }
+        ];
+        lineItems.forEach(function (it) {
+            var wrap = document.createElement('div');
+            wrap.className = 'legend-item';
+            var line = document.createElement('div');
+            line.className = 'legend-line';
+            line.style.borderColor = it.color;
+            wrap.appendChild(line);
+            wrap.appendChild(document.createTextNode(' ' + it.label));
+            legend.appendChild(wrap);
+        });
+        var sigWrap = document.createElement('div');
+        sigWrap.className = 'legend-item';
+        var sizeBox = document.createElement('div');
+        sizeBox.className = 'legend-size';
+        ['dot-sm', 'dot-md', 'dot-lg'].forEach(function (c) {
+            var d = document.createElement('div');
+            d.className = c;
+            sizeBox.appendChild(d);
+        });
+        sigWrap.appendChild(sizeBox);
+        sigWrap.appendChild(document.createTextNode(' Significance'));
+        legend.appendChild(sigWrap);
     }
 
     function resetZoom() {
