@@ -99,7 +99,15 @@ body {
   background: #E8F5E8;
   color: #2D6B2D;
   border: 1px solid #C8E6C8;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+/* Fade the "new letter" badge as the letter ages — mirrors how the
+   .new-letter-badge.age-1/.age-2 markers fade on the map itself. */
+.badge-letter.age-1 { opacity: 0.6; }
+.badge-letter.age-2 { opacity: 0.36; }
 .badge-estimated {
   background: #F0ECE7;
   color: var(--ink-3);
@@ -2310,12 +2318,18 @@ function updateToDate(day) {
 
     // Simplified panel state — no redundant indicators
     if (isVerified && current.letterId) {
-      if (daysSince === 0) {
-        // Letter today — badge is the action
-        badgeEl.textContent = '✉ Read letter';
-        badgeEl.className = 'status-badge badge-letter badge-clickable';
+      if (daysSince <= 2) {
+        // Letter is fresh (today / 1 day ago / 2 days ago) — clickable pill,
+        // fades by age. Mirrors the .new-letter-badge fade on the map.
+        const recip = formatRecipientShort(current.recipient);
+        const ageLabel = daysSince === 0 ? 'today'
+                       : daysSince === 1 ? '1 day ago'
+                       : '2 days ago';
+        const ageClass = daysSince === 0 ? '' : (daysSince === 1 ? ' age-1' : ' age-2');
+        badgeEl.textContent = `✉ Read new letter to ${recip} (${ageLabel})`;
+        badgeEl.className = 'status-badge badge-letter badge-clickable' + ageClass;
         badgeEl.onclick = function(e) { e.stopPropagation(); openLetterOverlay(current.letterId, brotherId); };
-        setStateIcon(stateEl, 'letter');
+        setStateIcon(stateEl, daysSince === 0 ? 'letter' : 'verified');
         ctxEl.textContent = contextText;
         daysEl.textContent = '';
       } else {
