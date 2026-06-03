@@ -78,6 +78,40 @@ window.HubbellReader = (function () {
     return text;
   }
 
+  // ── Flag-category highlighting ─────────────────────────────────────────
+  // Map each flag pill (Battle/Wound/Illness/Death) to the vocabulary of
+  // words/phrases that signal it in the letter body. Keep these focused so
+  // every highlight feels earned; better to under-highlight than to paint
+  // half the letter red.
+  var FLAG_PATTERNS = {
+    battle: /\b(battle|battles|fight\w*|fought|engaged|engagement|skirmish\w*|charge[ds]?|charging|attack\w*|advance[ds]?|advancing|retreat\w*|firing|fired|musket\w*|rifles?|cannon\w*|shell\w*|shelling|cannonad\w+|bullets?|balls?|pickets?|enemy|rebels?|reb[s]?|regiments?|brigade[s]?|company|companies)\b/gi,
+    wound: /\b(wound\w*|shot|struck|hit|injury|injured|injuries|ball|bullet|bruise[ds]?|bandage[ds]?|hospital|surgeon|ambulance|knee|shoulder|leg|arm|chest)\b/gi,
+    illness: /\b(sick\w*|ill|illness|fever\w*|diarr?hea|cough\w*|dysentery|jaundice|typhoid|weak\w*|feeble|fatigue\w*|recover\w*|hospital|infirmary|medicine\w*|doctor\w*)\b/gi,
+    death: /\b(died|dead|death\w*|killed|kill\w*|lost|fallen|mortal\w*|deceased|buried|graves?|cemeter\w+|casualt\w+|perish\w*)\b/gi
+  };
+
+  // Wrap matches of each active category's pattern in the body HTML with
+  // <span class="rhl-<flag>">…</span>. Operates only on text nodes (split
+  // on HTML tags) so we don't replace inside class attributes etc.
+  function wrapFlagCategoryTerms(html, activeFlags) {
+    if (!activeFlags || !activeFlags.length) return html;
+    // Priority order: death > wound > illness > battle so the more specific
+    // category claims an overlapping word first. Later passes can still nest
+    // inside an earlier span (CSS shows the innermost background).
+    var order = ['death', 'wound', 'illness', 'battle'];
+    order.forEach(function (flag) {
+      if (activeFlags.indexOf(flag) === -1) return;
+      var pat = FLAG_PATTERNS[flag];
+      if (!pat) return;
+      var cls = 'rhl-' + flag;
+      html = html.split(/(<[^>]+>)/).map(function (part, i) {
+        if (i % 2 === 1) return part; // HTML tag — leave alone
+        return part.replace(pat, '<span class="' + cls + '">$&</span>');
+      }).join('');
+    });
+    return html;
+  }
+
   function highlightTerms(text, terms) {
     if (!terms || !terms.length) return text;
     var result = text;
@@ -91,7 +125,7 @@ window.HubbellReader = (function () {
     return result;
   }
 
-  function buildHealthHtml(h) {
+  function buildHealthHtml(h, activeFlags) {
     var hasContent = (h.status && h.status !== 'nodata') ||
       (h.confidence && h.confidence !== 'nodata') ||
       (h.symptoms && h.symptoms.length);
@@ -114,11 +148,19 @@ window.HubbellReader = (function () {
       }
     }
 
-    // Symptom keywords
+    // Symptom keywords — skip any symptom that duplicates an already-rendered
+    // flag pill (e.g. "Wounds" when the colored Wound pill is already inline).
     if (h.symptoms && h.symptoms.length) {
-      html += '<div class="reader-health-symptoms">' +
-        h.symptoms.map(function (s) { return '<span class="reader-health-symptom">' + esc(s) + '</span>'; }).join('') +
-        '</div>';
+      var flagWords = (activeFlags || []).map(function (f) { return f.toLowerCase(); });
+      var dedupedSymptoms = h.symptoms.filter(function (s) {
+        var sl = String(s).toLowerCase().replace(/s$/, ''); // drop trailing plural
+        return flagWords.indexOf(sl) === -1;
+      });
+      if (dedupedSymptoms.length) {
+        html += '<div class="reader-health-symptoms">' +
+          dedupedSymptoms.map(function (s) { return '<span class="reader-health-symptom">' + esc(s) + '</span>'; }).join('') +
+          '</div>';
+      }
     }
 
     html += '</div>';
@@ -297,12 +339,15 @@ window.HubbellReader = (function () {
       '<path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
       ' View on map \u2192</a>';
 
-    // Flags
+    // Flags — clickable pills that toggle body-text highlighting per category.
+    // Each pill has data-flag so the click handler attached after render can
+    // identify which category to toggle.
     var flags = '';
-    if (letter.bat) flags += '<span class="reader-flag rf-battle">Battle</span>';
-    if (letter.ill) flags += '<span class="reader-flag rf-illness">Illness</span>';
-    if (letter.dth) flags += '<span class="reader-flag rf-death">Death</span>';
-    if (letter.wnd) flags += '<span class="reader-flag rf-wound">Wound</span>';
+    var activeFlags = [];
+    if (letter.bat) { flags += '<span class="reader-flag rf-battle" data-flag="battle" title="Click to toggle battle highlighting">Battle</span>'; activeFlags.push('battle'); }
+    if (letter.ill) { flags += '<span class="reader-flag rf-illness" data-flag="illness" title="Click to toggle illness highlighting">Illness</span>'; activeFlags.push('illness'); }
+    if (letter.dth) { flags += '<span class="reader-flag rf-death" data-flag="death" title="Click to toggle death highlighting">Death</span>'; activeFlags.push('death'); }
+    if (letter.wnd) { flags += '<span class="reader-flag rf-wound" data-flag="wound" title="Click to toggle wound highlighting">Wound</span>'; activeFlags.push('wound'); }
 
     // People tags — clickable links to People Web
     var ppl = '';
@@ -329,7 +374,7 @@ window.HubbellReader = (function () {
     // Health context section
     var healthHtml = '';
     if (opts.health) {
-      healthHtml = buildHealthHtml(opts.health);
+      healthHtml = buildHealthHtml(opts.health, activeFlags);
     }
 
     // Body text — strip redundant date/location header
@@ -352,6 +397,10 @@ window.HubbellReader = (function () {
       highlightTermsList.push(opts.personHighlight);
     }
     bodyText = highlightTerms(bodyText, highlightTermsList);
+    // Flag-category keyword highlighting: wrap matched terms with rhl-<flag>
+    // spans, only for categories whose flag pill is rendered. Toggling a pill
+    // off via CSS (.reader-body.hide-<flag>) collapses these spans to plain.
+    bodyText = wrapFlagCategoryTerms(bodyText, activeFlags);
 
     // Build sender pill
     var senderPage = BIO_PAGES[letter.a] || '';
@@ -373,6 +422,7 @@ window.HubbellReader = (function () {
         '<div class="reader-correspondence">' +
           '<span class="reader-pill-label">From</span>' + senderPill +
           '<span class="reader-pill-label" style="min-width:auto">To</span>' + recipientPill +
+          (flags ? '<span class="reader-flags-inline">' + flags + '</span>' : '') +
         '</div>' +
         '<div class="reader-meta">' +
           '<span class="rm-date">' + d + '</span>' +
@@ -380,7 +430,6 @@ window.HubbellReader = (function () {
           mapLink +
           '<span class="rm-id">' + esc(letter.id) + '</span></div>' +
       '</div>' +
-      (flags ? '<div class="reader-flags">' + flags + '</div>' : '') +
       healthHtml +
       ppl + plc +
       '<div class="reader-body">' + bodyText + '</div>';
@@ -395,6 +444,19 @@ window.HubbellReader = (function () {
 
     // Bind overlay links (people/place tags rendered as overlays by _overlay.js)
     if (window.HubbellOverlay) HubbellOverlay.bindDynamic(contentEl);
+
+    // Flag pill click handlers — toggle .flag-off on the pill and
+    // .hide-<flag> on .reader-body so highlights collapse/reappear.
+    var bodyEl = contentEl.querySelector('.reader-body');
+    contentEl.querySelectorAll('.reader-flag[data-flag]').forEach(function (pill) {
+      pill.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var f = pill.getAttribute('data-flag');
+        var off = pill.classList.toggle('flag-off');
+        if (bodyEl) bodyEl.classList.toggle('hide-' + f, off);
+      });
+    });
 
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';

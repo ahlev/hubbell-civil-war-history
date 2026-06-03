@@ -1196,6 +1196,62 @@ a.reader-tag:hover { filter: brightness(0.88); }
   background: oklch(92% 0.06 150 / 0.35); color: oklch(40% 0.10 150);
   padding: 1px 2px; border-radius: 2px;
 }
+/* Flag-driven content highlights — paired 1:1 with reader-flag colors.
+   Each highlight's background tint matches the pill's identity color so
+   toggling the pill makes the visual connection obvious. */
+.reader-body .rhl-battle {
+  background: #FDE8E830; color: #8B2828;
+  padding: 1px 3px; border-radius: 2px;
+  box-shadow: inset 0 -1px 0 #9B2C2C40;
+}
+.reader-body .rhl-illness {
+  background: #FEFCBF50; color: #6E4810;
+  padding: 1px 3px; border-radius: 2px;
+  box-shadow: inset 0 -1px 0 #975A1640;
+}
+.reader-body .rhl-death {
+  background: #EDF2F790; color: #2D3748;
+  padding: 1px 3px; border-radius: 2px;
+  box-shadow: inset 0 -1px 0 #4A556840;
+}
+.reader-body .rhl-wound {
+  background: #FAF5FF; color: #5A3D9E;
+  padding: 1px 3px; border-radius: 2px;
+  box-shadow: inset 0 -1px 0 #6B46C140;
+}
+/* Pill-driven toggle: when a flag is "off", its corresponding highlights
+   in the body collapse back to plain text. The pill itself shows a struck-
+   through / muted state. */
+.reader-body.hide-battle  .rhl-battle  { background: transparent; color: inherit; box-shadow: none; padding: 0; }
+.reader-body.hide-illness .rhl-illness { background: transparent; color: inherit; box-shadow: none; padding: 0; }
+.reader-body.hide-death   .rhl-death   { background: transparent; color: inherit; box-shadow: none; padding: 0; }
+.reader-body.hide-wound   .rhl-wound   { background: transparent; color: inherit; box-shadow: none; padding: 0; }
+
+/* Inline flag pill wrapper — sits at the end of the FROM/TO row, flowing
+   to the right via margin-left: auto when there's space; wraps below the
+   recipient pill on narrow viewports. */
+.reader-flags-inline {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+}
+.reader-flags-inline .reader-flag { margin: 0; }
+/* Inline flag pills (next to FROM/TO row) — clickable toggles */
+.reader-flag {
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.15s, transform 0.15s, filter 0.15s;
+}
+.reader-flag:hover { filter: brightness(0.95); }
+.reader-flag:active { transform: scale(0.96); }
+.reader-flag.flag-off {
+  opacity: 0.4;
+  filter: grayscale(0.6);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
 
 /* ───── Scrollbar (webkit) ───── */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
