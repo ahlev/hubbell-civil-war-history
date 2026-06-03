@@ -1077,6 +1077,76 @@
   text-align: center;
   line-height: 1.5;
 }
+/* Inline legend variant: when the legend lives inside the timeline-controls
+   row, drop the bottom margin and let it flow with the buttons. */
+.legend.legend-inline {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 0 0 0 6px;
+  padding: 0;
+  align-items: center;
+}
+.legend.legend-inline .legend-item { font-size: 0.78rem; }
+/* ── Parallel Lives instruction pills ── */
+.parallel-lives-instructions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 18px;
+  margin: 10px auto 4px;
+  font-family: var(--font-sans, Inter, system-ui, sans-serif);
+}
+.pli-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  border: 1px solid transparent;
+}
+.pli-item svg { width: 18px; height: 18px; flex-shrink: 0; color: currentColor; }
+.pli-primary {
+  background: linear-gradient(180deg, #FBF6EB 0%, #F5EEDD 100%);
+  border-color: #E8DCBE;
+  color: #4A4640;
+  box-shadow: 0 2px 8px rgba(184,134,11,0.10);
+}
+.pli-primary strong { color: #B8860B; font-weight: 700; }
+.pli-primary svg {
+  color: #B8860B;
+  animation: pli-cursor-bob 1.6s ease-in-out infinite;
+  transform-origin: 30% 30%;
+}
+@keyframes pli-cursor-bob {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50%      { transform: translateY(-3px) rotate(0deg); }
+}
+.pli-secondary {
+  background: #F4F1EC;
+  border-color: #E2DCD0;
+  color: #5C564D;
+}
+.pli-kbd {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 22px; height: 22px; padding: 0 5px;
+  background: #fff;
+  border: 1px solid #C7BFB0;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem; font-weight: 600; color: #4A4640;
+}
+.pli-tertiary {
+  background: transparent;
+  border: 1px dashed #C7BFB0;
+  color: #6B6560;
+}
+.pli-tertiary em { color: #B8860B; font-style: normal; font-weight: 600; }
+@media (prefers-reduced-motion: reduce) {
+  .pli-primary svg { animation: none; }
+}
     </style>
 <link rel="stylesheet" href="_overlay.css?v=1775363534">
 </head>
@@ -1094,11 +1164,25 @@
 
         <section class="timeline-section" id="timeline-section">
             <h2>Parallel Lives</h2>
-            <div class="section-subtitle" style="line-height:1.7;">Each dot on the timeline below is a letter written by one of the Hubbell family during the Civil War.<br><b>Click a dot to read and explore. Use your arrow keys to navigate.</b><br><i>Click and drag to zoom into a range on the timeline.</i></div>
+            <div class="section-subtitle" style="line-height:1.7;">Each dot on the timeline below is a letter written by one of the Hubbell family during the Civil War.</div>
+            <div class="parallel-lives-instructions">
+              <span class="pli-item pli-primary">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3 L5 17 L9 13 L11.5 19 L14 18 L11.5 12 L17 12 Z" fill="currentColor"/></svg>
+                <span><strong>Click a dot</strong> to read and explore</span>
+              </span>
+              <span class="pli-item pli-secondary">
+                <span class="pli-kbd" aria-hidden="true">←</span><span class="pli-kbd" aria-hidden="true">→</span>
+                <span>Use arrow keys to navigate letters</span>
+              </span>
+              <span class="pli-item pli-tertiary">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 L21 12 M3 12 L7 8 M3 12 L7 16 M21 12 L17 8 M21 12 L17 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+                <span>Click &amp; drag on the timeline to <em>zoom into a range</em></span>
+              </span>
+            </div>
             <div class="timeline-controls" style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
               <button id="colorByAuthorBtn" class="tl-ctrl-btn active" onclick="setColorMode('author')">Color by Author</button>
               <button id="colorByRecipientBtn" class="tl-ctrl-btn" onclick="setColorMode('recipient')">Color by Recipient</button>
-              <span style="flex:0;"></span>
+              <div class="legend legend-inline" id="timelineLegend"></div>
               <span style="flex:1;"></span>
               <button id="zoomInBtn" class="tl-ctrl-btn" onclick="zoomInCenter()" title="Zoom in">+</button>
               <button id="zoomOutBtn" class="tl-ctrl-btn" onclick="zoomOutCenter()" title="Zoom out" style="opacity:0.4;">−</button>
@@ -1113,7 +1197,7 @@
               </div>
               <button class="tl-scroll-arrow" onclick="panRight()">▶</button>
             </div>
-            <div class="legend" id="timelineLegend">
+            <div class="legend-old-removed" style="display:none;">
                 <div class="legend-item"><div class="legend-dot" style="background:var(--henry)"></div> Henry (34th NY)</div>
                 <div class="legend-item"><div class="legend-dot" style="background:var(--alexander)"></div> Alexander (60th NY)</div>
                 <div class="legend-item"><div class="legend-dot" style="background:var(--james)"></div> James (West Point)</div>
@@ -1541,7 +1625,7 @@
 
         const margin = { top: 60, right: 40, bottom: 80, left: 140 };
         const width = Math.max(svg.parentElement.clientWidth - 64, 1000);
-        const laneHeight = 70;
+        const laneHeight = 35;
         const height = margin.top + brothers.length * laneHeight + margin.bottom;
 
         svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
