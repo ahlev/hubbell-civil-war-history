@@ -3534,9 +3534,10 @@ function showInfoPanel(movement, brotherId) {
     html += `<div class="info-excerpt">"${movement.letterExcerpt}"</div>`;
   }
 
-  // Significance summary
+  // Significance summary — use .info-excerpt class so it matches the place
+  // panel's smaller/italic/tight summary styling for cross-panel consistency.
   if (movement.sigSummary) {
-    html += `<div style="font-size:0.78rem;color:#4A4A4A;line-height:1.5;margin-top:8px">${movement.sigSummary}</div>`;
+    html += `<div class="info-excerpt">${movement.sigSummary}</div>`;
   }
 
   // "Read full letter" link if transcription available
