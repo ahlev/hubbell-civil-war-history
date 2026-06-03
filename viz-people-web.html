@@ -321,12 +321,40 @@ body {
 }
 .pw-person-summary {
   color: #3a3a3a;
-  font-size: 0.85em;
-  line-height: 1.6;
+  font-size: 0.72em;
+  line-height: 1.4;
   border-left: 3px solid #d4c5a9;
   padding-left: 12px;
   margin: 10px 0 14px;
 }
+/* Cross-link pill that sits inline beside the detail-name header,
+   pointing to the person's standalone "Who They Were" page. */
+.pw-story-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 10px;
+  padding: 3px 10px 3px 11px;
+  font-family: var(--font-sans, Inter, system-ui, sans-serif);
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: #6E5430;
+  background: #FBF6EB;
+  border: 1px solid #E8DCBE;
+  border-radius: 999px;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.pw-story-link:hover {
+  background: #B8860B;
+  color: #FBF6EB;
+  border-color: #B8860B;
+}
+.pw-story-link::after { content: " \2192"; }
 
 /* ---- Letter Overlay ---- */
 .letter-overlay {
@@ -2987,8 +3015,19 @@ function buildMiniTimeline(sortedLetters) {
 function showBrotherDetail(node) {
   const panel = document.getElementById('detail-panel');
   const key = node.brotherKey;
-  document.getElementById('detail-name').textContent = BROTHER_NAMES[key] + ' Hubbell';
+  const _nameEl = document.getElementById('detail-name');
+  _nameEl.textContent = BROTHER_NAMES[key] + ' Hubbell';
   document.getElementById('detail-role').textContent = 'Hubbell brother, letter author';
+  // Cross-link pill to the brother's standalone "Who They Were" page.
+  // Pill is appended as an inline-flex child of the h3 so it sits on the
+  // same line as the name and survives subsequent name updates.
+  const _prevPill = panel.querySelector('.pw-story-link');
+  if (_prevPill) _prevPill.remove();
+  const _storyPill = document.createElement('a');
+  _storyPill.className = 'pw-story-link';
+  _storyPill.href = 'brother-' + key + '.html';
+  _storyPill.textContent = 'Read his full story';
+  _nameEl.appendChild(_storyPill);
 
   // Editorial summary for brothers
   const _prevBroSummary = panel.querySelector('.pw-person-summary');
