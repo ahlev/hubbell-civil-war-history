@@ -434,12 +434,14 @@ window.HubbellReader = (function () {
       ppl + plc +
       '<div class="reader-body">' + bodyText + '</div>';
 
-    // Inject share button
+    // Inject share button inline at the right end of the FROM/TO meta row
+    // (next to "View on map →") so it lives with the letter's identity
+    // metadata rather than floating at the top-right corner of the panel.
     if (window.HubbellDeepLink) {
-      var closeBtn = document.getElementById('hubbellReaderClose');
       var existing = overlay.querySelector('.dl-modal-share');
       if (existing) existing.remove();
-      if (closeBtn) closeBtn.insertAdjacentHTML('afterend', HubbellDeepLink.letterShareBtn(letter.id));
+      var metaRow = contentEl.querySelector('.reader-meta');
+      if (metaRow) metaRow.insertAdjacentHTML('beforeend', HubbellDeepLink.letterShareBtn(letter.id));
     }
 
     // Bind overlay links (people/place tags rendered as overlays by _overlay.js)
