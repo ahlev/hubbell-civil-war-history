@@ -3465,18 +3465,20 @@ function buildRelationshipContext(nodeA, nodeB, sharedLetters) {
     </div>`;
   }
 
-  // Brother chips with counts
+  // Author chips with counts — brothers AND Frances (she authored letters too).
   const brotherCounts = {};
   for (const l of sharedLetters) {
     const key = l.author;
-    if (BROTHER_NAMES[key]) brotherCounts[key] = (brotherCounts[key] || 0) + 1;
+    if (BROTHER_NAMES[key] || key === 'mother') brotherCounts[key] = (brotherCounts[key] || 0) + 1;
   }
   const brotherEntries = Object.entries(brotherCounts).sort((a, b) => b[1] - a[1]);
   if (brotherEntries.length > 0) {
     let chips = '';
     for (const [key, c] of brotherEntries) {
-      const color = BROTHER_COLORS[key] || '#9B9B9B';
-      chips += `<span class="detail-brother-chip" style="background:${hexToRgba(color, 0.12)};color:${color}">${BROTHER_NAMES[key]}: ${c}</span> `;
+      const isMom = key === 'mother';
+      const color = isMom ? '#7B5EA7' : (BROTHER_COLORS[key] || '#9B9B9B');
+      const label = isMom ? 'Frances' : BROTHER_NAMES[key];
+      chips += `<span class="detail-brother-chip" style="background:${hexToRgba(color, 0.12)};color:${color}">${label}: ${c}</span> `;
     }
     html += `<div class="link-context-row">
       <span class="link-context-label">Via</span>
@@ -3486,12 +3488,20 @@ function buildRelationshipContext(nodeA, nodeB, sharedLetters) {
 
   // Connection type
   let hasCorrespondence = false, hasCoMention = false;
+  // Resolve who authored / received each letter to a node id, handling Frances
+  // (author 'mother' / recipient canonical 'Mother' → the mother node's id).
+  const whoAuthored = (l) => nodeA.isBrother && l.author === nodeA.brotherKey ? nodeA.id
+                          : nodeB.isBrother && l.author === nodeB.brotherKey ? nodeB.id
+                          : nodeA.isMother && l.author === 'mother' ? nodeA.id
+                          : nodeB.isMother && l.author === 'mother' ? nodeB.id : null;
+  const whoReceived = (l) => {
+    const rc = getCanonName(l.recipient);
+    if (rc === 'Mother') { if (nodeA.isMother) return nodeA.id; if (nodeB.isMother) return nodeB.id; }
+    return rc;
+  };
   for (const l of sharedLetters) {
-    const authorCanon = nodeA.isBrother && l.author === nodeA.brotherKey ? nodeA.id :
-                        nodeB.isBrother && l.author === nodeB.brotherKey ? nodeB.id : null;
-    const recipCanon = getCanonName(l.recipient);
-    const isCorr = (authorCanon === nodeA.id && recipCanon === nodeB.id) ||
-                   (authorCanon === nodeB.id && recipCanon === nodeA.id);
+    const a = whoAuthored(l), r = whoReceived(l);
+    const isCorr = (a === nodeA.id && r === nodeB.id) || (a === nodeB.id && r === nodeA.id);
     if (isCorr) hasCorrespondence = true; else hasCoMention = true;
   }
   const typeLabel = hasCorrespondence && hasCoMention ? 'Correspondent & Co-mentioned'
@@ -3585,8 +3595,11 @@ async function showLinkedPairDetail(idxA, idxB) {
 
     // Determine relationship type for this letter
     const authorCanon = nodeA.isBrother && l.author === nodeA.brotherKey ? nameA :
-                        nodeB.isBrother && l.author === nodeB.brotherKey ? nameB : null;
-    const recipCanon = getCanonName(l.recipient);
+                        nodeB.isBrother && l.author === nodeB.brotherKey ? nameB :
+                        nodeA.isMother && l.author === 'mother' ? nameA :
+                        nodeB.isMother && l.author === 'mother' ? nameB : null;
+    const _rc = getCanonName(l.recipient);
+    const recipCanon = (_rc === 'Mother') ? (nodeA.isMother ? nameA : (nodeB.isMother ? nameB : _rc)) : _rc;
     const isCorrespondence = (authorCanon === nameA && recipCanon === nameB) ||
                              (authorCanon === nameB && recipCanon === nameA);
     const typeLabel = isCorrespondence ? 'Correspondent' : 'Mentioned';

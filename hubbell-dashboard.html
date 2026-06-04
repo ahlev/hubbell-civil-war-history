@@ -2428,6 +2428,25 @@
         strip.addEventListener('pointercancel', () => { sx = null; clear(); });
     }
 
+    // Flag-category body highlighting for the Parallel Lives reader — mirrors the
+    // shared reader (_reader.js). Wraps words signalling each active flag in
+    // rhl-<flag> spans so the colored pills can toggle .hide-<flag> on .reader-body.
+    const DASH_FLAG_PATTERNS = {
+        battle: /\b(battle|battles|fight\w*|fought|engaged|engagement|skirmish\w*|charge[ds]?|charging|attack\w*|advance[ds]?|advancing|firing|fired|musket\w*|rifles?|cannon\w*|shell\w*|shelling|cannonad\w+|bullets?|balls?|pickets?|enemy|rebels?|reb[s]?|regiments?|brigade[s]?|company|companies)\b/gi,
+        wound: /\b(wound\w*|shot|struck|hit|injury|injured|injuries|ball|bullet|bruise[ds]?|bandage[ds]?|hospital|surgeon|ambulance|knee|shoulder|leg|arm|chest)\b/gi,
+        illness: /\b(sick\w*|ill|illness|fever\w*|diarr?hea|cough\w*|dysentery|jaundice|typhoid|weak\w*|feeble|fatigue\w*|recover\w*|hospital|infirmary|medicine\w*|doctor\w*)\b/gi,
+        death: /\b(died|dead|death\w*|killed|kill\w*|lost|fallen|mortal\w*|deceased|buried|graves?|cemeter\w+|casualt\w+|perish\w*)\b/gi
+    };
+    function wrapDashFlagTerms(html, activeFlags) {
+        if (!activeFlags || !activeFlags.length) return html;
+        ['death', 'wound', 'illness', 'battle'].forEach(flag => {
+            if (activeFlags.indexOf(flag) === -1) return;
+            const pat = DASH_FLAG_PATTERNS[flag], cls = 'rhl-' + flag;
+            html = html.split(/(<[^>]+>)/).map((part, i) => i % 2 === 1 ? part : part.replace(pat, '<span class="' + cls + '">$&</span>')).join('');
+        });
+        return html;
+    }
+
     function openDetail(idx) {
         hideTooltip();
         _detailWasOpen = document.getElementById('detail-panel').classList.contains('open');
@@ -2446,12 +2465,15 @@
             activeDot.setAttribute('stroke', COLORS[l.author]);
         }
 
-        // Flags (reader format)
+        // Flags (reader format) — clickable pills that toggle body highlighting,
+        // matching the shared reader. data-flag identifies the category; activeFlags
+        // drives which terms get wrapped in rhl-<flag> spans below.
         let flags = '';
-        if (l.hasBattle) flags += '<span class="reader-flag rf-battle">Battle</span>';
-        if (l.hasIllness) flags += '<span class="reader-flag rf-illness">Illness</span>';
-        if (l.hasDeath) flags += '<span class="reader-flag rf-death">Death</span>';
-        if (l.hasWound) flags += '<span class="reader-flag rf-wound">Wound</span>';
+        const activeFlags = [];
+        if (l.hasBattle) { flags += '<span class="reader-flag rf-battle" data-flag="battle" title="Click to toggle battle highlighting">Battle</span>'; activeFlags.push('battle'); }
+        if (l.hasIllness) { flags += '<span class="reader-flag rf-illness" data-flag="illness" title="Click to toggle illness highlighting">Illness</span>'; activeFlags.push('illness'); }
+        if (l.hasDeath) { flags += '<span class="reader-flag rf-death" data-flag="death" title="Click to toggle death highlighting">Death</span>'; activeFlags.push('death'); }
+        if (l.hasWound) { flags += '<span class="reader-flag rf-wound" data-flag="wound" title="Click to toggle wound highlighting">Wound</span>'; activeFlags.push('wound'); }
 
         // Enrich location with bracketed details
         const enrichedLocation = enrichLocation(l.location || '');
@@ -2514,7 +2536,8 @@
         const nextIdx = findAdjacentLetter(idx, 1);
 
         // Transcription — format into paragraphs
-        const transText = formatTranscription(l.transcription || 'Transcription not available.');
+        let transText = formatTranscription(l.transcription || 'Transcription not available.');
+        transText = wrapDashFlagTerms(transText, activeFlags);
 
         inner.innerHTML = `
             <div class="detail-left">
@@ -2560,6 +2583,18 @@
         `;
 
         bindDashContextStrip();
+        // Flag-pill toggles: click a colored pill to show/hide its body highlights.
+        (function () {
+            const bodyEl = document.querySelector('#detail-panel .reader-body');
+            document.querySelectorAll('#detail-panel .reader-flag[data-flag]').forEach(pill => {
+                pill.addEventListener('click', e => {
+                    e.preventDefault(); e.stopPropagation();
+                    const f = pill.getAttribute('data-flag');
+                    const off = pill.classList.toggle('flag-off');
+                    if (bodyEl) bodyEl.classList.toggle('hide-' + f, off);
+                });
+            });
+        })();
         section.classList.add('panel-open');
         panel.classList.add('open');
 
