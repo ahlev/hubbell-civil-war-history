@@ -657,10 +657,10 @@ window.HubbellReader = (function () {
       ppl + plc +
       '<div class="reader-body">' + bodyText + '</div>';
 
-    // Inject share button at the very top of the reader panel, centered
-    // above the Letters/All Letters toggle. Sits as a sibling of the
-    // nav-bar so the absolute-positioned button is anchored to the panel,
-    // not the scrollable content.
+    // Inject the share button into the reader panel. It's absolute-positioned
+    // (anchored to .reader-panel) so it sits inline at the top-right beside the
+    // close on desktop, and re-centers as a banner on mobile — see the
+    // .reader-panel .dl-modal-share rules in _design.css.
     if (window.HubbellDeepLink) {
       var existing = overlay.querySelector('.dl-modal-share');
       if (existing) existing.remove();

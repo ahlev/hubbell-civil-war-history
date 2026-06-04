@@ -1390,9 +1390,30 @@ a.reader-tag:hover { filter: brightness(0.88); }
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 44px 36px 12px;
+  padding: 16px 36px 12px;
   border-bottom: 1px solid var(--rule);
   flex-shrink: 0;
+}
+/* Share sits inline at the top-right, beside the close — matching the
+   Parallel Lives reader — rather than a centered banner above the nav bar.
+   Scoped to .reader-panel so the dashboard / Wellness readers are untouched.
+   (.reader-panel is position:relative, so the button anchors to the panel.) */
+.reader-panel .dl-modal-share {
+  left: auto !important;
+  right: 56px !important;
+  top: 13px !important;
+  transform: none !important;
+  background: #B8860B !important;
+  border-color: #B8860B !important;
+  color: #FBF6EB !important;
+  box-shadow: 0 2px 6px rgba(184,134,11,0.28) !important;
+}
+.reader-panel .dl-modal-share:hover {
+  background: #9C7209 !important;
+  border-color: #9C7209 !important;
+  color: #fff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3px 10px rgba(184,134,11,0.4) !important;
 }
 .reader-nav-arrow {
   width: 40px; height: 40px;
@@ -1562,6 +1583,19 @@ button, a, [onclick], [role="button"] {
     font-size: 11px !important;
   }
   .dl-modal-share svg { width: 12px !important; height: 12px !important; }
+  /* On phones the centred nav group fills the width, so the desktop inline
+     top-right share would collide with the next arrow. Revert the shared
+     reader's share to a centred banner (the 52px nav-bar top band already
+     reserves room); keep the bolder golden fill. */
+  .reader-panel .dl-modal-share {
+    left: 50% !important;
+    right: auto !important;
+    top: 10px !important;
+    transform: translateX(-50%) !important;
+  }
+  .reader-panel .dl-modal-share:hover {
+    transform: translateX(-50%) translateY(-1px) !important;
+  }
   .reader-pill { font-size: 0.68rem; padding: 3px 8px; }
   .reader-meta { font-size: 11px; }
   .reader-body { font-size: 14px; padding: 14px 16px; }
