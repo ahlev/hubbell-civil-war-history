@@ -450,7 +450,7 @@ function buildFootprintMap(brotherId, color) {
 }
 
 function openLetter(id, highlight) {
-  HubbellReader.open(id, { highlight: highlight });
+  HubbellReader.open(id, { highlight: highlight, contextStrip: true });
 }
 
 function closeReader() {

@@ -1082,6 +1082,75 @@ svg.chart { display: block; }
   margin-bottom: 6px;
 }
 .reader-header h3 { display: none; }
+
+/* ── Letter Context Strip (corpus-wide "you are here" timeline) ──────────
+   Two layers: an SVG of axis + per-letter density ticks (preserveAspectRatio
+   none, so it fills width; non-scaling strokes keep ticks crisp), and HTML
+   pins/labels positioned by percent so they stay round at any width.
+   Tap anywhere to jump to the nearest letter. Shared by every reader that
+   passes opts.contextStrip, and mirrored by the dashboard's own reader. */
+.reader-context-strip {
+  position: relative;
+  margin: 10px 0 4px;
+  padding: 14px 2px 15px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: pan-y;        /* let vertical scroll through; we handle the tap */
+  user-select: none;
+}
+.reader-context-strip .rcs-svg { display: block; width: 100%; height: 30px; overflow: visible; }
+.reader-context-strip .rcs-axis { stroke: var(--rule-2, #ccc); stroke-width: 1; }
+.reader-context-strip .rcs-marker,
+.reader-context-strip .rcs-hover {
+  position: absolute; top: 23px; width: 12px; height: 12px;
+  border-radius: 50%; transform: translateX(-50%); pointer-events: none;
+}
+.reader-context-strip .rcs-marker {
+  background: var(--rcs-c, #333);
+  box-shadow: 0 0 0 2.5px var(--bg-elev, #fff), 0 0 0 3.5px rgba(0,0,0,0.18);
+  z-index: 3;
+}
+.reader-context-strip .rcs-marker::before {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: 1.5px; height: 22px; transform: translate(-50%, -50%);
+  background: var(--rcs-c, #333); opacity: 0.32; z-index: -1;
+}
+.reader-context-strip .rcs-hover {
+  border: 2px solid var(--rcs-c, #666); background: transparent; opacity: 0.75; z-index: 2;
+}
+.reader-context-strip .rcs-tip {
+  position: absolute; bottom: 100%; margin-bottom: 3px; transform: translateX(-50%);
+  background: #2d2a23; color: #e8d5b7; white-space: nowrap;
+  font: 500 11px/1.3 var(--font-sans, sans-serif);
+  padding: 4px 8px; border-radius: 4px; pointer-events: none; z-index: 5;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.reader-context-strip .rcs-yr {
+  position: absolute; bottom: 0;
+  font: 500 9px/1 var(--font-sans, sans-serif); letter-spacing: 0.04em;
+  color: var(--ink-3, #888);
+}
+.reader-context-strip .rcs-yr-start { left: 2px; }
+.reader-context-strip .rcs-yr-end { right: 2px; }
+.reader-context-strip .rcs-grid { stroke: var(--rule-2, #ccc); stroke-width: 1; opacity: 0.45; }
+.reader-context-strip .rcs-caption {
+  position: absolute; top: 1px; right: 3px;
+  font: 600 8px/1 var(--font-sans, sans-serif); letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--ink-3, #888); opacity: 0.8; pointer-events: none;
+}
+
+/* Executive summary — the one-line "what this letter is" editorial note,
+   styled like the location/person info excerpts (italic, accent left border). */
+.reader-exec-summary {
+  margin: 8px 0 2px;
+  padding: 6px 12px;
+  border-left: 3px solid var(--accent, #b06a3b);
+  background: var(--accent-soft, rgba(176,106,59,0.08));
+  font: italic 400 0.92rem/1.5 var(--font-serif, Georgia, serif);
+  color: var(--ink-2, #444);
+  border-radius: 0 4px 4px 0;
+}
+
 .reader-correspondence {
   display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
   margin-bottom: 6px;

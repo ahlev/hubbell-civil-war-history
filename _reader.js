@@ -302,6 +302,167 @@ window.HubbellReader = (function () {
     return null;
   }
 
+  // ── Letter Context Strip ───────────────────────────────────────────────
+  // A reusable "where am I in the whole correspondence" strip for the reader.
+  // Every letter in the corpus is a faint tick on one shared timeline; the
+  // current letter's author is emphasised; the current letter is pinned; and
+  // tapping anywhere jumps to the nearest letter. Two layers: an SVG (axis +
+  // density ticks — tolerant of non-uniform horizontal scaling) and HTML
+  // pins/labels (crisp at any width). Opt-in via opts.contextStrip.
+  //
+  // Why ticks + tap-to-nearest instead of 273 tappable dots: at corpus density
+  // (~273 letters across ~600px) individual dots overlap and are far smaller
+  // than a 44px touch target. A density band you tap *near* keeps the full-arc
+  // overview while staying usable on mobile.
+  var _ctxStrip = null;       // metadata for the binder
+  var CTX_INSET = 3;          // % inset each side so end ticks aren't clipped
+
+  function buildLetterContextStrip(activeId) {
+    if (typeof LETTERS === 'undefined' || !LETTERS || !LETTERS.length) return '';
+    var items = [];
+    for (var i = 0; i < LETTERS.length; i++) {
+      var l = LETTERS[i];
+      if (!l || !l.d || !/^\d{4}-\d{2}-\d{2}$/.test(l.d)) continue;
+      // Mid-month for unknown-day (YYYY-MM-00) dates — matches parseDate convention.
+      var t = new Date(l.d.replace(/-00$/, '-15') + 'T12:00:00').getTime();
+      if (isNaN(t)) continue;
+      items.push({ id: l.id, a: l.a, r: l.r, d: l.d, t: t });
+    }
+    if (items.length < 2) return '';
+    var minT = Infinity, maxT = -Infinity;
+    for (var j = 0; j < items.length; j++) {
+      if (items[j].t < minT) minT = items[j].t;
+      if (items[j].t > maxT) maxT = items[j].t;
+    }
+    var rangeT = (maxT - minT) || 1;
+    var minYear = new Date(minT).getFullYear();
+    var maxYear = new Date(maxT).getFullYear();
+
+    var active = findLetter(activeId);
+    var activeAuthor = active ? active.a : null;
+    var activeT = (active && active.d) ? new Date(active.d.replace(/-00$/, '-15') + 'T12:00:00').getTime() : null;
+    if (activeT != null && isNaN(activeT)) activeT = null;
+
+    var VBW = 1000, baseY = 15;
+    function posPct(t) { return CTX_INSET + ((t - minT) / rangeT) * (100 - 2 * CTX_INSET); }
+    function xUser(t) { return (posPct(t) / 100 * VBW).toFixed(1); }
+
+    var ticks = '';
+    for (var k = 0; k < items.length; k++) {
+      var it = items[k];
+      var same = activeAuthor && it.a === activeAuthor;
+      var x = xUser(it.t);
+      ticks += '<line x1="' + x + '" y1="' + (same ? baseY - 5 : baseY - 3) +
+        '" x2="' + x + '" y2="' + (same ? baseY + 5 : baseY + 3) +
+        '" stroke="' + getColor(it.a) + '" stroke-width="1.4" opacity="' + (same ? 0.55 : 0.28) +
+        '" vector-effect="non-scaling-stroke"/>';
+    }
+
+    // Faint year gridlines: the long post-1865 span then reads as "years
+    // passing with no letters" (documented absence) instead of a layout gap.
+    // Keeps the honest linear time scale (panel decision — fidelity over compression).
+    var grid = '';
+    for (var yy = minYear + 1; yy <= maxYear; yy++) {
+      var yt = new Date(yy + '-01-01T12:00:00').getTime();
+      if (yt < minT || yt > maxT) continue;
+      grid += '<line class="rcs-grid" x1="' + xUser(yt) + '" y1="2" x2="' + xUser(yt) +
+        '" y2="28" vector-effect="non-scaling-stroke"/>';
+    }
+
+    var marker = '';
+    if (activeT != null) {
+      marker = '<span class="rcs-marker" style="left:' + posPct(activeT).toFixed(2) +
+        '%;--rcs-c:' + getColor(activeAuthor) + '"></span>';
+    }
+
+    _ctxStrip = { items: items, minT: minT, rangeT: rangeT, inset: CTX_INSET, activeId: activeId };
+
+    return '<div class="reader-context-strip" id="readerCtxStrip" role="group" ' +
+      'aria-label="Timeline overview of all ' + items.length + ' letters in the collection; the letter you are reading is marked. Tap or drag the strip to jump to a nearby letter.">' +
+      '<span class="rcs-caption">tap to jump</span>' +
+      '<svg class="rcs-svg" viewBox="0 0 ' + VBW + ' 30" preserveAspectRatio="none" aria-hidden="true">' +
+        '<line class="rcs-axis" x1="' + xUser(minT) + '" y1="' + baseY + '" x2="' + xUser(maxT) +
+        '" y2="' + baseY + '" vector-effect="non-scaling-stroke"/>' + grid + ticks +
+      '</svg>' +
+      marker +
+      '<span class="rcs-hover" hidden></span>' +
+      '<span class="rcs-yr rcs-yr-start">' + minYear + '</span>' +
+      '<span class="rcs-yr rcs-yr-end">' + maxYear + '</span>' +
+      '<div class="rcs-tip" hidden></div>' +
+    '</div>';
+  }
+
+  function _ctxNearest(clientX, rect) {
+    if (!_ctxStrip || !rect.width) return null;
+    var pct = ((clientX - rect.left) / rect.width) * 100;
+    var frac = (pct - _ctxStrip.inset) / (100 - 2 * _ctxStrip.inset);
+    frac = Math.max(0, Math.min(1, frac));
+    var target = _ctxStrip.minT + frac * _ctxStrip.rangeT;
+    var best = null, bestD = Infinity;
+    for (var i = 0; i < _ctxStrip.items.length; i++) {
+      var dd = Math.abs(_ctxStrip.items[i].t - target);
+      if (dd < bestD) { bestD = dd; best = _ctxStrip.items[i]; }
+    }
+    return best;
+  }
+
+  function _ctxPctFor(t) {
+    return (_ctxStrip.inset + ((t - _ctxStrip.minT) / _ctxStrip.rangeT) * (100 - 2 * _ctxStrip.inset)).toFixed(2);
+  }
+
+  function bindContextStrip() {
+    var strip = contentEl.querySelector('.reader-context-strip');
+    if (!strip || !_ctxStrip) return;
+    var tip = strip.querySelector('.rcs-tip');
+    var hov = strip.querySelector('.rcs-hover');
+    var fine = window.matchMedia && window.matchMedia('(any-pointer: fine)').matches;
+    // Press-and-drag scrub state. sx/sy = pointerdown origin; scrubbing once the
+    // finger moves horizontally; asScroll if it moves vertically (let the page scroll).
+    var sx = null, sy = null, scrubbing = false, asScroll = false;
+
+    function preview(clientX) {
+      var near = _ctxNearest(clientX, strip.getBoundingClientRect());
+      if (!near) return;
+      var lp = parseFloat(_ctxPctFor(near.t));
+      hov.style.left = lp + '%';
+      hov.style.setProperty('--rcs-c', getColor(near.a));
+      hov.hidden = false;
+      // Sender → Recipient (color encodes the sender, so name it). formatDate
+      // renders unknown-day dates as "Month Year (approx.)" — provenance shown.
+      tip.textContent = formatDate(near.d) + '  •  ' + getName(near.a, near.a) + ' → ' + (near.r || 'Unknown');
+      tip.style.left = Math.max(8, Math.min(92, lp)) + '%';   // clamp so it can't run off the edge
+      tip.hidden = false;
+    }
+    function clear() { hov.hidden = true; tip.hidden = true; }
+    function commit(clientX) {
+      var near = _ctxNearest(clientX, strip.getBoundingClientRect());
+      if (near && near.id !== _ctxStrip.activeId) { clear(); open(near.id, currentOpts); }
+    }
+
+    if (fine) {
+      strip.addEventListener('mousemove', function (e) { preview(e.clientX); });
+      strip.addEventListener('mouseleave', clear);
+    }
+    strip.addEventListener('pointerdown', function (e) {
+      sx = e.clientX; sy = e.clientY; scrubbing = false; asScroll = false;
+      preview(e.clientX);   // touch users get an immediate preview under the finger
+    });
+    strip.addEventListener('pointermove', function (e) {
+      if (sx == null) return;
+      var dx = Math.abs(e.clientX - sx), dy = Math.abs(e.clientY - sy);
+      if (!scrubbing && !asScroll) {
+        if (dy > 10 && dy > dx) { asScroll = true; clear(); return; }  // vertical → let it scroll
+        if (dx > 6) scrubbing = true;
+      }
+      if (scrubbing) preview(e.clientX);
+    });
+    strip.addEventListener('pointerup', function (e) {
+      if (sx != null && !asScroll) commit(e.clientX);
+      sx = null; clear();
+    });
+    strip.addEventListener('pointercancel', function () { sx = null; clear(); });
+  }
+
   function open(letterId, opts) {
     opts = opts || {};
     currentOpts = opts;
@@ -423,6 +584,13 @@ window.HubbellReader = (function () {
       ? '<a href="' + recipientPage + '" class="reader-pill" style="background:' + recipientColor + '" onclick="event.stopPropagation()">' + esc(recipientName) + '</a>'
       : '<span class="reader-pill" style="background:' + recipientColor + '">' + esc(recipientName) + '</span>';
 
+    // Letter Context Strip (opt-in) — the corpus-wide "you are here" timeline.
+    var contextStrip = opts.contextStrip ? buildLetterContextStrip(letterId) : '';
+    // Executive summary — the one-line editorial "what this letter is" the user
+    // values. Shown on the rich reader surfaces (same opt-in as the strip).
+    var summaryHtml = (opts.contextStrip && letter.ss)
+      ? '<div class="reader-exec-summary">' + esc(letter.ss) + '</div>' : '';
+
     contentEl.innerHTML =
       '<div class="reader-header" style="border-bottom-color:' + color + '">' +
         '<div class="reader-correspondence">' +
@@ -436,6 +604,8 @@ window.HubbellReader = (function () {
           mapLink +
           '<span class="rm-id">' + esc(letter.id) + '</span></div>' +
       '</div>' +
+      summaryHtml +
+      contextStrip +
       healthHtml +
       ppl + plc +
       '<div class="reader-body">' + bodyText + '</div>';
@@ -466,6 +636,8 @@ window.HubbellReader = (function () {
         if (bodyEl) bodyEl.classList.toggle('hide-' + f, off);
       });
     });
+
+    if (opts.contextStrip) bindContextStrip();
 
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';

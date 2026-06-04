@@ -2284,6 +2284,115 @@
     }, true);
 
     var _detailWasOpen = false; // track if navigating within open panel
+    // ── Letter Context Strip (Parallel Lives reader) ──────────────────────
+    // Dashboard-local twin of the shared _reader.js strip. Same markup/CSS
+    // (.reader-context-strip, served from _design.css), but reads this file's
+    // own LETTERS shape (author/date/recipient) and navigates via openDetail.
+    // A density band of every letter on one corpus timeline, current letter
+    // pinned, tap anywhere to jump to the nearest letter.
+    let _dashCtx = null;
+    const _DCTX_INSET = 3;
+
+    function buildDashContextStrip(activeIdx) {
+        if (typeof LETTERS === 'undefined' || !LETTERS.length) return '';
+        const items = [];
+        for (let i = 0; i < LETTERS.length; i++) {
+            const l = LETTERS[i];
+            if (!l.date || !/^\d{4}-\d{2}-\d{2}$/.test(l.date)) continue;
+            const t = parseDate(l.date).getTime();
+            if (isNaN(t)) continue;
+            items.push({ idx: i, a: l.author, r: l.recipient, date: l.date, t: t });
+        }
+        if (items.length < 2) return '';
+        let minT = Infinity, maxT = -Infinity;
+        items.forEach(it => { if (it.t < minT) minT = it.t; if (it.t > maxT) maxT = it.t; });
+        const rangeT = (maxT - minT) || 1;
+        const minYear = new Date(minT).getFullYear(), maxYear = new Date(maxT).getFullYear();
+        const active = LETTERS[activeIdx];
+        const activeA = active ? active.author : null;
+        let activeT = (active && active.date) ? parseDate(active.date).getTime() : null;
+        if (activeT != null && isNaN(activeT)) activeT = null;
+        const VBW = 1000, baseY = 15;
+        const posPct = t => _DCTX_INSET + ((t - minT) / rangeT) * (100 - 2 * _DCTX_INSET);
+        const xU = t => (posPct(t) / 100 * VBW).toFixed(1);
+        let ticks = '';
+        items.forEach(it => {
+            const same = activeA && it.a === activeA;
+            const x = xU(it.t);
+            ticks += `<line x1="${x}" y1="${same ? baseY - 5 : baseY - 3}" x2="${x}" y2="${same ? baseY + 5 : baseY + 3}" stroke="${COLORS[it.a] || '#999'}" stroke-width="1.4" opacity="${same ? 0.55 : 0.28}" vector-effect="non-scaling-stroke"/>`;
+        });
+        // Faint year gridlines — the post-1865 span reads as "years passing,
+        // no letters" rather than a layout gap (honest linear scale kept).
+        let grid = '';
+        for (let yy = minYear + 1; yy <= maxYear; yy++) {
+            const yt = new Date(yy + '-01-01T12:00:00').getTime();
+            if (yt < minT || yt > maxT) continue;
+            grid += `<line class="rcs-grid" x1="${xU(yt)}" y1="2" x2="${xU(yt)}" y2="28" vector-effect="non-scaling-stroke"/>`;
+        }
+        let marker = '';
+        if (activeT != null) {
+            marker = `<span class="rcs-marker" style="left:${posPct(activeT).toFixed(2)}%;--rcs-c:${COLORS[activeA] || '#333'}"></span>`;
+        }
+        _dashCtx = { items, minT, rangeT, inset: _DCTX_INSET, activeIdx };
+        return `<div class="reader-context-strip" id="dashCtxStrip" role="group" aria-label="Timeline overview of all ${items.length} letters in the collection; the letter you are reading is marked. Tap or drag the strip to jump to a nearby letter.">` +
+            `<span class="rcs-caption">tap to jump</span>` +
+            `<svg class="rcs-svg" viewBox="0 0 ${VBW} 30" preserveAspectRatio="none" aria-hidden="true">` +
+            `<line class="rcs-axis" x1="${xU(minT)}" y1="${baseY}" x2="${xU(maxT)}" y2="${baseY}" vector-effect="non-scaling-stroke"/>${grid}${ticks}</svg>` +
+            marker + `<span class="rcs-hover" hidden></span>` +
+            `<span class="rcs-yr rcs-yr-start">${minYear}</span><span class="rcs-yr rcs-yr-end">${maxYear}</span>` +
+            `<div class="rcs-tip" hidden></div></div>`;
+    }
+
+    function bindDashContextStrip() {
+        const strip = document.querySelector('#detail-panel .reader-context-strip');
+        if (!strip || !_dashCtx) return;
+        const tip = strip.querySelector('.rcs-tip'), hov = strip.querySelector('.rcs-hover');
+        const fine = window.matchMedia && window.matchMedia('(any-pointer: fine)').matches;
+        let sx = null, sy = null, scrubbing = false, asScroll = false;
+        const nearest = (clientX, rect) => {
+            if (!rect.width) return null;
+            const pct = ((clientX - rect.left) / rect.width) * 100;
+            const frac = Math.max(0, Math.min(1, (pct - _dashCtx.inset) / (100 - 2 * _dashCtx.inset)));
+            const target = _dashCtx.minT + frac * _dashCtx.rangeT;
+            let best = null, bd = Infinity;
+            _dashCtx.items.forEach(it => { const d = Math.abs(it.t - target); if (d < bd) { bd = d; best = it; } });
+            return best;
+        };
+        const pctFor = t => parseFloat((_dashCtx.inset + ((t - _dashCtx.minT) / _dashCtx.rangeT) * (100 - 2 * _dashCtx.inset)).toFixed(2));
+        const preview = clientX => {
+            const n = nearest(clientX, strip.getBoundingClientRect());
+            if (!n) return;
+            const lp = pctFor(n.t);
+            hov.style.left = lp + '%'; hov.style.setProperty('--rcs-c', COLORS[n.a] || '#666'); hov.hidden = false;
+            // Sender → Recipient (color encodes sender); formatDate shows "(approx.)" for unknown-day dates.
+            tip.textContent = formatDate(n.date) + '  •  ' + (NAMES[n.a] || n.a) + ' → ' + (n.r || 'Unknown');
+            tip.style.left = Math.max(8, Math.min(92, lp)) + '%'; tip.hidden = false;
+        };
+        const clear = () => { hov.hidden = true; tip.hidden = true; };
+        if (fine) {
+            strip.addEventListener('mousemove', e => preview(e.clientX));
+            strip.addEventListener('mouseleave', clear);
+        }
+        strip.addEventListener('pointerdown', e => { sx = e.clientX; sy = e.clientY; scrubbing = false; asScroll = false; preview(e.clientX); });
+        strip.addEventListener('pointermove', e => {
+            if (sx == null) return;
+            const dx = Math.abs(e.clientX - sx), dy = Math.abs(e.clientY - sy);
+            if (!scrubbing && !asScroll) {
+                if (dy > 10 && dy > dx) { asScroll = true; clear(); return; }
+                if (dx > 6) scrubbing = true;
+            }
+            if (scrubbing) preview(e.clientX);
+        });
+        strip.addEventListener('pointerup', e => {
+            if (sx != null && !asScroll) {
+                const n = nearest(e.clientX, strip.getBoundingClientRect());
+                if (n && n.idx !== _dashCtx.activeIdx) { clear(); openDetail(n.idx); return; }
+            }
+            sx = null; clear();
+        });
+        strip.addEventListener('pointercancel', () => { sx = null; clear(); });
+    }
+
     function openDetail(idx) {
         hideTooltip();
         _detailWasOpen = document.getElementById('detail-panel').classList.contains('open');
@@ -2402,6 +2511,8 @@
                         <button class="nav-mode-btn ${navMode === 'date' ? 'active' : ''}" onclick="setNavMode('date')">All Letters</button>
                     </div>
                 </div>
+                ${l.sigSummary ? `<div class="reader-exec-summary">${escapeHtml(l.sigSummary.replace(/\*\*/g, ''))}</div>` : ''}
+                ${buildDashContextStrip(idx)}
                 <div class="detail-scroll">
                     ${flags ? `<div class="reader-flags">${flags}</div>` : ''}
                     ${pplHtml}${plcHtml}
@@ -2413,6 +2524,7 @@
             </div>
         `;
 
+        bindDashContextStrip();
         section.classList.add('panel-open');
         panel.classList.add('open');
 
