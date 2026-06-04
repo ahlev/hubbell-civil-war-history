@@ -316,7 +316,8 @@ window.HubbellReader = (function () {
   // than a 44px touch target. A density band you tap *near* keeps the full-arc
   // overview while staying usable on mobile.
   var _ctxStrip = null;       // metadata for the binder
-  var CTX_INSET = 3;          // % inset each side so end ticks aren't clipped
+  var CTX_INSET = 6;          // % inset each side: keeps end ticks unclipped and
+                              // leaves room for the in-line year bookend labels
 
   function buildLetterContextStrip(activeId) {
     if (typeof LETTERS === 'undefined' || !LETTERS || !LETTERS.length) return '';

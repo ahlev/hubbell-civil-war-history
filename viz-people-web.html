@@ -290,7 +290,11 @@ body {
   margin-bottom: 2px;
   cursor: pointer;
   transition: background 0.15s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+.pw-mention .mention-date { white-space: nowrap; }
 
 .pw-mention:hover {
   background: rgba(45,95,138,0.06);
@@ -594,6 +598,23 @@ body {
   gap: 6px;
   margin-bottom: 6px;
   font-size: 12px;
+  flex-wrap: nowrap;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+/* Keep the meta on a single line: badge/date/author hold their size, the
+   recipient takes the remaining width and ellipsis-truncates only if the
+   row genuinely runs out of room. */
+.excerpt-meta .excerpt-type,
+.excerpt-meta .mention-date,
+.excerpt-meta .mention-author { flex: 0 0 auto; }
+.excerpt-meta .mention-to {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .excerpt-type {
   font-size: 10px;
@@ -1882,12 +1903,18 @@ function getCanonName(rawName) {
   return rawName.trim().replace(/^["'\u201C\u201D]+|["'\u201C\u201D]+$/g, '');
 }
 
-// Friendly recipient label for the "to \u2026" lines in detail panels. The daughter
-// Fannie appears under many "Frances \u2026 (sister)" spellings; show her uniformly
-// as "Fannie (sister)" so she's never confused with her mother, Frances. Every
-// other recipient renders exactly as written.
+// Compact recipient label for the "to \u2026" lines in detail-panel meta rows.
+// Keeps each row to a single line: family members collapse to a short name
+// (the mother to "Mother", the daughter Fannie \u2014 who appears under many
+// "Frances \u2026 (sister)" spellings \u2014 to "Fannie (sister)" so she's never
+// confused with her mother, brothers to their first name). Anyone else
+// renders as written and is ellipsis-truncated by CSS if still too long.
 function displayRecipient(r) {
-  if (getCanonName(r || '') === 'Fannie Hubbell') return 'Fannie (sister)';
+  const c = getCanonName(r || '');
+  if (c === 'Mother') return 'Mother';
+  if (c === 'Fannie Hubbell') return 'Fannie (sister)';
+  const m = c.match(/^(Henry|Alexander|Charles|James) Hubbell$/);
+  if (m) return m[1];
   return r || 'Unknown';
 }
 
@@ -2711,7 +2738,7 @@ function showConnectionDetail(edgeIdx) {
     const authorFirst = l.authorName || l.author;
     html += `<div class="pw-mention" data-letter-id="${l.id}">
       <span class="pw-arrow">View letter ›</span>
-      <span class="mention-date">${formatDate(l.date)}</span> —
+      <span class="mention-date">${formatDate(l.date)}</span>
       <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${authorFirst}</span>
       <span class="mention-to">to ${displayRecipient(l.recipient)}</span>
     </div>`;
@@ -3036,7 +3063,7 @@ function showPersonDetail(node) {
     const color = BROTHER_COLORS[l.author] || '#9B9B9B';
     html += `<div class="pw-mention" data-letter-id="${l.id}">
       <span class="pw-arrow">View letter ›</span>
-      <span class="mention-date">${formatDate(l.date)}</span> —
+      <span class="mention-date">${formatDate(l.date)}</span>
       <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${l.authorName}</span>
       <span class="mention-to">to ${displayRecipient(l.recipient)}</span>
     </div>`;
@@ -3122,7 +3149,7 @@ function showPersonDetailByName(name) {
     const color = BROTHER_COLORS[l.author] || '#9B9B9B';
     html += `<div class="pw-mention" data-letter-id="${l.id}">
       <span class="pw-arrow">View letter ›</span>
-      <span class="mention-date">${formatDate(l.date)}</span> —
+      <span class="mention-date">${formatDate(l.date)}</span>
       <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${l.authorName}</span>
       <span class="mention-to">to ${displayRecipient(l.recipient)}</span>
     </div>`;
@@ -3652,7 +3679,7 @@ async function showLinkedPairDetail(idxA, idxB) {
       <span class="excerpt-view-link">View full letter ›</span>
       <div class="excerpt-meta">
         <span class="excerpt-type ${typeClass}">${typeLabel}</span>
-        <span class="mention-date">${formatDate(l.date)}</span> —
+        <span class="mention-date">${formatDate(l.date)}</span>
         <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${authorFirst}</span>
         <span class="mention-to">to ${displayRecipient(l.recipient)}</span>
       </div>

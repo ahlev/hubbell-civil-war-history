@@ -1095,7 +1095,7 @@ svg.chart { display: block; }
 .reader-context-strip {
   position: relative;
   margin: 10px 0 4px;
-  padding: 14px 2px 15px;
+  padding: 14px 2px 8px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   touch-action: pan-y;        /* let vertical scroll through; we handle the tap */
@@ -1128,14 +1128,16 @@ svg.chart { display: block; }
   padding: 4px 8px; border-radius: 4px; pointer-events: none; z-index: 5;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
+/* Year bookends sit in-line with the timeline axis (vertically centred on the
+   line, flanking it left/right) — not on a separate row below the strip. */
 .reader-context-strip .rcs-yr {
-  position: absolute; bottom: 0;
-  font: 500 9px/1 var(--font-sans, sans-serif); letter-spacing: 0.04em;
-  color: var(--ink-3, #888);
+  position: absolute; top: 29px; transform: translateY(-50%);
+  font: 600 10px/1 var(--font-mono, monospace); letter-spacing: 0.02em;
+  color: var(--ink-2, #555); pointer-events: none;
 }
-.reader-context-strip .rcs-yr-start { left: 2px; }
-.reader-context-strip .rcs-yr-end { right: 2px; }
-.reader-context-strip .rcs-grid { stroke: var(--rule-2, #ccc); stroke-width: 1; opacity: 0.45; }
+.reader-context-strip .rcs-yr-start { left: 1px; }
+.reader-context-strip .rcs-yr-end { right: 1px; }
+.reader-context-strip .rcs-grid { stroke: var(--ink-3, #8a8276); stroke-width: 1.6; opacity: 0.62; }
 .reader-context-strip .rcs-break { stroke: var(--ink-3, #999); stroke-width: 1; opacity: 0.55; stroke-dasharray: 2 3; }
 .reader-context-strip .rcs-caption {
   position: absolute; top: 1px; right: 3px;
