@@ -492,19 +492,19 @@ window.HubbellReader = (function () {
     var name = getName(letter.a, letter.an);
     var d = formatDate(letter.d);
 
-    // Map link \u2014 Frances doesn't appear as a moving figure on the Map That
-    // Moves (she writes from Champlain throughout), so omit the per-letter
-    // map link for her letters. The "Places Mentioned" tags below still
-    // link to the map for any locations referenced inside her letters.
-    var mapLink = '';
-    if (letter.a !== 'mother') {
-      mapLink = '<a class="reader-map-link" href="viz-map-fullwar?date=' +
-        encodeURIComponent(letter.d) + '&brother=' + encodeURIComponent(letter.a) +
-        '&letter=' + encodeURIComponent(letter.id) + '">' +
-        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-        '<path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
-        ' View on map \u2192</a>';
-    }
+    // Map link \u2014 lands on the Map That Moves at this letter's date. Frances
+    // now appears as a fixed dot at Champlain, so her letters get the link too;
+    // the &brother lock-follow is omitted for her (she never moves).
+    var mapLink =
+      '<a class="reader-map-link" href="viz-map-fullwar?date=' +
+      encodeURIComponent(letter.d) +
+      (letter.a !== 'mother'
+        ? '&brother=' + encodeURIComponent(letter.a) + '&letter=' + encodeURIComponent(letter.id)
+        : '&home=1') +
+      '">' +
+      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
+      ' View on map \u2192</a>';
 
     // Flags — clickable pills that toggle body-text highlighting per category.
     // Each pill has data-flag so the click handler attached after render can

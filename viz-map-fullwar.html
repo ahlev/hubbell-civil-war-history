@@ -1876,8 +1876,21 @@ async function init() {
   rangeEndDay = startDay;
   updateToDate(startDay);
 
-  if (paramBrother && NAMES[paramBrother]) {
+  // Only lock-follow real combatants. 'mother' is in NAMES but has no movements
+  // / namecard, so guard against toggleLock('mother') touching missing elements.
+  if (paramBrother && NAMES[paramBrother] && DATA.brothers[paramBrother]) {
     toggleLock(paramBrother);
+  }
+
+  // ?home=1 — arriving from one of Frances's letters: frame her home at
+  // Champlain alongside the war theater (so the reader sees where the sons
+  // were while she wrote) and open her info panel.
+  if (params.get('home')) {
+    _homeMode = true; // keep Champlain in the bounds across slider scrubs
+    setTimeout(function () {
+      map.fitBounds(L.latLngBounds([FRANCES_LATLON, [38.0, -77.5]]).pad(0.08), { animate: true, maxZoom: 8 });
+      showFrancesInfoPanel();
+    }, 450);
   }
 
   // Handle ?place= parameter: fly to matching location with labeled pin + info panel
@@ -2022,6 +2035,8 @@ function initMap() {
     trailLayers[b] = L.layerGroup().addTo(map);
     markerLayers[b] = L.layerGroup().addTo(map);
   }
+
+  addFrancesMarker(); // static mother dot at Champlain (created once)
 }
 
 function initTimeline() {
@@ -2466,6 +2481,7 @@ function updateToDate(day) {
   // Viewport: smoothed camera with dead-zone + debounce to prevent jitter
   const isCinematic = window.CinematicPlayer && CinematicPlayer.isPlaying() && !CinematicPlayer.isPaused();
   const lockedPos = lockedBrother ? getLockedBrotherPosition(currentDateStr) : null;
+  if (_homeMode) activeBounds.push(FRANCES_LATLON); // keep Frances's home framed
   _smoothViewport(activeBounds, isCinematic, !!lockedBrother, lockedPos);
 
   // Auto-refresh info panel if showing a brother
@@ -3536,6 +3552,68 @@ function initPlaceSearch() {
   });
 }
 
+// Frances (the mother) — a fixed reference dot at Champlain, NY. She wrote
+// from home throughout the war and never moved, so unlike the four brothers
+// she's a single static marker (added once, directly to the map, so the
+// per-frame marker refresh in updateToDate never clears her). She's smaller
+// (16px vs 24px) and below the brothers (zIndexOffset 300) — context, not a
+// moving subject. She is absent from DATA.brothers, so the namecard grid
+// naturally excludes her.
+const FRANCES_LATLON = [44.99117, -73.44539];
+let _francesMarker = null;
+let _homeMode = false; // when true (arrived via Frances's letter), keep Champlain framed
+function addFrancesMarker() {
+  if (_francesMarker || !window.L || !map) return;
+  const icon = L.divIcon({
+    html: '<div class="node-current frances-static">' +
+            '<div class="node-pin" style="width:16px;height:16px;border-width:2px;background:' + COLORS.mother + '"></div>' +
+            '<div class="node-label" style="font-size:0.8rem;padding:2px 8px;color:#5a4a6b">Mother</div>' +
+          '</div>',
+    className: '',
+    iconSize: [80, 32],
+    iconAnchor: [40, 8]
+  });
+  _francesMarker = L.marker(FRANCES_LATLON, { icon, zIndexOffset: 300, keyboard: false })
+    .on('click', showFrancesInfoPanel)
+    .addTo(map);
+}
+
+// Built with DOM methods (not innerHTML) — all content is static/trusted.
+function showFrancesInfoPanel() {
+  infoPanelBrother = null; // static figure — don't auto-refresh on date change
+  const title = document.getElementById('infoPanelTitle');
+  const body = document.getElementById('infoPanelBody');
+  title.textContent = 'Frances Hubbell — Champlain, NY';
+  title.style.color = COLORS.mother;
+
+  const meta = document.createElement('div');
+  meta.className = 'info-meta';
+  const strong = document.createElement('strong');
+  strong.textContent = 'Mother of the four Hubbell brothers';
+  meta.appendChild(strong);
+  meta.appendChild(document.createElement('br'));
+  meta.appendChild(document.createTextNode('The home front — Champlain, New York'));
+  meta.appendChild(document.createElement('br'));
+  meta.appendChild(document.createTextNode('Received 173 of the collection’s letters'));
+
+  const exc = document.createElement('div');
+  exc.className = 'info-excerpt';
+  exc.textContent = 'Frances wrote from home throughout the war and received the family’s letters here — the still point her sons wrote home to.';
+
+  const linkWrap = document.createElement('div');
+  linkWrap.style.marginTop = '10px';
+  const a = document.createElement('a');
+  a.href = 'mother-frances.html';
+  a.textContent = 'Read her full story →';
+  a.style.cssText = 'font-size:0.8rem;color:' + COLORS.mother + ';font-weight:600;text-decoration:none';
+  linkWrap.appendChild(a);
+
+  body.replaceChildren(meta, exc, linkWrap);
+  body.scrollTop = 0;
+  const panel = document.getElementById('infoPanel');
+  if (panel.classList.contains('collapsed')) toggleInfoPanel();
+}
+
 function showInfoPanel(movement, brotherId) {
   infoPanelBrother = brotherId; // Track for auto-refresh on date change
   const brotherInfo = DATA.brothers[brotherId];
@@ -3783,6 +3861,7 @@ function recenterMap() {
 // LOCK-ON
 // ============================================================
 function toggleLock(brotherId) {
+  _homeMode = false; // locking onto a brother exits Frances's home-framing mode
   if (lockedBrother === brotherId) {
     // Unlock
     lockedBrother = null;
