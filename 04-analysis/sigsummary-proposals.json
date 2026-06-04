@@ -1,0 +1,549 @@
+{
+ "count": 68,
+ "items": [
+  {
+   "id": "LTR-1862-02-11-001",
+   "prefix": "CRITICAL SOURCE",
+   "classification": "auto-clean",
+   "original": "CRITICAL SOURCE: West Point appointment for James Hubbell CONFIRMED as of Feb. This is a major turning point in the Hubbell family narrative.",
+   "proposed": "West Point appointment for James Hubbell CONFIRMED as of Feb. This is a major turning point in the Hubbell family narrative.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1862-02-11-002",
+   "prefix": "CRITICAL CHRONOLOGICAL ANCHOR",
+   "classification": "auto-clean",
+   "original": "CRITICAL CHRONOLOGICAL ANCHOR: Henry's presence at Camp McClellan on Feb. 11 — 13, 1862, directly contradicts the Feb.",
+   "proposed": "Henry's presence at Camp McClellan on Feb. 11 — 13, 1862, directly contradicts the Feb.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1862-02-17-001",
+   "prefix": "MULTI-FACETED MAJOR SOURCE",
+   "classification": "needs-review",
+   "original": "MULTI-FACETED MAJOR SOURCE: (1) Alexander's college decision: He declines college at this moment, preferring to stay in service and work farm/family business. Plans to be \"well fitted\" before attending.",
+   "proposed": "(1) Alexander's college decision: He declines college at this moment, preferring to stay in service and work farm/family business. Plans to be \"well fitted\" before attending.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1862-02-28-001",
+   "prefix": "RESOLVES DATING DISCREPANCY",
+   "classification": "auto-clean",
+   "original": "RESOLVES DATING DISCREPANCY: \"Our Regt. Left Camp McClellan on the 26th.",
+   "proposed": "\"Our Regt. Left Camp McClellan on the 26th.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1862-04-01-001",
+   "prefix": "COMPLETE DAILY SCHEDULE",
+   "classification": "needs-review",
+   "original": "COMPLETE DAILY SCHEDULE: 6 AM roll call → 7 breakfast → 8 guard mounting → 9 NCO drill → 10 squad drill → 11:30 inspection → 12:30 dinner → 2:30 company drill → 4:30 dress parade → 6 supper → 9 PM roll call → 9:30 taps.",
+   "proposed": "6 AM roll call → 7 breakfast → 8 guard mounting → 9 NCO drill → 10 squad drill → 11:30 inspection → 12:30 dinner → 2:30 company drill → 4:30 dress parade → 6 supper → 9 PM roll call → 9:30 taps.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1862-06-13-002",
+   "prefix": "BATTLE OF FAIR OAKS",
+   "classification": "auto-clean",
+   "original": "BATTLE OF FAIR OAKS — FIRSTHAND COMBAT ACCOUNT. \"You can have no conception of how exciting it is to be in a battle.",
+   "proposed": "FIRSTHAND COMBAT ACCOUNT. \"You can have no conception of how exciting it is to be in a battle.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1862-06-22-002",
+   "prefix": "FAIR OAKS",
+   "classification": "auto-clean",
+   "original": "FAIR OAKS — BAYONET CHARGE DETAIL: \"pushed right in head first. \" Came to bayonet charge at woods edge.",
+   "proposed": "BAYONET CHARGE DETAIL: \"pushed right in head first. \" Came to bayonet charge at woods edge.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1862-07-12-001",
+   "prefix": "SEVEN DAYS RETREAT",
+   "classification": "auto-clean",
+   "original": "SEVEN DAYS RETREAT — extended detail. Sick ordered to hospital; McDonald came twice urging Henry to go; Henry stayed with the men.",
+   "proposed": "Extended detail. Sick ordered to hospital; McDonald came twice urging Henry to go; Henry stayed with the men.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1862-07-27-001",
+   "prefix": "JAMES AT WEST POINT",
+   "classification": "auto-clean",
+   "original": "JAMES AT WEST POINT — first extended description. Camp McRae on the plain.",
+   "proposed": "First extended description. Camp McRae on the plain.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1862-09-19-001",
+   "prefix": "BATTLE OF ANTIETAM",
+   "classification": "auto-clean",
+   "original": "BATTLE OF ANTIETAM — September 17, 1862. The bloodiest single day in American history.",
+   "proposed": "September 17, 1862. The bloodiest single day in American history.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1862-09-21-001",
+   "prefix": "CHARLES ENLISTED",
+   "classification": "auto-clean",
+   "original": "CHARLES ENLISTED — James just learned, wants details. Hopes not as private; advises promotion-seeking.",
+   "proposed": "James just learned, wants details. Hopes not as private; advises promotion-seeking.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1862-10-15-001",
+   "prefix": "CHARLES'S REGIMENT IDENTIFIED",
+   "classification": "needs-review",
+   "original": "CHARLES'S REGIMENT IDENTIFIED: 153rd New York Volunteers, Company I. Detailed journey from Plattsburgh to Camp Mohawk near Fonda, NY.",
+   "proposed": "153rd New York Volunteers, Company I. Detailed journey from Plattsburgh to Camp Mohawk near Fonda, NY.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1862-11-10-001",
+   "prefix": "FANNIE/FRANCES IDENTIFIED AS HUBBELL SISTER",
+   "classification": "needs-review",
+   "original": "FANNIE/FRANCES IDENTIFIED AS HUBBELL SISTER — signs \"Aff. your sister, Fannie.",
+   "proposed": "Signs \"Aff. your sister, Fannie.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1862-12-26-001",
+   "prefix": "ALEXANDER VISITS CHARLES",
+   "classification": "auto-clean",
+   "original": "ALEXANDER VISITS CHARLES — CHRISTMAS 1862. Alexander arrived by railroad from Fairfax Station (15 miles) on Christmas Day at 4 PM, left next morning at 11 AM.",
+   "proposed": "CHRISTMAS 1862. Alexander arrived by railroad from Fairfax Station (15 miles) on Christmas Day at 4 PM, left next morning at 11 AM.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-01-31-001",
+   "prefix": "PAY RECEIVED",
+   "classification": "auto-clean",
+   "original": "PAY RECEIVED — FIRST IN MONTHS. Two months' pay received; three more owed.",
+   "proposed": "FIRST IN MONTHS. Two months' pay received; three more owed.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-04-30-001",
+   "prefix": "MOTHER'S FORMAL INQUIRY",
+   "classification": "auto-clean",
+   "original": "MOTHER'S FORMAL INQUIRY — THE ONLY LETTER FROM HER PEN IN THE COLLECTION. Hubbell writes to an unknown authority (possibly Sanitary Commission, military records, or hospital official) to trace Henry.",
+   "proposed": "THE ONLY LETTER FROM HER PEN IN THE COLLECTION. Hubbell writes to an unknown authority (possibly Sanitary Commission, military records, or hospital official) to trace Henry.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-05-04-001",
+   "prefix": "MOTHER'S GRIEF",
+   "classification": "auto-clean",
+   "original": "MOTHER'S GRIEF — THE MOST EMOTIONALLY RAW DOCUMENT IN THE COLLECTION. Mother reads Henry's letters for the first time since his death — \"I have wept until I am almost blind.",
+   "proposed": "THE MOST EMOTIONALLY RAW DOCUMENT IN THE COLLECTION. Mother reads Henry's letters for the first time since his death — \"I have wept until I am almost blind.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-05-11-001",
+   "prefix": "CHANCELLORSVILLE CASUALTIES",
+   "classification": "needs-review",
+   "original": "CHANCELLORSVILLE CASUALTIES — 60th NY. 73 total: 9 killed, 43 wounded, 21 missing.",
+   "proposed": "60th NY. 73 total: 9 killed, 43 wounded, 21 missing.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-05-31-001",
+   "prefix": "CHARLES VISITS ALEXANDER",
+   "classification": "auto-clean",
+   "original": "CHARLES VISITS ALEXANDER — DETAILED CHANCELLORSVILLE AFTERMATH. Alexander was color bearer in the fight.",
+   "proposed": "DETAILED CHANCELLORSVILLE AFTERMATH. Alexander was color bearer in the fight.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-06-03-001",
+   "prefix": "REDINGTON PORTRAIT",
+   "classification": "auto-clean",
+   "original": "REDINGTON PORTRAIT — SINGING DURING SHELLFIRE. Alexander describes Col.",
+   "proposed": "SINGING DURING SHELLFIRE. Alexander describes Col.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-07-04-001",
+   "prefix": "GETTYSBURG",
+   "classification": "auto-clean",
+   "original": "GETTYSBURG — FIRST-PERSON BATTLE REPORT. Alexander survived the Battle of Gettysburg without a scratch.",
+   "proposed": "FIRST-PERSON BATTLE REPORT. Alexander survived the Battle of Gettysburg without a scratch.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-07-08-001",
+   "prefix": "POST-GETTYSBURG",
+   "classification": "auto-clean",
+   "original": "POST-GETTYSBURG — TWO STANDS OF COLORS CAPTURED. The 60th NY captured two Confederate battle flags — a significant combat achievement.",
+   "proposed": "TWO STANDS OF COLORS CAPTURED. The 60th NY captured two Confederate battle flags — a significant combat achievement.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-07-30-001",
+   "prefix": "GETTYSBURG COMBAT DETAIL",
+   "classification": "auto-clean",
+   "original": "GETTYSBURG COMBAT DETAIL — P. provides vivid firsthand account: \"fifty or sixty shots into the very teeth of the rebels.",
+   "proposed": "P. provides vivid firsthand account: \"fifty or sixty shots into the very teeth of the rebels.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-08-25-001",
+   "prefix": "ANTIETAM BATTLEFIELD",
+   "classification": "auto-clean",
+   "original": "ANTIETAM BATTLEFIELD — ALEXANDER PASSED OVER IT. how I longed to leave the ranks and hunt for some trace of Henry, but it was impossible.",
+   "proposed": "ALEXANDER PASSED OVER IT. how I longed to leave the ranks and hunt for some trace of Henry, but it was impossible.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-09-18-001",
+   "prefix": "EXECUTION OF DESERTERS",
+   "classification": "auto-clean",
+   "original": "EXECUTION OF DESERTERS — EYEWITNESS. Two men shot; one required three volleys.",
+   "proposed": "EYEWITNESS. Two men shot; one required three volleys.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-09-29-001",
+   "prefix": "ALEXANDER HEADING TO TENNESSEE",
+   "classification": "needs-review",
+   "original": "ALEXANDER HEADING TO TENNESSEE — 11th and 12th Corps reinforcing Rosecrans (after Chickamauga). Alexander said \"he did not care where they went, while they were riding they were not fighting.",
+   "proposed": "11th and 12th Corps reinforcing Rosecrans (after Chickamauga). Alexander said \"he did not care where they went, while they were riding they were not fighting.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-10-21-001",
+   "prefix": "BELLE BOYD",
+   "classification": "auto-clean",
+   "original": "BELLE BOYD — famous Confederate spy confined at Carroll Prison. Charles on guard duty when woman in broadcloth pants visited Boyd.",
+   "proposed": "Famous Confederate spy confined at Carroll Prison. Charles on guard duty when woman in broadcloth pants visited Boyd.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-11-21-001",
+   "prefix": "DISCHARGE EFFORT",
+   "classification": "needs-review",
+   "original": "DISCHARGE EFFORT — CAPT. RANSOM INTERCEDING.",
+   "proposed": "CAPT. RANSOM INTERCEDING.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-12-01-001",
+   "prefix": "WOUNDED AT LOOKOUT MOUNTAIN",
+   "classification": "auto-clean",
+   "original": "WOUNDED AT LOOKOUT MOUNTAIN — \"BATTLE ABOVE THE CLOUDS\" (November 24, 1863). Alexander hit by minie ball in left side — \"rather a close call for my life.",
+   "proposed": "\"BATTLE ABOVE THE CLOUDS\" (November 24, 1863). Alexander hit by minie ball in left side — \"rather a close call for my life.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-12-09-001",
+   "prefix": "MOTHER'S AGONY",
+   "classification": "auto-clean",
+   "original": "MOTHER'S AGONY — DOES NOT KNOW IF ALEXANDER IS ALIVE. Oh, where are you?",
+   "proposed": "DOES NOT KNOW IF ALEXANDER IS ALIVE. Oh, where are you?",
+   "approved": false
+  },
+  {
+   "id": "LTR-1863-12-13-001",
+   "prefix": "COMPREHENSIVE BATTLE NARRATIVE",
+   "classification": "auto-clean",
+   "original": "COMPREHENSIVE BATTLE NARRATIVE — WAUHATCHIE, LOOKOUT MOUNTAIN, MISSIONARY RIDGE, RINGGOLD. Alexander recounts the 60th NY's engagements since arriving in Tennessee.",
+   "proposed": "WAUHATCHIE, LOOKOUT MOUNTAIN, MISSIONARY RIDGE, RINGGOLD. Alexander recounts the 60th NY's engagements since arriving in Tennessee.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-02-21-001",
+   "prefix": "REBEL CAPTAIN CONVERSATION",
+   "classification": "auto-clean",
+   "original": "REBEL CAPTAIN CONVERSATION — Confederate conscription: \"they send a whole regt. of cavalry to guard half a dozen conscripts.",
+   "proposed": "Confederate conscription: \"they send a whole regt. of cavalry to guard half a dozen conscripts.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-03-25-001",
+   "prefix": "RED RIVER CAMPAIGN",
+   "classification": "auto-clean",
+   "original": "RED RIVER CAMPAIGN — victories at Fort DeRussy and Alexandria reported. Fox dismissed for disloyalty and conduct unbecoming.",
+   "proposed": "Victories at Fort DeRussy and Alexandria reported. Fox dismissed for disloyalty and conduct unbecoming.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-04-07-001",
+   "prefix": "BASEBALL IN THE CIVIL WAR",
+   "classification": "auto-clean",
+   "original": "BASEBALL IN THE CIVIL WAR — \"UNION BASE. \" Two regiments challenged the 60th NY to a game of \"Union Base\" — a kind of game of ball.",
+   "proposed": "\"UNION BASE. \" Two regiments challenged the 60th NY to a game of \"Union Base\" — a kind of game of ball.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-04-15-001",
+   "prefix": "RED RIVER CAMPAIGN BATTLE REPORT",
+   "classification": "auto-clean",
+   "original": "RED RIVER CAMPAIGN BATTLE REPORT — \"terrible fighting in western Louisiana\" — victory \"so bloody we were not able to take advantage of it. \" 153rd NY was in it.",
+   "proposed": "\"terrible fighting in western Louisiana\" — victory \"so bloody we were not able to take advantage of it. \" 153rd NY was in it.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-04-23-001",
+   "prefix": "CHARLES RELIEVED FROM HQ",
+   "classification": "auto-clean",
+   "original": "CHARLES RELIEVED FROM HQ — RETURNING TO REGIMENT. Penmanship not good enough.",
+   "proposed": "RETURNING TO REGIMENT. Penmanship not good enough.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-04-25-001",
+   "prefix": "BROTHER-TO-BROTHER LETTER",
+   "classification": "auto-clean",
+   "original": "BROTHER-TO-BROTHER LETTER — rare front-to-front correspondence. Expanded clerk death account — burial scene with wagon of 8 bodies, clerk's prayer, volleys, streetcar home.",
+   "proposed": "Rare front-to-front correspondence. Expanded clerk death account — burial scene with wagon of 8 bodies, clerk's prayer, volleys, streetcar home.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-04-28-001",
+   "prefix": "EVE OF ATLANTA CAMPAIGN",
+   "classification": "auto-clean",
+   "original": "EVE OF ATLANTA CAMPAIGN — ALEXANDER'S FAREWELL. \"It is the death struggle of this mighty rebellion.",
+   "proposed": "ALEXANDER'S FAREWELL. \"It is the death struggle of this mighty rebellion.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-05-06-001",
+   "prefix": "ATLANTA CAMPAIGN",
+   "classification": "auto-clean",
+   "original": "ATLANTA CAMPAIGN — FIRST LETTER FROM GEORGIA. \"Close upon the enemy.",
+   "proposed": "FIRST LETTER FROM GEORGIA. \"Close upon the enemy.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-05-08-001",
+   "prefix": "ATLANTA CAMPAIGN",
+   "classification": "auto-clean",
+   "original": "ATLANTA CAMPAIGN — ALTOONA CREEK. Alexander in Georgia, still safe.",
+   "proposed": "ALTOONA CREEK. Alexander in Georgia, still safe.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-05-20-001",
+   "prefix": "BASS SHOT",
+   "classification": "auto-clean",
+   "original": "BASS SHOT — probably fatally. The schoolteacher/Southern sympathizer from Champlain has been shot (by Dodds?",
+   "proposed": "Probably fatally. The schoolteacher/Southern sympathizer from Champlain has been shot (by Dodds?",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-05-23-001",
+   "prefix": "JAMES HUBBELL ARRIVES",
+   "classification": "auto-clean",
+   "original": "JAMES HUBBELL ARRIVES — JOINS CHARLES'S REGIMENT. Three brothers now confirmed in active service.",
+   "proposed": "JOINS CHARLES'S REGIMENT. Three brothers now confirmed in active service.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-06-02-001",
+   "prefix": "JAMES HUBBELL",
+   "classification": "auto-clean",
+   "original": "JAMES HUBBELL — LANCE CORPORAL. Already promoted, drilling recruits.",
+   "proposed": "LANCE CORPORAL. Already promoted, drilling recruits.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-06-20-001",
+   "prefix": "ATLANTA CAMPAIGN",
+   "classification": "auto-clean",
+   "original": "ATLANTA CAMPAIGN — NEAR MARIETTA, APPROACHING KENNESAW MOUNTAIN. Fighting nearly every day.",
+   "proposed": "NEAR MARIETTA, APPROACHING KENNESAW MOUNTAIN. Fighting nearly every day.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-07-00-001",
+   "prefix": "ATLANTA CAMPAIGN",
+   "classification": "auto-clean",
+   "original": "ATLANTA CAMPAIGN — NEAR MARIETTA. Sherman's flanking tactics — \"comes around on the blind side.",
+   "proposed": "NEAR MARIETTA. Sherman's flanking tactics — \"comes around on the blind side.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-07-02-001",
+   "prefix": "LUTHER WOUNDED",
+   "classification": "auto-clean",
+   "original": "LUTHER WOUNDED — ball tore furrow in right side, passed through right arm above elbow. Not dangerous — two or three months recovery.",
+   "proposed": "Ball tore furrow in right side, passed through right arm above elbow. Not dangerous — two or three months recovery.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-07-08-001",
+   "prefix": "SAW ATLANTA FROM A RIDGE",
+   "classification": "auto-clean",
+   "original": "SAW ATLANTA FROM A RIDGE — spires, chimneys, smoke from furnaces, forts, rifle pits visible. Near Chattahoochee River.",
+   "proposed": "Spires, chimneys, smoke from furnaces, forts, rifle pits visible. Near Chattahoochee River.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-08-08-001",
+   "prefix": "HOOKER LEAVES 20TH CORPS",
+   "classification": "auto-clean",
+   "original": "HOOKER LEAVES 20TH CORPS — farewell ride along the line. Pennsylvania soldier with leg shot off calls out \"Good bye, General Hooker!",
+   "proposed": "Farewell ride along the line. Pennsylvania soldier with leg shot off calls out \"Good bye, General Hooker!",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-08-08-002",
+   "prefix": "MOST DETAILED PEACHTREE CREEK ACCOUNT",
+   "classification": "auto-clean",
+   "original": "MOST DETAILED PEACHTREE CREEK ACCOUNT — rebels in solid columns, \"seemed bound to drive us into the Chattahoochee. \" Changed front three times.",
+   "proposed": "Rebels in solid columns, \"seemed bound to drive us into the Chattahoochee. \" Changed front three times.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-08-15-001",
+   "prefix": "EARLY'S RAID ON WASHINGTON",
+   "classification": "needs-review",
+   "original": "EARLY'S RAID ON WASHINGTON — 153rd NY sent from Louisiana to Washington defenses. Placed in rifle pits.",
+   "proposed": "153rd NY sent from Louisiana to Washington defenses. Placed in rifle pits.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-08-22-001",
+   "prefix": "SCURVY",
+   "classification": "auto-clean",
+   "original": "SCURVY — Alexander hospitalized near Atlanta. Surgeon says very young for it.",
+   "proposed": "Alexander hospitalized near Atlanta. Surgeon says very young for it.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-08-26-001",
+   "prefix": "SHERIDAN'S ARMY FORMS",
+   "classification": "needs-review",
+   "original": "SHERIDAN'S ARMY FORMS — 19th, 6th, and 8th Corps under Sheridan with large cavalry force near Harper's Ferry. Haven't engaged rebs yet — cavalry has fought some.",
+   "proposed": "19th, 6th, and 8th Corps under Sheridan with large cavalry force near Harper's Ferry. Haven't engaged rebs yet — cavalry has fought some.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-08-30-001",
+   "prefix": "FALL OF ATLANTA IMMINENT",
+   "classification": "needs-review",
+   "original": "FALL OF ATLANTA IMMINENT — 20th Corps fallen back to Chattahoochee line. Rest of army on \"grand flanking excursion\" toward Macon.",
+   "proposed": "20th Corps fallen back to Chattahoochee line. Rest of army on \"grand flanking excursion\" toward Macon.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-09-02-001",
+   "prefix": "WHEELER'S RAID",
+   "classification": "auto-clean",
+   "original": "WHEELER'S RAID — Confederate cavalry tore up railroad, preventing hospital train from reaching Nashville. Stopped at Chattanooga.",
+   "proposed": "Confederate cavalry tore up railroad, preventing hospital train from reaching Nashville. Stopped at Chattanooga.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-09-21-002",
+   "prefix": "THREE-YEAR ANNIVERSARY",
+   "classification": "auto-clean",
+   "original": "THREE-YEAR ANNIVERSARY — September 21, 1861 to September 21, 1864. \"Three long — long — weary years!",
+   "proposed": "September 21, 1861 to September 21, 1864. \"Three long — long — weary years!",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-10-04-001",
+   "prefix": "SHENANDOAH CAMPAIGN",
+   "classification": "auto-clean",
+   "original": "SHENANDOAH CAMPAIGN — Third Winchester and Fisher's Hill described from James's perspective. Pursuit — burning rebel wagons, demoralized enemy.",
+   "proposed": "Third Winchester and Fisher's Hill described from James's perspective. Pursuit — burning rebel wagons, demoralized enemy.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-10-10-001",
+   "prefix": "STRAW POLL ON HOSPITAL TRAIN",
+   "classification": "needs-review",
+   "original": "STRAW POLL ON HOSPITAL TRAIN — 37 Lincoln, 5 McClellan. Lincoln \"the favored one.",
+   "proposed": "37 Lincoln, 5 McClellan. Lincoln \"the favored one.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-10-26-001",
+   "prefix": "ALEXANDER FOR LINCOLN",
+   "classification": "auto-clean",
+   "original": "ALEXANDER FOR LINCOLN — \"square and fair for Abraham Lincoln. \" The McClellan devotee of April 1864 has completed his political shift.",
+   "proposed": "\"square and fair for Abraham Lincoln. \" The McClellan devotee of April 1864 has completed his political shift.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-10-29-001",
+   "prefix": "JAMES'S CEDAR CREEK ACCOUNT",
+   "classification": "auto-clean",
+   "original": "JAMES'S CEDAR CREEK ACCOUNT — wounded in left thigh, walked miles to avoid capture. Complete rout of 8th Corps, surprise attack, then Union rally — \"three times terribly whipped\" in the Valley.",
+   "proposed": "Wounded in left thigh, walked miles to avoid capture. Complete rout of 8th Corps, surprise attack, then Union rally — \"three times terribly whipped\" in the Valley.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-11-30-001",
+   "prefix": "SEVEN MONTHS PAY",
+   "classification": "needs-review",
+   "original": "SEVEN MONTHS PAY — $108 received Dec 9. Winter quarters at Newtown — stone fireplace, chimney.",
+   "proposed": "$108 received Dec 9. Winter quarters at Newtown — stone fireplace, chimney.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-12-05-001",
+   "prefix": "BATTLE OF NASHVILLE IMMINENT",
+   "classification": "auto-clean",
+   "original": "BATTLE OF NASHVILLE IMMINENT — Hood in front of the city. Building breastworks.",
+   "proposed": "Hood in front of the city. Building breastworks.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-12-09-001",
+   "prefix": "CHESTNUT HILL HOSPITAL",
+   "classification": "needs-review",
+   "original": "CHESTNUT HILL HOSPITAL — Philadelphia. Wound nearly healed.",
+   "proposed": "Philadelphia. Wound nearly healed.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1864-12-27-001",
+   "prefix": "FALL OF SAVANNAH",
+   "classification": "auto-clean",
+   "original": "FALL OF SAVANNAH — brigade gave rousing cheers. Alexander lucky to miss 500-mile march.",
+   "proposed": "Brigade gave rousing cheers. Alexander lucky to miss 500-mile march.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1865-01-11-001",
+   "prefix": "MOTHER'S JOY AT ALEXANDER'S SURVIVAL",
+   "classification": "auto-clean",
+   "original": "MOTHER'S JOY AT ALEXANDER'S SURVIVAL — feared dead at Nashville. CHAMPLAIN UNDER MILITARY RULE — 150 soldiers, cavalry stables, pickets, borders sealed against Canada (post-St.",
+   "proposed": "Feared dead at Nashville. CHAMPLAIN UNDER MILITARY RULE — 150 soldiers, cavalry stables, pickets, borders sealed against Canada (post-St.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1865-06-12-001",
+   "prefix": "POST-WAR OCCUPATION",
+   "classification": "needs-review",
+   "original": "POST-WAR OCCUPATION — 153rd NY sent from Washington to Savannah for occupation duty. River obstructed with piles and forts.",
+   "proposed": "153rd NY sent from Washington to Savannah for occupation duty. River obstructed with piles and forts.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1865-07-13-001",
+   "prefix": "POST-WAR SAVANNAH",
+   "classification": "auto-clean",
+   "original": "POST-WAR SAVANNAH — July 4th, 1865: all-black fire company parade, \"the darkeys young and old all turned out. \" Cotton being hauled 160 miles to Savannah.",
+   "proposed": "July 4th, 1865: all-black fire company parade, \"the darkeys young and old all turned out. \" Cotton being hauled 160 miles to Savannah.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1865-07-27-001",
+   "prefix": "ALEXANDER'S LAST LETTER",
+   "classification": "auto-clean",
+   "original": "ALEXANDER'S LAST LETTER — THE HOMECOMING. Camp Wheeler, Ogdensburgh — the same place he enlisted in September 1861.",
+   "proposed": "THE HOMECOMING. Camp Wheeler, Ogdensburgh — the same place he enlisted in September 1861.",
+   "approved": false
+  },
+  {
+   "id": "LTR-1870-11-28-001",
+   "prefix": "POST-WAR LIFE",
+   "classification": "needs-review",
+   "original": "POST-WAR LIFE — 1870. Five years after the war.",
+   "proposed": "1870. Five years after the war.",
+   "approved": false
+  }
+ ]
+}
