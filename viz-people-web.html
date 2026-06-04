@@ -1906,6 +1906,31 @@ for (const [key, name] of Object.entries(BROTHER_CANON)) {
   });
 }
 
+// Frances Hubbell — THE MOTHER — added as a dedicated hub (she was previously
+// skipped because she's the recipient of most letters). She is the gravitational
+// centre of the correspondence. IDENTITY (cardinal rule — curated, never fuzzy):
+// she is the person behind author key 'mother' and recipient canonical 'Mother'
+// ONLY. She is NOT 'Frances Hubbell' — that canonical is her DAUGHTER, the sister
+// "Fannie", a separate person. Node id is therefore 'Frances Hubbell (Mother)';
+// nodeIndex['Mother'] also points here so her recipient strings resolve.
+const MOTHER_CANON = 'Frances Hubbell (Mother)';
+const motherIdx = nodes.length;
+nodeIndex[MOTHER_CANON] = motherIdx;
+nodeIndex['Mother'] = motherIdx;
+nodes.push({
+  id: MOTHER_CANON,
+  isBrother: false,
+  isMother: true,
+  brotherKey: 'mother',
+  radius: 48,
+  color: '#7B5EA7',
+  category: 'FAMILY',
+  mentions: 0,
+  authors: { mother: 1 },
+  letters: [],
+  x: 0, y: 0, vx: 0, vy: 0
+});
+
 // People nodes
 const sortedPeople = Object.entries(people).sort((a, b) => b[1].mentions - a[1].mentions);
 
@@ -1944,6 +1969,29 @@ for (const [name, data] of Object.entries(people)) {
         brotherKey: author
       });
     }
+  }
+}
+
+// Frances (Mother) edges — curated identity only, never inferred.
+// (a) Mother → people she named in her own authored letters (author key 'mother').
+for (const [name, data] of Object.entries(people)) {
+  const c = data.authors['mother'] || 0;
+  if (c > 0 && nodeIndex[name] !== undefined) {
+    edges.push({ source: motherIdx, target: nodeIndex[name], weight: c, isBrotherEdge: true, brotherKey: 'mother' });
+  }
+}
+// (b) Each son → Mother, weighted by letters he wrote home to her. Only letters
+// whose recipient resolves (via MERGE_MAP) to the canonical 'Mother' count —
+// "Mother and Sister" etc. are deliberately NOT fuzzy-matched in.
+const _toMother = {};
+for (const letter of RAW_LETTERS) {
+  if (getCanonName(letter.recipient || '') !== 'Mother') continue;
+  if (BROTHER_CANON[letter.author]) _toMother[letter.author] = (_toMother[letter.author] || 0) + 1;
+}
+for (const [a, count] of Object.entries(_toMother)) {
+  const bIdx = nodeIndex[BROTHER_CANON[a]];
+  if (bIdx !== undefined) {
+    edges.push({ source: bIdx, target: motherIdx, weight: count, isBrotherEdge: true, brotherKey: a, toMother: true });
   }
 }
 
@@ -2005,11 +2053,12 @@ function initPositions() {
     henry: { x: -spread, y: -spread * 0.6 },
     alexander: { x: spread, y: -spread * 0.6 },
     james: { x: -spread * 0.7, y: spread * 0.8 },
-    charles: { x: spread * 0.7, y: spread * 0.8 }
+    charles: { x: spread * 0.7, y: spread * 0.8 },
+    mother: { x: 0, y: 0 }
   };
 
   for (const node of nodes) {
-    if (node.isBrother) {
+    if (node.isBrother || node.isMother) {
       const bp = brotherPos[node.brotherKey];
       node.x = bp.x;
       node.y = bp.y;
@@ -2071,21 +2120,21 @@ function simulate() {
     let force = (dist - idealDist) * attrStrength * Math.min(edge.weight, 4) * alpha;
     let fx = (dx / dist) * force;
     let fy = (dy / dist) * force;
-    if (!a.isBrother) { a.vx += fx; a.vy += fy; }
-    if (!b.isBrother) { b.vx -= fx; b.vy -= fy; }
+    if (!a.isBrother && !a.isMother) { a.vx += fx; a.vy += fy; }
+    if (!b.isBrother && !b.isMother) { b.vx -= fx; b.vy -= fy; }
   }
 
   // Center gravity
   const gravStrength = 0.02;
   for (const node of nodes) {
-    if (node.isBrother) continue;
+    if (node.isBrother || node.isMother) continue;
     node.vx -= node.x * gravStrength * alpha;
     node.vy -= node.y * gravStrength * alpha;
   }
 
-  // Brother anchor force
+  // Brother anchor force (Frances is anchored too — she is a hub)
   for (const node of nodes) {
-    if (node.isBrother) {
+    if (node.isBrother || node.isMother) {
       node.vx += (node.anchorX - node.x) * 0.1;
       node.vy += (node.anchorY - node.y) * 0.1;
     }
@@ -2192,6 +2241,11 @@ function nodeHasLettersInRange(node) {
     // Check if this brother authored any letter in range
     return RAW_LETTERS.some(l => l.author === node.brotherKey && l.date >= temporalStart && l.date <= temporalEnd);
   }
+  if (node.isMother) {
+    // Frances has presence across the range as both author ('mother') and the
+    // recipient of letters resolving to canonical 'Mother'.
+    return RAW_LETTERS.some(l => (l.author === 'mother' || getCanonName(l.recipient || '') === 'Mother') && l.date >= temporalStart && l.date <= temporalEnd);
+  }
   if (!node.letters) return true;
   return node.letters.some(l => l.date >= temporalStart && l.date <= temporalEnd);
 }
@@ -2200,6 +2254,11 @@ function edgeInTemporalRange(edge) {
   if (!temporalActive) return true;
   const sourceNode = nodes[edge.source];
   const targetNode = nodes[edge.target];
+  // Son → Mother edges: the target (Frances) carries no letters[] array, so
+  // evaluate the range against the son's letters home (recipient → 'Mother').
+  if (edge.toMother) {
+    return RAW_LETTERS.some(l => l.author === edge.brotherKey && getCanonName(l.recipient || '') === 'Mother' && l.date >= temporalStart && l.date <= temporalEnd);
+  }
   // For brother edges, check if any of the target's letters from this brother fall in range
   if (edge.isBrotherEdge && targetNode.letters) {
     return targetNode.letters.some(l => l.author === edge.brotherKey && l.date >= temporalStart && l.date <= temporalEnd);
@@ -2216,7 +2275,7 @@ for (const [rawKey, canonName] of Object.entries(MERGE_MAP)) {
 }
 
 function isVisible(node) {
-  if (node.isBrother) return true;
+  if (node.isBrother || node.isMother) return true;
   if (!activeFilters[node.category]) return false;
   if (temporalActive && !nodeHasLettersInRange(node)) return false;
   if (searchQuery) {
@@ -2423,7 +2482,7 @@ function draw() {
         ctx.fill();
       }
 
-      if (node.isBrother) {
+      if (node.isBrother || node.isMother) {
         ctx.strokeStyle = '#FFFFFF';
         ctx.lineWidth = 3;
         ctx.stroke();
@@ -2449,12 +2508,12 @@ function draw() {
     }
 
     // Labels
-    if (node.isBrother) {
+    if (node.isBrother || node.isMother) {
       ctx.fillStyle = '#FFFFFF';
       ctx.font = 'bold 14px Inter';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(BROTHER_NAMES[node.brotherKey], node.x, node.y);
+      ctx.fillText(node.isMother ? 'Frances' : BROTHER_NAMES[node.brotherKey], node.x, node.y);
     } else if ((highlighted || i === selectedNode || scale > 1.2) && !dimmed) {
       const labelScale = Math.max(0.7, 1 / scale);
       ctx.save();
@@ -2537,23 +2596,45 @@ function showConnectionDetail(edgeIdx) {
 
   const nameA = nodeA.id, nameB = nodeB.id;
   document.getElementById('detail-name').textContent = nameA + ' & ' + nameB;
+  // Frances's edges are NOT "mentions": son→Mother edges are letters written
+  // home; Frances→person edges are people she named in her own letters.
+  const _motherEnd = nodeA.isMother ? nodeA : (nodeB.isMother ? nodeB : null);
   document.getElementById('detail-role').textContent =
-    (edge.isBrotherEdge ? 'Brother → person connection' : 'Co-mentioned in letters') +
-    ' · ' + edge.weight + ' shared mention' + (edge.weight !== 1 ? 's' : '');
+    edge.toMother
+      ? 'Son → Mother · ' + edge.weight + ' letter' + (edge.weight !== 1 ? 's' : '') + ' written home'
+      : (_motherEnd
+          ? 'Frances → person · named in ' + edge.weight + ' of her letter' + (edge.weight !== 1 ? 's' : '')
+          : (edge.isBrotherEdge ? 'Brother → person connection' : 'Co-mentioned in letters') +
+            ' · ' + edge.weight + ' shared mention' + (edge.weight !== 1 ? 's' : ''));
 
-  // Find all letters where both appear
+  // Find the letters underlying this connection.
   const sharedLetters = [];
   const seen = new Set();
-  RAW_LETTERS.forEach((letter) => {
-    if (!letter.people) return;
-    const pNames = letter.people.map(p => getCanonName(p.name));
-    const hasA = pNames.includes(nameA) || (nodeA.isBrother && letter.author === nodeA.brotherKey);
-    const hasB = pNames.includes(nameB) || (nodeB.isBrother && letter.author === nodeB.brotherKey);
-    if (hasA && hasB && !seen.has(letter.id)) {
-      seen.add(letter.id);
-      sharedLetters.push(letter);
-    }
-  });
+  if (edge.toMother) {
+    RAW_LETTERS.forEach((letter) => {
+      if (letter.author === edge.brotherKey && getCanonName(letter.recipient || '') === 'Mother' && !seen.has(letter.id)) {
+        seen.add(letter.id); sharedLetters.push(letter);
+      }
+    });
+  } else if (_motherEnd) {
+    const _other = nodeA.isMother ? nameB : nameA;
+    RAW_LETTERS.forEach((letter) => {
+      if (letter.author !== 'mother' || !letter.people) return;
+      const pNames = letter.people.map(p => getCanonName(p.name));
+      if (pNames.includes(_other) && !seen.has(letter.id)) { seen.add(letter.id); sharedLetters.push(letter); }
+    });
+  } else {
+    RAW_LETTERS.forEach((letter) => {
+      if (!letter.people) return;
+      const pNames = letter.people.map(p => getCanonName(p.name));
+      const hasA = pNames.includes(nameA) || (nodeA.isBrother && letter.author === nodeA.brotherKey);
+      const hasB = pNames.includes(nameB) || (nodeB.isBrother && letter.author === nodeB.brotherKey);
+      if (hasA && hasB && !seen.has(letter.id)) {
+        seen.add(letter.id);
+        sharedLetters.push(letter);
+      }
+    });
+  }
   sharedLetters.sort((a, b) => a.date.localeCompare(b.date));
 
   let html = `<div class="pw-mentions-title">${sharedLetters.length} letter${sharedLetters.length !== 1 ? 's' : ''} connecting them</div>`;
@@ -2727,6 +2808,15 @@ function showTooltip(idx, cx, cy) {
     tooltip.querySelector('.tt-brothers').textContent = '';
     tooltip.querySelector('.tt-stat').textContent = `${letterCount} letters in collection`;
     tooltip.querySelector('.tt-dates').textContent = '';
+  } else if (node.isMother) {
+    const recvd = RAW_LETTERS.filter(l => getCanonName(l.recipient || '') === 'Mother').length;
+    const wrote = RAW_LETTERS.filter(l => l.author === 'mother').length;
+    tooltip.querySelector('.tt-category').textContent = '';
+    tooltip.querySelector('.tt-category').style.color = '';
+    tooltip.querySelector('.tt-role').textContent = 'Mother — the family’s correspondent';
+    tooltip.querySelector('.tt-brothers').textContent = '';
+    tooltip.querySelector('.tt-stat').textContent = `Received ${recvd} letters · wrote ${wrote}`;
+    tooltip.querySelector('.tt-dates').textContent = '';
   } else {
     // Category badge
     const catEl = tooltip.querySelector('.tt-category');
@@ -2799,7 +2889,7 @@ function selectNode(idx) {
 
   selectedNode = idx;
   const node = nodes[idx];
-  if (node.isBrother) {
+  if (node.isBrother || node.isMother) {
     showBrotherDetail(node);
   } else {
     showPersonDetail(node);
@@ -3016,9 +3106,11 @@ function buildMiniTimeline(sortedLetters) {
 function showBrotherDetail(node) {
   const panel = document.getElementById('detail-panel');
   const key = node.brotherKey;
+  const _isMother = node.isMother === true;
   const _nameEl = document.getElementById('detail-name');
-  _nameEl.textContent = BROTHER_NAMES[key] + ' Hubbell';
-  document.getElementById('detail-role').textContent = 'Hubbell brother, letter author';
+  _nameEl.textContent = _isMother ? 'Frances Hubbell' : (BROTHER_NAMES[key] + ' Hubbell');
+  document.getElementById('detail-role').textContent = _isMother
+    ? 'Mother — wrote and received the family’s letters' : 'Hubbell brother, letter author';
   // Cross-link pill to the brother's standalone "Who They Were" page.
   // Pill is appended as an inline-flex child of the h3 so it sits on the
   // same line as the name and survives subsequent name updates.
@@ -3026,23 +3118,30 @@ function showBrotherDetail(node) {
   if (_prevPill) _prevPill.remove();
   const _storyPill = document.createElement('a');
   _storyPill.className = 'pw-story-link';
-  _storyPill.href = 'brother-' + key + '.html';
-  _storyPill.textContent = 'Read his full story';
+  _storyPill.href = _isMother ? 'mother-frances.html' : ('brother-' + key + '.html');
+  _storyPill.textContent = _isMother ? 'Read her full story' : 'Read his full story';
   _nameEl.appendChild(_storyPill);
 
-  // Editorial summary for brothers
+  // Editorial summary
   const _prevBroSummary = panel.querySelector('.pw-person-summary');
   if (_prevBroSummary) _prevBroSummary.remove();
-  const _broName = BROTHER_NAMES[key] + ' Hubbell';
-  const _broKey = 'per-' + key + '-hubbell';
-  const _broIdx = window.OVERLAY_PEOPLE_LOOKUP && (
-    OVERLAY_PEOPLE_LOOKUP[_broName.toLowerCase()] ||
-    OVERLAY_PEOPLE_LOOKUP[_broKey]
-  );
-  const _broProf = _broIdx !== undefined && window.OVERLAY_PEOPLE_PROFILES ? OVERLAY_PEOPLE_PROFILES[_broIdx] : null;
-  if (_broProf && _broProf.s) {
+  if (_isMother) {
+    const _recvd = RAW_LETTERS.filter(l => getCanonName(l.recipient || '') === 'Mother').length;
     document.getElementById('detail-role').insertAdjacentHTML('afterend',
-      '<p class="pw-person-summary">' + _broProf.s.replace(/</g,'&lt;') + '</p>');
+      '<p class="pw-person-summary">Frances kept the home front in Champlain, NY. She received ' + _recvd +
+      ' of the collection’s letters and wrote 12 of her own — the hub through which the brothers’ correspondence flowed.</p>');
+  } else {
+    const _broName = BROTHER_NAMES[key] + ' Hubbell';
+    const _broKey = 'per-' + key + '-hubbell';
+    const _broIdx = window.OVERLAY_PEOPLE_LOOKUP && (
+      OVERLAY_PEOPLE_LOOKUP[_broName.toLowerCase()] ||
+      OVERLAY_PEOPLE_LOOKUP[_broKey]
+    );
+    const _broProf = _broIdx !== undefined && window.OVERLAY_PEOPLE_PROFILES ? OVERLAY_PEOPLE_PROFILES[_broIdx] : null;
+    if (_broProf && _broProf.s) {
+      document.getElementById('detail-role').insertAdjacentHTML('afterend',
+        '<p class="pw-person-summary">' + _broProf.s.replace(/</g,'&lt;') + '</p>');
+    }
   }
 
   const peopleMentioned = [];
@@ -3055,7 +3154,7 @@ function showBrotherDetail(node) {
 
   const brotherIdx = nodes.indexOf(node);
   let html = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
-    <div class="pw-mentions-title" style="margin:0">${peopleMentioned.length} people mentioned across ${RAW_LETTERS.filter(l => l.author === key).length} letters</div>
+    <div class="pw-mentions-title" style="margin:0">${_isMother ? `Received ${RAW_LETTERS.filter(l => getCanonName(l.recipient||'')==='Mother').length} letters · wrote ${RAW_LETTERS.filter(l => l.author==='mother').length} · named ${peopleMentioned.length} people` : `${peopleMentioned.length} people mentioned across ${RAW_LETTERS.filter(l => l.author === key).length} letters`}</div>
     <button class="detail-link-btn" data-link-source="${brotherIdx}" style="background:none;border:1px solid #2D5F8A;border-radius:4px;padding:3px 8px;font-size:11px;color:#2D5F8A;cursor:pointer;font-family:Inter,sans-serif">Link &amp; Explore</button>
   </div>`;
   for (const p of peopleMentioned.slice(0, 20)) {
@@ -3692,6 +3791,7 @@ function buildLegend() {
     { label: 'Alexander', color: BROTHER_COLORS.alexander, shape: '■' },
     { label: 'James', color: BROTHER_COLORS.james, shape: '▲' },
     { label: 'Charles', color: BROTHER_COLORS.charles, shape: '⬡' },
+    { label: 'Frances (Mother)', color: '#7B5EA7', shape: '●' },
   ];
   const item = (b) => `<div class="legend-item"><span style="color:${b.color};font-size:13px;line-height:1">${b.shape}</span>${b.label}</div>`;
   legend.innerHTML =
@@ -3759,13 +3859,13 @@ function _pwSelectPerson(name) {
     const node = nodes[idx];
     panX = -node.x * scale;
     panY = -node.y * scale;
-    if (node.isBrother) showBrotherDetail(node);
+    if (node.isBrother || node.isMother) showBrotherDetail(node);
     else showPersonDetail(node);
     updateLinkButton();
   }
   // Show info panel immediately, center after settling
   var node = nodes[idx];
-  if (node.isBrother) showBrotherDetail(node);
+  if (node.isBrother || node.isMother) showBrotherDetail(node);
   else showPersonDetail(node);
   centerWhenReady();
 }

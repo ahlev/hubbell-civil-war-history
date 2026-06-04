@@ -1324,11 +1324,12 @@
     function buildKPIs() {
         const row = document.getElementById('kpi-row');
         const BIO_HREF = { henry: 'brother-henry.html', alexander: 'brother-alexander.html', james: 'brother-james.html', charles: 'brother-charles.html', mother: 'mother-frances.html' };
-        // Curated canonical People Web node labels — NOT the display names in NAMES
-        // (e.g. 'Alexander Hubbell', not 'Alexander F. Hubbell'). Passing the exact
-        // canonical label keeps ?person= deterministic, honoring the no-fuzzy-matching
-        // rule. Frances/mother is not yet a People Web node (web-polish item #3) → no web link.
-        const PW_NAME = { henry: 'Henry Hubbell', alexander: 'Alexander Hubbell', james: 'James Hubbell', charles: 'Charles Hubbell' };
+        // Curated People Web node labels — NOT the display names in NAMES (e.g.
+        // 'Alexander Hubbell', not 'Alexander F. Hubbell'). Passing the exact label
+        // keeps ?person= deterministic, honoring the no-fuzzy-matching rule. Frances
+        // is keyed 'Mother' (the canonical her node resolves from) — distinct from
+        // her daughter 'Frances Hubbell' (the sister), who is a different node.
+        const PW_NAME = { henry: 'Henry Hubbell', alexander: 'Alexander Hubbell', james: 'James Hubbell', charles: 'Charles Hubbell', mother: 'Mother' };
         ['henry','alexander','james','charles','mother'].forEach(b => {
             const bLetters = LETTERS.filter(l => l.author === b);
             if (bLetters.length === 0) return;
