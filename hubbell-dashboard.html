@@ -84,7 +84,7 @@
             min-width: 160px;
             background: var(--bg-card);
             border-radius: 4px;
-            padding: 24px;
+            padding: 16px 16px 14px;
             text-align: center;
             border: 1px solid var(--border-light);
             box-shadow: 0 1px 3px rgba(0,0,0,0.04);
@@ -108,14 +108,14 @@
             font-size: 11px;
             color: var(--text-muted);
             letter-spacing: 0.5px;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .kpi-card .letter-count {
-            font-size: 36px;
+            font-size: 28px;
             font-weight: 700;
             line-height: 1;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .kpi-card .letter-label {
@@ -128,7 +128,7 @@
         .kpi-card .date-span {
             font-size: 11px;
             color: var(--text-muted);
-            margin-top: 8px;
+            margin-top: 5px;
         }
 
         .kpi-card.henry .brother-name, .kpi-card.henry .letter-count { color: var(--henry); }
@@ -136,6 +136,44 @@
         .kpi-card.james .brother-name, .kpi-card.james .letter-count { color: var(--james); }
         .kpi-card.charles .brother-name, .kpi-card.charles .letter-count { color: var(--charles); }
         .kpi-card.mother .brother-name, .kpi-card.mother .letter-count { color: var(--mother); }
+
+        /* Cross-link action buttons (View bio · People Web) */
+        .kpi-card .kpi-actions {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+        .kpi-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 11px;
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            white-space: nowrap;
+            transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+        }
+        .kpi-btn:hover { transform: translateY(-1px); }
+        /* Primary action — bio link tinted in the brother's own color */
+        .kpi-card.henry     .kpi-btn-bio { color: var(--henry);     background: var(--henry-light);     border-color: var(--henry-mid); }
+        .kpi-card.alexander .kpi-btn-bio { color: var(--alexander); background: var(--alexander-light); border-color: var(--alexander-mid); }
+        .kpi-card.james     .kpi-btn-bio { color: var(--james);     background: var(--james-light);     border-color: var(--james-mid); }
+        .kpi-card.charles   .kpi-btn-bio { color: var(--charles);   background: var(--charles-light);   border-color: var(--charles-mid); }
+        .kpi-card.mother    .kpi-btn-bio { color: var(--mother);    background: var(--mother-light);    border-color: var(--mother-mid); }
+        .kpi-btn-bio:hover { filter: brightness(0.97); }
+        /* Secondary action — neutral outline for the lateral People Web jump */
+        .kpi-btn-web {
+            color: var(--text-secondary);
+            background: transparent;
+            border-color: var(--border);
+        }
+        .kpi-btn-web:hover { color: var(--text); border-color: var(--text-muted); background: var(--bg-card); }
 
         /* Timeline Section */
         .timeline-section {
@@ -1285,18 +1323,31 @@
     // KPI Cards
     function buildKPIs() {
         const row = document.getElementById('kpi-row');
+        const BIO_HREF = { henry: 'brother-henry.html', alexander: 'brother-alexander.html', james: 'brother-james.html', charles: 'brother-charles.html', mother: 'mother-frances.html' };
+        // Curated canonical People Web node labels — NOT the display names in NAMES
+        // (e.g. 'Alexander Hubbell', not 'Alexander F. Hubbell'). Passing the exact
+        // canonical label keeps ?person= deterministic, honoring the no-fuzzy-matching
+        // rule. Frances/mother is not yet a People Web node (web-polish item #3) → no web link.
+        const PW_NAME = { henry: 'Henry Hubbell', alexander: 'Alexander Hubbell', james: 'James Hubbell', charles: 'Charles Hubbell' };
         ['henry','alexander','james','charles','mother'].forEach(b => {
             const bLetters = LETTERS.filter(l => l.author === b);
             if (bLetters.length === 0) return;
             const dates = bLetters.map(l => l.date).sort();
             const card = document.createElement('div');
             card.className = 'kpi-card ' + b;
+            const webBtn = PW_NAME[b]
+                ? `<a class="kpi-btn kpi-btn-web" href="viz-people-web?person=${encodeURIComponent(PW_NAME[b])}">People Web</a>`
+                : '';
             card.innerHTML = `
                 <div class="brother-name">${NAMES[b].split(' ')[0]}</div>
                 <div class="brother-unit">${UNITS[b]}</div>
                 <div class="letter-count">${bLetters.length}</div>
                 <div class="letter-label">letters</div>
                 <div class="date-span">${formatDateShort(dates[0])} — ${formatDateShort(dates[dates.length - 1])}</div>
+                <div class="kpi-actions">
+                    <a class="kpi-btn kpi-btn-bio" href="${BIO_HREF[b]}">View bio</a>
+                    ${webBtn}
+                </div>
             `;
             row.appendChild(card);
         });

@@ -37,6 +37,34 @@
   margin: 0 auto 32px;
 }
 
+/* Cross-link pill — jump to this person's connections on the People Web.
+   Uses the per-page --person token so it carries each subject's color. */
+.hero-explore {
+  margin: -6px auto 32px;
+}
+.hero-explore-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 16px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--person);
+  background: var(--person-bg);
+  border: 1px solid var(--person);
+  border-radius: 999px;
+  transition: background 0.18s var(--ease), color 0.18s var(--ease), transform 0.18s var(--ease);
+}
+.hero-explore-pill:hover {
+  background: var(--person);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.hero-explore-pill svg { width: 15px; height: 15px; flex-shrink: 0; }
+
 /* Service record — archival card */
 .service-record {
   display: inline-block;
