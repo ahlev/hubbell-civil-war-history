@@ -1004,6 +1004,45 @@ canvas.grabbing {
   .filter-btn, .zoom-btn, .reset-btn { min-height: 44px; min-width: 44px; }
 }
 
+/* ── Mobile list-first view (item 6): on phones the force-graph is unusable,
+   so present a searchable, sortable list; tapping a row opens the SAME detail
+   panel full-screen with connections + letters (reuses the desktop drill-down). */
+#mobile-list { display: none; }
+#mobile-list-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--rule); position: sticky; top: 0; background: var(--bg-elev); z-index: 2; }
+#mobile-list-count { font-size: 12px; color: var(--ink-3); }
+#mobile-list-sort { display: flex; gap: 4px; }
+.mpl-sort { font: 600 11px var(--font-sans); padding: 5px 9px; border: 1px solid var(--rule); background: transparent; border-radius: 999px; color: var(--ink-2); cursor: pointer; }
+.mpl-sort.active { background: var(--accent, #b06a3b); color: #fff; border-color: transparent; }
+.mpl-row { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px; border: none; border-bottom: 1px solid var(--rule-2); background: transparent; text-align: left; cursor: pointer; font-family: inherit; -webkit-tap-highlight-color: transparent; }
+.mpl-row:active { background: var(--bg-sunken); }
+.mpl-dot { width: 13px; height: 13px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); }
+.mpl-name { flex: 1; font-size: 14px; color: var(--ink); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mpl-cat { font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-3); white-space: nowrap; }
+.mpl-count { font-size: 13px; font-weight: 700; color: var(--ink-2); min-width: 22px; text-align: right; }
+#mobile-list-intro { padding: 12px; font-size: 12.5px; line-height: 1.5; color: var(--ink-2); border-bottom: 1px solid var(--rule-2); }
+.pw-mention-more { display: block; width: 100%; text-align: left; background: none; border: none; padding: 8px 0; font: 600 12px var(--font-sans); color: var(--accent, #b06a3b); cursor: pointer; }
+
+@media (max-width: 768px) {
+  #canvas-wrap { display: none !important; }
+  #sidebar { position: relative !important; width: 100vw !important; min-width: 0 !important; height: auto !important; min-height: 100vh; transform: none !important; box-shadow: none !important; }
+  #sidebar.collapsed { transform: none !important; }
+  #sidebar-content { display: none; }
+  #mobile-list { display: block; }
+  #detail-panel.visible {
+    position: fixed; inset: 0; z-index: 3000;
+    width: 100%; max-width: none; height: 100vh;
+    overflow-y: auto; padding: 16px 16px 48px;
+    background: var(--bg-elev);
+  }
+  #detail-panel #detail-back {
+    display: block; position: sticky; top: 0; z-index: 1;
+    width: 100%; text-align: left; padding: 11px 0; margin: 0 0 6px;
+    background: var(--bg-elev); font-weight: 600; color: var(--accent, #b06a3b);
+    border: none; border-bottom: 1px solid var(--rule); cursor: pointer;
+  }
+  #detail-panel .detail-link-btn { display: none; }  /* canvas-dependent — dead on mobile */
+}
+
 /* Enhanced detail panel styles */
 .detail-category-badge {
   display: inline-block;
@@ -1408,8 +1447,19 @@ canvas.grabbing {
     <div id="search-box">
       <input type="text" id="search-input" placeholder="Search people by name...">
     </div>
+    <div id="mobile-list">
+      <div id="mobile-list-intro">Everyone in the collection — the Hubbell family at the centre. Tap a name to explore their connections.</div>
+      <div id="mobile-list-bar">
+        <span id="mobile-list-count"></span>
+        <div id="mobile-list-sort">
+          <button class="mpl-sort active" data-sort="count">Most connected</button>
+          <button class="mpl-sort" data-sort="name">A–Z</button>
+        </div>
+      </div>
+      <div id="mobile-list-rows"></div>
+    </div>
     <div id="detail-panel">
-      <button id="detail-back" onclick="closeDetail()">← Back to network</button>
+      <button id="detail-back" onclick="closeDetail()">← Back</button>
       <h3 id="detail-name"></h3>
       <div class="role-text" id="detail-role"></div>
       <div class="mention-list" id="detail-mentions"></div>
@@ -3157,12 +3207,15 @@ function showBrotherDetail(node) {
     <div class="pw-mentions-title" style="margin:0">${_isMother ? `Received ${RAW_LETTERS.filter(l => getCanonName(l.recipient||'')==='Mother').length} letters · wrote ${RAW_LETTERS.filter(l => l.author==='mother').length} · named ${peopleMentioned.length} people` : `${peopleMentioned.length} people mentioned across ${RAW_LETTERS.filter(l => l.author === key).length} letters`}</div>
     <button class="detail-link-btn" data-link-source="${brotherIdx}" style="background:none;border:1px solid #2D5F8A;border-radius:4px;padding:3px 8px;font-size:11px;color:#2D5F8A;cursor:pointer;font-family:Inter,sans-serif">Link &amp; Explore</button>
   </div>`;
-  for (const p of peopleMentioned.slice(0, 20)) {
+  peopleMentioned.forEach((p, _i) => {
+    // After the first 20, fold the rest behind a tappable "+ N more" — on mobile
+    // the list is the only interface, so the long tail must stay reachable.
+    if (_i === 20) {
+      html += `<button type="button" class="pw-mention-more" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">+ ${peopleMentioned.length - 20} more</button><div class="pw-mention-rest" style="display:none">`;
+    }
     html += `<div class="pw-mention stat-row clickable" data-person-name="${p.name}"><span class="name">${p.name}</span> <span class="count">${p.count}×</span></div>`;
-  }
-  if (peopleMentioned.length > 20) {
-    html += `<div style="font-size:11px;color:var(--ink-3);padding-top:4px">+ ${peopleMentioned.length - 20} more...</div>`;
-  }
+  });
+  if (peopleMentioned.length > 20) html += `</div>`;
 
   document.getElementById('detail-mentions').innerHTML = html;
   panel.classList.add('visible');
@@ -3199,6 +3252,61 @@ function closeDetail() {
   selectedNode = null;
   cancelLinkMode();
 }
+
+// ── Mobile list-first view (item 6) ──────────────────────────────────
+// Built once via DOM (no innerHTML); filtering toggles row visibility rather
+// than rebuilding. Tapping a row opens the same detail panel (full-screen on
+// mobile via CSS) using the existing showBrotherDetail/showPersonDetail.
+let _mplRows = [];
+let _mplSort = 'count';
+function buildMobileList() {
+  const listEl = document.getElementById('mobile-list-rows');
+  if (!listEl || _mplRows.length) return;
+  const deg = {};
+  edges.forEach(e => { deg[e.source] = (deg[e.source] || 0) + 1; deg[e.target] = (deg[e.target] || 0) + 1; });
+  nodes.forEach((n, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'mpl-row';
+    btn.dataset.idx = i;
+    const dot = document.createElement('span'); dot.className = 'mpl-dot'; dot.style.background = n.color;
+    const name = document.createElement('span'); name.className = 'mpl-name'; name.textContent = n.id;
+    const cat = document.createElement('span'); cat.className = 'mpl-cat';
+    cat.textContent = n.isBrother ? 'Brother' : (n.isMother ? 'Mother' : String(n.category || '').replace(/_/g, ' ').toLowerCase());
+    const cnt = document.createElement('span'); cnt.className = 'mpl-count'; cnt.textContent = String(deg[i] || 0);
+    btn.append(dot, name, cat, cnt);
+    btn.addEventListener('click', () => {
+      const node = nodes[i];
+      if (node.isBrother || node.isMother) showBrotherDetail(node); else showPersonDetail(node);
+      selectedNode = i;
+      const dp = document.getElementById('detail-panel'); if (dp) dp.scrollTop = 0;
+    });
+    listEl.appendChild(btn);
+    _mplRows.push({ el: btn, idx: i, deg: deg[i] || 0, nameLower: n.id.toLowerCase() });
+  });
+  sortMobileList(_mplSort);
+  filterMobileList('');
+}
+function filterMobileList(q) {
+  q = (q || '').toLowerCase().trim();
+  let shown = 0;
+  _mplRows.forEach(r => { const vis = !q || r.nameLower.includes(q); r.el.style.display = vis ? '' : 'none'; if (vis) shown++; });
+  const c = document.getElementById('mobile-list-count');
+  if (c) c.textContent = shown + ' of ' + nodes.length + ' people';
+}
+function sortMobileList(mode) {
+  _mplSort = mode;
+  const listEl = document.getElementById('mobile-list-rows');
+  if (!listEl) return;
+  [..._mplRows].sort((a, b) => mode === 'name'
+    ? a.nameLower.localeCompare(b.nameLower)
+    : (b.deg - a.deg || a.nameLower.localeCompare(b.nameLower)))
+    .forEach(r => listEl.appendChild(r.el));
+  document.querySelectorAll('.mpl-sort').forEach(b => b.classList.toggle('active', b.dataset.sort === mode));
+}
+document.addEventListener('click', (e) => {
+  const sortBtn = e.target.closest && e.target.closest('.mpl-sort');
+  if (sortBtn) sortMobileList(sortBtn.dataset.sort);
+});
 
 // ============================================================
 // LINK & EXPLORE
@@ -3660,6 +3768,7 @@ let searchMatchSet = new Set();
 
 document.getElementById('search-input').addEventListener('input', (e) => {
   searchQuery = e.target.value.trim();
+  filterMobileList(searchQuery);
   searchMatchSet.clear();
   hoverNode = null;
   if (searchQuery.length > 0) {
@@ -3820,7 +3929,9 @@ function frame() {
     for (let i = 0; i < steps; i++) simulate();
   }
 
-  draw();
+  // Skip the canvas redraw on phones, where the graph is hidden behind the
+  // list-first view — avoids a perpetual ~60fps no-op redraw draining battery.
+  if (window.innerWidth > 768) draw();
 
   if (frameCount === 120) {
     document.getElementById('loading').classList.add('hidden');
@@ -3834,6 +3945,7 @@ resize();
 initPositions();
 buildSidebar();
 buildLegend();
+buildMobileList();
 buildStatsBar();
 updateVisibleCount();
 window.addEventListener('resize', resize);
