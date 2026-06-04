@@ -375,7 +375,7 @@ function buildLettersList(){
       var months=['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       return months[parseInt(mo)]+' '+parseInt(dy)+', '+y;
     });
-    html+='<button class="letter-row" onclick="openLetter(\''+l.id+'\')"><span class="lr-date">'+d+'</span><span class="lr-to">'+(l.r||'')+'</span><span class="lr-loc">'+(l.loc||'')+'</span><span class="lr-flags">'+flags+'</span></button>';
+    html+='<button class="letter-row" data-letter-id="'+l.id+'" onclick="openLetter(\''+l.id+'\')"><span class="lr-date">'+d+'</span><span class="lr-to">'+(l.r||'')+'</span><span class="lr-loc">'+(l.loc||'')+'</span><span class="lr-flags">'+flags+'</span></button>';
   });
   list.innerHTML=html;
 }

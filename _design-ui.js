@@ -410,9 +410,26 @@
   }
   function _esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
+  // Resolve a letter's hover metadata. Prefers LETTER_INDEX (rich, on overlay
+  // pages); falls back to the global LETTERS array (loaded everywhere via
+  // _search-data.js) so the hover tip also works on pages that don't ship the
+  // heavier overlay data — e.g. the bio pages' letter drawers. LETTERS uses
+  // `loc` where LETTER_INDEX uses `l`, so we adapt the one field that differs.
+  var _ltMap = null;
+  function _letterMeta(lid) {
+    if (window.LETTER_INDEX && LETTER_INDEX[lid]) return LETTER_INDEX[lid];
+    if (typeof LETTERS === 'undefined') return null;
+    if (!_ltMap) {
+      _ltMap = {};
+      LETTERS.forEach(function (l) { if (l && l.id) _ltMap[l.id] = l; });
+    }
+    var l = _ltMap[lid];
+    if (!l) return null;
+    return { d: l.d, a: l.a, an: l.an, r: l.r, l: l.loc, ss: l.ss };
+  }
+
   function _showLetterTip(e, lid) {
-    if (!window.LETTER_INDEX) return;
-    var meta = LETTER_INDEX[lid];
+    var meta = _letterMeta(lid);
     if (!meta) return;
     if (!_ltip) {
       _ltip = document.createElement('div');
@@ -454,7 +471,12 @@
   }
 
   function wireLetterTooltips() {
-    if (!window.LETTER_INDEX) return;
+    if (!window.LETTER_INDEX && typeof LETTERS === 'undefined') return;
+    // Hover preview is a desktop affordance only — gate on a fine pointer
+    // (mouse/trackpad/stylus) so it never flashes on phones/tablets where a
+    // tap would otherwise fire mouseover. Mirrors the Map That Moves tip.
+    var finePointer = !window.matchMedia || window.matchMedia('(any-pointer: fine)').matches;
+    if (!finePointer) return;
     // Use event delegation on body for maximum coverage (including dynamically rendered content)
     document.body.addEventListener('mouseover', function (e) {
       var lid = _getLetterIdFromEl(e.target);

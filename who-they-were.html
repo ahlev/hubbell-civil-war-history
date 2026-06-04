@@ -18,7 +18,7 @@
 
 /* ===== HERO ===== */
 .wtw-hero {
-  padding: 72px 32px 48px;
+  padding: 32px 32px 26px;
   text-align: center;
   border-bottom: 1px solid var(--rule);
 }
@@ -26,23 +26,72 @@
   width: 48px;
   height: 1px;
   background: var(--accent);
-  margin: 0 auto 20px;
+  margin: 12px auto 16px;
 }
 .wtw-hero .hero-sub {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   color: var(--ink-2);
   font-style: italic;
-  line-height: 1.85;
-  max-width: 600px;
+  line-height: 1.6;
+  max-width: 660px;
   margin: 0 auto;
 }
 
+/* Quick person nav — color-coded jump buttons under the subtext */
+.wtw-people-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 1040px;
+  margin: 24px auto 2px;
+}
+.wtw-person-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  text-decoration: none;
+  padding: 9px 15px;
+  min-width: 126px;
+  text-align: left;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--person, var(--accent));
+  border-radius: 7px;
+  background: var(--bg-elev);
+  transition: transform .16s var(--ease, ease), box-shadow .16s var(--ease, ease), background .16s var(--ease, ease), border-color .16s var(--ease, ease);
+}
+.wtw-person-btn .wpn-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.12rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--person, var(--ink));
+}
+.wtw-person-btn .wpn-sub {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-3);
+}
+.wtw-person-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--person, var(--accent));
+  background: color-mix(in srgb, var(--person, var(--accent)) 8%, var(--bg-elev));
+  box-shadow: 0 5px 16px color-mix(in srgb, var(--person, var(--accent)) 22%, transparent);
+}
+.wtw-person-btn:hover .wpn-sub { color: var(--ink-2); }
+.person-section { scroll-margin-top: 84px; }
+html { scroll-behavior: smooth; }
+
 /* ===== FAMILY LEDE ===== */
 .family-lede {
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto;
-  padding: 48px 32px 56px;
+  padding: 30px 32px 44px;
   border-bottom: 1px solid var(--rule);
 }
 .family-lede p {
@@ -358,6 +407,14 @@
   <h1 class="page-title">Who They Were</h1>
   <div class="hero-rule"></div>
   <p class="hero-sub">A widowed mother. Four soldier sons. A sister who kept the home together.<br>These are the people behind the 273 letters.</p>
+  <nav class="wtw-people-nav" aria-label="Jump to a family member">
+    <a class="wtw-person-btn" href="#mother" style="--person: var(--mother);"><span class="wpn-name">Frances</span><span class="wpn-sub">Mother &middot; Home front</span></a>
+    <a class="wtw-person-btn" href="#henry" style="--person: var(--henry);"><span class="wpn-name">Henry</span><span class="wpn-sub">Eldest son &middot; 34th NY</span></a>
+    <a class="wtw-person-btn" href="#alexander" style="--person: var(--alexander);"><span class="wpn-name">Alexander</span><span class="wpn-sub">Sergeant &middot; 60th NY</span></a>
+    <a class="wtw-person-btn" href="#charles" style="--person: var(--charles);"><span class="wpn-name">Charles</span><span class="wpn-sub">Private &middot; 153rd NY</span></a>
+    <a class="wtw-person-btn" href="#james" style="--person: var(--james);"><span class="wpn-name">James</span><span class="wpn-sub">Youngest son &middot; 153rd NY</span></a>
+    <a class="wtw-person-btn" href="#fannie" style="--person: var(--fannie);"><span class="wpn-name">Fannie</span><span class="wpn-sub">Sister &middot; Champlain</span></a>
+  </nav>
 </div>
 
 <!-- ===== FAMILY LEDE ===== -->
@@ -726,6 +783,7 @@ function toggleLetters(btn) {
     letters.forEach(function(l) {
       var row = document.createElement('div');
       row.className = 'letter-row';
+      row.setAttribute('data-letter-id', l.id);
       var flags = '';
       if (l.bat) flags += '<span class="lr-flag battle" title="Battle"></span>';
       if (l.ill) flags += '<span class="lr-flag illness" title="Illness"></span>';
