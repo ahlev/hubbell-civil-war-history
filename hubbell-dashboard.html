@@ -418,6 +418,30 @@
             gap: 6px;
             flex-shrink: 0;
         }
+        /* Letter share: inline in the nav row (far right, just before close)
+           instead of a top-centered banner that ate its own line. Solid golden
+           fill = bolder hue, sized to sit flush with the nav controls. */
+        #detail-panel .detail-nav-arrows .dl-modal-share {
+            position: static !important;
+            transform: none !important;
+            top: auto !important; left: auto !important; right: auto !important;
+            margin: 0 !important;
+            height: 36px !important;
+            padding: 0 14px !important;
+            border-radius: 8px !important;
+            background: #B8860B !important;
+            border: 1px solid #B8860B !important;
+            color: #FBF6EB !important;
+            font-size: 12px !important;
+            box-shadow: 0 2px 6px rgba(184,134,11,0.28) !important;
+        }
+        #detail-panel .detail-nav-arrows .dl-modal-share:hover {
+            background: #9C7209 !important;
+            border-color: #9C7209 !important;
+            color: #fff !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 3px 10px rgba(184,134,11,0.4) !important;
+        }
         .detail-meta-row-inline {
             display: flex;
             align-items: center;
@@ -2551,8 +2575,8 @@
                     <div class="detail-nav-arrows">
                         <button class="detail-nav-btn" onclick="openDetail(${prevIdx})" ${prevIdx === null ? 'disabled' : ''} title="Previous letter">←</button>
                         <button class="detail-nav-btn" onclick="openDetail(${nextIdx})" ${nextIdx === null ? 'disabled' : ''} title="Next letter">→</button>
-                        <button class="detail-close" onclick="closeDetail()" title="Close (Esc)">✕</button>
                         ${window.HubbellDeepLink ? HubbellDeepLink.letterShareBtn(l.id) : ''}
+                        <button class="detail-close" onclick="closeDetail()" title="Close (Esc)">✕</button>
                     </div>
                 </div>
                 <div class="detail-meta-row-inline">
