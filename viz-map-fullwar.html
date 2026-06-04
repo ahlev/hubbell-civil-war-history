@@ -3583,7 +3583,7 @@ function showFrancesInfoPanel() {
   infoPanelBrother = null; // static figure — don't auto-refresh on date change
   const title = document.getElementById('infoPanelTitle');
   const body = document.getElementById('infoPanelBody');
-  title.textContent = 'Frances Hubbell — Champlain, NY';
+  title.textContent = 'Frances Hubbell (Mother) — Champlain, NY';
   title.style.color = COLORS.mother;
 
   const meta = document.createElement('div');
@@ -3692,7 +3692,7 @@ function showInfoPanel(movement, brotherId) {
     html += `<div class="info-section"><h4>Recent Letters <span class="days-since-letter">(last: ${daysSinceText})</span></h4>`;
     recentLetters.forEach(l => {
       const quote = l.letterExcerpt ? `"${l.letterExcerpt.slice(0, 60)}${l.letterExcerpt.length > 60 ? '...' : ''}"` : '';
-      const recipient = l.recipient || 'Unknown';
+      const recipient = formatRecipientShort(l.recipient);
       const context = l.sigSummary ? l.sigSummary.slice(0, 80) + (l.sigSummary.length > 80 ? '...' : '') : l.placeName;
       html += `<div class="recent-letter-card map-letter-link" data-lid="${escHtml(l.letterId)}" data-bro="${escHtml(brotherId)}"${l.letterExcerpt ? ' data-excerpt="'+escHtml(l.letterExcerpt.slice(0,80))+'"' : ''}>
         <div><span class="letter-date">${formatDateStr(l.date)}</span> <span class="letter-recipient">to ${recipient}</span></div>

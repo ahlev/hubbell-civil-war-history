@@ -1601,10 +1601,18 @@ const MERGE_MAP = {
   'mother': 'Mother',
   'mrs hubbell': 'Mother',
   'mrs hubbell mother': 'Mother',
-  'frances hubbell': 'Frances Hubbell',
-  'frances': 'Frances Hubbell',
-  'frances fannie hubbell': 'Frances Hubbell',
-  'frances fannie': 'Frances Hubbell',
+  'frances hubbell': 'Fannie Hubbell',
+  'frances': 'Fannie Hubbell',
+  'frances fannie hubbell': 'Fannie Hubbell',
+  'frances fannie': 'Fannie Hubbell',
+  // Sister name variants — all the daughter "Fannie" (born Frances). Folded to
+  // one canonical so she reads as "Fannie", distinct from the mother "Frances".
+  'frances hubbell sister': 'Fannie Hubbell',
+  'frances sister': 'Fannie Hubbell',
+  'francesfannie hubbell sister': 'Fannie Hubbell',
+  'francesfannie': 'Fannie Hubbell',
+  'fanniefrances hubbell': 'Fannie Hubbell',
+  'fannie sister': 'Fannie Hubbell',
   'james hubbell': 'James Hubbell',
   'james': 'James Hubbell',
   'charles hubbell': 'Charles Hubbell',
@@ -1736,8 +1744,8 @@ const MERGE_MAP = {
   'charleycharles': 'Charles Hubbell',
   'charley charles': 'Charles Hubbell',
   'charlie charles': 'Charles Hubbell',
-  'fannie frances': 'Frances Hubbell',
-  'fannie': 'Frances Hubbell',
+  'fannie frances': 'Fannie Hubbell',
+  'fannie': 'Fannie Hubbell',
   'gen greene': 'Gen. Greene',
   'gen george s greene': 'Gen. Greene',
   'brevet maj gen greene': 'Gen. Greene',
@@ -1839,7 +1847,7 @@ function classifyPerson(canonName, roles) {
   // Family
   const familyPatterns = ['mother','sister','brother','aunt','uncle','cousin','nellie','grandmother','father','frances hubbell','family','nephew','niece','mrs. ransom','mrs. carter','charlotte','pet stacia','the boys'];
   if (familyPatterns.some(p => cn.includes(p) || allRoles.includes(p))) return 'FAMILY';
-  if (['Mother','Frances Hubbell','Cousin Nellie','Aunt Laura','Aunt Laurie','Aunt Mary','Aunt Jenny','Uncle Henry','Uncle John','Uncle Knapp','Uncle Hubbell','Grandmother','Grandmother McNiel','Father (deceased)','Sid','Silas','Silas & Sid','Frances & Charles','Charlotte','Pet Stacia'].includes(canonName)) return 'FAMILY';
+  if (['Mother','Fannie Hubbell','Cousin Nellie','Aunt Laura','Aunt Laurie','Aunt Mary','Aunt Jenny','Uncle Henry','Uncle John','Uncle Knapp','Uncle Hubbell','Grandmother','Grandmother McNiel','Father (deceased)','Sid','Silas','Silas & Sid','Frances & Charles','Charlotte','Pet Stacia'].includes(canonName)) return 'FAMILY';
 
   // Military
   const milPatterns = ['capt','captain','lieut','lieutenant','lt.','col','colonel','general','gen.','sergeant','corporal','soldier','officer','regiment','company','corps','private','orderly','adjutant','chaplain','surgeon','doctor','dr.','quartermaster','commissary','major','inspector','signal','brigade'];
@@ -1872,6 +1880,15 @@ function getCanonName(rawName) {
     if (key === mk) return mv;
   }
   return rawName.trim().replace(/^["'\u201C\u201D]+|["'\u201C\u201D]+$/g, '');
+}
+
+// Friendly recipient label for the "to \u2026" lines in detail panels. The daughter
+// Fannie appears under many "Frances \u2026 (sister)" spellings; show her uniformly
+// as "Fannie (sister)" so she's never confused with her mother, Frances. Every
+// other recipient renders exactly as written.
+function displayRecipient(r) {
+  if (getCanonName(r || '') === 'Fannie Hubbell') return 'Fannie (sister)';
+  return r || 'Unknown';
 }
 
 // Skip generic/unnamed entries
@@ -1960,8 +1977,9 @@ for (const [key, name] of Object.entries(BROTHER_CANON)) {
 // skipped because she's the recipient of most letters). She is the gravitational
 // centre of the correspondence. IDENTITY (cardinal rule — curated, never fuzzy):
 // she is the person behind author key 'mother' and recipient canonical 'Mother'
-// ONLY. She is NOT 'Frances Hubbell' — that canonical is her DAUGHTER, the sister
-// "Fannie", a separate person. Node id is therefore 'Frances Hubbell (Mother)';
+// ONLY. She is NOT 'Fannie Hubbell' — that canonical is her DAUGHTER, the sister
+// Fannie (born Frances), a separate person displayed as "Fannie" to avoid the
+// name collision with the mother. Node id is therefore 'Frances Hubbell (Mother)';
 // nodeIndex['Mother'] also points here so her recipient strings resolve.
 const MOTHER_CANON = 'Frances Hubbell (Mother)';
 const motherIdx = nodes.length;
@@ -2695,7 +2713,7 @@ function showConnectionDetail(edgeIdx) {
       <span class="pw-arrow">View letter ›</span>
       <span class="mention-date">${formatDate(l.date)}</span> —
       <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${authorFirst}</span>
-      <span class="mention-to">to ${l.recipient}</span>
+      <span class="mention-to">to ${displayRecipient(l.recipient)}</span>
     </div>`;
   }
 
@@ -3020,7 +3038,7 @@ function showPersonDetail(node) {
       <span class="pw-arrow">View letter ›</span>
       <span class="mention-date">${formatDate(l.date)}</span> —
       <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${l.authorName}</span>
-      <span class="mention-to">to ${l.recipient}</span>
+      <span class="mention-to">to ${displayRecipient(l.recipient)}</span>
     </div>`;
   }
 
@@ -3106,7 +3124,7 @@ function showPersonDetailByName(name) {
       <span class="pw-arrow">View letter ›</span>
       <span class="mention-date">${formatDate(l.date)}</span> —
       <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${l.authorName}</span>
-      <span class="mention-to">to ${l.recipient}</span>
+      <span class="mention-to">to ${displayRecipient(l.recipient)}</span>
     </div>`;
   }
   document.getElementById('detail-mentions').innerHTML = html;
@@ -3636,7 +3654,7 @@ async function showLinkedPairDetail(idxA, idxB) {
         <span class="excerpt-type ${typeClass}">${typeLabel}</span>
         <span class="mention-date">${formatDate(l.date)}</span> —
         <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${authorFirst}</span>
-        <span class="mention-to">to ${l.recipient}</span>
+        <span class="mention-to">to ${displayRecipient(l.recipient)}</span>
       </div>
       ${excerptHtml}
     </div>`;
