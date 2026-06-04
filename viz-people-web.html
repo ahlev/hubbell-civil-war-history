@@ -3142,7 +3142,9 @@ function buildMiniTimeline(sortedLetters) {
 
   // Dots for each mention
   for (const l of sortedLetters) {
-    const ts = new Date(l.date).getTime();
+    // Normalize unknown-day (YYYY-MM-00) dates to mid-month so they don't NaN.
+    const ts = new Date(l.date.replace(/-00$/, '-15') + 'T12:00:00').getTime();
+    if (isNaN(ts)) continue;
     const x = pad + ((ts - minTs) / rangeTs) * usable;
     const color = BROTHER_COLORS[l.author] || '#9B9B9B';
     const tip = formatDate(l.date) + ' — ' + (l.authorName || l.author);
@@ -3521,13 +3523,13 @@ async function showLinkedPairDetail(idxA, idxB) {
   panel.querySelector('[data-link-person="a"]').addEventListener('click', () => {
     linkedPair = null; linkPulsePhase = 0;
     selectedNode = idxA;
-    if (nodeA.isBrother) showBrotherDetail(nodeA); else showPersonDetail(nodeA);
+    if (nodeA.isBrother || nodeA.isMother) showBrotherDetail(nodeA); else showPersonDetail(nodeA);
     updateLinkButton();
   });
   panel.querySelector('[data-link-person="b"]').addEventListener('click', () => {
     linkedPair = null; linkPulsePhase = 0;
     selectedNode = idxB;
-    if (nodeB.isBrother) showBrotherDetail(nodeB); else showPersonDetail(nodeB);
+    if (nodeB.isBrother || nodeB.isMother) showBrotherDetail(nodeB); else showPersonDetail(nodeB);
     updateLinkButton();
   });
 
@@ -3535,19 +3537,23 @@ async function showLinkedPairDetail(idxA, idxB) {
   const _prevSummaryLink = panel.querySelector('.pw-person-summary');
   if (_prevSummaryLink) _prevSummaryLink.remove();
 
-  // Find shared letters (where both appear)
+  // Find shared letters (where both appear). A node "appears" if it's mentioned,
+  // is the brother who wrote/received it, or — for Frances — she authored it or
+  // it resolves to her as recipient ('Mother'). Don't skip people-less letters:
+  // a son's letter home connects him to Frances even if it names no one.
   const sharedLetters = [];
   const seen = new Set();
   RAW_LETTERS.forEach(letter => {
-    if (!letter.people) return;
-    const pNames = letter.people.map(p => getCanonName(p.name));
-    const hasA = pNames.includes(nameA) || (nodeA.isBrother && letter.author === nodeA.brotherKey);
-    const hasB = pNames.includes(nameB) || (nodeB.isBrother && letter.author === nodeB.brotherKey);
-    // Also check recipient for correspondence detection
-    const recipCanon = getCanonName(letter.recipient);
-    const hasARecip = recipCanon === nameA;
-    const hasBRecip = recipCanon === nameB;
-    if ((hasA || hasARecip) && (hasB || hasBRecip) && !seen.has(letter.id)) {
+    const author = letter.author;
+    const pNames = (letter.people || []).map(p => getCanonName(p.name));
+    const recipCanon = getCanonName(letter.recipient || '');
+    const present = (node, name) => {
+      if (pNames.includes(name)) return true;
+      if (node.isBrother) return author === node.brotherKey || recipCanon === name;
+      if (node.isMother) return author === 'mother' || recipCanon === 'Mother';
+      return recipCanon === name;
+    };
+    if (present(nodeA, nameA) && present(nodeB, nameB) && !seen.has(letter.id)) {
       seen.add(letter.id);
       sharedLetters.push(letter);
     }
@@ -3638,13 +3644,13 @@ async function showLinkedPairDetail(idxA, idxB) {
   if (portraitA) portraitA.addEventListener('click', () => {
     linkedPair = null; linkPulsePhase = 0;
     selectedNode = idxA;
-    if (nodeA.isBrother) showBrotherDetail(nodeA); else showPersonDetail(nodeA);
+    if (nodeA.isBrother || nodeA.isMother) showBrotherDetail(nodeA); else showPersonDetail(nodeA);
     updateLinkButton();
   });
   if (portraitB) portraitB.addEventListener('click', () => {
     linkedPair = null; linkPulsePhase = 0;
     selectedNode = idxB;
-    if (nodeB.isBrother) showBrotherDetail(nodeB); else showPersonDetail(nodeB);
+    if (nodeB.isBrother || nodeB.isMother) showBrotherDetail(nodeB); else showPersonDetail(nodeB);
     updateLinkButton();
   });
 }

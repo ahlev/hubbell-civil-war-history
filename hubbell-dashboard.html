@@ -2297,9 +2297,15 @@
     function buildDashContextStrip(activeIdx) {
         if (typeof LETTERS === 'undefined' || !LETTERS.length) return '';
         const items = [];
+        // Follow the nav mode: "X's Letters" shows only that author's dots;
+        // "All Letters" shows the whole corpus. (setNavMode re-renders openDetail,
+        // so the strip rebuilds with this filter on toggle.)
+        const _activeA = LETTERS[activeIdx] ? LETTERS[activeIdx].author : null;
+        const _filterA = (navMode === 'author' && _activeA) ? _activeA : null;
         for (let i = 0; i < LETTERS.length; i++) {
             const l = LETTERS[i];
             if (!l.date || !/^\d{4}-\d{2}-\d{2}$/.test(l.date)) continue;
+            if (_filterA && l.author !== _filterA) continue;
             const t = parseDate(l.date).getTime();
             if (isNaN(t)) continue;
             items.push({ idx: i, a: l.author, r: l.recipient, date: l.date, t: t });
@@ -2540,7 +2546,7 @@
                         <button class="nav-mode-btn ${navMode === 'date' ? 'active' : ''}" onclick="setNavMode('date')">All Letters</button>
                     </div>
                 </div>
-                ${l.sigSummary ? `<div class="reader-exec-summary">${escapeHtml(l.sigSummary.replace(/\*\*/g, ''))}</div>` : ''}
+                ${l.sigSummary ? `<div class="reader-exec-summary" style="--exec-c:${color}">${escapeHtml(l.sigSummary.replace(/\*\*/g, ''))}</div>` : ''}
                 ${buildDashContextStrip(idx)}
                 <div class="detail-scroll">
                     ${flags ? `<div class="reader-flags">${flags}</div>` : ''}

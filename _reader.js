@@ -236,6 +236,7 @@ window.HubbellReader = (function () {
       if (!btn || !btn.dataset.mode) return;
       if (window.HubbellLetterNav) HubbellLetterNav.setMode(btn.dataset.mode);
       updateNavBar();
+      refreshContextStrip();   // re-filter the strip to the new mode
     });
 
     // Keyboard: Escape, ArrowLeft, ArrowRight
@@ -319,10 +320,16 @@ window.HubbellReader = (function () {
 
   function buildLetterContextStrip(activeId) {
     if (typeof LETTERS === 'undefined' || !LETTERS || !LETTERS.length) return '';
+    // Follow the reader's nav mode: in "<author>'s Letters" mode show only that
+    // author's dots; in "All Letters" mode show the whole corpus.
+    var navMode = (window.HubbellLetterNav && HubbellLetterNav.getMode) ? HubbellLetterNav.getMode() : 'date';
+    var _aFilter = findLetter(activeId);
+    var filterAuthor = (navMode === 'author' && _aFilter) ? _aFilter.a : null;
     var items = [];
     for (var i = 0; i < LETTERS.length; i++) {
       var l = LETTERS[i];
       if (!l || !l.d || !/^\d{4}-\d{2}-\d{2}$/.test(l.d)) continue;
+      if (filterAuthor && l.a !== filterAuthor) continue;
       // Mid-month for unknown-day (YYYY-MM-00) dates — matches parseDate convention.
       var t = new Date(l.d.replace(/-00$/, '-15') + 'T12:00:00').getTime();
       if (isNaN(t)) continue;
@@ -436,6 +443,17 @@ window.HubbellReader = (function () {
       if (dd < bestD) { bestD = dd; best = _ctxStrip.items[i]; }
     }
     return best;
+  }
+
+  // Rebuild the strip in place (e.g. after a nav-mode toggle) without re-opening
+  // the whole reader. insertAdjacentHTML (not innerHTML) keeps the rest intact.
+  function refreshContextStrip() {
+    if (!currentOpts || !currentOpts.contextStrip || !contentEl || !currentLetterId) return;
+    var existing = contentEl.querySelector('.reader-context-strip');
+    if (!existing) return;
+    existing.insertAdjacentHTML('beforebegin', buildLetterContextStrip(currentLetterId));
+    existing.remove();
+    bindContextStrip();
   }
 
   function bindContextStrip() {
@@ -617,7 +635,7 @@ window.HubbellReader = (function () {
     // Executive summary — the one-line editorial "what this letter is" the user
     // values. Shown on the rich reader surfaces (same opt-in as the strip).
     var summaryHtml = (opts.contextStrip && letter.ss)
-      ? '<div class="reader-exec-summary">' + esc(letter.ss) + '</div>' : '';
+      ? '<div class="reader-exec-summary" style="--exec-c:' + color + '">' + esc(letter.ss) + '</div>' : '';
 
     contentEl.innerHTML =
       '<div class="reader-header" style="border-bottom-color:' + color + '">' +
