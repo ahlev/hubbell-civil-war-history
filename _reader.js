@@ -344,30 +344,65 @@ window.HubbellReader = (function () {
     if (activeT != null && isNaN(activeT)) activeT = null;
 
     var VBW = 1000, baseY = 15;
-    function posPct(t) { return CTX_INSET + ((t - minT) / rangeT) * (100 - 2 * CTX_INSET); }
-    function xUser(t) { return (posPct(t) / 100 * VBW).toFixed(1); }
+    // Compress anomalously long silences (notably the 5-year 1865→1870 gap) so
+    // the dense wartime correspondence isn't squashed into a sliver. Gaps between
+    // consecutive letters longer than GAP_THRESHOLD collapse to GAP_COMPRESSED in
+    // "effective" time; a dashed break mark shows where time was compressed.
+    var DAY = 86400000, GAP_THRESHOLD = 200 * DAY, GAP_COMPRESSED = 70 * DAY;
+    var sortedT = items.slice().sort(function (a, b) { return a.t - b.t; });
+    var segs = [], eff = 0, breaks = [];
+    for (var s = 1; s < sortedT.length; s++) {
+      var gap = sortedT[s].t - sortedT[s - 1].t, comp = gap > GAP_THRESHOLD;
+      var w = comp ? GAP_COMPRESSED : gap;
+      segs.push({ t0: sortedT[s - 1].t, t1: sortedT[s].t, e0: eff, e1: eff + w, comp: comp });
+      if (comp) breaks.push(eff + w / 2);
+      eff += w;
+    }
+    var effTotal = eff || 1;
+    function effOf(t) {
+      if (t <= sortedT[0].t) return 0;
+      if (t >= sortedT[sortedT.length - 1].t) return effTotal;
+      for (var q = 0; q < segs.length; q++) {
+        if (t >= segs[q].t0 && t <= segs[q].t1) {
+          var sp = segs[q].t1 - segs[q].t0;
+          return segs[q].e0 + (sp ? (t - segs[q].t0) / sp * (segs[q].e1 - segs[q].e0) : 0);
+        }
+      }
+      return effTotal;
+    }
+    function posPct(t) { return CTX_INSET + (effOf(t) / effTotal) * (100 - 2 * CTX_INSET); }
+    function ppX(pp) { return (pp / 100 * VBW).toFixed(1); }
+    items.forEach(function (it) { it.pp = posPct(it.t); });
 
     var ticks = '';
     for (var k = 0; k < items.length; k++) {
       var it = items[k];
       var same = activeAuthor && it.a === activeAuthor;
-      var x = xUser(it.t);
+      var x = ppX(it.pp);
       ticks += '<line x1="' + x + '" y1="' + (same ? baseY - 5 : baseY - 3) +
         '" x2="' + x + '" y2="' + (same ? baseY + 5 : baseY + 3) +
         '" stroke="' + getColor(it.a) + '" stroke-width="1.4" opacity="' + (same ? 0.55 : 0.28) +
         '" vector-effect="non-scaling-stroke"/>';
     }
 
-    // Faint year gridlines: the long post-1865 span then reads as "years
-    // passing with no letters" (documented absence) instead of a layout gap.
-    // Keeps the honest linear time scale (panel decision — fidelity over compression).
+    // Year gridlines, skipping any year boundary that falls inside a compressed gap.
     var grid = '';
     for (var yy = minYear + 1; yy <= maxYear; yy++) {
       var yt = new Date(yy + '-01-01T12:00:00').getTime();
       if (yt < minT || yt > maxT) continue;
-      grid += '<line class="rcs-grid" x1="' + xUser(yt) + '" y1="2" x2="' + xUser(yt) +
-        '" y2="28" vector-effect="non-scaling-stroke"/>';
+      var inGap = false;
+      for (var g2 = 0; g2 < segs.length; g2++) { if (segs[g2].comp && yt > segs[g2].t0 && yt < segs[g2].t1) { inGap = true; break; } }
+      if (inGap) continue;
+      var gx = ppX(posPct(yt));
+      grid += '<line class="rcs-grid" x1="' + gx + '" y1="2" x2="' + gx + '" y2="28" vector-effect="non-scaling-stroke"/>';
     }
+
+    // Dashed break mark wherever a long silence was compressed.
+    var brk = '';
+    breaks.forEach(function (em) {
+      var bx = ppX(CTX_INSET + (em / effTotal) * (100 - 2 * CTX_INSET));
+      brk += '<line class="rcs-break" x1="' + bx + '" y1="3" x2="' + bx + '" y2="27" vector-effect="non-scaling-stroke"/>';
+    });
 
     var marker = '';
     if (activeT != null) {
@@ -375,14 +410,14 @@ window.HubbellReader = (function () {
         '%;--rcs-c:' + getColor(activeAuthor) + '"></span>';
     }
 
-    _ctxStrip = { items: items, minT: minT, rangeT: rangeT, inset: CTX_INSET, activeId: activeId };
+    _ctxStrip = { items: items, inset: CTX_INSET, activeId: activeId };
 
     return '<div class="reader-context-strip" id="readerCtxStrip" role="group" ' +
       'aria-label="Timeline overview of all ' + items.length + ' letters in the collection; the letter you are reading is marked. Tap or drag the strip to jump to a nearby letter.">' +
       '<span class="rcs-caption">tap to jump</span>' +
       '<svg class="rcs-svg" viewBox="0 0 ' + VBW + ' 30" preserveAspectRatio="none" aria-hidden="true">' +
-        '<line class="rcs-axis" x1="' + xUser(minT) + '" y1="' + baseY + '" x2="' + xUser(maxT) +
-        '" y2="' + baseY + '" vector-effect="non-scaling-stroke"/>' + grid + ticks +
+        '<line class="rcs-axis" x1="' + ppX(posPct(minT)) + '" y1="' + baseY + '" x2="' + ppX(posPct(maxT)) +
+        '" y2="' + baseY + '" vector-effect="non-scaling-stroke"/>' + grid + brk + ticks +
       '</svg>' +
       marker +
       '<span class="rcs-hover" hidden></span>' +
@@ -395,19 +430,12 @@ window.HubbellReader = (function () {
   function _ctxNearest(clientX, rect) {
     if (!_ctxStrip || !rect.width) return null;
     var pct = ((clientX - rect.left) / rect.width) * 100;
-    var frac = (pct - _ctxStrip.inset) / (100 - 2 * _ctxStrip.inset);
-    frac = Math.max(0, Math.min(1, frac));
-    var target = _ctxStrip.minT + frac * _ctxStrip.rangeT;
     var best = null, bestD = Infinity;
     for (var i = 0; i < _ctxStrip.items.length; i++) {
-      var dd = Math.abs(_ctxStrip.items[i].t - target);
+      var dd = Math.abs(_ctxStrip.items[i].pp - pct);   // nearest by on-strip position
       if (dd < bestD) { bestD = dd; best = _ctxStrip.items[i]; }
     }
     return best;
-  }
-
-  function _ctxPctFor(t) {
-    return (_ctxStrip.inset + ((t - _ctxStrip.minT) / _ctxStrip.rangeT) * (100 - 2 * _ctxStrip.inset)).toFixed(2);
   }
 
   function bindContextStrip() {
@@ -423,8 +451,8 @@ window.HubbellReader = (function () {
     function preview(clientX) {
       var near = _ctxNearest(clientX, strip.getBoundingClientRect());
       if (!near) return;
-      var lp = parseFloat(_ctxPctFor(near.t));
-      hov.style.left = lp + '%';
+      var lp = near.pp;
+      hov.style.left = lp.toFixed(2) + '%';
       hov.style.setProperty('--rcs-c', getColor(near.a));
       hov.hidden = false;
       // Sender → Recipient (color encodes the sender, so name it). formatDate
