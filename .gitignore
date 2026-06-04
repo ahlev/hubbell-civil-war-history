@@ -17,3 +17,7 @@ tasks/
 .playwright-mcp/
 
 .vercel
+
+# Local dev / tooling (added during web-polish-2-6)
+node_modules/
+package-lock.json
