@@ -5,8 +5,26 @@
     "old": "First letter in the collection. Documents the 34th NY's journey from Albany to Washington in the opening weeks of the war, including passage through Baltimore — a city where a riot had killed soldiers just weeks earlier (April 19, 1861).",
     "draft": "Henry's first letter home: the 34th New York reaches Washington after marching through Baltimore, where twenty men carried loaded guns \"in case of attack\" but the city \"rather cheered\" them. He notes bullet holes in the depot roof from an earlier row. Already mindful of his widowed mother, he declines a costly furlough home, trusting she will need the eight dollars he sent more than he needs the visit.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Henry's first letter home: the 34th New York reaches Washington after marching through Baltimore, where twenty men carried loaded guns \"in case of attack\" but the city \"rather cheered\" them. He notes bullet holes in the depot roof from an earlier row. Already mindful of his widowed mother, he declines a costly furlough home, trusting she will need the eight dollars he sent more than he needs the visit.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "FACT ISSUES: none. Every claim checks out against the letter: Henry's first letter home, the 34th New York's arrival at Washington via Baltimore, the twenty men detailed with loaded guns \"in case of attack,\" the city's tepid \"rather cheered\" reception, the bullet holes in the depot roof from an earlier disturbance, the declined furlough on cost grounds, and the eight dollars sent home to his widowed mother. The \"earlier row\" framing for the bullet holes is a reasonable period-faithful reading.\n\nFEEDBACK: This is a strong, well-grounded draft that earns its length and stays vivid. It nails the historical hook — a brand-new regiment's first passage through Baltimore, the very city where the 6th Massachusetts had been mobbed and bloodied that April, which is exactly why twenty men marched with loaded weapons and why the depot still bore bullet holes. The summary lets a knowing reader feel that tension without importing the outside event (per the no-outside-events rule), and the \"rather cheered\" detail is a lovely, precise period note that complicates the expected hostility. The human beat — declining the furlough so his mother keeps the eight dollars — lands naturally and is woven, not tacked on. Minor calibration: \"an earlier row\" slightly undersells; the letter's own language and the loaded-gun detail signal real, recent danger, so a word like \"earlier trouble\" or \"earlier clash\" carries the menace a hair better without spoiling or importing. The phrase \"Already mindful of his widowed mother\" is a touch editorial-explanatory; the act itself already shows the mindfulness. Both are polish, not problems.\n\nSUGGESTED: Henry's first letter home: the 34th New York reaches Washington after passing through Baltimore, where twenty men marched with loaded guns \"in case of attack\" — though the city \"rather cheered\" them, and bullet holes still scarred the depot roof from an earlier clash. Already he weighs duty against want: he declines a costly furlough, trusting his widowed mother needs the eight dollars he sent more than he needs the visit home."
+      },
+      {
+        "lens": "military-expert",
+        "text": "FACT ISSUES: none. Every claim in the draft is anchored in this letter's text. The unit (34th NY / Co. D), the Washington arrival, the half-mile march through Baltimore, the twenty men with loaded guns \"in case of attack,\" the city that \"rather cheered\" them, the bullet holes in the depot roof (\"a row\"), the eight dollars sent home, and the declined furlough on cost grounds are all present in the transcription. The draft correctly does NOT import the April 19 Baltimore riot (which lives only in the editorial note, not the letter), and correctly treats the furlough as cost-driven prudence toward his mother. One caution rather than an error: the letter says \"Twenty of our company\" had loaded guns, and the draft says \"twenty men\" — accurate, though \"twenty of his company\" would be marginally truer to the source. Also note the date discrepancy (June 6 header vs. corrected July 6) is metadata-level and need not surface in a summary; the draft wisely sidesteps it.\n\nFEEDBACK: Militarily this is clean and well-prioritized. It leads with the right anchor — the regiment's arrival at Washington and the tense Baltimore transit — which is exactly the historical hinge a reader connecting the collection's dots needs from the first letter. The \"loaded guns / rather cheered\" juxtaposition captures the real military reality of mid-1861 Baltimore: a city recently hostile, now uneasily pacified, transited under arms but without incident. Two small refinements would sharpen the military framing. First, the draft attributes the depot bullet holes to \"an earlier row\" — the letter's own word is \"a row,\" vague by design; \"earlier row\" is a fair gloss but you could note it as evidence of prior violence without overstating. Second, the draft omits two vivid, letter-grounded logistics details that paint the picture and underscore scale: the regiment moved in \"thirty cars\" drawn by \"two engines,\" and traveled Albany-to-Washington cheered the whole way — a nice counterweight to the Baltimore tension. The human beat (the declined furlough, eight dollars to his widowed mother) is well chosen and not over-sentimentalized. The draft earns its length and stays vivid; it sits a touch under the 350-450 target and has room to add one concrete detail.\n\nSUGGESTED: Henry's first letter home: the 34th New York reaches Washington after an Albany-to-Baltimore journey by boat and rail, cheered most of the way. Marching half a mile through still-uneasy Baltimore, twenty of his company carried loaded guns \"in case of attack,\" yet the city \"rather cheered\" them; he notes bullet holes in the depot roof from an old \"row.\" Already mindful of his widowed mother, he declines a costly furlough, trusting she will need the eight dollars he sent more than he needs the trip home."
+      },
+      {
+        "lens": "mccullough",
+        "text": "FACT ISSUES: none. Every claim in the draft is grounded in this letter — the journey to Washington, the half-mile march through Baltimore, the twenty men with loaded guns \"in case of attack,\" the city that \"rather cheered\" them, the bullet holes \"in the roof where there had been a row,\" the eight dollars sent home, and the foregone furlough he declines because \"you will need the money at home.\" One caution, not a fact error: the draft credits the loaded guns and the cheering to the same Baltimore passage, which the letter does support; just keep them as the letter frames them — precaution that proved \"useless.\"\n\nFEEDBACK: This is a strong, faithful draft that earns its length and reads with real warmth. The Baltimore beat is vivid and the financial self-denial lands the human note without sentimentality. Two refinements. First, \"an earlier row\" is thin — the letter gives you Henry's own plain word (\"a row\") and the eerie image of holes in the depot roof; let that stand as he saw it, an ordinary soldier reading violence off a ceiling without knowing its full weight. Second, the draft buries one of the letter's quietest, most telling details: it was Brink who priced the furlough at twelve dollars, and Henry, doing the arithmetic of a poor family, decides it \"would not pay.\" Also worth surfacing for texture: this is a green soldier — he finds the knapsack \"very heavy,\" hopes to get \"my likeness taken,\" and is unsettled by \"such a drunken set.\" You needn't cram all of it, but one of those notes would deepen the portrait of a first letter.\n\nSUGGESTED: Henry's first letter home: the 34th New York reaches Washington, cheered the whole way from Albany yet braced for trouble — twenty men marched the half-mile through Baltimore with guns loaded \"in case of attack,\" a precaution that proved \"useless\" as the city \"rather cheered\" them. He notes bullet holes in the depot roof \"where there had been a row.\" Already the family arithmetic governs him: told a furlough home would cost twelve dollars, he lets it go, trusting his widowed mother needs the eight dollars he sent more than he needs the visit."
+      },
+      {
+        "lens": "copywriter",
+        "text": "FACT ISSUES: none. Every claim in the draft is supported by the letter: the 34th NY's arrival at Washington (Friday eve), the march through Baltimore, twenty men with loaded guns \"in case of attack,\" the city that \"rather cheered\" them, the bullet holes in the depot roof from \"a row,\" the declined furlough on cost grounds, and the eight dollars sent home. One caution, not an error: the letter does not itself say this is Henry's \"first letter home\" — that's a collection-level fact (true, but external to this letter's text). The brief permits using the arc to judge significance; just note the phrase asserts a fact the letter alone can't confirm. The draft's \"earlier row\" is appropriately faithful to Henry's own vague \"a row\" rather than importing the April 19 riot — good restraint.\n\nFEEDBACK: This is strong work — vivid, accurate, well-sequenced, and it leads with the single most compelling true beat (first letter, the regiment reaching Washington through tense Baltimore). The loaded-guns-versus-cheers tension is the right centerpiece and the draft frames it cleanly. Two notes. First, \"an earlier row\" softly invites the reader to assume the famous Baltimore riot; since the letter only says \"a row,\" consider keeping it as Henry's own ambiguous detail (the depot bullet holes) without the \"earlier\" framing that hints at causation the letter doesn't make. Second, the close is excellent and is the real human payoff — the widowed-mother thrift — but \"Already mindful of\" is slightly editorializing; Henry's own logic (he'd have liked the visit, but she needs the money more) is more moving stated plainly. Length is good (~430 chars) and earns itself. The one structural thing to weigh: \"first letter home\" is doing heavy hook-work but is the one non-letter-internal claim — keep it only if the project is comfortable anchoring on collection context.\n\nSUGGESTED: Henry's first letter home: the 34th New York reaches Washington after marching through Baltimore, where twenty men carried loaded guns \"in case of attack\" but the city \"rather cheered\" them. He notes bullet holes in the depot roof from a recent \"row.\" Offered a furlough, he turns it down — the cost is too dear, and he trusts his widowed mother will need the eight dollars he sent more than he needs the trip home."
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -16,8 +34,26 @@
     "old": "Henry is writing from Washington while hearing the cannons of the First Battle of Bull Run (Manassas) — the first major battle of the Civil War, fought July 21, 1861, approximately 25-30 miles from Washington. This is a real-time eyewitness account of the battle's sound reaching the capital.",
     "draft": "Writing from Washington on July 21, 1861, Henry tells his mother that \"while I am writing there is a battle going on,\" with cannons firing \"not over twenty-eight miles from here\" — a real-time eyewitness account of distant fighting. Uncertain whether his regiment will move or serve as city guard, he steadies himself in faith hours after a six o'clock chapel service, adding that wherever he goes, he is ready.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from Washington on July 21, 1861, Henry tells his mother that \"while I am writing there is a battle going on,\" with cannons firing \"not over twenty-eight miles from here\" — a real-time eyewitness account of distant fighting. Uncertain whether his regiment will move or serve as city guard, he steadies himself in faith hours after a six o'clock chapel service, adding that wherever he goes, he is ready.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "FACT ISSUES: none. Every claim in the draft is grounded in this letter: the Washington dateline and July 21, 1861 date (header); \"while I am writing there is a battle going on\" and cannons \"not over twenty-eight miles from here\" (verbatim/near-verbatim); the regiment's uncertainty between moving and serving as City guard; the six o'clock chapel service; and \"Wherever we go I am ready\" plus the trust-in-providence line. The draft correctly does NOT name First Bull Run/Manassas, which is the right call — the letter itself never names the battle, and importing it would violate the \"only facts in THIS letter\" rule (the metadata's currentSummary does name it, but that's outside-knowledge enrichment the summary must not borrow).\n\nFEEDBACK: Historically this is one of the collection's anchor letters and the draft seizes the right hook — a Union soldier in the capital narrating, in real time and in his own hand, the sound of cannon from the war's first major battle, without knowing what it is or how it ends. That dramatic irony (the reader knows it's Bull Run; Henry does not) is the deepest source of significance, and the draft captures it well through \"real-time eyewitness account of distant fighting\" and the present-tense quote. The faith beat and the City-guard uncertainty are correctly woven, not tacked on. Two small notes: \"steadies himself in faith\" leans slightly toward the interpretive/sentimental — Henry's own register is plainer (\"Wherever we go I am ready... I shall not be forsaken if I put my trust\"). And \"twenty-eight miles\" is worth keeping verbatim because his estimate is, by happenstance, strikingly close to the true distance to Manassas — a detail a historian will prize. Length (~430 chars) is well within the rich-style target and earns it. The draft is strong; only minor tightening is warranted.\n\nSUGGESTED: From Washington on July 21, 1861, Henry tells his mother that \"while I am writing there is a battle going on,\" cannon firing \"not over twenty-eight miles from here\" — a Union soldier narrating, in real time and in his own hand, the sound of a great fight whose name and outcome he cannot yet know. Unsure whether his regiment will march or stay on as city guard, he writes hours after a six o'clock chapel service, steadied by a plain conviction that wherever he goes, he is ready."
+      },
+      {
+        "lens": "military-expert",
+        "text": "FACT ISSUES: none. Every claim in the draft is anchored in this letter: the place (Washington), date (July 21, 1861), recipient (his mother), the quoted \"while I am writing there is a battle going on,\" the \"not over twenty-eight miles from here\" estimate, the uncertainty about whether the regiment moves or serves as city guard, the six o'clock chapel service, and his \"Wherever we go I am ready\" resolve. The draft correctly does NOT name Bull Run/Manassas — which is right, because Henry himself does not name it; he only hears the cannon. Importing that name would be an outside fact Henry did not know as he wrote.\n\nFEEDBACK: This is the single most historically significant letter in the collection, and the draft handles its one delicate hazard correctly — it conveys the eyewitness weight without spoiling that the cannon Henry hears is First Bull Run, the war's first major battle, ending in a Union rout he does not yet know about. That restraint is exactly right for a tooltip hook; it teases the stakes instead of flatly spoiling the payoff. The \"twenty-eight miles\" detail is worth keeping not just as color but because it is geographically accurate to Manassas Junction — a historian will recognize the bearing immediately. Two small notes from the military lens: \"distant fighting\" slightly undersells the moment; a reader should feel that this is unidentified, ongoing combat heard from the capital, which is the historically resonant image. And the regiment is the 34th New York (Co. D) — the letter doesn't name the unit, so the summary correctly omits it, but the city-guard-versus-move uncertainty is genuinely meaningful: it shows a green regiment still awaiting its role on the very day the war turned serious. The draft is strong and earns its length; only light sharpening is warranted.\n\nSUGGESTED: Writing to his mother from Washington on July 21, 1861, Henry reports that \"while I am writing there is a battle going on,\" cannon firing \"not over twenty-eight miles from here\" — an eyewitness hearing, from the capital, the first major battle of the war as it unfolds. Unsure whether his regiment will march or be held back as city guard, he steadies himself hours after a six o'clock chapel service: wherever he goes, he writes, he is ready."
+      },
+      {
+        "lens": "mccullough",
+        "text": "FACT ISSUES: none. Every claim in the draft is anchored in this letter — Washington; July 21, 1861; \"while I am writing there is a battle going on\"; cannons \"not over twenty-eight miles from here\"; uncertainty over whether the regiment will move or serve as City guard; the six o'clock chapel service; and \"Wherever we go I am ready.\" Crucially, the draft does NOT name Bull Run or Manassas — correctly so, since Henry never does. The metadata's currentSummary imports that outside event; the draft wisely keeps it out. Good discipline.\n\nFEEDBACK: This is strong work. The hook is the right one — a soldier in the capital listening to history happen twenty-eight miles off, not knowing what it means. The draft earns its length and the \"real-time eyewitness account\" framing is accurate and vivid. Two notes. First, \"a real-time eyewitness account of distant fighting\" is a touch editorial-clinical — it tells the reader what the moment IS rather than letting the moment do it; the phrase reads like a catalog tag dropped into the sentence. I'd let the quotation and the distance carry that weight on their own. Second, the closing leans entirely on faith, which is true to the letter, but Henry's \"wherever we go I am ready\" gains its real charge from the uncertainty that precedes it — he doesn't know if he marches toward those guns or stays behind as City guard. Tying readiness to that fork sharpens the human stakes without inventing anything. The chapel detail is well placed; keep it.\n\nSUGGESTED: Writing from Washington on July 21, 1861, Henry breaks off mid-letter to tell his mother that \"while I am writing there is a battle going on,\" with cannons audible \"not over twenty-eight miles from here.\" He cannot say whether his regiment will march toward that sound or stay behind as City guard — and, hours after a six o'clock chapel service, he steadies himself on faith: wherever he goes, he is ready."
+      },
+      {
+        "lens": "copywriter",
+        "text": "FACT ISSUES: none. Every claim in the draft is anchored in this letter — Washington, July 21, 1861, the quoted \"while I am writing there is a battle going on,\" the cannons \"not over twenty-eight miles from here,\" the uncertainty over whether the regiment moves or serves as city guard, the six o'clock chapel service by the Chaplain, and \"wherever we go I am ready.\" Critically, the draft does NOT import the words \"Bull Run,\" \"Manassas,\" or the Union rout — all of which appear in the metadata's currentSummary/editorial but NOT in Henry's letter. The draft correctly stays inside what Henry could know as he wrote. Good discipline.\n\nFEEDBACK: This is strong. The lead is the single most compelling true detail — a soldier in the capital narrating a battle he can hear but not see, in real time — and the long quote earns its place because the present-tense voice (\"while I am writing\") is the whole hook. \"A real-time eyewitness account of distant fighting\" is a clean, non-spoiling frame. The human beat (steadying himself in faith, \"wherever he goes, he is ready\") is woven in, not tacked on. Two small refinements: \"twenty-eight miles\" carries more weight if we let Henry's own precision land rather than burying it mid-clause; and \"steadies himself in faith hours after a six o'clock chapel service\" is slightly overbuilt — the chapel detail is lovely but the \"hours after\" timing is an inference the letter doesn't quite support (he says service was \"this morning at six,\" and may have another \"this afternoon,\" but doesn't peg the writing relative to it). Trim that timing claim. Length and voice are on target.\n\nSUGGESTED: Writing to his mother from Washington on July 21, 1861, Henry breaks off mid-letter — \"while I am writing there is a battle going on\" — and reckons the cannon fire \"not over twenty-eight miles from here,\" a soldier narrating in real time a fight he can hear but not see. Unsure whether his regiment will march or be held as city guard, he steadies himself after the Chaplain's morning service: wherever he goes, he is ready, trusting he \"shall not be forsaken.\""
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -27,8 +63,26 @@
     "old": "The \"Later\" postscript is written as news of the Union defeat at First Bull Run reaches Washington. Henry's regiment is ordered to move — the capital is in panic. The shift from mundane daily life (\"I want to get a shirt washed\") to \"There has been a hard battle today\" in a single letter is one of the most dramatic moments in the collection.",
     "draft": "Writing from Washington, Henry fills most of this letter to his sister Frances with ordinary camp life — five hours of daily drill, the Colonel's praise, two newspapers to read, a request for a dollar to wash a shirt. Then a postscript breaks in: \"We are ordered off,\" a hard battle was fought that day, and he tells her not to send the money after all.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from Washington, Henry fills most of this letter to his sister Frances with ordinary camp life — five hours of daily drill, the Colonel's praise, two newspapers to read, a request for a dollar to wash a shirt. Then a postscript breaks in: \"We are ordered off,\" a hard battle was fought that day, and he tells her not to send the money after all.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "FACT ISSUES: none. Every claim in the draft is supported by the letter: Washington as the dateline, the sister Frances as recipient, five hours of daily drill, the Colonel telling each captain the men were improving (paraphrased as \"praise\"), the two papers, the one-dollar laundry request, the \"We are ordered off\" postscript, the \"hard battle today,\" and the reversal telling her not to send money. Crucially, the draft does NOT name Bull Run or the Union defeat — correctly, since Henry himself writes only \"There has been a hard battle today. Have not heard much about it yet.\" The summary stays inside the soldier's own limited knowledge, which is exactly right.\n\nFEEDBACK: This is a strong, period-accurate draft that gets the single most important thing right — it resists the temptation (which the file's own currentSummary and editorial both indulge) to name First Bull Run. From Henry's vantage on July 21, 1861, the battle is a rumor, not a named event, and the summary honors that fog-of-war framing. The whiplash structure — domestic trivia then the postscript breaking in — is the letter's whole point, and the draft captures it vividly with well-chosen concrete details. The \"five hours of daily drill,\" \"two newspapers,\" and \"a dollar to wash a shirt\" are exactly the texture a historian wants. Two small notes: \"the Colonel's praise\" slightly compresses what is really the Colonel praising the men's drilling to the captains, but it's a fair gloss. And the phrase \"fills most of this letter with ordinary camp life\" is good, but the close could land the historical stake a touch harder — the reader should feel that this postscript is the war arriving in real time at the capital's doorstep, not just a change of plans. The draft is already publishable; a light revision can sharpen the final beat. Length (~430 chars) is well within the rich target.\n\nSUGGESTED: Writing from Washington on July 21, 1861, Henry fills most of this letter to his sister Frances with the small change of camp life — five hours of daily drill, the Colonel's praise of the men, two newspapers, a dollar begged to wash a shirt. Then a postscript breaks in: \"We are ordered off,\" a hard battle has been fought that very day, news of it still scarce — and he tells her to hold the money until he knows where the war is taking him."
+      },
+      {
+        "lens": "military-expert",
+        "text": "FACT ISSUES: none. The draft makes no military claims beyond what the letter states. Critically, it correctly avoids naming Bull Run / First Manassas — the letter itself only says \"a hard battle today\" and \"We are ordered off,\" with Henry explicitly noting he has \"not heard much about it yet.\" Importing the battle's name would violate the this-letter-only rule, and the draft properly resists that temptation. The unit (Co. D, 34th NY) is not named in the letter, and the draft correctly omits it. \"Washington\" is supported by the location field and the city-guard/ordered-off context. \"The Colonel's praise\" matches the letter (\"the men were improving in drilling\"). All dollar/laundry/newspaper/drill details are accurate.\n\nFEEDBACK: This is strong and military-historically disciplined. The structural move — body of camp trivia, then the postscript breaking in — is exactly the letter's significance, and the draft lets the reader feel the whiplash without spoiling that this is the day of First Bull Run (a payoff the historian supplies from the date 1861-07-21). One precision note from the military lens: \"We are ordered off\" is the marrow here. For a green regiment held near the capital, an emergency move-order arriving the same day as a \"hard battle today\" is the operational tell that Washington's defenses were being scrambled in the panic — the draft surfaces this but treats it as equal in weight to the laundry reversal. Consider letting the order-off carry slightly more stakes-tension as the hinge. Minor: \"fills most of this letter\" is accurate but a touch flat; the contrast lands harder if the ordinary details read as genuinely calm before the rupture. The \"don't send the money after all\" beat is a lovely human/operational detail (he doesn't know where he'll be) and earns its place. Length is in good range and the picture-painting style is met.\n\nSUGGESTED: From Washington, Henry fills his letter to his sister Frances with the calm of camp routine — five hours of daily drill, the Colonel's praise that drew three cheers, two newspapers to read, a dollar wanted to wash a shirt. Then a postscript ruptures the page: \"We are ordered off,\" ready to march by morning, for \"there has been a hard battle today\" — though he has \"not heard much about it yet.\" In the same breath he tells her not to send the money after all, not knowing where he will be."
+      },
+      {
+        "lens": "mccullough",
+        "text": "FACT ISSUES: none. Every claim in the draft is grounded in this letter — Washington as the writing location, the sister Frances as recipient, five hours of daily drill, the Colonel's praise relayed to the captains, the two papers to read, the one-dollar laundry request, the \"We are ordered off\" postscript, the \"hard battle today,\" and the reversal telling her not to send money. The draft correctly does NOT name Bull Run, which is right: the letter itself says only \"There has been a hard battle today. Have not heard much about it yet.\" Importing the battle's name would violate the only-facts-in-this-letter rule.\n\nFEEDBACK: This is strong work, and the structural instinct is exactly correct — the whole power of this letter is the whiplash between a soldier worrying about a clean shirt and a battle landing on the page. The draft earns its length and the contrast lands. Two refinements. First, the body inventory runs slightly list-like (\"five hours of daily drill, the Colonel's praise, two newspapers to read, a request for a dollar\") — four items strung in a row flattens into a catalog where two well-chosen ones would breathe more. Second, and more important: the draft tells us he doesn't know where he is going, but the letter gives us the actual human detail — \"Shall probably leave in the morning... May leave before morning\" — the uncertainty of a man who cannot say whether he has hours or minutes. And the dollar reversal is more poignant when you feel WHY: he rescinds it \"till I write,\" because he no longer knows where a letter could reach him. Let that do the emotional work rather than stating it flatly.\n\nSUGGESTED: From Washington, Henry fills a letter to his sister Frances with the small business of camp life — five hours of daily drill, a dollar wanted to get a shirt washed, his picture that Albert thought perfect. Then a postscript breaks the calm: \"We are ordered off... There has been a hard battle today.\" He cannot say whether he leaves by morning or before it, and quietly takes back his request for the dollar — not till he writes again, for he no longer knows where her letter would find him."
+      },
+      {
+        "lens": "copywriter",
+        "text": "FACT ISSUES: none. Every claim in the draft is grounded in this letter: Washington, D.C. location; sister Frances; five hours of daily drill; the Colonel's praise to the captains; the two papers to read; the one-dollar request to wash a shirt; the \"Later\" postscript with \"We are ordered off,\" the hard battle \"today,\" and the instruction not to send money yet. The draft correctly does NOT name Bull Run or import the defeat — the letter itself says only \"a hard battle today... Have not heard much about it yet,\" so the draft stays inside the letter's knowledge horizon. Good discipline.\n\nFEEDBACK: The structure is exactly right for this letter — the whole power here is the whiplash from laundry money to \"We are ordered off,\" and the draft preserves that reveal without spoiling it. The lead is appropriately mundane-by-design because the contrast IS the hook. A few tightenings: \"fills most of this letter... with ordinary camp life\" is slightly slack; \"ordinary camp life\" then a list is a touch list-y but the items are vivid enough to earn it. \"a request for a dollar to wash a shirt\" is a strong, specific human beat — keep it. The payoff lands well: leading the postscript with the quote, then \"a hard battle was fought that day,\" then the money reversal mirrors the letter's own emotional logic. The one thing I'd sharpen is that the draft buries the single most arresting fact — that he tells her not to send the money he just begged for — as the last, quietest clause, when it's actually the human heart of the reversal. Pull a touch more weight onto it. Also \"he tells her not to send the money after all\" is good but \"after all\" is mildly editorializing; the letter's \"till I write\" carries real uncertainty (he doesn't know where he'll be) worth a hair more menace. Length is in range and earns its words.\n\nSUGGESTED: Writing from Washington, Henry fills most of this letter to his sister Frances with the small business of camp life — five hours of daily drill, the Colonel's praise, two papers to read, a plea for one dollar to get a shirt washed. Then a postscript breaks in: \"We are ordered off,\" he writes; \"there has been a hard battle today.\" He has not heard much yet, and in the same breath he takes back his request — don't send the money now, not till he writes again, because he no longer knows where he'll be."
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -38,8 +92,26 @@
     "old": "Camp life update with details on guard duty along the Potomac and accidental death in regiment.",
     "draft": "Writing from the Washington defenses, Henry reports his 34th New York regiment posted as Potomac guards against rebel crossings — and the suspicion it may never see battle, to which he answers, \"I for one am willing to go. I don't care where.\" He sends his five-dollar gold piece home by the Captain, ordering his sister and mother to spend it: \"I put that down as a command.\" A Co. H private, the regiment's third such loss, was killed when soldiers playing with their guns let one go off.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from the Washington defenses, Henry reports his 34th New York regiment posted as Potomac guards against rebel crossings — and the suspicion it may never see battle, to which he answers, \"I for one am willing to go. I don't care where.\" He sends his five-dollar gold piece home by the Captain, ordering his sister and mother to spend it: \"I put that down as a command.\" A Co. H private, the regiment's third such loss, was killed when soldiers playing with their guns let one go off.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "FACT ISSUES: none. Every claim is anchored in the letter: the Washington, D.C. dateline; the 34th New York stationed \"as guards to keep the rebels from crossing the river\"; the relayed opinion the regiment \"may never see a battle\"; Henry's answer \"I for one am willing to go. I don't care where\"; the five-dollar gold piece sent home by the Capt. with the command to spend it; and the Co. H private killed while soldiers were \"playing with their guns when one of them went off,\" the third such death in the regiment. The unit \"34th New York\" is supplied from collection metadata, not the letter text, but it is correct and the brief permits identifying the regiment, so this is acceptable framing rather than an invented fact.\n\nFEEDBACK: The summary is accurate, period-correct, and well-chosen in its anchors. The 1861 Potomac picket-guard posting, the green-regiment anxiety about \"never seeing a battle,\" and the camp-accident death are exactly the historically significant beats — they situate this firmly in the static, disease-and-drill first autumn of the war before the regiment ever faced combat, which a historian tracing the collection's arc needs. The three-quote density is the one real weakness: three direct quotations in 350-odd characters reads slightly as a quote-reel, and the gold-piece \"command\" line, while charming, is the least historically load-bearing. Two smaller notes: \"rebel crossings\" is period-apt phrasing and fine; and the letter's quiet undercurrent — Henry sick, unable to drill three days, in a camp that is \"a great place for fever and ague\" — is the human/historical beat actually most emblematic of 1861 camp life, and the draft omits it entirely in favor of the eager-for-battle line. That illness detail would deepen the period texture more than the gold-piece command. Consider trimming one quote and threading in the sickness to better balance the soldier's bravado against the real killer of his war.\n\nSUGGESTED: Writing from the Washington defenses in his fourth month of service, Henry reports his regiment posted as Potomac guards \"to keep the rebels from crossing the river,\" and relays the camp opinion it may never see a battle — to which he answers, \"I for one am willing to go. I don't care where.\" Yet he writes sick, unable to drill for three days in a camp he calls \"a great place for fever and ague,\" and notes a Co. H private shot dead while soldiers played with their guns — the regiment's third such loss to carelessness."
+      },
+      {
+        "lens": "military-expert",
+        "text": "FACT ISSUES: none. Every military claim in the draft is supported. The 34th New York identification is correct for Henry (Co. D, per project context) and the letter's \"Our Regt.\" Potomac guard mission. The picket/guard duty against rebels crossing the river, the suspicion the regiment \"may never see a battle,\" his \"I for one am willing to go. I don't care where,\" the five-dollar gold piece sent home by the Captain, \"I put that down as a command,\" and the Co. H private killed when soldiers playing with their guns let one go off — being the regiment's third such death — are all verbatim or faithfully paraphrased from the letter. The \"Washington defenses\" framing is fair: the letter is datelined Washington, D.C., and describes the river-guard line with a 10,000-man fallback force three miles off.\n\nFEEDBACK: Militarily accurate and well-emphasized. The draft correctly leads with the regiment's static defensive posture on the Potomac picket line — the right historical anchor for a September 1861 letter, when the Army of the Potomac was still forming and green regiments drew guard duty rather than combat. The tension between that idle posting and Henry's appetite for action is the real stake, and the draft captures it. One soft spot: the regiment is named but never tied to Henry as a member of Co. D — minor, since the summary is about the unit's mission, not his company. The accidental-death sentence is strong and correctly notes it as the third such loss, a telling detail about untrained-volunteer camp danger. Naming the regiment \"34th New York\" is an editorial supply (the letter says only \"Our Regt.\"); it is correct and acceptable, but a historian should know it is identification, not a quote. The draft earns its length and stays vivid. No changes required.\n\nSUGGESTED: (omitted — the draft is strong as written.)"
+      },
+      {
+        "lens": "mccullough",
+        "text": "FACT ISSUES: none. Every claim checks out against the letter: the Washington defenses (\"Washington, D.C.\"), the regiment posted as Potomac guards \"to keep the rebels from crossing the river,\" the expressed opinion that the regiment \"may never see a battle,\" Henry's reply \"I for one am willing to go. I don't care where,\" the five-dollar gold piece sent home by the Captain with the order to spend it (\"I put that down as a command\"), and the Co. H private killed when men \"playing with their guns\" let one go off — \"three that have lost their lives by carelessness in this Regt.\" One small fidelity note: the letter never names the unit as \"34th New York\" — that's correct collection knowledge but not in THIS letter's text. The brief's hard rule is \"facts found in THIS letter.\" The unit designation is a borderline import. It's true and helps a historian, but strictly it's outside-the-letter. I'd flag it as the one thing to weigh, not a falsehood.\n\nFEEDBACK: This is a strong, vivid draft that earns its length — three distinct movements (the soldier's restlessness, the gift home, the camp death) cleanly rendered with real quotation. The \"I put that down as a command\" beat is the heart and it's handled with exactly the right restraint. Two refinements. First, the draft leads with the military posting and buries the most human, most telling detail — the gold piece pressed on his mother and sister with that mock-stern order — in the middle. McCullough's instinct: the war's texture lives in that gesture. Consider whether the gift or the guard duty is the truer anchor; I lean toward letting them share the open. Second, \"the regiment's third such loss\" reads slightly clinical; the letter's own phrase — death \"by carelessness\" — is more haunting and more honest to Henry's voice. Finally, weigh dropping \"34th New York\" to honor the this-letter-only rule, or keep it knowing it's a justified bridge. The draft is good enough that I'd offer only a light polish.\n\nSUGGESTED: Writing from the Washington defenses three months from home, Henry reports his regiment posted as guards along the Potomac to keep the rebels from crossing — and the rumor it may never see battle, to which he answers, \"I for one am willing to go. I don't care where.\" He sends his five-dollar gold piece home by the Captain and orders his sister and mother to spend it: \"I put that down as a command. Times are hard.\" In the same breath he records a Co. H private shot dead on guard when men playing with their guns let one go off — the third in the regiment lost, he notes, \"by carelessness.\""
+      },
+      {
+        "lens": "copywriter",
+        "text": "FACT ISSUES: none. Every claim checks out: the Washington defenses (\"Washington, D.C.\"), the regiment as Potomac guards keeping rebels from crossing the river, the opinion the regiment \"may never see a battle,\" Henry's \"I for one am willing to go. I don't care where,\" the five-dollar gold piece sent home by the Captain, the \"I put that down as a command\" order to mother and sister, and the Co. H private killed when soldiers playing with their guns let one go off — described as the third life lost to carelessness in the regiment. One small caution: the draft says \"34th New York regiment,\" but the letter itself never names the unit — it says only \"Our Regt.\" The \"34th New York\" is correct collection-level fact, but per the hard rule that the summary text must contain only facts found in THIS letter, naming the unit is an outside import. Recommend cutting it to \"his regiment.\"\n\nFEEDBACK: This is vivid and largely earns its length, but it leans hard on quotation — two pulled quotes plus a third (\"the regiment's third such loss\") makes the middle feel quote-stacked, and the gold-piece sentence is doing two jobs at once (the remittance and the command quote) in a way that runs long. The lead is strong: guard duty on the Potomac against rebel crossings, with the live question of whether the regiment will ever see battle, is exactly the historian's hook, and Henry's defiant answer is the right human beat to carry it. Trim the unit attribution, tighten the gold-piece clause, and let the accidental death land as a clean closing image rather than a clause hung off a semicolon. The phrase \"the regiment's third such loss\" is good economy — keep that. Watch the em-dash density; the draft has three, which fragments the read.\n\nSUGGESTED: Writing from the Washington defenses, Henry reports his regiment posted along the Potomac to stop rebel crossings, amid talk it may never see a battle — to which he answers, \"I for one am willing to go. I don't care where.\" He is sending his five-dollar gold piece home by the Captain, ordering his mother and sister to spend it: \"I put that down as a command.\" And a Co. H private, the third man lost to carelessness in the regiment, was killed when soldiers playing with their guns let one go off."
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -49,8 +121,26 @@
     "old": "References Battle of Hatteras Inlet (Aug 28-29, 1861), Henry's advice against Alexander enlisting, cannon fire into Virginia, and rumor of wintering in Kentucky. Important for Alexander's enlistment timeline.",
     "draft": "Writing from the Washington defenses, Henry urges his mother that Alexander \"had better stay at home\" rather than join \"Ransoms Company\" — college or home over war. He has just learned of the fall of Fort Hatteras, \"a noble achievement,\" and wagers the war can't last two years. A P.S. warns that Ransom's company may be \"scattered\" if he reaches Albany short of a full quota.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from the Washington defenses, Henry urges his mother that Alexander \"had better stay at home\" rather than join \"Ransoms Company\" — college or home over war. He has just learned of the fall of Fort Hatteras, \"a noble achievement,\" and wagers the war can't last two years. A P.S. warns that Ransom's company may be \"scattered\" if he reaches Albany short of a full quota.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "FACT ISSUES: none. Every claim is grounded in this letter. The letter is dated Sept. 11 from the Washington defenses (cannon fire \"over into Virginia,\" consistent with \"Washington, D.C. area\"). Henry's advice that Alexander \"had better stay at home\" and the college-or-home counsel are verbatim. The fall of Fort Hatteras as \"a noble achievement\" and the wager the war \"can not last two years\" are both present and correctly attributed. The P.S. about Ransom going \"to Albany without a full Company\" being \"scattered\" is accurate. One small precision note, not an error: Henry says he \"never heard of the taking of Fort Hatteras... till you wrote\" — so \"just learned\" is fair, though it was learned secondhand from his mother's letter, not from the front.\n\nFEEDBACK: This is a strong, accurate draft that earns its length and stays vivid. The three anchors are exactly the right ones for a historian connecting the collection's dots: the brotherly counsel against enlistment (which Alexander would defy within days — a milestone in the family's war), the secondhand celebration of Hatteras as an early Union bright spot, and the recruiting-logistics intelligence in the P.S. The period framing is sound: a soldier in the static late-1861 Washington defenses reacting to distant coastal news and home-front enlistment pressure is exactly the texture of that moment. Two minor refinements would sharpen it. First, \"wagers the war can't last two years\" slightly overstates Henry's hedged optimism — he immediately qualifies, \"still we can not tell.\" Consider softening to \"predicts\" or \"guesses.\" Second, the draft is rich on event but light on the human beat the brief prizes; the emotional core here is an older brother trying to steer a younger one away from the war he himself has already entered. Surfacing that fraternal stake (without importing the outside fact that Alexander enlisted anyway) would add warmth.\n\nSUGGESTED: From the static Washington defenses — where his regiment lobs shells \"over into Virginia\" that the enemy won't return — Henry counsels his mother that Alexander, \"very anxious to join Ransoms Company,\" had better take a college place or \"stay at home\": \"Alex can do better than going to war.\" News of the fall of Fort Hatteras, reached only secondhand through her letter, he calls \"a noble achievement,\" and he hopes a few such victories will end a war he doubts can last two years. A P.S. relays camp intelligence that Ransom's company may be \"scattered\" if it reaches Albany short of a full quota."
+      },
+      {
+        "lens": "military-expert",
+        "text": "FACT ISSUES: none. Every claim is grounded in this letter. \"Washington defenses\" is fair from the cannon fire into Virginia and the regimental brass guns; Henry's advice that Alexander \"had better stay at home\" and the college-or-home counsel are verbatim in substance; the Fort Hatteras line (\"a noble achievement\"), the under-two-years wager, and the P.S. about Ransom going to Albany short of a full company and being \"scattered\" all match the text exactly. Note the letter says Henry \"never heard of the taking of Fort Hatteras... till you wrote\" — i.e., he learned it from his mother, not \"just learned\" independently; minor but worth tightening.\n\nFEEDBACK: Militarily the draft is clean and well-prioritized. It correctly leads with the enlistment-counsel beat (the letter's true significance for Alexander's timeline) and treats Hatteras as received home-front news rather than eyewitness — the right call, since Henry was in the Washington lines, not at Hatteras Inlet. One emphasis note: the draft omits the letter's most vivid eyewitness military detail — the two brass cannon firing bomb shells over three miles into Virginia on the Sabbath, with the enemy declining to return fire. That is the one moment of firsthand soldiering in the letter and it paints the static, low-intensity late-1861 Washington-defenses picture better than the Hatteras secondhand report. For a 350-450 char rich summary, that detail earns its place over (or alongside) the Hatteras wager. Also consider naming no unit Henry isn't in — he never cites his own regiment here, only \"our Regt.,\" so leaving the 34th NY unstated is correct. Minor: \"just learned\" should become \"learned from home.\"\n\nSUGGESTED: From the Washington lines, Henry counsels his mother that Alexander \"had better stay at home\" — college or home over joining \"Ransoms Company\" — and a P.S. warns the company may be \"scattered\" if Ransom reaches Albany short of a full quota. He marvels at the fall of Fort Hatteras, news from home, as \"a noble achievement\" and wagers the war \"can not last two years,\" even as his own regiment lobs shells three miles into Virginia that the enemy won't return."
+      },
+      {
+        "lens": "mccullough",
+        "text": "FACT ISSUES: none. Every claim checks out against the letter. Henry writes from the Washington defenses (cannon fired \"over into Virginia,\" picket duty), advises Alexander \"had better stay at home,\" suggests college as the alternative, references \"Ransoms Company,\" calls Fort Hatteras \"a noble achievement,\" wagers \"the war can not last two years,\" and the P.S. warns that if Ransom reaches Albany without a full company it \"would probably be scattered.\" One small note: the draft says Henry \"had better stay at home\" rather than join \"Ransoms Company\" — the letter actually frames the choice as college *or* staying home, which the draft does capture with \"college or home over war,\" so it holds.\n\nFEEDBACK: This is a strong, faithful draft that earns its length. The hook is well-chosen — a brother counseling a brother away from the war is the human and historical heart here, and \"college or home over war\" is a crisp distillation. The Hatteras beat and the two-years wager add the right texture of a young soldier reading the war's trajectory. Two refinements. First, the prose is a touch list-like — three facts in sequence (\"urges... has just learned... wagers\") read as beads on a string rather than a shaped moment. Second, and more important for a collection meant to connect dots: the draft surfaces the *advice* but not the *stake* the advice implies — that this counsel is a hinge in Alexander's enlistment story. You needn't import the outcome (the letter doesn't know it), but you can let the plea carry more weight as a plea. Lean into Henry's own hedged voice — \"we can not tell,\" \"I hope he will think the matter over the right way\" — which is purer to the letter than the flat wager.\n\nSUGGESTED: From the Washington defenses, Henry has just heard of the fall of Fort Hatteras — \"a noble achievement,\" he writes, betting the war \"can not last two years,\" though he hedges that \"time can only tell.\" Yet the heart of the letter is a brother's plea: hearing Alexander is \"very anxious to join Ransoms Company,\" Henry counsels college or home over war — \"Alex can do better than going to war\" — and a P.S. warns Ransom's company may be \"scattered\" if he reaches Albany short of a full quota."
+      },
+      {
+        "lens": "copywriter",
+        "text": "FACT ISSUES: none. Every claim checks out against the letter. Henry writes from the Washington defenses (cannon fire into Virginia, \"winter in Kentucky\"). He advises Alexander \"had better stay at home,\" prefers college or staying home over \"Ransoms Company.\" He says he \"never heard of the taking of Fort Hatteras... till you wrote,\" calls it \"a noble achievement,\" and believes \"the war can not last two years.\" The P.S. accurately reports the captain's warning that if Ransom reaches Albany \"without a full Company it would probably be scattered.\" One precision note: the draft says Henry \"urges his mother that Alexander had better stay at home\" — slightly awkward phrasing, since he's giving his mother his opinion/advice about Alexander, not urging her; but it is not a fact error.\n\nFEEDBACK: The lead is strong and correctly picks the single most consequential true detail for a historian tracing the collection — Henry counseling against Alexander's enlistment. The Hatteras beat and the two-years wager add good period texture, and the P.S. detail is worth keeping as it sharpens the stakes. Two issues. First, \"urges his mother that Alexander 'had better stay at home'\" misroutes the verb — Henry is advising, not urging her; fix the construction. Second, the draft is quote-heavy (four fragments) and the em-dash insert \"college or home over war\" reads as a tacked-on gloss rather than woven context. There's also an untapped human beat: Henry has just come off picket, \"lived very well,\" and is sending nearly all his pay home minus \"two or three dollars\" — but the historical substance here is the enlistment counsel, so a human note is optional, not required. Length is in range. Tighten the verbs and let one or two quotes carry more weight rather than four.\n\nSUGGESTED: From the Washington defenses, Henry weighs in on the question that will shape the family's war: his mother writes that Alexander is \"very anxious to join Ransoms Company,\" and Henry's advice is plain — \"he had better stay at home,\" to college if he can, \"for Alex can do better than going to war.\" Fresh off picket duty, he has just learned of the fall of Fort Hatteras, \"a noble achievement,\" and wagers the war \"can not last two years.\" A postscript warns that Ransom's company may be \"scattered\" if he reaches Albany short of a full quota."
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -60,8 +150,26 @@
     "old": "Brief update with interesting detail of Confederate signal flare observed from picket duty.",
     "draft": "On picket duty near Washington, Henry watches a Confederate signal flare rise over Virginia — \"somewhat like the evening star, only a dark red\" — and is struck by how fine it looks. Between the soldiering he relays small comforts of camp: a merry supper with Lieutenant Scott, and word to Mother that he already has more clothing than he can carry.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "On picket duty near Washington, Henry watches a Confederate signal flare rise over Virginia — \"somewhat like the evening star, only a dark red\" — and is struck by how fine it looks. Between the soldiering he relays small comforts of camp: a merry supper with Lieutenant Scott, and word to Mother that he already has more clothing than he can carry.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "FACT ISSUES: none. Every claim is grounded in the letter: picket duty near Washington, the Confederate \"Signal thrown up over in Virginia,\" the simile \"somewhat like the evening star, only it was a dark red,\" that it \"looked very fine,\" the merry supper with Lieutenant Scott, and the word to Mother that he has \"more than I can carry now\" in clothing. One small caution: the draft says \"signal flare.\" The letter says \"Signal,\" and the description (rising, star-like, dark red) is consistent with a signal rocket/flare, so the gloss is defensible — but \"signal\" or \"signal rocket\" would track the period source more precisely than the modern-sounding \"flare.\"\n\nFEEDBACK: This is a strong draft that correctly identifies the letter's true center of gravity — a green volunteer's aesthetic wonder at an enemy night signal, three months after First Bull Run, when the armies around Washington were still watching each other across the Potomac. The \"evening star, only a dark red\" quote is the right thing to feature, and the supper-and-clothing details supply the human warmth without melodrama. Two refinements from the period-accuracy lens: (1) prefer \"signal\" or \"signal rocket\" over \"flare\" to stay faithful to Henry's word and to 1861 usage; the Signal Corps' wig-wag and rocket systems were brand-new in this war, which is part of why a picket would find the sight novel and \"fine.\" (2) The recipient is Henry's sister Frances, not Mother — the draft is correct that the clothing line is a message relayed *to* Mother, but a reader should sense he's writing home to his sister. Minor, but worth a light touch so the family geometry reads true. The length sits well within the rich 350-450 target and earns it.\n\nSUGGESTED: On picket near Washington in September 1861, Henry watches a Confederate signal rise over Virginia — \"somewhat like the evening star, only it was a dark red\" — and confesses to his sister Frances that it \"looked very fine.\" Around the soldiering he gathers the small comforts of camp: a merry supper with Lieutenant Scott, and word for Mother that he needs no more clothing, having \"more than I can carry now.\""
+      },
+      {
+        "lens": "military-expert",
+        "text": "FACT ISSUES: none. The letter places Henry on picket duty near Washington, has him watching a Confederate signal flare over Virginia described \"somewhat like the evening star, only a dark red,\" records the supper with Lieutenant Scott, and the line to Mother about already having more clothing than he can carry. All map to the text. The draft wisely makes no claim about his unit (Co. D, 34th NY) or any battle, neither of which this letter states.\n\nFEEDBACK: Military substance here is thin by design — this is a quiet picket-line letter, not an action report — and the draft reads it correctly without inflating it. The signal flare is the one genuinely military-historical detail worth anchoring: Confederate night signaling across the Potomac front in fall 1861 is a real, period-accurate texture, and the draft leads with it well. Two small notes. First, \"Confederate signal flare\" is a reasonable gloss, but confirm the letter itself attributes the light to the enemy/rebels rather than the draft inferring it; if Henry only describes a red light over Virginia without naming its source, soften to \"a signal light rising from the Virginia shore\" to avoid an inference the letter doesn't make. Second, the rank \"Lieutenant Scott\" should match the letter's wording exactly — keep it only if Henry gives the rank. Otherwise the emphasis is right: foreground the picket-and-signal vignette, let the camp comforts ride as the human beat. Length and vividness are on target.\n\nSUGGESTED: omit — the draft is strong as written, pending the two verification checks above."
+      },
+      {
+        "lens": "mccullough",
+        "text": "FACT ISSUES: none. The picket duty, the signal over Virginia compared to the evening star (\"only it was a dark red — looked very fine\"), the merry supper with Lieutenant Scott, and the message to Mother that he has more clothing than he can carry are all present and faithfully rendered. One note, not an error but a craft risk: the letter is addressed to Frances (his sister), and the draft's framing (\"word to Mother\") correctly keeps the recipient distinct, so no misstatement there.\n\nFEEDBACK: This is a genuinely strong draft — it finds the one luminous image in an otherwise newsy letter and lets it carry, which is exactly right. The signal flare is the historian's hook: a Union picket's quiet, almost wondering gaze at an enemy's light across the Virginia dark. Two refinements. First, the quoted fragment is slightly clipped; the letter's own rhythm — \"somewhat like the evening star, only it was a dark red\" — is more evocative when its hesitation is preserved, and \"looked very fine\" is Henry's actual phrase worth landing on. Second, \"small comforts of camp\" is a touch generic; the human beat here is really about a 1861 soldier still well-supplied and unbothered — the \"more than I can carry\" line is the early-war innocence, before the long road wears it down. Lean into that contrast lightly. Don't over-explain the star; the image does the work.\n\nSUGGESTED: On picket near Washington in September 1861, Henry writes his sister Frances of a Confederate signal thrown up over Virginia — \"somewhat like the evening star, only it was a dark red — looked very fine\" — an enemy's light watched with plain wonder. The rest is an early-war ease not yet tested: a merry supper with Lieutenant Scott, and word for Mother that he needs no clothing, having \"more than I can carry now.\""
+      },
+      {
+        "lens": "copywriter",
+        "text": "FACT ISSUES: none. Every claim is grounded in the letter. The picket-duty observation of the Confederate signal over Virginia, the quoted \"somewhat like the evening star, only it was a dark red,\" the \"looked very fine\" appreciation, the merry supper with Lieutenant Scott, and the word to Mother that he has more clothing than he can carry are all present and accurately rendered. \"Confederate signal flare\" is a fair gloss of \"what they call a Signal thrown up over in Virginia.\" One note: the letter's recipient is Frances (his sister), and the clothing remark is a message relayed THROUGH her to Mother — the draft's \"word to Mother\" captures this correctly without overstating.\n\nFEEDBACK: The lead is the right call — the signal over Virginia is the single most compelling true detail, and anchoring on the picket-duty vantage gives a historian the eyewitness hook. The pulled quote is well-chosen and earns its place. Two refinements. First, the draft slightly buries that this is a letter to his SISTER Frances, which matters for the relayed-to-Mother beat; naming her tightens the human frame. Second, \"Between the soldiering\" is a touch loose and the supper/clothing pairing reads as two tacked-on items rather than one woven beat — the clothing line is quietly the warmest thing here (a son reassuring his mother he wants for nothing), and it deserves to land as the closing human note rather than trailing off. Length is fine; it can stretch slightly toward the richer target.\n\nSUGGESTED: Writing to his sister Frances from picket near Washington, Henry watches a Confederate signal rise over Virginia — \"somewhat like the evening star, only it was a dark red\" — and can't help finding it fine to look at. Around the soldiering he gathers the small comforts of camp: a merry supper with Lieutenant Scott, and a line to pass along to Mother — that he needs no clothing, having more already than he can carry."
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -71,8 +179,26 @@
     "old": "Confirms Alexander has officially enlisted (\"in for the war\"). False alarm incident at camp. Money being sent home via Reich.",
     "draft": "Henry takes in the news that his brother Alexander has gone \"in for the war,\" answering it with measured resignation — \"Perhaps it is all for the best\" — and the conviction it cannot last long. From camp near Washington he reports bombs fired over into Virginia and a false alarm in which guards shot at a white horse, even as he prepares to send twenty-five dollars home and heads out on two days' picket.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Henry takes in the news that his brother Alexander has gone \"in for the war,\" answering it with measured resignation — \"Perhaps it is all for the best\" — and the conviction it cannot last long. From camp near Washington he reports bombs fired over into Virginia and a false alarm in which guards shot at a white horse, even as he prepares to send twenty-five dollars home and heads out on two days' picket.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "FACT ISSUES: none. Every claim in the draft is grounded in this letter: Alexander \"in for the war\" and Henry's \"Perhaps it is all for the best\"; the conviction it \"can[not] last a great while\"; bombs fired over into Virginia today; the false alarm with two guards firing at a white horse; the twenty-five dollars to be sent home; and the company going on picket for two days. All correctly stated.\n\nFEEDBACK: This is a strong, accurate draft that earns its length and reads in the right warm editorial-historical register. The anchor is well chosen — Henry absorbing Alexander's enlistment is the milestone a collection-tracker needs, and pairing it with the \"all for the best\" / war-can't-last conviction captures the near-universal 1861 illusion of a short war, which is exactly the period framing that gives this letter significance. The camp-life beat (white-horse false alarm) and the domestic stake (twenty-five dollars home, two days' picket) round it out without melodrama. Two small notes from the period lens: the draft slightly buries one of the letter's more striking historical images — \"Bombs have been fired over into Virginia today,\" a concrete note of active operations on the Washington-area front in September 1861 — by listing it mid-clause alongside the false alarm; it could carry a touch more weight. Also, \"heads out on two days' picket\" is a mild over-read: Henry writes the company \"goes on picket today,\" so it's the unit's duty, not necessarily a solo departure — \"his company goes out on two days' picket\" is more faithful. Minor; the draft is already publishable.\n\nSUGGESTED: Henry takes in the news that his brother Alexander has gone \"in for the war,\" meeting it with measured resignation — \"Perhaps it is all for the best\" — and the era's confident belief that the fighting \"can[not] last a great while.\" From camp near Washington he reports bombs fired over into Virginia and a jittery false alarm in which guards fired at a white horse, even as he readies twenty-five dollars to send home and his company heads out for two days on picket."
+      },
+      {
+        "lens": "military-expert",
+        "text": "FACT ISSUES: none. Every military-relevant claim is grounded in the letter. The bombs fired over into Virginia (\"Bombs have been fired over into Virginia today\"), the false alarm and the white horse (\"Two of the guard fired at a white horse\"), the twenty-five dollars sent home via Reich, the two days' picket (\"Our company goes on picket today for two days\"), and Alexander's enlistment with Henry's \"Perhaps it is all for the best\" / \"I don't think it can last a great while\" are all present. The draft does not name Henry's unit (34th NY) or his rank, so it invents nothing there. \"From camp near Washington\" is fair: the metadata locates this in the Washington, D.C. area, and the letter's references to bombardment across the Potomac into Virginia are consistent with the Washington defenses in autumn 1861. No misstatement.\n\nFEEDBACK: Militarily the draft is clean and well-prioritized. It correctly leads with the human/collection anchor (Alexander going \"in for the war,\" the second brother committing) and pairs it with the war-won't-last conviction — exactly the take-away a historian tracking the family's escalating enlistment arc needs. The camp-life material (bombs into Virginia, jittery sentries firing at a white horse) is correctly framed as low-level routine rather than inflated into a battle, which is the right call given the \"Battle\" flag is really just artillery harassment and a false alarm. Two small refinements: the picket detail is \"two days' picket\" in the letter and the draft says \"heads out on two days' picket\" — accurate, but consider tying it to \"our company\" since picket duty was a unit movement, not a solo errand, which sharpens the military texture. Also \"bombs fired over into Virginia\" reads slightly passively; clarifying these are Union shells lobbed across the Potomac would orient a reader to which direction the fire is going. Neither is a fact error — both are emphasis polish. The draft already earns its length and stays vivid; it is strong as written.\n\nSUGGESTED: From camp in the Washington defenses, Henry absorbs the news that his brother Alexander has gone \"in for the war,\" meeting it with measured resignation — \"Perhaps it is all for the best\" — and a soldier's conviction it \"can't last a great while.\" Between sending twenty-five dollars home by hand and marching his company out for two days on picket, he relays the ordinary tension of the lines: shells lobbed across into Virginia, and guards so jittery they fired on a stray white horse in the dark."
+      },
+      {
+        "lens": "mccullough",
+        "text": "FACT ISSUES: none. Every claim is grounded in the letter: Alexander \"in for the war,\" the \"Perhaps it is all for the best\" line, the conviction it \"can't last a great while,\" the bombs fired over into Virginia \"today,\" the false-alarm white-horse incident, the twenty-five dollars sent by Reich, and the company going on picket \"for two days.\" All accurate. One small nuance: the draft attributes Henry's belief that drilling is \"the worst of it\" — the letter does say he considers the drilling \"the worst of it,\" so that holds too, though the draft only gestures at it via \"measured resignation.\"\n\nFEEDBACK: This is strong and very nearly there — the two anchors (Alexander's enlistment, Henry's stoic answer to it) lead correctly, and the camp detail earns its place. The prose, though, runs a little breathless: a single 350-character sentence chained by em-dashes and \"even as,\" which blurs the hierarchy. The richest human beat in the letter is being underused — Henry's quiet claim that he'd \"rather be where I am now than any place\" because he's already survived the drilling, \"the worst of it.\" That line is the soul of the letter: a brother reassuring his mother by minimizing his own danger. I'd surface it and let the white-horse anecdote stay as texture, not headline. Also \"takes in the news\" is slightly soft; he's answering it.\n\nSUGGESTED: News reaches Henry's Washington camp that his brother Alexander is \"in for the war,\" and he answers with a soldier's stoic comfort: \"Perhaps it is all for the best,\" and surely it \"can't last a great while.\" Having survived the drilling — \"the worst of it,\" he tells his mother — he'd rather be where he is than anyplace else. He notes bombs fired over into Virginia and a false alarm in which jittery guards shot at a white horse, then readies twenty-five dollars to send home before his company heads out two days on picket."
+      },
+      {
+        "lens": "copywriter",
+        "text": "FACT ISSUES: none. Every claim is anchored in the letter: Alexander having \"gone in for the war,\" Henry's \"Perhaps it is all for the best,\" his conviction the war cannot last long, the camp near Washington, bombs fired over into Virginia, the white-horse false alarm, the twenty-five dollars sent home, and the two days' picket are all present in the source. No outside events imported.\n\nFEEDBACK: This is strong work. The lead is well-chosen — the brother-following-brother enlistment is the single most collection-significant fact, and pairing it with Henry's measured \"Perhaps it is all for the best\" delivers both the historical hook and the human beat in one stroke. The white-horse false alarm is a vivid, true detail that earns its place. Two notes. First, the second sentence is doing a lot of work and risks tipping into a topic-list (\"reports bombs... and a false alarm... even as he prepares to send... and heads out\") — the \"even as he prepares to send twenty-five dollars home and heads out on two days' picket\" tail is the weakest stretch, reading as two appended chores rather than woven detail. Consider compressing the picket/money into a single grounding clause so the camp imagery stays the star. Second, \"takes in the news\" is slightly flat for a lead verb; the resignation is the interesting thing, so let it carry more weight. Length sits right in the target band and the voice is warm without melodrama.\n\nSUGGESTED: From camp near Washington, Henry receives word that his brother Alexander has \"gone in for the war,\" and answers it with quiet resignation — \"Perhaps it is all for the best\" — sure it cannot last long. Between sending twenty-five dollars home and heading out on two days' picket, he reports bombs lobbed over into Virginia and a night-alarm in which jittery guards opened fire on a stray white horse."
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -82,8 +208,26 @@
     "old": "Detailed camp life: tent improvements, guard duty, rations, card-playing ban. Corrects exaggerated report of a skirmish.",
     "draft": "Writing to brother Charles, Henry corrects an inflated report of an attack across the river — not three companies of Rebels but thirty-five men against twelve — and recounts a bad bout of rheumatism he blames on sleeping on bare ground, eased only after the men splurged 95 cents on a tent floor. He notes the colonel's new ban on card-playing after too much gambling, and admits he held off writing of his illness because he couldn't spell the word.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing to brother Charles, Henry corrects an inflated report of an attack across the river — not three companies of Rebels but thirty-five men against twelve — and recounts a bad bout of rheumatism he blames on sleeping on bare ground, eased only after the men splurged 95 cents on a tent floor. He notes the colonel's new ban on card-playing after too much gambling, and admits he held off writing of his illness because he couldn't spell the word.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "FACT ISSUES: none. Every claim is grounded in the letter: the correction of the report (\"not three Comp. of Rebels, but only thirty-five against twelve\"), the rheumatism he blames on conditions and treats with the floor (\"I should probably have the rheumatism now if we had not got the floor\"), the 95-cent tent floor, the colonel's card ban (\"There was to much gambling going on\"), and the spelling joke (\"I could not spell the word\"). One small nuance: the letter says they \"got a floor\" to the tent — \"tent floor\" is faithful, and the 95 cents is exact. The draft's \"splurged\" is a light editorial gloss but defensible given the 30-cents-apiece arithmetic he works out. The \"attack over the river\" is rendered as \"an attack across the river,\" which is accurate.\n\nFEEDBACK: This is strong and period-faithful. The anchor is well chosen — the corrected war report is the historically significant beat (it's a soldier acting as a check on civilian rumor, \"I wonder you did not hear there was a thousand\"), and the rheumatism-and-floor sequence captures the real medical economy of camp life that the editorial note flags. The human beat (the spelling joke) lands and is woven, not tacked on. Two refinements worth making: first, \"an attack across the river\" is slightly vague — in late September 1861 near Washington this is the Potomac picket line, and even without naming outside events you can lean on the period texture of rumor inflation, which is the letter's real point. Second, the draft is a four-clause pile-up in two long sentences; it reads as a list joined by dashes and \"He notes.\" The card ban and the spelling joke are both good but compete; consider subordinating one. Length (~480 chars) runs slightly over the 350-450 target. Tightening also sharpens the voice.\n\nSUGGESTED: Writing to his brother Charles, Henry plays fact-checker on a rumor that reached home: the \"attack over the river\" was no three companies of Rebels but thirty-five men against twelve — \"I wonder you did not hear there was a thousand.\" He recounts a hard bout of rheumatism, blamed on sleeping on bare ground and eased only after he and his tentmates spent 95 cents on a floor, and notes the colonel's fresh ban on card-playing after too much gambling. He owns up that he'd put off writing of the illness because he couldn't spell the word."
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -93,8 +237,26 @@
     "old": "Entire company under arrest over rope-cutting incident. Lt. Scott conflict. Military punishment details. Charles considering enlistment — Henry says join his company if he does. Chaplain sick.",
     "draft": "A disciplinary crisis grips Henry's company: a soldier who left his picket early and quarreled with Lt. Scott was punished with docked pay, a 30-lb knapsack, and his hands tied above his head — until a comrade cut the rope, putting the whole company under arrest. Writing from picket duty near Washington, Henry insists he keeps clear of trouble and \"tries to do what is right,\" and notes that his brother Charles is now anxious to enlist.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "A disciplinary crisis grips Henry's company: a soldier who left his picket early and quarreled with Lt. Scott was punished with docked pay, a 30-lb knapsack, and his hands tied above his head — until a comrade cut the rope, putting the whole company under arrest. Writing from picket duty near Washington, Henry insists he keeps clear of trouble and \"tries to do what is right,\" and notes that his brother Charles is now anxious to enlist.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -104,8 +266,26 @@
     "old": "Brigadier General Gormon's inspection; regiment called \"sharp shooters\" in press. POW escape narrative — Kellogg confirmed prisoner in Richmond. Murder by stabbing in camp. Poolesville winter quarters rumor. James confirmed in school.",
     "draft": "Henry relays a daring escape from rebel captivity: a fellow prisoner taken in the same skirmish as Kellogg feigned illness to hoard his daily opium, then drugged his guard's coffee and slipped through three enemy regiments — and confirms Kellogg is held unwounded at Richmond. Henry also reports a drunken stabbing in camp that killed a man by morning, and Brig. Gen. Gormon's inspection of the 34th, lately dubbed \"the sharp shooters\" in the papers.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Henry relays a daring escape from rebel captivity: a fellow prisoner taken in the same skirmish as Kellogg feigned illness to hoard his daily opium, then drugged his guard's coffee and slipped through three enemy regiments — and confirms Kellogg is held unwounded at Richmond. Henry also reports a drunken stabbing in camp that killed a man by morning, and Brig. Gen. Gormon's inspection of the 34th, lately dubbed \"the sharp shooters\" in the papers.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -115,8 +295,26 @@
     "old": "Receipt of handmade portfolio from Frances. Mentions Brink (family connection). Nellie correspondence.",
     "draft": "Writing from the camps around Washington, Henry thanks his sister Frances for a handmade portfolio of writing supplies — so finely made he refused to believe it wasn't store-bought, and now the envy of the other boys in camp. Beneath the gratitude runs a quieter thread: he longs for her picture and word from home, and a postscript notes a letter from Nellie, with a promised photograph of her own.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from the camps around Washington, Henry thanks his sister Frances for a handmade portfolio of writing supplies — so finely made he refused to believe it wasn't store-bought, and now the envy of the other boys in camp. Beneath the gratitude runs a quieter thread: he longs for her picture and word from home, and a postscript notes a letter from Nellie, with a promised photograph of her own.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -126,8 +324,26 @@
     "old": "Henry now at Camp McClellan — regiment has moved from Washington defenses. Battle formation false alarm (rebels crossing river).",
     "draft": "Writing from Camp McClellan, Henry tells brother Charles his regiment may see a battle before winter — and recounts the night the brigade was formed in line of battle and ordered toward the river on a false report that the rebels were crossing. Between the soldiering he reports sending $20 home by express, registers quiet shock at Albert Savage's death, and asks that Mother be told the preserves arrived safely.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from Camp McClellan, Henry tells brother Charles his regiment may see a battle before winter — and recounts the night the brigade was formed in line of battle and ordered toward the river on a false report that the rebels were crossing. Between the soldiering he reports sending $20 home by express, registers quiet shock at Albert Savage's death, and asks that Mother be told the preserves arrived safely.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -137,8 +353,26 @@
     "old": "Confederate deserter crossing Potomac at night — vivid eyewitness account. Describes visible enemy (fires along river, visible in daytime). Informal cross-river trading/contact despite orders.",
     "draft": "From Camp McClellan, Henry tells his brother James of a drunken Confederate deserter who paddled a leaky boat across the Potomac to surrender to Henry's twelve-man picket post, cursing the sentries who challenged him and refusing to return when the rebels called him back the next morning. Henry notes the enemy is visible by day and keeps fires along the river at night, with orders forbidding talk across the water.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "From Camp McClellan, Henry tells his brother James of a drunken Confederate deserter who paddled a leaky boat across the Potomac to surrender to Henry's twelve-man picket post, cursing the sentries who challenged him and refusing to return when the rebels called him back the next morning. Henry notes the enemy is visible by day and keeps fires along the river at night, with orders forbidding talk across the water.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -148,8 +382,26 @@
     "old": "Brigade composition confirmed: Gorman is General. Brigade includes three NY regiments (including 2nd NY), Minnesota regiment, and 34th NY.",
     "draft": "Writing from Camp McClellan, Henry sketches his brigade's order of battle: three New York regiments including the 2nd, the Minnesota regiment, and his own 34th NY, all under General Gorman, drilling together two or three times a week. He gently corrects rumors that the company has been suffering — \"It is not correct\" — easing his sister Frances's worry while admitting one hard stretch in Virginia.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from Camp McClellan, Henry sketches his brigade's order of battle: three New York regiments including the 2nd, the Minnesota regiment, and his own 34th NY, all under General Gorman, drilling together two or three times a week. He gently corrects rumors that the company has been suffering — \"It is not correct\" — easing his sister Frances's worry while admitting one hard stretch in Virginia.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -158,10 +410,28 @@
     "date": "1861-11-30",
     "old": "Winter conditions, furlough queue, Thanksgiving on picket, picture taken, farm concerns, tax willingness.",
     "draft": "Writing from Camp McClellan in the cold, Henry begs his worrying mother to \"let your mind rest at perfect ease,\" reports he is third or fourth in the furlough queue, and came off picket Thanksgiving day at two o'clock. He confesses he sometimes thinks he \"did wrong to leave home\" with the farm needing him, yet pledges that \"when I do get home I shall stay.\"",
-    "final": "Writing from Camp McClellan in cold too sharp to hold a pen, Henry tells his worried mother to \"let your mind rest at perfect ease\" and reports his furlough is stalled behind three or four others, with the war perhaps over before his turn. He confesses he sometimes thinks he \"did wrong to leave home\" with the winter farm needing him, yet vows that \"when I do get home I shall stay.\"",
-    "chosen": "Writing from Camp McClellan in cold too sharp to hold a pen, Henry tells his worried mother to \"let your mind rest at perfect ease\" and reports his furlough is stalled behind three or four others, with the war perhaps over before his turn. He confesses he sometimes thinks he \"did wrong to leave home\" with the winter farm needing him, yet vows that \"when I do get home I shall stay.\"",
-    "changeNotes": "Recast the draft's listy clauses into a tighter historian-anchored arc (furlough stalled, war's uncertain end) and dropped the Thanksgiving-picket clause to keep the guilt/vow human beat as the close, trimming length and the topic-list feel.",
-    "status": "refined",
+    "final": null,
+    "finalRateLimited": true,
+    "chosen": "Writing from Camp McClellan in the cold, Henry begs his worrying mother to \"let your mind rest at perfect ease,\" reports he is third or fourth in the furlough queue, and came off picket Thanksgiving day at two o'clock. He confesses he sometimes thinks he \"did wrong to leave home\" with the farm needing him, yet pledges that \"when I do get home I shall stay.\"",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "draft",
     "approved": false
   },
   {
@@ -169,10 +439,28 @@
     "date": "1861-12-19",
     "old": "Winter quarters forming — Minnesota regiments building log houses, 34th NY building hospital. Tent mates identified (E. Graves from Chazy, John Green, A. Perkins). Sutler drummed out for selling liquor. Colonel L--- resigned (considered coward). Henry hasn't connected with Alexander yet — wrong address.",
     "draft": "From Camp McClellan, Henry expects the 34th New York to settle into winter quarters guarding the Potomac — Minnesota regiments are raising log houses and his own regiment is building a hospital. He notes the old sutler drummed out of camp for selling liquor, and gamblers punished on a barrel, six hours without food. Tenting among strangers, he confesses he gets very lonesome now and then, wishing instead for the Champlain boys.",
-    "final": null,
-    "chosen": "From Camp McClellan, Henry expects the 34th New York to settle into winter quarters guarding the Potomac — Minnesota regiments are raising log houses and his own regiment is building a hospital. He notes the old sutler drummed out of camp for selling liquor, and gamblers punished on a barrel, six hours without food. Tenting among strangers, he confesses he gets very lonesome now and then, wishing instead for the Champlain boys.",
-    "changeNotes": null,
-    "status": "draft",
+    "final": "From Camp McClellan, Henry expects the 34th New York to settle into winter quarters along the Potomac, where the Minnesota regiments are already raising log houses and his own men are building a hospital. He recounts camp discipline with a soldier's eye — the old sutler drummed out for selling liquor, gamblers made to stand on a barrel six hours without food. Yet beneath the routine runs a quieter ache: tenting among strangers, he confesses he gets very lonesome now and then, wishing for the Champlain boys instead.",
+    "finalRateLimited": false,
+    "chosen": "From Camp McClellan, Henry expects the 34th New York to settle into winter quarters along the Potomac, where the Minnesota regiments are already raising log houses and his own men are building a hospital. He recounts camp discipline with a soldier's eye — the old sutler drummed out for selling liquor, gamblers made to stand on a barrel six hours without food. Yet beneath the routine runs a quieter ache: tenting among strangers, he confesses he gets very lonesome now and then, wishing for the Champlain boys instead.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "refined",
     "approved": false
   },
   {
@@ -180,10 +468,28 @@
     "date": "1861-12-20",
     "old": "B. Miner carrying letters to Champlain (private mail carrier). Accordion lessons from Bill Robers. Journal discontinued due to cold — Henry regrets this. Eight rebel deserters crossed to Union side, report rebels have nothing to eat. Capt. Rich preached. Poolesville ~3 miles from camp.",
     "draft": "Writing from Camp McClellan near Poolesville, Henry reports eight rebels crossing the lines as deserters and saying the enemy has nothing to eat — a soldier's-eye glimpse of Confederate hunger on the Potomac. With little else to tell, he confesses he has stopped his journal in the cold, and admits he'd give much to be home for the village sing school.",
-    "final": "Writing to his sister Frances from Camp McClellan, three miles from Poolesville, Henry reports eight rebels crossing the lines as deserters who say the enemy has nothing to eat — a soldier's-eye glimpse of Confederate hunger on the Potomac. With little else to tell in the winter sameness, he confesses he has let his journal lapse in the cold and would gladly be home for the sing school.",
-    "chosen": "Writing to his sister Frances from Camp McClellan, three miles from Poolesville, Henry reports eight rebels crossing the lines as deserters who say the enemy has nothing to eat — a soldier's-eye glimpse of Confederate hunger on the Potomac. With little else to tell in the winter sameness, he confesses he has let his journal lapse in the cold and would gladly be home for the sing school.",
-    "changeNotes": "Named the recipient (sister Frances) and corrected location to \"three miles from Poolesville\" per the letter, dropped the unsupported word \"village,\" and tightened phrasing to meet voice and stakes.",
-    "status": "refined",
+    "final": null,
+    "finalRateLimited": true,
+    "chosen": "Writing from Camp McClellan near Poolesville, Henry reports eight rebels crossing the lines as deserters and saying the enemy has nothing to eat — a soldier's-eye glimpse of Confederate hunger on the Potomac. With little else to tell, he confesses he has stopped his journal in the cold, and admits he'd give much to be home for the village sing school.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "draft",
     "approved": false
   },
   {
@@ -192,8 +498,26 @@
     "old": "Brigade drill — Gen. Gorman complimented 34th NY (\"did the best of them all\"). Henry still can't reach Alexander — directed to Washington but that's wrong (should be Baltimore). Henry doesn't know Alexander's regiment. Moral commentary on swearing and gambling. Same gambling punishment as LTR-1861-12-19-001. Accidental self-shooting in Minnesota Regt.",
     "draft": "From winter quarters at Camp McClellan, Henry reports that Gen. Gorman judged the 34th New York the best of all regiments at brigade drill — \"we felt quite proud.\" He still can't reach his brother Alexander, having written to Washington when that direction proves wrong and Alexander's regiment unknown to him. Disturbed by camp swearing and gambling, Henry insists a man can keep good morals there only if \"very strict and firm.\"",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "From winter quarters at Camp McClellan, Henry reports that Gen. Gorman judged the 34th New York the best of all regiments at brigade drill — \"we felt quite proud.\" He still can't reach his brother Alexander, having written to Washington when that direction proves wrong and Alexander's regiment unknown to him. Disturbed by camp swearing and gambling, Henry insists a man can keep good morals there only if \"very strict and firm.\"",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -203,8 +527,26 @@
     "old": "Henry finally received a letter from Alexander — direction \"not quite correct\" but it arrived. Alexander wrote about Capt.",
     "draft": "Writing from Camp McClellan, Henry tells his mother he has at last heard from his brother Alexander — the letter reached camp despite a direction that was \"not quite correct\" — and relays Alex's word that Capt. Ransom had a narrow escape. Amid stove-buying, barracks-building, and a promise to send $25 home next pay day, Henry sheepishly vows to mind his spelling, \"writing in a hurry\" to a mother he knows reads every line.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from Camp McClellan, Henry tells his mother he has at last heard from his brother Alexander — the letter reached camp despite a direction that was \"not quite correct\" — and relays Alex's word that Capt. Ransom had a narrow escape. Amid stove-buying, barracks-building, and a promise to send $25 home next pay day, Henry sheepishly vows to mind his spelling, \"writing in a hurry\" to a mother he knows reads every line.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -214,8 +556,26 @@
     "old": "New Year's 1862 at Camp McClellan: Beer from Captain, some boys drunk. Company presented Capt.",
     "draft": "Writing from Camp McClellan after a New Year's of beer \"from the Capt.\" and a few boys too drunk, Henry reports his company presented Capt. Reich a $125 sword, to which he gave a dollar on a private's pay. He longs for a furlough, but only married men may go — so he waits, lonesome for letters and the box of socks still stuck in Washington.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from Camp McClellan after a New Year's of beer \"from the Capt.\" and a few boys too drunk, Henry reports his company presented Capt. Reich a $125 sword, to which he gave a dollar on a private's pay. He longs for a furlough, but only married men may go — so he waits, lonesome for letters and the box of socks still stuck in Washington.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -225,8 +585,26 @@
     "old": "Henry burned all home letters — knapsack space and anticipation of moving into Virginia. \"Please burn all my letters\" — if obeyed, this would have destroyed the home-side correspondence.",
     "draft": "Writing from Camp McClellan, Henry tells his sister Frances he has burned all the letters he received from home — they crowded his knapsack, and he did not want them on him \"if I should go over into Virginia.\" His own postscript turns the request around: \"Please burn all my letters.\" He adds that he is glad, for her sake, that she is going to teach in Montreal this winter.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from Camp McClellan, Henry tells his sister Frances he has burned all the letters he received from home — they crowded his knapsack, and he did not want them on him \"if I should go over into Virginia.\" His own postscript turns the request around: \"Please burn all my letters.\" He adds that he is glad, for her sake, that she is going to teach in Montreal this winter.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -236,8 +614,26 @@
     "old": "Pay day accounting: $15 sent home; sutler bill $5. 50); owes band 50¢, cook 50¢, sword $1.",
     "draft": "Paid off at Camp McClellan, Henry sends $15 home and itemizes a soldier's economy — sutler, boots, sword, band, and cook all owed from $13-a-month pay. Buoyed by the \"glorious victory in Kentucky,\" he predicts the war will end before July; meanwhile the unhealthy barracks have been burnt for firewood, leaving the men in tents for the rest of the winter.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Paid off at Camp McClellan, Henry sends $15 home and itemizes a soldier's economy — sutler, boots, sword, band, and cook all owed from $13-a-month pay. Buoyed by the \"glorious victory in Kentucky,\" he predicts the war will end before July; meanwhile the unhealthy barracks have been burnt for firewood, leaving the men in tents for the rest of the winter.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -247,8 +643,26 @@
     "old": "Two desertions from Co. D — one from drunken scrape/guard house, one while cutting wood (when Captain was in Champlain).",
     "draft": "Writing from Camp McClellan, Henry reports two desertions from Co. D — one man drank himself into the guard house and fled, another vanished while sent to cut wood with the Captain away in Champlain. Amid gambling and lotteries he refuses to join, Henry guards his pay and his promise not to drink, even sitting twice for photographs with his tent-mate Graves.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from Camp McClellan, Henry reports two desertions from Co. D — one man drank himself into the guard house and fled, another vanished while sent to cut wood with the Captain away in Champlain. Amid gambling and lotteries he refuses to join, Henry guards his pay and his promise not to drink, even sitting twice for photographs with his tent-mate Graves.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -258,8 +672,26 @@
     "old": "34th NY and Gorman's Brigade marched to Harpers Ferry. Departed Camp McClellan → 20-mile march → camped overnight (cold, no shelter) → Adams Town → 30-mile freight train ride → Harpers Ferry.",
     "draft": "Writing from Camp Gorman near Harpers Ferry, Henry recounts his regiment's hard march to the front: twenty miles the first day, a freezing night under nothing but blankets and sky, then a freight-train ride to a town he finds \"a perfect wreck\" — buildings burnt to their walls, the bridge destroyed, a locomotive dumped in the river by the rebels. He notes with pride that the 34th was called the best-looking regiment to cross the pontoon bridge.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from Camp Gorman near Harpers Ferry, Henry recounts his regiment's hard march to the front: twenty miles the first day, a freezing night under nothing but blankets and sky, then a freight-train ride to a town he finds \"a perfect wreck\" — buildings burnt to their walls, the bridge destroyed, a locomotive dumped in the river by the rebels. He notes with pride that the 34th was called the best-looking regiment to cross the pontoon bridge.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -269,8 +701,26 @@
     "old": "Detailed march narrative — parallel account to LTR-1862-02-05-001 with additional details: passed through Barnesville; \"very short notice\" to march; Col.",
     "draft": "Writing to his brother Charles from Camp Bolivar Heights, Henry recounts the 34th's sudden march on \"very short notice\" — out at three in the morning on coffee and salt junk, through Barnesville to Adamstown, then by freight car into Harpers Ferry, with Col. Ladue back at the regiment's head. Quartered now seventeen men to a bell tent, he confesses he would rather be home to make sugar this spring, \"but that is out of the question.\"",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing to his brother Charles from Camp Bolivar Heights, Henry recounts the 34th's sudden march on \"very short notice\" — out at three in the morning on coffee and salt junk, through Barnesville to Adamstown, then by freight car into Harpers Ferry, with Col. Ladue back at the regiment's head. Quartered now seventeen men to a bell tent, he confesses he would rather be home to make sugar this spring, \"but that is out of the question.\"",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -280,8 +730,26 @@
     "old": "Routine morale letter from winter quarters. Documents camp conditions, religious provisions (Testament and Psalms), and clarifies a false rumor about Lt. Scott's loyalty. Provides timeline checkpoint: Henry enlisted ~June 1, sworn in June 15, in service ~9 months by this date.",
     "draft": "Writing from a bell tent at Camp Gorman on Bolivar Heights, Henry knocks down a rumor that had reached home: Lieut. Scott was arrested not for communicating with the rebels but for falling asleep on guard duty. He confides that some in the company dislike Scott while he himself thinks well of him, prizes a company gift of a Testament and Psalms, and reckons he has now been in the service \"a little over nine months.\"",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from a bell tent at Camp Gorman on Bolivar Heights, Henry knocks down a rumor that had reached home: Lieut. Scott was arrested not for communicating with the rebels but for falling asleep on guard duty. He confides that some in the company dislike Scott while he himself thinks well of him, prizes a company gift of a Testament and Psalms, and reckons he has now been in the service \"a little over nine months.\"",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -291,8 +759,26 @@
     "old": "CRITICAL CHRONOLOGICAL ANCHOR: Henry's presence at Camp McClellan on Feb. 11 — 13, 1862, directly contradicts the Feb.",
     "draft": "Writing from Camp McClellan, Henry answers Charles's question about soldiers allotting pay home with an unvarnished ledger of camp life: many in his company blow their wages at the sutler's, including George Dodds, now borrowing — though Henry asks Charles not to repeat it. He details the ration cycle and the indignity of eating \"dog fashion\" without tin plates, joking that a pound or two of dirt is \"good enough for soldiers,\" and notes a drunken row that ended at the guard house.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from Camp McClellan, Henry answers Charles's question about soldiers allotting pay home with an unvarnished ledger of camp life: many in his company blow their wages at the sutler's, including George Dodds, now borrowing — though Henry asks Charles not to repeat it. He details the ration cycle and the indignity of eating \"dog fashion\" without tin plates, joking that a pound or two of dirt is \"good enough for soldiers,\" and notes a drunken row that ended at the guard house.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -302,8 +788,26 @@
     "old": "Eyewitness reporting of major Civil War victory: Henry documents the Burnside Expedition's victory in South Carolina (Battle of Roanoke Island, Feb.",
     "draft": "Writing from Camp McClellan, Henry relays news that reached camp the night of February 13 of \"the glorious victory in South Carolina\" by the Burnside Expedition, with two thousand prisoners taken, met by \"great cheering\" among the men. He boasts that once the 34th New York goes into action \"the rebels will have to run,\" and notes, matter-of-factly, that the farms in this country are \"all worked by slaves.\"",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from Camp McClellan, Henry relays news that reached camp the night of February 13 of \"the glorious victory in South Carolina\" by the Burnside Expedition, with two thousand prisoners taken, met by \"great cheering\" among the men. He boasts that once the 34th New York goes into action \"the rebels will have to run,\" and notes, matter-of-factly, that the farms in this country are \"all worked by slaves.\"",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -312,10 +816,28 @@
     "date": "1862-02-12",
     "old": "Brief morale letter from Camp McClellan. Provides snapshot of soldier experience: guard duty as most difficult aspect, drunkenness and fighting in company, mild weather, homesickness. Reports receiving multiple letters from Alexander (evidence of inter-regimental correspondence). Shows mother's letters as significant morale booster.",
     "draft": "Writing from Camp McClellan, Henry calls guard duty \"the hardest of soldiering\" — up nearly all night — but admits he has grown used to it, and longs to \"make a move of some kind.\" He grieves the heavy drunkenness and fighting in his company, insisting he keeps clear of it all, and tells his mother no comfort matches a letter from home.",
-    "final": null,
-    "chosen": "Writing from Camp McClellan, Henry calls guard duty \"the hardest of soldiering\" — up nearly all night — but admits he has grown used to it, and longs to \"make a move of some kind.\" He grieves the heavy drunkenness and fighting in his company, insisting he keeps clear of it all, and tells his mother no comfort matches a letter from home.",
-    "changeNotes": null,
-    "status": "draft",
+    "final": "Camp McClellan, near Washington, Henry — son of a widowed mother in Champlain, NY and the first of her four sons to enlist with Co. D of the 34th New York — calls guard duty \"the hardest of soldiering,\" up nearly all night, yet confesses he has grown so used to it that he aches to \"make a move of some kind.\" He grieves the heavy drinking and fighting that plague his company, insisting he keeps himself clear of it, and tells his mother that no comfort in camp can match the arrival of a letter from home.",
+    "finalRateLimited": false,
+    "chosen": "Camp McClellan, near Washington, Henry — son of a widowed mother in Champlain, NY and the first of her four sons to enlist with Co. D of the 34th New York — calls guard duty \"the hardest of soldiering,\" up nearly all night, yet confesses he has grown so used to it that he aches to \"make a move of some kind.\" He grieves the heavy drinking and fighting that plague his company, insisting he keeps himself clear of it, and tells his mother that no comfort in camp can match the arrival of a letter from home.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "refined",
     "approved": false
   },
   {
@@ -324,8 +846,26 @@
     "old": "Orders to march — knapsacks packed, ready at a moment's notice. Read at dress parade.",
     "draft": "From Camp McClellan, Henry tells his mother that orders read at dress parade direct the men to pack knapsacks and be ready to march at a moment's notice, with surplus clothes boxed for Poolesville; the chaplain, preaching on \"the Duty of Patriotism,\" doubts they will see another Sabbath in camp. He also reports Col. Ladue's return and rumored promotion to brigadier general, and closes urging her not to worry — he has good health now.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "From Camp McClellan, Henry tells his mother that orders read at dress parade direct the men to pack knapsacks and be ready to march at a moment's notice, with surplus clothes boxed for Poolesville; the chaplain, preaching on \"the Duty of Patriotism,\" doubts they will see another Sabbath in camp. He also reports Col. Ladue's return and rumored promotion to brigadier general, and closes urging her not to worry — he has good health now.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -335,8 +875,26 @@
     "old": "RESOLVES DATING DISCREPANCY: \"Our Regt. Left Camp McClellan on the 26th.",
     "draft": "Henry writes from Harpers Ferry to report his regiment \"Left Camp McClellan on the 26th,\" marching through Poolesville, Barnesville, and Adamstown before taking the cars across a pontoon bridge into the ruined town. He estimates 60,000 troops massed here and, eyeing the war drawing near, confesses he doesn't care how soon they \"see some fun\" — sooner the better — though the burnt bridge and gutted armory leave him feeling \"bad\" at the rebels' destruction.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Henry writes from Harpers Ferry to report his regiment \"Left Camp McClellan on the 26th,\" marching through Poolesville, Barnesville, and Adamstown before taking the cars across a pontoon bridge into the ruined town. He estimates 60,000 troops massed here and, eyeing the war drawing near, confesses he doesn't care how soon they \"see some fun\" — sooner the better — though the burnt bridge and gutted armory leave him feeling \"bad\" at the rebels' destruction.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -346,8 +904,26 @@
     "old": "Short addendum. Confirms Henry's regiment is in a grist mill building (previously described as cotton factory in LTR-1862-02-05-002). Rebels took wheat from this location. Too restricted to explore town (guards posted).",
     "draft": "Henry writes that his regiment is now quartered in a large brick building that once served as a grist mill — a place, he notes, where the rebels seized so much wheat \"they will never have the same chance again.\" Unable to get around town, he apologizes for a shorter letter than he'd like and promises more when he can.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Henry writes that his regiment is now quartered in a large brick building that once served as a grist mill — a place, he notes, where the rebels seized so much wheat \"they will never have the same chance again.\" Unable to get around town, he apologizes for a shorter letter than he'd like and promises more when he can.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -357,8 +933,26 @@
     "old": "March to Winchester and back — 34th NY and two brigades marched 30 miles from Harpers Ferry toward Winchester, found 25,000 Union troops already there. Rebels had left \"probably for good.",
     "draft": "Henry's regiment and two brigades marched some thirty miles on foot from Harpers Ferry toward Winchester to drive out the rebels, only to learn within three miles of the town that 25,000 Union troops already held it and the Confederates had fled \"probably for good.\" Footsore from picket and skirmish duty, he admits to a \"good many hardships\" yet hopes nine months from home that the rebellion will be over by next summer.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Henry's regiment and two brigades marched some thirty miles on foot from Harpers Ferry toward Winchester to drive out the rebels, only to learn within three miles of the town that 25,000 Union troops already held it and the Confederates had fled \"probably for good.\" Footsore from picket and skirmish duty, he admits to a \"good many hardships\" yet hopes nine months from home that the rebellion will be over by next summer.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -368,8 +962,26 @@
     "old": "Bell tents detailed: 16 men, bell-shaped stove in center, pole in middle, open top for smoke. Roads to Winchester: macadamized (small stone), very good in any weather.",
     "draft": "Writing from Camp Gorman on Bolivar Heights, Henry tells his brother James that the brigade expects to leave soon for Washington, and that the Shenandoah River railroad bridge is repaired so cars again run to Winchester. Amid weather that toppled two tents, he confesses a long-neglected debt for Mrs. Douglas's flour and asks James to pay it from his money — adding, wearily, that he wouldn't object if the war closed next week.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from Camp Gorman on Bolivar Heights, Henry tells his brother James that the brigade expects to leave soon for Washington, and that the Shenandoah River railroad bridge is repaired so cars again run to Winchester. Amid weather that toppled two tents, he confesses a long-neglected debt for Mrs. Douglas's flour and asks James to pay it from his money — adding, wearily, that he wouldn't object if the war closed next week.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -379,8 +991,26 @@
     "old": "34th NY moves from Harpers Ferry to Washington — 83 miles by freight train in 24 hours. Arrived ~2 AM, marched 1+ mile to brick barracks.",
     "draft": "After the railroad bridge at Harpers Ferry was finished, Henry's 34th New York rode a freight train eighty-three miles to Washington in twenty-four hours, reaching brick barracks at 2 a.m. to await pay before an unknown next assignment. He marvels that a Sabbath in the capital feels nothing like one — cars running, drunken soldiers, the provost guard hauling in stragglers — and vows to dodge arrest himself.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "After the railroad bridge at Harpers Ferry was finished, Henry's 34th New York rode a freight train eighty-three miles to Washington in twenty-four hours, reaching brick barracks at 2 a.m. to await pay before an unknown next assignment. He marvels that a Sabbath in the capital feels nothing like one — cars running, drunken soldiers, the provost guard hauling in stragglers — and vows to dodge arrest himself.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -390,8 +1020,26 @@
     "old": "34th NY moves to the Peninsula — Alexandria → steamboat → Fortress Monroe → Hampton, VA. ~200 miles in 2 days.",
     "draft": "Henry writes from Hampton, Va., after the 34th New York's two-day steamboat passage from Alexandria to Fortress Monroe — nearly 200 miles across a Chesapeake Bay so wide he could see no land on either side. He finds the town burned to the ground, \"worse than Harpers Ferry,\" and the men penned up like sheep, sleeping under rubber blankets buttoned into tents, shrugging off hard crackers and no coffee with a soldier's resignation.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Henry writes from Hampton, Va., after the 34th New York's two-day steamboat passage from Alexandria to Fortress Monroe — nearly 200 miles across a Chesapeake Bay so wide he could see no land on either side. He finds the town burned to the ground, \"worse than Harpers Ferry,\" and the men penned up like sheep, sleeping under rubber blankets buttoned into tents, shrugging off hard crackers and no coffee with a soldier's resignation.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -401,8 +1049,26 @@
     "old": "Henry keeping a journal — \"I have been keeping a Journal some time. \" Plans to copy and send home.",
     "draft": "Writing by candlelight near Fortress Monroe, Henry tells his mother he has been \"keeping a Journal\" he means to copy and send home — and that his regiment marches twenty-four miles on foot to York Town the next morning, expecting an onward movement toward Richmond. The tree toads, he confesses, make him think of home.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing by candlelight near Fortress Monroe, Henry tells his mother he has been \"keeping a Journal\" he means to copy and send home — and that his regiment marches twenty-four miles on foot to York Town the next morning, expecting an onward movement toward Richmond. The tree toads, he confesses, make him think of home.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -412,8 +1078,26 @@
     "old": "25,000 troops at Hampton with one brigade. Steamer ran aground — had to transfer.",
     "draft": "Writing his brother Charles from a camp of some twenty-five thousand troops at Hampton, Va., Henry recounts a two-and-a-half-day boat passage whose steamer ran aground, forcing a transfer to reach shore. Confident in his bayonet drill, he nonetheless confesses he would rather be making sugar this spring than soldiering, and urges Charles not to let out the home sugar bush except to an honest man.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing his brother Charles from a camp of some twenty-five thousand troops at Hampton, Va., Henry recounts a two-and-a-half-day boat passage whose steamer ran aground, forcing a transfer to reach shore. Confident in his bayonet drill, he nonetheless confesses he would rather be making sugar this spring than soldiering, and urges Charles not to let out the home sugar bush except to an honest man.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -423,8 +1107,26 @@
     "old": "Pocket diary confirmed — \"I have been keeping a pocket diary, write down everything that transpires from day to day. I have 28 dates.",
     "draft": "Writing from \"Camp in field\" as heavy musketry sounds off toward Yorktown, Henry tells his brother James he has been keeping a pocket diary with 28 dated entries recording \"everything that transpires from day to day.\" Two days earlier his company double-quicked a mile expecting a fight; most of Co. D held together. He urges James toward West Point — yet still asks him to mind the cows and horse, hoping to be home next summer.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from \"Camp in field\" as heavy musketry sounds off toward Yorktown, Henry tells his brother James he has been keeping a pocket diary with 28 dated entries recording \"everything that transpires from day to day.\" Two days earlier his company double-quicked a mile expecting a fight; most of Co. D held together. He urges James toward West Point — yet still asks him to mind the cows and horse, hoping to be home next summer.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "FACT ISSUES: none. The unit context (Henry, Co. D, 34th NY) aligns with the collection; the letter's internal military facts — \"Camp in field,\" heavy musketry toward Yorktown, the double-quick of about a mile two days prior, the diary of 28 dated entries — are all reportable from this letter. The draft does not import the actual April 1862 Yorktown siege chronology or any outside engagement, which is correct.\n\nFEEDBACK: Militarily the draft is sound and well-emphasized. The Yorktown setting is exactly right for the 34th NY in early April 1862 (Peninsula Campaign, advance on the Confederate Warwick–Yorktown line), and the draft correctly treats the musketry and the double-quick alarm as the kind of expectant-but-no-battle tension that defined the siege approach rather than overclaiming a fight. One sharpening: \"most of Co. D held together\" is a slightly soft, ambiguous phrase for a military reader — if the letter is contrasting men who fell out or straggled on the double-quick versus those who kept ranks, say that more concretely; if Henry's point is steadiness under a false alarm, name it as such. Also \"double-quicked a mile expecting a fight\" is good and concrete — keep it. The diary detail is a strong human/archival beat and earns its place. Watch that the close (\"mind the cows and horse, hoping to be home next summer\") doesn't crowd the West Point thread; both are domestic-future notes and together they slightly dilute the military center. The draft is within length and vivid.\n\nSUGGESTED: From \"Camp in field\" with heavy musketry sounding off toward Yorktown, Henry writes his brother James that he has kept a pocket diary — 28 dated entries recording \"everything that transpires from day to day.\" Two days before, Co. D was double-quicked nearly a mile expecting a fight that never came, most of the company holding its ranks. Even amid the siege lines he presses James toward West Point, asks him to mind the cows and horse, and lets himself hope to be home next summer."
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -434,8 +1136,26 @@
     "old": "Pioneer duty at Yorktown — detailed as pioneers with axes, picks, shovels; building roads through woods for artillery. Rebels blocked roads.",
     "draft": "From a nameless \"Camp in field\" 16 miles from Hampton, Henry describes his regiment detailed as pioneers on the Sabbath — axes, picks, and shovels cutting new roads through woods the retreating rebels had blocked ahead of Yorktown. He records Gen. Gorman's cold counsel to keep cool in action \"and not to mind if brother or cousin fell,\" then, watching Virginia trees in blossom, confesses the whole campaign \"is all like a dream,\" wishing he were home for a sleigh ride.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "From a nameless \"Camp in field\" 16 miles from Hampton, Henry describes his regiment detailed as pioneers on the Sabbath — axes, picks, and shovels cutting new roads through woods the retreating rebels had blocked ahead of Yorktown. He records Gen. Gorman's cold counsel to keep cool in action \"and not to mind if brother or cousin fell,\" then, watching Virginia trees in blossom, confesses the whole campaign \"is all like a dream,\" wishing he were home for a sleigh ride.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -445,8 +1165,26 @@
     "old": "Rebels at York Town \"pretty well surrounded. \" Rebel slave reported they left on double quick.",
     "draft": "Writing from camp sixteen miles from Fortress Monroe after his regiment took the boat from Alexandria, Henry reports the rebels holding Yorktown but \"getting pretty well surrounded,\" and expects to march there any day for \"a little skirmish.\" He passes along an enslaved man's account that the rebels fled \"on a double quick\" at news of the Union advance, then closes hoping to be home next June, \"if the war is over.\"",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from camp sixteen miles from Fortress Monroe after his regiment took the boat from Alexandria, Henry reports the rebels holding Yorktown but \"getting pretty well surrounded,\" and expects to march there any day for \"a little skirmish.\" He passes along an enslaved man's account that the rebels fled \"on a double quick\" at news of the Union advance, then closes hoping to be home next June, \"if the war is over.\"",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -456,8 +1194,26 @@
     "old": "Siege of Yorktown firsthand — 3 miles from rebel lines. Called into line for expected skirmish.",
     "draft": "Writing his brother Charles from camp three miles outside Yorktown, Henry relays his first secondhand battle reports — a repulsed rebel attack on a Union battery and a Vermont regiment so badly hit that one company was left with \"only twenty.\" Continued across eight days, the letter closes with a rebel dawn attack on the 26th and a sharpshooter wounded. Henry confesses, \"Nothing livens me up more than to hear the firing cannon.\"",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing his brother Charles from camp three miles outside Yorktown, Henry relays his first secondhand battle reports — a repulsed rebel attack on a Union battery and a Vermont regiment so badly hit that one company was left with \"only twenty.\" Continued across eight days, the letter closes with a rebel dawn attack on the 26th and a sharpshooter wounded. Henry confesses, \"Nothing livens me up more than to hear the firing cannon.\"",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -466,10 +1222,28 @@
     "date": "1862-04-21",
     "old": "Siege of Yorktown operations: Drums silenced and band doesn't play — fear of rebel shelling. attacked on picket — night before last, heavy musketry; rebels tried to drive pickets in but failed.",
     "draft": "From the Yorktown siege lines, Henry tells his brother James that the regiment's drums and band have gone silent for fear of drawing rebel shells, and recounts a midnight musketry alarm when the rebels failed to drive in the New York 2nd's pickets. Between gun inspections and four o'clock drills, he confesses he often thinks with pleasure of the spring he and James made maple sugar at home.",
-    "final": null,
-    "chosen": "From the Yorktown siege lines, Henry tells his brother James that the regiment's drums and band have gone silent for fear of drawing rebel shells, and recounts a midnight musketry alarm when the rebels failed to drive in the New York 2nd's pickets. Between gun inspections and four o'clock drills, he confesses he often thinks with pleasure of the spring he and James made maple sugar at home.",
-    "changeNotes": null,
-    "status": "draft",
+    "final": "From the Yorktown siege lines, Henry writes his brother James of a regiment gone deliberately silent — drums stilled and the band hushed for fear of drawing rebel shells onto the camp — and recounts a midnight musketry alarm when the enemy tried and failed to drive in the New York 2nd's pickets. Yet between gun inspections and drills at four o'clock, his mind drifts homeward: he confesses he often thinks with pleasure of the spring he and James made maple sugar together back home.",
+    "finalRateLimited": false,
+    "chosen": "From the Yorktown siege lines, Henry writes his brother James of a regiment gone deliberately silent — drums stilled and the band hushed for fear of drawing rebel shells onto the camp — and recounts a midnight musketry alarm when the enemy tried and failed to drive in the New York 2nd's pickets. Yet between gun inspections and drills at four o'clock, his mind drifts homeward: he confesses he often thinks with pleasure of the spring he and James made maple sugar together back home.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "refined",
     "approved": false
   },
   {
@@ -478,8 +1252,26 @@
     "old": "Sedgwick's Division, Gorman Brigade — unit identification confirmed. McClellan described: \"Splendid looking fellow, smiling countenance, rides a fine horse,\" ~200 cavalry bodyguard.",
     "draft": "Writing from the siege lines near Yorktown, Henry pinpoints his place in the army — Sedgwick's Division, Gorman's Brigade — and watches a balloon rise daily to spy on the rebel works while McClellan, \"a splendid looking fellow\" with a 200-strong cavalry guard, rides past. Between picket duty on dark, dreary nights, his mind keeps drifting home to the horses, the cattle, and a farm with no one to see to it.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from the siege lines near Yorktown, Henry pinpoints his place in the army — Sedgwick's Division, Gorman's Brigade — and watches a balloon rise daily to spy on the rebel works while McClellan, \"a splendid looking fellow\" with a 200-strong cavalry guard, rides past. Between picket duty on dark, dreary nights, his mind keeps drifting home to the horses, the cattle, and a farm with no one to see to it.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -489,8 +1281,26 @@
     "old": "Pay and financial accounting: 2 months' pay; $20 home; boots $1 (Peter Guyan); sutler $1; cook 50¢; $3. Emerson Smith used all wages.",
     "draft": "Newly paid for two months at Fortress Monroe's Camp \"Windfield Scott,\" Henry mails $20 home by express and itemizes every cent that remains. A Union tower rises opposite a nearby rebel fort, shelled daily, and the men sleep up before dawn braced for an attack. Henry notes the Sabbath goes unkept and trusts God \"will not hold us accountable for what we cannot help.\"",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Newly paid for two months at Fortress Monroe's Camp \"Windfield Scott,\" Henry mails $20 home by express and itemizes every cent that remains. A Union tower rises opposite a nearby rebel fort, shelled daily, and the men sleep up before dawn braced for an attack. Henry notes the Sabbath goes unkept and trusts God \"will not hold us accountable for what we cannot help.\"",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -500,8 +1310,26 @@
     "old": "$20 enclosed by express. Heavy cannonading at 4 AM. Rebel fort visible from camp. On picket.",
     "draft": "Writing from camp near Yorktown, Henry encloses twenty dollars by express and reports a rebel fort visible from his lines and heavy cannonading at four that morning. He dashed off the note on picket duty, closing with a plea to \"write often.\"",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from camp near Yorktown, Henry encloses twenty dollars by express and reports a rebel fort visible from his lines and heavy cannonading at four that morning. He dashed off the note on picket duty, closing with a plea to \"write often.\"",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -511,8 +1339,26 @@
     "old": "Yorktown evacuated by rebels — Henry inside fortifications. \"Immense and very strong.",
     "draft": "Writing from inside the evacuated Confederate fortifications at Yorktown — \"immense and very strong,\" sandbags head-high — Henry marvels at works he calls the strongest he has seen. He recounts the hardest night of his soldiering: an all-night march in driving rain and deep mud, halting every ten paces. Buried shells left underfoot have already wounded some of his men.",
     "final": null,
+    "finalRateLimited": true,
     "chosen": "Writing from inside the evacuated Confederate fortifications at Yorktown — \"immense and very strong,\" sandbags head-high — Henry marvels at works he calls the strongest he has seen. He recounts the hardest night of his soldiering: an all-night march in driving rain and deep mud, halting every ten paces. Buried shells left underfoot have already wounded some of his men.",
-    "changeNotes": null,
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -520,32 +1366,86 @@
     "id": "LTR-1862-05-09-001",
     "date": "1862-05-09",
     "old": "West Point, VA — on York River, NOT the academy. 20-30 miles from Yorktown, ~30 from Richmond.",
-    "draft": null,
+    "draft": "Writing his sister Frances for the first time in nearly a year, Henry reports his regiment's move by crowded boat from the evacuated Yorktown to West Point, Virginia — a landing on the York River, not the Military Academy — about thirty miles from Richmond. He notes the rebels' vast abandoned earthworks and promises again to send the journal he has kept of the campaign.",
     "final": null,
-    "chosen": null,
-    "changeNotes": null,
-    "status": "MISSING",
+    "finalRateLimited": true,
+    "chosen": "Writing his sister Frances for the first time in nearly a year, Henry reports his regiment's move by crowded boat from the evacuated Yorktown to West Point, Virginia — a landing on the York River, not the Military Academy — about thirty miles from Richmond. He notes the rebels' vast abandoned earthworks and promises again to send the journal he has kept of the campaign.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "draft",
     "approved": false
   },
   {
     "id": "LTR-1862-05-09-002",
     "date": "1862-05-09",
     "old": "Cornwallis surrender spot — \"pointed out to me. It was a great sight.",
-    "draft": "Henry writes from West Point on the York River, twenty-five miles from Richmond, where the spot of Cornwallis's surrender was pointed out to him — \"a great sight.\" Word of the 16th Regiment's skirmish, one company losing sixteen men, brings the war close: George Corbin and Royal, friends from home, shook his hand. He urges Mother to let the farm out on shares and spend the summer at Charlotte.",
-    "final": null,
-    "chosen": "Henry writes from West Point on the York River, twenty-five miles from Richmond, where the spot of Cornwallis's surrender was pointed out to him — \"a great sight.\" Word of the 16th Regiment's skirmish, one company losing sixteen men, brings the war close: George Corbin and Royal, friends from home, shook his hand. He urges Mother to let the farm out on shares and spend the summer at Charlotte.",
-    "changeNotes": null,
-    "status": "draft",
+    "draft": "Writing from West Point on the York River, twenty-five to thirty miles from Richmond, Henry is shown the spot where Cornwallis surrendered — \"a great sight.\" He reports the 16th Regiment's skirmish, one company losing sixteen, then warms at shaking hands with George Corbin and Royal, friends from home. He still frets over the farm and a newspaper stolen before he could finish it.",
+    "final": "Writing from West Point on the York River, twenty-five to thirty miles from Richmond, Henry stands at the very spot where Cornwallis surrendered and calls it \"a great sight.\" He passes along word of the 16th Regiment's skirmish, one company losing sixteen men, then warms at the surprise of shaking hands with George Corbin and Royal, friends from home. Even amid the march on Richmond he frets over the farm and grumbles about a newspaper stolen before he could finish reading it.",
+    "finalRateLimited": false,
+    "chosen": "Writing from West Point on the York River, twenty-five to thirty miles from Richmond, Henry stands at the very spot where Cornwallis surrendered and calls it \"a great sight.\" He passes along word of the 16th Regiment's skirmish, one company losing sixteen men, then warms at the surprise of shaking hands with George Corbin and Royal, friends from home. Even amid the march on Richmond he frets over the farm and grumbles about a newspaper stolen before he could finish reading it.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "refined",
     "approved": false
   },
   {
     "id": "LTR-1862-05-12-001",
     "date": "1862-05-12",
     "old": "Camp Alton, West Point, VA — 34th Regt. Near unnamed river emptying into York River (likely Pamunkey or Mattaponi).",
-    "draft": "Writing from Camp Alton near West Point, Virginia, Henry reckons the 34th Regiment is camped amid roughly 100,000 troops and expects to move on Richmond any day, trusting that \"McClellan is working slow but sure.\" He hopes to reunite with brother Alexander, whose 60th Regiment he hears is headed his way, even as he worries over his mother's health and asks who is working the garden back home.",
+    "draft": "Writing from Camp Alton near West Point, Va., Henry reckons some hundred thousand troops are massed around him and expects the 34th to move on Richmond any day, trusting that \"McClellan is working slow but sure.\" Hearing Alexander's 60th Regt. may be bound for the same place, he longs to see his brother even as he warns him he'll tire of the marching.",
     "final": null,
-    "chosen": "Writing from Camp Alton near West Point, Virginia, Henry reckons the 34th Regiment is camped amid roughly 100,000 troops and expects to move on Richmond any day, trusting that \"McClellan is working slow but sure.\" He hopes to reunite with brother Alexander, whose 60th Regiment he hears is headed his way, even as he worries over his mother's health and asks who is working the garden back home.",
-    "changeNotes": null,
+    "finalRateLimited": true,
+    "chosen": "Writing from Camp Alton near West Point, Va., Henry reckons some hundred thousand troops are massed around him and expects the 34th to move on Richmond any day, trusting that \"McClellan is working slow but sure.\" Hearing Alexander's 60th Regt. may be bound for the same place, he longs to see his brother even as he warns him he'll tire of the marching.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -553,10 +1453,28 @@
     "id": "LTR-1862-06-06-001",
     "date": "1862-06-06",
     "old": "George Dodds in hospital, \"run down so you would not know him\" — applying for discharge. Henry stood march despite being sick.",
-    "draft": "Writing on the march while sick, Henry gently declines his mother's offer to come nurse him — \"I am afraid it would bring you down sick\" — insisting he will stand it through. He reports that comrade George Dodds is so run down \"you would not know him,\" hospitalized and applying for discharge.",
+    "draft": "Marching while sick himself, Henry gently refuses his mother's offer to come nurse him at the front — \"you would be obliged to be on your feet most of the time, and I am afraid it would bring you down sick.\" He reports comrade George Dodds so wasted \"you would not know him,\" now in the hospital and seeking a discharge. He encloses ten dollars and, apologizing for his poor pen, asks who is keeping his money.",
     "final": null,
-    "chosen": "Writing on the march while sick, Henry gently declines his mother's offer to come nurse him — \"I am afraid it would bring you down sick\" — insisting he will stand it through. He reports that comrade George Dodds is so run down \"you would not know him,\" hospitalized and applying for discharge.",
-    "changeNotes": null,
+    "finalRateLimited": true,
+    "chosen": "Marching while sick himself, Henry gently refuses his mother's offer to come nurse him at the front — \"you would be obliged to be on your feet most of the time, and I am afraid it would bring you down sick.\" He reports comrade George Dodds so wasted \"you would not know him,\" now in the hospital and seeking a discharge. He encloses ten dollars and, apologizing for his poor pen, asks who is keeping his money.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
     "status": "draft",
     "approved": false
   },
@@ -564,88 +1482,232 @@
     "id": "LTR-1862-06-13-001",
     "date": "1862-06-13",
     "old": "Battle of Fair Oaks aftermath — regiment lost 123 wounded and killed (papers said 150). D lost 2 killed and 10 wounded.",
-    "draft": null,
+    "draft": "Writing from camp five miles outside Richmond after the Battle of Fair Oaks, Henry reports the regiment lost 123 killed and wounded — his own Company D, two killed and ten wounded — and counts himself thankful to have come through unhurt. Even Lieut. Scott, once resented by the men, won them over by acting bravely before being wounded. Yet Henry has been sick three days on quinine, and longs for one good meal at home: \"even if it wasn't anything but potatoes and salt.\"",
     "final": null,
-    "chosen": null,
-    "changeNotes": null,
-    "status": "MISSING",
+    "finalRateLimited": true,
+    "chosen": "Writing from camp five miles outside Richmond after the Battle of Fair Oaks, Henry reports the regiment lost 123 killed and wounded — his own Company D, two killed and ten wounded — and counts himself thankful to have come through unhurt. Even Lieut. Scott, once resented by the men, won them over by acting bravely before being wounded. Yet Henry has been sick three days on quinine, and longs for one good meal at home: \"even if it wasn't anything but potatoes and salt.\"",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "draft",
     "approved": false
   },
   {
     "id": "LTR-1862-06-13-002",
     "date": "1862-06-13",
     "old": "BATTLE OF FAIR OAKS — FIRSTHAND COMBAT ACCOUNT. \"You can have no conception of how exciting it is to be in a battle.",
-    "draft": null,
+    "draft": "Writing from camp five miles from Richmond, Henry gives Charles a firsthand account of the battle of Fair Oaks — the ground shaking, firing like men felling trees, loading while advancing, and his own forty rounds fired before he learned anyone had fallen. Sick with dysentery and under daily shelling that killed a man at the hospital that morning, he admits he gets lonesome now and then.",
     "final": null,
-    "chosen": null,
-    "changeNotes": null,
-    "status": "MISSING",
+    "finalRateLimited": true,
+    "chosen": "Writing from camp five miles from Richmond, Henry gives Charles a firsthand account of the battle of Fair Oaks — the ground shaking, firing like men felling trees, loading while advancing, and his own forty rounds fired before he learned anyone had fallen. Sick with dysentery and under daily shelling that killed a man at the hospital that morning, he admits he gets lonesome now and then.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "draft",
     "approved": false
   },
   {
     "id": "LTR-1862-06-16-001",
     "date": "1862-06-16",
     "old": "One year of service — \"A long year it has been to me. Twelve more months.",
-    "draft": null,
+    "draft": "Writing from camp within five miles of Richmond on the first anniversary of his regiment's muster, Henry reckons that fewer than five hundred men in the 34th are now fit for duty. Recovering from a week under the doctor's care, he relays a captured rebel's grudging awe at how fast the Yankees could load and fire, and jokes that the carriages of ladies who came to watch their defeat were instead pressed into carrying off the Confederate wounded.",
     "final": null,
-    "chosen": null,
-    "changeNotes": null,
-    "status": "MISSING",
+    "finalRateLimited": true,
+    "chosen": "Writing from camp within five miles of Richmond on the first anniversary of his regiment's muster, Henry reckons that fewer than five hundred men in the 34th are now fit for duty. Recovering from a week under the doctor's care, he relays a captured rebel's grudging awe at how fast the Yankees could load and fire, and jokes that the carriages of ladies who came to watch their defeat were instead pressed into carrying off the Confederate wounded.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "draft",
     "approved": false
   },
   {
     "id": "LTR-1862-06-22-001",
     "date": "1862-06-22",
     "old": "Henry's health in serious decline — dysentery \"very bad,\" unable to do duty for over a week, Dr. every morning, quinine and pills.",
-    "draft": null,
+    "draft": "Writing from camp five miles outside Richmond, Henry tells his mother he has had the dysentery \"very bad\" and has been unable to do duty for over a week, going to the doctor most mornings for quinine and pills. He records his rations in unusual detail — hard bread, salt junk, coffee, soup — and pins his hopes on McClellan's siege starving the rebels out, even as he admits he is \"about disgusted with soldiering\" and longs to be home eating potatoes.",
     "final": null,
-    "chosen": null,
-    "changeNotes": null,
-    "status": "MISSING",
+    "finalRateLimited": true,
+    "chosen": "Writing from camp five miles outside Richmond, Henry tells his mother he has had the dysentery \"very bad\" and has been unable to do duty for over a week, going to the doctor most mornings for quinine and pills. He records his rations in unusual detail — hard bread, salt junk, coffee, soup — and pins his hopes on McClellan's siege starving the rebels out, even as he admits he is \"about disgusted with soldiering\" and longs to be home eating potatoes.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "draft",
     "approved": false
   },
   {
     "id": "LTR-1862-06-22-002",
     "date": "1862-06-22",
     "old": "FAIR OAKS — BAYONET CHARGE DETAIL: \"pushed right in head first. \" Came to bayonet charge at woods edge.",
-    "draft": null,
+    "draft": "Writing from camp near Richmond to his brother Charles, Henry recounts a recent bayonet charge in which his regiment, \"pushed right in head first,\" halted to fire low into kneeling rebels before they could volley — leaving by his Colonel's account three hundred dead and wounded. To Charles alone he confesses he is \"almost tempted to desert sometimes,\" held back only by the disgrace and by his mother being all alone. He also relays how Capt. Reich was put in irons and discharged for refusing an order.",
     "final": null,
-    "chosen": null,
-    "changeNotes": null,
-    "status": "MISSING",
+    "finalRateLimited": true,
+    "chosen": "Writing from camp near Richmond to his brother Charles, Henry recounts a recent bayonet charge in which his regiment, \"pushed right in head first,\" halted to fire low into kneeling rebels before they could volley — leaving by his Colonel's account three hundred dead and wounded. To Charles alone he confesses he is \"almost tempted to desert sometimes,\" held back only by the disgrace and by his mother being all alone. He also relays how Capt. Reich was put in irons and discharged for refusing an order.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "draft",
     "approved": false
   },
   {
     "id": "LTR-1862-07-08-002",
     "date": "1862-07-08",
     "old": "SEVEN DAYS RETREAT firsthand. was in a battle the last of June.",
-    "draft": null,
+    "draft": "Writing from a camp on the James River in the wake of a late-June battle and the army's retreat — \"if we call it such\" — Henry recounts losing his knapsack on the double-quick, watching a Major lose both feet to a solid shot, and faulting the officers' want of judgment. Yet his spirits are buoyed by his sister's plans, and he dreams of selling the farm to buy a team and ease their mother's life in Vermont.",
     "final": null,
-    "chosen": null,
-    "changeNotes": null,
-    "status": "MISSING",
+    "finalRateLimited": true,
+    "chosen": "Writing from a camp on the James River in the wake of a late-June battle and the army's retreat — \"if we call it such\" — Henry recounts losing his knapsack on the double-quick, watching a Major lose both feet to a solid shot, and faulting the officers' want of judgment. Yet his spirits are buoyed by his sister's plans, and he dreams of selling the farm to buy a team and ease their mother's life in Vermont.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "draft",
     "approved": false
   },
   {
     "id": "LTR-1862-07-12-001",
     "date": "1862-07-12",
     "old": "SEVEN DAYS RETREAT — extended detail. Sick ordered to hospital; McDonald came twice urging Henry to go; Henry stayed with the men.",
-    "draft": null,
+    "draft": "Writing from camp near Harrison's Landing after the Seven Days' retreat, Henry recounts a bayonet charge into the woods and the Irish Brigade storming a rebel battery — \"a splendid sight\" — even as his regiment lost many men, supplies, and the battery itself. Sick with worsening diarrhea, he twice refused McDonald's urging to go to the hospital, unwilling to leave his comrades, and weighs the $100 bounty and land warrant that bind him to finish his thirteen-month service.",
     "final": null,
-    "chosen": null,
-    "changeNotes": null,
-    "status": "MISSING",
+    "finalRateLimited": true,
+    "chosen": "Writing from camp near Harrison's Landing after the Seven Days' retreat, Henry recounts a bayonet charge into the woods and the Irish Brigade storming a rebel battery — \"a splendid sight\" — even as his regiment lost many men, supplies, and the battery itself. Sick with worsening diarrhea, he twice refused McDonald's urging to go to the hospital, unwilling to leave his comrades, and weighs the $100 bounty and land warrant that bind him to finish his thirteen-month service.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "draft",
     "approved": false
   },
   {
     "id": "LTR-1862-07-28-001",
     "date": "1862-07-28",
     "old": "GRAND REVIEW of Army of the Potomac at Harrison's Landing — \"last Tuesday\" (July 22). Near James River, within sight of gunboats.",
-    "draft": null,
+    "draft": "Henry describes the grand review of the Army of the Potomac near the James River the previous Tuesday — the regiments marched in line of battle within sight of the gunboats, the battery firing blank cartridges, an artist on hand whose sketch he expects in Harper's Weekly. Writing to his sister Frances, he confides a quieter wish: that peace might come \"just before Sugar time\" so he could farm again next spring, though he resigns himself to staying his time out.",
     "final": null,
-    "chosen": null,
-    "changeNotes": null,
-    "status": "MISSING",
+    "finalRateLimited": true,
+    "chosen": "Henry describes the grand review of the Army of the Potomac near the James River the previous Tuesday — the regiments marched in line of battle within sight of the gunboats, the battery firing blank cartridges, an artist on hand whose sketch he expects in Harper's Weekly. Writing to his sister Frances, he confides a quieter wish: that peace might come \"just before Sugar time\" so he could farm again next spring, though he resigns himself to staying his time out.",
+    "critiques": [
+      {
+        "lens": "civilwar-historian",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "military-expert",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "mccullough",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      },
+      {
+        "lens": "copywriter",
+        "text": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited"
+      }
+    ],
+    "status": "draft",
     "approved": false
   }
 ]
