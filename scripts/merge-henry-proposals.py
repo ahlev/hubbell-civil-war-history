@@ -38,11 +38,19 @@ def clean_final(raw):
     return cands[-1] if cands else (max(paras, key=len) if paras else None)
 
 
+def load_results(path):
+    with open(path, encoding="utf-8") as f:
+        return {r["id"]: r for r in json.load(f).get("result", {}).get("results", [])}
+
+
+def good_crits(crits):
+    return crits and all(not (c.get("text") or "").startswith("API Error") for c in crits)
+
+
 def main():
-    wf_path = sys.argv[1]
-    with open(wf_path, encoding="utf-8") as f:
-        wf = json.load(f)
-    res = {r["id"]: r for r in wf.get("result", {}).get("results", [])}
+    # arg1 = enriched-finals source; arg2 (optional) = complete-critiques source
+    res = load_results(sys.argv[1])
+    crit_src = load_results(sys.argv[2]) if len(sys.argv) > 2 else res
 
     index = json.load(open(os.path.join(PREP, "_index.json"), encoding="utf-8"))
     rows = []
@@ -50,9 +58,13 @@ def main():
         lid = item["id"]
         prep = json.load(open(os.path.join(PREP, lid + ".json"), encoding="utf-8"))
         r = res.get(lid, {})
-        v1 = r.get("v1")
+        v1 = r.get("v1") or crit_src.get(lid, {}).get("v1")
         raw_final = r.get("final")
         final = clean_final(raw_final)
+        # prefer the complete critiques (arg2) over any rate-limited ones in arg1
+        crits = crit_src.get(lid, {}).get("critiques") or []
+        if not good_crits(crits):
+            crits = r.get("critiques") or crits
         rows.append({
             "id": lid,
             "date": item["date"],
@@ -60,8 +72,8 @@ def main():
             "draft": v1,
             "final": final,
             "chosen": final or v1,
-            "critiques": r.get("critiques", []),
-            "status": ("refined" if final else ("draft" if v1 else "MISSING")),
+            "critiques": crits,
+            "status": ("enriched" if final else ("draft" if v1 else "MISSING")),
             "approved": False,
         })
 
