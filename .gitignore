@@ -21,3 +21,6 @@ tasks/
 # Local dev / tooling (added during web-polish-2-6)
 node_modules/
 package-lock.json
+
+# Henry-pilot raw transcription extracts (regenerable via prep-henry-pilot.py)
+04-analysis/_henry-pilot/
