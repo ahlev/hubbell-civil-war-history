@@ -47,7 +47,12 @@ for fp in glob.glob(os.path.join(PILOT, "LTR-*.json")):
 
 # overlay enriched finals (later args win)
 for path in sys.argv[1:]:
-    out = json.load(open(path, encoding="utf-8"))
+    try:
+        out = json.load(open(path, encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        continue
+    if not isinstance(out, dict):
+        continue
     for r in out.get("result", {}).get("results", []):
         c = clean(r.get("final"))
         if c and r["id"] in rows:

@@ -25,3 +25,7 @@ package-lock.json
 # Henry-pilot raw transcription extracts (regenerable via prep-henry-pilot.py)
 04-analysis/_henry-pilot/
 _pilot/
+
+# Summary-rewrite scratch (regenerable from proposals)
+04-analysis/_tighten/
+04-analysis/_tighten-payload.json
