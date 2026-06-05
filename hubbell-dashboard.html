@@ -515,10 +515,18 @@
             gap: 5px;
             white-space: nowrap;
         }
-        .nav-mode-btn.active {
-            background: #fff;
+        /* Active "<Name>'s Letters": darker shade of the author's color, black
+           dot, white text. "All Letters" active stays a quiet neutral. */
+        .nav-mode-btn.active[data-mode="author"] {
+            background: color-mix(in srgb, var(--author-c, #2C2A26) 72%, #000);
+            color: #FFFFFF;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.22);
+        }
+        .nav-mode-btn.active[data-mode="author"] .nav-author-dot { background: #0D0D0D !important; }
+        .nav-mode-btn.active[data-mode="date"] {
+            background: var(--bg-elev, #fff);
             color: var(--text);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: inset 0 0 0 1px var(--border);
         }
         .nav-mode-btn:hover:not(.active) {
             color: var(--text-secondary);
@@ -985,10 +993,18 @@
             border-radius: 6px;
             gap: 5px;
         }
-        .detail-panel .nav-mode-btn.active {
-            background: #2C2A26;
-            color: #FDFCFA;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        /* Active "<Name>'s Letters": darker shade of the author's color, black
+           dot, white text. "All Letters" active stays a quiet neutral. */
+        .detail-panel .nav-mode-btn.active[data-mode="author"] {
+            background: color-mix(in srgb, var(--author-c, #2C2A26) 72%, #000);
+            color: #FFFFFF;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.22);
+        }
+        .detail-panel .nav-mode-btn.active[data-mode="author"] .nav-author-dot { background: #0D0D0D !important; }
+        .detail-panel .nav-mode-btn.active[data-mode="date"] {
+            background: var(--bg-elev, #fff);
+            color: var(--text);
+            box-shadow: inset 0 0 0 1px var(--border);
         }
         .detail-panel .nav-mode-btn .nav-author-dot {
             width: 7px; height: 7px;
@@ -2594,11 +2610,11 @@
                         ${mapLink}
                     </div>
                     <div class="nav-mode-wrap">
-                        <button class="nav-mode-btn ${navMode === 'author' ? 'active' : ''}" onclick="setNavMode('author')">
+                        <button class="nav-mode-btn ${navMode === 'author' ? 'active' : ''}" data-mode="author" style="--author-c:${color}" onclick="setNavMode('author')">
                             <span class="nav-author-dot" style="background:${color}"></span>
                             ${NAMES[l.author]}'s Letters
                         </button>
-                        <button class="nav-mode-btn ${navMode === 'date' ? 'active' : ''}" onclick="setNavMode('date')">All Letters</button>
+                        <button class="nav-mode-btn ${navMode === 'date' ? 'active' : ''}" data-mode="date" onclick="setNavMode('date')">All Letters</button>
                     </div>
                 </div>
                 ${buildDashContextStrip(idx)}

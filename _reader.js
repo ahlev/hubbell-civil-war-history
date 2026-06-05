@@ -288,6 +288,8 @@ window.HubbellReader = (function () {
     // Update author button label + dot color
     var authorBtn = modeWrap.querySelector('[data-mode="author"]');
     if (authorBtn) {
+      // Expose the author color so the active tab can use a darker shade of it.
+      authorBtn.style.setProperty('--author-c', authorColor);
       var dot = authorBtn.querySelector('.nav-author-dot');
       if (dot) dot.style.background = authorColor;
       // Set text: "{Name}'s Letters"
@@ -634,8 +636,9 @@ window.HubbellReader = (function () {
     // Letter Context Strip (opt-in) — the corpus-wide "you are here" timeline.
     var contextStrip = opts.contextStrip ? buildLetterContextStrip(letterId) : '';
     // Executive summary — the one-line editorial "what this letter is" the user
-    // values. Shown on the rich reader surfaces (same opt-in as the strip).
-    var summaryHtml = (opts.contextStrip && letter.ss)
+    // values. Shown in every reader (above people/places/tags), color-coded to
+    // the author, whenever the letter has a summary.
+    var summaryHtml = letter.ss
       ? '<div class="reader-exec-summary" style="--exec-c:' + color + '">' + esc(letter.ss) + '</div>' : '';
 
     contentEl.innerHTML =
