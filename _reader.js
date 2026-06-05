@@ -651,8 +651,8 @@ window.HubbellReader = (function () {
           mapLink +
           '<span class="rm-id">' + esc(letter.id) + '</span></div>' +
       '</div>' +
-      summaryHtml +
       contextStrip +
+      summaryHtml +
       healthHtml +
       ppl + plc +
       '<div class="reader-body">' + bodyText + '</div>';

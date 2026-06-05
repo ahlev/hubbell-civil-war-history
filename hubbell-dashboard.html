@@ -2601,8 +2601,8 @@
                         <button class="nav-mode-btn ${navMode === 'date' ? 'active' : ''}" onclick="setNavMode('date')">All Letters</button>
                     </div>
                 </div>
-                ${l.sigSummary ? `<div class="reader-exec-summary" style="--exec-c:${color}">${escapeHtml(l.sigSummary.replace(/\*\*/g, ''))}</div>` : ''}
                 ${buildDashContextStrip(idx)}
+                ${l.sigSummary ? `<div class="reader-exec-summary" style="--exec-c:${color}">${escapeHtml(l.sigSummary.replace(/\*\*/g, ''))}</div>` : ''}
                 <div class="detail-scroll">
                     ${flags ? `<div class="reader-flags">${flags}</div>` : ''}
                     ${pplHtml}${plcHtml}

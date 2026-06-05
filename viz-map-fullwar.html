@@ -1086,6 +1086,13 @@ body.letter-reader-open .narrative-caption {
   border-top: 1px solid #F0ECE7;
   padding-top: 12px;
 }
+/* Opened-letter body on the map uses the standard shared reader (.reader-body),
+   bumped here by 1px / 0.05 line-height for slightly easier reading in the
+   map context. Scoped to this page only (the reader overlay lives on it). */
+.reader-panel .reader-body {
+  font-size: 14px;
+  line-height: 1.2;
+}
 
 /* ── Recent Letters in info panel ── */
 .recent-letter-card {
