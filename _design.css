@@ -1579,7 +1579,7 @@ button, a, [onclick], [role="button"] {
      padding / smaller text so it doesn't crowd the 52px nav-bar top band. */
   .dl-modal-share {
     top: 10px !important;
-    padding: 5px 12px !important;
+    padding: 4px 9px !important;
     font-size: 11px !important;
   }
   .dl-modal-share svg { width: 12px !important; height: 12px !important; }
@@ -1596,7 +1596,11 @@ button, a, [onclick], [role="button"] {
   .reader-panel .dl-modal-share:hover {
     transform: translateX(-50%) translateY(-1px) !important;
   }
-  .reader-pill { font-size: 0.68rem; padding: 3px 8px; }
+  /* ~30% smaller From/To value pills so the correspondence row is more
+     likely to fit on one line; tighter row gap + label help too. */
+  .reader-correspondence { gap: 5px; }
+  .reader-pill-label { min-width: 22px; font-size: 9px; }
+  .reader-pill { font-size: 0.48rem; padding: 2px 7px; gap: 3px; }
   .reader-meta { font-size: 11px; }
   .reader-body { font-size: 14px; padding: 14px 16px; }
 

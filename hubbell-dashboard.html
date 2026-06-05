@@ -1115,6 +1115,14 @@
           .detail-inner { grid-template-columns: 1fr; height: auto; max-height: 70vh; gap: 16px; }
           .detail-right { border-left: none; padding-left: 0; border-top: 1px solid var(--border-light); padding-top: 16px; }
           .detail-header .detail-pills { flex-wrap: wrap; gap: 4px; }
+          /* Stack the header on phones so the From/To correspondence gets the
+             full width (one line) and the nav controls sit on their own row. */
+          .detail-panel .detail-header { flex-direction: column; align-items: stretch; gap: 8px; }
+          .detail-panel .detail-header .detail-nav-arrows { justify-content: flex-end; }
+          /* ~30% smaller From/To value pills so the correspondence row is more
+             likely to fit on one line (matches the shared reader). */
+          .detail-panel .reader-pill { font-size: 0.5rem; padding: 2px 7px; }
+          .detail-panel .reader-pill-label { font-size: 9px; min-width: 22px; }
           .detail-nav-btn { width: 34px; height: 34px; font-size: 16px; }
           .detail-scroll .reader-body { padding: 14px 16px; font-size: 14px; }
           .nav-mode-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
