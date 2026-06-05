@@ -7,17 +7,35 @@ Usage: python scripts/merge-henry-proposals.py <workflow-output.json>
 """
 import json
 import os
+import re
 import sys
 
 PREP = "04-analysis/_henry-pilot"
 OUT = "04-analysis/sigsummary-v2-henry-proposals.json"
 
 
-def bad_final(s):
-    if not s:
-        return True
-    s2 = s.strip()
-    return s2.startswith("API Error") or "Rate limited" in s2 or len(s2) < 40
+def clean_final(raw):
+    """Extract the actual summary from a refine output that may be prefixed with
+    the agent's verification reasoning. The summary is the last prose paragraph."""
+    if not raw:
+        return None
+    s = raw.strip()
+    if s.startswith("API Error") or "Rate limited" in s:
+        return None
+    paras = [p.strip() for p in re.split(r"\n\s*\n", s) if p.strip()]
+    bad_starts = ("- ", "* ", "•", "fact issues", "feedback", "suggested",
+                  "verifying", "applying", "the only", "here ", "here's", "note:",
+                  "i ", "i'", "1.", "2.", "minimal fix", "correction")
+    for p in reversed(paras):
+        low = p.lower()
+        if low.startswith(bad_starts):
+            continue
+        if p.count("\n") > 1:           # multi-line block = reasoning, not a summary
+            continue
+        if 120 <= len(p) <= 700:
+            return p
+    cands = [p for p in paras if "\n" not in p and 120 <= len(p) <= 700]
+    return cands[-1] if cands else (max(paras, key=len) if paras else None)
 
 
 def main():
@@ -34,14 +52,13 @@ def main():
         r = res.get(lid, {})
         v1 = r.get("v1")
         raw_final = r.get("final")
-        final = None if bad_final(raw_final) else raw_final.strip()
+        final = clean_final(raw_final)
         rows.append({
             "id": lid,
             "date": item["date"],
             "old": prep.get("currentSummary", ""),
             "draft": v1,
             "final": final,
-            "finalRateLimited": bool(raw_final) and bad_final(raw_final) and not (raw_final or "").strip().startswith("API") is False,
             "chosen": final or v1,
             "critiques": r.get("critiques", []),
             "status": ("refined" if final else ("draft" if v1 else "MISSING")),
