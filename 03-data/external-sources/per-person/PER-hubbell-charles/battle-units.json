@@ -1,0 +1,15 @@
+{
+  "source": "Battle facts (CWSAC battle CSV + American Battlefield Trust) for the 153rd NY's engagements",
+  "person_id": "PER-hubbell-charles",
+  "checked_date": "2026-06-06",
+  "method": "Downloaded CWSAC CSV from GitHub raw; corroborated with ABT and the NYSMM sketch.",
+  "battles": [
+    {"name": "Mansfield (Sabine Cross-Roads / Pleasant Grove)", "cwsac_code": "LA018", "date": "1864-04-08", "state": "LA (DeSoto Parish)", "campaign": "Red River", "result": "Confederate victory", "casualties": "4,400 total (US 2,900; CS 1,500)", "significance": "A", "url": "http://www.nps.gov/abpp/battles/la018.htm"},
+    {"name": "Pleasant Hill", "cwsac_code": "LA019", "date": "1864-04-09", "state": "LA (DeSoto/Sabine Parish)", "campaign": "Red River", "result": "Union victory", "casualties": "3,100 total (US 1,100; CS 2,000)", "significance": "B", "note": "NYSMM: 153rd suffered 'severe loss' here.", "url": "http://www.nps.gov/abpp/battles/la019.htm"},
+    {"name": "Opequon (Third Winchester)", "cwsac_code": "VA119", "date": "1864-09-19", "state": "VA (Frederick County)", "campaign": "Sheridan's Shenandoah Valley", "result": "Union victory", "strength": "54,440 (US 39,240; CS 15,200)", "casualties": "8,630 total (US 5,020; CS 3,610)", "significance": "A", "note": "153rd lost 69 killed and wounded (NYSMM).", "url": "http://www.nps.gov/abpp/battles/va119.htm"},
+    {"name": "Cedar Creek (Belle Grove)", "cwsac_code": "VA122", "date": "1864-10-19", "state": "VA (Frederick/Shenandoah/Warren Co.)", "campaign": "Sheridan's Shenandoah Valley", "result": "Union victory", "strength": "52,945 (US 31,945; CS 21,000)", "casualties": "8,575 total (US 5,665; CS 2,910)", "significance": "A", "note": "The deadliest day for Charles's Co. I circle: Sgt. James Lucas killed; brother James Hubbell, 1st Sgt. Peltier, and Lt. Col. Strain all wounded. Cached: shared/battle-details/cedar-creek.json.", "url": "http://www.nps.gov/abpp/battles/va122.htm"}
+  ],
+  "confidence": "external · n/a · definite (battle facts)",
+  "null_result": false,
+  "notes": "The 153rd's combat arc (Red River LA, then Shenandoah VA) is the backdrop; the personal toll is documented in the company circle, not in unit-level casualty totals."
+}

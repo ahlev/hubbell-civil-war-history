@@ -1,0 +1,31 @@
+{
+  "source": "Post-war Iowa records (1875 death / burial / census) — the survivor-who-died-young trail",
+  "person_id": "PER-hubbell-charles",
+  "checked_date": "2026-06-06",
+  "rationale": "Charles survived the war (mustered out Oct 1865) and moved with Alexander to Dover Township, Pocahontas County, Iowa by ~1870; he died there March 1875 of service-contracted disease. The defining post-war records are an 1870 census placing him in Iowa and an 1875 death record.",
+  "death_burial_1875": {
+    "result": "NOT FOUND in any open source — and the gap is STRUCTURAL, not exhaustion.",
+    "evidence": [
+      "IAGenWeb Pocahontas County death indexes (http://iagenweb.org/pocahontas/deaths/deathindex.htm) begin Aug 26 1880 — 1875 PRE-DATES all extant county death-record coverage.",
+      "IAGenWeb / IowaGravestones Photo Project Pocahontas Co. Hubbell list: only 19th-c. Hubbell with a stone is brother Alexander F. (Cedar Twp, 1844-1894). NO Charles, no 1875 burial.",
+      "BillionGraves: 'No matches found' for Charles Hubbell d.1875.",
+      "FindAGrave (death=1875): HTTP 403 -> handoff.",
+      "Iowa WPA grave record (Pocahontas): a HUBBELL entry exists but the detail page is 403 -> handoff."
+    ],
+    "interpretation": "Charles's 1875 grave is genuinely undocumented in free sources. He may lie in an unmarked or un-transcribed Dover-Twp/Pocahontas plot, OR the body/record returned to Clinton County NY. This is a real data gap, not a null that proves anything — flagged for handoff. (Contrast Henry, where a cemetery null was itself evidence.)"
+  },
+  "census_1870": {
+    "result": "HANDOFF (gated)",
+    "collections": "Ancestry '1870 United States Federal Census' (coll. 7163); FamilySearch 'United States Census, 1870' — target: Charles F. Hubbell, Dover Twp, Pocahontas Co., Iowa (likely with/near Alexander, mother Frances, sister Frances).",
+    "value": "Would place Charles in Iowa in 1870 (age ~30, born NY), corroborate the family migration, and — by his ABSENCE in 1880 — bound the 1875 death."
+  },
+  "pension": {
+    "result": "HANDOFF (gated)",
+    "collections": "Ancestry coll. 4654 (General Index to Pension Files); Fold3; NARA T288.",
+    "value": "Charles likely filed his OWN invalid (soldier) pension for the service-contracted disease before his 1875 death; a mother's claim may follow. The invalid claim's medical affidavits could name the DISEASE — directly relevant to the cause-of-death question."
+  },
+  "gar_suvcw": {"result": "NULL (no Charles found) / HANDOFF for full DB", "note": "No GAR/SUVCW entry for Charles retrieved; brother Alexander carries a GAR star (separate)."},
+  "confidence": "external · n/a · n/a (death/burial unconfirmed)",
+  "null_result": "partial — identity confirmed via roster; death/burial record genuinely not found in free sources",
+  "notes": "The single most valuable handoff for Charles is the PENSION file (names the disease) and the 1870 census (confirms the Iowa migration)."
+}

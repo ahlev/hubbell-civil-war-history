@@ -54,3 +54,28 @@ Dated notes on what the *methodology* learned each working session — not what 
 **Discrepancies filed:** DSC-2026-06-06-002 (death date 1894 vs 1899 — notable, resolved toward 1894); two minor tabulated (sergeant-promotion date; muster-out date); plus the color-bearer claim flagged open.
 
 **Net read:** The method generalizes from the fallen to the survivor without modification beyond the planned lane-shift. Lane D is the highest-yield-per-token addition — it turns a confirmed identity into a reconstructed social world. Carry the four-lane shape into Charles and James unchanged.
+
+---
+
+## 2026-06-06 — Charles pilot (Sweep 3.0) — the DISAMBIGUATION case + a structural-gap lesson
+
+**What we ran.** Full four-lane V2 sweep on Charles F. Hubbell (153rd NY, Co. I). Same retrieval/judgment split.
+
+**What worked.**
+- **The disambiguation rubric earned its keep.** The 153rd held FOUR Hubbells, TWO named Charles. Identity came from C1 (Co. I) + C4 (Champlain) JOINTLY — not roster uniqueness (which carried Henry/Alexander). First project case where surname/given-name alone would have failed or mis-attached. The two Minden (Co. E) Hubbells are a separate family; one was even wounded at Cedar Creek the same day as brother James — proving COMPANY, not surname or battle, is the load-bearing field.
+- **Family-wide identity model paid off:** Co. I's captain Davis J. Rich = Henry's "Capt. Reich"/Rich of the 34th NY ("prior service, 34th Infantry"). A name resolved in Henry's sweep unlocked an officer in Charles's. Per-person matching could never find this.
+- **Lane D was the richest yet** — 16/19 confirmed, fates recovered (Lucas KILLED at Cedar Creek though letters hoped otherwise; Douglass survived though feared captured; Trombly → 20th USCT officer; Gokey deserted). With NO published regimental history for the 153rd, the company-circle's internal consistency became the CORROBORATION, not just enrichment.
+- Captured **James's roster line for free** (same company) — jump-starts Sweep 4.
+
+**What broke / surprised.**
+- **No published regimental history of the 153rd exists** (only the unpublished Enders ms. at NYSL). Charles's external stack is thinner than his brothers' — logged honestly; corroboration leaned on the NYSMM sketch + Lane D.
+- **NEW DISTINCTION: structural gap ≠ meaningful null.** Charles's 1875 Iowa death record is simply NOT in free sources (Pocahontas Co. death records begin 1880). This is coverage failing, NOT evidence — unlike Henry's cemetery null (which proved body-never-recovered). Conflating them would manufacture false significance. The engine now labels the two differently.
+- **Disease is the archival blind spot.** The weapon that killed Charles (and 161 of the 153rd's 202 dead) is the worst-documented; the pension file is the designed-in handoff for it.
+
+**Rubric changes.** TODO-1 Charles signals validated (Co. I, Champlain, corporal, mustered out Oct 2 1865, d. 1875 disease). Added the structural-gap-vs-null distinction as a logging convention (no new criterion needed). Same-surname disambiguation guidance reaffirmed (C1+C4 jointly).
+
+**Verdict tally this session:** confirmed 5 · possible 1 (1875 death, unconfirmed) · rejected 1 (newspaper namesakes) + comrade batch + 2 source-NULLs. Total log entries now 27.
+
+**Discrepancies filed:** DSC-2026-06-06-003 (birth year 1837 vs 1840 — notable, open); tabulated: Capt. Rich cross-link; Lucas record-corrects-letter; the 1875 structural data gap.
+
+**Net read:** Charles is the proof the engine disambiguates, not just deduplicates. The four-lane shape held; the only adaptation was honesty about a thinner corroboration stack and a missing death record. Carry into James — whose roster line is already in hand and who shares Charles's Co. I circle.

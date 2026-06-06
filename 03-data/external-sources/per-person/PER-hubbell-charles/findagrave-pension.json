@@ -1,0 +1,17 @@
+{
+  "source": "Gated record sources (FindAGrave, pension) — handoffs",
+  "person_id": "PER-hubbell-charles",
+  "checked_date": "2026-06-06",
+  "findagrave": {
+    "result": "HANDOFF — HTTP 403/CAPTCHA",
+    "urls_attempted": ["https://www.findagrave.com/memorial/search?firstname=Charles&lastname=Hubbell&deathyear=1875"],
+    "note": "Could not retrieve the death=1875 result set. Unrelated memorials seen incidentally (Charles B Hubbell 1844-1927; Charles Edward 'Ned' Hubbell 1886-1978) are NOT the target.",
+    "handoff": "Manual logged-in search: Charles F. Hubbell, d. 1875, Pocahontas Co. Iowa AND Champlain/Clinton Co. NY. This is one of two routes (with the pension) to locate his grave/death."
+  },
+  "pension": {
+    "result": "HANDOFF — login/paywall gated",
+    "collections": ["Ancestry coll. 4654 (General Index to Pension Files 1861-1934)", "Fold3 Civil War pensions", "NARA microfilm T288"],
+    "value": "HIGHEST-VALUE handoff for Charles: as a soldier who died of a service-contracted disease, his INVALID pension affidavits likely name the disease and document its onset in service — the evidentiary core of the family's 'died of war disease' tradition. A mother's/dependent claim may follow his 1875 death.",
+    "search": "Charles F. Hubbell, 153rd NY Infantry, Co. I."
+  }
+}

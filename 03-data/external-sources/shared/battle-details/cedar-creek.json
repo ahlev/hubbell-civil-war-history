@@ -1,0 +1,22 @@
+{
+  "battle": "Cedar Creek",
+  "other_names": "Belle Grove",
+  "cwsac_code": "VA122",
+  "date": "1864-10-19",
+  "campaign": "Sheridan's Shenandoah Valley Campaign, 1864",
+  "location": "Frederick / Shenandoah / Warren County, Virginia",
+  "result": "Union victory",
+  "strength": "52,945 total (US 31,945; CS 21,000)",
+  "casualties": "8,575 total (US 5,665; CS 2,910)",
+  "significance_class": "A",
+  "source_csv": "https://raw.githubusercontent.com/jrnold/acw_battle_data/master/build/acw_battle_data/cwsac_battles.csv",
+  "abt_url": "https://www.battlefields.org/learn/civil-war/battles/cedar-creek",
+  "153rd_ny_role": {
+    "source": "NY State Military Museum 153rd historical sketch (Phisterer)",
+    "verbatim": "at Cedar Creek the 153rd lost '81 killed, wounded and missing'",
+    "corps": "1st Brigade, 1st (Emory's) Division, XIX Corps",
+    "hubbell_note": "James Hubbell (Co. I) wounded here ('night blindness'/flesh wound, per family + brother Charles's letter). Co. I also: Sgt. James Lucas killed; 1st Sgt. Samuel Peltier wounded; Lt. Col. Alexander Strain wounded. The single deadliest day for the Hubbell brothers' 153rd circle."
+  },
+  "cached_date": "2026-06-06",
+  "cached_for": ["PER-hubbell-charles", "PER-hubbell-james"]
+}

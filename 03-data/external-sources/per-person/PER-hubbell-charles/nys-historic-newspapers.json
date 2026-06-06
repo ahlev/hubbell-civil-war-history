@@ -1,0 +1,19 @@
+{
+  "source": "NYS Historic Newspapers — the correct archive for the soldier-correspondent lead",
+  "person_id": "PER-hubbell-charles",
+  "checked_date": "2026-06-06",
+  "result": "HANDOFF — INACCESSIBLE (Cloudflare 'Just a moment...' 403)",
+  "why_high_value": "The family record calls Charles a 'newspaper correspondent.' Soldier-correspondent letters from the 153rd would appear in the Plattsburgh Republican/Sentinel (Clinton Co., his home) and the Montgomery County Republican / Fonda papers (where the 153rd was organized) — all digitized ONLY at NYS Historic Newspapers, which is gated. This is the single most promising unretrieved lead for Charles: a signed wartime dispatch would be a first-person published voice.",
+  "handoff_searches": [
+    "'C. F. Hubbell' / 'Charles Hubbell' — Plattsburgh Republican + Sentinel + Montgomery County Republican (Fultonville) + Fonda papers, 1862-1865",
+    "'Hubbell' + 153d/153rd; + Winchester; + Cedar Creek",
+    "Browse the Plattsburgh & Fonda papers Oct-Nov 1864 (Cedar Creek aftermath) for a 153rd-NY correspondent letter",
+    "1875: a Champlain/Clinton Co. death notice for Charles F. Hubbell (if news returned east)"
+  ],
+  "title_anchors": {
+    "Plattsburgh Republican": "sn83031979",
+    "Plattsburgh Sentinel": "sn88075736",
+    "Montgomery County Republican (Fultonville)": "sn83031024"
+  },
+  "claude_verdict": "n/a (not retrieved)"
+}

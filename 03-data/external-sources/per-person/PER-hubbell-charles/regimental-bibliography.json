@@ -1,0 +1,27 @@
+{
+  "source": "Regimental history search + NY State Military Museum / Phisterer 153rd sketch",
+  "person_id": "PER-hubbell-charles",
+  "checked_date": "2026-06-06",
+  "published_regimental_history": {
+    "result": "NULL — no published, full-text-searchable regimental history of the 153rd NY exists on archive.org or HathiTrust.",
+    "only_archive_hit": "https://archive.org/details/mma_153rd_new_york_infantry_268038 — a Metropolitan Museum of Art PHOTOGRAPH of officers, not a history.",
+    "unpublished_history": "A ~200-page manuscript history by chaplain Jacob Henry Enders exists at the NY State Library (Enders Papers, sc19615), covering Fonda Oct 1862 → Savannah Oct 1865 — NOT digitized/searchable. HANDOFF.",
+    "implication": "Unlike Henry (Chapin) and Alexander (Eddy), Charles/James have NO independent published regimental history to corroborate the roster. Corroboration leans on the NYSMM/Phisterer sketch and (handoff) the muster rolls + Enders manuscript."
+  },
+  "nysmm_phisterer_sketch": {
+    "url_fetched": "https://museum.dmna.ny.gov/unit-history/infantry-2/153rd-infantry-regiment",
+    "url_note": "Museum path is 'infantry-2' for the 153rd (infantry-1 404s).",
+    "organization": "Fonda, NY; mustered in Oct 17-18 1862, three years; Cols. William T. Miller / Duncan McMartin. Seven companies organized at Fonda, three at Plattsburgh.",
+    "recruitment_counties": "Fulton, Montgomery, Saratoga, Clinton, Essex, Warren.",
+    "company_I_locale_verbatim": "Company I: 'Champlain, Chesterfield, Plattsburg and AuSable' (Clinton County) — matches Charles F. Hubbell enlisting at Champlain.",
+    "corps": "Defenses of Washington (Oct 1862); 22nd Corps (Feb 1863); Department of the Gulf, 19th (XIX) Corps, 1st Brigade, 1st (Emory's) Division (Feb 1864); Army of the Shenandoah (Mar 1865).",
+    "campaigns_verbatim": "Red River Campaign (LA): Sabine Cross Roads/Mansfield Apr 8, Pleasant Hill ('severe loss'), Mansura. Sheridan's Shenandoah Valley: Opequon/Third Winchester Sep 19 1864 ('69 killed and wounded'), Fisher's Hill, Strasburg, Cedar Creek Oct 19 1864 ('81 killed, wounded and missing'); then Savannah/Georgia.",
+    "losses_verbatim": "202 total deaths (1 officer + 40 men killed/died of wounds; 1 officer + 160 men of disease).",
+    "muster_out_verbatim": "October 2, 1865, at Savannah, Ga.",
+    "significance_for_charles": "The regiment lost FOUR TIMES as many men to DISEASE (161) as to combat (41) — the context in which Charles contracted the illness that killed him in 1875.",
+    "claude_verdict": "confirmed (unit-level)",
+    "claude_reasoning": "C4: Co. I = Champlain/Clinton Co. corroborates the hometown lock. C3: the XIX Corps campaign arc (Red River -> Shenandoah) situates Charles's and James's service and the Cedar Creek wound."
+  },
+  "confidence": "external · n/a · definite (unit-level); identity rests on the AG roster",
+  "null_result": false
+}

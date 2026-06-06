@@ -1,0 +1,19 @@
+{
+  "source": "Chronicling America (via loc.gov + tile.loc.gov ALTO side-door; legacy API dead)",
+  "person_id": "PER-hubbell-charles",
+  "checked_date": "2026-06-06",
+  "angles": ["Charles as soldier-correspondent (1862-65)", "153rd/Winchester/Cedar Creek mentions", "1875 death notice (Iowa + Clinton Co NY)"],
+  "method_note": "WebFetch 403 on loc.gov; used curl + the tile.loc.gov word-coordinates-service to recover verbatim OCR snippets. Collection q= is loose OR-match, so high counts are corpus noise; only items whose OCR literally contained a Hubbell token were kept.",
+  "result": "NULL for Charles across all three angles. Every Hubbell OCR hit is a documented namesake.",
+  "namesakes_found": [
+    "GEO. C. HUBBEL & Co. — NYC patent-collar / 'HUBBEL'S GOLDEN BITTERS' advertiser (repeated).",
+    "Maj. Wilson Hubbell, 62nd NY ('Anderson Zouaves') — incl. an 1864 death notice (NOT Charles).",
+    "Frederick M. Hubbell — Des Moines financier, as 'Polk & Hubbell' abstract books (Knoxville [IA] Journal 1876) — confirms F.M. Hubbell IS already prominent by 1875-76.",
+    "Jay A. Hubbell (Michigan/Iowa congressman); J. B. Hubbell (Ohio congressman); E. N. Hubbell of Coxsackie; Levi Hubbell (WI); Charles W. Hubbell (NYC Mason)."
+  ],
+  "structural_gap": "The papers that would carry (a) a 153rd-NY soldier-correspondent letter and (b) an Eastern death notice — Plattsburgh Republican/Sentinel, Montgomery County Republican/Fonda papers — are NOT in Chronicling America at all (they live at NYS Historic Newspapers). Pocahontas Co. Iowa papers appear undigitized. So the NULL reflects coverage, not absence.",
+  "brother_james_note": "James Hubbell (also Co. I) likewise did not surface — consistent with the regiment's NY home papers being absent from this corpus.",
+  "same_town_namesake_check": "F. M. Hubbell (Iowa) and the GEO. C. HUBBEL advertiser ruled out; brother James not falsely attributed.",
+  "claude_verdict": "rejected (all candidates) / null (target)",
+  "confidence": "external · n/a · n/a"
+}

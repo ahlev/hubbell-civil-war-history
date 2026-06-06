@@ -2,7 +2,7 @@
 
 > The criteria Claude applies to decide whether a candidate record from an external source refers to the right person. This rubric is the heart of the methodology — every verdict in `verification-log.jsonl` traces back to one or more criteria below. **It is a living document**: when researcher review overrides a Claude verdict, the rubric is updated to capture the learning.
 
-**Last updated:** 2026-06-06 (v0.3 — Alexander TODO-1 signals validated on Sweep 2.0; same-town/namesake check extended to vital dates, not just newspaper attributions)
+**Last updated:** 2026-06-06 (v0.4 — Charles TODO-1 validated on Sweep 3.0: first disambiguation case [4 Hubbells / 2 Charleses], C1+C4-jointly confirmed; added the structural-gap-vs-meaningful-null logging distinction)
 
 ---
 
@@ -132,7 +132,12 @@ Per-brother high-weight signals used to lift a candidate toward `confirmed`. Hen
   - Post-war Iowa (Fonda, Pocahontas Co.); **d. Dec 7, 1894** per IAGenWeb + GAR star (resolves family 1894-vs-1899 conflict; DSC-2026-06-06-002).
   - *Namesake caution:* **Frederick M. Hubbell**, Des Moines financier, dominates 1890s Iowa print — rule out on any Iowa newspaper/vital-date hit (likely origin of the spurious "1899" date).
 
-- **Charles (draft):** 153rd NY Volunteer Infantry; Red River Campaign (Louisiana) + Shenandoah Valley; survived the war, **died 1875 of service-related disease**; from Champlain. Full name **Charles F. Hubbell**.
+- **Charles (VALIDATED 2026-06-06):**
+  - **Company I**, 153rd NY Volunteer Infantry — DISAMBIGUATION REQUIRED (4 Hubbells in the regiment, 2 named Charles). Identity = C1 (Co. I) + C4 (Champlain) jointly; NOT roster uniqueness. ✅ confirmed
+  - Enlisted **Aug 30, 1862, at Champlain**, age 25 (→ b. c. 1837, vs genealogy "Apr 1840" — DSC-2026-06-06-003); corporal Oct 18 1862; **mustered out Oct 2, 1865, Savannah** (survived). ✅ confirmed
+  - Co. I captain = **Davis J. Rich** (also Henry's 34th NY captain — cross-brother link).
+  - **Died March 1875** of service-contracted disease, in Dover Twp / Pocahontas Co., Iowa — death/burial record NOT in free sources (records begin 1880); pension file would name the disease → handoff.
+  - *Namesake caution:* TWO other Hubbells in the 153rd are a separate Minden (Co. E) family — **Charles B.** (age 44) and **J. Elbert/John E.**; do not conflate. Plus brother James (Co. I).
 
 - **James (draft):** youngest brother; Louisiana then Shenandoah (1864); **wounded / night blindness at Cedar Creek** (distinctive); **died 1865**; from Champlain.
 

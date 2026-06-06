@@ -1,0 +1,45 @@
+{
+  "source": "NY State Adjutant-General's Roster — 153rd Infantry (DMNA)",
+  "person_id": "PER-hubbell-charles",
+  "checked_date": "2026-06-06",
+  "url_searched": "https://dmna.ny.gov/historic/reghist/civil/rosters/Infantry/153rd_Infantry_CW_Roster.pdf",
+  "query_used": "Downloaded the 149-page roster PDF; extracted text (pdftotext -layout; surnames letter-spaced UPPERCASE); full-text scan for HUBBELL + variants, then pulled each entry block verbatim.",
+  "candidates_returned": 4,
+  "disambiguation_note": "The 153rd roster holds FOUR Hubbells, including TWO named Charles. Surname (or 'Charles') alone is NOT dispositive here — identity required company + hometown + age + fate. The TARGET is Charles F. (Co. I, Champlain, age 25); the two Co. E Minden men are a separate, unrelated Hubbell family; James is the target's younger brother.",
+  "candidates": [
+    {
+      "label": "TARGET — Charles F. Hubbell",
+      "raw_record": {
+        "verbatim": "HUBBELL, CHARLES F.—Age, 25 years. Enlisted, August 30, 1862, at Champlain, to serve three years; mustered in as private, Co. I, October 3, 1862; promoted corporal, October 18, 1862; mustered out with company, October 2, 1865, at Savannah, Ga.",
+        "parsed": {"name": "Charles F. Hubbell", "age_at_enlistment": 25, "enlistment_date": "1862-08-30", "enlistment_place": "Champlain, NY", "company": "I", "muster_in_date": "1862-10-03", "promotion": "corporal, 1862-10-18", "muster_out": "1865-10-02, with company, Savannah, Ga.", "fate": "survived"}
+      },
+      "claude_verdict": "confirmed",
+      "claude_reasoning": "C1 (dispositive in combination): Co. I + the distinctive Champlain enlistment isolate this from the two Co. E (Minden) Hubbells and from brother James. C2: dates inside window; survived war, consistent with post-war death 1875. C4: Champlain hometown. C6: corporal promotion matches the family record. Age 25 in Aug 1862 implies birth c. 1837 — a ~3-year tension with the genealogy's 'b. April 1840' (filed as a discrepancy). Verdict confirmed for IDENTITY; the birth-year question is separate."
+    },
+    {
+      "label": "BROTHER — James Hubbell (captured here for the James sweep)",
+      "raw_record": {
+        "verbatim": "HUBBELL, JAMES.—Age, 22 years. Enlisted in Seventh Congressional District, to serve three years, and mustered in as private, Co. I, March 9, 1864; promoted corporal in May, 186[4]; wounded in action, October 19, 1864, at Cedar Creek, Va.; mustered out with company, October 2, 1865, at Savannah, Ga.",
+        "parsed": {"name": "James Hubbell", "age_at_enlistment": 22, "enlistment": "7th Congressional District", "company": "I", "muster_in_date": "1864-03-09", "promotion": "corporal, May 1864", "wounded": "1864-10-19, Cedar Creek, Va.", "muster_out": "1865-10-02, Savannah, Ga."}
+      },
+      "claude_verdict": "confirmed (for PER-hubbell-james)",
+      "claude_reasoning": "Younger brother; later enlistment (Mar 1864) distinguishes him from Charles (Aug 1862). The 'wounded Oct 19 1864 at Cedar Creek' line matches the family's 'Cedar Creek / night blindness' tradition. NOTE: roster records muster-out 1865, not his death returning home Oct 1865 (post-dates the AG record). Carried into the James sweep."
+    },
+    {
+      "label": "NOT TARGET — Charles B. Hubbell (different family)",
+      "raw_record": {"verbatim": "HUBBELL, CHARLES B.—Age, 44 years. Enlisted, August 30, 1862, at Minden, to serve three years; mustered in as private, Co. E, October 18, 1862; transferred to Veteran Reserve Corps, August 6, 1863, at Washington, D.C."},
+      "claude_verdict": "rejected",
+      "claude_reasoning": "Wrong company (E), wrong town (Minden, Montgomery Co.), age 44, middle initial B. A separate Hubbell cluster — the classic same-surname false positive the disambiguation rubric exists to catch."
+    },
+    {
+      "label": "NOT TARGET — J. Elbert / John E. Hubbell (different family)",
+      "raw_record": {"verbatim": "HUBBELL, J. ELBERT.—Age, 18 years. Enlisted, August 30, 1862, at Minden... Co. E... wounded in action, October 19, 1864, at Cedar Creek, Va.; promoted corporal, June 1, 1865; mustered out... as John E."},
+      "claude_verdict": "rejected",
+      "claude_reasoning": "Co. E, Minden — same unrelated family as Charles B. (Note: he too was wounded at Cedar Creek, but in Co. E — a coincidence that underlines why company matters.)"
+    }
+  ],
+  "cross_brother_finding": "Co. I's ORIGINAL CAPTAIN was Davis J. Rich ('prior service as captain, 34th Infantry') — the same Capt. Davis J. Rich of Henry's Co. D, 34th NY (Henry's 'Capt. Reich', DSC-2026-06-05-002). Henry's company commander later commanded Charles's company. See letter-associates-crossref.json.",
+  "confidence": "external · n/a · definite",
+  "null_result": false,
+  "notes": "No published full-text regimental history of the 153rd exists on archive.org/HathiTrust (the only narrative is the unpublished Enders manuscript at the NY State Library) — so the AG roster is the lone authoritative spine; corroboration shifts to the NYSMM/Phisterer sketch and (handoff) the muster rolls."
+}
