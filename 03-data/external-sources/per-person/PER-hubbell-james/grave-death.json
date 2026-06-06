@@ -1,0 +1,32 @@
+{
+  "source": "Grave + death record — James (the brother with a confirmed grave)",
+  "person_id": "PER-hubbell-james",
+  "checked_date": "2026-06-06",
+  "grave": {
+    "cemetery": "Glenwood Cemetery, Champlain, Clinton County, NY (Lot B-43, Frederick A. Hubbell family)",
+    "marker": "Four-brothers Civil War memorial erected by the Sabbath School of the First Presbyterian Church of Champlain",
+    "verbatim_inscription_east_face": "James HUBBELL / of Co. I. 153 Reg. N.Y.V. / Died at Albany Oct. 12, 1865, while in the Service of his country / AE. 27 Yrs.",
+    "source_retrieved": "NNY Tombstone Transcription Project (free): https://nnytombstoneproject.nygenweb.net/clinton/champlain/glenwood.html — confirms the memorial verbatim (the same transcription as internal source G11).",
+    "note": "The memorial is partly a CENOTAPH for the four brothers: Henry's body was never recovered; Alexander is buried in Iowa; Charles likely in Iowa. James — who died at Albany — is the brother most likely actually interred here.",
+    "cross_sibling_corroboration": {
+      "alexander": "same memorial: 'Alexander B. HUBBELL ... Died Dec. 7, 1894' — a SECOND independent witness for DSC-2026-06-06-002 (confirms 1894 over 1899).",
+      "charles": "same memorial: 'Charles F. HUBBELL ... Died Mar. 21, 1875 / AE. 37 Yrs.' — gives Charles a PRECISE death date (Mar 21 1875) and AE 37 -> b. ~1838, corroborating the roster's ~1837 over the genealogy's 1840 (DSC-2026-06-06-003).",
+      "henry": "same memorial: 'Henry HUBBELL ... fell at the battle of Antietam Sept. 19, 1862 / AE. 24' — note the stone says Sept 19; Antietam was Sept 17 1862 (minor stone error; Henry's sweep already resolved his death as Sept 17)."
+    }
+  },
+  "death": {
+    "stone_date": "1865-10-12, at Albany, NY ('while in the service of his country')",
+    "family_intro_date": "1865-10-19 (DOC-INTRO-1996) — 'died on the way home from Savannah'",
+    "reconciliation": "Per the AG roster James mustered out Oct 2 1865 at Savannah, then died ~10 days later at Albany while traveling home. The Oct 12 stone date is corroborated by an independent transcription; the Oct 19 family date is uncorroborated and equals the Cedar Creek wounding date (Oct 19 1864) — likely a conflation. Documentary weight favors OCT 12, 1865 (DSC-2026-06-06-004).",
+    "place": "Albany, NY — likely a U.S. Army general hospital (e.g., Ira Harris U.S. General Hospital, confirmed to operate at Albany 1861-65) or en route. No hospital death register located online (handoff).",
+    "death_record_handoff": "Ancestry coll. 2123 'U.S., Registers of Deaths of Volunteers, 1861-1865' (NARA-derived) — gated; would give cause/place. https://www.ancestry.com/search/collections/2123/"
+  },
+  "findagrave": {
+    "result": "HANDOFF — HTTP 403/CAPTCHA",
+    "urls_attempted": ["https://www.findagrave.com/memorial/search?firstname=James&lastname=Hubbell&deathyear=1865", "https://www.findagrave.com/cemetery/64661/glenwood-cemetery"],
+    "note": "Glenwood Cemetery Champlain exists on FindAGrave (id 64661) but the memorial was not retrievable by automation. Grave is independently confirmed via the NNY transcription, so this is corroboration, not a blocker."
+  },
+  "claude_verdict": "confirmed (grave/identity) · likely (death date Oct 12 1865)",
+  "confidence": "external · clear · definite (grave); likely (exact death date)",
+  "null_result": false
+}

@@ -1,0 +1,21 @@
+{
+  "source": "Regimental history + battle facts (153rd NY, XIX Corps) — shared with brother Charles",
+  "person_id": "PER-hubbell-james",
+  "checked_date": "2026-06-06",
+  "published_regimental_history": {
+    "result": "NULL — none exists (only the unpublished Enders manuscript at the NY State Library). Same finding as the Charles sweep; see PER-hubbell-charles/regimental-bibliography.json.",
+    "handoff": "Enders manuscript, NYSL (sc19615)."
+  },
+  "nysmm_sketch": {
+    "url": "https://museum.dmna.ny.gov/unit-history/infantry-2/153rd-infantry-regiment",
+    "company_I_locale": "Champlain, Chesterfield, Plattsburg, AuSable (Clinton County).",
+    "relevant_verbatim": "'at Cedar creek, 81 killed, wounded and missing'; sailed for Savannah July 1865; 'mustered out, October 2, 1865, at Savannah, Ga.' — corroborates James 'returning home from Savannah.'"
+  },
+  "battles": [
+    {"name": "Opequon / Third Winchester", "cwsac_code": "VA119", "date": "1864-09-19", "james_note": "James 'unhurt at Winchester — looking well' per the letters.", "casualties": "8,630 total (US 5,020; CS 3,610)"},
+    {"name": "Cedar Creek (Belle Grove)", "cwsac_code": "VA122", "date": "1864-10-19", "james_note": "James WOUNDED here (flesh wound, thigh/hip per brother Charles's letter; family tradition also notes 'night blindness'). Confirmed by the AG roster: 'wounded in action, October 19, 1864, at Cedar Creek.'", "casualties": "8,575 total (US 5,665; CS 2,910)", "cached": "../../shared/battle-details/cedar-creek.json"}
+  ],
+  "night_blindness_note": "The family tradition (and the Phase-3 prior) mentions 'night blindness' (nyctalopia — a documented Civil War affliction tied to malnutrition/scurvy). The ROSTER confirms only 'wounded in action' at Cedar Creek; the flesh-wound (thigh/hip) is corroborated in Charles's eyewitness letter. Night blindness as a SEPARATE condition is NOT in the external record and would, if anywhere, appear in a pension/medical file -> handoff. Flagged as unverified family detail, not contradicted.",
+  "confidence": "external · n/a · definite (unit + the Cedar Creek wound)",
+  "null_result": false
+}

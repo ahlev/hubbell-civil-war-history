@@ -1,0 +1,34 @@
+{
+  "source": "U.S. Military Academy (West Point) — cadet/appointment investigation",
+  "person_id": "PER-hubbell-james",
+  "checked_date": "2026-06-06",
+  "the_lead": "Family record + James's own letters describe him as appointed to West Point ('the educated soldier in the family'), tutored by 'Everest', helped to the appointment by 'Mr. Wheeler', before he enlisted in the 153rd NY (Mar 1864).",
+  "verdict_plain": "APPOINTED AND GENUINELY PRESENT AT WEST POINT AS A CADET IN 1862 — but he did NOT graduate, and no admission/cadet register entry could be located online (the Civil-War-era cadet registers are not digitized). Accurate phrasing: appointed and present at West Point, withdrew, then enlisted in the 153rd NY in March 1864. Do NOT claim he attended to completion or call him a 'graduate'.",
+  "internal_evidence_decisive": {
+    "letters": ["LTR-1862-07-27-001 (headed 'West Point Military Academy')", "LTR-1862-09-21-001 (headed 'West Point Academy')"],
+    "detail": "First-person cadet-life detail: 'I am now in the third section; the whole class is divided into six... I am section marcher of the third'; Camp McRae; guard rotations.",
+    "appointment_route": "Alexander's letter (LTR-1862-03-06-001) says the appointment came 'from the War Department'; the AG roster independently records James enlisting 'in the Seventh Congressional District.'"
+  },
+  "external_corroboration_by_crossbinding": {
+    "method": "James names two contemporaries who can be independently verified as real West Point figures of fall 1862 — the same cross-binding technique that confirmed Henry (naming 'Peter Jolly'). A fabricator would not name correct cadre.",
+    "Michie": "'Mr. Michie, the Cadet Lieut. of our company' = PETER SMITH MICHIE, USMA Class of 1863 (graduated 2nd in class), a first-classman cadet officer in fall 1862. Verified via Cullum/standard references.",
+    "French": "'Prof. French' who 'gave each of us a prayer book' = Rev. JOHN W. FRENCH, USMA Chaplain and Professor of Ethics in this era. Verified."
+  },
+  "negative_findings_honest": {
+    "cullum_graduates": "NO Hubbell of this era in Cullum's Register of Graduates — consistent with non-graduation.",
+    "class_lists_1862_1863": "civilwarintheeast.com USMA Class of 1862 and 1863 rosters: NO Hubbell.",
+    "official_register_of_cadets_1862_64": "The annual 'Official Register of the Officers and Cadets' for 1862/1863/1864 is NOT digitized (only 1900s+ online); HathiTrust gated; Google Books full-text for a cadet 'Hubbell' 1862/63 = no result. UNAVAILABLE ONLINE.",
+    "nara_cadet_application_papers": "USMA Cadet Application Papers / 'Register of Cadet Applicants' (NARA RG 94 / RG 404, through 1866) are not online-searchable. HANDOFF — the authoritative confirmation of admission terms lives here.",
+    "everest_tutor": "No 1860s Clinton County educator named Everest confirmed online (the surname is locally attested later). NULL externally; internal only.",
+    "mr_wheeler_patron": "Patron who helped secure the appointment — NULL externally. (DISTINGUISH from Alexander's 'Camp Wheeler' at Ogdensburg and Confederate Gen. Joseph 'old Wheeler' — three different Wheelers.)"
+  },
+  "claude_verdict": "likely (present as a cadet) / unverified (formal admission terms) / rejected (graduate)",
+  "claude_reasoning": "C7 cross-binding: two independently-verified West Point cadre (Michie, French) named in first-person cadet letters strongly corroborate genuine presence ('likely'→approaching confirmed for PRESENCE). Graduation is REJECTED (absent from Cullum + class lists). Formal admission-register confirmation is UNVERIFIED pending the gated NARA cadet papers (handoff). This precise three-part verdict is the point: not 'graduate', not 'made it up' — appointed and present, did not finish.",
+  "handoffs": [
+    "NARA RG 404 / RG 94 — USMA Cadet Application Papers / Register of Cadet Applicants (through 1866): search Hubbell, NY 7th Cong. Dist., 1862.",
+    "USMA Library digital collections (usmalibrary.contentdm.oclc.org) — Official Register of Cadets, 1862-1864.",
+    "Newspaper appointment notice ~1862-63 (NYS Historic Newspapers) — see nys-historic-newspapers.json (searched, NULL so far)."
+  ],
+  "confidence": "external · n/a · likely (presence); unverified (admission); rejected (graduation)",
+  "null_result": false
+}

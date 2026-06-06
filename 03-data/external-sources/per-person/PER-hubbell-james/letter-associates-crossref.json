@@ -1,0 +1,30 @@
+{
+  "source": "Letter-associates cross-reference — James's two circles: West Point + Co. I, 153rd NY",
+  "person_id": "PER-hubbell-james",
+  "checked_date": "2026-06-06",
+  "method": "Read James's letters; extracted (a) his West Point/education associates and (b) his Co. I 153rd comrades; cross-referenced against verifiable West Point cadre and the 153rd roster. His military circle largely OVERLAPS brother Charles's (same Co. I) — overlap noted rather than re-derived; James-SPECIFIC associates flagged.",
+  "west_point_circle": [
+    {"name_as_written": "Mr. Michie, 'the Cadet Lieut. of our company'", "letters_cited": ["LTR-1862-09-21-001"], "record_match": "Peter Smith Michie, USMA Class of 1863 (graduated 2nd; later professor & Brig. Gen.) — VERIFIED real West Point cadet officer of fall 1862.", "note": "Decisive cross-binding evidence that James was genuinely at West Point."},
+    {"name_as_written": "Prof. French", "letters_cited": ["LTR-1862-09-21-001"], "record_match": "Rev. John W. French, USMA Chaplain & Professor of Ethics — VERIFIED.", "note": "Gave the cadets prayer books; second independent West Point corroborator."},
+    {"name_as_written": "Everest (tutor)", "letters_cited": ["LTR-1862-03-06-001"], "record_match": "NULL externally", "note": "James-specific; Clinton County academy tutor who prepared him for the appointment ('studying under Everest will be a first rate thing'). Not in any military record."},
+    {"name_as_written": "Mr. Wheeler (patron)", "letters_cited": ["LTR-1862-01-24-001"], "record_match": "NULL externally", "note": "Helped secure the appointment. Distinct from 'Camp Wheeler' (Ogdensburg) and Confederate Gen. Joseph Wheeler — three different Wheelers."},
+    {"name_as_written": "young Hoyt; Mr. Holcomb; Dobbin (academy master)", "letters_cited": ["LTR-1862-09-21-001","LTR-1862-07-27-001","LTR-1862-01-17-001"], "record_match": "NULL", "note": "West Point peer / travel companion / pre-WP Champlain academy — education circle, honest nulls."}
+  ],
+  "co_I_153rd_circle": [
+    {"name_as_written": "Lucas / James Lucas", "letters_cited": ["LTR-1864-10-29-001"], "verbatim_letter_context": "'Lucas was badly wounded. He is the only one you know in the company.'", "record_match": "LUCAS, JAMES — Co. I; killed in action Oct 19 1864 at Cedar Creek (per the full roster).", "company": "I", "note": "OVERLAP with Charles's circle. James reported him wounded; the record shows killed."},
+    {"name_as_written": "Alex Douglas[s]", "letters_cited": ["LTR-1864-05-23-001","LTR-1864-10-04-001"], "verbatim_letter_context": "'Alex Douglas has been boggled by the guerrillas' (captured near Cedar Creek)", "record_match": "DOUGLASS, ALEXANDER J. — Co. H→Co. I; commissary sergeant May 9 1864; survived, mustered out 1865.", "company": "I", "note": "OVERLAP with Charles's circle; survived (feared captured)."},
+    {"name_as_written": "Lt. Colonel Strain", "letters_cited": ["LTR-1864-12-09-001"], "verbatim_letter_context": "'Did Lt. Colonel Strain lose a leg?'", "record_match": "STRAIN, ALEXANDER — Capt. Co. G → Lt. Col.; wounded Cedar Creek; discharged for wounds Jan 1865, no amputation recorded.", "company": "Field & Staff", "note": "OVERLAP with Charles's circle."},
+    {"name_as_written": "James Sweeney, Surgeon", "letters_cited": ["LTR-1864-06-21-001"], "verbatim_letter_context": "'James Sweeney has lately come into our regt. as Surgeon... such a little faller when he left our place' (a hometown man)", "record_match": "SWEENEY, JAMES — assistant surgeon, 153rd NY, mustered in June 1 1864; prior service captain 96th Infantry; survived.", "company": "Field & Staff (Asst. Surgeon)", "note": "JAMES-SPECIFIC associate (a Champlain hometown connection) emphasized in James's letters more than Charles's."}
+  ],
+  "shared_co_I_officers_overlap": "Capt. Davis J. Rich, Capt. John F. McGuire, Lt. Charles L. Knapp, 1st Sgt Samuel Peltier — all confirmed Co. I (see PER-hubbell-charles/letter-associates-crossref.json); James's company circle is Charles's company circle (they served together in Co. I).",
+  "honest_nulls": ["Everest", "Mr. Wheeler", "Mr. Holcomb", "young Hoyt", "Dobbin", "Doolittle"],
+  "summary": {
+    "west_point_associates_verified": 2,
+    "west_point_associates_null": 4,
+    "co_I_associates_confirmed": 4,
+    "james_specific_find": "Asst. Surgeon James Sweeney (hometown connection); plus the entire West Point circle, which is unique to James among the four brothers.",
+    "key_point": "James is the only brother with TWO distinct social worlds in the record — the West Point cadet corps (Michie, French) and his brother's Co. I — and the cross-reference verifies a real figure in each."
+  },
+  "confidence": "external · n/a · definite (the verified associates)",
+  "null_result": false
+}

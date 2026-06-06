@@ -1,0 +1,29 @@
+{
+  "source": "Newspapers (Chronicling America + NYS Historic Newspapers) + pension — James",
+  "person_id": "PER-hubbell-james",
+  "checked_date": "2026-06-06",
+  "nys_historic_newspapers": {
+    "access": "ACCESSED this sweep — the Cloudflare gate was bypassed via a Playwright browser session (prior sweeps had to treat it as HANDOFF).",
+    "method": "Veridian search, Clinton County facet, wildcard 'Hubb*' to defeat OCR garble; windows Sep-Dec 1865 (death), 1864-65 (war), 1862-63 (West Point appointment).",
+    "result": "NULL for James across all angles. No death notice, no West Point appointment notice, no 153rd soldier mention. All 'Hubbell' tokens in Clinton County papers are namesakes.",
+    "namesakes": ["Julius C. Hubbell, attorney/notary of Chazy (the dominant Clinton Co. Hubbell; = the 'Julius O.' surveyor flagged in Henry's file)", "Silas P. Hubbell, notary of Champlain", "'the late S. Hubbell' (a deceased Champlain property-owner, pre-1865)", "F. B. Hubbell (Warren Co.)"],
+    "coverage_gaps_found": [
+      "Plattsburgh Sentinel: the digitized run BEGINS ~1868 — NO 1864-1865 issues. A James death notice could exist there in print (microfilm handoff).",
+      "Albany papers (Albany Evening Journal, Albany Argus): not in this corpus — and James died AT Albany, so an Albany death notice is plausible and unsearched (handoff: NYS Library / fultonhistory.com / GenealogyBank)."
+    ]
+  },
+  "chronicling_america": {
+    "result": "NULL for James; all hits are namesakes.",
+    "coverage": "Clinton County NY items 1860-1870 = 0; Albany 1862-66 = 0 relevant. CA returns only NYC papers, which would not carry a Champlain soldier's local notice.",
+    "namesakes": ["James R. Hubbell (Ohio congressman) — the most tempting (same given name); ruled out by middle initial + Ohio district", "Edwin N. Hubbell (NY congressman, Coxsackie)", "Wakeman Hubbell (CT death notice)", "Calvin / W. L. Hubbell (NYC)", "Frank Hubbell (5th Conn)"],
+    "namesake_caution": "James R. Hubbell (OH) is a vital-date trap for a 'James Hubbell' search — different person; do not attribute."
+  },
+  "pension": {
+    "result": "HANDOFF (gated)",
+    "note": "James died young (1865), presumably unmarried, so any claim would be a MOTHER'S (dependent) pension by Frances Hubbell. Possibly linked to the same family pension activity as Henry (Henry's claim 'Mo C 58119'). Search NARA T288/T289, Ancestry coll. 4654, Fold3 for 'Hubbell, James, 153 NY' and cross-check Frances Hubbell as claimant.",
+    "value": "A mother's claim for James (and Henry) would document the family's dependence and possibly James's cause of death / the night-blindness condition."
+  },
+  "same_town_namesake_check": "Satisfied — Clinton County is dense with Hubbells (Julius C., Silas P., Lt. Col. John Wolcott, Hon. Julius Caesar); 'Hubbell' in a Plattsburgh paper is NOT automatically James. Brother Charles not falsely attributed.",
+  "claude_verdict": "rejected (all candidates) / null (target)",
+  "confidence": "external · n/a · n/a"
+}

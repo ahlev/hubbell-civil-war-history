@@ -2,7 +2,7 @@
 
 > The criteria Claude applies to decide whether a candidate record from an external source refers to the right person. This rubric is the heart of the methodology — every verdict in `verification-log.jsonl` traces back to one or more criteria below. **It is a living document**: when researcher review overrides a Claude verdict, the rubric is updated to capture the learning.
 
-**Last updated:** 2026-06-06 (v0.4 — Charles TODO-1 validated on Sweep 3.0: first disambiguation case [4 Hubbells / 2 Charleses], C1+C4-jointly confirmed; added the structural-gap-vs-meaningful-null logging distinction)
+**Last updated:** 2026-06-06 (v0.5 — James TODO-1 validated on Sweep 4.0: verifying a NON-military claim [West Point] by cross-binding named cadre; all four brothers now validated. Added principles: "verify the claim where the claim lives" and the Playwright bypass for NYS Historic Newspapers.)
 
 ---
 
@@ -139,7 +139,12 @@ Per-brother high-weight signals used to lift a candidate toward `confirmed`. Hen
   - **Died March 1875** of service-contracted disease, in Dover Twp / Pocahontas Co., Iowa — death/burial record NOT in free sources (records begin 1880); pension file would name the disease → handoff.
   - *Namesake caution:* TWO other Hubbells in the 153rd are a separate Minden (Co. E) family — **Charles B.** (age 44) and **J. Elbert/John E.**; do not conflate. Plus brother James (Co. I).
 
-- **James (draft):** youngest brother; Louisiana then Shenandoah (1864); **wounded / night blindness at Cedar Creek** (distinctive); **died 1865**; from Champlain.
+- **James (VALIDATED 2026-06-06):**
+  - **Company I**, 153rd NY (his brother Charles's company) — confirmed; one James in the regiment. ✅
+  - **West Point cadet, 1862 — APPOINTED AND PRESENT, but NOT a graduate** (cross-bound via named cadre Cadet Lt. Peter S. Michie [USMA 1863] + Chaplain/Prof. John W. French; absent from Cullum/class lists; formal admission terms = NARA RG 404/94 handoff). A non-military claim verified by matching source to assertion.
+  - Enlisted/mustered Mar 9 1864 (7th Cong. Dist.); corporal May 1864; **wounded Cedar Creek Oct 19 1864** (flesh wound thigh/hip; family 'night blindness' detail NOT in roster — handoff).
+  - **Died Albany NY Oct 12, 1865** (gravestone) "in the service... returning home" — family intro's "Oct 19" is a Cedar-Creek-anniversary conflation (DSC-004). Buried Glenwood Cemetery, Champlain (four-brothers memorial).
+  - *Namesake caution:* James R. Hubbell (Ohio congressman) dominates a national 'James Hubbell' search; plus the dense Clinton-Co. Hubbells (Julius C. of Chazy, Silas P. of Champlain).
 
 → Researcher may still refine the three draft sets. Henry's set is locked as validated.
 

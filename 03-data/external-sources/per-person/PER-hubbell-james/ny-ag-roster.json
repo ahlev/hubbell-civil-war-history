@@ -1,0 +1,27 @@
+{
+  "source": "NY State Adjutant-General's Roster — 153rd Infantry (DMNA)",
+  "person_id": "PER-hubbell-james",
+  "checked_date": "2026-06-06",
+  "url_searched": "https://dmna.ny.gov/historic/reghist/civil/rosters/Infantry/153rd_Infantry_CW_Roster.pdf",
+  "query_used": "Downloaded the 149-page roster PDF; extracted text (pdfplumber, p.64); full-text scan for HUBBELL variants.",
+  "candidates_returned": 1,
+  "candidates": [
+    {
+      "raw_record": {
+        "verbatim": "HUBBELL, JAMES.—Age, 22 years. Enlisted in Seventh Congressional District, to serve three years, and mustered in as private, Co. I, March 9, 1864; promoted corporal in May, 1864; wounded in action, October 19, 1864, at Cedar Creek, Va.; mustered out with company, October 2, 1865, at Savannah, Ga.",
+        "ocr_note": "OCR rendered 'May, 1864' as 'May, 1861' and similar digit slips elsewhere; the name/company/Cedar-Creek line is clean.",
+        "parsed": {"name": "James Hubbell", "age_at_enlistment": 22, "enlistment": "Seventh Congressional District", "company": "I", "muster_in_date": "1864-03-09", "promotion": "corporal, May 1864", "wounded": "1864-10-19, Cedar Creek, Va.", "muster_out": "1865-10-02, with company, Savannah, Ga.", "fate_in_roster": "mustered out (death Oct 1865 post-dates this record)"}
+      },
+      "claude_verdict": "confirmed",
+      "claude_reasoning": "C1 (dispositive in combination): Co. I, 153rd NY matches; exactly ONE 'HUBBELL, JAMES' in the regiment. C2: enlistment Mar 1864 and the Cedar Creek wound (Oct 19 1864) inside the window. C7: same Co. I as confirmed brother Charles F. Hubbell. C6: corporal matches the letters' 'lance corporal drilling recruits.' Disambiguated from the two unrelated Co. E (Minden) Hubbells and from Charles (enlisted Aug 1862). NOTE: the roster records muster-out Oct 2 1865, NOT his death at Albany Oct 12 1865 — the death post-dates the AG record (see grave-death.json)."
+    }
+  ],
+  "other_hubbells_in_regiment": [
+    "HUBBELL, CHARLES F. — Co. I, age 25, Champlain (brother; confirmed PER-hubbell-charles)",
+    "HUBBELL, CHARLES B. — Co. E, age 44, Minden (unrelated)",
+    "HUBBELL, J. ELBERT/John E. — Co. E, Minden (unrelated; also wounded Cedar Creek)"
+  ],
+  "confidence": "external · n/a · definite",
+  "null_result": false,
+  "notes": "No published full-text regimental history of the 153rd exists (only the unpublished Enders manuscript, NYSL). Identity rests on the AG roster + NYSMM sketch + the company-circle and West-Point cross-references."
+}

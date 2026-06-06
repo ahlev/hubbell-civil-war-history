@@ -79,3 +79,26 @@ Dated notes on what the *methodology* learned each working session — not what 
 **Discrepancies filed:** DSC-2026-06-06-003 (birth year 1837 vs 1840 — notable, open); tabulated: Capt. Rich cross-link; Lucas record-corrects-letter; the 1875 structural data gap.
 
 **Net read:** Charles is the proof the engine disambiguates, not just deduplicates. The four-lane shape held; the only adaptation was honesty about a thinner corroboration stack and a missing death record. Carry into James — whose roster line is already in hand and who shares Charles's Co. I circle.
+
+---
+
+## 2026-06-06 — James pilot (Sweep 4.0) — verifying a NON-military claim + a gate finally opened
+
+**What we ran.** Final four-lane sweep on James Hubbell (Co. I, 153rd NY). His roster line was already in hand from Charles's sweep; the centerpiece was his distinctive WEST POINT appointment — a claim invisible to a military roster.
+
+**What worked.**
+- **Cross-binding verified a non-combat claim.** James's 1862 'West Point' letters name two contemporaries — Cadet Lt. Peter S. Michie (USMA 1863) and Chaplain/Prof. John W. French — both independently verifiable as real West Point cadre. Same technique that placed Henry among the Antietam dead (verify the named bystanders), now applied to a cadet corps. PRESENCE corroborated; GRADUATION rejected (absent from Cullum/class lists); admission terms unverified (NARA handoff). The precise three-part verdict is the deliverable.
+- **One artifact validated all four brothers.** The Glenwood four-brothers memorial confirmed James's grave AND gave a second witness for Alexander's 1894 death (DSC-002) AND corroborated Charles's ~1838 birth (DSC-003) AND flagged Henry's stone misdating Antietam. Family-wide leverage.
+- **The Cloudflare gate fell.** An agent bypassed NYS Historic Newspapers via Playwright — the archive that was a pure handoff for the first three brothers got searched directly. Still NULL for James (namesakes only), but it BOUNDED the gap: Plattsburgh Sentinel undigitized for 1864-65; no Albany paper digitized. A bounded handoff, not an open question. (Playwright-bypass is now a known capability for NYSHN.)
+
+**What broke / surprised.**
+- **Two October-19s collided in family memory:** James was wounded Oct 19 1864 (Cedar Creek) and the family put his DEATH at Oct 19 1865 — but the gravestone says Oct 12 1865. The error is explicable (anniversary conflation), which strengthens the resolution. (DSC-004.)
+- **Third soft age field.** Roster age 22 vs gravestone AE 27 (DSC-005) — joining Henry and Charles. PATTERN finding: enlistment-age and gravestone-age are systematically unreliable; one pre-war census pull would resolve all three at once.
+
+**Rubric changes.** TODO-1 James validated (Co. I, West Point cadet [present, not graduate], wounded Cedar Creek, d. Albany Oct 12 1865). Recorded the 'verify the claim where the claim lives' principle (match source to assertion) and the Playwright-bypass note for NYSHN.
+
+**Verdict tally this session:** confirmed 4 · likely 1 (West Point presence) · rejected 1 (newspaper namesakes) + comrade/cadre batch. Total log entries now 33.
+
+**Discrepancies filed:** DSC-2026-06-06-004 (death date Oct 12 vs 19 — resolved); DSC-2026-06-06-005 (birth year — open); tabulated: West Point precision, Alexander/Charles cross-corroboration, Henry stone error.
+
+**Net read (all four brothers complete).** The engine confirmed every brother to `definite`, surfaced and resolved discrepancies in each, recovered each man's social world, and — critically — adapted to a different evidentiary challenge each time (hardest identity / survivor / disambiguation / non-military claim) without changing its shape. 'Filter, never a source' + retrieval/judgment split + the four-lane template + family-wide curated identity = a method that generalizes. Ready to draft the methodology paper from this four-case base.
