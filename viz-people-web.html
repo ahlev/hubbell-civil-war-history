@@ -362,74 +362,10 @@ body {
 }
 .pw-story-link::after { content: " \2192"; }
 
-/* ---- Letter Overlay ---- */
-.letter-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 3000;
-  background: rgba(44, 44, 44, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
-}
-.letter-overlay.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-.letter-overlay-content {
-  background: var(--bg-elev);
-  border-radius: 4px;
-  max-width: 640px;
-  width: 90vw;
-  max-height: 80vh;
-  overflow-y: auto;
-  padding: 24px 28px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-  position: relative;
-}
-.letter-overlay-close {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  background: none;
-  border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
-  color: var(--ink-3);
-  padding: 4px;
-}
-.letter-overlay-close:hover { color: var(--ink); }
-.letter-overlay-header {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  margin-bottom: 4px;
-}
-.letter-overlay-meta {
-  font-size: 0.8rem;
-  color: var(--ink-2);
-  margin-bottom: 12px;
-  line-height: 1.5;
-}
-.letter-overlay-body {
-  font-family: var(--font-serif);
-  font-size: 0.88rem;
-  line-height: 1.75;
-  color: var(--ink);
-  border-top: 1px solid var(--rule-2);
-  padding-top: 12px;
-}
-.letter-overlay-body p {
-  margin-bottom: 1em;
-}
-.letter-overlay-body mark {
-  background: #FFF3CD;
-  font-weight: 600;
-  padding: 1px 2px;
-  border-radius: 2px;
-}
+/* Letters open via HubbellReader (.reader-overlay, z-index 10000 in _design.css),
+   which always layers above the mobile detail panel (#detail-panel.visible, z-index 3000).
+   The former local .letter-overlay rules (z-index 3000) were vestigial/unused and were
+   removed to avoid a phantom same-z-index collision. */
 
 /* ---- Link & Explore ----
    Gold "interactive" pill (same family as the site's play/CTA pills).
@@ -1001,7 +937,7 @@ canvas.grabbing {
 }
 
 /* Responsive: narrow viewport */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   #sidebar {
     position: absolute;
     top: 0;
@@ -1078,9 +1014,9 @@ canvas.grabbing {
 #mobile-list-intro { padding: 12px; font-size: 12.5px; line-height: 1.5; color: var(--ink-2); border-bottom: 1px solid var(--rule-2); }
 .pw-mention-more { display: block; width: 100%; text-align: left; background: none; border: none; padding: 8px 0; font: 600 12px var(--font-sans); color: var(--accent, #b06a3b); cursor: pointer; }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   #canvas-wrap { display: none !important; }
-  #sidebar { position: relative !important; width: 100vw !important; min-width: 0 !important; height: auto !important; min-height: 100vh; transform: none !important; box-shadow: none !important; }
+  #sidebar { position: relative !important; width: 100% !important; min-width: 0 !important; max-width: 760px !important; margin: 0 auto !important; height: auto !important; min-height: 100vh; transform: none !important; box-shadow: none !important; }
   #sidebar.collapsed { transform: none !important; }
   #sidebar-content { display: none; }
   #mobile-list { display: block; }
@@ -3121,7 +3057,7 @@ function showPersonDetail(node) {
 
   const nodeIdx = nodes.indexOf(node);
   let html = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
-    <div class="pw-mentions-title" style="margin:0">Mentioned in ${sorted.length} letter${sorted.length !== 1 ? 's' : ''}</div>
+    <div class="pw-mentions-title" style="margin:0">${nodeDeg(nodeIdx)} connection${nodeDeg(nodeIdx) !== 1 ? 's' : ''} · mentioned in ${sorted.length} letter${sorted.length !== 1 ? 's' : ''}</div>
     <button class="detail-link-btn" data-link-source="${nodeIdx}" style="background:none;border:1px solid #2D5F8A;border-radius:4px;padding:3px 8px;font-size:11px;color:#2D5F8A;cursor:pointer;font-family:Inter,sans-serif">Link &amp; Explore</button>
   </div>`;
 
@@ -3344,7 +3280,7 @@ function showBrotherDetail(node) {
 
   const brotherIdx = nodes.indexOf(node);
   let html = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
-    <div class="pw-mentions-title" style="margin:0">${_isMother ? `Received ${RAW_LETTERS.filter(l => getCanonName(l.recipient||'')==='Mother').length} letters · wrote ${RAW_LETTERS.filter(l => l.author==='mother').length} · named ${peopleMentioned.length} people` : `${peopleMentioned.length} people mentioned across ${RAW_LETTERS.filter(l => l.author === key).length} letters`}</div>
+    <div class="pw-mentions-title" style="margin:0">${nodeDeg(brotherIdx)} connection${nodeDeg(brotherIdx) !== 1 ? 's' : ''} · ${_isMother ? `received ${RAW_LETTERS.filter(l => getCanonName(l.recipient||'')==='Mother').length} letters · wrote ${RAW_LETTERS.filter(l => l.author==='mother').length} · named ${peopleMentioned.length} people` : `${peopleMentioned.length} people mentioned across ${RAW_LETTERS.filter(l => l.author === key).length} letters`}</div>
     <button class="detail-link-btn" data-link-source="${brotherIdx}" style="background:none;border:1px solid #2D5F8A;border-radius:4px;padding:3px 8px;font-size:11px;color:#2D5F8A;cursor:pointer;font-family:Inter,sans-serif">Link &amp; Explore</button>
   </div>`;
   peopleMentioned.forEach((p, _i) => {
@@ -3399,11 +3335,19 @@ function closeDetail() {
 // mobile via CSS) using the existing showBrotherDetail/showPersonDetail.
 let _mplRows = [];
 let _mplSort = 'count';
+// Node degree = number of graph connections (edges) for a node. Memoized so the
+// mobile list count and the detail-panel "N connections" line always agree.
+let _nodeDegCache = null;
+function nodeDeg(i) {
+  if (!_nodeDegCache) {
+    _nodeDegCache = {};
+    edges.forEach(e => { _nodeDegCache[e.source] = (_nodeDegCache[e.source] || 0) + 1; _nodeDegCache[e.target] = (_nodeDegCache[e.target] || 0) + 1; });
+  }
+  return _nodeDegCache[i] || 0;
+}
 function buildMobileList() {
   const listEl = document.getElementById('mobile-list-rows');
   if (!listEl || _mplRows.length) return;
-  const deg = {};
-  edges.forEach(e => { deg[e.source] = (deg[e.source] || 0) + 1; deg[e.target] = (deg[e.target] || 0) + 1; });
   nodes.forEach((n, i) => {
     const btn = document.createElement('button');
     btn.className = 'mpl-row';
@@ -3412,7 +3356,7 @@ function buildMobileList() {
     const name = document.createElement('span'); name.className = 'mpl-name'; name.textContent = n.id;
     const cat = document.createElement('span'); cat.className = 'mpl-cat';
     cat.textContent = n.isBrother ? 'Brother' : (n.isMother ? 'Mother' : String(n.category || '').replace(/_/g, ' ').toLowerCase());
-    const cnt = document.createElement('span'); cnt.className = 'mpl-count'; cnt.textContent = String(deg[i] || 0);
+    const cnt = document.createElement('span'); cnt.className = 'mpl-count'; cnt.textContent = String(nodeDeg(i)); cnt.setAttribute('aria-label', nodeDeg(i) + ' connections');
     btn.append(dot, name, cat, cnt);
     btn.addEventListener('click', () => {
       const node = nodes[i];
@@ -3421,7 +3365,7 @@ function buildMobileList() {
       const dp = document.getElementById('detail-panel'); if (dp) dp.scrollTop = 0;
     });
     listEl.appendChild(btn);
-    _mplRows.push({ el: btn, idx: i, deg: deg[i] || 0, nameLower: n.id.toLowerCase() });
+    _mplRows.push({ el: btn, idx: i, deg: nodeDeg(i), nameLower: n.id.toLowerCase() });
   });
   sortMobileList(_mplSort);
   filterMobileList('');
@@ -4112,7 +4056,7 @@ function frame() {
 
   // Skip the canvas redraw on phones, where the graph is hidden behind the
   // list-first view — avoids a perpetual ~60fps no-op redraw draining battery.
-  if (window.innerWidth > 768) draw();
+  if (window.innerWidth > 900) draw();
 
   if (frameCount === 120) {
     document.getElementById('loading').classList.add('hidden');
@@ -4133,7 +4077,7 @@ window.addEventListener('resize', resize);
 requestAnimationFrame(frame);
 
 // Auto-collapse sidebar on narrow viewports
-if (window.innerWidth <= 768) {
+if (window.innerWidth <= 900) {
   document.getElementById('sidebar').classList.add('collapsed');
 }
 
@@ -4261,7 +4205,9 @@ HubbellDeepLink.enableHistory();
     var b = document.getElementById(id);
     if (b) b.addEventListener('click', show);
   });
-  if (!localStorage.getItem(key)) show();
+  // Auto-show on desktop only — the mobile list view has its own intro line;
+  // the "i" toggles above still open it deliberately on any viewport.
+  if (window.innerWidth > 900 && !localStorage.getItem(key)) show();
 })();
 </script>
 </body>
