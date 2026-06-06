@@ -2132,7 +2132,9 @@ function formatDateStr(s) {
     const [y, m] = s.split('-');
     return `${months[parseInt(m) - 1]} ${y}`;
   }
-  return formatDate(new Date(s));
+  // Append T12:00:00 so a bare YYYY-MM-DD isn't parsed as UTC midnight and
+  // shifted back a day in negative-UTC timezones (project date convention).
+  return formatDate(new Date(s + 'T12:00:00'));
 }
 
 // ── Viewport smoothing: prevent jittery camera on small/frequent moves ──
