@@ -3024,6 +3024,8 @@ function selectNode(idx) {
 
 function showPersonDetail(node) {
   const panel = document.getElementById('detail-panel');
+  selectedNode = nodes.indexOf(node);   // keep state in sync for the mobile connect picker
+  panel.classList.add('show-connect');  // single-person view → reveal "connect" button (mobile CSS only)
 
   // Name with category badge
   const catColor = CAT_COLORS[node.category] || CAT_COLORS.UNKNOWN;
@@ -3231,6 +3233,8 @@ function buildMiniTimeline(sortedLetters) {
 
 function showBrotherDetail(node) {
   const panel = document.getElementById('detail-panel');
+  selectedNode = nodes.indexOf(node);   // keep state in sync for the mobile connect picker
+  panel.classList.add('show-connect');  // single-person view → reveal "connect" button (mobile CSS only)
   const key = node.brotherKey;
   const _isMother = node.isMother === true;
   const _nameEl = document.getElementById('detail-name');
@@ -3324,7 +3328,8 @@ function showBrotherDetail(node) {
 }
 
 function closeDetail() {
-  document.getElementById('detail-panel').classList.remove('visible');
+  document.getElementById('detail-panel').classList.remove('visible', 'show-connect');
+  var _cp = document.getElementById('connect-picker'); if (_cp) _cp.classList.remove('open');  // mobile connect picker
   selectedNode = null;
   cancelLinkMode();
 }
@@ -3608,6 +3613,7 @@ async function showLinkedPairDetail(idxA, idxB) {
   if (!lettersLoaded) await lettersPromise;
   const nodeA = nodes[idxA], nodeB = nodes[idxB];
   const panel = document.getElementById('detail-panel');
+  panel.classList.remove('show-connect');  // pair view → hide the single-person "connect" button
   const nameA = nodeA.id, nameB = nodeB.id;
 
   // Header: clickable names
@@ -4182,6 +4188,113 @@ HubbellDeepLink.registerStateApplier(function(p) {
   }
 });
 HubbellDeepLink.enableHistory();
+</script>
+<script>
+/* ── Mobile "connect two people" feature (Phase 2) ──────────────────────────
+   Desktop connects two people by clicking nodes on the graph ("Link & Explore").
+   Mobile/tablet (<=900px) has no graph, so this adds a person-picker: from a
+   person's full-screen detail panel, "See how they connect to…" opens a
+   searchable list of everyone else; choosing a second person calls the EXISTING
+   showLinkedPairDetail() to render the shared-letters relationship view (whose
+   letter taps already open the reader). Reuses .mpl-row styling + nodeDeg().    */
+(function () {
+  // 1 — styles (button + picker), scoped to the <=900px experience
+  var css = ''
+    + '#mobile-connect-btn{display:none}'
+    + '#connect-picker{display:none}'
+    + '@media (max-width:900px){'
+    + '  #detail-panel.show-connect #mobile-connect-btn{display:block;width:100%;margin:2px 0 12px;padding:12px 14px;'
+    + '    border:1px solid #2D5F8A;border-radius:8px;background:rgba(45,95,138,0.06);color:#2D5F8A;'
+    + '    font:600 14px var(--font-sans);cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}'
+    + '  #detail-panel.show-connect #mobile-connect-btn:active{background:rgba(45,95,138,0.14)}'
+    + '  #connect-picker.open{display:flex;flex-direction:column;position:fixed;inset:0;z-index:3500;background:var(--bg-elev)}'
+    + '  #connect-picker-head{position:sticky;top:0;background:var(--bg-elev);border-bottom:1px solid var(--rule);padding:10px 14px 12px}'
+    + '  #connect-picker-close{background:none;border:none;font:600 15px var(--font-sans);color:var(--accent,#b06a3b);padding:4px 0;cursor:pointer}'
+    + '  #connect-picker-title{font:600 16px var(--font-display,var(--font-serif));margin:6px 0 10px;color:var(--ink)}'
+    + '  #connect-picker-search{width:100%;padding:11px 14px;border:1px solid var(--rule);border-radius:8px;font-size:15px;background:var(--bg);color:var(--ink)}'
+    + '  #connect-picker-rows{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}'
+    + '}';
+  var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+
+  // 2 — connect button, injected after the detail name (persists across renders)
+  var panel = document.getElementById('detail-panel');
+  var nameEl = document.getElementById('detail-name');
+  if (!panel || !nameEl) return;
+  var btn = document.createElement('button');
+  btn.id = 'mobile-connect-btn'; btn.type = 'button';
+  btn.textContent = '⇄  See how they connect to…';
+  nameEl.insertAdjacentElement('afterend', btn);
+
+  // 3 — picker overlay (built with DOM methods, no innerHTML)
+  var picker = document.createElement('div');
+  picker.id = 'connect-picker';
+  picker.setAttribute('role', 'dialog');
+  picker.setAttribute('aria-label', 'Choose a person to see a connection');
+  var head = document.createElement('div'); head.id = 'connect-picker-head';
+  var closeBtn = document.createElement('button'); closeBtn.id = 'connect-picker-close'; closeBtn.type = 'button'; closeBtn.textContent = '← Back';
+  var titleEl = document.createElement('div'); titleEl.id = 'connect-picker-title';
+  var searchEl = document.createElement('input'); searchEl.id = 'connect-picker-search'; searchEl.type = 'search'; searchEl.placeholder = 'Search people…'; searchEl.autocomplete = 'off';
+  head.append(closeBtn, titleEl, searchEl);
+  var rowsEl = document.createElement('div'); rowsEl.id = 'connect-picker-rows';
+  picker.append(head, rowsEl);
+  document.body.appendChild(picker);
+
+  var _rows = [];
+  var _fromIdx = null;
+
+  function buildRows() {
+    if (_rows.length) return;
+    var order = nodes.map(function (n, i) { return i; })
+      .sort(function (a, b) { return nodeDeg(b) - nodeDeg(a) || nodes[a].id.localeCompare(nodes[b].id); });
+    order.forEach(function (i) {
+      var n = nodes[i];
+      var row = document.createElement('button'); row.className = 'mpl-row'; row.type = 'button'; row.dataset.idx = i;
+      var dot = document.createElement('span'); dot.className = 'mpl-dot'; dot.style.background = n.color;
+      var nm = document.createElement('span'); nm.className = 'mpl-name'; nm.textContent = n.id;
+      var cat = document.createElement('span'); cat.className = 'mpl-cat';
+      cat.textContent = n.isBrother ? 'Brother' : (n.isMother ? 'Mother' : String(n.category || '').replace(/_/g, ' ').toLowerCase());
+      var cnt = document.createElement('span'); cnt.className = 'mpl-count'; cnt.textContent = String(nodeDeg(i));
+      cnt.setAttribute('aria-label', nodeDeg(i) + ' connections');
+      row.append(dot, nm, cat, cnt);
+      row.addEventListener('click', function () { choose(i); });
+      rowsEl.appendChild(row);
+      _rows.push({ el: row, idx: i, nameLower: n.id.toLowerCase() });
+    });
+  }
+  function filterRows(q) {
+    q = (q || '').toLowerCase().trim();
+    _rows.forEach(function (r) {
+      var vis = r.idx !== _fromIdx && (!q || r.nameLower.indexOf(q) !== -1);
+      r.el.style.display = vis ? '' : 'none';
+    });
+  }
+  function openPicker(fromIdx) {
+    _fromIdx = fromIdx;
+    buildRows();
+    titleEl.textContent = 'Connect ' + nodes[fromIdx].id + ' with…';
+    searchEl.value = '';
+    filterRows('');
+    picker.classList.add('open');
+    rowsEl.scrollTop = 0;
+    setTimeout(function () { try { searchEl.focus(); } catch (e) {} }, 50);
+  }
+  function closePicker() { picker.classList.remove('open'); }
+  function choose(idx) {
+    closePicker();
+    selectedNode = idx;
+    showLinkedPairDetail(_fromIdx, idx);   // existing shared-letters view; renders full-screen on mobile
+    if (panel) panel.scrollTop = 0;
+  }
+
+  searchEl.addEventListener('input', function () { filterRows(searchEl.value); });
+  closeBtn.addEventListener('click', closePicker);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && picker.classList.contains('open')) { closePicker(); e.stopPropagation(); }
+  });
+  btn.addEventListener('click', function () {
+    if (selectedNode !== null && selectedNode !== undefined && nodes[selectedNode]) openPicker(selectedNode);
+  });
+})();
 </script>
 <script>
 // Onboarding overlay — auto-show on first visit; reopenable anytime via the
