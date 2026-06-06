@@ -1,0 +1,55 @@
+{
+  "source": "NY State Adjutant-General's Roster — 34th Infantry (NY State Military Museum / DMNA)",
+  "person_id": "PER-hubbell-henry",
+  "checked_date": "2026-06-05",
+  "url_searched": "https://dmna.ny.gov/historic/reghist/civil/rosters/Infantry/34th_Infantry_CW_Roster.pdf",
+  "query_used": "full-text scan of 34th NY roster PDF for 'Hubbell' (and Hubble/Hubbel/Hubel variants)",
+  "candidates_returned": 1,
+  "candidates": [
+    {
+      "raw_record": {
+        "verbatim": "HUBBELL, HENRY.—Age, 23 years. Enlisted, May 22, 1861, at Champlain, to serve two years; mustered in as private, Co. D, June 15, 1861; killed, September 17, 1862, at Antietam, Md.",
+        "ocr_note": "Source PDF is OCR; one instance rendered 'Co.' as 'Go.' The Hubbell line itself is clean.",
+        "parsed": {
+          "name": "Henry Hubbell",
+          "age_at_enlistment": 23,
+          "enlistment_date": "1861-05-22",
+          "enlistment_place": "Champlain, NY",
+          "term": "two years",
+          "rank": "private",
+          "company": "D",
+          "muster_in_date": "1861-06-15",
+          "fate": "killed",
+          "death_date": "1862-09-17",
+          "death_place": "Antietam, Md."
+        }
+      },
+      "claude_verdict": "confirmed",
+      "claude_reasoning": "C1 (dispositive): regiment 34th NY + Company D match the curated assignment, and a full-text scan of the entire roster returned exactly ONE Hubbell — no competing Hubbell in the unit. C2 (strong): enlistment/muster/death dates fall inside the known window; death date 1862-09-17 is exactly the recorded KIA date. C4 (strong): enlistment place 'Champlain' matches the family's distinctive hometown (Clinton Co., NY). C6 (supporting): rank 'private' matches the presumed rank. No criteria against. Government-compiled roster from muster rolls = highest source certainty.",
+      "researcher_reviewed": false,
+      "researcher_override": null
+    }
+  ],
+  "verified_matches": [
+    {
+      "name": "Henry Hubbell",
+      "age_at_enlistment": 23,
+      "enlistment_date": "1861-05-22",
+      "enlistment_place": "Champlain, NY",
+      "muster_in_date": "1861-06-15",
+      "rank": "private",
+      "company": "D",
+      "death_date": "1862-09-17",
+      "death_place": "Antietam, Md.",
+      "new_facts_vs_letters": [
+        "age 23 at enlistment (implies birth c. 1837-1838) — fills a prior data gap",
+        "exact enlistment date 1861-05-22 at Champlain — sharpens 'before June 1861'",
+        "muster-in date 1861-06-15",
+        "two-year term of service"
+      ]
+    }
+  ],
+  "confidence": "external · n/a · definite",
+  "null_result": false,
+  "notes": "Authoritative primary roster (NY Adjutant-General's Annual Report, Registers of the 34th Infantry). Independently corroborated by Chapin's 1903 regimental history (see regimental-bibliography.json), which carries an identical entry AND lists 'Hubbell, Henry — D' in its Antietam killed list. This single line fills three of Henry's documented data gaps. Pension claim 'Mo C 58119' is NOT in this source — see handoff (NARA NATF-86)."
+}

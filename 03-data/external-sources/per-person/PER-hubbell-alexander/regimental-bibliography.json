@@ -1,0 +1,55 @@
+{
+  "source": "Independent published regimental history + NY State Military Museum / Phisterer unit summary",
+  "person_id": "PER-hubbell-alexander",
+  "checked_date": "2026-06-06",
+  "entries": [
+    {
+      "title": "Richard Eddy, History of the Sixtieth Regiment New York State Volunteers (Philadelphia, 1864)",
+      "role": "Independent published witness (regimental chaplain, contemporaneous)",
+      "url_details": "https://archive.org/details/historyofsixtiet00eddy",
+      "url_fulltext_fetched": "https://archive.org/download/historyofsixtiet01eddy/historyofsixtiet01eddy_djvu.txt",
+      "method": "Fetched full djvu OCR text (809,434 chars); scanned for Hubbell variants + color/Color Guard/Lookout Mountain.",
+      "hubbell_mentions": 2,
+      "candidates": [
+        {
+          "context": "Company 'H' organization roster (printed p. 33)",
+          "verbatim": "Company \"H.\" ... Guiniup, A. A.  Hubbell, A. F.  Huckins, J. A.  Howes, A. S. ...",
+          "ocr_note": "Clean. Confirms A. F. Hubbell in Co. H at organization."
+        },
+        {
+          "context": "Casualty list for the assault on Lookout Mountain (Nov 24 1863; narrative pp. ~307-309, 'Hooker had been ordered to take Lookout Mountain'), printed pp. 309-310; '60th lost 37 in killed and wounded'.",
+          "verbatim": "Private Sidney Rider, Co. \"H\" ... Sergeant A. F. Hubbell, [Co. H] ... Corporal W. Tees.",
+          "ocr_note": "Wound column is OCR-misaligned, so the SPECIFIC wound text cannot be reliably tied to Hubbell's row; what is certain is that Sergeant A. F. Hubbell, Co. H, appears among the 60th's Lookout Mountain WOUNDED.",
+          "significance": "INDEPENDENT corroboration (rubric C9) of (a) Co. H membership and (b) the family's 'wounded at Lookout Mountain' tradition. Eddy is a separate published witness from the AG roster."
+        }
+      ],
+      "color_bearer_note": "Eddy mentions color-bearers/Color Guard only generically (e.g. Cedar Mountain 'Four of the Color Guard were shot down') and does NOT name Hubbell as a color-bearer. The color-bearer role remains a family-record claim, not externally corroborated (open → handoff).",
+      "second_hubbell": "NONE — both Hubbell hits are the same man, A. F. Hubbell of Co. H.",
+      "claude_verdict": "confirmed",
+      "claude_reasoning": "C1 + C9: independent published source places A. F. Hubbell in Co. H AND names Sergeant A. F. Hubbell in the Lookout Mountain wounded list, matching the roster's rank and the family's wound tradition. Lifts identity from 'likely' to 'confirmed' as a genuinely independent corroboration."
+    },
+    {
+      "title": "NY State Military Museum 60th Infantry historical sketch (drawing on Phisterer, New York in the War of the Rebellion)",
+      "role": "Unit-level summary (no individual enlisted names)",
+      "urls_fetched": [
+        "https://museum.dmna.ny.gov/unit-history/infantry-1/60th-infantry-regiment",
+        "https://museum.dmna.ny.gov/unit-history/infantry-1/60th-infantry-regiment/historical-sketch"
+      ],
+      "key_facts": {
+        "organization": "Organized at Ogdensburg; mustered in for three years Oct 30 1861 under Col. William B. Hayward; left the State Nov 4 1861.",
+        "company_H_recruitment_verbatim": "Company H was recruited principally at 'Champlain, Mooers, Ellenburgh, Altona, Chazy, Saranac and Lisbon.' (Champlain first-listed — matches Alexander's enlistment 'at Champlain' and birthplace.)",
+        "brigade_corps": "12th Corps, Second Division, Third Brigade (Gen. George S. Greene at Gettysburg); later consolidated into the 20th Corps (Army of the Cumberland / Georgia).",
+        "battle_list": "B&O Railroad guard; Shenandoah; Second Bull Run; Antietam; Chancellorsville; Gettysburg (Culp's Hill, extreme left of 12th Corps); Lookout Mountain; Ringgold; Resaca; New Hope Church; Peach Tree Creek; Atlanta campaign; March to the Sea; Carolinas; Bentonville.",
+        "gettysburg_verbatim": "'about half a mile to the right of Cemetery Hill, on Culp's Hill, the Sixtieth connecting with the right of the First Corps.' … 'At Gettysburg, 11 were killed and 39 wounded.'",
+        "lookout_mountain_verbatim": "'at Lookout Mountain, 37 were killed and wounded (the Sixtieth capturing one cannon and battle flag).'",
+        "muster_out_verbatim": "'Honorably discharged and mustered out, July 17, 1865, at Alexandria, Va.' (corroborates the roster's July 17 1865 — see muster-out discrepancy).",
+        "losses": "Total deaths 168 (8 officers + 160 enlisted)."
+      },
+      "claude_verdict": "confirmed (unit-level corroboration)",
+      "claude_reasoning": "C4 (strong): Co. H recruited principally at Champlain corroborates the hometown lock. Corroborates the battle arc (Culp's Hill, Lookout Mountain) and independently fixes muster-out at July 17 1865. Names no individuals — unit context only."
+    }
+  ],
+  "confidence": "external · n/a · definite",
+  "null_result": false,
+  "notes": "Eddy (1864) is the high-value INDEPENDENT corroboration; the NYSMM/Phisterer sketch is unit-level color. Together they confirm Co. H, the Champlain recruitment, the Lookout Mountain wound, and muster-out July 17 1865."
+}

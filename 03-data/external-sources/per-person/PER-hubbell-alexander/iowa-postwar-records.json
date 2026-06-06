@@ -1,0 +1,46 @@
+{
+  "source": "Post-war Iowa records (death, GAR, census, grave) — the survivor's trail",
+  "person_id": "PER-hubbell-alexander",
+  "checked_date": "2026-06-06",
+  "rationale": "Alexander survived the war and moved to Iowa, so the identity-carrying spine shifts forward in time (V2 plan §4): death record, GAR, census, cemetery — not a KIA/burial record as for Henry.",
+  "records": [
+    {
+      "name": "Pocahontas County (Iowa) Civil War Soldiers Database — IAGenWeb (compiled by Linda Linn)",
+      "url_fetched": "http://iagenweb.org/pocahontas/military/civilwardatabase.htm",
+      "method": "Direct fetch of the HTML table; located the Hubbell row.",
+      "verbatim_row": "Hubbell, Alexander F. * @ doc | [U.S. Civil War Soldier Records and Profiles] Age at enlistment: 18; Enlistment Date: 21 Sep 1861; Rank at enlistment: Corporal; Enlistment Place: Champlain, NY; State Served: New York; Survived the War?: Yes; Enlisted in Company H, New York 60th Infantry Regiment on 30 Oct 1861; Promoted to Full Sergeant on 01 Oct 1862; Mustered out on 17 Jul 1865 at Alexandria, VA; Birth Date: abt 1843; Sources: New York: Report of the Adjutant-General | Marker: GAR star | Buried: Cedar twp., Fonda | DOB: 28 Mar 1844 | DOD: 7 Dec 1894",
+      "key_data": {
+        "dob": "1844-03-28",
+        "dod": "1894-12-07",
+        "buried": "Cedar Township, Fonda, Pocahontas County, Iowa",
+        "gar_marker": "GAR star (Grand Army of the Republic — confirms veteran/GAR affiliation)",
+        "survived_war": true
+      },
+      "claude_verdict": "likely (death-date) / confirmed (GAR affiliation)",
+      "claude_reasoning": "C4 (strong): DOB 1844-03-28 and burial Cedar twp. Fonda match the family genealogy exactly; pairs with the 60th NY Co. H service line. Resolves the family-internal death-date conflict toward DEC 7, 1894 — it carries the family's 'Dec 7' day with the '1894' year, implying the alternative 'Dec 7, 1899' is a year transcription error (the 1899 Iowa newspaper 'Hubbell' hits are all the unrelated F. M. Hubbell namesake). Verdict held at 'likely' (not 'confirmed') for the death date because this is a compiled database, not a contemporaneous obituary or the stone itself — confirmation handoff is the FindAGrave/WPA stone and the widow-pension filing date."
+    }
+  ],
+  "handoffs": [
+    {
+      "item": "WPA Grave Registration record for HUBBELL, Pocahontas County",
+      "status": "HANDOFF (HTTP 403)",
+      "evidence": "A 'HUBBELL' surname entry EXISTS in the Iowa WPA Grave Registration index for Pocahontas County (https://iagenweb.org/pocahontas/cemeteries/pocahontas-wpa.html), linking to https://iowawpagraves.org/index.php?last=HUBBELL&cid=76&lc=4 — but the detail page returned 403 and its death-date field could not be opened.",
+      "value": "Would confirm the stone-transcribed death date (1894 vs 1899)."
+    },
+    {
+      "item": "Post-war U.S. + Iowa State Census",
+      "status": "HANDOFF (gated — FamilySearch/Ancestry login)",
+      "collections": "1870 + 1880 U.S. Federal (Dover Twp, Pocahontas Co.); 1885 + 1895 Iowa State Census; 1900 U.S. Federal.",
+      "value": "1900 is a high-value disambiguator: if Alexander died in 1894, he should be ABSENT from 1900 and a widow-headed household for Lois + children (Frederick/Affa/Wolcott/Helen) should appear — independently corroborating a pre-1900 death."
+    },
+    {
+      "item": "FindAGrave memorial (Cedar Township Cemetery, Fonda)",
+      "status": "HANDOFF (HTTP 403/CAPTCHA)",
+      "evidence": "Cemetery confirmed to exist: https://www.findagrave.com/cemetery/2196697/cedar-township-cemetery ('1675 memorial records'). Individual memorial not retrievable by automation.",
+      "value": "Stone-transcribed death date + any linked Lois Wood Hubbell memorial."
+    }
+  ],
+  "confidence": "external · n/a · likely (death date); definite (Iowa residence + GAR)",
+  "null_result": false,
+  "notes": "The single most useful free post-war source was the IAGenWeb Pocahontas CW database. Cedar Cemetery transcription (iagenweb.org/pocahontas/cemeteries/cedar.htm) is a PARTIAL list and did NOT contain Hubbell (null, not absent). BillionGraves indexes Cedar Cemetery but shows 0 headstone records."
+}

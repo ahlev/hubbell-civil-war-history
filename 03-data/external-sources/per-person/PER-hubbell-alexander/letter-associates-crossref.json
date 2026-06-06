@@ -1,0 +1,138 @@
+{
+  "source": "Letter-associates cross-reference — Alexander's company circle vs. the 60th NY record",
+  "person_id": "PER-hubbell-alexander",
+  "checked_date": "2026-06-06",
+  "method": "Read all 28 letters linked to Alexander; extracted every named comrade/officer; cross-referenced each against the NY AG 60th NY roster and Richard Eddy's 1864 regimental history. Names tied to other units (Henry's 34th NY, Charles's 153rd NY) or to home/academy life were recorded as honest NULLs for the 60th — never forced into a match. This mirrors the Henry Sweep 1.1 company-circle method.",
+  "anchor_record": "HUBBELL, ALEXANDER F.—Age 18; enlisted Sept 21 1861 at Champlain; corporal Co. H Oct 30 1861; sergeant Oct 1 1862; veteran Dec 14 1863; mustered out July 17 1865, Alexandria, Va. (Eddy lists him in the Co. H roll AND the Lookout Mountain wounded list.)",
+  "confirmed_co_H_associates": [
+    {
+      "name_as_written": "Capt. Ransom (signs 'James H. Ransom'; letters vary J.B./J.H.)",
+      "letters_cited": ["LTR-1861-09-11-001", "LTR-1862-10-02-001", "LTR-1863-01-14-001", "LTR-1863-03-12-001"],
+      "verbatim_letter_context": "'Capt. Ransom took tea with us' (1862-10-02); writes Mother directly, signed 'James H. Ransom' (1863-01-14); 'The men of Capt. Ransom's Co. complain that he took home... his Co.'s money' (1863-03-12).",
+      "record_match": "RANSOM, JAMES M.—Age 33; enrolled Sept 21 1861 at Ogdensburg; captain Co. H Oct 17 1861; discharged Feb 2 1863. Eddy: elected Captain of the Champlain/Mooers/Chazy company.",
+      "company": "H",
+      "fate_from_record": "resigned/discharged Feb 2 1863",
+      "note": "Alexander's company commander; the family hosted him at home. Middle initial in letters (J.B./J.H.) differs from record (M.) — same man (James M. Ransom of Champlain)."
+    },
+    {
+      "name_as_written": "Lieut. White",
+      "letters_cited": [],
+      "verbatim_letter_context": "(Alexander's lieutenant; the NCO promotion chain in his letters runs through the Co. H officers.)",
+      "record_match": "WHITE, LORING E.—Age 22; first lieutenant Co. H Oct 30 1861; died of typhoid fever July 26 1862 at Little Washington, Va.",
+      "company": "H",
+      "fate_from_record": "died of disease (typhoid), July 26 1862",
+      "note": "FATE RECOVERED — a death the letters never report; opened the lieutenant vacancy Fitch filled."
+    },
+    {
+      "name_as_written": "(orderly sergeant) → 'when their orderly is promoted to Lieut.' = Charles H. Dickinson",
+      "letters_cited": ["LTR-1863-03-12-001"],
+      "verbatim_letter_context": "'he is now third sergeant and when their orderly is promoted to Lieut. he will be second sergeant'",
+      "record_match": "DICKINSON, CHARLES H.—Age 25; first (orderly) sergeant Co. H Oct 30 1861; second lieutenant July 26 1862; discharged Nov 30 1862, Falmouth, Va.",
+      "company": "H",
+      "fate_from_record": "promoted 2nd Lt. then discharged Nov 30 1862",
+      "note": "The 'orderly' whose promotion drove the NCO chain Alexander rose through. Binds the letters' promotion talk to the record exactly."
+    },
+    {
+      "name_as_written": "Luther / 'Amos C. Luther'",
+      "letters_cited": ["LTR-1862-02-23-001", "LTR-1862-10-12-001", "LTR-1863-03-12-001"],
+      "verbatim_letter_context": "'your friend, Amos C. Luther' (writes Alexander, 1862-10-12); 'sergeant Howes and Luther were the singers' in Alex's tent (1863-03-12).",
+      "record_match": "LUTHER, AMOS G.—Age 18; corporal Co. H Oct 30 1861 (enrolled Oct 19 at Chazy); sergeant July 1 1863; veteran Dec 11 1863; first sergeant Sept 1 1864; mustered out July 17 1865; commissioned (not mustered) 2nd Lt. July 5 1865.",
+      "company": "H",
+      "fate_from_record": "survived; rose to first sergeant; commissioned 2nd Lt. (not mustered)",
+      "note": "Alexander's closest comrade in the letters (the muster roll M01 already paired them). Middle initial C. (letters) vs G. (record) — same man."
+    },
+    {
+      "name_as_written": "Commissary/Sergeant Howes = Alvah S. Howes",
+      "letters_cited": ["LTR-1862-02-17-001", "LTR-1863-03-12-001"],
+      "verbatim_letter_context": "'Commissary Howes came in (he rooms with me)' (1862-02-17); 'sergeant Howes... the singers' in Alex's tent (1863-03-12).",
+      "record_match": "HOWES, ALVAH S.—Age 21; enlisted Sept 21 1861 at Ellenburg; wagoner Co. H Oct 30 1861; later private/sergeant; veteran Dec 14 1863; mustered out July 31 1865, Ogdensburg.",
+      "company": "H",
+      "fate_from_record": "survived; veteran reenlistment",
+      "same_day_enlistee": true,
+      "note": "Same-day enlistee (Sept 21 1861); roomed/tented with Alexander."
+    },
+    {
+      "name_as_written": "(senior NCO) Brockway = Patrick H. Brockway",
+      "letters_cited": [],
+      "verbatim_letter_context": "(Co. H NCO line; named in the disambiguation watch-list.)",
+      "record_match": "BROCKWAY, PATRICK H.—Age 21; sergeant Co. H Oct 30 1861; first sergeant Nov 20 1862; veteran Dec 14 1863; first lieutenant Co. C Aug 12 1864; captain Co. H Mar 29 1865; mustered out July 17 1865.",
+      "company": "H",
+      "fate_from_record": "survived; ended the war as Co. H's captain",
+      "note": "The Co. H NCO who rose to command the company by war's end."
+    },
+    {
+      "name_as_written": "Sidney Rider (beside Hubbell in the Lookout Mountain casualty list)",
+      "letters_cited": [],
+      "verbatim_letter_context": "(Eddy lists 'Private Sidney Rider, Co. H' immediately before 'Sergeant A. F. Hubbell' in the wounded list.)",
+      "record_match": "RIDER, SIDNEY—Age 18; enlisted Sept 21 1861 at Champlain; private Co. H; mustered out Oct 29 1864.",
+      "company": "H",
+      "fate_from_record": "wounded at Lookout Mountain with Alexander; mustered out 1864",
+      "same_day_enlistee": true,
+      "note": "Same-day, same-place (Champlain) enlistee; wounded alongside Alexander — the exact comrade-binding move that worked for Henry (Jolly beside Hubbell)."
+    },
+    {
+      "name_as_written": "Alexander Lablue ('belongs to Capt. Ransom's Company')",
+      "letters_cited": [],
+      "verbatim_letter_context": "(named in R. W. McDonald's letter as a Capt. Ransom's-company man; Eddy Co. H roll 'Lablue, A.')",
+      "record_match": "LABLUE, ALEXANDER—Age 18; enlisted Sept 21 1861 at Champlain; private Co. H; deserted Oct 24 1862 from Loudon Heights, Va.",
+      "company": "H",
+      "fate_from_record": "deserted Oct 24 1862",
+      "same_day_enlistee": true,
+      "note": "FATE RECOVERED — desertion the family letters never mention."
+    },
+    {
+      "name_as_written": "Edwin H. Porter (Eddy: 'Death of E. H. Porter')",
+      "letters_cited": ["LTR-1861-12-26-001"],
+      "verbatim_letter_context": "Tangled with the family's 'Capt. Ransom had a narrow escape' railroad story (Dec 1861).",
+      "record_match": "PORTER, EDWIN H.—Age 23; enlisted Sept 21 1861 at Bloomingdale; private Co. H; accidentally killed by the cars, Jan 8 1862, near Baltimore, Md.",
+      "company": "H",
+      "fate_from_record": "accidentally killed by railroad cars, Jan 8 1862",
+      "same_day_enlistee": true,
+      "note": "FATE RECOVERED — the documented Co. H railroad death near Baltimore, echoing the letters' 'narrow escape' anecdote."
+    },
+    {
+      "name_as_written": "James E. White (possible 'poisoned man'? — not confirmable)",
+      "letters_cited": ["LTR-1862-02-17-001"],
+      "verbatim_letter_context": "Alexander reported a man poisoned (Feb 1862) — identification with this White is NOT confirmable.",
+      "record_match": "WHITE, JAMES E.—Age 18; enlisted Sept 27 1861 at Ellensburg; private Co. H; wounded; died of wounds Aug 28 1862, Washington, D.C.",
+      "company": "H",
+      "fate_from_record": "died of wounds Aug 28 1862",
+      "note": "Documented Co. H death; the poisoning link is flagged as unconfirmed, not forced."
+    },
+    {
+      "name_as_written": "'Nelhinch' (probable Co. H private 'Malhinch, T.')",
+      "letters_cited": ["LTR-1862-02-23-001"],
+      "verbatim_letter_context": "'Nelhinch wishes to write'",
+      "record_match": "Eddy Co. H org roll lists 'Malhinch, T.'; no clean AG roster line under Malhinch/Nelhinch.",
+      "company": "H (probable)",
+      "fate_from_record": "unknown",
+      "note": "Partial/probable match (handwritten-name transcription); reported honestly, not forced."
+    }
+  ],
+  "regimental_loss": {
+    "name": "Col. William B. Goodrich (Mother's 'the 60th Regt. has lost its Col.')",
+    "letters_cited": ["LTR-1862-09-21-001"],
+    "record_match": "Eddy (Gen. Greene's official letter): 'The death of Colonel Goodrich by the hands of the insurgents, whilst gallantly leading my Brigade into action, at the battle of Antietam...' Eddy: 'he gently, and without pain, passed from life.'",
+    "note": "The regimental loss Mother read of in Sept 1862 — corroborated and named in the record."
+  },
+  "honest_nulls_not_in_60th_NY": {
+    "count_approx": 25,
+    "examples": [
+      "Corporal Perkins — explicitly Henry's 34th NY Co. D messmate (NULL for 60th).",
+      "Lieut. Burdick — Charles's 153rd NY ('came with Capt. Ransom into our Co.'); NULL as a Co. H officer.",
+      "McDonald, Billings, Lieut. Webb, Lieut. Scott, Capt. Rich/Reich, Kellogg, Graves — Henry's 34th NY / Antietam-search network (NULL for 60th).",
+      "Strain, McMartin, McGuire, Welky, Jim Lucas, Tromby — Charles's 153rd NY (NULL for 60th).",
+      "Doolittle, the Savages, Plummer, 'big Shaw', Bowron, Holcomb — home/academy acquaintances (NULL)."
+    ],
+    "discipline_note": "These NULLs are the proof of 'filter, never a source': Perkins and Burdick are the most tempting false-positives and were correctly assigned to other regiments rather than forced into the 60th."
+  },
+  "summary": {
+    "confirmed_in_60th_co_H": 11,
+    "plus_regimental_colonel": 1,
+    "honest_nulls": "~25 (other units or home folk)",
+    "same_day_champlain_cohort": ["Howes", "Rider", "Lablue", "Porter (Bloomingdale)", "Ransom/White/Dickinson (Ogdensburg, same day)"],
+    "fates_recovered_letters_never_knew": ["Lt. White — typhoid Jul 1862", "Pvt. Porter — killed by cars Jan 1862", "Pvt. Lablue — deserted Oct 1862", "Pvt. James E. White — died of wounds Aug 1862", "Col. Goodrich — killed Antietam"]
+  },
+  "confidence": "external · n/a · definite (for the confirmed Co. H circle)",
+  "null_result": false
+}

@@ -1,0 +1,29 @@
+{
+  "battle": "Lookout Mountain",
+  "part_of": "Battle of Chattanooga (CWSAC code TN024)",
+  "date": "1863-11-24",
+  "campaign": "Chattanooga-Ringgold Campaign, November 1863",
+  "location": "Lookout Mountain, Hamilton County, Tennessee",
+  "result": "Union victory",
+  "nickname": "The 'Battle Above the Clouds'",
+  "commanders": "Maj. Gen. Joseph Hooker (US) assaulting the Confederate left held by elements of Bragg's Army of Tennessee",
+  "cwsac": {
+    "code": "TN024 (Chattanooga, Nov 23-25 1863)",
+    "note": "CWSAC has no standalone Lookout Mountain entry; it is part of the Chattanooga battle.",
+    "chattanooga_casualties": "12,485 total (US 5,815; CS 6,670)",
+    "significance_class": "A",
+    "source_csv": "https://raw.githubusercontent.com/jrnold/acw_battle_data/master/build/acw_battle_data/cwsac_battles.csv"
+  },
+  "abt_facts": {
+    "verbatim": "'the Battle of Lookout Mountain occurred on November 24, 1863' … 'By 2:00 pm, the \"Battle Among the Clouds\" was over.'",
+    "url": "https://www.battlefields.org/learn/maps/chattanooga-lookout-mountain-nov-24-1863"
+  },
+  "60th_ny_role": {
+    "source": "NY State Military Museum 60th Infantry historical sketch (Phisterer)",
+    "verbatim": "'at Lookout Mountain, 37 were killed and wounded (the Sixtieth capturing one cannon and battle flag).'",
+    "brigade_corps": "3rd Brigade, 2nd Division, 12th Corps (Geary's division, Hooker's command)",
+    "hubbell_note": "Sergeant A. F. Hubbell (Co. H) is named among the 60th's wounded in Richard Eddy's 1864 regimental history casualty list for this assault."
+  },
+  "cached_date": "2026-06-06",
+  "cached_for": ["PER-hubbell-alexander"]
+}

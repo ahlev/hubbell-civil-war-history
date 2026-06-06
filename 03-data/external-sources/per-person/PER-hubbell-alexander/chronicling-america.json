@@ -1,0 +1,29 @@
+{
+  "source": "Chronicling America (via loc.gov — legacy API confirmed dead; used ?fo=json + tile.loc.gov ALTO)",
+  "person_id": "PER-hubbell-alexander",
+  "checked_date": "2026-06-06",
+  "geographies_searched": ["New York 1861/1865", "Iowa 1893/1900"],
+  "queries": ["Hubbell + Lookout Mountain", "Hubbell + 60th regiment", "Hubbell + color bearer", "Hubbell + Fonda", "Hubbell + Pocahontas", "A. F. Hubbell"],
+  "ny_result": {
+    "null_result": true,
+    "coverage_gap": "Every NY result is an NYC-metro paper; LOC holds NO Clinton County / Plattsburgh title in range (the correct archive is NYS Historic Newspapers — gated, see nys-historic-newspapers.json).",
+    "wrong_men_found": [
+      "New-York Daily Tribune 1863-11-06 p.8: 'W. L. Hubbell, 17th Conn, captured July 1, at Gettysburg.' (17th Connecticut — not Alexander)",
+      "New-York Daily Tribune 1863-11-06 p.8: 'Lieut. F. A. Hubbell, 67th Penn. captured June 15 at Winchester.' (67th Pennsylvania; initials F.A. adjacent to A.F. but wrong regiment/rank/state — not Alexander)"
+    ]
+  },
+  "iowa_result": {
+    "null_result": true,
+    "coverage_gap": "County filter location_county:pocahontas|location_state:iowa returned total 0 — LOC holds NO Pocahontas County, Iowa paper. A Fonda obituary cannot exist here; the Fonda Times is not digitized in any reachable archive.",
+    "namesake_noise": "All Iowa 'Hubbell' OCR co-occurrences resolve to FREDERICK M. HUBBELL, the Des Moines millionaire/financier (Terrace Hill; Glucose Sugar Refining Co.; daughter Beulah Hubbell's 1899 wedding to Count Wachtmeister). This is the source of the 1899-dated Iowa 'Hubbell' hits — relevant because it could otherwise be misread as supporting an 1899 death."
+  },
+  "same_town_namesake_check": {
+    "F. M. Hubbell": "Des Moines financier — accounts for ALL Iowa newspaper 'Hubbell' noise incl. 1899 hits. Rule out for any Iowa newspaper attribution.",
+    "Julius O. Hubbell": "Clinton County NY surveyor (1860s) — relevant for NY papers; could not be screened against NYS Historic Newspapers (gated).",
+    "W. L. Hubbell (17th CT) / F. A. Hubbell (67th PA)": "wartime POWs — wrong-unit namesakes."
+  },
+  "ocr_notes": "Moderate garbling ('Get:iy rg' for Gettysburg); surname 'Hubbell' itself OCR'd cleanly in every hit. C8 OCR penalty not decisive here because no candidate was the target anyway.",
+  "claude_verdict": "rejected (all candidates) / null (target)",
+  "claude_reasoning": "No candidate matched Alexander. NY hits are wrong-regiment Hubbells (R2). Iowa hits are the F. M. Hubbell namesake. The correct archives for him (NYS Historic Newspapers for the wartime honor; the Fonda Times for the obituary) are gated or undigitized — handoffs.",
+  "confidence": "external · n/a · n/a"
+}

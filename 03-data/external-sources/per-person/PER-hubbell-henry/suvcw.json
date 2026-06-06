@@ -1,0 +1,13 @@
+{
+  "source": "SUVCW National Graves Registration Database",
+  "person_id": "PER-hubbell-henry",
+  "checked_date": "2026-06-05",
+  "url_searched": "https://www.suvcwdb.org/index.php?r=site%2Fsearch",
+  "query_used": "Henry Hubbell, NY",
+  "candidates_returned": 0,
+  "candidates": [],
+  "verified_matches": [],
+  "confidence": "external · n/a · n/a",
+  "null_result": true,
+  "notes": "INACCESSIBLE via automation: the SUVCW search form requires a CAPTCHA / verification code and POST submission; URL-parameter queries return the blank form or 404. No data retrieved. Deferred to handoff for a manual search."
+}

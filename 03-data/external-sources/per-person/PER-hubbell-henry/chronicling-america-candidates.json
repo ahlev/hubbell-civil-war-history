@@ -1,0 +1,50 @@
+{
+  "source": "Chronicling America (Library of Congress)",
+  "person_id": "PER-hubbell-henry",
+  "checked_date": "2026-06-05",
+  "url_searched": "https://www.loc.gov/collections/chronicling-america/?q=<terms>&fa=location_state:new+york&dates=1862/1863&fo=json (queries: Hubbell+Antietam, Hubbell+34th, Hubbell+Champlain, \"Henry Hubbell\", Plattsburgh+Hubbell)",
+  "query_used": "Hubbell + Antietam / 34th / Champlain, NY papers 1862-1863",
+  "coverage_caveat": "CRITICAL: Chronicling America has NO northern-NY / Clinton County papers digitized for 1862. NY-1862 coverage is almost entirely New York CITY titles. A Champlain/Clinton-County hometown casualty notice is NOT retrievable here — see handoff (NYS Historic Newspapers). The legacy chroniclingamerica.loc.gov JSON API is dead (308->404); the working endpoint is loc.gov/collections/chronicling-america with fo=json.",
+  "candidates_returned": 14,
+  "candidates": [
+    {
+      "candidate_id": "loc-sn83030313-1862-09-25-seq5",
+      "raw_record": {
+        "title": "The New York Herald",
+        "date": "1862-09-25",
+        "lccn": "sn83030313",
+        "page_url": "https://www.loc.gov/resource/sn83030313/1862-09-25/ed-1/?sp=5&q=hubbell+antietam",
+        "ocr_snippet_verbatim": "...Company 1).?Killed?H 'try Bailey, John My one, Pat rick Coonan... Wounded?ric-geant Robert McDonald', John (Jrwn,'HenHubbell, 1'eter .lolly, An thony Sella,tee...",
+        "ocr_quality": "heavily garbled"
+      },
+      "claude_verdict": "possible",
+      "claude_reasoning": "C2 (date): Sept 25 1862 is exactly the post-Antietam casualty-list window. The fragment 'HenHubbell' in a Wounded list is suggestive. BUT three problems: (a) C8 — OCR is badly garbled, regiment/company not recoverable from this window; (b) the list says WOUNDED, while Henry was KILLED (a soft contradiction unless the early list was wrong/preliminary); (c) co-listed names ('Peter Jolly') — note Chapin's Antietam KILLED list for the 34th NY includes a 'Jolly, Peter — D', which RAISES the chance this is in fact the 34th NY Co. D casualty list misread by OCR. Net: cannot confirm or reject from OCR alone. Flagged for human inspection of the page image. Held as 'possible'; NOT promoted to verified.",
+      "researcher_reviewed": false,
+      "researcher_override": null,
+      "action": "HANDOFF: inspect page image at the URL above to read regiment/company and whether Hubbell is listed killed vs wounded."
+    },
+    {
+      "candidate_id": "loc-sn83030213-1863-05-06-seq1",
+      "raw_record": {"title": "New-York Daily Tribune", "date": "1863-05-06", "lccn": "sn83030213", "ocr_snippet_verbatim": "...A. C. Hubbell, D, 77 N.Y slight...", "ocr_quality": "moderate"},
+      "claude_verdict": "rejected",
+      "claude_reasoning": "R2: different regiment (77th NY, not 34th) and different initials (A. C., not Henry). Date 1863 post-dates Henry's death. Not this person.",
+      "researcher_reviewed": false,
+      "researcher_override": null
+    },
+    {
+      "candidate_id": "misc-non-soldier-hubbells",
+      "raw_record": {
+        "note": "Eleven further hits, all non-matches, summarized to keep the log lean (full URLs in the retrieval transcript).",
+        "examples": "Wm. Hubbell (Brooklyn ward politics, 1862-10-03 Tribune); Peter Hubbell (1862-09-30 Tribune list); target-shooting 'Hubbell' (Sunday Dispatch 1863-06-14); W.L. Hubbell 17th Conn & Lieut. Hubbell 67th Penn POWs (Tribune 1863-11-06); Dr. W. Hubbell 44th NY sick list (1862-07-08); Calvin Hubbell funeral; Nathan/Chas./John E./Wm. Hubbell (Masonic & political notices)."
+      },
+      "claude_verdict": "rejected",
+      "claude_reasoning": "R2 / not-a-soldier: each is either a different regiment (77th NY, 44th NY, 17th Conn, 67th Penn) or a civilian context (Masonic lodge, ward politics, classifieds, target match). None matches Henry Hubbell, 34th NY Co. D.",
+      "researcher_reviewed": false,
+      "researcher_override": null
+    }
+  ],
+  "verified_matches": [],
+  "confidence": "external · partial · rumor",
+  "null_result": false,
+  "notes": "Zero confirmed newspaper matches. One 'possible' (NY Herald 1862-09-25) worth a human image check, strengthened by the OCR-adjacent 'Peter Jolly' who is independently in the 34th NY's Antietam killed list. Exact-phrase 'Henry Hubbell' = 0 results. The decisive newspaper source (hometown Clinton County paper) is not in this collection."
+}

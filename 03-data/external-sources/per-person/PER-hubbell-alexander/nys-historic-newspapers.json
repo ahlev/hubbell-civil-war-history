@@ -1,0 +1,17 @@
+{
+  "source": "NYS Historic Newspapers (nyshistoricnewspapers.org) — the correct archive for Clinton County papers",
+  "person_id": "PER-hubbell-alexander",
+  "checked_date": "2026-06-06",
+  "result": "HANDOFF — INACCESSIBLE (Cloudflare JS challenge; HTTP 403 'Just a moment...' interstitial to both WebFetch and curl)",
+  "null_result": "unknown (gated, not absent)",
+  "why_this_archive": "LOC/Chronicling America has no Plattsburgh papers; NYS Historic Newspapers holds the Plattsburgh Republican and Plattsburgh Sentinel — the only place a Clinton County wartime notice of Alexander (a 60th NY honor, a wounded-at-Lookout-Mountain notice, a color-bearer mention, an 1865 homecoming) would appear.",
+  "handoff_searches": [
+    "Hubbell AND 60th — Plattsburgh Republican + Sentinel, 1861-1865",
+    "Hubbell AND 'Lookout Mountain' — 1863-1864 (wounding Nov 1863)",
+    "Hubbell AND 'color bearer' (also 'colors') — 1863-1865 (would corroborate the color-bearer claim the rosters omit)",
+    "'Alexander Hubbell' / 'A. F. Hubbell' — 1861-1865 incl. 1865 muster-out/homecoming",
+    "Namesake screen: 'Julius O. Hubbell' (Champlain surveyor) to rule out"
+  ],
+  "claude_verdict": "n/a (not retrieved)",
+  "notes": "Highest-value newspaper follow-up for Alexander: a contemporary Clinton County mention could be the one INDEPENDENT corroboration of the color-bearer role, which neither the AG roster nor Eddy records."
+}

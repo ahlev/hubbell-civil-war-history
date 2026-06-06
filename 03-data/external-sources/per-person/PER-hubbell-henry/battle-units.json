@@ -1,0 +1,42 @@
+{
+  "source": "NPS Battle Units / NY State Military Museum / Antietam on the Web — 34th NY Infantry unit history",
+  "person_id": "PER-hubbell-henry",
+  "checked_date": "2026-06-05",
+  "url_searched": "https://museum.dmna.ny.gov/unit-history/infantry/34th-infantry-regiment/historical-sketch ; https://www.civilwararchive.com/Unreghst/unnyinf3.htm ; https://antietam.aotw.org/officers.php?unit_id=351 ; https://en.wikipedia.org/wiki/34th_New_York_Infantry_Regiment",
+  "query_used": "34th New York Infantry regiment history, Company D, Antietam",
+  "candidates_returned": 1,
+  "candidates": [
+    {
+      "raw_record": {
+        "regiment": "34th Regiment, New York Volunteer Infantry ('Herkimer Regiment')",
+        "organized": "Albany, NY; mustered in June 15, 1861, at the Industrial School Barracks, Albany; two-year term",
+        "left_state": "Left Albany for Washington, D.C., July 3, 1861",
+        "mustered_out": "June 30, 1863 (expiration of term)",
+        "company_D": "Recruited from Champlain, Clinton Co.; commander Capt. Davis J. Rich; accepted May 22, 1861 (same day Henry Hubbell enlisted)",
+        "company_captains_listed": ["Corcoran", "Laflin", "Brown", "Sponable", "Beverly", "Doolittle", "Baldwin", "King", "Oswald", "Rich"],
+        "colonel": "William La Due (elected May 30, 1861); Lt. Col. James A. Suiter (commanded at Antietam)",
+        "antietam_assignment": "1st Brigade (Gorman), 2nd Division (Sedgwick), II Corps (Sumner), Army of the Potomac; commanded on the field by Col. James A. Suiter",
+        "antietam_action": "Sept 17, 1862 — advanced into the West Woods near the Dunker (Dunkard) Church; left flank unprotected after the 127th PA broke; took infantry fire front and both flanks plus artillery on the left; forced to withdraw and reformed on the left of Kirby's battery"
+      },
+      "claude_verdict": "confirmed",
+      "claude_reasoning": "Unit-level facts (not person identity). C1 corroboration: the curated assignment '34th NY, Co. D' is confirmed as a real company recruited at Champlain under Capt. Davis J. Rich. The regiment's Antietam role (West Woods, Sedgwick's division) is consistent across DMNA (Phisterer), AOTW, Wikipedia, and the NPS monument. Confidence 'definite' for organization/movement dates (government + multiple corroborating sources)."
+    }
+  ],
+  "verified_matches": [
+    {
+      "fact": "34th NY left Albany for Washington July 3, 1861",
+      "relevance": "Resolves the date of Henry's FIRST letter — see DSC-2026-06-05-001. He could not have 'arrived at Washington' in early June 1861; the regiment had not yet left Albany."
+    },
+    {
+      "fact": "Co. D commander = Capt. Davis J. Rich",
+      "relevance": "Henry's letters call him 'Capt. Reich' — see DSC-2026-06-05-002 (name-spelling discrepancy, resolved)."
+    },
+    {
+      "fact": "34th NY at Antietam: West Woods, Gorman/Sedgwick/Sumner; ~150 casualties (32 k / 109 w / 9 m) per NY AG & Phisterer",
+      "relevance": "Battlefield context for Henry's death; the unit lost ~48% of 311 engaged."
+    }
+  ],
+  "confidence": "external · n/a · definite",
+  "null_result": false,
+  "notes": "A casualty figure DISCREPANCY exists between sources: NY AG/Phisterer give 32 killed / 109 wounded / 9 missing (=150); Wikipedia and the NPS 34th-NY monument inscription give 43 killed / 74 wounded (=117). External-vs-external; recorded in source-quality-notes.md and the discrepancy INDEX (minor). We adopt the NY AG/Phisterer figures as primary."
+}

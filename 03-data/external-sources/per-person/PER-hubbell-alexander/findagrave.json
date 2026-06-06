@@ -1,0 +1,15 @@
+{
+  "source": "FindAGrave",
+  "person_id": "PER-hubbell-alexander",
+  "checked_date": "2026-06-06",
+  "urls_attempted": [
+    "https://www.findagrave.com/cemetery/2196697/memorial-search?firstname=Alexander&lastname=Hubbell",
+    "https://www.findagrave.com/memorial/search?firstname=Alexander&lastname=Hubbell&location=Iowa&deathyear=1894"
+  ],
+  "result": "HANDOFF — INACCESSIBLE (HTTP 403 to automated fetch)",
+  "null_result": "unknown (gated, not absent)",
+  "context_verified_free": "The target cemetery exists on FindAGrave as 'Cedar Township Cemetery,' Fonda, Pocahontas County, Iowa (https://www.findagrave.com/cemetery/2196697/cedar-township-cemetery — '1675 memorial records'). BillionGraves indexes the same yard as 'Cedar Cemetery, Fonda' (https://billiongraves.com/cemetery/Cedar-Cemetery/134916) but shows 0 headstone images/records.",
+  "handoff": "Open the Cedar Township Cemetery page in a browser, search 'Hubbell', and capture the memorial ID/URL, the STONE-TRANSCRIBED death date (resolves 1894 vs 1899), and any linked Lois Wood Hubbell memorial.",
+  "claude_verdict": "n/a (not retrieved)",
+  "notes": "Consistent with the V2 plan's front-loaded handoff list — FindAGrave is CAPTCHA/403-gated and always a handoff."
+}

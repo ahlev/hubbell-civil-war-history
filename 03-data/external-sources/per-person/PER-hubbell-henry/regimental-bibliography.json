@@ -1,0 +1,48 @@
+{
+  "source": "Regimental histories & published compendia — 34th NY Infantry",
+  "person_id": "PER-hubbell-henry",
+  "checked_date": "2026-06-05",
+  "entries": [
+    {
+      "title": "Louis N. Chapin, A Brief History of the Thirty-Fourth Regiment, N.Y.S.V. (1903)",
+      "url": "https://archive.org/details/briefhistoryreg00chaprich (full text: https://archive.org/stream/briefhistoryreg00chaprich/briefhistoryreg00chaprich_djvu.txt)",
+      "type": "published regimental history (by a regiment veteran)",
+      "reliability": "high — independent published corroboration of the AG roster",
+      "hubbell_attestations": [
+        {
+          "context": "alphabetical roster",
+          "verbatim": "HUBBELL, HENRY.—Age, 23 years. Enlisted, May 22, 1861, at Champlain, to serve two years; mustered in, Co. D, June 15, 1861; killed, September 17, 1862, at Antietam, Md."
+        },
+        {
+          "context": "Battle of Antietam killed list",
+          "verbatim": "... Hicks, Lawrence — G. / Hubbell, Henry — D. / Jolly, Peter — D. ...",
+          "note": "Places Henry Hubbell, Co. D, explicitly among the regiment's Antietam KILLED — a second independent attestation. (Note 'Jolly, Peter — D' here matches the 'Peter Jolly' in the garbled NY Herald 1862-09-25 OCR.)"
+        }
+      ]
+    },
+    {
+      "title": "Frederick Phisterer, New York in the War of the Rebellion, 1861-1865",
+      "url": "https://archive.org/details/newyorkinwarofre00phis ; unit summary mirrored at https://museum.dmna.ny.gov/unit-history/infantry/34th-infantry-regiment",
+      "type": "published state compendium (regimental summaries, no individual rosters)",
+      "reliability": "high for unit-level facts; does NOT name Hubbell",
+      "unit_facts_verbatim": "Co. D recruited from Champlain, Clinton co., under Capt. Davis J. Rich; regiment mustered in June 15, 1861, at the Industrial School Barracks, Albany. Antietam: 'the regiment lost thirty-two killed, one hundred and nine wounded and nine missing—total, one hundred and fifty.'"
+    },
+    {
+      "title": "Antietam on the Web (AOTW) — soldier profile #8050 + unit #351",
+      "url": "https://antietam.aotw.org/officers.php?officer_id=8050 ; https://antietam.aotw.org/officers.php?unit_id=351",
+      "type": "curated battle database (editor-moderated; transcribed from NY AG report)",
+      "reliability": "medium-high finding aid; DERIVATIVE of the AG roster (not independent)",
+      "hubbell_verbatim": "Henry Hubbell, Private, 34th New York Infantry, Company D; 'killed in action on 17 September 1862' at 'Sharpsburg, MD'; (? - 1862). Cites NY Adjutant-General Annual Report (Issue 22, 1900)."
+    },
+    {
+      "title": "Civil War Archive — 34th NY regimental record",
+      "url": "https://www.civilwararchive.com/Unreghst/unnyinf3.htm",
+      "type": "secondary compilation",
+      "reliability": "medium",
+      "unit_facts_verbatim": "34th Regiment Infantry 'Herkimer Regiment' — organized at Albany, mustered in June 15, 1861; left for Washington July 3, 1861; Battle of Antietam September 16-17 [1862]; mustered out June 30, 1863."
+    }
+  ],
+  "confidence": "external · n/a · secondhand",
+  "null_result": false,
+  "notes": "Chapin (1903) is the key NEW source from the secondary push — it independently corroborates the AG roster AND names Henry in the Antietam killed list. Phisterer and AOTW corroborate unit facts. These are the 'regimental bibliography' for Henry's 34th NY."
+}

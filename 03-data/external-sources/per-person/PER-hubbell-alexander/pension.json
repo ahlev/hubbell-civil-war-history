@@ -1,0 +1,16 @@
+{
+  "source": "U.S. Civil War Pension Index (General Index to Pension Files, NARA T288) + widow/invalid pension files",
+  "person_id": "PER-hubbell-alexander",
+  "checked_date": "2026-06-06",
+  "result": "HANDOFF — INACCESSIBLE (all indexes login/paywalled)",
+  "null_result": "unknown (gated, not absent)",
+  "family_record_numbers": "The genealogy (G03) records pension application #710.072 and certificate #658.842 against Alexander — to be verified, and to be classified as an INVALID (soldier) pension vs. a WIDOW pension (Lois).",
+  "gated_collections": [
+    "Ancestry: 'U.S., Civil War Pension Index: General Index to Pension Files, 1861-1934' (collection 4654) — https://www.ancestry.com/search/collections/4654/",
+    "Fold3: 'US, Civil War Widows Pensions, 1861-1910' — https://www.fold3.com/publication/24/",
+    "FamilySearch wiki: 'Union Pension Records' / 'United States Civil War Widows and Other Dependents Pension Files'",
+    "Findmypast: 'United States Civil War Pension Files Index 1861-1934'"
+  ],
+  "value": "HIGH for two reasons: (1) Alexander was WOUNDED at Lookout Mountain, so an invalid (soldier) pension likely exists and may describe the wound and the color-bearer/ambulance-corps duty the rosters omit. (2) A WIDOW pension filed by Lois would carry a FILING DATE that independently times Alexander's death — the cheapest way to settle 1894 vs 1899 (a claim filed in 1894-95 confirms the 1894 death the IAGenWeb DB reports).",
+  "claude_verdict": "n/a (not retrieved)"
+}

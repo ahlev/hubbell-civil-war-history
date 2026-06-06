@@ -105,29 +105,34 @@
 
 ## External Source Records
 
+> Cross-referenced in Phase 3a Sweep 1.0 (2026-06-05). Full dossier: [`04-analysis/PHASE-3A-HENRY-DOSSIER.md`](../../04-analysis/PHASE-3A-HENRY-DOSSIER.md). Per-source artifacts: [`03-data/external-sources/per-person/PER-hubbell-henry/`](../external-sources/per-person/PER-hubbell-henry/). **Identity CONFIRMED** (`external · n/a · definite`).
+
 | Source | Checked | Record Found | Key Details | URL/Citation |
 |--------|---------|-------------|-------------|-------------|
-| NPS CWSS | [ ] | | | |
-| Ancestry.com | [ ] | | | |
-| FamilySearch | [ ] | | | |
-| Fold3 | [ ] | | | |
-| FindAGrave | [ ] | | | |
-| SUVCW | [ ] | | | |
-| NY State Muster Rolls | [ ] | | | |
-| Chronicling America | [ ] | | | |
+| **NY State Adjutant-General Roster** | [x] | ✅ **YES** | Age 23; enlisted May 22 1861 at Champlain (2-yr term); mustered in Pvt., Co. D, June 15 1861; killed Sept 17 1862, Antietam | [34th_Infantry_CW_Roster.pdf](https://dmna.ny.gov/historic/reghist/civil/rosters/Infantry/34th_Infantry_CW_Roster.pdf) |
+| **Regimental history (Chapin 1903)** | [x] | ✅ **YES** | Identical roster line + lists "Hubbell, Henry — D" in Antietam **killed** list | [archive.org/details/briefhistoryreg00chaprich](https://archive.org/details/briefhistoryreg00chaprich) |
+| **Antietam on the Web** | [x] | ✅ YES (derivative) | Soldier #8050: Pvt., 34th NY Co. D, KIA 17 Sep 1862, Sharpsburg | [aotw.org officer_id=8050](https://antietam.aotw.org/officers.php?officer_id=8050) |
+| NPS CWSS | [~] | INACCESSIBLE (JS form) | Index-level only; identity already confirmed via AG roster | [nps.gov/civilwar](https://www.nps.gov/civilwar/search-soldiers.htm) |
+| FindAGrave | [x] | NULL | No memorial — consistent with body never recovered | [findagrave.json](../external-sources/per-person/PER-hubbell-henry/findagrave.json) |
+| SUVCW | [~] | INACCESSIBLE (CAPTCHA) → handoff | | [suvcwdb.org](https://www.suvcwdb.org/) |
+| Antietam Nat'l Cemetery roll | [x] | NULL (not on named roll; ~89 NY unknowns) | Corroborates body never recovered | [antietam-cemetery.json](../external-sources/per-person/PER-hubbell-henry/antietam-cemetery.json) |
+| Chronicling America | [x] | NULL (0 verified; 1 possible, OCR-garbled) | No NY northern-county papers digitized for 1862 | [chronicling-america-candidates.json](../external-sources/per-person/PER-hubbell-henry/chronicling-america-candidates.json) |
+| NYS Historic Newspapers | [x] | NULL (Sentinel not digitized; Republican yields a *different* Hubbell) | Julius O. Hubbell (Champlain surveyor) ≠ soldier | [nys-historic-newspapers.json](../external-sources/per-person/PER-hubbell-henry/nys-historic-newspapers.json) |
+| FamilySearch / Fold3 (CSR) | [ ] | login-gated → handoff | likely home of a Compiled Service Record / muster card | |
+| NARA pension `Mo C 58119` | [ ] | deferred (user decision) → handoff | widow/dependent pension; ~6-8 wk lead | NATF Form 86 |
 
 ---
 
 ## Data Gaps
 
-| Gap | Likely Source | Priority |
-|-----|-------------|----------|
-| Birth date | FamilySearch, Ancestry census records | `high` |
-| Exact enlistment date | NY State muster rolls, CWSS | `high` |
-| Age at enlistment | Muster roll descriptive rolls | `medium` |
-| Burial location after Antietam | FindAGrave, Antietam National Cemetery records | `high` |
-| Full battle participation (June 1861 – Sept 1862) | 34th NY regimental history | `high` |
-| Mother's first name | Census records, pension records | `high` |
+| Gap | Likely Source | Priority | Status (2026-06-05) |
+|-----|-------------|----------|---------------------|
+| Birth date | FamilySearch, Ancestry census records | `high` | **Narrowed** → c. 1837–1838 (age 23 at May 1861 enlistment, per NY AG roster). Exact date still open. |
+| Exact enlistment date | NY State muster rolls, CWSS | `high` | ✅ **FILLED** → **May 22, 1861, at Champlain** (NY AG roster); mustered in June 15, 1861. |
+| Age at enlistment | Muster roll descriptive rolls | `medium` | ✅ **FILLED** → **23** (NY AG roster). |
+| Burial location after Antietam | FindAGrave, Antietam National Cemetery records | `high` | **Resolved as NULL** → not on Antietam Nat'l Cemetery named roll; no FindAGrave memorial. Corroborates body never recovered; may be among ~89 NY unknowns. |
+| Full battle participation (June 1861 – Sept 1862) | 34th NY regimental history | `high` | **Partial** → unit arc documented (Bolivar Heights, Peninsula/Fair Oaks per letters; West Woods at Antietam). Per-engagement roster pending. |
+| Mother's first name | Census records, pension records | `high` | Open → best path is the NARA pension file `Mo C 58119` (handoff). |
 
 ---
 

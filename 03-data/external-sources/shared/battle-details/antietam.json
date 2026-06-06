@@ -1,0 +1,25 @@
+{
+  "source": "American Battlefield Trust + CWSAC (acw-battle-data) + Antietam on the Web",
+  "battle_slug": "antietam",
+  "checked_date": "2026-06-05",
+  "url_searched": "https://www.battlefields.org/learn/civil-war/battles/antietam ; https://raw.githubusercontent.com/jrnold/acw_battle_data/master/build/acw_battle_data/cwsac_battles.csv (code MD003) ; https://antietam.aotw.org/exhibit.php?exhibit_id=22",
+  "battle": {
+    "name": "Antietam",
+    "other_names": "Sharpsburg",
+    "cwsac_code": "MD003",
+    "date_primary": "1862-09-17",
+    "date_range_cwsac": "1862-09-16 to 1862-09-18",
+    "location": "Washington County, Maryland (near Sharpsburg)",
+    "campaign": "Maryland Campaign (September 1862)",
+    "result_abt": "Union strategic victory (tactically inconclusive)",
+    "result_cwsac": "Inconclusive (Union strategic victory.)",
+    "significance_cwsac": "A",
+    "casualties_total_abt": 22717,
+    "casualties_total_cwsac": 23100,
+    "casualties_union_abt": "12,401 (2,108 killed, 9,540 wounded, 753 missing/captured)",
+    "casualties_confederate_abt": "10,316 (1,546 killed, 7,752 wounded, 1,018 missing/captured)",
+    "note": "The deadliest one-day battle in American military history."
+  },
+  "confidence": "external · n/a · definite",
+  "notes": "Shared battle reference (relevant to multiple Hubbell brothers / letters). The one-day date Sept 17 is universal; CWSAC brackets Sept 16-18 (16th = positioning, 18th = skirmish/withdrawal). Henry Hubbell's KIA date Sept 17 falls within both framings."
+}

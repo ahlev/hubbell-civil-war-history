@@ -1,0 +1,31 @@
+{
+  "source": "Battle facts (CWSAC battle CSV + American Battlefield Trust) for the 60th NY's engagements",
+  "person_id": "PER-hubbell-alexander",
+  "checked_date": "2026-06-06",
+  "method": "Downloaded the CWSAC battle CSV in full (393 rows) from GitHub raw; corroborated against American Battlefield Trust pages. NOTE: the CSV has NO standalone 'Lookout Mountain' row — Lookout Mountain (Nov 24 1863) is subsumed under the Chattanooga battle (TN024). Reported as actual CSV rows, not an invented row.",
+  "battles": [
+    {
+      "name": "Lookout Mountain (within Chattanooga)",
+      "cwsac_code": "TN024",
+      "csv_verbatim_key_fields": "TN024 | Chattanooga | TN | Hamilton County / City of Chattanooga | Chattanooga-Ringgold Campaign [Nov 1863] | 1863-11-23 → 1863-11-25 | Union victory | casualties 12,485 (US 5,815; CS 6,670) | significance A",
+      "abt_verbatim": "American Battlefield Trust: 'the Battle of Lookout Mountain occurred on November 24, 1863'; Hooker's attack on the Confederate left; 'By 2:00 pm, the \"Battle Among the Clouds\" was over.'",
+      "relevance": "Alexander (Sergeant, Co. H) was WOUNDED here Nov 24 1863, per Eddy's casualty list. The 60th NY 'captured one cannon and battle flag' (NYSMM). Cached: shared/battle-details/lookout-mountain.json.",
+      "url": "https://raw.githubusercontent.com/jrnold/acw_battle_data/master/build/acw_battle_data/cwsac_battles.csv"
+    },
+    {
+      "name": "Wauhatchie / Brown's Ferry (Lookout Valley, the 'Cracker Line')",
+      "cwsac_code": "TN021",
+      "csv_verbatim_key_fields": "TN021 | Wauhatchie (Brown's Ferry) | TN | Hamilton/Marion/Dade Co. | Reopening the Tennessee River [Oct 1863] | 1863-10-28 → 1863-10-29 | Union victory | 828 total (US 420; CS 408) | significance B; forces 'XI Corps and 2nd Division, XII Corps [US]' (the 60th NY's corps)",
+      "relevance": "Context for the 60th NY's arrival in the Chattanooga theatre weeks before Lookout Mountain."
+    },
+    {
+      "name": "Gettysburg (Culp's Hill)",
+      "cwsac_code": "PA002",
+      "csv_verbatim_key_fields": "PA002 | Gettysburg | PA | Adams County | Gettysburg Campaign [Jun-Jul 1863] | 1863-07-01 → 1863-07-03 | Union victory | strength 158,300 | casualties 51,000 (US 23,000; CS 28,000) | significance A; description references Culp's Hill ('the Confederate infantry were driven from their last toe-hold on Culp's Hill')",
+      "relevance": "The 60th NY held Culp's Hill (extreme left of the 12th Corps) — the family-tradition site where descendant Alexander Hubbell Levitt was later named (G03). At Gettysburg the 60th lost 11 killed + 39 wounded (NYSMM)."
+    }
+  ],
+  "confidence": "external · n/a · definite (battle facts)",
+  "null_result": false,
+  "notes": "Battle facts are unit/event-level (not person-level); they situate Alexander's documented wound (Lookout Mountain) and the family's Culp's Hill tradition."
+}

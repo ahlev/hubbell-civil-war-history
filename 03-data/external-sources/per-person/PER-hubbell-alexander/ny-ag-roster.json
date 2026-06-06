@@ -1,0 +1,55 @@
+{
+  "source": "NY State Adjutant-General's Roster — 60th Infantry (NY State Military Museum / DMNA)",
+  "person_id": "PER-hubbell-alexander",
+  "checked_date": "2026-06-06",
+  "url_searched": "https://dmna.ny.gov/historic/reghist/civil/rosters/Infantry/60th_Infantry_CW_Roster.pdf",
+  "query_used": "Downloaded the 175-page roster PDF (real text layer, 344,959 chars via pdfplumber); case-insensitive full-text scan for HUBBELL/HUBBEL/HUBBLE/HUBEL and fuzzy H..B..EL surnames. Located at PDF p.81, printed running-header page 737 ('SIXTIETH INFANTRY. 737').",
+  "candidates_returned": 1,
+  "candidates": [
+    {
+      "raw_record": {
+        "verbatim": "HUBBELL, ALEXANDER F.—Age, 18 years. Enlisted, September 21, 1861, at Champlain, to serve three years; mustered in as corporal, Co. H, October 30, 1861; promoted sergeant, October 1, 1862; re-enlisted as a veteran, December 14, 1863; mustered out with company, July 17, 1865, at Alexandria, Va.",
+        "ocr_note": "Em-dash after surname extracted as a replacement char; elsewhere in the PDF 'Co.' sometimes OCR'd 'Oo.' and dates as '18.61'. The Hubbell line itself extracted cleanly — names, dates, company all legible.",
+        "parsed": {
+          "name": "Alexander F. Hubbell",
+          "age_at_enlistment": 18,
+          "enlistment_date": "1861-09-21",
+          "enlistment_place": "Champlain, NY",
+          "term": "three years",
+          "rank_in": "corporal",
+          "company": "H",
+          "muster_in_date": "1861-10-30",
+          "promotion": "sergeant, 1862-10-01",
+          "reenlistment": "veteran, 1863-12-14",
+          "muster_out": "1865-07-17, with company, at Alexandria, Va.",
+          "fate": "survived"
+        }
+      },
+      "claude_verdict": "confirmed",
+      "claude_reasoning": "C1 (dispositive): regiment 60th NY + Company H match the curated assignment, and a full-text scan of the ENTIRE roster (~1,371 headwords) returned exactly ONE Hubbell — no competing Hubbell in the regiment (nearest neighbors HOBART, HUCKINS). C2 (strong): enlistment 1861-09-21 and reenlistment 1863-12-14 fall inside the known window. C4 (strong): enlistment place 'Champlain' matches the family's distinctive hometown. C6 (supporting): rank trajectory corporal→sergeant→veteran matches the letters and genealogy. No criteria against (two date discrepancies are intra-record day/transcription variants, filed separately, not contradictions of identity).",
+      "researcher_reviewed": false,
+      "researcher_override": null
+    }
+  ],
+  "verified_matches": [
+    {
+      "name": "Alexander F. Hubbell",
+      "age_at_enlistment": 18,
+      "enlistment_date": "1861-09-21",
+      "enlistment_place": "Champlain, NY",
+      "company": "H",
+      "rank_trajectory": "corporal (1861-10-30) → sergeant (1862-10-01) → re-enlisted veteran (1863-12-14)",
+      "muster_out": "1865-07-17, Alexandria, Va.",
+      "new_or_sharpened_facts_vs_letters": [
+        "Exact enlistment place confirmed as Champlain (matches family); age 18 confirmed (b. c. 1843–1844).",
+        "Re-enlistment as a veteran 1863-12-14 confirmed against an official record (family genealogy agreed).",
+        "Muster-out recorded as July 17 1865 (family record said July 7 — see discrepancy).",
+        "Sergeant promotion recorded as October 1 1862 (family record said Oct 21 — see discrepancy)."
+      ]
+    }
+  ],
+  "confidence": "external · n/a · definite",
+  "null_result": false,
+  "uniqueness": "Exactly one HUBBELL in the entire 60th NY roster — dispositive for identity (no disambiguation needed).",
+  "notes": "Authoritative primary roster from the NY Adjutant-General's registers. Independently corroborated by Richard Eddy's 1864 regimental history (regimental-bibliography.json), which names A. F. Hubbell in the Co. H organization roll AND in the Lookout Mountain wounded list. The color-bearer role and ambulance-corps service from the letters are NOT in this roster (rosters record rank/company/fate, not duty assignments)."
+}

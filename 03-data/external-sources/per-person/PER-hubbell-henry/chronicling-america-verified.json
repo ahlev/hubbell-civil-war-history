@@ -1,0 +1,20 @@
+{
+  "source": "Chronicling America (Library of Congress) — verified subset",
+  "person_id": "PER-hubbell-henry",
+  "checked_date": "2026-06-06",
+  "verified_matches": [
+    {
+      "candidate_id": "loc-sn83030313-1862-09-25-seq5",
+      "title": "The New York Herald",
+      "date": "1862-09-25",
+      "page_url": "https://www.loc.gov/resource/sn83030313/1862-09-25/ed-1/?sp=5",
+      "verdict": "confirmed",
+      "what_it_says": "A post-Antietam casualty list under the heading 'Thirty-fourth New York Volunteers,' Company D. Henry Hubbell ('HenHubbell' in OCR) appears in the Co. D casualty list among the unaccounted — read as MISSING on the page image (OCR ambiguously placed it in the Wounded run; the page image governs). He is NOT listed as killed.",
+      "why_confirmed": "The entire Co. D casualty list around his name is independently verified against the 34th NY roster + Chapin: John Green (Co. D, wounded Antietam) listed immediately before him; Peter Jolly (Co. D, killed) after him; Patrick Coonan, John Mycue, Dennis Hayes (all Co. D, in Chapin's Antietam killed list) in the Killed run; Sgt Robert McDonald (Co. D) among Wounded. This is unambiguously the 34th NY Company D casualty list, and Hubbell is in it. Identity confirmed (C1 via the company-list context + C2 date).",
+      "significance": "This is the CLOSEST-TO-REAL-TIME documentary trace of Henry — 8 days after the battle. It captures him in limbo: reported missing, not yet killed. See DSC-2026-06-06-001.",
+      "ocr_caveat": "OCR heavily garbled ('HenHubbell' jammed; column separators rendered as '?'). The killed/wounded/missing column boundary is OCR-fuzzy; the user's reading of the page image (MISSING) is authoritative over OCR."
+    }
+  ],
+  "pending_review": [],
+  "notes": "Upgraded from 'possible' to 'confirmed' on 2026-06-06 after the full Co. D casualty list was read and every surrounding name verified against the roster. One verified contemporary newspaper attestation of Henry."
+}

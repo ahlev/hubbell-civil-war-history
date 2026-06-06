@@ -1,0 +1,13 @@
+{
+  "source": "Antietam National Cemetery interment list (1867) / Roll of Honor",
+  "person_id": "PER-hubbell-henry",
+  "checked_date": "2026-06-05",
+  "url_searched": "https://www.whilbr.org/sites/default/files/2023-03/Antietam_National_Cemetery_1867.pdf ; https://www.nps.gov/anti/learn/historyculture/antietam-national-cemetery.htm",
+  "query_used": "full-text scan of the 1867 Antietam National Cemetery burial list for 'Hubbell'",
+  "candidates_returned": 0,
+  "candidates": [],
+  "verified_matches": [],
+  "confidence": "external · n/a · definite",
+  "null_result": true,
+  "notes": "Henry Hubbell does NOT appear among the NAMED interments in the 1867 Antietam National Cemetery list (nearest surname present: 'Hubbard, Howard A.' — a non-match). The list's header states soldiers with no name identity are excluded; ~38% of Antietam interments (~1,836 of 4,776) are unknowns, and the list contains 89 'Unknown' New York 34th-Infantry-area entries dated Sep. 17, 1862. A definitive NULL on the named roll is itself meaningful: it CORROBORATES the family tradition that Henry's body was never recovered/identified. He may lie among the NY unknowns, but no record names him."
+}

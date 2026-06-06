@@ -2,7 +2,7 @@
 
 > The criteria Claude applies to decide whether a candidate record from an external source refers to the right person. This rubric is the heart of the methodology — every verdict in `verification-log.jsonl` traces back to one or more criteria below. **It is a living document**: when researcher review overrides a Claude verdict, the rubric is updated to capture the learning.
 
-**Last updated:** 2026-05-19 (seed draft)
+**Last updated:** 2026-06-06 (v0.3 — Alexander TODO-1 signals validated on Sweep 2.0; same-town/namesake check extended to vital dates, not just newspaper attributions)
 
 ---
 
@@ -70,6 +70,12 @@ Applies to: Chronicling America, scanned regimental histories.
 
 If the candidate text is heavily OCR-corrupted, **reduce confidence one level** even when other criteria are met. Note in the verdict reasoning.
 
+### C9. Independent vs. derivative corroboration — `calibration` (added v0.2)
+
+Applies to: all sources.
+
+Before counting a second source as corroboration, ask whether it is **independent** of the first or merely **transcribes** it. Example from the Henry pilot: Antietam on the Web's soldier record is transcribed from the NY Adjutant-General report — so AOTW corroborates the *transcription* but adds no independent weight. Chapin's 1903 regimental history, by contrast, is a genuinely independent published witness. **Two derivative copies of one source = one source.** Only independent corroboration should lift a verdict from `likely` to `confirmed`.
+
 ---
 
 ## Hard Contradictions (auto-`rejected`)
@@ -106,16 +112,31 @@ A candidate with any of the following is `rejected`, regardless of other signals
 
 The following are calls only you can make as the researcher with domain knowledge. Each is a small contribution that materially improves the rubric.
 
-### TODO-1: Person-specific distinguishing signals
+### TODO-1: Person-specific distinguishing signals — FILLED v0.2 (validated on Henry)
 
-For each brother, list 3–5 signals that would make a candidate near-certainly *this* person. Examples to react to:
+Per-brother high-weight signals used to lift a candidate toward `confirmed`. Henry's set is now **battle-tested** (every signal below was confirmed or corrected against the record in Sweep 1.0). The other three are drafted from the curated profiles + letter corpus and await first-pass validation — researcher may still refine.
 
-- **Henry:** 34th NY, Co. D; Capt. Reich named; killed at Antietam; body never recovered; pension claim `Mo C 58119` (Mother as claimant); first letter from Washington June 6 1861.
-- **Alexander:** 60th NY; color bearer (distinctive — relatively rare role); Shenandoah Valley campaigns; mustered out Jun 27 1865.
-- **Charles:** 153rd NY; Red River Campaign; Shenandoah Valley; died 1875 of service-related disease.
-- **James:** youngest brother; wounded at Cedar Creek (night blindness — distinctive); died 1865.
+- **Henry (VALIDATED 2026-06-05):**
+  - 34th NY Volunteer Infantry, **Company D** — dispositive (only Hubbell in the regiment). ✅ confirmed
+  - Enlisted **May 22, 1861, at Champlain**, age **23**; mustered in **June 15, 1861**. ✅ confirmed (NEW from roster)
+  - Killed **Sept 17, 1862, Antietam**; **body never recovered** (absent from named cemetery roll). ✅ confirmed
+  - Co. D commander **Capt. Davis J. Rich** (Henry's letters phonetically: "Capt. Reich"). ✅ corrected
+  - Pension claim **`Mo C 58119`** (mother as claimant) — not yet pulled (NARA handoff).
+  - *Namesake caution:* a **Julius O. Hubbell** (surveyor) also lived in Champlain in 1862 — rule out on Clinton-Co. newspaper hits.
 
-→ **Please edit this list with anything I have wrong, missing, or imprecise.** These become the high-weight criteria when Claude evaluates candidates for each specific brother.
+- **Alexander (VALIDATED 2026-06-06):**
+  - 60th NY Volunteer Infantry, **Company H** — dispositive (only Hubbell in the regiment). ✅ confirmed
+  - Enlisted **Sept 21, 1861, at Champlain**, age 18; corporal → **sergeant Oct 1, 1862** → **re-enlisted veteran Dec 14, 1863** → mustered out **July 17, 1865**, Alexandria. ✅ confirmed (NY AG roster)
+  - **Wounded at Lookout Mountain** (Nov 24, 1863). ✅ confirmed (Eddy 1864 casualty list, "Sergeant A. F. Hubbell, Co. H") — independent published witness.
+  - **Color bearer** + later **ambulance corps**: letters/genealogy only — NOT in roster/Eddy/Phisterer (rosters omit duty assignments). ⚠️ unverified, not contradicted → newspaper/pension handoff.
+  - Post-war Iowa (Fonda, Pocahontas Co.); **d. Dec 7, 1894** per IAGenWeb + GAR star (resolves family 1894-vs-1899 conflict; DSC-2026-06-06-002).
+  - *Namesake caution:* **Frederick M. Hubbell**, Des Moines financier, dominates 1890s Iowa print — rule out on any Iowa newspaper/vital-date hit (likely origin of the spurious "1899" date).
+
+- **Charles (draft):** 153rd NY Volunteer Infantry; Red River Campaign (Louisiana) + Shenandoah Valley; survived the war, **died 1875 of service-related disease**; from Champlain. Full name **Charles F. Hubbell**.
+
+- **James (draft):** youngest brother; Louisiana then Shenandoah (1864); **wounded / night blindness at Cedar Creek** (distinctive); **died 1865**; from Champlain.
+
+→ Researcher may still refine the three draft sets. Henry's set is locked as validated.
 
 ### TODO-2: Newspaper match threshold
 
@@ -147,5 +168,7 @@ For each source listed in `PHASE-3-PLAN.md` §3, your initial `source-certainty`
 When the researcher overrides a Claude verdict, append a one-line entry here describing what was missed and how the rubric should change. Patterns across these entries drive rubric revisions.
 
 | Date | Verdict overridden | New verdict | Why the rubric missed it | Rubric change |
+|------|--------------------|-------------|--------------------------|---------------|
+| 2026-06-05 | (self-review, not a researcher override) | — | The rubric had no rule for distinguishing an independent corroborating source from one that merely transcribes another (AOTW transcribes the NY AG roster). Risk: double-counting one source as two confirmations. | Added **C9 (independent vs. derivative corroboration)**. |
 |------|--------------------|-------------|--------------------------|---------------|
 | _(none yet)_ | | | | |

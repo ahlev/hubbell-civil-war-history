@@ -1,0 +1,13 @@
+{
+  "source": "NPS Civil War Soldiers & Sailors System (CWSS)",
+  "person_id": "PER-hubbell-henry",
+  "checked_date": "2026-06-05",
+  "url_searched": "https://www.nps.gov/civilwar/search-soldiers.htm , https://www.nps.gov/civilwar/search-soldiers-detail.htm",
+  "query_used": "Henry Hubbell, 34th New York Infantry",
+  "candidates_returned": 0,
+  "candidates": [],
+  "verified_matches": [],
+  "confidence": "external · n/a · n/a",
+  "null_result": true,
+  "notes": "INACCESSIBLE via automated fetch: the CWSS soldier search is a JavaScript-driven form that returns no record data to a direct URL fetch (renders an empty form). No CWSS index card was retrieved, so none is recorded — per the 'filter never source' rule we do not transcribe what we did not actually retrieve. CWSS is a name/rank/unit INDEX only; the full record lives at NARA. The identification is already CONFIRMED via the NY AG roster (ny-muster-rolls.json); a CWSS card would be redundant index-level confirmation. Deferred to handoff for an interactive lookup if desired."
+}

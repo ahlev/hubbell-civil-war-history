@@ -1,0 +1,13 @@
+{
+  "source": "FindAGrave",
+  "person_id": "PER-hubbell-henry",
+  "checked_date": "2026-06-05",
+  "url_searched": "https://www.findagrave.com/memorial/search?firstname=Henry&lastname=Hubbell&deathyear=1862 (HTTP 403) ; search-engine queries restricted to findagrave.com",
+  "query_used": "Henry Hubbell d.1862, 34th New York / Antietam / Champlain NY",
+  "candidates_returned": 0,
+  "candidates": [],
+  "verified_matches": [],
+  "confidence": "external · n/a · n/a",
+  "null_result": true,
+  "notes": "No memorial located for our Henry Hubbell. FindAGrave's UI search is JS/CAPTCHA-gated (direct search URL returned HTTP 403); engine queries surfaced only unrelated Hubbells (e.g., BG Henry Wilson Hubbell 1842-1917, 40th NY, d.1917 — a clear non-match) and the 34th-NY regimental MONUMENT memorial (#66654645, not a person). Absence is CONSISTENT with the family tradition that Henry's body was never recovered (no grave to memorialize). A logged-in manual FindAGrave search remains a handoff item. We assert only that none was retrievable — not that none exists."
+}

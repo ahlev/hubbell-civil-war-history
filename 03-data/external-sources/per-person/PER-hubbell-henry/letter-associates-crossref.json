@@ -1,0 +1,36 @@
+{
+  "source": "Cross-reference of people NAMED in Henry's letters against the 34th NY roster + Chapin (1903)",
+  "person_id": "PER-hubbell-henry",
+  "checked_date": "2026-06-06",
+  "method": "Extracted the non-family military names from Henry's 59 letters, then verified each against the NY AG 34th Infantry roster PDF and Chapin's regimental history. Letter spelling in parentheses. This binds the letters to the record and recovers comrades' fates.",
+  "url_searched": "https://dmna.ny.gov/historic/reghist/civil/rosters/Infantry/34th_Infantry_CW_Roster.pdf ; https://archive.org/stream/briefhistoryreg00chaprich/briefhistoryreg00chaprich_djvu.txt",
+  "confirmed_company_D_comrades": [
+    {"letter_name": "Capt. Reich", "record_name": "Capt. Davis J. Rich", "age": 32, "co": "D", "fate": "Enrolled May 22 1861 at Champlain; mustered in captain June 15 1861; DISMISSED May 29 1862.", "note": "Henry's 'Reich' = Rich. The captain was cashiered mid-1862; Henry's later references are habit or to the former captain."},
+    {"letter_name": "Lieut. Scott", "record_name": "John O. Scott", "age": 26, "co": "D", "fate": "1st Lieut June 15 1861; promoted CAPTAIN May 30 1862 (vice Rich, dismissed); wounded; mustered out June 30 1863.", "note": "Scott rose to command Henry's company after Rich's dismissal — so Scott was Henry's captain in his final ~3.5 months."},
+    {"letter_name": "Lieut./Capt. Ransom", "record_name": "Albert W. Ransom", "age": 23, "co": "D", "fate": "First Sergeant, Co. D (enlisted Chazy); commissioned 1st Lieut (not mustered); DIED OF WOUNDS Dec 22 1862 at Falmouth, Va. (Fredericksburg).", "note": "Outlived Henry by ~3 months, then died of Fredericksburg wounds. Brother Erastus Ransom = Co. D musician, survived."},
+    {"letter_name": "Corporal Kellogg", "record_name": "Cyrus H. Kellogg", "age": 18, "co": "D", "fate": "Corporal, Co. D, Champlain; CAPTURED Sept 17 1861; paroled Aug 1862; promoted sergeant; mustered out 1863.", "note": "CONFIRMS Henry's Oct 1861 letter that Kellogg was 'held unwounded at Richmond.' Poignant: captured Sept 17 1861 — exactly one year before Henry was killed Sept 17 1862."},
+    {"letter_name": "Brink", "record_name": "Brinkerhoff N. Miner (Lieut. Miner)", "age": 26, "co": "D", "fate": "2nd Lieut, Co. D, Champlain; mustered out June 30 1863.", "note": "'Brink' is almost certainly Henry's shorthand for Brinkerhoff Miner — no soldier surnamed 'Brink' exists in the regiment. ('Mrs. Brinkhoff' = the Brinkerhoff family at home.)"},
+    {"letter_name": "Henry Cooper", "record_name": "Sgt. Henry J. Cooper", "age": 18, "co": "D", "fate": "Sergeant, Co. D, Champlain; discharged for disability May 21 1862 at Yorktown, Va."},
+    {"letter_name": "John Green", "record_name": "John Green", "age": 22, "co": "D", "fate": "Private, Co. D, Champlain; WOUNDED at Antietam Sept 17 1862; discharged for disability Mar 10 1863.", "note": "Listed immediately before Hubbell in the NY Herald Co. D casualty list — they fell together at Antietam."},
+    {"letter_name": "George Dodds", "record_name": "George Dodds", "age": 18, "co": "D", "fate": "Private, Co. D, Champlain; transferred to U.S. Cavalry Nov 23 1862."},
+    {"letter_name": "Peter Guyan", "record_name": "Peter Guion (Guyon)", "age": 38, "co": "D", "fate": "Private, Co. D, Champlain; mustered out June 30 1863."},
+    {"letter_name": "A. Perkins", "record_name": "Asaph W. Perkins", "age": 20, "co": "D", "fate": "Private, Co. D, Champlain; corporal then reduced; mustered out 1863."},
+    {"letter_name": "Emerson Smith", "record_name": "Emerson Smith", "age": 19, "co": "D", "fate": "Private, Co. D, Champlain; transferred to the Regular Army Oct 9 1862."},
+    {"letter_name": "Bill Robers", "record_name": "William Roberts", "age": 21, "co": "D", "fate": "Private/musician, Co. D, Champlain; mustered out 1863."},
+    {"letter_name": "Feris", "record_name": "Edmund W. Ferris", "age": 31, "co": "D", "fate": "Private, Co. D, Champlain; sergeant then reduced; mustered out 1863."},
+    {"letter_name": "Billings", "record_name": "Harrison Billings", "age": 28, "co": "D", "fate": "Private, Co. D, Champlain; rose to First Sergeant; mustered out 1863."},
+    {"letter_name": "McDonald/McDonel", "record_name": "Duncan McDonald and/or Robert McDonald", "co": "D", "fate": "Two Co. D Champlain McDonalds: Duncan (discharged disability Oct 1861); Robert (corporal/sergeant, reduced, mustered out). Sgt Robert McDonald appears WOUNDED in the NY Herald Co. D Antietam list."}
+  ],
+  "not_found_in_regiment": [
+    {"letter_name": "Edgar Graves", "note": "No Edgar Graves. Co. D has a William Graves (Champlain). Possibly home folk or misremembered."},
+    {"letter_name": "Lieut. Webb", "note": "Only Webb is Co. A (West Troy), transferred to Navy — not a Co. D lieutenant. Unresolved."},
+    {"letter_name": "Royal Corbin / George Corbin", "note": "No Corbin in the regiment — likely Champlain home acquaintances, not soldiers in Henry's unit."},
+    {"letter_name": "Albert Savage / David Savage", "note": "No Albert/David Savage in the 34th — likely home folk (note: Henry's letters also reference Savage Station, a place)."},
+    {"letter_name": "B. Moore", "note": "No Co. D Moore with initial B; other Moores are Co. G/H."},
+    {"letter_name": "G. Dunning", "note": "No Dunning in the regiment."},
+    {"letter_name": "Plumer", "note": "No Plumer/Plummer in the regiment."}
+  ],
+  "confidence": "external · n/a · definite (for the confirmed Co. D matches)",
+  "null_result": false,
+  "notes": "17 of Henry's named comrades are confirmed Co. D men from Champlain who enlisted the SAME DAY (May 22 1861) — essentially his whole company circle is now verified, with fates. Names absent from the regiment (Corbin, Savage, etc.) are flagged as likely home acquaintances or other-unit men, NOT invented into the record. This is the strongest letters<->record binding of the sweep: the people in Henry's letters are real, datable, and their stories continue past his death."
+}

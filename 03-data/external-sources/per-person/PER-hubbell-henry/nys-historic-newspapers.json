@@ -1,0 +1,27 @@
+{
+  "source": "NYS Historic Newspapers (nyshistoricnewspapers.org) — NEW source from secondary push",
+  "person_id": "PER-hubbell-henry",
+  "checked_date": "2026-06-05",
+  "url_searched": "https://nyshistoricnewspapers.org/ Veridian/Solr search — queries: Hubbell (Clinton Co. 1862), Hubbel variant, Hubbell+Antietam, Antietam (Clinton Co. 1862), 34th Regiment (Clinton Co. 1862), Rich+Champlain (1861), Hubbell statewide Sep-Dec 1862",
+  "query_used": "Henry Hubbell death/casualty notice, Clinton County NY papers, 1862",
+  "candidates_returned": 0,
+  "candidates": [
+    {
+      "candidate_id": "nyshn-plr-1862-julius-o-hubbell",
+      "raw_record": {
+        "title": "Plattsburgh Republican",
+        "dates": "1862-05-03 p1; 1862-06-14 p2",
+        "ocr_snippet_verbatim": "'...mapped by Julius O. Hubbel near the village of Champlain...' / '...your Julius O. Hubbell agnt...'",
+        "ocr_quality": "poor"
+      },
+      "claude_verdict": "rejected",
+      "claude_reasoning": "The ONLY 'Hubbell' in Clinton County papers for 1862 is Julius O. Hubbell, a Champlain village surveyor/agent — a same-surname, same-town NAMESAKE, not the soldier. Different given name; civilian context. R-type non-match. IMPORTANT disambiguation note: a second Hubbell lived in Champlain, so future newspaper hits on 'Hubbell' from Clinton County must be checked against Julius O. before attributing to the soldier family.",
+      "researcher_reviewed": false,
+      "researcher_override": null
+    }
+  ],
+  "verified_matches": [],
+  "confidence": "external · partial · n/a",
+  "null_result": true,
+  "notes": "DECISIVE NEGATIVE, well-bounded: no contemporary notice naming Henry Hubbell is OCR-recoverable anywhere in NY for Sep-Dec 1862 (47 statewide 'Hubbell' hits, all other people: Julius O., R. F. Hubbell of Otsego, etc.). COVERAGE CAVEAT: the Plattsburgh SENTINEL has NO digitized 1862 content; only the Plattsburgh Republican is searchable for Clinton Co. 1862, and its Sep-Dec issues ARE digitized but yield no Hubbell — so a notice may exist in the Sentinel (not digitized) or be OCR-garbled in the Republican. NEXT STEP (handoff): page-by-page VISUAL scan of late-Sep/early-Oct 1862 Plattsburgh Republican images (plr18620927, plr18621004, plr18621011). Access note: site is Cloudflare-gated; needs a scraper/manual browser, not plain fetch."
+}
