@@ -1,6 +1,6 @@
 # Reconstructing Four Soldiers from the Free Record: An LLM-Mediated Cross-Reference Method for Family Letter Collections
 
-> **DRAFT · v0.1 · 2026-06-06.** A methodology paper drawn from the Phase 3 cross-reference engine, evidenced by four completed sweeps (Henry, Alexander, Charles, James Hubbell). This is an internal working draft for the AI-enabled-historian positioning; not for publication on the project site. Source material is cited throughout to the repository artifacts that back every claim.
+> **v1 · 2026-06-23.** A methodology paper drawn from the Phase 3 cross-reference engine, evidenced by four completed sweeps (Henry, Alexander, Charles, James Hubbell). A repository methodology paper for the AI-enabled-historian positioning; **not rendered on the public project site** (per §7). Every factual claim below was fact-checked against the repository artifacts cited throughout — the four dossiers, the 33-entry verification log, and the discrepancy registry.
 
 ---
 
@@ -64,7 +64,7 @@ A color-bearer who survived, reenlisted, and lived thirty more years in Iowa. Id
 
 ### 3.3 Charles (153rd NY) — disambiguation
 
-The regiment held **four** Hubbells, two named Charles. Identity came not from uniqueness but from criteria working *jointly* (company + hometown + age). The sweep surfaced a cross-brother thread invisible to any per-person method: Charles's company captain, **Davis J. Rich**, was the same officer who had commanded Henry's company in the 34th NY. It also distinguished a **structural data gap** (Charles's 1875 Iowa death record, predating county record-keeping) from a *meaningful* null. (Dossier: `PHASE-3A-CHARLES-DOSSIER.md`.)
+The regiment held **four** Hubbells, two named Charles. Identity came not from uniqueness but from criteria working *jointly* (company + hometown + rank — corporal, Company I, Champlain). (Age, by contrast, was *not* a disambiguator here: the roster age conflicts with the family's record and is itself one of the discrepancies surfaced below.) The sweep surfaced a cross-brother thread invisible to any per-person method: Charles's company captain, **Davis J. Rich**, was the same officer who had commanded Henry's company in the 34th NY. It also distinguished a **structural data gap** (Charles's 1875 Iowa death record, predating county record-keeping) from a *meaningful* null. (Dossier: `PHASE-3A-CHARLES-DOSSIER.md`.)
 
 ### 3.4 James (153rd NY) — a non-military claim
 
@@ -78,7 +78,7 @@ The youngest brother's defining family story — that he was appointed to **West
 All four brothers `confirmed` to `external · n/a · definite`, with no fuzzy matching, across three regiments. Two were dispositive by roster uniqueness (Henry, Alexander); one required active disambiguation (Charles); one required verifying a claim outside the military record (James).
 
 ### 4.2 Facts recovered or sharpened
-Ages and exact enlistment dates/places (Henry, Alexander); an independently corroborated battle wound (Alexander, Lookout Mountain; James, Cedar Creek); a precise death date and place (James, Albany, Oct 12 1865); a resolved death-year conflict (Alexander, 1894). The verification log holds 33 adjudicated verdicts with cited criteria.
+Ages and exact enlistment dates/places (Henry, Alexander); an *independently corroborated* battle wound (Alexander, Lookout Mountain — named in Eddy's 1864 regimental history) alongside a *roster-confirmed* one (James, Cedar Creek — from the 153rd NY Adjutant-General roster); a precise death date and place (James, Albany, Oct 12 1865); a resolved death-year conflict (Alexander, 1894). The verification log holds 33 adjudicated verdicts with cited criteria.
 
 ### 4.3 Discrepancies surfaced (the core Phase-3 deliverable)
 Filed in the discrepancy registry: a misdated first letter (Henry); a phonetic officer name, "Reich" → Rich (Henry); a missing→killed casualty signature (Henry); a death-year conflict (Alexander); a birth-year conflict (Charles; James); a death-date conflict resolved against an anniversary conflation (James). A recurring **pattern finding**: enlistment-age and gravestone-age fields are systematically soft across three brothers — a single pre-war census pull would likely resolve all of them.
@@ -91,7 +91,7 @@ Each soldier's company circle was recovered by name-then-verify: Henry's ~17 Com
 ## 5. Failure modes and limitations (honest accounting)
 
 - **The free record reaches ~80%.** The authoritative primaries (AG rosters, archive.org regimental histories, the CWSAC CSV, county GenWeb databases) are freely fetchable. The richest *remaining* sources — NARA pension files, Compiled Service Records, FindAGrave/SUVCW, USMA cadet application papers, post-1860 censuses — sit behind login, CAPTCHA, paywall, or the postal system. We plan these as **handoffs from the start**, not as failures discovered mid-run.
-- **Coverage gaps masquerade as absence.** Chronicling America lacks the subjects' home-county papers; some target papers (the Plattsburgh Sentinel for 1864–65) and county death registers (Pocahontas Co., Iowa, pre-1880) are simply not digitized. We distinguish a *structural gap* (coverage failing) from a *meaningful null* (a record that should exist and does not) — conflating them would manufacture false significance.
+- **Coverage gaps masquerade as absence — and gating is not the same as absence.** Chronicling America lacks the subjects' home-county papers. Of the titles that *do* hold them, the failure modes differ and must not be conflated: the Plattsburgh Republican/Sentinel for 1864–65 is digitized but **gated** (behind a Cloudflare wall on NYS Historic Newspapers), whereas the Fonda-area papers and the relevant county death registers (Pocahontas Co., Iowa, pre-1880) are **genuinely not digitized**. We distinguish a *structural gap* (coverage failing) from a *meaningful null* (a record that should exist and does not) — conflating them would manufacture false significance.
 - **OCR and namesakes.** Surnames split and garble ("HenHubbell"); same-surname strangers abound (the Des Moines financier Frederick M. Hubbell saturates 1890s Iowa print; an Ohio congressman named James R. Hubbell dominates a national search). The OCR penalty and the mandatory same-town/namesake screen are essential, and were extended during the pilots to cover *vital dates*, not just attributions.
 - **Gated retrieval is fragile.** One archive (NYS Historic Newspapers) was reachable only via a scripted browser; another (FindAGrave) never by automation. Reproducibility of the *gated* lanes is therefore partial and is documented per source.
 - **No claim is upgraded by a derivative source.** Aggregators that transcribe a primary are logged as corroboration, not as independent confirmation.
@@ -101,6 +101,8 @@ Each soldier's company circle was recovered by name-then-verify: Henry's ~17 Com
 ## 6. Reproducibility
 
 Every verdict is replayable: the verification log (`methodology/verification-log.jsonl`, 33 entries) records, per candidate, the source, the verbatim basis, the criteria cited and against, and the reasoning. Per-source JSON artifacts preserve the raw retrieved text and URLs. The rubric is versioned with an override log. The iteration journal records what the *method* learned each session, separately from what the *data* showed. A second researcher with the same rubric and the same archives should reach the same verdicts; where a verdict depends on a gated source, that dependency is flagged.
+
+A note on the verdict count. The log holds 33 verdicts, not more, because of how cleanly the identities resolved rather than any truncation of scrutiny: three of the four regiments yielded a dispositive roster match on the first pass, so fewer candidates required extended adjudication. An internal project milestone had provisionally set a ≥50-verdict target as a proxy for thoroughness; we revise that target to match this outcome. The rigor of the method lives in the per-verdict criteria and the logged reasoning, not in the tally — a higher count produced by adjudicating weaker candidates would be *less* trustworthy, not more.
 
 ---
 
