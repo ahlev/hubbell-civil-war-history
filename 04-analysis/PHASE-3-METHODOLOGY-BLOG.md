@@ -62,4 +62,4 @@ Do that, and the four Hubbell brothers come back into focus — the private lost
 
 ---
 
-*For the full method, the rubric, the per-verdict log, and citations to every artifact behind these four cases, see the methodology paper: [`PHASE-3-METHODOLOGY-PAPER.md`](./PHASE-3-METHODOLOGY-PAPER.md).*
+*For the full method, the rubric, the per-verdict log, and citations to every artifact behind these four cases, see the methodology paper: [`PHASE-3-METHODOLOGY-PAPER.md`](./PHASE-3-METHODOLOGY-PAPER.md). And for how the letters became structured, queryable data in the first place — the foundation this cross-reference work stands on — see the companion piece, [`DATA-ARCHITECTURE-BLOG.md`](./DATA-ARCHITECTURE-BLOG.md).*
