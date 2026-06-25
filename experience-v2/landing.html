@@ -220,7 +220,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 
 <!-- persistent navbar (fades in after beat 1) -->
 <nav class="nav" id="nav">
-  <a class="brand" href="index.html" aria-label="Home">
+  <a class="brand" href="/" aria-label="Home">
     <svg viewBox="0 0 100 100" width="20" height="20" aria-hidden="true"><circle cx="32" cy="32" r="15" fill="#2D5F8A"/><circle cx="68" cy="32" r="15" fill="#B8860B"/><circle cx="32" cy="68" r="15" fill="#4A7C59"/><circle cx="68" cy="68" r="15" fill="#8B3A3A"/></svg>
     <span class="bt">The Hubbell Brothers<span class="dim">Civil War Letters · 1861–1865</span></span>
   </a>
@@ -393,8 +393,8 @@ if(reduced){
   /* ---- snap-advance: click a chevron / press a direction key to glide to the next held beat.
          Velocity model: gentle base pace, and it SLOWS HARD inside transition zones so the
          cannon-smoke & rain-wash clips actually play out even when advancing without scrolling. ---- */
-  const ANCHORS=[0.0,0.155,0.255,0.40,0.52,0.55,0.58,0.61,0.645,0.785,0.885,0.975];
-  const TRANS=[[0.07,0.095],[0.295,0.345],[0.435,0.50],[0.785,0.865],[0.925,0.946]]; // dawn · cannon-smoke · rain-wash · dusk-embers · fog
+  const ANCHORS=[0.0,0.155,0.255,0.40,0.535,0.565,0.59,0.612,0.634,0.655,0.785,0.885,0.975]; // …,bare-brothers,headline,+alex,+henry,+james,+charles,…
+  const TRANS=[[0.07,0.095],[0.295,0.345],[0.435,0.50],[0.797,0.855],[0.925,0.946]]; // dawn · cannon-smoke · rain-wash · dusk-embers · fog
   let advActive=false,advTo=0,advDir=1,glideV=0,advTarget=null;
   const maxPx=()=>document.body.scrollHeight-innerHeight;
   const inTrans=x=>TRANS.some(([a,b])=>x>=a&&x<b);
@@ -473,10 +473,15 @@ if(reduced){
       seqIdx=(p<SEG.brothers[0])?-1:4;   // before → not started; after → fully advanced (so backward re-entry snaps cleanly)
       return;
     }
-    const bp=seg(p,0.505,0.665);                           // wide reveal band → each step needs real scroll-length to cross
-    const desired=clamp(Math.floor(bp/0.2),0,4);           // SCROLL-position drives the step (not a timer → fast scroll can't skip James/Charles)
-    if(desired>seqIdx && now-lastAdv>=500){seqIdx++;lastAdv=now;}        // 0.5s floor only smooths multi-step catch-up after a flick
-    if(desired<seqIdx){seqIdx=desired;lastAdv=now;}                      // scrolling back
+    // phases: BARE brother images first (a moment to appreciate, no text) → headline → quotes L→R
+    let want=-1;                                           // bare (no text)
+    if(p>=0.644) want=4;                                   // +charles (all four)
+    else if(p>=0.622) want=3;                              // +james
+    else if(p>=0.60) want=2;                               // +henry
+    else if(p>=0.578) want=1;                              // +alex
+    else if(p>=0.55) want=0;                               // headline only (delayed so the images breathe first)
+    if(want>seqIdx && now-lastAdv>=500){seqIdx++;lastAdv=now;}           // 0.5s floor smooths multi-step catch-up after a flick
+    if(want<seqIdx){seqIdx=want;lastAdv=now;}                            // scrolling back
     // headline visible only at step 0; quotes accumulate from step 1
     exEls.headline.style.opacity=(seqIdx===0?1:0).toFixed(2);
     exEls.headline.style.transform='translate(-50%,-50%)';
@@ -490,8 +495,10 @@ if(reduced){
     setO(S('s-valley'),seg(p,SEG.dawn[0],SEG.dawn[1])*(1-seg(p,SEG.smoke[0],SEG.smoke[1])));
     setO(S('s-battle'),seg(p,SEG.smoke[0],SEG.smoke[1])*(1-seg(p,SEG.rain[0],SEG.rain[0]+0.015)));
     setO(S('s-brothers'),seg(p,SEG.rain[1]-0.015,SEG.rain[1])*(1-seg(p,0.695,0.725)));
-    setO(S('s-explore'),seg(p,SEG.settle[0],SEG.settle[1])*(1-seg(p,SEG.dusk[0],SEG.dusk[1])));
-    setO(S('s-letters'),seg(p,SEG.dusk[1]-0.01,SEG.dusk[1])*(1-seg(p,SEG.fog[0],SEG.fog[1])));
+    // scene swap happens UNDER the dusk dark-peak: tent is fully gone before the darkness lifts,
+    // and letters fades in beneath the cover → the tent never re-appears as the embers fade.
+    setO(S('s-explore'),seg(p,SEG.settle[0],SEG.settle[1])*(1-seg(p,0.808,0.826)));
+    setO(S('s-letters'),seg(p,0.824,0.842)*(1-seg(p,SEG.fog[0],SEG.fog[1])));
     setO(S('s-preserve'),seg(p,SEG.fog[1]-0.02,SEG.fog[1]));
     ['s-tent','s-valley','s-battle','s-explore','s-letters','s-preserve'].forEach(id=>par(S(id)));
     // brothers settle-into-desk (the one intentional scale move).
@@ -506,7 +513,7 @@ if(reduced){
     // dusk: sunset/firelight warmth leads, darkness deepens behind it, embers blow strongest at the dark peak.
     // The lighting envelope is WIDER than the explore→letters scene-swap (SEG.dusk) so the dusk breathes longer &
     // smoother — the embers/fire glow begin over the still-lit tent, then the scene swaps under the darkness.
-    const dk=seg(p,0.788,0.862);
+    const dk=seg(p,0.80,0.852);   // ~30% shorter envelope, centred on the swap
     const warm=Math.sin(clamp(dk*1.45,0,1)*Math.PI);          // warm sunset + nearby-fire glow (leads, lingers ~70%)
     const night=Math.sin(dk*Math.PI);                          // darkness veil, peaks mid-transition
     S('dark').style.opacity=(Math.pow(night,0.82)*0.97).toFixed(3);
