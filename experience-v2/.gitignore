@@ -17,3 +17,6 @@ assets/preservation/**/*.png
 # local verification artifacts
 _skirmish-corner.png
 _sig-test.png
+
+# ffmpeg scratch
+assets/**/_work/

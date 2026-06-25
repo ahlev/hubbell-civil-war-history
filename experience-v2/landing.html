@@ -18,25 +18,33 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{background:#0a0b0e}
 body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-smoothing:antialiased}
-.track{height:1500vh;position:relative}
+.track{height:3000vh;position:relative}
 .stage{position:fixed;inset:0;overflow:hidden;background:#0a0b0e}
 
 /* ---- scenes (each a seamless loop) ---- */
 .scene{position:absolute;inset:0;opacity:0;will-change:transform,opacity}
 .scene>video,.scene .composite,.gen>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.05)} /* ONE fixed scale everywhere → no perspective shift across transitions */
 .scene::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 100% at 50% 42%,transparent 50%,rgba(8,9,12,.66) 100%)}
+/* the bright daytime / interior backdrops get an extra flat darken so overlaid intro text reads */
+#s-explore::before,#s-letters::before,#s-preserve::before{content:"";position:absolute;inset:0;pointer-events:none;background:rgba(6,7,11,.5)}
 
 #s-brothers .composite{display:flex}
 #s-brothers .panel{flex:1;height:100%;position:relative;overflow:hidden}
-#s-brothers .panel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;filter:saturate(.84) contrast(1.03) brightness(.99)}
+#s-brothers .panel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;filter:saturate(.84) contrast(1.03) brightness(.99);
+  transform:scale(1.075);transform-origin:center 40%}   /* tuned to match the rain-clip end (proxy) framing → minimal zoom drift at the handoff */
+/* Charles (4th panel) sits too far right — show more of the right side so his figure slides toward centre, esp. on narrow viewports */
+#s-brothers .panel:nth-child(4) video{object-position:70% 38%;transform-origin:70% 40%}
 #s-brothers .seam{position:absolute;top:0;bottom:0;width:7%;transform:translateX(-50%);pointer-events:none;background:linear-gradient(90deg,transparent,rgba(8,7,5,.5),transparent);z-index:2}
 #s-brothers .seam.s1{left:25%}#s-brothers .seam.s2{left:50%}#s-brothers .seam.s3{left:75%}
 
 /* ---- transition layers ---- */
 .gen{position:absolute;inset:0;opacity:0;z-index:6;background:#0a0b0e}
 .dawn{position:absolute;inset:0;opacity:0;z-index:5;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(80% 70% at 50% 82%,rgba(240,207,149,.9),rgba(224,176,112,.4) 40%,transparent 72%)}
-.dark{position:absolute;inset:0;opacity:0;z-index:7;pointer-events:none;background:#05060a}
-#embers{position:absolute;inset:0;z-index:8;pointer-events:none}
+.dark{position:absolute;inset:0;opacity:0;z-index:7;pointer-events:none;background:linear-gradient(180deg,#03040a 0%,#06060e 52%,#0c0a10 100%)}
+/* implied nearby fire — warm glow rising from the bottom, cutting through the dusk darkness */
+.firelow{position:absolute;inset:0;opacity:0;z-index:8;pointer-events:none;mix-blend-mode:screen;
+  background:radial-gradient(76% 56% at 50% 105%, rgba(240,135,48,.6), rgba(202,82,30,.32) 34%, rgba(120,46,22,.13) 58%, transparent 76%)}
+#embers{position:absolute;inset:0;z-index:9;pointer-events:none}
 .fog{position:absolute;inset:0;opacity:0;z-index:7;pointer-events:none;background:linear-gradient(180deg,rgba(190,196,205,0),rgba(200,206,214,.5) 60%,rgba(210,215,222,.78))}
 .vignette{position:absolute;inset:0;z-index:9;pointer-events:none;background:radial-gradient(130% 110% at 50% 40%,transparent 54%,rgba(6,7,10,.66) 100%)}
 .grain{position:absolute;inset:0;z-index:9;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
@@ -50,7 +58,14 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 .ey{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
 .beat h1{font-weight:300;font-size:clamp(38px,7vw,84px);line-height:1.03;letter-spacing:-.01em}
 .beat h1 em{font-style:italic;color:var(--lantern)}
+.vista{width:min(92vw,820px)}
+.vista h1{font-weight:300;font-size:clamp(30px,5.2vw,62px);line-height:1.08;max-width:18ch;margin:0 auto}
 .distance{margin-top:20px;font-style:italic;font-size:clamp(16px,2.1vw,22px);color:#e6dcc9;max-width:32ch;margin-inline:auto;line-height:1.5}
+/* cold-open second layer — brand thread; fades in after the title settles, fades out as the descent begins */
+.hero-thesis{opacity:0;margin-top:26px}
+.hero-thesis .thesis{font-style:italic;font-weight:500;font-size:clamp(14px,1.55vw,18px);line-height:1.55;color:#e3d8c0;max-width:48ch;margin:0 auto}
+.hero-thesis .thesis em{font-style:italic;color:var(--lantern)}
+.hero-thesis .prov{margin-top:15px;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#bcc3ca}
 .quote p{font-weight:600;font-size:clamp(22px,3vw,34px);line-height:1.4;font-style:italic;color:#f3ecdd}
 .quote p em{font-style:italic;color:var(--lantern)}                       /* signature phrases lift to lantern-gold */
 .quote.long{width:min(94vw,760px)}                                        /* contemplative multi-paragraph passage */
@@ -78,19 +93,38 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 #cascade .ex.alex .c b{color:var(--b-alex)}#cascade .ex.henry .c b{color:var(--b-henry)}
 #cascade .ex.james .c b{color:var(--b-james)}#cascade .ex.charles .c b{color:var(--b-charles)}
 #cascade .ex.show{opacity:1;transform:none}
+/* "Read his story" pill — color-coded per brother, populates under each cite. Clickable only when the panel is fully present (#cascade.live). */
+#cascade .ex .bio-btn{display:inline-block;margin-top:11px;pointer-events:none;font-family:"Inter",sans-serif;font-size:10.5px;font-weight:600;
+  letter-spacing:.05em;text-transform:uppercase;text-decoration:none;padding:5px 12px;border-radius:999px;border:1px solid;background:rgba(255,255,255,.03);
+  opacity:0;transform:translateY(4px);transition:opacity .5s ease .35s,transform .5s ease .35s,background .16s,color .16s}
+#cascade .ex.show .bio-btn{opacity:1;transform:none}
+#cascade.live .ex.show .bio-btn{pointer-events:auto}
+#cascade .ex.alex .bio-btn{color:#d9a441;border-color:#d9a441}#cascade .ex.alex .bio-btn:hover{background:#d9a441;color:#16130d}
+#cascade .ex.henry .bio-btn{color:#5b95c9;border-color:#5b95c9}#cascade .ex.henry .bio-btn:hover{background:#5b95c9;color:#0a1119}
+#cascade .ex.james .bio-btn{color:#6fae81;border-color:#6fae81}#cascade .ex.james .bio-btn:hover{background:#6fae81;color:#0a1410}
+#cascade .ex.charles .bio-btn{color:#cf7b7b;border-color:#cf7b7b}#cascade .ex.charles .bio-btn:hover{background:#cf7b7b;color:#180a0a}
 
 /* exploration grid */
 .explore{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(94vw,1080px);opacity:0;pointer-events:none}
-.explore .eyb{text-align:center;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.explore h2{text-align:center;font-weight:400;font-size:clamp(24px,3.4vw,40px);margin-bottom:24px;text-shadow:0 2px 24px rgba(0,0,0,.9)}
+.explore::before{content:"";position:absolute;inset:-24% -14% -10%;z-index:-1;pointer-events:none;
+  background:radial-gradient(64% 54% at 50% 24%, rgba(5,6,9,.95), rgba(5,6,9,.82) 50%, rgba(5,6,9,.46) 76%, transparent);filter:blur(10px)}
+.explore .eyb{text-align:center;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--lantern);margin-bottom:7px;text-shadow:0 2px 18px rgba(0,0,0,.95)}
+.explore h2{text-align:center;font-weight:500;font-size:clamp(24px,3.4vw,40px);margin-bottom:26px;color:#f7f0e2;text-shadow:0 2px 28px rgba(0,0,0,.98),0 1px 3px rgba(0,0,0,.92)}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 @media(max-width:820px){.cards{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.cards{grid-template-columns:1fr}}
-.card{display:block;text-decoration:none;color:var(--paper);background:rgba(8,9,13,.74);border:1px solid rgba(236,227,210,.16);border-radius:10px;padding:16px;backdrop-filter:blur(4px);transition:transform .18s,border-color .18s}
-.card:hover{transform:translateY(-2px);border-color:var(--lantern)}
-.card .num{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.card h3{font-weight:400;font-size:19px;margin:6px 0}
-.card p{font-size:13.5px;line-height:1.5;color:#cdd3d9;font-family:"Inter",sans-serif}
+/* each card carries a distinct accent; on hover it floods with that colour → clearly clickable + memorable */
+.card{--acc:var(--lantern);display:block;text-decoration:none;color:var(--paper);background:rgba(8,9,13,.8);border:1px solid rgba(236,227,210,.16);border-radius:10px;padding:16px;backdrop-filter:blur(4px);
+  transition:transform .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease}
+.card:nth-child(1){--acc:#3E86C4}.card:nth-child(2){--acc:#52A86E}.card:nth-child(3){--acc:#CB5C5C}
+.card:nth-child(4){--acc:#D9A441}.card:nth-child(5){--acc:#9A78C7}.card:nth-child(6){--acc:#CE8A46}
+.card:hover{transform:translateY(-3px);border-color:var(--acc);
+  background:color-mix(in srgb, var(--acc) 28%, rgba(8,9,13,.9));
+  box-shadow:0 16px 34px rgba(0,0,0,.55), inset 0 0 0 1px var(--acc)}
+.card .num{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .18s}
+.card h3{font-weight:400;font-size:19px;margin:6px 0;transition:color .18s}
+.card p{font-size:13.5px;line-height:1.5;color:#cdd3d9;font-family:"Inter",sans-serif;transition:color .18s}
+.card:hover .num{color:#fff}.card:hover h3{color:#fff}.card:hover p{color:#f1ece0}
 
 .prosebeat{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(92vw,760px);opacity:0;text-align:center;
   text-shadow:0 2px 26px rgba(0,0,0,.9)}
@@ -98,6 +132,19 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 .prosebeat h2{font-weight:300;font-size:clamp(26px,4vw,46px);line-height:1.12;margin-bottom:18px}
 .prosebeat p{font-size:clamp(16px,1.7vw,19px);line-height:1.6;color:#ece2d1;max-width:60ch;margin:0 auto}
 .prosebeat .cta{display:inline-block;margin-top:26px;pointer-events:auto;font-family:"Inter",sans-serif;font-size:14px;color:var(--ink);background:var(--lantern);padding:11px 20px;border-radius:6px;text-decoration:none;font-weight:600}
+/* ---- Letters beat: lead + four real excerpt chips (does real work, not just a line) ---- */
+.prosebeat.letters{width:min(94vw,1000px)}
+.prosebeat.letters::before,#b-preserve::before{content:"";position:absolute;inset:-18% -10%;z-index:-1;pointer-events:none;
+  background:radial-gradient(60% 58% at 50% 36%, rgba(5,6,9,.93), rgba(5,6,9,.8) 54%, rgba(5,6,9,.42) 78%, transparent);filter:blur(10px)}
+.prosebeat.letters p.lead{max-width:62ch}
+.lettergrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px;text-align:left}
+@media(max-width:880px){.lettergrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.lettergrid{grid-template-columns:1fr}}
+.lq{background:rgba(8,9,13,.84);border:1px solid rgba(236,227,210,.13);border-left:3px solid var(--acc,var(--lantern));border-radius:8px;padding:13px 14px;backdrop-filter:blur(3px)}
+.lq.alex{--acc:#d9a441}.lq.henry{--acc:#5b95c9}.lq.james{--acc:#6fae81}.lq.charles{--acc:#cf7b7b}
+.lq blockquote{font-style:italic;font-weight:500;font-size:13.5px;line-height:1.5;color:#f1ead9}
+.lq figcaption{margin-top:11px;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:#c4cbd2;line-height:1.55}
+.lq figcaption b{display:block;color:var(--acc,var(--lantern));font-weight:700;font-size:10px;letter-spacing:.03em;margin-bottom:2px}
 
 /* ===== persistent navbar (V1-style; hero reforms into this) ===== */
 .nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;gap:18px;padding:13px 26px;
@@ -115,22 +162,56 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 @media(max-width:900px){.nav .links{display:none}}
 
 /* ===== progress indicator + persistent CTA (themed) ===== */
-.scrollind{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:28;display:flex;flex-direction:column;align-items:center;gap:7px;
+.scrollind{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);transform-origin:50% 100%;z-index:28;display:flex;flex-direction:column;align-items:center;gap:7px;
   opacity:0;transition:opacity .5s;pointer-events:none;text-align:center}
-.scrollind .mouse{position:relative;width:26px;height:42px;border:2px solid rgba(224,176,112,.8);border-radius:13px;background:rgba(8,9,12,.4);box-shadow:0 2px 14px rgba(0,0,0,.6)}
-.scrollind .ball{position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--lantern);animation:mb 1.8s ease-in-out infinite}
-@keyframes mb{0%,100%{transform:translateY(0);opacity:1}55%{transform:translateY(13px);opacity:.4}}
-.scrollind .ring{position:absolute;inset:-6px}
-.scrollind .ring circle{fill:none;stroke-width:2;transform:rotate(-90deg);transform-origin:50% 50%}
-.scrollind .ring .bg{stroke:rgba(236,227,210,.14)}
-.scrollind .ring .fg{stroke:var(--lantern);transition:stroke-dashoffset .15s linear}
-.scrollind .lab{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#e6dcca;text-shadow:0 2px 14px rgba(0,0,0,.85)}
+/* at the cold open the down-chevron reads big & bold to set the nav tone, then shrinks to the persistent size */
+.scrollind.intro .adv.down path{stroke-width:3}
+.scrollind.intro .lab{font-size:11.5px}
+/* centered progress ring — the succinct progress cue, distinct from the input-affordance icons, synced with the cursor halo */
+.scrollind .ringwrap{position:relative;width:46px;height:46px}
+.scrollind .ring{position:absolute;inset:0;width:100%;height:100%}
+.scrollind .ring circle{fill:none;stroke-width:2.5;transform:rotate(-90deg);transform-origin:50% 50%}
+.scrollind .ring .bg{stroke:rgba(236,227,210,.16)}
+.scrollind .ring .fg{stroke:var(--lantern);stroke-linecap:round;transition:stroke-dashoffset .15s linear;filter:drop-shadow(0 0 3px rgba(224,176,112,.5))}
+/* advance chevrons — click or direction-key to glide to the next/prev stop; gentle bob, hover-grow, active-swell */
+.scrollind .adv{position:absolute;background:none;border:0;padding:0;cursor:pointer;line-height:0;pointer-events:auto;
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1),filter .18s ease}
+.scrollind .adv svg{display:block;overflow:visible;animation:chevbob 1.7s ease-in-out infinite}
+.scrollind .adv path{fill:none;stroke:var(--lantern);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 3px rgba(0,0,0,.6))}
+.scrollind .adv.down{left:50%;top:50%;width:26px;height:16px;margin:-8px 0 0 -13px;display:flex;align-items:center;justify-content:center}
+.scrollind .adv.down svg{width:24px;height:14px}
+.scrollind .adv.up{left:50%;top:-25px;width:24px;height:14px;margin-left:-12px;opacity:0;pointer-events:none;transition:opacity .35s ease,transform .18s cubic-bezier(.34,1.56,.64,1)}
+.scrollind .adv.up svg{width:22px;height:13px;animation-name:chevbobup}
+.scrollind .adv.up.show{opacity:.8;pointer-events:auto}
+.scrollind .adv:hover{transform:scale(1.22);filter:brightness(1.25)}
+.scrollind .adv.up:hover{opacity:1}
+.scrollind .adv.swell svg{animation:chevswell .3s ease}
+@keyframes chevbob{0%,100%{transform:translateY(-1px)}50%{transform:translateY(3px)}}
+@keyframes chevbobup{0%,100%{transform:translateY(1px)}50%{transform:translateY(-3px)}}
+@keyframes chevswell{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
+/* input affordances — abstract mouse + down-arrow key (both imply how to advance) */
+.scrollind .inputs{display:flex;align-items:center;gap:9px}
+.scrollind .mouse{position:relative;width:17px;height:27px;border:2px solid rgba(224,176,112,.85);border-radius:9px;background:rgba(8,9,12,.4)}
+.scrollind .mouse .ball{position:absolute;left:50%;top:5px;width:3px;height:6px;margin-left:-1.5px;border-radius:2px;background:var(--lantern);animation:mb 1.8s ease-in-out infinite}
+@keyframes mb{0%,100%{transform:translateY(0);opacity:1}55%{transform:translateY(9px);opacity:.4}}
+.scrollind .akey{display:inline-flex;align-items:center;justify-content:center;width:21px;height:21px;border:2px solid rgba(224,176,112,.85);border-radius:5px;background:rgba(8,9,12,.4);color:var(--lantern);font-size:12px;font-weight:700;line-height:1;animation:akp 1.8s ease-in-out infinite}
+@keyframes akp{0%,100%{transform:translateY(0);opacity:.65}55%{transform:translateY(2px);opacity:1}}
+.scrollind .lab{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#e6dcca;text-shadow:0 2px 14px rgba(0,0,0,.85);max-width:94vw}
+
+/* ===== cursor progress halo — mirrors the scroll-progress ring around the pointer (thicker) ===== */
+.curhalo{position:fixed;left:0;top:0;width:46px;height:46px;margin:-23px 0 0 -23px;pointer-events:none;z-index:45;opacity:0;transition:opacity .35s ease}
+.curhalo svg{position:absolute;inset:0;width:100%;height:100%}
+.curhalo circle{fill:none;transform:rotate(-90deg);transform-origin:50% 50%}
+.curhalo .bg{stroke:rgba(236,227,210,.20);stroke-width:3.5}
+.curhalo .fg{stroke:var(--lantern);stroke-width:3.5;stroke-linecap:round;transition:stroke-dashoffset .12s linear;filter:drop-shadow(0 0 4px rgba(224,176,112,.55))}
+.curhalo.show{opacity:1}
+@media(max-width:760px),(pointer:coarse){.curhalo{display:none}}
 
 @media (prefers-reduced-motion: reduce){
   .track{height:auto}.stage{position:static}
   .scene{position:relative;opacity:1 !important;height:100svh}
   .gen,.dawn,.dark,.fog,#embers{display:none}
-  .beat,.explore,.prosebeat,#cascade .ex,#b-bhead{opacity:1 !important;position:relative;transform:none;margin:8vh auto}
+  .beat,.explore,.prosebeat,#cascade .ex,#b-bhead,.hero-thesis{opacity:1 !important;position:relative;transform:none;margin:8vh auto}
   .scrollind{display:none}.nav{transform:none;opacity:1}
 }
 </style>
@@ -173,13 +254,14 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
     </div>
     <div class="scene" id="s-explore"><video data-src="assets/loops/loop-summer-tent.webm" muted loop playsinline preload="none" poster="assets/seasons/summer/web/layer-tent-v1.webp"></video></div>
     <div class="scene" id="s-letters"><video data-src="assets/loops/loop-summer-sky.webm" muted loop playsinline preload="none" poster="assets/seasons/summer/web/layer-sky-v2.webp"></video></div>
-    <div class="scene" id="s-preserve"><video data-src="assets/loops/loop-preservation.webm" muted loop playsinline preload="none" poster="assets/preservation/thumbs/v1b-reseat-b.webp"></video></div>
+    <div class="scene" id="s-preserve"><video data-src="assets/loops/loop-preservation-v2.webm" muted loop playsinline preload="none" poster="assets/preservation/thumbs/typewriter-poster.webp"></video></div>
 
     <!-- TRANSITIONS -->
     <div class="gen" id="g-smoke"><video data-src="assets/transitions/smoke-valley2-skirmish2.webm" muted playsinline preload="none"></video></div>
     <div class="gen" id="g-rain"><video data-src="assets/transitions/rainwash-skirmish-brothers.webm" muted playsinline preload="none"></video></div>
     <div class="dawn" id="dawn"></div>
     <div class="dark" id="dark"></div>
+    <div class="firelow" id="firelow"></div>
     <canvas id="embers"></canvas>
     <div class="fog" id="fog"></div>
     <div class="vignette"></div>
@@ -191,6 +273,14 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
         <div class="ey">Hubbell Family Archive · 1861–1865</div>
         <h1>The Hubbell <em>Brothers</em></h1>
         <p class="distance">Four brothers. Four years of war. Two hundred and seventy-three letters across the distance between them.</p>
+        <div class="hero-thesis" id="b-thesis">
+          <p class="thesis">Now read with modern data science and interactive visualizations — their words, and the humanity of living through the war, brought to life <em>in ways the letters alone never could.</em></p>
+          <div class="prov">A rare archive, preserved and studied across five generations of descendants.</div>
+        </div>
+      </div>
+      <!-- editorial pre-headline over the sunny vista, before Alexander's Part 1 -->
+      <div class="beat vista" id="b-vista">
+        <h1>The Civil War as experienced through <em>their eyes and minds.</em></h1>
       </div>
       <div class="beat quote long" id="b-painting">
         <p>&ldquo;&lsquo;Way down South in Dixie.&rsquo; That is where I am. And a beautiful country too if it were not cursed by the existence of slavery. I am encamped on the summit of a high hill and the view is very fine. Green fields, meadows, large farms, patches of woods, roads winding here and there&hellip; all of this spread out before me <em>like a beautiful painting</em>.</p>
@@ -204,15 +294,15 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 
       <!-- brothers headline (precedes the cascade) -->
       <div class="beat" id="b-bhead">
-        <h2>The words and perspective of four brothers from New York<span class="sub">273 preserved letters that document their Civil War story.</span></h2>
+        <h2>The unique words and perspective of four brothers from New York<span class="sub">Explored through 273 heirloom letters that span the years and miles of the Civil War.</span></h2>
       </div>
 
       <!-- brothers cascade (column-locked) -->
       <div id="cascade">
-        <div class="ex alex"><p>&ldquo;Here I am safe and sound in the barracks. How strange it does seem. Ah! what a bedlam!&rdquo;</p><div class="c"><b>Alexander Hubbell</b>Ogdensburgh, NY · Sept 20, 1861</div></div>
-        <div class="ex henry"><p>&ldquo;How I long to have one good meal at home, even if it wasn&rsquo;t anything but potatoes and salt…&rdquo;</p><div class="c"><b>Henry Hubbell</b>Near Richmond, VA · June 22, 1862</div></div>
-        <div class="ex james"><p>&ldquo;It is nothing but a flesh wound and is doing well. I walked several miles after being hit in order not to fall into the Johnnies&rsquo; hands.&rdquo;</p><div class="c"><b>James Hubbell</b>Baltimore, MD · Oct 29, 1864</div></div>
-        <div class="ex charles"><p>&ldquo;A pleasant place here, a good deal better than being in the field… when night comes I spread my blankets on the floor and sleep soundly.&rdquo;</p><div class="c"><b>Charles Hubbell</b>New Orleans, LA · March 6, 1864</div></div>
+        <div class="ex alex"><p>&ldquo;Here I am safe and sound in the barracks. How strange it does seem. Ah! what a bedlam!&rdquo;</p><div class="c"><b>Alexander Hubbell</b>Ogdensburgh, NY · Sept 20, 1861</div><a class="bio-btn" href="brother-alexander.html">Read his story →</a></div>
+        <div class="ex henry"><p>&ldquo;How I long to have one good meal at home, even if it wasn&rsquo;t anything but potatoes and salt…&rdquo;</p><div class="c"><b>Henry Hubbell</b>Near Richmond, VA · June 22, 1862</div><a class="bio-btn" href="brother-henry.html">Read his story →</a></div>
+        <div class="ex james"><p>&ldquo;It is nothing but a flesh wound and is doing well. I walked several miles after being hit in order not to fall into the Johnnies&rsquo; hands.&rdquo;</p><div class="c"><b>James Hubbell</b>Baltimore, MD · Oct 29, 1864</div><a class="bio-btn" href="brother-james.html">Read his story →</a></div>
+        <div class="ex charles"><p>&ldquo;A pleasant place here, a good deal better than being in the field… when night comes I spread my blankets on the floor and sleep soundly.&rdquo;</p><div class="c"><b>Charles Hubbell</b>New Orleans, LA · March 6, 1864</div><a class="bio-btn" href="brother-charles.html">Read his story →</a></div>
       </div>
 
       <div class="explore" id="b-explore">
@@ -228,10 +318,17 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
         </div>
       </div>
 
-      <div class="prosebeat" id="b-letters">
+      <div class="prosebeat letters" id="b-letters">
         <div class="eyb">The Letters</div>
         <h2>What they wrote home.</h2>
-        <p>Not the heroic correspondence of myth — young men writing to their mother about being sick among strangers, about money, about the long grinding weeks between battles. Read together, an unedited record of what the war felt like from inside it.</p>
+        <p class="lead">Not the heroic correspondence of myth — young men writing to their mother about being sick among strangers, about money, about the long grinding weeks between battles. Read together, an unedited record of what the war felt like from inside it.</p>
+        <div class="lettergrid">
+          <figure class="lq alex"><blockquote>&ldquo;I sometimes feel very lonely … I think of all of you often, very, very, often.&rdquo;</blockquote><figcaption><b>Alexander Hubbell</b>Camp Jackson, MD · Nov 13, 1861</figcaption></figure>
+          <figure class="lq henry"><blockquote>&ldquo;I should like it very well if peace should be proclaimed just before Sugar time … but there is no such luck for me.&rdquo;</blockquote><figcaption><b>Henry Hubbell</b>Harrison&rsquo;s Landing, VA · July 28, 1862</figcaption></figure>
+          <figure class="lq james"><blockquote>&ldquo;Bake a flour and water cake with no salt … throw it on a shelf for three or four days and see what kind of a meal it will make.&rdquo;</blockquote><figcaption><b>James Hubbell</b>Frederick City, MD · Aug 15, 1864</figcaption></figure>
+          <figure class="lq charles"><blockquote>&ldquo;Mr. Averill told me I was too honest, to tell the Dr. that I was near sighted.&rdquo;</blockquote><figcaption><b>Charles Hubbell</b>Plattsburgh, NY · Sep 9, 1862</figcaption></figure>
+        </div>
+        <a class="cta" href="the-collection.html">Read the letters →</a>
       </div>
 
       <div class="prosebeat" id="b-preserve">
@@ -246,10 +343,21 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 
 <!-- progress indicator + persistent CTA -->
 <div class="scrollind" id="ind">
-  <div class="mouse"><span class="ball"></span>
-    <svg class="ring" viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="20"/><circle class="fg" id="ringfg" cx="22" cy="22" r="20"/></svg>
+  <div class="ringwrap">
+    <button class="adv up" id="advup" type="button" aria-label="Previous section"><svg viewBox="0 0 22 13"><path d="M2 11 11 3 20 11"/></svg></button>
+    <svg class="ring" viewBox="0 0 48 48"><circle class="bg" cx="24" cy="24" r="21"/><circle class="fg" id="ringfg" cx="24" cy="24" r="21"/></svg>
+    <button class="adv down" id="advdown" type="button" aria-label="Next section"><svg viewBox="0 0 24 14"><path d="M2 3 12 11 22 3"/></svg></button>
   </div>
-  <div class="lab" id="indlab">Scroll to begin</div>
+  <div class="inputs">
+    <span class="mouse"><span class="ball"></span></span>
+    <span class="akey">↓</span>
+  </div>
+  <div class="lab" id="indlab">Click or scroll to begin</div>
+</div>
+
+<!-- cursor progress halo (mirrors the scroll ring around the pointer) -->
+<div class="curhalo" id="curhalo" aria-hidden="true">
+  <svg viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="17"/><circle class="fg" id="curfg" cx="22" cy="22" r="17"/></svg>
 </div>
 
 <script>
@@ -259,22 +367,65 @@ const seg=(p,a,b)=>clamp((p-a)/(b-a),0,1);
 const S=id=>document.getElementById(id);
 
 /* segment boundaries (p ∈ [0,1]) — wide holds so text settles & reads */
-const SEG={tent:[0,0.06],dawn:[0.06,0.10],valley:[0.10,0.18],smoke:[0.18,0.25],battle:[0.25,0.33],
-  rain:[0.33,0.43],brothers:[0.43,0.66],settle:[0.66,0.70],explore:[0.70,0.80],dusk:[0.80,0.85],
-  letters:[0.85,0.91],fog:[0.91,0.94],preserve:[0.94,1.00]};
-const scenes={'s-tent':[0,0.10],'s-valley':[0.06,0.25],'s-battle':[0.18,0.43],'s-brothers':[0.40,0.70],
-  's-explore':[0.66,0.85],'s-letters':[0.80,0.94],'s-preserve':[0.91,1.00]};
+/* text-bearing scenes (valley/battle/explore/letters/preserve) get the widest p-share so every
+   quote & panel demands real scroll-length to pass; transitions stay lean. */
+/* valley is widened to host TWO beats — the editorial pre-headline, a pause, then Alex's Part 1. */
+const SEG={tent:[0,0.07],dawn:[0.07,0.095],valley:[0.095,0.30],smoke:[0.30,0.34],battle:[0.34,0.44],
+  rain:[0.44,0.495],brothers:[0.495,0.69],settle:[0.69,0.725],explore:[0.725,0.80],dusk:[0.80,0.855],
+  letters:[0.855,0.925],fog:[0.925,0.945],preserve:[0.945,1.00]};
+const scenes={'s-tent':[0,0.10],'s-valley':[0.07,0.34],'s-battle':[0.30,0.495],'s-brothers':[0.46,0.725],
+  's-explore':[0.69,0.86],'s-letters':[0.83,0.945],'s-preserve':[0.925,1.00]};
 /* beat boundaries for the progress ring (start of each major beat) */
-const BEATS=[0,0.10,0.25,0.43,0.70,0.85,0.94,1.0];
+const BEATS=[0,0.095,0.34,0.495,0.725,0.855,0.945,1.0];
 
 if(reduced){
   document.querySelectorAll('.scene video').forEach(v=>{v.src=v.dataset.src;v.play().catch(()=>{});});
   document.querySelectorAll('#cascade .ex').forEach(e=>e.classList.add('show'));
+  S('cascade').classList.add('live');
 }else{
   const startT=performance.now();
   let p=0,target=0,mx=0,my=0,tmx=0,tmy=0,t=0;
   addEventListener('scroll',()=>{const m=document.body.scrollHeight-innerHeight;target=m>0?clamp(scrollY/m,0,1):0;},{passive:true});
-  addEventListener('mousemove',e=>{tmx=e.clientX/innerWidth-.5;tmy=e.clientY/innerHeight-.5;},{passive:true});
+  addEventListener('mousemove',e=>{tmx=e.clientX/innerWidth-.5;tmy=e.clientY/innerHeight-.5;
+    const ch=S('curhalo'); ch.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0)`; ch.classList.add('show');},{passive:true});
+  addEventListener('mouseout',e=>{if(!e.relatedTarget)S('curhalo').classList.remove('show');},{passive:true});
+
+  /* ---- snap-advance: click a chevron / press a direction key to glide to the next held beat.
+         Velocity model: gentle base pace, and it SLOWS HARD inside transition zones so the
+         cannon-smoke & rain-wash clips actually play out even when advancing without scrolling. ---- */
+  const ANCHORS=[0.0,0.155,0.255,0.40,0.52,0.55,0.58,0.61,0.645,0.785,0.885,0.975];
+  const TRANS=[[0.07,0.095],[0.295,0.345],[0.435,0.50],[0.785,0.865],[0.925,0.946]]; // dawn · cannon-smoke · rain-wash · dusk-embers · fog
+  let advActive=false,advTo=0,advDir=1,glideV=0,advTarget=null;
+  const maxPx=()=>document.body.scrollHeight-innerHeight;
+  const inTrans=x=>TRANS.some(([a,b])=>x>=a&&x<b);
+  function nextIdx(){const r=advTarget!=null?advTarget:p; for(let i=0;i<ANCHORS.length;i++)if(ANCHORS[i]>r+0.006)return i; return ANCHORS.length-1;}
+  function prevIdx(){const r=advTarget!=null?advTarget:p; for(let i=ANCHORS.length-1;i>=0;i--)if(ANCHORS[i]<r-0.006)return i; return 0;}
+  function nearIdx(){const r=advTarget!=null?advTarget:p; let b=0,bd=9; ANCHORS.forEach((a,i)=>{const d=Math.abs(a-r); if(d<bd){bd=d;b=i;}}); return b;}
+  function swell(btn){btn.classList.remove('swell'); void btn.offsetWidth; btn.classList.add('swell'); setTimeout(()=>btn.classList.remove('swell'),320);}
+  function goTo(i){i=clamp(i,0,ANCHORS.length-1); advTo=ANCHORS[i]; advTarget=ANCHORS[i]; advDir=Math.sign(advTo-target)||1; advActive=true;}
+  function goNext(){goTo(nextIdx()); swell(S('advdown'));}
+  function goPrev(){goTo(prevIdx()); swell(S('advup'));}
+  function stepAdvance(dt){ if(!advActive)return;
+    const dist=Math.abs(advTo-target);
+    if(dist<0.0016){target=advTo; advActive=false; glideV=0;}
+    else{
+      let tv=0.00007;                         // base ≈ 0.07 p/s, time-based (per-ms) → identical dwell at any framerate
+      if(inTrans(p)) tv*=0.20;                // ~3–4s dwell inside a transition so the cannon-smoke / rain-wash clips play
+      tv*=clamp(dist/0.05,0.16,1);            // decelerate into the stop
+      glideV+=(tv-glideV)*0.12;               // smooth accel/decel
+      target+=advDir*Math.min(glideV*dt,dist);
+      if((advDir>0&&target>advTo)||(advDir<0&&target<advTo)) target=advTo;
+    }
+    window.scrollTo(0,target*maxPx());
+  }
+  S('advdown').addEventListener('click',()=>{goNext();S('advdown').blur();});
+  S('advup').addEventListener('click',()=>{goPrev();S('advup').blur();});
+  addEventListener('keydown',e=>{ if(e.altKey||e.ctrlKey||e.metaKey)return;
+    if(['ArrowDown','ArrowRight','PageDown',' ','Spacebar'].includes(e.key)){e.preventDefault();goNext();}
+    else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();goPrev();}});
+  // any manual scroll input cancels an in-flight glide and hands control back to free scroll
+  const cancelAdv=()=>{advActive=false;advTarget=null;};
+  addEventListener('wheel',cancelAdv,{passive:true}); addEventListener('touchstart',cancelAdv,{passive:true});
 
   function lazy(){
     for(const id in scenes){const [a,b]=scenes[id];const near=p>a-0.10&&p<b+0.10;
@@ -293,12 +444,24 @@ if(reduced){
 
   /* embers */
   const ec=S('embers'),ex=ec.getContext('2d');let emb=[];
-  function sizeEmb(){ec.width=innerWidth;ec.height=innerHeight;emb=Array.from({length:60},()=>({x:Math.random()*innerWidth,y:innerHeight+Math.random()*innerHeight,r:1+Math.random()*2.4,vy:-(0.3+Math.random()*0.9),drift:(Math.random()-.5)*0.5,s:Math.random()*6}));}
+  function seedEmber(){const cx=ec.width*(0.5+(Math.random()-0.5)*0.72);  // bias toward centre — drifting up from the implied fire
+    return {x:cx,y:ec.height+Math.random()*ec.height*0.45,r:0.7+Math.random()*2.6,vy:-(0.25+Math.random()*1.15),
+      drift:(Math.random()-.5)*0.7,s:Math.random()*6.28,hue:24+Math.random()*30};}
+  function sizeEmb(){ec.width=innerWidth;ec.height=innerHeight;emb=Array.from({length:84},seedEmber);}
   sizeEmb();addEventListener('resize',sizeEmb,{passive:true});let emberI=0;
-  function drawEmbers(){ex.clearRect(0,0,ec.width,ec.height);if(emberI<=0.01)return;for(const e of emb){e.y+=e.vy;e.x+=e.drift+Math.sin(t*0.5+e.s)*0.3;if(e.y<-10){e.y=ec.height+10;e.x=Math.random()*ec.width;}ex.globalAlpha=emberI*(0.5+0.5*Math.sin(t*2+e.s));ex.fillStyle='rgba(240,150,70,1)';ex.beginPath();ex.arc(e.x,e.y,e.r,0,6.283);ex.fill();}ex.globalAlpha=1;}
+  function drawEmbers(){ex.clearRect(0,0,ec.width,ec.height);if(emberI<=0.01)return;
+    const wind=Math.sin(t*0.4)*0.7+Math.sin(t*0.9)*0.3;                     // gusting wind → embers blow
+    ex.shadowColor='rgba(240,140,55,.85)';
+    for(const e of emb){ e.y+=e.vy*(0.55+emberI*0.7); e.x+=e.drift+wind+Math.sin(t*0.6+e.s)*0.55;
+      if(e.y<-12||e.x<-24||e.x>ec.width+24){Object.assign(e,seedEmber());}
+      ex.globalAlpha=clamp(emberI*(0.4+0.6*Math.sin(t*2.2+e.s)),0,1);
+      ex.shadowBlur=5; ex.fillStyle=`hsl(${e.hue|0},92%,${(56+e.r*5)|0}%)`;
+      ex.beginPath();ex.arc(e.x,e.y,e.r,0,6.283);ex.fill(); }
+    ex.shadowBlur=0; ex.globalAlpha=1;}
 
   /* ---- brothers reveal sequence: headline → quotes L→R, min 1s each ---- */
-  const RING=2*Math.PI*20; S('ringfg').style.strokeDasharray=RING;
+  const RING=2*Math.PI*21; S('ringfg').style.strokeDasharray=RING;
+  const CURC=2*Math.PI*17; S('curfg').style.strokeDasharray=CURC;   // cursor halo ring (thicker, smaller radius)
   const exEls={headline:S('b-bhead'),alex:document.querySelector('#cascade .ex.alex'),henry:document.querySelector('#cascade .ex.henry'),james:document.querySelector('#cascade .ex.james'),charles:document.querySelector('#cascade .ex.charles')};
   const STEPS=['headline','alex','henry','james','charles']; // 0..4
   let seqIdx=-1,lastAdv=0;
@@ -310,9 +473,9 @@ if(reduced){
       seqIdx=(p<SEG.brothers[0])?-1:4;   // before → not started; after → fully advanced (so backward re-entry snaps cleanly)
       return;
     }
-    const bp=seg(p,SEG.brothers[0]+0.01,SEG.brothers[1]-0.02);
-    const desired=clamp(Math.floor(bp/0.19),0,4);          // scroll-driven target step
-    if(desired>seqIdx && now-lastAdv>=1000){seqIdx++;lastAdv=now;}      // min 1s dwell before advancing
+    const bp=seg(p,0.505,0.665);                           // wide reveal band → each step needs real scroll-length to cross
+    const desired=clamp(Math.floor(bp/0.2),0,4);           // SCROLL-position drives the step (not a timer → fast scroll can't skip James/Charles)
+    if(desired>seqIdx && now-lastAdv>=500){seqIdx++;lastAdv=now;}        // 0.5s floor only smooths multi-step catch-up after a flick
     if(desired<seqIdx){seqIdx=desired;lastAdv=now;}                      // scrolling back
     // headline visible only at step 0; quotes accumulate from step 1
     exEls.headline.style.opacity=(seqIdx===0?1:0).toFixed(2);
@@ -326,9 +489,9 @@ if(reduced){
     setO(S('s-tent'),1-seg(p,SEG.dawn[0],SEG.dawn[1]));
     setO(S('s-valley'),seg(p,SEG.dawn[0],SEG.dawn[1])*(1-seg(p,SEG.smoke[0],SEG.smoke[1])));
     setO(S('s-battle'),seg(p,SEG.smoke[0],SEG.smoke[1])*(1-seg(p,SEG.rain[0],SEG.rain[0]+0.015)));
-    setO(S('s-brothers'),seg(p,SEG.rain[1]-0.015,SEG.rain[1])*(1-seg(p,SEG.settle[0],SEG.settle[1])));
+    setO(S('s-brothers'),seg(p,SEG.rain[1]-0.015,SEG.rain[1])*(1-seg(p,0.695,0.725)));
     setO(S('s-explore'),seg(p,SEG.settle[0],SEG.settle[1])*(1-seg(p,SEG.dusk[0],SEG.dusk[1])));
-    setO(S('s-letters'),seg(p,SEG.dusk[1]-0.01,SEG.dusk[1])*(1-seg(p,SEG.fog[0]+0.02,SEG.fog[1])));
+    setO(S('s-letters'),seg(p,SEG.dusk[1]-0.01,SEG.dusk[1])*(1-seg(p,SEG.fog[0],SEG.fog[1])));
     setO(S('s-preserve'),seg(p,SEG.fog[1]-0.02,SEG.fog[1]));
     ['s-tent','s-valley','s-battle','s-explore','s-letters','s-preserve'].forEach(id=>par(S(id)));
     // brothers settle-into-desk (the one intentional scale move).
@@ -340,31 +503,58 @@ if(reduced){
     // transitions
     S('dawn').style.opacity=(Math.sin(seg(p,SEG.dawn[0],SEG.dawn[1])*Math.PI)*0.9).toFixed(3);
     gen('g-smoke',SEG.smoke); gen('g-rain',SEG.rain);
-    const dk=seg(p,SEG.dusk[0],SEG.dusk[1]); S('dark').style.opacity=(Math.sin(dk*Math.PI)*0.96).toFixed(3); emberI=Math.sin(dk*Math.PI);
+    // dusk: sunset/firelight warmth leads, darkness deepens behind it, embers blow strongest at the dark peak.
+    // The lighting envelope is WIDER than the explore→letters scene-swap (SEG.dusk) so the dusk breathes longer &
+    // smoother — the embers/fire glow begin over the still-lit tent, then the scene swaps under the darkness.
+    const dk=seg(p,0.788,0.862);
+    const warm=Math.sin(clamp(dk*1.45,0,1)*Math.PI);          // warm sunset + nearby-fire glow (leads, lingers ~70%)
+    const night=Math.sin(dk*Math.PI);                          // darkness veil, peaks mid-transition
+    S('dark').style.opacity=(Math.pow(night,0.82)*0.97).toFixed(3);
+    S('firelow').style.opacity=(warm*0.95).toFixed(3);
+    emberI=Math.max(night,warm*0.6);
     S('fog').style.opacity=(Math.sin(seg(p,SEG.fog[0],SEG.fog[1])*Math.PI)*0.92).toFixed(3);
 
     // text beats — wide windows so each settles & reads
     const introTitle=clamp((el-2000)/1400,0,1);
-    beat(S('b-title'),introTitle*(1-seg(p,0.045,0.075)),18);
-    beat(S('b-painting'),seg(p,0.10,0.125)*(1-seg(p,0.175,0.19)),14);   // long 2-para passage → wider hold
-    beat(S('b-rock'),seg(p,0.25,0.275)*(1-seg(p,0.305,0.325)),14);
+    beat(S('b-title'),introTitle*(1-seg(p,0.055,0.085)),18);
+    S('b-thesis').style.opacity=clamp((el-3600)/1500,0,1).toFixed(3);   // second layer settles ~1.2s after the title (parent opacity fades it on scroll)
+    beat(S('b-vista'),seg(p,0.115,0.14)*(1-seg(p,0.175,0.195)),16);     // editorial pre-headline over the sunny vista, BEFORE Alex Pt1 (then a pause)
+    beat(S('b-painting'),seg(p,0.21,0.235)*(1-seg(p,0.285,0.305)),14);  // Alex Part 1 (after the pause)
+    beat(S('b-rock'),seg(p,0.35,0.375)*(1-seg(p,0.425,0.44)),14);       // Alex Part 2 over the battle
     brothersSeq(now);
-    setO(S('b-explore'),seg(p,0.715,0.745)*(1-seg(p,0.785,0.80))); S('b-explore').style.pointerEvents=(p>0.71&&p<0.80)?'auto':'none';
-    setO(S('b-letters'),seg(p,0.855,0.875)*(1-seg(p,0.895,0.91)));
-    setO(S('b-preserve'),seg(p,0.945,0.965)); S('b-preserve').style.pointerEvents=(p>0.94)?'auto':'none';
+    // cascade leaves WITH the brothers image (no lingering past the fade); buttons clickable only while fully present
+    const cOp = p<SEG.brothers[0] ? 1 : (p<0.725 ? (1-seg(p,0.69,0.72)) : 0);
+    setO(S('cascade'),cOp);
+    S('cascade').classList.toggle('live', p>=SEG.brothers[0] && p<0.69 && cOp>0.9);
+    setO(S('b-explore'),seg(p,0.735,0.76)*(1-seg(p,0.80,0.815))); S('b-explore').style.pointerEvents=(p>0.725&&p<0.815)?'auto':'none';
+    setO(S('b-letters'),seg(p,0.865,0.88)*(1-seg(p,0.915,0.925))); S('b-letters').style.pointerEvents=(p>0.855&&p<0.925)?'auto':'none';
+    setO(S('b-preserve'),seg(p,0.955,0.97)); S('b-preserve').style.pointerEvents=(p>0.948)?'auto':'none';
 
     // navbar: hero reforms into it once you scroll past beat 1
-    S('nav').classList.toggle('in',p>0.05);
+    S('nav').classList.toggle('in',p>0.07);
 
     // progress indicator: ring fills toward next beat; label + fade
     let bi=0; for(let i=0;i<BEATS.length-1;i++){if(p>=BEATS[i])bi=i;}
     const within=seg(p,BEATS[bi],BEATS[bi+1]);
     S('ringfg').style.strokeDashoffset=(RING*(1-within)).toFixed(1);
-    S('indlab').textContent = p<0.02 ? 'Scroll to begin' : (p>0.965 ? 'Explore the archive' : 'Scroll to continue');
-    setO(S('ind'),clamp(el>3200?1:0,0,1)*(1-seg(p,0.985,1.0)));
+    S('curfg').style.strokeDashoffset=(CURC*(1-within)).toFixed(1);   // cursor halo mirrors the same progress
+    S('indlab').textContent = p<0.02 ? 'Click, arrow, or scroll to enter the collection' : (p>0.94 ? 'Explore the archive' : 'Click or scroll to continue');
+    // advance chevrons: up appears once past the first stop, down hides at the last
+    const ni=nearIdx();
+    S('advup').classList.toggle('show',ni>0);
+    S('advdown').style.visibility = ni<ANCHORS.length-1 ? 'visible':'hidden';
+    // cold-open prominence: indicator (esp. the down chevron) starts big & lifted, shrinks to the persistent size as you leave
+    const intro=1-seg(p,0.0,0.05);
+    const ind=S('ind');
+    ind.classList.toggle('intro',intro>0.5);
+    ind.style.transform=`translateX(-50%) translateY(${(-intro*26).toFixed(1)}px) scale(${(1+intro*0.55).toFixed(3)})`;
+    setO(ind,clamp(el>3200?1:0,0,1)*(1-seg(p,0.985,1.0)));
   }
 
-  function frame(){const now=performance.now();t+=0.016;p+=(target-p)*0.085;mx+=(tmx-mx)*0.06;my+=(tmy-my)*0.06;lazy();apply(now);drawEmbers();requestAnimationFrame(frame);}
+  let lastFrameT=performance.now();
+  function frame(){const now=performance.now(); const dt=Math.min(now-lastFrameT,50); lastFrameT=now;
+    stepAdvance(dt);   // paced glide (drives target, slows through transitions); scroll listener keeps target in sync
+    t+=0.016;p+=(target-p)*0.085;mx+=(tmx-mx)*0.06;my+=(tmy-my)*0.06;lazy();apply(now);drawEmbers();requestAnimationFrame(frame);}
   lazy();apply(performance.now());requestAnimationFrame(frame);
 }
 </script>
