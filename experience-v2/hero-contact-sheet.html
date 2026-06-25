@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Hero Layers — Contact Sheet · "The Soldier's Vantage"</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0c0e12;--panel:#161a20;--line:#262c34;--paper:#ece3d2;--muted:#9aa3ab;--lantern:#e0b070;--pick:#7fb38a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--paper);font-family:"Source Serif 4",Georgia,serif;line-height:1.5}
+header{padding:48px 32px 24px;max-width:1280px;margin:0 auto}
+h1{font-weight:300;font-size:clamp(28px,4vw,44px);letter-spacing:-.01em}
+h1 em{font-style:italic;color:var(--lantern)}
+.sub{margin-top:10px;color:var(--muted);font-size:16px;max-width:70ch}
+.meta{margin-top:16px;font-family:"Inter",sans-serif;font-size:12.5px;color:var(--muted);letter-spacing:.02em}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-family:"Inter",sans-serif;font-size:12.5px}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+main{max-width:1280px;margin:0 auto;padding:8px 32px 80px}
+section{margin-top:40px;border-top:1px solid var(--line);padding-top:26px}
+.shead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.shead h2{font-weight:400;font-size:23px}
+.shead .role{font-family:"Inter",sans-serif;font-size:12.5px;color:var(--muted)}
+.note{font-family:"Inter",sans-serif;font-size:13px;color:#b9c0c7;margin:4px 0 18px;max-width:80ch}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+figure{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;position:relative;transition:border-color .2s,transform .2s}
+figure:hover{transform:translateY(-2px)}
+figure.pick{border-color:var(--pick);box-shadow:0 0 0 1px var(--pick) inset}
+figure a{display:block}
+figure img,figure video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#000}
+figcaption{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;font-family:"Inter",sans-serif;font-size:12.5px}
+figcaption .v{color:var(--paper);font-weight:500}
+figcaption .tag{color:var(--muted)}
+.badge{position:absolute;top:10px;left:10px;font-family:"Inter",sans-serif;font-size:11px;font-weight:600;letter-spacing:.04em;padding:4px 9px;border-radius:999px;background:var(--pick);color:#0c0e12}
+.badge.alt{background:#3a424c;color:var(--paper)}
+.dl{color:var(--lantern);text-decoration:none}
+.dl:hover{text-decoration:underline}
+footer{max-width:1280px;margin:0 auto;padding:0 32px 90px;color:var(--muted);font-family:"Inter",sans-serif;font-size:13px}
+footer code{background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:#cdd3d9}
+a.heroLink{color:var(--lantern)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Hero Layers — <em>The Soldier's Vantage</em></h1>
+  <p class="sub">Painterly candidates for the cold-open parallax hero. Dawn in a Civil War
+     valley encampment, looking out through a canvas tent mouth, an unfinished letter home at the knee.
+     Three versions per layer + two foreground motion loops. Pick one per layer.</p>
+  <p class="meta">Model: <strong>Nano Banana 2</strong> (Google) · 4K 16:9 · motion: <strong>Seedance 2.0</strong> · generated 2026-06-24 ·
+     all on <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:4px">experience-v2</code> branch, nothing near main.</p>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--pick)"></i> my recommended pick</span>
+    <span><i class="dot" style="background:#3a424c"></i> strong alternate</span>
+    <span>Click any frame for the full-resolution PNG.</span>
+  </div>
+  <p class="meta">In context: <a class="heroLink" href="landing-coldopen.html">open the wired parallax hero →</a></p>
+</header>
+
+<main>
+
+  <!-- SKY -->
+  <section>
+    <div class="shead"><h2>Layer 1 — Sky</h2><span class="role">deepest backdrop · cold winter dawn · full-frame, opaque is fine</span></div>
+    <p class="note">Mostly sits behind the valley + tent, so the upper sky and horizon glow are what read. All three hold the muted grey-blue + amber-horizon palette.</p>
+    <div class="grid">
+      <figure><a href="assets/layer-sky-v1.png"><img src="assets/thumbs/sky-v1.webp" alt="sky v1"></a><figcaption><span class="v">sky-v1</span><span class="tag">stormy upper sky · <a class="dl" href="assets/layer-sky-v1.png">PNG</a></span></figcaption></figure>
+      <figure class="pick"><span class="badge">PICK</span><a href="assets/layer-sky-v2.png"><img src="assets/thumbs/sky-v2.webp" alt="sky v2"></a><figcaption><span class="v">sky-v2</span><span class="tag">strong amber horizon · <a class="dl" href="assets/layer-sky-v2.png">PNG</a></span></figcaption></figure>
+      <figure><a href="assets/layer-sky-v3.png"><img src="assets/thumbs/sky-v3.webp" alt="sky v3"></a><figcaption><span class="v">sky-v3</span><span class="tag">softest, snowy · <a class="dl" href="assets/layer-sky-v3.png">PNG</a></span></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- VALLEY -->
+  <section>
+    <div class="shead"><h2>Layer 2 — Valley encampment</h2><span class="role">seen through the tent mouth · top fades to fog</span></div>
+    <p class="note">The recon view: rows of tents in fog, campfires, winding road, receding hills, tiny anonymous silhouettes. This is what shows through the tent opening as you parallax.</p>
+    <div class="grid">
+      <figure><a href="assets/layer-valley-v1.png"><img src="assets/thumbs/valley-v1.webp" alt="valley v1"></a><figcaption><span class="v">valley-v1</span><span class="tag">includes a near soldier · <a class="dl" href="assets/layer-valley-v1.png">PNG</a></span></figcaption></figure>
+      <figure><a href="assets/layer-valley-v2.png"><img src="assets/thumbs/valley-v2.webp" alt="valley v2"></a><figcaption><span class="v">valley-v2</span><span class="tag">dense camp, low fog · <a class="dl" href="assets/layer-valley-v2.png">PNG</a></span></figcaption></figure>
+      <figure class="pick"><span class="badge">PICK</span><a href="assets/layer-valley-v3.png"><img src="assets/thumbs/valley-v3.webp" alt="valley v3"></a><figcaption><span class="v">valley-v3</span><span class="tag">best depth + fog band · <a class="dl" href="assets/layer-valley-v3.png">PNG</a></span></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- TENT -->
+  <section>
+    <div class="shead"><h2>Layer 3 — Tent mouth (POV frame)</h2><span class="role">frame-within-frame · center reads through to the valley</span></div>
+    <p class="note">Sells the point of view. In the wired hero a soft CSS mask opens the center so the valley shows through. <strong>tent-v1</strong> has the cleanest wide opening to key out; <strong>tent-v2</strong> is the most cinematic but paints its <em>own</em> camp + silhouette through the gap (works better as a near-complete scene than as a see-through frame).</p>
+    <div class="grid">
+      <figure class="pick"><span class="badge">PICK</span><a href="assets/layer-tent-v1.png"><img src="assets/thumbs/tent-v1.webp" alt="tent v1"></a><figcaption><span class="v">tent-v1</span><span class="tag">clean wide opening · <a class="dl" href="assets/layer-tent-v1.png">PNG</a></span></figcaption></figure>
+      <figure><span class="badge alt">ALT</span><a href="assets/layer-tent-v2.png"><img src="assets/thumbs/tent-v2.webp" alt="tent v2"></a><figcaption><span class="v">tent-v2</span><span class="tag">most cinematic, self-contained · <a class="dl" href="assets/layer-tent-v2.png">PNG</a></span></figcaption></figure>
+      <figure><a href="assets/layer-tent-v3.png"><img src="assets/thumbs/tent-v3.webp" alt="tent v3"></a><figcaption><span class="v">tent-v3</span><span class="tag">tight triangle, pink dawn · <a class="dl" href="assets/layer-tent-v3.png">PNG</a></span></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- FIELD -->
+  <section>
+    <div class="shead"><h2>Layer 4 — Field writing kit (foreground)</h2><span class="role">the hero object · lantern-lit · top fades out</span></div>
+    <p class="note">The reaching-home detail: crate/blanket desk, unfinished letter (illegible by design), tin cup, candle, lantern (lower-right per the light rule), forage cap, rifle butt. <strong>v1</strong> reads warmest with a tan kepi; <strong>v2/v3</strong> use the blue Union forage cap — more accurate for the Hubbells' NY regiments.</p>
+    <div class="grid">
+      <figure class="pick"><span class="badge">PICK</span><a href="assets/layer-field-v1.png"><img src="assets/thumbs/field-v1.webp" alt="field v1"></a><figcaption><span class="v">field-v1</span><span class="tag">warmest, most readable · <a class="dl" href="assets/layer-field-v1.png">PNG</a></span></figcaption></figure>
+      <figure><span class="badge alt">ALT</span><a href="assets/layer-field-v2.png"><img src="assets/thumbs/field-v2.webp" alt="field v2"></a><figcaption><span class="v">field-v2</span><span class="tag">Union-blue kepi, moodier · <a class="dl" href="assets/layer-field-v2.png">PNG</a></span></figcaption></figure>
+      <figure><a href="assets/layer-field-v3.png"><img src="assets/thumbs/field-v3.webp" alt="field v3"></a><figcaption><span class="v">field-v3</span><span class="tag">Union-blue, lantern-forward · <a class="dl" href="assets/layer-field-v3.png">PNG</a></span></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- MOTION -->
+  <section>
+    <div class="shead"><h2>Motion — foreground ambient loop</h2><span class="role">Seedance 2.0 · 5s · silent · locked camera</span></div>
+    <p class="note">Animates only the foreground: lantern + candle flicker, a faint smoke wisp, breath of steam off the cup. In the wired hero this can swap in for the field <em>layer</em> so it still parallaxes. Two variants, matching the two field looks.</p>
+    <div class="grid">
+      <figure class="pick"><span class="badge">PICK</span><video src="assets/loop-field-warm.webm" muted loop autoplay playsinline poster="assets/thumbs/field-v1.webp"></video><figcaption><span class="v">loop · warm (field-v1)</span><span class="tag"><a class="dl" href="assets/loop-field-warm.webm">webm</a></span></figcaption></figure>
+      <figure><span class="badge alt">ALT</span><video src="assets/loop-field-blue.webm" muted loop autoplay playsinline poster="assets/thumbs/field-v2.webp"></video><figcaption><span class="v">loop · Union-blue (field-v2)</span><span class="tag"><a class="dl" href="assets/loop-field-blue.webm">webm</a></span></figcaption></figure>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Default wiring guess (in <code>landing-coldopen.html</code>): <strong>sky-v2 · valley-v3 · tent-v1 · field-v1 (or warm loop)</strong>.
+     Tell me your picks per layer and I'll lock them in and tune the masks. To swap a layer yourself, edit its
+     <code>data-layer-src</code> (or <code>data-layer-video</code>) attribute in the hero file.</p>
+</footer>
+</body>
+</html>

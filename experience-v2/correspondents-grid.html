@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>The Correspondents — four windows, one scene</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   THE CORRESPONDENTS — four SEPARATE painterly windows, composited
+   in code into ONE cohesive 4-panel scene (the right approach vs.
+   baking 4 panels into a single generated image).
+   Each panel is an independent layer → swappable, and animates as its
+   OWN breathing loop. Shared frame + grade + grain unify them.
+   ============================================================ */
+:root{
+  --bg:#0c0e12; --ground:#15110b; --paper:#ece3d2; --muted:#9aa3ab;
+  --alex:#B8860B; --henry:#2D5F8A; --james:#4A7C59; --charles:#8B3A3A;
+  --frame:#2a2114; --frame-hi:#4a3c25;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--paper);font-family:"Source Serif 4",Georgia,serif;line-height:1.5}
+.wrap{max-width:1480px;margin:0 auto;padding:54px 30px 90px}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+h1{font-weight:300;font-size:clamp(30px,5vw,60px);letter-spacing:-.01em;margin:14px 0 8px}
+h1 em{font-style:italic;color:var(--alex)}
+.lede{color:#cdc4b4;font-size:clamp(16px,1.6vw,19px);max-width:60ch;font-style:italic}
+.note{margin-top:12px;font-family:"Inter",sans-serif;font-size:13px;color:var(--muted);max-width:88ch}
+
+/* the unified polyptych ground */
+.polyptych{position:relative;margin-top:34px;padding:22px;border-radius:12px;
+  background:
+    radial-gradient(120% 90% at 50% 30%, #1c160e 0%, var(--ground) 70%, #0b0805 100%);
+  box-shadow:inset 0 2px 30px rgba(0,0,0,.6), 0 30px 80px rgba(0,0,0,.5)}
+.panels{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;z-index:1}
+@media(max-width:1080px){.panels{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.panels{grid-template-columns:1fr}}
+
+/* one window */
+.win{position:relative;border-radius:7px;overflow:hidden;
+  border:1px solid var(--frame-hi);
+  box-shadow:0 0 0 4px var(--frame), 0 14px 30px rgba(0,0,0,.5);
+  background:#000}
+.win .img{position:relative;width:100%;aspect-ratio:3/4;background-size:cover;background-position:center top;
+  /* shared grade so the four sit in one tonal world */
+  filter:saturate(.86) contrast(1.04) brightness(.99)}
+/* the at-rest breathing loop sits over the still (its own poster); each window breathes on its OWN timing */
+.win .img video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+@media (prefers-reduced-motion: reduce){ .win .img video{display:none} }
+.win .accent{position:absolute;left:0;right:0;top:0;height:4px;z-index:3}
+.win.alex .accent{background:var(--alex)} .win.henry .accent{background:var(--henry)}
+.win.james .accent{background:var(--james)} .win.charles .accent{background:var(--charles)}
+/* per-window vignette + a hair of inner shadow to seat them in the frame */
+.win::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 100% at 50% 38%, transparent 55%, rgba(6,7,10,.5) 100%);
+  box-shadow:inset 0 0 40px rgba(0,0,0,.4)}
+/* signature-safe: hide the very bottom edge (where any faux signature would sit) under the caption */
+.win .cap{position:absolute;left:0;right:0;bottom:0;z-index:4;padding:14px 13px 12px;
+  background:linear-gradient(to top, rgba(8,8,11,.92) 0%, rgba(8,8,11,.7) 55%, transparent 100%)}
+.win .name{font-size:19px;font-weight:400}
+.win .name b{font-weight:600}
+.win .role{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.win .moment{font-family:"Inter",sans-serif;font-size:12px;color:#c4ccd2;margin-top:7px;line-height:1.45;opacity:.92}
+
+/* shared overlays across ALL panels — this is what fuses 4 images into 1 scene */
+.polyptych .grain{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.06;mix-blend-mode:overlay;border-radius:12px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+.polyptych .frameglow{position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:12px;
+  background:radial-gradient(80% 60% at 50% 24%, rgba(224,176,112,.07), transparent 60%)}
+
+.caption-note{margin-top:18px;font-family:"Inter",sans-serif;font-size:13px;color:var(--muted)}
+.caption-note code{background:rgba(255,255,255,.06);padding:1px 5px;border-radius:4px}
+.legend{margin-top:8px;font-family:"Inter",sans-serif;font-size:12.5px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">The Correspondents</div>
+  <h1>Four brothers. Four conditions. <em>One war.</em></h1>
+  <p class="lede">Four separate painterly windows — assembled in code into one scene, each grounded in the real moment he wrote from.</p>
+  <p class="note">This is the recommended approach: four independent 4K renders (not one baked composite) so each window stays fully detailed, swappable, and — crucially — animates as its <strong>own</strong> breathing loop. A shared frame, color-key, vignette, grain and grade fuse them into a single polyptych. In the live build the panels breathe, then their dividers dissolve and the four converge into the Parallel Lives timeline.</p>
+
+  <div class="polyptych">
+    <div class="panels">
+
+      <figure class="win alex">
+        <span class="accent"></span>
+        <div class="img" style="background-image:url('assets/brothers/web/window-alexander-v1.webp')"><video src="assets/brothers/loops/loop-alexander.webm" poster="assets/brothers/web/window-alexander-v1.webp" muted loop autoplay playsinline preload="auto"></video></div>
+        <figcaption class="cap">
+          <div class="name"><b>Alexander</b></div>
+          <div class="role">the writer · 120 letters</div>
+          <div class="moment">By lantern in his tent at night — the tireless letter-writer, the one with a painter's eye.</div>
+        </figcaption>
+      </figure>
+
+      <figure class="win henry">
+        <span class="accent"></span>
+        <div class="img" style="background-image:url('assets/brothers/web/window-henry-v1.webp')"><video src="assets/brothers/loops/loop-henry.webm" poster="assets/brothers/web/window-henry-v1.webp" muted loop autoplay playsinline preload="auto"></video></div>
+        <figcaption class="cap">
+          <div class="name"><b>Henry</b></div>
+          <div class="role">first to fall · Antietam</div>
+          <div class="moment">Harrison's Landing, summer 1862 — gaunt and ailing, the hardtack he can't eat pushed aside.</div>
+        </figcaption>
+      </figure>
+
+      <figure class="win james">
+        <span class="accent"></span>
+        <div class="img" style="background-image:url('assets/brothers/web/window-james-v1.webp')"><video src="assets/brothers/loops/loop-james.webm" poster="assets/brothers/web/window-james-v1.webp" muted loop autoplay playsinline preload="auto"></video></div>
+        <figcaption class="cap">
+          <div class="name"><b>James</b></div>
+          <div class="role">youngest · wounded, Cedar Creek</div>
+          <div class="moment">A hospital ward, winter 1864 — bearded and convalescing, a whittled ring folded into the letter.</div>
+        </figcaption>
+      </figure>
+
+      <figure class="win charles">
+        <span class="accent"></span>
+        <div class="img" style="background-image:url('assets/brothers/web/window-charles-v1.webp')"><video src="assets/brothers/loops/loop-charles.webm" poster="assets/brothers/web/window-charles-v1.webp" muted loop autoplay playsinline preload="auto"></video></div>
+        <figcaption class="cap">
+          <div class="name"><b>Charles</b></div>
+          <div class="role">the counter · the clerk</div>
+          <div class="moment">Banks's headquarters, New Orleans, 1864 — near-sighted, copying orders in the safest posting of all.</div>
+        </figcaption>
+      </figure>
+
+    </div>
+    <div class="frameglow"></div>
+    <div class="grain"></div>
+  </div>
+
+  <div class="legend">
+    <span><i class="dot" style="background:var(--alex)"></i> Alexander</span>
+    <span><i class="dot" style="background:var(--henry)"></i> Henry</span>
+    <span><i class="dot" style="background:var(--james)"></i> James</span>
+    <span><i class="dot" style="background:var(--charles)"></i> Charles</span>
+  </div>
+  <p class="caption-note">Versions shown: the clean <code>v1</code> set. Swapping any panel is one attribute change. The caption gradient also masks the bottom edge (belt-and-suspenders against any stray painted signature).</p>
+</div>
+</body>
+</html>

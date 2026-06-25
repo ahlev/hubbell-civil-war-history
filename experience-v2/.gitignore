@@ -1,0 +1,19 @@
+# --- Heavy source generation stills (~40 MB each, ~1.8 GB total) ---
+# These are the raw Higgsfield generation PNGs. The shipping pages render from the
+# .webm / .webp / .jpg derivatives, NOT these. They are archival source only and are
+# already cloud-backed via OneDrive, so they are kept OUT of git history to avoid bloat.
+# (Internal contact-sheet/review pages reference them and will show broken thumbs from a
+#  clean checkout — that is expected; view those locally where the source files exist.)
+assets/layer-*.png
+assets/seasons/**/*.png
+assets/scenes/**/*.png
+assets/brothers/window-*.png
+assets/preservation/**/*.png
+
+# keep the web-optimized derivatives that pages actually load
+!assets/**/web/**
+!assets/**/thumbs/**
+
+# local verification artifacts
+_skirmish-corner.png
+_sig-test.png

@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>The Hubbell Brothers — an immersive archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   THE HUBBELL BROTHERS — immersive descent landing (refined)
+   ============================================================ */
+:root{
+  --paper:#ece3d2; --muted:#9aa3ab; --lantern:#e0b070; --ink:#16130d;
+  --b-alex:#B8860B; --b-henry:#2D5F8A; --b-james:#4A7C59; --b-charles:#8B3A3A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#0a0b0e}
+body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-smoothing:antialiased}
+.track{height:1500vh;position:relative}
+.stage{position:fixed;inset:0;overflow:hidden;background:#0a0b0e}
+
+/* ---- scenes (each a seamless loop) ---- */
+.scene{position:absolute;inset:0;opacity:0;will-change:transform,opacity}
+.scene>video,.scene .composite,.gen>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.05)} /* ONE fixed scale everywhere → no perspective shift across transitions */
+.scene::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 100% at 50% 42%,transparent 50%,rgba(8,9,12,.66) 100%)}
+
+#s-brothers .composite{display:flex}
+#s-brothers .panel{flex:1;height:100%;position:relative;overflow:hidden}
+#s-brothers .panel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;filter:saturate(.84) contrast(1.03) brightness(.99)}
+#s-brothers .seam{position:absolute;top:0;bottom:0;width:7%;transform:translateX(-50%);pointer-events:none;background:linear-gradient(90deg,transparent,rgba(8,7,5,.5),transparent);z-index:2}
+#s-brothers .seam.s1{left:25%}#s-brothers .seam.s2{left:50%}#s-brothers .seam.s3{left:75%}
+
+/* ---- transition layers ---- */
+.gen{position:absolute;inset:0;opacity:0;z-index:6;background:#0a0b0e}
+.dawn{position:absolute;inset:0;opacity:0;z-index:5;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(80% 70% at 50% 82%,rgba(240,207,149,.9),rgba(224,176,112,.4) 40%,transparent 72%)}
+.dark{position:absolute;inset:0;opacity:0;z-index:7;pointer-events:none;background:#05060a}
+#embers{position:absolute;inset:0;z-index:8;pointer-events:none}
+.fog{position:absolute;inset:0;opacity:0;z-index:7;pointer-events:none;background:linear-gradient(180deg,rgba(190,196,205,0),rgba(200,206,214,.5) 60%,rgba(210,215,222,.78))}
+.vignette{position:absolute;inset:0;z-index:9;pointer-events:none;background:radial-gradient(130% 110% at 50% 40%,transparent 54%,rgba(6,7,10,.66) 100%)}
+.grain{position:absolute;inset:0;z-index:9;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+
+/* ---- text / content ---- */
+.layer{position:absolute;inset:0;z-index:12;pointer-events:none}
+.beat{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(92vw,880px);text-align:center;opacity:0;padding:0 22px;will-change:opacity,transform;
+  text-shadow:0 2px 30px rgba(0,0,0,.9),0 1px 4px rgba(0,0,0,.75)}
+.beat::before{content:"";position:absolute;inset:-58% -26%;z-index:-1;pointer-events:none;
+  background:radial-gradient(56% 60% at 50% 50%,rgba(4,5,8,.93),rgba(4,5,8,.72) 44%,rgba(4,5,8,.34) 68%,transparent 84%);filter:blur(22px)}
+.ey{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.beat h1{font-weight:300;font-size:clamp(38px,7vw,84px);line-height:1.03;letter-spacing:-.01em}
+.beat h1 em{font-style:italic;color:var(--lantern)}
+.distance{margin-top:20px;font-style:italic;font-size:clamp(16px,2.1vw,22px);color:#e6dcc9;max-width:32ch;margin-inline:auto;line-height:1.5}
+.quote p{font-weight:600;font-size:clamp(22px,3vw,34px);line-height:1.4;font-style:italic;color:#f3ecdd}
+.quote p em{font-style:italic;color:var(--lantern)}                       /* signature phrases lift to lantern-gold */
+.quote.long{width:min(94vw,760px)}                                        /* contemplative multi-paragraph passage */
+.quote.long p{font-weight:500;font-size:clamp(15px,1.95vw,23px);line-height:1.55}
+.quote.long p+p{margin-top:.75em}
+.cite{margin-top:22px;font-family:"JetBrains Mono",monospace;font-style:normal;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#dfe5ea;font-weight:500;line-height:1.7}
+.cite b{display:block;color:var(--lantern);font-weight:700;font-size:17px;letter-spacing:.04em;margin-bottom:3px}
+.cite .age{color:#e6dcc9;font-weight:600}
+
+/* brothers headline (intro over the 4-up) */
+#b-bhead{width:min(92vw,920px)}
+#b-bhead h2{font-weight:700;font-size:clamp(26px,4vw,52px);line-height:1.1;letter-spacing:-.01em;color:#f3ecdd}
+#b-bhead .sub{display:block;margin-top:14px;font-weight:500;font-size:clamp(16px,2vw,24px);color:#e0b070}
+
+/* brothers cascade — each quote LOCKED to its column, condensed + solid backing */
+#cascade{position:absolute;inset:0;z-index:13;pointer-events:none}
+#cascade .ex{position:absolute;top:5.5%;width:21%;opacity:0;transform:translateY(-12px);transition:opacity .8s ease,transform .8s ease;
+  background:linear-gradient(180deg,rgba(5,6,9,.9),rgba(5,6,9,.7));border:1px solid rgba(236,227,210,.14);border-radius:10px;
+  padding:14px 13px 12px;text-align:center;backdrop-filter:blur(2px);box-shadow:0 14px 34px rgba(0,0,0,.5)}
+#cascade .ex p{font-style:italic;font-weight:600;font-size:clamp(12px,1.05vw,15px);line-height:1.5;color:#f3ecdd}
+#cascade .ex .c{margin-top:10px;padding-top:9px;border-top:1px solid rgba(236,227,210,.16);font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#cdd3d9;line-height:1.6}
+#cascade .ex .c b{font-weight:700;display:block;margin-bottom:3px;font-size:11px;letter-spacing:.03em}
+/* columns: each 25% wide; box 21% centered in its column → left = idx*25 + 2 */
+#cascade .ex.alex{left:2%}#cascade .ex.henry{left:27%}#cascade .ex.james{left:52%}#cascade .ex.charles{left:77%}
+#cascade .ex.alex .c b{color:var(--b-alex)}#cascade .ex.henry .c b{color:var(--b-henry)}
+#cascade .ex.james .c b{color:var(--b-james)}#cascade .ex.charles .c b{color:var(--b-charles)}
+#cascade .ex.show{opacity:1;transform:none}
+
+/* exploration grid */
+.explore{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(94vw,1080px);opacity:0;pointer-events:none}
+.explore .eyb{text-align:center;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.explore h2{text-align:center;font-weight:400;font-size:clamp(24px,3.4vw,40px);margin-bottom:24px;text-shadow:0 2px 24px rgba(0,0,0,.9)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:820px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.cards{grid-template-columns:1fr}}
+.card{display:block;text-decoration:none;color:var(--paper);background:rgba(8,9,13,.74);border:1px solid rgba(236,227,210,.16);border-radius:10px;padding:16px;backdrop-filter:blur(4px);transition:transform .18s,border-color .18s}
+.card:hover{transform:translateY(-2px);border-color:var(--lantern)}
+.card .num{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.card h3{font-weight:400;font-size:19px;margin:6px 0}
+.card p{font-size:13.5px;line-height:1.5;color:#cdd3d9;font-family:"Inter",sans-serif}
+
+.prosebeat{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(92vw,760px);opacity:0;text-align:center;
+  text-shadow:0 2px 26px rgba(0,0,0,.9)}
+.prosebeat .eyb{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.prosebeat h2{font-weight:300;font-size:clamp(26px,4vw,46px);line-height:1.12;margin-bottom:18px}
+.prosebeat p{font-size:clamp(16px,1.7vw,19px);line-height:1.6;color:#ece2d1;max-width:60ch;margin:0 auto}
+.prosebeat .cta{display:inline-block;margin-top:26px;pointer-events:auto;font-family:"Inter",sans-serif;font-size:14px;color:var(--ink);background:var(--lantern);padding:11px 20px;border-radius:6px;text-decoration:none;font-weight:600}
+
+/* ===== persistent navbar (V1-style; hero reforms into this) ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;gap:18px;padding:13px 26px;
+  background:linear-gradient(180deg,rgba(8,9,12,.86),rgba(8,9,12,.5));backdrop-filter:blur(8px);border-bottom:1px solid rgba(236,227,210,.1);
+  transform:translateY(-110%);opacity:0;transition:transform .8s cubic-bezier(.22,.61,.36,1),opacity .8s ease}
+.nav.in{transform:none;opacity:1}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--paper)}
+.brand svg{flex:none}
+.brand .bt{font-size:16px;font-weight:500;line-height:1.15}
+.brand .bt .dim{display:block;font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:1px}
+.nav .spacer{flex:1}
+.nav .links{display:flex;gap:4px;flex-wrap:wrap}
+.nav .links a{font-family:"Inter",sans-serif;font-size:13px;color:#c9d0d6;text-decoration:none;padding:6px 9px;border-radius:5px;transition:background .15s,color .15s}
+.nav .links a:hover{background:rgba(236,227,210,.08);color:var(--paper)}
+@media(max-width:900px){.nav .links{display:none}}
+
+/* ===== progress indicator + persistent CTA (themed) ===== */
+.scrollind{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:28;display:flex;flex-direction:column;align-items:center;gap:7px;
+  opacity:0;transition:opacity .5s;pointer-events:none;text-align:center}
+.scrollind .mouse{position:relative;width:26px;height:42px;border:2px solid rgba(224,176,112,.8);border-radius:13px;background:rgba(8,9,12,.4);box-shadow:0 2px 14px rgba(0,0,0,.6)}
+.scrollind .ball{position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--lantern);animation:mb 1.8s ease-in-out infinite}
+@keyframes mb{0%,100%{transform:translateY(0);opacity:1}55%{transform:translateY(13px);opacity:.4}}
+.scrollind .ring{position:absolute;inset:-6px}
+.scrollind .ring circle{fill:none;stroke-width:2;transform:rotate(-90deg);transform-origin:50% 50%}
+.scrollind .ring .bg{stroke:rgba(236,227,210,.14)}
+.scrollind .ring .fg{stroke:var(--lantern);transition:stroke-dashoffset .15s linear}
+.scrollind .lab{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#e6dcca;text-shadow:0 2px 14px rgba(0,0,0,.85)}
+
+@media (prefers-reduced-motion: reduce){
+  .track{height:auto}.stage{position:static}
+  .scene{position:relative;opacity:1 !important;height:100svh}
+  .gen,.dawn,.dark,.fog,#embers{display:none}
+  .beat,.explore,.prosebeat,#cascade .ex,#b-bhead{opacity:1 !important;position:relative;transform:none;margin:8vh auto}
+  .scrollind{display:none}.nav{transform:none;opacity:1}
+}
+</style>
+</head>
+<body>
+
+<!-- persistent navbar (fades in after beat 1) -->
+<nav class="nav" id="nav">
+  <a class="brand" href="index.html" aria-label="Home">
+    <svg viewBox="0 0 100 100" width="20" height="20" aria-hidden="true"><circle cx="32" cy="32" r="15" fill="#2D5F8A"/><circle cx="68" cy="32" r="15" fill="#B8860B"/><circle cx="32" cy="68" r="15" fill="#4A7C59"/><circle cx="68" cy="68" r="15" fill="#8B3A3A"/></svg>
+    <span class="bt">The Hubbell Brothers<span class="dim">Civil War Letters · 1861–1865</span></span>
+  </a>
+  <div class="spacer"></div>
+  <div class="links">
+    <a href="the-collection.html">The Collection</a>
+    <a href="hubbell-dashboard.html">Parallel Lives</a>
+    <a href="viz-map-fullwar.html">Map That Moves</a>
+    <a href="viz-health-ledger.html">Wellness Ledger</a>
+    <a href="viz-money-story.html">Money Story</a>
+    <a href="viz-people-web.html">People Web</a>
+    <a href="who-they-were.html">Who They Were</a>
+  </div>
+</nav>
+
+<div class="track">
+  <div class="stage" id="stage">
+
+    <!-- SCENES -->
+    <div class="scene" id="s-tent"><video data-src="assets/loop-field-warm.webm" muted loop playsinline preload="none" poster="assets/hero-poster.jpg"></video></div>
+    <div class="scene" id="s-valley"><video data-src="assets/loops/loop-summer-valley.webm" muted loop playsinline preload="none" poster="assets/seasons/summer/web/layer-valley-v2.webp"></video></div>
+    <div class="scene" id="s-battle"><video data-src="assets/loops/loop-skirmish-v2.webm" muted loop playsinline preload="none" poster="assets/scenes/web/scene-skirmish-v2.webp"></video></div>
+    <div class="scene" id="s-brothers">
+      <div class="composite">
+        <div class="panel"><video data-src="assets/brothers/loops/loop-alexander-fav.webm" muted loop playsinline preload="none" poster="assets/brothers/web/window-alexander-fav.webp"></video></div>
+        <div class="panel"><video data-src="assets/brothers/loops/loop-henry.webm" muted loop playsinline preload="none" poster="assets/brothers/web/window-henry-v1.webp"></video></div>
+        <div class="panel"><video data-src="assets/brothers/loops/loop-james-wide.webm" muted loop playsinline preload="none" poster="assets/brothers/web/window-james-v2-wide.webp"></video></div>
+        <div class="panel"><video data-src="assets/brothers/loops/loop-charles.webm" muted loop playsinline preload="none" poster="assets/brothers/web/window-charles-v1.webp"></video></div>
+      </div>
+      <div class="seam s1"></div><div class="seam s2"></div><div class="seam s3"></div>
+    </div>
+    <div class="scene" id="s-explore"><video data-src="assets/loops/loop-summer-tent.webm" muted loop playsinline preload="none" poster="assets/seasons/summer/web/layer-tent-v1.webp"></video></div>
+    <div class="scene" id="s-letters"><video data-src="assets/loops/loop-summer-sky.webm" muted loop playsinline preload="none" poster="assets/seasons/summer/web/layer-sky-v2.webp"></video></div>
+    <div class="scene" id="s-preserve"><video data-src="assets/loops/loop-preservation.webm" muted loop playsinline preload="none" poster="assets/preservation/thumbs/v1b-reseat-b.webp"></video></div>
+
+    <!-- TRANSITIONS -->
+    <div class="gen" id="g-smoke"><video data-src="assets/transitions/smoke-valley2-skirmish2.webm" muted playsinline preload="none"></video></div>
+    <div class="gen" id="g-rain"><video data-src="assets/transitions/rainwash-skirmish-brothers.webm" muted playsinline preload="none"></video></div>
+    <div class="dawn" id="dawn"></div>
+    <div class="dark" id="dark"></div>
+    <canvas id="embers"></canvas>
+    <div class="fog" id="fog"></div>
+    <div class="vignette"></div>
+    <div class="grain"></div>
+
+    <!-- TEXT / CONTENT -->
+    <div class="layer">
+      <div class="beat" id="b-title">
+        <div class="ey">Hubbell Family Archive · 1861–1865</div>
+        <h1>The Hubbell <em>Brothers</em></h1>
+        <p class="distance">Four brothers. Four years of war. Two hundred and seventy-three letters across the distance between them.</p>
+      </div>
+      <div class="beat quote long" id="b-painting">
+        <p>&ldquo;&lsquo;Way down South in Dixie.&rsquo; That is where I am. And a beautiful country too if it were not cursed by the existence of slavery. I am encamped on the summit of a high hill and the view is very fine. Green fields, meadows, large farms, patches of woods, roads winding here and there&hellip; all of this spread out before me <em>like a beautiful painting</em>.</p>
+        <p>I was sitting on the hill just now watching the sun as it was setting behind the Blue Ridge. The soft notes of the bugle were floating through the air when I <em>almost forgot I was a soldier</em>&hellip;&rdquo;</p>
+        <div class="cite"><b>Alexander Hubbell</b> Pine Mountain, VA · July 14, 1862 · <span class="age">(Age 18)</span></div>
+      </div>
+      <div class="beat quote" id="b-rock">
+        <p>&ldquo;&hellip;But if the drum should beat to arms tomorrow, there will be a different scene. Troops will be forming in line of battle&hellip; the skirmishers will be thrown out, and then <em>the earth will fairly rock.</em>&rdquo;</p>
+        <div class="cite"><b>Alexander Hubbell</b> Pine Mountain, VA · July 14, 1862</div>
+      </div>
+
+      <!-- brothers headline (precedes the cascade) -->
+      <div class="beat" id="b-bhead">
+        <h2>The words and perspective of four brothers from New York<span class="sub">273 preserved letters that document their Civil War story.</span></h2>
+      </div>
+
+      <!-- brothers cascade (column-locked) -->
+      <div id="cascade">
+        <div class="ex alex"><p>&ldquo;Here I am safe and sound in the barracks. How strange it does seem. Ah! what a bedlam!&rdquo;</p><div class="c"><b>Alexander Hubbell</b>Ogdensburgh, NY · Sept 20, 1861</div></div>
+        <div class="ex henry"><p>&ldquo;How I long to have one good meal at home, even if it wasn&rsquo;t anything but potatoes and salt…&rdquo;</p><div class="c"><b>Henry Hubbell</b>Near Richmond, VA · June 22, 1862</div></div>
+        <div class="ex james"><p>&ldquo;It is nothing but a flesh wound and is doing well. I walked several miles after being hit in order not to fall into the Johnnies&rsquo; hands.&rdquo;</p><div class="c"><b>James Hubbell</b>Baltimore, MD · Oct 29, 1864</div></div>
+        <div class="ex charles"><p>&ldquo;A pleasant place here, a good deal better than being in the field… when night comes I spread my blankets on the floor and sleep soundly.&rdquo;</p><div class="c"><b>Charles Hubbell</b>New Orleans, LA · March 6, 1864</div></div>
+      </div>
+
+      <div class="explore" id="b-explore">
+        <div class="eyb">The Explorations</div>
+        <h2>What 273 letters reveal when you read them as data.</h2>
+        <div class="cards">
+          <a class="card" href="hubbell-dashboard.html"><div class="num">01 · Timeline</div><h3>Parallel Lives</h3><p>Every letter by date and author — four brothers, four theaters of war.</p></a>
+          <a class="card" href="viz-map-fullwar.html"><div class="num">02 · Geography</div><h3>The Map That Moves</h3><p>Follow four soldiers across the eastern theater, letter by letter.</p></a>
+          <a class="card" href="viz-health-ledger.html"><div class="num">03 · Wellness</div><h3>The Wellness Ledger</h3><p>For every soldier killed in battle, two died of disease.</p></a>
+          <a class="card" href="viz-money-story.html"><div class="num">04 · Economy</div><h3>The Money Story</h3><p>Every dollar — pay, bounties, money begged from home.</p></a>
+          <a class="card" href="viz-people-web.html"><div class="num">05 · Network</div><h3>The People Web</h3><p>Nearly 600 people, mapped as the connections between them.</p></a>
+          <a class="card" href="the-collection.html"><div class="num">The Archive</div><h3>Five Generations</h3><p>How 273 letters survived 160 years of careful stewardship.</p></a>
+        </div>
+      </div>
+
+      <div class="prosebeat" id="b-letters">
+        <div class="eyb">The Letters</div>
+        <h2>What they wrote home.</h2>
+        <p>Not the heroic correspondence of myth — young men writing to their mother about being sick among strangers, about money, about the long grinding weeks between battles. Read together, an unedited record of what the war felt like from inside it.</p>
+      </div>
+
+      <div class="prosebeat" id="b-preserve">
+        <div class="eyb">The Preservation</div>
+        <h2>A trunk in a basement. Five generations of care.</h2>
+        <p>Bundled away after the war, water-stained and nearly lost — then transcribed, introduced, digitized, and finally analyzed, each by a different descendant, each in a different decade.</p>
+        <a class="cta" href="the-collection.html">The full story of the collection →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- progress indicator + persistent CTA -->
+<div class="scrollind" id="ind">
+  <div class="mouse"><span class="ball"></span>
+    <svg class="ring" viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="20"/><circle class="fg" id="ringfg" cx="22" cy="22" r="20"/></svg>
+  </div>
+  <div class="lab" id="indlab">Scroll to begin</div>
+</div>
+
+<script>
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const seg=(p,a,b)=>clamp((p-a)/(b-a),0,1);
+const S=id=>document.getElementById(id);
+
+/* segment boundaries (p ∈ [0,1]) — wide holds so text settles & reads */
+const SEG={tent:[0,0.06],dawn:[0.06,0.10],valley:[0.10,0.18],smoke:[0.18,0.25],battle:[0.25,0.33],
+  rain:[0.33,0.43],brothers:[0.43,0.66],settle:[0.66,0.70],explore:[0.70,0.80],dusk:[0.80,0.85],
+  letters:[0.85,0.91],fog:[0.91,0.94],preserve:[0.94,1.00]};
+const scenes={'s-tent':[0,0.10],'s-valley':[0.06,0.25],'s-battle':[0.18,0.43],'s-brothers':[0.40,0.70],
+  's-explore':[0.66,0.85],'s-letters':[0.80,0.94],'s-preserve':[0.91,1.00]};
+/* beat boundaries for the progress ring (start of each major beat) */
+const BEATS=[0,0.10,0.25,0.43,0.70,0.85,0.94,1.0];
+
+if(reduced){
+  document.querySelectorAll('.scene video').forEach(v=>{v.src=v.dataset.src;v.play().catch(()=>{});});
+  document.querySelectorAll('#cascade .ex').forEach(e=>e.classList.add('show'));
+}else{
+  const startT=performance.now();
+  let p=0,target=0,mx=0,my=0,tmx=0,tmy=0,t=0;
+  addEventListener('scroll',()=>{const m=document.body.scrollHeight-innerHeight;target=m>0?clamp(scrollY/m,0,1):0;},{passive:true});
+  addEventListener('mousemove',e=>{tmx=e.clientX/innerWidth-.5;tmy=e.clientY/innerHeight-.5;},{passive:true});
+
+  function lazy(){
+    for(const id in scenes){const [a,b]=scenes[id];const near=p>a-0.10&&p<b+0.10;
+      S(id).querySelectorAll('video').forEach(v=>{ if(near){if(!v.src)v.src=v.dataset.src; if(v.paused)v.play().catch(()=>{});} else if(v.src&&!v.paused)v.pause(); });}
+    [['g-smoke','smoke'],['g-rain','rain']].forEach(([gid,k])=>{const [a,b]=SEG[k];const v=S(gid).querySelector('video');if(p>a-0.08&&p<b+0.08&&!v.src)v.src=v.dataset.src;});
+  }
+  function setO(el,o){el.style.opacity=o.toFixed(3);}
+  /* scenes only translate with the mouse (fixed scale on the media → no perspective shift) */
+  function par(el){el.style.transform=`translate3d(${(mx*13).toFixed(1)}px,${(my*10).toFixed(1)}px,0)`;}
+  function beat(el,o,rise){el.style.opacity=o.toFixed(3);el.style.transform=`translate(-50%,calc(-50% + ${((1-o)*(rise||0))|0}px))`;}
+
+  function gen(gid,range){const wrap=S(gid),v=wrap.querySelector('video');
+    if(p>=range[0]&&p<range[1]){setO(wrap,1);if(v.src&&v.paused&&v.currentTime<0.02)v.play().catch(()=>{});}
+    else if(p<range[0]){setO(wrap,0);if(v.src){v.pause();try{v.currentTime=0;}catch(e){}}}
+    else setO(wrap,clamp(1-(p-range[1])*30,0,1)); }
+
+  /* embers */
+  const ec=S('embers'),ex=ec.getContext('2d');let emb=[];
+  function sizeEmb(){ec.width=innerWidth;ec.height=innerHeight;emb=Array.from({length:60},()=>({x:Math.random()*innerWidth,y:innerHeight+Math.random()*innerHeight,r:1+Math.random()*2.4,vy:-(0.3+Math.random()*0.9),drift:(Math.random()-.5)*0.5,s:Math.random()*6}));}
+  sizeEmb();addEventListener('resize',sizeEmb,{passive:true});let emberI=0;
+  function drawEmbers(){ex.clearRect(0,0,ec.width,ec.height);if(emberI<=0.01)return;for(const e of emb){e.y+=e.vy;e.x+=e.drift+Math.sin(t*0.5+e.s)*0.3;if(e.y<-10){e.y=ec.height+10;e.x=Math.random()*ec.width;}ex.globalAlpha=emberI*(0.5+0.5*Math.sin(t*2+e.s));ex.fillStyle='rgba(240,150,70,1)';ex.beginPath();ex.arc(e.x,e.y,e.r,0,6.283);ex.fill();}ex.globalAlpha=1;}
+
+  /* ---- brothers reveal sequence: headline → quotes L→R, min 1s each ---- */
+  const RING=2*Math.PI*20; S('ringfg').style.strokeDasharray=RING;
+  const exEls={headline:S('b-bhead'),alex:document.querySelector('#cascade .ex.alex'),henry:document.querySelector('#cascade .ex.henry'),james:document.querySelector('#cascade .ex.james'),charles:document.querySelector('#cascade .ex.charles')};
+  const STEPS=['headline','alex','henry','james','charles']; // 0..4
+  let seqIdx=-1,lastAdv=0;
+  function brothersSeq(now){
+    const inB=p>=SEG.brothers[0]&&p<SEG.settle[1];
+    if(!inB){ // outside the brothers segment → force EVERYTHING hidden (fixes headline/quotes bleeding into adjacent beats on scroll-back or scroll-forward)
+      exEls.headline.style.opacity='0';
+      ['alex','henry','james','charles'].forEach(k=>exEls[k].classList.remove('show'));
+      seqIdx=(p<SEG.brothers[0])?-1:4;   // before → not started; after → fully advanced (so backward re-entry snaps cleanly)
+      return;
+    }
+    const bp=seg(p,SEG.brothers[0]+0.01,SEG.brothers[1]-0.02);
+    const desired=clamp(Math.floor(bp/0.19),0,4);          // scroll-driven target step
+    if(desired>seqIdx && now-lastAdv>=1000){seqIdx++;lastAdv=now;}      // min 1s dwell before advancing
+    if(desired<seqIdx){seqIdx=desired;lastAdv=now;}                      // scrolling back
+    // headline visible only at step 0; quotes accumulate from step 1
+    exEls.headline.style.opacity=(seqIdx===0?1:0).toFixed(2);
+    exEls.headline.style.transform='translate(-50%,-50%)';
+    [['alex',1],['henry',2],['james',3],['charles',4]].forEach(([k,i])=>exEls[k].classList.toggle('show',seqIdx>=i));
+  }
+
+  function apply(now){
+    const el=now-startT;
+    // scene opacities (crossfade under covers)
+    setO(S('s-tent'),1-seg(p,SEG.dawn[0],SEG.dawn[1]));
+    setO(S('s-valley'),seg(p,SEG.dawn[0],SEG.dawn[1])*(1-seg(p,SEG.smoke[0],SEG.smoke[1])));
+    setO(S('s-battle'),seg(p,SEG.smoke[0],SEG.smoke[1])*(1-seg(p,SEG.rain[0],SEG.rain[0]+0.015)));
+    setO(S('s-brothers'),seg(p,SEG.rain[1]-0.015,SEG.rain[1])*(1-seg(p,SEG.settle[0],SEG.settle[1])));
+    setO(S('s-explore'),seg(p,SEG.settle[0],SEG.settle[1])*(1-seg(p,SEG.dusk[0],SEG.dusk[1])));
+    setO(S('s-letters'),seg(p,SEG.dusk[1]-0.01,SEG.dusk[1])*(1-seg(p,SEG.fog[0]+0.02,SEG.fog[1])));
+    setO(S('s-preserve'),seg(p,SEG.fog[1]-0.02,SEG.fog[1]));
+    ['s-tent','s-valley','s-battle','s-explore','s-letters','s-preserve'].forEach(id=>par(S(id)));
+    // brothers settle-into-desk (the one intentional scale move).
+    // Baseline 1.05 matches every other scene/gen video (.scene>video) so the rain-wash clip (also 1.05)
+    // hands off to the composite with NO scale pop — its nested .panel videos miss the global rule.
+    const st=seg(p,SEG.settle[0],SEG.settle[1]);
+    S('s-brothers').style.transform=`translate3d(${(mx*13).toFixed(1)}px,${(my*10-st*46).toFixed(1)}px,0) scale(${(1.05-st*0.16).toFixed(3)})`;
+
+    // transitions
+    S('dawn').style.opacity=(Math.sin(seg(p,SEG.dawn[0],SEG.dawn[1])*Math.PI)*0.9).toFixed(3);
+    gen('g-smoke',SEG.smoke); gen('g-rain',SEG.rain);
+    const dk=seg(p,SEG.dusk[0],SEG.dusk[1]); S('dark').style.opacity=(Math.sin(dk*Math.PI)*0.96).toFixed(3); emberI=Math.sin(dk*Math.PI);
+    S('fog').style.opacity=(Math.sin(seg(p,SEG.fog[0],SEG.fog[1])*Math.PI)*0.92).toFixed(3);
+
+    // text beats — wide windows so each settles & reads
+    const introTitle=clamp((el-2000)/1400,0,1);
+    beat(S('b-title'),introTitle*(1-seg(p,0.045,0.075)),18);
+    beat(S('b-painting'),seg(p,0.10,0.125)*(1-seg(p,0.175,0.19)),14);   // long 2-para passage → wider hold
+    beat(S('b-rock'),seg(p,0.25,0.275)*(1-seg(p,0.305,0.325)),14);
+    brothersSeq(now);
+    setO(S('b-explore'),seg(p,0.715,0.745)*(1-seg(p,0.785,0.80))); S('b-explore').style.pointerEvents=(p>0.71&&p<0.80)?'auto':'none';
+    setO(S('b-letters'),seg(p,0.855,0.875)*(1-seg(p,0.895,0.91)));
+    setO(S('b-preserve'),seg(p,0.945,0.965)); S('b-preserve').style.pointerEvents=(p>0.94)?'auto':'none';
+
+    // navbar: hero reforms into it once you scroll past beat 1
+    S('nav').classList.toggle('in',p>0.05);
+
+    // progress indicator: ring fills toward next beat; label + fade
+    let bi=0; for(let i=0;i<BEATS.length-1;i++){if(p>=BEATS[i])bi=i;}
+    const within=seg(p,BEATS[bi],BEATS[bi+1]);
+    S('ringfg').style.strokeDashoffset=(RING*(1-within)).toFixed(1);
+    S('indlab').textContent = p<0.02 ? 'Scroll to begin' : (p>0.965 ? 'Explore the archive' : 'Scroll to continue');
+    setO(S('ind'),clamp(el>3200?1:0,0,1)*(1-seg(p,0.985,1.0)));
+  }
+
+  function frame(){const now=performance.now();t+=0.016;p+=(target-p)*0.085;mx+=(tmx-mx)*0.06;my+=(tmy-my)*0.06;lazy();apply(now);drawEmbers();requestAnimationFrame(frame);}
+  lazy();apply(performance.now());requestAnimationFrame(frame);
+}
+</script>
+</body>
+</html>

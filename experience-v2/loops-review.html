@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>New loops + transition — review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@300;400&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0c0e12;--panel:#161a20;--line:#262c34;--paper:#ece3d2;--muted:#9aa3ab;--lantern:#e0b070}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--paper);font-family:"Source Serif 4",Georgia,serif;line-height:1.5}
+header,main{max-width:1320px;margin:0 auto}
+header{padding:44px 30px 8px}
+h1{font-weight:300;font-size:clamp(26px,4vw,40px)}h1 em{font-style:italic;color:var(--lantern)}
+.sub{margin-top:8px;color:var(--muted);font-size:15px;font-family:"Inter",sans-serif}
+main{padding:14px 30px 90px}
+h2{font-weight:400;font-size:20px;margin:32px 0 12px;border-top:1px solid var(--line);padding-top:18px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+figure{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+figure video{display:block;width:100%;background:#000;aspect-ratio:16/9;object-fit:cover}
+figure.tall video{aspect-ratio:3/4}
+figure.wide video{aspect-ratio:21/9}
+figcaption{display:flex;justify-content:space-between;padding:8px 11px;font-family:"JetBrains Mono",monospace;font-size:12px}
+figcaption .l{color:var(--lantern);font-weight:500}figcaption .t{color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <h1>New loops &amp; transition — <em>review</em></h1>
+  <p class="sub">Native <code>start==end</code> seamless loops + the cannon-smoke transition. (James loop renders separately.)</p>
+</header>
+<main>
+  <h2>Scene breathing loops</h2>
+  <div class="grid">
+    <figure><video src="assets/loops/loop-summer-valley.webm" muted loop autoplay playsinline></video><figcaption><span class="l">summer-valley</span><span class="t">smoke·figures·mist</span></figcaption></figure>
+    <figure><video src="assets/loops/loop-skirmish-v2.webm" muted loop autoplay playsinline></video><figcaption><span class="l">skirmish-v2</span><span class="t">flag·smoke·flares</span></figcaption></figure>
+    <figure class="tall"><video src="assets/brothers/loops/loop-alexander-fav.webm" muted loop autoplay playsinline></video><figcaption><span class="l">alexander</span><span class="t">writing·breeze</span></figcaption></figure>
+    <figure class="tall"><video src="assets/brothers/loops/loop-james-wide.webm" muted loop autoplay playsinline></video><figcaption><span class="l">james (fixed)</span><span class="t">ward·writing</span></figcaption></figure>
+    <figure><video src="assets/loops/loop-summer-tent.webm" muted loop autoplay playsinline></video><figcaption><span class="l">summer-tent</span><span class="t">subtle backdrop</span></figcaption></figure>
+    <figure><video src="assets/loops/loop-summer-sky.webm" muted loop autoplay playsinline></video><figcaption><span class="l">summer-sky</span><span class="t">subtle backdrop</span></figcaption></figure>
+    <figure class="wide"><video src="assets/loops/loop-preservation.webm" muted loop autoplay playsinline></video><figcaption><span class="l">preservation</span><span class="t">per-station light</span></figcaption></figure>
+  </div>
+  <h2>Transition</h2>
+  <div class="grid">
+    <figure><video src="assets/transitions/smoke-valley2-skirmish2.webm" muted loop autoplay playsinline controls></video><figcaption><span class="l">cannon-smoke</span><span class="t">valley-v2 → skirmish-v2</span></figcaption></figure>
+  </div>
+</main>
+</body>
+</html>

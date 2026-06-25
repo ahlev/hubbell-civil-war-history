@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Seasonal Layers · Scene Compositions · Transitions — Hubbell Experience v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0c0e12;--panel:#161a20;--line:#262c34;--paper:#ece3d2;--muted:#9aa3ab;--lantern:#e0b070;
+  --spring:#8fae7a;--summer:#cb9a55;--fall:#c2783f;--winter:#7f93a6;--pick:#7fb38a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--paper);font-family:"Source Serif 4",Georgia,serif;line-height:1.5}
+header,main,footer{max-width:1320px;margin:0 auto}
+header{padding:48px 32px 18px}
+h1{font-weight:300;font-size:clamp(28px,4vw,44px);letter-spacing:-.01em}
+h1 em{font-style:italic;color:var(--lantern)}
+.sub{margin-top:10px;color:var(--muted);font-size:16px;max-width:78ch}
+.meta{margin-top:14px;font-family:"Inter",sans-serif;font-size:12.5px;color:var(--muted)}
+.meta code,.note code,.demo-wrap code,footer code{background:rgba(255,255,255,.06);padding:1px 5px;border-radius:4px}
+nav{margin-top:16px;font-family:"Inter",sans-serif;font-size:13px;display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:var(--lantern);text-decoration:none}
+main{padding:8px 32px 60px}
+.season-band{margin-top:46px;border-top:1px solid var(--line);padding-top:24px}
+h2{font-weight:400;font-size:25px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+h2 .chip{font-family:"Inter",sans-serif;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;color:#0c0e12}
+.chip.spring{background:var(--spring)}.chip.summer{background:var(--summer)}.chip.fall{background:var(--fall)}.chip.winter{background:var(--winter)}
+.chip.scene{background:#b06a8f}.chip.demo{background:var(--lantern)}
+.note{font-family:"Inter",sans-serif;font-size:13px;color:#b9c0c7;margin:8px 0 18px;max-width:90ch}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.grid.scenes{grid-template-columns:repeat(2,1fr)}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.grid,.grid.scenes{grid-template-columns:1fr}}
+figure{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:transform .2s,border-color .2s}
+figure:hover{transform:translateY(-2px);border-color:#3a434e}
+figure img,figure video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#000}
+figcaption{display:flex;justify-content:space-between;padding:8px 11px;font-family:"Inter",sans-serif;font-size:12px}
+figcaption .v{font-weight:500}figcaption .tag{color:var(--muted)}
+.dl{color:var(--lantern);text-decoration:none}.dl:hover{text-decoration:underline}
+.scene-desc{font-family:"Inter",sans-serif;font-size:12.5px;color:#aeb6bd;margin:20px 0 8px}
+.demo-wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:start}
+@media(max-width:820px){.demo-wrap{grid-template-columns:1fr}}
+.demo-wrap video{width:100%;border-radius:10px;border:1px solid var(--line);background:#000}
+.demo-wrap p{font-size:15.5px;color:#cdd3d9;margin-bottom:12px}
+footer{padding:0 32px 90px;color:var(--muted);font-family:"Inter",sans-serif;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Seasonal Layers · Scenes · <em>Transitions</em></h1>
+  <p class="sub">Second-pass assets for Experience v2. Spring/Summer/Fall variants of the four hero layers,
+     net-new Civil War scene compositions (a NY infantryman's experience), and a working proof of an
+     animated season transition. All painterly, all on <code>experience-v2</code>, nothing near main.</p>
+  <p class="meta">Model: <strong>Nano Banana 2</strong> · 4K 16:9 · transition: <strong>Seedance 2.0</strong> morph · 2026-06-24 ·
+     winter set in the <a class="dl" href="hero-contact-sheet.html">original contact sheet &rarr;</a></p>
+  <nav><a href="#seasons">Seasonal layers</a><a href="#scenes">Scene compositions</a><a href="#transition">Transition demo</a><a href="landing-coldopen.html">Wired hero &rarr;</a></nav>
+</header>
+<main>
+<section id="seasons">
+
+  <div class="season-band" style="border-top:none;padding-top:8px">
+    <h2><span class="chip spring">Spring</span> renewal &middot; fragile hope</h2>
+    <p class="note">Same vantage, same tent, same composition as winter &mdash; only palette, foliage and light change, so they read as <em>one place across time</em> (what makes the transition demo below possible).</p>
+    <div class="grid">
+      <figure><a href="assets/seasons/spring/layer-sky-v1.png"><img loading="lazy" src="assets/seasons/spring/thumbs/sky-v1.webp" alt="spring sky v1"></a><figcaption><span class="v">Sky v1</span><span class="tag"><a class="dl" href="assets/seasons/spring/layer-sky-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/spring/layer-sky-v2.png"><img loading="lazy" src="assets/seasons/spring/thumbs/sky-v2.webp" alt="spring sky v2"></a><figcaption><span class="v">Sky v2</span><span class="tag"><a class="dl" href="assets/seasons/spring/layer-sky-v2.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/spring/layer-valley-v1.png"><img loading="lazy" src="assets/seasons/spring/thumbs/valley-v1.webp" alt="spring valley v1"></a><figcaption><span class="v">Valley v1</span><span class="tag"><a class="dl" href="assets/seasons/spring/layer-valley-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/spring/layer-valley-v2.png"><img loading="lazy" src="assets/seasons/spring/thumbs/valley-v2.webp" alt="spring valley v2"></a><figcaption><span class="v">Valley v2</span><span class="tag"><a class="dl" href="assets/seasons/spring/layer-valley-v2.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/spring/layer-tent-v1.png"><img loading="lazy" src="assets/seasons/spring/thumbs/tent-v1.webp" alt="spring tent v1"></a><figcaption><span class="v">Tent v1</span><span class="tag"><a class="dl" href="assets/seasons/spring/layer-tent-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/spring/layer-tent-v2.png"><img loading="lazy" src="assets/seasons/spring/thumbs/tent-v2.webp" alt="spring tent v2"></a><figcaption><span class="v">Tent v2</span><span class="tag"><a class="dl" href="assets/seasons/spring/layer-tent-v2.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/spring/layer-field-v1.png"><img loading="lazy" src="assets/seasons/spring/thumbs/field-v1.webp" alt="spring field v1"></a><figcaption><span class="v">Field v1</span><span class="tag"><a class="dl" href="assets/seasons/spring/layer-field-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/spring/layer-field-v2.png"><img loading="lazy" src="assets/seasons/spring/thumbs/field-v2.webp" alt="spring field v2"></a><figcaption><span class="v">Field v2</span><span class="tag"><a class="dl" href="assets/seasons/spring/layer-field-v2.png">4K</a></span></figcaption></figure>
+    </div>
+  </div>
+
+  <div class="season-band">
+    <h2><span class="chip summer">Summer</span> languid heat &middot; weary green</h2>
+    <div class="grid">
+      <figure><a href="assets/seasons/summer/layer-sky-v1.png"><img loading="lazy" src="assets/seasons/summer/thumbs/sky-v1.webp" alt="summer sky v1"></a><figcaption><span class="v">Sky v1</span><span class="tag"><a class="dl" href="assets/seasons/summer/layer-sky-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/summer/layer-sky-v2.png"><img loading="lazy" src="assets/seasons/summer/thumbs/sky-v2.webp" alt="summer sky v2"></a><figcaption><span class="v">Sky v2</span><span class="tag"><a class="dl" href="assets/seasons/summer/layer-sky-v2.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/summer/layer-valley-v1.png"><img loading="lazy" src="assets/seasons/summer/thumbs/valley-v1.webp" alt="summer valley v1"></a><figcaption><span class="v">Valley v1</span><span class="tag"><a class="dl" href="assets/seasons/summer/layer-valley-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/summer/layer-valley-v2.png"><img loading="lazy" src="assets/seasons/summer/thumbs/valley-v2.webp" alt="summer valley v2"></a><figcaption><span class="v">Valley v2</span><span class="tag"><a class="dl" href="assets/seasons/summer/layer-valley-v2.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/summer/layer-tent-v1.png"><img loading="lazy" src="assets/seasons/summer/thumbs/tent-v1.webp" alt="summer tent v1"></a><figcaption><span class="v">Tent v1</span><span class="tag"><a class="dl" href="assets/seasons/summer/layer-tent-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/summer/layer-tent-v2.png"><img loading="lazy" src="assets/seasons/summer/thumbs/tent-v2.webp" alt="summer tent v2"></a><figcaption><span class="v">Tent v2</span><span class="tag"><a class="dl" href="assets/seasons/summer/layer-tent-v2.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/summer/layer-field-v1.png"><img loading="lazy" src="assets/seasons/summer/thumbs/field-v1.webp" alt="summer field v1"></a><figcaption><span class="v">Field v1</span><span class="tag"><a class="dl" href="assets/seasons/summer/layer-field-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/summer/layer-field-v2.png"><img loading="lazy" src="assets/seasons/summer/thumbs/field-v2.webp" alt="summer field v2"></a><figcaption><span class="v">Field v2</span><span class="tag"><a class="dl" href="assets/seasons/summer/layer-field-v2.png">4K</a></span></figcaption></figure>
+    </div>
+  </div>
+
+  <div class="season-band">
+    <h2><span class="chip fall">Fall</span> harvest &amp; decline &middot; golden melancholy</h2>
+    <div class="grid">
+      <figure><a href="assets/seasons/fall/layer-sky-v1.png"><img loading="lazy" src="assets/seasons/fall/thumbs/sky-v1.webp" alt="fall sky v1"></a><figcaption><span class="v">Sky v1</span><span class="tag"><a class="dl" href="assets/seasons/fall/layer-sky-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/fall/layer-sky-v2.png"><img loading="lazy" src="assets/seasons/fall/thumbs/sky-v2.webp" alt="fall sky v2"></a><figcaption><span class="v">Sky v2</span><span class="tag"><a class="dl" href="assets/seasons/fall/layer-sky-v2.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/fall/layer-valley-v1.png"><img loading="lazy" src="assets/seasons/fall/thumbs/valley-v1.webp" alt="fall valley v1"></a><figcaption><span class="v">Valley v1</span><span class="tag"><a class="dl" href="assets/seasons/fall/layer-valley-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/fall/layer-valley-v2.png"><img loading="lazy" src="assets/seasons/fall/thumbs/valley-v2.webp" alt="fall valley v2"></a><figcaption><span class="v">Valley v2</span><span class="tag"><a class="dl" href="assets/seasons/fall/layer-valley-v2.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/fall/layer-tent-v1.png"><img loading="lazy" src="assets/seasons/fall/thumbs/tent-v1.webp" alt="fall tent v1"></a><figcaption><span class="v">Tent v1</span><span class="tag"><a class="dl" href="assets/seasons/fall/layer-tent-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/fall/layer-tent-v2.png"><img loading="lazy" src="assets/seasons/fall/thumbs/tent-v2.webp" alt="fall tent v2"></a><figcaption><span class="v">Tent v2</span><span class="tag"><a class="dl" href="assets/seasons/fall/layer-tent-v2.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/fall/layer-field-v1.png"><img loading="lazy" src="assets/seasons/fall/thumbs/field-v1.webp" alt="fall field v1"></a><figcaption><span class="v">Field v1</span><span class="tag"><a class="dl" href="assets/seasons/fall/layer-field-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/seasons/fall/layer-field-v2.png"><img loading="lazy" src="assets/seasons/fall/thumbs/field-v2.webp" alt="fall field v2"></a><figcaption><span class="v">Field v2</span><span class="tag"><a class="dl" href="assets/seasons/fall/layer-field-v2.png">4K</a></span></figcaption></figure>
+    </div>
+  </div>
+
+</section>
+
+<section id="scenes">
+  <div class="season-band">
+    <h2><span class="chip scene">Scenes</span> a NY infantryman's war</h2>
+    <p class="note">Net-new compositions beyond the tent vantage &mdash; the lived experience across seasons, from the mundane to the harrowing. Intensity (skirmish, hospital) is carried by smoke, shadow and posture; wounded are anonymous and restrained, <strong>never graphic</strong> &mdash; the same painterly register that protects the "AI-enabled historian" brand. Two versions each.</p>
+
+    <div class="scene-desc"><strong style="color:#e7dcc8">Smoky skirmish.</strong> Union line takes cover behind a stone wall under fire; wounded suggested, not shown.</div>
+    <div class="grid scenes">
+      <figure><a href="assets/scenes/scene-skirmish-v1.png"><img loading="lazy" src="assets/scenes/thumbs/skirmish-v1.webp" alt="skirmish v1"></a><figcaption><span class="v">skirmish v1</span><span class="tag"><a class="dl" href="assets/scenes/scene-skirmish-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/scenes/scene-skirmish-v2.png"><img loading="lazy" src="assets/scenes/thumbs/skirmish-v2.webp" alt="skirmish v2"></a><figcaption><span class="v">skirmish v2</span><span class="tag"><a class="dl" href="assets/scenes/scene-skirmish-v2.png">4K</a></span></figcaption></figure>
+    </div>
+
+    <div class="scene-desc"><strong style="color:#e7dcc8">The advance.</strong> A battle line crosses open ground through powder smoke &mdash; the dread of the exposed advance.</div>
+    <div class="grid scenes">
+      <figure><a href="assets/scenes/scene-advance-v1.png"><img loading="lazy" src="assets/scenes/thumbs/advance-v1.webp" alt="advance v1"></a><figcaption><span class="v">advance v1</span><span class="tag"><a class="dl" href="assets/scenes/scene-advance-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/scenes/scene-advance-v2.png"><img loading="lazy" src="assets/scenes/thumbs/advance-v2.webp" alt="advance v2"></a><figcaption><span class="v">advance v2</span><span class="tag"><a class="dl" href="assets/scenes/scene-advance-v2.png">4K</a></span></figcaption></figure>
+    </div>
+
+    <div class="scene-desc"><strong style="color:#e7dcc8">The march.</strong> A column moving out down a dusty road &mdash; the weary endlessness between battles.</div>
+    <div class="grid scenes">
+      <figure><a href="assets/scenes/scene-march-v1.png"><img loading="lazy" src="assets/scenes/thumbs/march-v1.webp" alt="march v1"></a><figcaption><span class="v">march v1</span><span class="tag"><a class="dl" href="assets/scenes/scene-march-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/scenes/scene-march-v2.png"><img loading="lazy" src="assets/scenes/thumbs/march-v2.webp" alt="march v2"></a><figcaption><span class="v">march v2</span><span class="tag"><a class="dl" href="assets/scenes/scene-march-v2.png">4K</a></span></figcaption></figure>
+    </div>
+
+    <div class="scene-desc"><strong style="color:#e7dcc8">Picket duty.</strong> A lone sentry on the night watch at a winter treeline &mdash; solitude and cold.</div>
+    <div class="grid scenes">
+      <figure><a href="assets/scenes/scene-picket-v1.png"><img loading="lazy" src="assets/scenes/thumbs/picket-v1.webp" alt="picket v1"></a><figcaption><span class="v">picket v1</span><span class="tag"><a class="dl" href="assets/scenes/scene-picket-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/scenes/scene-picket-v2.png"><img loading="lazy" src="assets/scenes/thumbs/picket-v2.webp" alt="picket v2"></a><figcaption><span class="v">picket v2</span><span class="tag"><a class="dl" href="assets/scenes/scene-picket-v2.png">4K</a></span></figcaption></figure>
+    </div>
+
+    <div class="scene-desc"><strong style="color:#e7dcc8">Letter by the fire.</strong> Soldiers around a campfire, one reading a letter from home &mdash; the heart of the archive.</div>
+    <div class="grid scenes">
+      <figure><a href="assets/scenes/scene-letter-v1.png"><img loading="lazy" src="assets/scenes/thumbs/letter-v1.webp" alt="letter v1"></a><figcaption><span class="v">letter v1</span><span class="tag"><a class="dl" href="assets/scenes/scene-letter-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/scenes/scene-letter-v2.png"><img loading="lazy" src="assets/scenes/thumbs/letter-v2.webp" alt="letter v2"></a><figcaption><span class="v">letter v2</span><span class="tag"><a class="dl" href="assets/scenes/scene-letter-v2.png">4K</a></span></figcaption></figure>
+    </div>
+
+    <div class="scene-desc"><strong style="color:#e7dcc8">Winter quarters.</strong> Log huts, stacked muskets, frozen company street &mdash; the long boredom of winter camp.</div>
+    <div class="grid scenes">
+      <figure><a href="assets/scenes/scene-winterquarters-v1.png"><img loading="lazy" src="assets/scenes/thumbs/winterquarters-v1.webp" alt="winter quarters v1"></a><figcaption><span class="v">winter-qtrs v1</span><span class="tag"><a class="dl" href="assets/scenes/scene-winterquarters-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/scenes/scene-winterquarters-v2.png"><img loading="lazy" src="assets/scenes/thumbs/winterquarters-v2.webp" alt="winter quarters v2"></a><figcaption><span class="v">winter-qtrs v2</span><span class="tag"><a class="dl" href="assets/scenes/scene-winterquarters-v2.png">4K</a></span></figcaption></figure>
+    </div>
+
+    <div class="scene-desc"><strong style="color:#e7dcc8">Field hospital.</strong> A surgeon's tent at dusk, stretcher-bearers, covered forms &mdash; the cost, told with restraint.</div>
+    <div class="grid scenes">
+      <figure><a href="assets/scenes/scene-hospital-v1.png"><img loading="lazy" src="assets/scenes/thumbs/hospital-v1.webp" alt="hospital v1"></a><figcaption><span class="v">hospital v1</span><span class="tag"><a class="dl" href="assets/scenes/scene-hospital-v1.png">4K</a></span></figcaption></figure>
+      <figure><a href="assets/scenes/scene-hospital-v2.png"><img loading="lazy" src="assets/scenes/thumbs/hospital-v2.webp" alt="hospital v2"></a><figcaption><span class="v">hospital v2</span><span class="tag"><a class="dl" href="assets/scenes/scene-hospital-v2.png">4K</a></span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="transition">
+  <div class="season-band">
+    <h2><span class="chip demo">Transition</span> the year turning</h2>
+    <div class="demo-wrap">
+      <video src="assets/seasons/transitions/morph-spring-winter.webm" poster="assets/seasons/transitions/morph-spring-winter-poster.jpg" muted loop autoplay playsinline controls></video>
+      <div>
+        <p><strong>Spring &rarr; war-marked winter</strong>, one valley, the in-betweens painted by the model (Seedance 2.0; start-frame = spring valley, end-frame = winter valley).</p>
+        <p>This is the <strong>Tier-4</strong> technique from the plan: let the model paint the seasonal in-betweens, drop the clip into a layer's <code>data-layer-video</code> slot, and scrub it by scroll &mdash; the cheapest path to a cinematic season morph.</p>
+        <p>Full strategy &mdash; scroll-scrub crossfade, displacement-dissolve shaders, dawn&rarr;afternoon light shifts, the spring-field&rarr;battlefield two-pass &mdash; is in <code>tasks/experience-v2/SEASON-TRANSITIONS.md</code>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <p>Picks &amp; direction welcome: which season variants to keep, which scenes to use where, and whether to wire the scroll-scrub year-turn into the hero. Full-res 4K masters sit beside every web derivative in <code>assets/seasons/</code> and <code>assets/scenes/</code>.</p>
+</footer>
+</body>
+</html>

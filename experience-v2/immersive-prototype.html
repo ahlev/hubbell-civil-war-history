@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Immersive Flow — prototype · The Hubbell Brothers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Kalam:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   IMMERSIVE FLOW PROTOTYPE  ·  "The painting, and the earth that rocks"
+   Demonstrates the full vocabulary on ONE scroll:
+     breathing scene  →  cover→swap→reveal transition  →  content resolves
+   Beat script = Alexander Hubbell, Pine Mountain VA, July 14 1862.
+   Branch: experience-v2 · standalone · nothing near main.
+   ============================================================ */
+:root{
+  --paper:#ece3d2; --muted:#9aa3ab; --lantern:#e0b070; --ink:#16130d;
+  --b-alex:#B8860B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#0a0b0e}
+body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-smoothing:antialiased}
+
+/* the scroll track gives us room to scrub; the stage is pinned */
+.track{height:620vh;position:relative}
+.stage{position:fixed;inset:0;overflow:hidden;background:#0a0b0e}
+
+/* scene layers (stacked; JS drives opacity) */
+.scene{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;will-change:opacity,transform}
+.scene::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 100% at 50% 42%,transparent 46%,rgba(8,9,12,.72) 100%)}
+.scene video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* breathing: slow living drift for still scenes */
+.breathe{animation:breathe 22s ease-in-out infinite alternate}
+@keyframes breathe{from{transform:scale(1.02) translate(0,0)}to{transform:scale(1.08) translate(-1.4%,-1%)}}
+/* drifting fog for the valley */
+.fog{position:absolute;inset:-10%;pointer-events:none;opacity:.5;mix-blend-mode:screen;
+  background:radial-gradient(60% 40% at 30% 70%,rgba(200,210,220,.5),transparent 60%),
+             radial-gradient(50% 35% at 75% 75%,rgba(190,200,212,.4),transparent 60%);
+  animation:fogdrift 38s linear infinite alternate}
+@keyframes fogdrift{from{transform:translateX(-4%)}to{transform:translateX(6%)}}
+
+/* === transition overlays === */
+.dawn{position:absolute;inset:0;pointer-events:none;opacity:0;mix-blend-mode:screen;
+  background:radial-gradient(90% 80% at 50% 78%,rgba(240,207,149,.9),rgba(224,176,112,.5) 38%,transparent 72%)}
+#smoke{position:absolute;inset:0;pointer-events:none;width:100%;height:100%}
+.vignette{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(130% 110% at 50% 38%,transparent 52%,rgba(6,7,10,.78) 100%)}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+
+/* === text beats === */
+.beat{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(90vw,820px);text-align:center;opacity:0;
+  text-shadow:0 2px 34px rgba(0,0,0,.85),0 1px 3px rgba(0,0,0,.6);padding:0 22px;will-change:opacity,transform}
+/* legibility scrim: a soft darkened pocket follows the text so it reads on ANY scene */
+.beat::before{content:"";position:absolute;inset:-32% -14%;z-index:-1;pointer-events:none;
+  background:radial-gradient(54% 58% at 50% 50%,rgba(5,6,9,.88),rgba(5,6,9,.62) 44%,rgba(5,6,9,.22) 70%,transparent 82%);filter:blur(17px)}
+.beat .ey{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.beat h1{font-weight:300;font-size:clamp(38px,7vw,84px);line-height:1.03;letter-spacing:-.01em}
+.beat h1 em{font-style:italic;color:var(--lantern)}
+.beat .distance{margin-top:20px;font-style:italic;font-size:clamp(16px,2.1vw,22px);color:#d8cebe;max-width:32ch;margin-inline:auto;line-height:1.5}
+.beat.quote p{font-weight:300;font-size:clamp(21px,3vw,34px);line-height:1.4;font-style:italic}
+.beat.quote .cite{margin-top:20px;font-family:"JetBrains Mono",monospace;font-style:normal;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#cdd3d9}
+.beat.quote .cite b{color:#f0c987;font-weight:600}
+.hand{font-family:"Kalam",cursive;font-weight:300;color:#efe7d6}
+
+/* stats resolve */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid rgba(236,227,210,.16);border-radius:8px;overflow:hidden;background:rgba(10,11,14,.36);backdrop-filter:blur(3px)}
+.stats > div{padding:22px 16px;border-right:1px solid rgba(236,227,210,.12)}
+.stats > div:last-child{border-right:0}
+.stats .n{font-size:clamp(28px,4vw,46px);font-weight:300;color:var(--lantern)}
+.stats .l{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}.stats>div:nth-child(2n){border-right:0}}
+
+/* HUD: scroll cue + beat readout (so you can read the mechanic while judging it) */
+.cue{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);z-index:20;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#e6dcca;text-align:center;transition:opacity .5s;text-shadow:0 2px 18px rgba(0,0,0,.85)}
+.cue svg{display:block;margin:10px auto 0;color:var(--lantern);animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.readout{position:fixed;left:18px;top:16px;z-index:20;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted);letter-spacing:.04em;background:rgba(10,11,14,.5);border:1px solid rgba(236,227,210,.14);border-radius:6px;padding:8px 11px;line-height:1.6}
+.readout b{color:var(--lantern);font-weight:500}
+.tag{position:fixed;right:16px;top:16px;z-index:20;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#0a0b0e;background:var(--lantern);padding:5px 9px;border-radius:999px}
+
+@media (prefers-reduced-motion: reduce){
+  .track{height:auto}
+  .stage{position:static}
+  .scene{position:relative;opacity:1 !important;height:100svh}
+  .breathe{animation:none}.cue{display:none}
+  .beat{position:absolute}
+}
+</style>
+</head>
+<body>
+<div class="tag">Prototype</div>
+<div class="readout">beat: <b id="ro-beat">—</b><br>scroll: <span id="ro-p">0%</span></div>
+
+<div class="track">
+  <div class="stage" id="stage">
+
+    <!-- SCENE 0 — the vantage (living breathing loop) -->
+    <div class="scene" id="s0">
+      <video src="assets/loop-field-warm.webm" muted loop autoplay playsinline preload="auto" poster="assets/hero-poster.jpg"></video>
+    </div>
+    <!-- SCENE 1 — the valley (the "beautiful painting"); breathes via CSS + fog -->
+    <div class="scene" id="s1">
+      <div class="breathe" style="position:absolute;inset:0;background-size:cover;background-position:center;background-image:url('assets/seasons/spring/web/layer-valley-v1.webp')"></div>
+      <div class="fog"></div>
+    </div>
+    <!-- SCENE 2 — the earth rocks (skirmish) -->
+    <div class="scene" id="s2">
+      <div class="breathe" style="position:absolute;inset:0;background-size:cover;background-position:center;background-image:url('assets/scenes/web/scene-skirmish-v1.webp')"></div>
+    </div>
+
+    <!-- transition overlays -->
+    <div class="dawn" id="dawn"></div>
+    <canvas id="smoke"></canvas>
+    <div class="vignette"></div>
+    <div class="grain"></div>
+
+    <!-- text beats -->
+    <div class="beat" id="b-title">
+      <div class="ey">Hubbell Family Archive · 1861–1865</div>
+      <h1>The Hubbell <em>Brothers</em></h1>
+      <p class="distance">Four brothers. Four years of war. Two hundred and seventy-three letters across the distance between them.</p>
+    </div>
+    <div class="beat quote" id="b-painting">
+      <p>&ldquo;All of this spread out before me <em>like a beautiful painting</em>. I almost forgot I was a soldier.&rdquo;</p>
+      <div class="cite"><b>Alexander Hubbell</b> · Pine Mountain, Virginia · July 14, 1862</div>
+    </div>
+    <div class="beat quote" id="b-rock">
+      <p>&ldquo;But if the drum should beat to arms tomorrow morning, there will be a different scene… and then <em>the earth will fairly rock.</em>&rdquo;</p>
+      <div class="cite"><b>Alexander Hubbell</b> · the same letter</div>
+    </div>
+    <div class="beat" id="b-stats" style="width:min(94vw,880px)">
+      <div class="ey" style="margin-bottom:22px">Their words became data</div>
+      <div class="stats">
+        <div><div class="n">273</div><div class="l">Letters</div></div>
+        <div><div class="n">4</div><div class="l">Brothers</div></div>
+        <div><div class="n">1861–65</div><div class="l">Span</div></div>
+        <div><div class="n">5</div><div class="l">Generations</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="cue" id="cue">Scroll to begin
+  <svg width="26" height="16" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1l8 8 8-8"/></svg>
+</div>
+
+<script>
+/* ============================================================
+   SCENE CONTROLLER  ·  one scroll value drives everything
+   Segments (in scroll-progress p ∈ [0,1]):
+     s0 hold   0.00–0.15   vantage breathes, title holds
+     t0 dawn   0.15–0.30   light-bloom covers the swap → valley
+     s1 hold   0.30–0.46   valley breathes, "beautiful painting"
+     t1 smoke  0.46–0.62   cannon-smoke wash covers the swap → skirmish
+     s2 hold   0.62–0.80   "the earth will fairly rock"
+     end       0.80–1.00   settle; stats resolve ("words became data")
+   ============================================================ */
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const seg=(p,a,b)=>clamp((p-a)/(b-a),0,1);          // 0→1 across [a,b]
+const tri=(x)=>Math.sin(clamp(x,0,1)*Math.PI);       // 0→1→0 (cover peaks mid-transition)
+
+const T0=[0.15,0.30], T1=[0.46,0.62];
+const S=id=>document.getElementById(id);
+const s0=S('s0'),s1=S('s1'),s2=S('s2'),dawn=S('dawn'),cue=S('cue'),
+      roBeat=S('ro-beat'),roP=S('ro-p');
+const beats={title:S('b-title'),painting:S('b-painting'),rock:S('b-rock'),stats:S('b-stats')};
+
+/* smoke + dirt particle veil (the cover for the valley→battle swap) */
+const cv=S('smoke'),cx=cv.getContext('2d');
+let puffs=[],dpr=1;
+function sizeCanvas(){
+  dpr=Math.min(2,window.devicePixelRatio||1);
+  cv.width=innerWidth*dpr; cv.height=innerHeight*dpr; cx.scale(dpr,dpr);
+  // re-seed puffs across the frame, biased low (smoke rises from the line)
+  puffs=Array.from({length:54},(_,i)=>({
+    x:Math.random()*innerWidth, y:innerHeight*(0.55+Math.random()*0.5),
+    r:80+Math.random()*180, vx:(Math.random()-0.5)*0.25, vy:-(0.15+Math.random()*0.4),
+    a:0.25+Math.random()*0.45, dirt:Math.random()<0.28, seed:Math.random()*6.28
+  }));
+}
+sizeCanvas(); addEventListener('resize',sizeCanvas,{passive:true});
+
+let smokeI=0, t=0;
+let mx=0,my=0,tmx=0,tmy=0;   // mouse parallax (eased)
+function drawSmoke(){
+  cx.clearRect(0,0,innerWidth,innerHeight);
+  if(smokeI<=0.004) return;
+  for(const p of puffs){
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.y< -p.r){p.y=innerHeight+p.r; p.x=Math.random()*innerWidth;}
+    if(p.x< -p.r)p.x=innerWidth+p.r; if(p.x>innerWidth+p.r)p.x=-p.r;
+    const wob=Math.sin(t*0.6+p.seed)*8;
+    const g=cx.createRadialGradient(p.x+wob,p.y,0,p.x+wob,p.y,p.r);
+    if(p.dirt){ g.addColorStop(0,'rgba(60,48,34,'+(p.a)+')'); g.addColorStop(1,'rgba(60,48,34,0)'); }
+    else      { g.addColorStop(0,'rgba(150,150,150,'+(p.a*0.8)+')'); g.addColorStop(1,'rgba(120,120,120,0)'); }
+    cx.globalAlpha=smokeI; cx.fillStyle=g;
+    cx.beginPath(); cx.arc(p.x+wob,p.y,p.r,0,6.283); cx.fill();
+  }
+  cx.globalAlpha=1;
+}
+
+function setBeat(el,o,rise){ el.style.opacity=o.toFixed(3); el.style.transform=`translate(-50%,calc(-50% + ${(1-o)*rise|0}px))`; }
+
+/* DEPTH / DOLLY — the 'diving down' sensation. Each scene EMERGES from depth (zoomed+blurred),
+   settles to its hold, then pushes THROUGH (scale up + blur + darken) as the painterly cover
+   washes and the next scene rises from depth. inWin/outWin = enter/exit windows (null = none). */
+function sceneXform(el, inWin, outWin){
+  const ip = inWin ? seg(p,inWin[0],inWin[1]) : 1;     // 0→1 entering (1 = fully arrived)
+  const op = outWin ? seg(p,outWin[0],outWin[1]) : 0;   // 0 hold → 1 leaving
+  const BASE=1.06, FROM=1.24, THRU=1.40;
+  const sc = (1-op)*(FROM+(BASE-FROM)*ip) + op*THRU;     // depth → hold → through
+  const blur = (1-ip)*7 + op*14;
+  const bright = Math.min(0.55+0.45*ip, 1-0.6*op);
+  el.style.transform = `translate3d(${(mx*13).toFixed(1)}px,${(my*10).toFixed(1)}px,0) scale(${sc.toFixed(3)})`;
+  el.style.filter = `blur(${blur.toFixed(1)}px) brightness(${bright.toFixed(2)})`;
+}
+
+const startT=performance.now();
+let p=0;
+function apply(){
+  // --- scene opacities (crossfades happen UNDER the covers) ---
+  const a0=1-seg(p,T0[0],T0[1]);
+  const a1=seg(p,T0[0],T0[1])*(1-seg(p,T1[0],T1[1]));
+  const a2=seg(p,T1[0],T1[1]);
+  s0.style.opacity=a0.toFixed(3); s1.style.opacity=a1.toFixed(3); s2.style.opacity=a2.toFixed(3);
+
+  // --- depth dolly: push through each scene into the next (the descent) ---
+  sceneXform(s0, null, T0);
+  sceneXform(s1, T0,  T1);
+  sceneXform(s2, T1,  null);
+
+  // --- covers ---
+  dawn.style.opacity=(tri(seg(p,T0[0],T0[1]))*0.92).toFixed(3);   // warm light-bloom
+  smokeI=tri(seg(p,T1[0],T1[1]));                                  // smoke surge→clear
+
+  // --- text beats ---
+  // Title appears ON ITS OWN ~2s after load (time-based, not scroll); scroll then fades it out.
+  const elapsed=performance.now()-startT;
+  const introTitle=clamp((elapsed-2000)/1400,0,1);
+  const introCue  =clamp((elapsed-3600)/900,0,1);
+  setBeat(beats.title,   introTitle*(1-seg(p,0.13,0.22)), 18);
+  setBeat(beats.painting,seg(p,0.24,0.32)*(1-seg(p,0.44,0.52)), 16);
+  setBeat(beats.rock,    seg(p,0.58,0.66)*(1-seg(p,0.78,0.85)), 16);
+  setBeat(beats.stats,   seg(p,0.84,0.93), 24);
+
+  // scroll cue: appears after the title settles (~3.6s), fades on first scroll
+  cue.style.opacity=(introCue*(1-seg(p,0.02,0.06))).toFixed(2);
+
+  // readout
+  const beat = p<T0[0]?'the vantage (breathing)' : p<T0[1]?'↳ dawn light-bloom (cover→swap)'
+    : p<T1[0]?'the valley · "a beautiful painting"' : p<T1[1]?'↳ cannon-smoke wash (cover→swap)'
+    : p<0.80?'the earth will fairly rock' : 'words became data · stats resolve';
+  roBeat.textContent=beat; roP.textContent=Math.round(p*100)+'%';
+}
+
+if(reduced){
+  // straight, accessible fallback: scenes stacked, all text shown, no covers
+  [s0,s1,s2].forEach(s=>s.style.opacity=1);
+  Object.values(beats).forEach(b=>b.style.opacity=1);
+}else{
+  let target=0;
+  addEventListener('scroll',()=>{ const max=document.body.scrollHeight-innerHeight;
+    target=max>0?clamp(window.scrollY/max,0,1):0; },{passive:true});
+  addEventListener('mousemove',e=>{ tmx=e.clientX/innerWidth-0.5; tmy=e.clientY/innerHeight-0.5; },{passive:true});
+  function frame(){ t+=0.016; p+=(target-p)*0.12; mx+=(tmx-mx)*0.06; my+=(tmy-my)*0.06; apply(); drawSmoke(); requestAnimationFrame(frame); }
+  apply(); requestAnimationFrame(frame);
+}
+</script>
+</body>
+</html>
