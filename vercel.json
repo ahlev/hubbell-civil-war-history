@@ -3,7 +3,7 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/", "destination": "/experience-v2/landing.html" }
+    { "source": "/", "destination": "/experience-v2/landing" }
   ],
   "headers": [
     {
