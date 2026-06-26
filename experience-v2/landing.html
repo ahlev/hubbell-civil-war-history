@@ -305,11 +305,41 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
   .vista h1{font-size:clamp(26px,7vw,40px)}
   .quote.long p{font-size:clamp(14px,4.2vw,18px)}
   .prosebeat p{font-size:clamp(14px,4vw,17px)}
-  /* trim the bottom advance indicator so it clears the (taller, in a short viewport) content */
-  .scrollind{bottom:9px;gap:5px}
+  /* ===== advance cluster → bottom-right thumb button (readiness meter) ===== */
+  /* corner-anchored (JS stops writing the centering transform on mobile; !important also overrides any stale inline transform on resize) */
+  .scrollind{left:auto;right:max(14px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));
+    transform:none!important;transform-origin:bottom right;gap:0;align-items:flex-end}
+  .scrollind .inputs{display:none}            /* mouse/key affordances are meaningless on touch */
   .scrollind .lab{display:none}
-  .scrollind .ringwrap{width:40px;height:40px}
-  .scrollind .adv{padding:9px}
+  .scrollind .ringwrap{width:68px;height:68px}
+  /* outer ring = readiness sweep around the forward thumb */
+  .scrollind .ring circle{stroke-width:3}
+  .scrollind .ring .bg{stroke:rgba(236,227,210,.18)}
+  .scrollind .ring .fg{filter:drop-shadow(0 0 4px rgba(224,176,112,.6));transition:stroke-dashoffset .12s linear}
+  /* FORWARD button = primary circular thumb; a gold fill rises bottom-up with --fill, chevron saturates muted→full */
+  .scrollind .adv.down{left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;
+    background:rgba(10,11,15,.62);backdrop-filter:blur(3px);overflow:hidden;
+    box-shadow:0 4px 16px rgba(0,0,0,.5),inset 0 0 0 1px rgba(236,227,210,.14)}
+  .scrollind .adv.down::before{content:"";position:absolute;left:0;right:0;bottom:0;height:calc(var(--fill,0)*100%);
+    background:linear-gradient(180deg,rgba(224,176,112,.5),rgba(224,176,112,.9));transition:height .12s linear;pointer-events:none}
+  .scrollind .adv.down svg{position:relative;z-index:1;width:26px;height:16px;animation:none}   /* no bob; the fill is the cue */
+  .scrollind .adv.down.swell svg{animation:chevswell .3s ease}                                  /* keep tap-swell feedback */
+  .scrollind .adv.down path{stroke:#f3ecdd;stroke-width:2.6;opacity:calc(.5 + var(--fill,0)*.5)}
+  .scrollind .adv.down:active{transform:scale(.94)}
+  /* full → "complete emphasis": pulsing gold halo + bright chevron, inviting the tap/swipe */
+  .scrollind .adv.down.ready path{opacity:1}
+  .scrollind .adv.down.ready{animation:thumbpulse 1.5s ease-in-out infinite}
+  @keyframes thumbpulse{
+    0%,100%{box-shadow:0 4px 16px rgba(0,0,0,.5),0 0 0 2px rgba(224,176,112,.45),0 0 16px rgba(224,176,112,.4),inset 0 0 0 1px rgba(236,227,210,.18)}
+    50%{box-shadow:0 4px 18px rgba(0,0,0,.5),0 0 0 3px rgba(224,176,112,.78),0 0 28px rgba(224,176,112,.78),inset 0 0 0 1px rgba(236,227,210,.28)}}
+  /* BACK button = small subordinate thumb, stacked just above the forward button */
+  .scrollind .adv.up{left:50%;top:-42px;margin-left:-16px;width:32px;height:32px;border-radius:50%;
+    background:rgba(10,11,15,.5);box-shadow:inset 0 0 0 1px rgba(236,227,210,.12);
+    display:flex;align-items:center;justify-content:center}
+  .scrollind .adv.up svg{width:16px;height:10px;animation:none}
+  .scrollind .adv.up path{stroke:#e6dcca;stroke-width:2.4}
+  .scrollind .adv.up.show{opacity:.85;pointer-events:auto}
+  .scrollind .adv:hover{transform:none;filter:none}    /* no hover-grow on touch */
 }
 </style>
 </head>
@@ -535,6 +565,25 @@ if(reduced){
   const cancelAdv=()=>{advActive=false;advTarget=null;};
   addEventListener('wheel',cancelAdv,{passive:true}); addEventListener('touchstart',cancelAdv,{passive:true});
 
+  /* ---- mobile: snap to a checkpoint when a swipe ends, so swipe distance maps to discrete scenes ---- */
+  /* (set snapOnSwipe=false to disable; free-scroll + the readiness thumb still work) */
+  let snapOnSwipe=true, touchStartY=0, touchMoved=0, snapTimer=null;
+  addEventListener('touchstart',e=>{ if(e.touches&&e.touches[0]){touchStartY=e.touches[0].clientY;} touchMoved=0; },{passive:true});
+  addEventListener('touchmove',e=>{ if(e.touches&&e.touches[0]){touchMoved=e.touches[0].clientY-touchStartY;} },{passive:true});
+  addEventListener('touchend',()=>{ if(!isMobile||!snapOnSwipe||pdragging)return;
+    if(snapTimer)clearInterval(snapTimer);
+    const dir = touchMoved<0?1:(touchMoved>0?-1:0);   // swipe up (finger up, dy<0) → advance · swipe down → back
+    let lastY=scrollY, stable=0;
+    snapTimer=setInterval(()=>{                         // wait for momentum to stop, THEN glide to a checkpoint
+      if(advActive||pdragging){clearInterval(snapTimer);snapTimer=null;return;}
+      if(Math.abs(scrollY-lastY)<1.5)stable++; else stable=0; lastY=scrollY;
+      if(stable>=3){ clearInterval(snapTimer); snapTimer=null;
+        if(Math.abs(touchMoved)<24) goTo(nearIdx());    // tiny swipe → settle to nearest checkpoint
+        else if(dir>0) goNext(); else goPrev();         // real swipe → advance one checkpoint that way
+      }
+    },55);
+  },{passive:true});
+
   /* ---- custom progress rail: draggable scrubber that reflects position in the flow ---- */
   const prail=S('prail'), pthumb=S('pthumb');
   const railUsable=()=>prail.clientHeight-pthumb.offsetHeight;
@@ -623,6 +672,23 @@ if(reduced){
     }
   }
 
+  /* ---- mobile advance-readiness meter (phone only) — drives the forward thumb's fill ---- */
+  function activeSceneVideo(){               // overlapping ranges → the most-recently-entered (incoming) scene's <video>
+    let best=null,bestA=-1;
+    for(const id in scenes){const a=scenes[id][0],b=scenes[id][1]; if(p>=a&&p<b&&a>bestA){bestA=a;best=id;}}
+    return best?S(best).querySelector('video'):null;
+  }
+  function advReadiness(now){                 // 0 = current view still settling/loading · 1 = ready to advance
+    const motion = advActive
+      ? 1 - clamp(Math.abs(advTo - p)/0.14, 0, 1)        // tap-glide: fill across the span to the target anchor (covers transition clips)
+      : 1 - clamp(Math.abs(target - p)/0.012, 0, 1);     // free swipe: fill as p eases to rest
+    let media=1; const v=activeSceneVideo();
+    if(v && v.src) media = v.readyState>=3 ? 1 : v.readyState>=1 ? 0.5 : 0;   // poster → playable loop
+    let dwell=1;
+    if(p>=SEG.brothers[0] && p<0.578 && seqIdx<0) dwell = clamp((now-bareArrival)/3500, 0, 1);  // brothers bare→headline beat
+    return clamp(Math.min(motion, media, dwell), 0, 1);
+  }
+
   function apply(now){
     const el=now-startT;
     // scene opacities (crossfade under covers)
@@ -681,7 +747,13 @@ if(reduced){
     // progress indicator: ring fills toward next beat; label + fade
     let bi=0; for(let i=0;i<BEATS.length-1;i++){if(p>=BEATS[i])bi=i;}
     const within=seg(p,BEATS[bi],BEATS[bi+1]);
-    S('ringfg').style.strokeDashoffset=(RING*(1-within)).toFixed(1);
+    if(isMobile){                               // mobile: ring + forward-thumb fill = advance readiness (settled & media-ready)
+      const rdy=advReadiness(now);
+      S('ringfg').style.strokeDashoffset=(RING*(1-rdy)).toFixed(1);
+      const ad=S('advdown'); ad.style.setProperty('--fill',rdy.toFixed(3)); ad.classList.toggle('ready',rdy>=0.97);
+    } else {                                    // desktop: ring = scroll position toward the next beat (unchanged)
+      S('ringfg').style.strokeDashoffset=(RING*(1-within)).toFixed(1);
+    }
     S('indlab').textContent = p<0.02 ? 'Click, arrow, or scroll to enter the collection' : (p>0.94 ? 'Explore the archive' : 'Click or scroll to continue');
     // advance chevrons: up appears once past the first stop, down hides at the last
     const ni=nearIdx();
@@ -691,7 +763,8 @@ if(reduced){
     const intro=1-seg(p,0.0,0.05);
     const ind=S('ind');
     ind.classList.toggle('intro',intro>0.5);
-    ind.style.transform=`translateX(-50%) translateY(${(-intro*26).toFixed(1)}px) scale(${(1+intro*0.55).toFixed(3)})`;
+    if(isMobile) ind.style.transform='';        // corner-anchored via CSS — don't re-center / cold-open-swell on mobile
+    else ind.style.transform=`translateX(-50%) translateY(${(-intro*26).toFixed(1)}px) scale(${(1+intro*0.55).toFixed(3)})`;
     setO(ind,clamp(el>3200?1:0,0,1)*(1-seg(p,0.99,1.0)));
     if(!pdragging) setThumb(p);                 // custom progress rail tracks position (unless the user is dragging it)
     prail.classList.toggle('on', el>1500);
