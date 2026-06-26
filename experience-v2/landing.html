@@ -196,25 +196,41 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 /* at the cold open the down-chevron reads big & bold to set the nav tone, then shrinks to the persistent size */
 .scrollind.intro .adv.down path{stroke-width:3}
 .scrollind.intro .lab{font-size:11.5px}
-/* centered progress ring — the succinct progress cue, distinct from the input-affordance icons, synced with the cursor halo */
+/* advance affordance — the FORWARD button fills with advance-readiness (load/settle), sparkles when complete; back is a plain chevron. (replaces the old progress ring) */
 .scrollind .ringwrap{position:relative;width:46px;height:46px}
-.scrollind .ring{position:absolute;inset:0;width:100%;height:100%}
-.scrollind .ring circle{fill:none;stroke-width:2.5;transform:rotate(-90deg);transform-origin:50% 50%}
-.scrollind .ring .bg{stroke:rgba(236,227,210,.16)}
-.scrollind .ring .fg{stroke:var(--lantern);stroke-linecap:round;transition:stroke-dashoffset .15s linear;filter:drop-shadow(0 0 3px rgba(224,176,112,.5))}
-/* advance chevrons — click or direction-key to glide to the next/prev stop; gentle bob, hover-grow, active-swell */
 .scrollind .adv{position:absolute;background:none;border:0;padding:0;cursor:pointer;line-height:0;pointer-events:auto;
   transition:transform .18s cubic-bezier(.34,1.56,.64,1),filter .18s ease}
 .scrollind .adv svg{display:block;overflow:visible;animation:chevbob 1.7s ease-in-out infinite}
 .scrollind .adv path{fill:none;stroke:var(--lantern);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 3px rgba(0,0,0,.6))}
-.scrollind .adv.down{left:50%;top:50%;width:26px;height:16px;margin:-8px 0 0 -13px;display:flex;align-items:center;justify-content:center}
-.scrollind .adv.down svg{width:24px;height:14px}
+/* FORWARD = circular button; a gold fill rises bottom-up with --fill, chevron saturates muted→full */
+.scrollind .adv.down{left:50%;top:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;background:rgba(10,11,15,.5);backdrop-filter:blur(2px);
+  box-shadow:0 3px 12px rgba(0,0,0,.45),inset 0 0 0 1px rgba(236,227,210,.14)}
+.scrollind .adv.down::before{content:"";position:absolute;left:0;right:0;bottom:0;height:calc(var(--fill,0)*100%);
+  background:linear-gradient(180deg,rgba(224,176,112,.45),rgba(224,176,112,.88));transition:height .18s linear;pointer-events:none}
+.scrollind .adv.down svg{position:relative;z-index:1;width:22px;height:13px;animation:none}   /* no bob; the fill is the cue */
+.scrollind .adv.down.swell svg{animation:chevswell .3s ease}
+.scrollind .adv.down path{stroke:#f3ecdd;opacity:calc(.5 + var(--fill,0)*.5)}
+.scrollind .adv.down.ready path{opacity:1}
+.scrollind .adv.down.ready{animation:thumbpulse 1.6s ease-in-out infinite}    /* full → "complete emphasis" */
+.scrollind .adv.down:hover{transform:scale(1.08);filter:brightness(1.1)}
+.scrollind .adv.down:active{transform:scale(.94)}
+/* BACK = plain subordinate chevron above the forward button */
 .scrollind .adv.up{left:50%;top:-25px;width:24px;height:14px;margin-left:-12px;opacity:0;pointer-events:none;transition:opacity .35s ease,transform .18s cubic-bezier(.34,1.56,.64,1)}
 .scrollind .adv.up svg{width:22px;height:13px;animation-name:chevbobup}
 .scrollind .adv.up.show{opacity:.8;pointer-events:auto}
-.scrollind .adv:hover{transform:scale(1.22);filter:brightness(1.25)}
-.scrollind .adv.up:hover{opacity:1}
-.scrollind .adv.swell svg{animation:chevswell .3s ease}
+.scrollind .adv.up:hover{opacity:1;transform:scale(1.18)}
+/* sparkle — a brief gold twinkle the moment readiness completes (a transition is fully loaded & settled) */
+.scrollind .spark{position:absolute;left:50%;top:50%;width:32px;height:32px;margin:-16px 0 0 -16px;pointer-events:none;opacity:0;z-index:3;
+  background:radial-gradient(circle,rgba(255,244,214,.95) 0,transparent 13%),
+    linear-gradient(0deg,transparent 47%,rgba(255,244,214,.8) 50%,transparent 53%),
+    linear-gradient(90deg,transparent 47%,rgba(255,244,214,.8) 50%,transparent 53%);
+  background-repeat:no-repeat;background-position:center}
+.scrollind .spark.go{animation:sparklepop .7s ease-out}
+@keyframes sparklepop{0%{opacity:0;transform:scale(.2) rotate(0)}35%{opacity:1;transform:scale(1) rotate(20deg)}100%{opacity:0;transform:scale(1.7) rotate(55deg)}}
+@keyframes thumbpulse{
+  0%,100%{box-shadow:0 3px 12px rgba(0,0,0,.45),0 0 0 2px rgba(224,176,112,.4),0 0 14px rgba(224,176,112,.35),inset 0 0 0 1px rgba(236,227,210,.16)}
+  50%{box-shadow:0 4px 16px rgba(0,0,0,.45),0 0 0 3px rgba(224,176,112,.72),0 0 26px rgba(224,176,112,.7),inset 0 0 0 1px rgba(236,227,210,.26)}}
 @keyframes chevbob{0%,100%{transform:translateY(-1px)}50%{transform:translateY(3px)}}
 @keyframes chevbobup{0%,100%{transform:translateY(1px)}50%{transform:translateY(-3px)}}
 @keyframes chevswell{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
@@ -305,41 +321,25 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
   .vista h1{font-size:clamp(26px,7vw,40px)}
   .quote.long p{font-size:clamp(14px,4.2vw,18px)}
   .prosebeat p{font-size:clamp(14px,4vw,17px)}
-  /* ===== advance cluster → bottom-right thumb button (readiness meter) ===== */
-  /* corner-anchored (JS stops writing the centering transform on mobile; !important also overrides any stale inline transform on resize) */
+  /* ===== advance cluster → bottom-right thumb (base styles supply the fill/sparkle/ready; here we corner-anchor + size up) ===== */
+  /* JS stops writing the centering transform on mobile; !important also overrides any stale inline transform on resize */
   .scrollind{left:auto;right:max(14px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));
     transform:none!important;transform-origin:bottom right;gap:0;align-items:flex-end}
   .scrollind .inputs{display:none}            /* mouse/key affordances are meaningless on touch */
   .scrollind .lab{display:none}
   .scrollind .ringwrap{width:68px;height:68px}
-  /* outer ring = readiness sweep around the forward thumb */
-  .scrollind .ring circle{stroke-width:3}
-  .scrollind .ring .bg{stroke:rgba(236,227,210,.18)}
-  .scrollind .ring .fg{filter:drop-shadow(0 0 4px rgba(224,176,112,.6));transition:stroke-dashoffset .12s linear}
-  /* FORWARD button = primary circular thumb; a gold fill rises bottom-up with --fill, chevron saturates muted→full */
-  .scrollind .adv.down{left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;
-    background:rgba(10,11,15,.62);backdrop-filter:blur(3px);overflow:hidden;
-    box-shadow:0 4px 16px rgba(0,0,0,.5),inset 0 0 0 1px rgba(236,227,210,.14)}
-  .scrollind .adv.down::before{content:"";position:absolute;left:0;right:0;bottom:0;height:calc(var(--fill,0)*100%);
-    background:linear-gradient(180deg,rgba(224,176,112,.5),rgba(224,176,112,.9));transition:height .12s linear;pointer-events:none}
-  .scrollind .adv.down svg{position:relative;z-index:1;width:26px;height:16px;animation:none}   /* no bob; the fill is the cue */
-  .scrollind .adv.down.swell svg{animation:chevswell .3s ease}                                  /* keep tap-swell feedback */
-  .scrollind .adv.down path{stroke:#f3ecdd;stroke-width:2.6;opacity:calc(.5 + var(--fill,0)*.5)}
-  .scrollind .adv.down:active{transform:scale(.94)}
-  /* full → "complete emphasis": pulsing gold halo + bright chevron, inviting the tap/swipe */
-  .scrollind .adv.down.ready path{opacity:1}
-  .scrollind .adv.down.ready{animation:thumbpulse 1.5s ease-in-out infinite}
-  @keyframes thumbpulse{
-    0%,100%{box-shadow:0 4px 16px rgba(0,0,0,.5),0 0 0 2px rgba(224,176,112,.45),0 0 16px rgba(224,176,112,.4),inset 0 0 0 1px rgba(236,227,210,.18)}
-    50%{box-shadow:0 4px 18px rgba(0,0,0,.5),0 0 0 3px rgba(224,176,112,.78),0 0 28px rgba(224,176,112,.78),inset 0 0 0 1px rgba(236,227,210,.28)}}
-  /* BACK button = small subordinate thumb, stacked just above the forward button */
-  .scrollind .adv.up{left:50%;top:-42px;margin-left:-16px;width:32px;height:32px;border-radius:50%;
-    background:rgba(10,11,15,.5);box-shadow:inset 0 0 0 1px rgba(236,227,210,.12);
-    display:flex;align-items:center;justify-content:center}
+  /* FORWARD button → larger thumb (fill/sparkle/ready inherited from base) */
+  .scrollind .adv.down{width:56px;height:56px;margin:-28px 0 0 -28px;background:rgba(10,11,15,.62);backdrop-filter:blur(3px)}
+  .scrollind .adv.down svg{width:26px;height:16px}
+  .scrollind .adv.down path{stroke-width:2.6}
+  .scrollind .adv.down:hover{transform:none;filter:none}    /* no hover-grow on touch */
+  .scrollind .spark{width:40px;height:40px;margin:-20px 0 0 -20px}   /* sparkle scaled for the larger thumb */
+  /* BACK button → small round, stacked just above the forward thumb */
+  .scrollind .adv.up{top:-42px;margin-left:-16px;width:32px;height:32px;border-radius:50%;
+    background:rgba(10,11,15,.5);box-shadow:inset 0 0 0 1px rgba(236,227,210,.12);display:flex;align-items:center;justify-content:center}
   .scrollind .adv.up svg{width:16px;height:10px;animation:none}
   .scrollind .adv.up path{stroke:#e6dcca;stroke-width:2.4}
   .scrollind .adv.up.show{opacity:.85;pointer-events:auto}
-  .scrollind .adv:hover{transform:none;filter:none}    /* no hover-grow on touch */
 }
 </style>
 </head>
@@ -480,8 +480,8 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 <div class="scrollind" id="ind">
   <div class="ringwrap">
     <button class="adv up" id="advup" type="button" aria-label="Previous section"><svg viewBox="0 0 22 13"><path d="M2 11 11 3 20 11"/></svg></button>
-    <svg class="ring" viewBox="0 0 48 48"><circle class="bg" cx="24" cy="24" r="21"/><circle class="fg" id="ringfg" cx="24" cy="24" r="21"/></svg>
     <button class="adv down" id="advdown" type="button" aria-label="Next section"><svg viewBox="0 0 24 14"><path d="M2 3 12 11 22 3"/></svg></button>
+    <i class="spark" id="advspark" aria-hidden="true"></i>
   </div>
   <div class="inputs">
     <span class="mouse"><span class="ball"></span></span>
@@ -631,7 +631,6 @@ if(reduced){
     ex.shadowBlur=0; ex.globalAlpha=1;}
 
   /* ---- brothers reveal sequence: headline → quotes L→R, min 1s each ---- */
-  const RING=2*Math.PI*21; S('ringfg').style.strokeDasharray=RING;
   const exEls={headline:S('b-bhead'),alex:document.querySelector('#cascade .ex.alex'),henry:document.querySelector('#cascade .ex.henry'),james:document.querySelector('#cascade .ex.james'),charles:document.querySelector('#cascade .ex.charles')};
   const STEPS=['headline','alex','henry','james','charles']; // 0..4
   const bPanels=[...document.querySelectorAll('#s-brothers .panel')];   // for mobile one-at-a-time
@@ -672,7 +671,7 @@ if(reduced){
     }
   }
 
-  /* ---- mobile advance-readiness meter (phone only) — drives the forward thumb's fill ---- */
+  /* ---- advance-readiness meter (desktop + mobile) — drives the forward button's fill + completion sparkle ---- */
   function activeSceneVideo(){               // overlapping ranges → the most-recently-entered (incoming) scene's <video>
     let best=null,bestA=-1;
     for(const id in scenes){const a=scenes[id][0],b=scenes[id][1]; if(p>=a&&p<b&&a>bestA){bestA=a;best=id;}}
@@ -688,6 +687,17 @@ if(reduced){
     if(p>=SEG.brothers[0] && p<0.578 && seqIdx<0) dwell = clamp((now-bareArrival)/3500, 0, 1);  // brothers bare→headline beat
     return clamp(Math.min(motion, media, dwell), 0, 1);
   }
+  // MONOTONIC fill: hold the max within a checkpoint, reset only when the nearest anchor changes (i.e. on a real advance / crossing a beat).
+  // This kills the jitter where the raw signal (esp. video readyState flicker / glide basis-switch) skipped back and re-filled.
+  let readyHold=0,lastNear=-1,wasReady=false;
+  function meterFill(now){
+    const ni=nearIdx();
+    if(ni!==lastNear){lastNear=ni;readyHold=0;wasReady=false;}   // entered a new checkpoint zone → refill from 0 (re-arms the sparkle)
+    const raw=advReadiness(now);
+    if(raw>readyHold)readyHold=raw;                              // never decreases until the next zone → smooth, no skip-back
+    return readyHold;
+  }
+  function sparkle(){const s=S('advspark'); if(!s)return; s.classList.remove('go'); void s.offsetWidth; s.classList.add('go'); setTimeout(()=>s.classList.remove('go'),720);}
 
   function apply(now){
     const el=now-startT;
@@ -745,15 +755,12 @@ if(reduced){
     S('nav').classList.toggle('in', el>1500 || p>0.05);
 
     // progress indicator: ring fills toward next beat; label + fade
-    let bi=0; for(let i=0;i<BEATS.length-1;i++){if(p>=BEATS[i])bi=i;}
-    const within=seg(p,BEATS[bi],BEATS[bi+1]);
-    if(isMobile){                               // mobile: ring + forward-thumb fill = advance readiness (settled & media-ready)
-      const rdy=advReadiness(now);
-      S('ringfg').style.strokeDashoffset=(RING*(1-rdy)).toFixed(1);
-      const ad=S('advdown'); ad.style.setProperty('--fill',rdy.toFixed(3)); ad.classList.toggle('ready',rdy>=0.97);
-    } else {                                    // desktop: ring = scroll position toward the next beat (unchanged)
-      S('ringfg').style.strokeDashoffset=(RING*(1-within)).toFixed(1);
-    }
+    // forward button FILLS with advance-readiness (desktop + mobile); a sparkle fires the moment it completes
+    const rdy=meterFill(now);
+    const ad=S('advdown'); ad.style.setProperty('--fill',rdy.toFixed(3));
+    const isReady=rdy>=0.97; ad.classList.toggle('ready',isReady);
+    if(isReady && !wasReady) sparkle();         // rising edge → one-shot "transition complete" twinkle
+    wasReady=isReady;
     S('indlab').textContent = p<0.02 ? 'Click, arrow, or scroll to enter the collection' : (p>0.94 ? 'Explore the archive' : 'Click or scroll to continue');
     // advance chevrons: up appears once past the first stop, down hides at the last
     const ni=nearIdx();
