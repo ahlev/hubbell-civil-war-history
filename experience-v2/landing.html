@@ -188,7 +188,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 .nav .links a:nth-child(1){--acc:#CE8A46}.nav .links a:nth-child(2){--acc:#3E86C4}.nav .links a:nth-child(3){--acc:#52A86E}
 .nav .links a:nth-child(4){--acc:#CB5C5C}.nav .links a:nth-child(5){--acc:#9A78C7}.nav .links a:nth-child(6){--acc:#6FB0A6}
 .nav .links a:hover{background:color-mix(in srgb, var(--acc,var(--lantern)) 34%, rgba(8,9,12,.5));color:#fff;box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--acc,var(--lantern)) 55%, transparent)}
-@media(max-width:900px){.nav .links{display:none}}
+.navtoggle{display:none}   /* hamburger — mobile only (see mobile block) */
 
 /* ===== progress indicator + persistent CTA (themed) ===== */
 .scrollind{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);transform-origin:50% 100%;z-index:28;display:flex;flex-direction:column;align-items:center;gap:7px;
@@ -248,6 +248,69 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
   .beat,.explore,.prosebeat,#cascade .ex,#b-bhead,.hero-thesis{opacity:1 !important;position:relative;transform:none;margin:8vh auto}
   .scrollind{display:none}.nav{transform:none;opacity:1}
 }
+
+/* ============== MOBILE (≤760px) — phone-only restructures; desktop render/UX untouched ============== */
+@media(max-width:760px){
+  *{-webkit-tap-highlight-color:transparent}
+  html,body{overscroll-behavior-y:none}
+  .track{height:1800vh}                                   /* shorter scroll on a phone */
+
+  /* nav → hamburger dropdown */
+  .nav{padding:11px 16px}
+  .nav .spacer{display:none}
+  .navtoggle{display:inline-flex;align-items:center;justify-content:center;margin-left:auto;width:36px;height:36px;
+    background:rgba(8,9,12,.55);border:1px solid rgba(236,227,210,.2);border-radius:8px;color:var(--paper);font-size:18px;line-height:1;cursor:pointer}
+  .nav .links{position:fixed;top:54px;right:10px;flex-direction:column;gap:2px;width:230px;max-width:82vw;flex-wrap:nowrap;
+    background:rgba(10,11,15,.97);backdrop-filter:blur(10px);border:1px solid rgba(236,227,210,.15);border-radius:11px;padding:8px;
+    box-shadow:0 14px 34px rgba(0,0,0,.6);opacity:0;pointer-events:none;transform:translateY(-8px) scale(.98);transform-origin:top right;transition:opacity .2s ease,transform .2s ease}
+  .nav.menuopen .links{opacity:1;pointer-events:auto;transform:none}
+  .nav .links a{font-size:15px;padding:10px 12px;border-radius:7px}
+
+  /* brothers → one brother at a time (full-width panel + single quote) */
+  #s-brothers .composite{display:block}
+  #s-brothers .panel{position:absolute;inset:0;width:100%;opacity:0;transition:opacity .55s ease}
+  #s-brothers .panel.active{opacity:1}
+  #s-brothers .panel video{object-position:center 30%}
+  #s-brothers .seam{display:none}
+  #b-bhead{width:90vw}
+  #b-bhead h2{font-size:clamp(21px,6.2vw,28px)}
+  #b-bhead .sub{font-size:clamp(14px,4vw,17px)}
+  #cascade .ex{left:50%!important;right:auto;top:auto;bottom:13%;width:90vw!important;max-width:430px;transform:translateX(-50%) translateY(-10px)}
+  #cascade .ex.show{transform:translateX(-50%) translateY(0)}
+  #cascade .ex p{font-size:15px;line-height:1.5}
+  #cascade .ex .c{font-size:10px}#cascade .ex .c b{font-size:11.5px}
+  #cascade .ex .bio-btn{font-size:11px;margin-top:9px}
+
+  /* Letters → two phases (editorial, then the four voices) crossfading in place */
+  .prosebeat.letters{width:92vw}
+  #b-letters .lcols{display:block;position:relative;min-height:76vh}
+  #b-letters .lread,#b-letters .lquotes{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);transition:opacity .4s ease}
+  #b-letters .lread h2{font-size:clamp(22px,6vw,30px)}
+  #b-letters .editorial{max-width:none}
+  #b-letters .editorial p{font-size:13.5px}
+  #b-letters .lquotes{gap:8px}
+  #b-letters .lq{padding:10px 12px}
+  #b-letters .lq blockquote{font-size:12.5px;line-height:1.45}
+
+  /* Explorations → compact so the headline + 5 cards fit one screen */
+  .explore{width:92vw}
+  .explore .subcta{font-size:12px;margin-bottom:14px}
+  .cards{gap:8px}
+  .card{padding:10px 13px}
+  .card .num{font-size:9px}
+  .card h3{font-size:15.5px;margin:3px 0}
+  .card p{font-size:12px;line-height:1.4}
+
+  /* other beats: a touch tighter */
+  .vista h1{font-size:clamp(26px,7vw,40px)}
+  .quote.long p{font-size:clamp(14px,4.2vw,18px)}
+  .prosebeat p{font-size:clamp(14px,4vw,17px)}
+  /* trim the bottom advance indicator so it clears the (taller, in a short viewport) content */
+  .scrollind{bottom:9px;gap:5px}
+  .scrollind .lab{display:none}
+  .scrollind .ringwrap{width:40px;height:40px}
+  .scrollind .adv{padding:9px}
+}
 </style>
 </head>
 <body>
@@ -260,38 +323,39 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
   </a>
   <div class="spacer"></div>
   <div class="links">
-    <a href="the-collection.html">The Collection</a>
-    <a href="hubbell-dashboard.html">Parallel Lives</a>
-    <a href="viz-map-fullwar.html">Map That Moves</a>
-    <a href="viz-health-ledger.html">Wellness Ledger</a>
-    <a href="viz-people-web.html">People Web</a>
-    <a href="who-they-were.html">Who They Were</a>
+    <a href="/the-collection.html">The Collection</a>
+    <a href="/hubbell-dashboard.html">Parallel Lives</a>
+    <a href="/viz-map-fullwar.html">Map That Moves</a>
+    <a href="/viz-health-ledger.html">Wellness Ledger</a>
+    <a href="/viz-people-web.html">People Web</a>
+    <a href="/who-they-were.html">Who They Were</a>
   </div>
+  <button class="navtoggle" id="navtoggle" type="button" aria-label="Menu" aria-expanded="false">☰</button>
 </nav>
 
 <div class="track">
   <div class="stage" id="stage">
 
     <!-- SCENES -->
-    <div class="scene" id="s-tent"><video data-src="assets/loop-field-warm.webm" muted loop playsinline preload="none" poster="assets/hero-poster.jpg"></video></div>
-    <div class="scene" id="s-valley"><video data-src="assets/loops/loop-summer-valley.webm" muted loop playsinline preload="none" poster="assets/seasons/summer/web/layer-valley-v2.webp"></video></div>
-    <div class="scene" id="s-battle"><video data-src="assets/loops/loop-skirmish-v2.webm" muted loop playsinline preload="none" poster="assets/scenes/web/scene-skirmish-v2.webp"></video></div>
+    <div class="scene" id="s-tent"><video data-src="/experience-v2/assets/loop-field-warm.webm" muted loop playsinline preload="none" poster="/experience-v2/assets/hero-poster.jpg"></video></div>
+    <div class="scene" id="s-valley"><video data-src="/experience-v2/assets/loops/loop-summer-valley.webm" muted loop playsinline preload="none" poster="/experience-v2/assets/seasons/summer/web/layer-valley-v2.webp"></video></div>
+    <div class="scene" id="s-battle"><video data-src="/experience-v2/assets/loops/loop-skirmish-v2.webm" muted loop playsinline preload="none" poster="/experience-v2/assets/scenes/web/scene-skirmish-v2.webp"></video></div>
     <div class="scene" id="s-brothers">
       <div class="composite">
-        <div class="panel"><video data-src="assets/brothers/loops/loop-alexander-fav.webm" muted loop playsinline preload="none" poster="assets/brothers/web/window-alexander-fav.webp"></video></div>
-        <div class="panel"><video data-src="assets/brothers/loops/loop-henry.webm" muted loop playsinline preload="none" poster="assets/brothers/web/window-henry-v1.webp"></video></div>
-        <div class="panel"><video data-src="assets/brothers/loops/loop-james-wide.webm" muted loop playsinline preload="none" poster="assets/brothers/web/window-james-v2-wide.webp"></video></div>
-        <div class="panel"><video data-src="assets/brothers/loops/loop-charles.webm" muted loop playsinline preload="none" poster="assets/brothers/web/window-charles-v1.webp"></video></div>
+        <div class="panel"><video data-src="/experience-v2/assets/brothers/loops/loop-alexander-fav.webm" muted loop playsinline preload="none" poster="/experience-v2/assets/brothers/web/window-alexander-fav.webp"></video></div>
+        <div class="panel"><video data-src="/experience-v2/assets/brothers/loops/loop-henry.webm" muted loop playsinline preload="none" poster="/experience-v2/assets/brothers/web/window-henry-v1.webp"></video></div>
+        <div class="panel"><video data-src="/experience-v2/assets/brothers/loops/loop-james-wide.webm" muted loop playsinline preload="none" poster="/experience-v2/assets/brothers/web/window-james-v2-wide.webp"></video></div>
+        <div class="panel"><video data-src="/experience-v2/assets/brothers/loops/loop-charles.webm" muted loop playsinline preload="none" poster="/experience-v2/assets/brothers/web/window-charles-v1.webp"></video></div>
       </div>
       <div class="seam s1"></div><div class="seam s2"></div><div class="seam s3"></div>
     </div>
-    <div class="scene" id="s-explore"><video data-src="assets/loops/loop-summer-tent.webm" muted loop playsinline preload="none" poster="assets/seasons/summer/web/layer-tent-v1.webp"></video></div>
-    <div class="scene" id="s-letters"><video data-src="assets/loops/loop-summer-sky.webm" muted loop playsinline preload="none" poster="assets/seasons/summer/web/layer-sky-v2.webp"></video></div>
-    <div class="scene" id="s-preserve"><video data-src="assets/loops/loop-preservation-v2.webm" muted loop playsinline preload="none" poster="assets/preservation/thumbs/typewriter-poster.webp"></video></div>
+    <div class="scene" id="s-explore"><video data-src="/experience-v2/assets/loops/loop-summer-tent.webm" muted loop playsinline preload="none" poster="/experience-v2/assets/seasons/summer/web/layer-tent-v1.webp"></video></div>
+    <div class="scene" id="s-letters"><video data-src="/experience-v2/assets/loops/loop-summer-sky.webm" muted loop playsinline preload="none" poster="/experience-v2/assets/seasons/summer/web/layer-sky-v2.webp"></video></div>
+    <div class="scene" id="s-preserve"><video data-src="/experience-v2/assets/loops/loop-preservation-v2.webm" muted loop playsinline preload="none" poster="/experience-v2/assets/preservation/thumbs/typewriter-poster.webp"></video></div>
 
     <!-- TRANSITIONS -->
-    <div class="gen" id="g-smoke"><video data-src="assets/transitions/smoke-valley2-skirmish2.webm" muted playsinline preload="none"></video></div>
-    <div class="gen" id="g-rain"><video data-src="assets/transitions/rainwash-skirmish-brothers.webm" muted playsinline preload="none"></video></div>
+    <div class="gen" id="g-smoke"><video data-src="/experience-v2/assets/transitions/smoke-valley2-skirmish2.webm" muted playsinline preload="none"></video></div>
+    <div class="gen" id="g-rain"><video data-src="/experience-v2/assets/transitions/rainwash-skirmish-brothers.webm" muted playsinline preload="none"></video></div>
     <div class="dawn" id="dawn"></div>
     <div class="dark" id="dark"></div>
     <div class="firelow" id="firelow"></div>
@@ -331,10 +395,10 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 
       <!-- brothers cascade (column-locked) -->
       <div id="cascade">
-        <div class="ex alex"><p>&ldquo;Here I am safe and sound in the barracks. How strange it does seem. Ah! what a bedlam!&rdquo;</p><div class="c"><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span>Ogdensburgh, NY · Sept 20, 1861</div><a class="bio-btn" href="brother-alexander.html">Read his story →</a></div>
-        <div class="ex henry"><p>&ldquo;How I long to have one good meal at home, even if it wasn&rsquo;t anything but potatoes and salt…&rdquo;</p><div class="c"><span class="who"><b>Henry Hubbell</b> · <span class="unit">Co. D, 34th N.Y.</span></span>Near Richmond, VA · June 22, 1862</div><a class="bio-btn" href="brother-henry.html">Read his story →</a></div>
-        <div class="ex james"><p>&ldquo;It is nothing but a flesh wound and is doing well. I walked several miles after being hit in order not to fall into the Johnnies&rsquo; hands.&rdquo;</p><div class="c"><span class="who"><b>James Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>Baltimore, MD · Oct 29, 1864</div><a class="bio-btn" href="brother-james.html">Read his story →</a></div>
-        <div class="ex charles"><p>&ldquo;A pleasant place here, a good deal better than being in the field… when night comes I spread my blankets on the floor and sleep soundly.&rdquo;</p><div class="c"><span class="who"><b>Charles Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>New Orleans, LA · March 6, 1864</div><a class="bio-btn" href="brother-charles.html">Read his story →</a></div>
+        <div class="ex alex"><p>&ldquo;Here I am safe and sound in the barracks. How strange it does seem. Ah! what a bedlam!&rdquo;</p><div class="c"><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span>Ogdensburgh, NY · Sept 20, 1861</div><a class="bio-btn" href="/brother-alexander.html">Read his story →</a></div>
+        <div class="ex henry"><p>&ldquo;How I long to have one good meal at home, even if it wasn&rsquo;t anything but potatoes and salt…&rdquo;</p><div class="c"><span class="who"><b>Henry Hubbell</b> · <span class="unit">Co. D, 34th N.Y.</span></span>Near Richmond, VA · June 22, 1862</div><a class="bio-btn" href="/brother-henry.html">Read his story →</a></div>
+        <div class="ex james"><p>&ldquo;It is nothing but a flesh wound and is doing well. I walked several miles after being hit in order not to fall into the Johnnies&rsquo; hands.&rdquo;</p><div class="c"><span class="who"><b>James Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>Baltimore, MD · Oct 29, 1864</div><a class="bio-btn" href="/brother-james.html">Read his story →</a></div>
+        <div class="ex charles"><p>&ldquo;A pleasant place here, a good deal better than being in the field… when night comes I spread my blankets on the floor and sleep soundly.&rdquo;</p><div class="c"><span class="who"><b>Charles Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>New Orleans, LA · March 6, 1864</div><a class="bio-btn" href="/brother-charles.html">Read his story →</a></div>
       </div>
 
       <div class="explore" id="b-explore">
@@ -342,11 +406,11 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
         <h2>What their 273 letters reveal when read, researched, and analyzed as data</h2>
         <p class="subcta">Choose a section to explore, or use the top navigation bar at any time.</p>
         <div class="cards">
-          <a class="card" href="hubbell-dashboard.html"><div class="num">01 · Timeline</div><h3>Parallel Lives</h3><p>Every letter by date and author — four brothers across four theaters of war, on one explorable timeline.</p></a>
-          <a class="card" href="viz-map-fullwar.html"><div class="num">02 · Geography</div><h3>The Map That Moves</h3><p>Follow the four brothers across the eastern theater — letter by letter, day by day, place by place.</p></a>
-          <a class="card" href="viz-health-ledger.html"><div class="num">03 · Wellness</div><h3>The Wellness Ledger</h3><p>Every mention of illness or injury — a detailed, interactive exploration of each brother&rsquo;s health and well-being through the war.</p></a>
-          <a class="card" href="viz-people-web.html"><div class="num">04 · Network</div><h3>The People Web</h3><p>The nearly 600 people written about or mentioned by the brothers, threaded together by their mutual connections.</p></a>
-          <a class="card" href="the-collection.html"><div class="num">The Archive</div><h3>Five Generations</h3><p>How 273 letters survived 160 years of careful stewardship across five generations of descendants.</p></a>
+          <a class="card" href="/hubbell-dashboard.html"><div class="num">01 · Timeline</div><h3>Parallel Lives</h3><p>Every letter by date and author — four brothers across four theaters of war, on one explorable timeline.</p></a>
+          <a class="card" href="/viz-map-fullwar.html"><div class="num">02 · Geography</div><h3>The Map That Moves</h3><p>Follow the four brothers across the eastern theater — letter by letter, day by day, place by place.</p></a>
+          <a class="card" href="/viz-health-ledger.html"><div class="num">03 · Wellness</div><h3>The Wellness Ledger</h3><p>Every mention of illness or injury — a detailed, interactive exploration of each brother&rsquo;s health and well-being through the war.</p></a>
+          <a class="card" href="/viz-people-web.html"><div class="num">04 · Network</div><h3>The People Web</h3><p>The nearly 600 people written about or mentioned by the brothers, threaded together by their mutual connections.</p></a>
+          <a class="card" href="/the-collection.html"><div class="num">The Archive</div><h3>Five Generations</h3><p>How 273 letters survived 160 years of careful stewardship across five generations of descendants.</p></a>
         </div>
       </div>
 
@@ -360,7 +424,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
               <p>What followed was not the heroic correspondence of myth &mdash; young men writing to their mother about being sick among strangers, about money begged from home, about the ache of months without a letter, about the long grinding weeks between the battles.</p>
               <p>What makes them extraordinary is not any single revelation but the accumulation of ordinary detail across four years. Read together, they become something larger &mdash; <em>an unedited record of what the Civil War felt like from inside it.</em></p>
             </div>
-            <a class="cta" href="the-collection.html">Read the letters &rarr;</a>
+            <a class="cta" href="/the-collection.html">Read the letters &rarr;</a>
           </div>
           <!-- the four voices — color-accent block format; each extended with one more line of depth from the same letter -->
           <div class="lquotes">
@@ -376,7 +440,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
         <div class="eyb">The Preservation</div>
         <h2>A trunk in a basement. Five generations of care.</h2>
         <p>Bundled away after the war, water-stained and nearly lost — then transcribed, introduced, digitized, and finally analyzed, each by a different descendant, each in a different decade.</p>
-        <a class="cta" href="the-collection.html">The full story of the collection →</a>
+        <a class="cta" href="/the-collection.html">The full story of the collection →</a>
       </div>
     </div>
   </div>
@@ -404,6 +468,13 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const seg=(p,a,b)=>clamp((p-a)/(b-a),0,1);
 const S=id=>document.getElementById(id);
+let isMobile = matchMedia('(max-width:760px)').matches;   // phone layout flag (desktop path untouched)
+addEventListener('resize',()=>{isMobile=matchMedia('(max-width:760px)').matches;},{passive:true});
+/* hamburger menu toggle (top-level → works in reduced-motion too) */
+(function(){const nt=S('navtoggle'); if(!nt)return; const navEl=document.querySelector('.nav');
+  nt.addEventListener('click',e=>{e.stopPropagation();const open=navEl.classList.toggle('menuopen');nt.setAttribute('aria-expanded',open);});
+  document.querySelectorAll('.nav .links a').forEach(a=>a.addEventListener('click',()=>{navEl.classList.remove('menuopen');nt.setAttribute('aria-expanded','false');}));
+  addEventListener('click',e=>{if(!navEl.contains(e.target)){navEl.classList.remove('menuopen');nt.setAttribute('aria-expanded','false');}});})();
 
 /* segment boundaries (p ∈ [0,1]) — wide holds so text settles & reads */
 /* text-bearing scenes (valley/battle/explore/letters/preserve) get the widest p-share so every
@@ -430,7 +501,7 @@ if(reduced){
   /* ---- snap-advance: click a chevron / press a direction key to glide to the next held beat.
          Velocity model: gentle base pace, and it SLOWS HARD inside transition zones so the
          cannon-smoke & rain-wash clips actually play out even when advancing without scrolling. ---- */
-  const ANCHORS=[0.0,0.155,0.255,0.40,0.535,0.565,0.59,0.612,0.634,0.655,0.785,0.885,0.975]; // …,bare-brothers,headline,+alex,+henry,+james,+charles,…
+  const ANCHORS=[0.0,0.155,0.255,0.40,0.535,0.59,0.612,0.634,0.655,0.785,0.885,0.975]; // …,bare-brothers(headline auto-reveals ~3.5s after landing),+alex,+henry,+james,+charles,…
   const TRANS=[[0.07,0.095],[0.295,0.345],[0.435,0.50],[0.797,0.855],[0.925,0.946]]; // dawn · cannon-smoke · rain-wash · dusk-embers · fog
   let advActive=false,advTo=0,advDir=1,glideV=0,advTarget=null;
   const maxPx=()=>document.body.scrollHeight-innerHeight;
@@ -514,28 +585,42 @@ if(reduced){
   const RING=2*Math.PI*21; S('ringfg').style.strokeDasharray=RING;
   const exEls={headline:S('b-bhead'),alex:document.querySelector('#cascade .ex.alex'),henry:document.querySelector('#cascade .ex.henry'),james:document.querySelector('#cascade .ex.james'),charles:document.querySelector('#cascade .ex.charles')};
   const STEPS=['headline','alex','henry','james','charles']; // 0..4
-  let seqIdx=-1,lastAdv=0;
+  const bPanels=[...document.querySelectorAll('#s-brothers .panel')];   // for mobile one-at-a-time
+  const lread=document.querySelector('#b-letters .lread'), lquotes=document.querySelector('#b-letters .lquotes');
+  let seqIdx=-1,lastAdv=0,bareArrival=0;
   function brothersSeq(now){
     const inB=p>=SEG.brothers[0]&&p<SEG.settle[1];
     if(!inB){ // outside the brothers segment → force EVERYTHING hidden (fixes headline/quotes bleeding into adjacent beats on scroll-back or scroll-forward)
       exEls.headline.style.opacity='0';
       ['alex','henry','james','charles'].forEach(k=>exEls[k].classList.remove('show'));
+      bPanels.forEach(pn=>pn.classList.remove('active'));
       seqIdx=(p<SEG.brothers[0])?-1:4;   // before → not started; after → fully advanced (so backward re-entry snaps cleanly)
+      if(p<SEG.brothers[0]) bareArrival=0;  // reset dwell timer so re-entry from above re-triggers the ~3.5s pause
       return;
     }
-    // phases: BARE brother images first (a moment to appreciate, no text) → headline → quotes L→R
+    // phases: BARE brother images first (~3.5s to take them in, no text) → headline auto-fades in → quotes L→R on manual advance
+    if(!bareArrival) bareArrival=now;                      // first frame inside the scene: start the dwell timer
     let want=-1;                                           // bare (no text)
     if(p>=0.644) want=4;                                   // +charles (all four)
     else if(p>=0.622) want=3;                              // +james
     else if(p>=0.60) want=2;                               // +henry
     else if(p>=0.578) want=1;                              // +alex
-    else if(p>=0.55) want=0;                               // headline only (delayed so the images breathe first)
+    else if(seqIdx>=0) want=0;                             // headline already revealed → hold it through the bare-anchor region (incl. scroll-back)
+    else if(now-bareArrival>=3500) want=0;                 // AUTO: headline fades in ~3.5s after the brothers appear (longer beat to take them in) — no second manual advance needed
     if(want>seqIdx && now-lastAdv>=500){seqIdx++;lastAdv=now;}           // 0.5s floor smooths multi-step catch-up after a flick
     if(want<seqIdx){seqIdx=want;lastAdv=now;}                            // scrolling back
     // headline visible only at step 0; quotes accumulate from step 1
     exEls.headline.style.opacity=(seqIdx===0?1:0).toFixed(2);
-    exEls.headline.style.transform='translate(-50%,-50%)';
-    [['alex',1],['henry',2],['james',3],['charles',4]].forEach(([k,i])=>exEls[k].classList.toggle('show',seqIdx>=i));
+    exEls.headline.style.transform=isMobile?'translate(-50%,-50%)':'translate(-50%,-50%)';
+    if(isMobile){
+      // ONE brother at a time: show only the current brother's quote, and activate the matching panel
+      [['alex',1],['henry',2],['james',3],['charles',4]].forEach(([k,i])=>exEls[k].classList.toggle('show',seqIdx===i));
+      const pidx=clamp(seqIdx-1,0,3);
+      bPanels.forEach((pn,i)=>pn.classList.toggle('active',i===pidx));
+    } else {
+      [['alex',1],['henry',2],['james',3],['charles',4]].forEach(([k,i])=>exEls[k].classList.toggle('show',seqIdx>=i));
+      bPanels.forEach(pn=>pn.classList.remove('active'));
+    }
   }
 
   function apply(now){
@@ -585,6 +670,9 @@ if(reduced){
     S('cascade').classList.toggle('live', p>=SEG.brothers[0] && p<0.69 && cOp>0.9);
     setO(S('b-explore'),seg(p,0.735,0.76)*(1-seg(p,0.80,0.815))); S('b-explore').style.pointerEvents=(p>0.725&&p<0.815)?'auto':'none';
     setO(S('b-letters'),seg(p,0.865,0.88)*(1-seg(p,0.915,0.925))); S('b-letters').style.pointerEvents=(p>0.855&&p<0.925)?'auto':'none';
+    if(isMobile){ const lp=seg(p,0.878,0.92);                     // mobile: two phases — editorial first, then the four voices
+      lread.style.opacity=(1-seg(lp,0.40,0.54)).toFixed(2); lquotes.style.opacity=seg(lp,0.46,0.6).toFixed(2);
+    } else { lread.style.opacity=''; lquotes.style.opacity=''; }   // desktop: both shown together
     setO(S('b-preserve'),seg(p,0.952,0.99)); S('b-preserve').style.pointerEvents=(p>0.95)?'auto':'none';   // resolve right up to the bottom → minimal dead scroll after the text is in
 
     // navbar: present on the cold open too — enters with the title, then anchors through the flow
