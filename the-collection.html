@@ -11,6 +11,7 @@
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
 <link rel="stylesheet" href="_design.css">
 <link rel="stylesheet" href="_overlay.css">
+<link rel="stylesheet" href="_hero.css">
 <style>
 /* ===== HERO ===== */
 .coll-hero {
@@ -377,6 +378,52 @@
   85%, 100% { opacity: 0; }
 }
 
+/* ===== PRESERVATION LOOP (per era) ===== */
+/* The .hero-loop component (see _hero.css / _hero.js) sits at the top of each
+   era body as that stage's cinematic still→loop. Text flows beneath it so the
+   image is unobstructed and the prose stays fully legible. */
+.era-body .era-loop {
+  margin: 0 0 24px;
+}
+
+/* ===== KEYSTONE: "Read his actual words" (1996 doc tie-in) ===== */
+.era-read-doc {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--bg);
+  background: var(--accent);
+  border: none;
+  padding: 11px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.era-read-doc:hover {
+  background: oklch(52% 0.15 24);
+  transform: translateY(-1px);
+}
+[data-theme="dark"] .era-read-doc:hover {
+  background: oklch(64% 0.16 24);
+}
+.era-read-doc svg { width: 16px; height: 16px; flex: none; }
+.era-read-doc .erd-sub {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-top: 1px;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 700px) {
   .era { grid-template-columns: 1fr; gap: 12px; }
@@ -453,6 +500,19 @@
       <div class="era-year">1861&ndash;65</div>
     </div>
     <div class="era-body">
+      <figure class="hero-loop era-loop" data-hero-loop data-placeholder="true">
+        <img class="hero-loop__poster" src="/experience-v2/assets/preservation/thumbs/typewriter-poster.webp"
+             alt="Placeholder oil-painting montage of the preservation chain — a candlelit trunk of letters, a woman at a typewriter, a monitor and a laptop — standing in for the trunk in the basement until bespoke art is generated."
+             decoding="async" width="1600" height="900">
+        <video class="hero-loop__video" data-src="/experience-v2/assets/loops/loop-preservation-v2.webm"
+               muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+        <div class="hero-loop__scrim" aria-hidden="true"></div>
+        <figcaption class="hero-loop__caption">
+          <span class="hl-eyebrow">Stage 01 &middot; 1861&ndash;65</span>
+          <span class="hl-title">The trunk in the basement</span>
+          <span class="hl-prov">An interpretive oil painting of where the chain begins &mdash; bundled letters tied with string, kept in a trunk. Placeholder art; the bespoke scene is pending.</span>
+        </figcaption>
+      </figure>
       <h3>The Brothers Write Home</h3>
       <p>
         Henry, Alexander, James, and Charles Hubbell write to their mother from camps, marches,
@@ -471,6 +531,19 @@
       <div class="era-year">1947&ndash;49</div>
     </div>
     <div class="era-body">
+      <figure class="hero-loop era-loop" data-hero-loop data-placeholder="true">
+        <img class="hero-loop__poster" src="/experience-v2/assets/preservation/thumbs/typewriter-poster.webp"
+             alt="Placeholder oil-painting montage of the preservation chain — a candlelit trunk of letters, a woman at a typewriter, a monitor and a laptop — standing in for the 1947–49 typewriter transcription until bespoke art is generated."
+             decoding="async" width="1600" height="900">
+        <video class="hero-loop__video" data-src="/experience-v2/assets/loops/loop-preservation-v2.webm"
+               muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+        <div class="hero-loop__scrim" aria-hidden="true"></div>
+        <figcaption class="hero-loop__caption">
+          <span class="hl-eyebrow">Stage 02 &middot; 1947&ndash;49</span>
+          <span class="hl-title">The transcription</span>
+          <span class="hl-prov">Gladys Sands Hubbell at her typewriter &mdash; an interpretive painting, not a photograph. Placeholder art; the bespoke scene is pending.</span>
+        </figcaption>
+      </figure>
       <h3>Gladys Sands Hubbell Transcribes</h3>
       <p>
         Alexander&rsquo;s daughter-in-law opens the trunk and finds the originals deteriorating &mdash;
@@ -489,6 +562,19 @@
       <div class="era-year">1996</div>
     </div>
     <div class="era-body">
+      <figure class="hero-loop era-loop" data-hero-loop data-placeholder="true">
+        <img class="hero-loop__poster" src="/experience-v2/assets/preservation/thumbs/typewriter-poster.webp"
+             alt="Placeholder oil-painting montage of the preservation chain — a candlelit trunk of letters, a woman at a typewriter, a monitor and a laptop — standing in for Fred Jr. writing the 1996 introduction until bespoke art is generated."
+             decoding="async" width="1600" height="900">
+        <video class="hero-loop__video" data-src="/experience-v2/assets/loops/loop-preservation-v2.webm"
+               muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+        <div class="hero-loop__scrim" aria-hidden="true"></div>
+        <figcaption class="hero-loop__caption">
+          <span class="hl-eyebrow">Stage 03 &middot; 1996</span>
+          <span class="hl-title">The inheritance letter</span>
+          <span class="hl-prov">Fred Alexander Hubbell Jr. composing the introduction that hands the collection on &mdash; an interpretive painting. Placeholder art; the bespoke scene is pending.</span>
+        </figcaption>
+      </figure>
       <h3>Fred Alexander Hubbell Jr. Introduces</h3>
       <p>
         Alexander&rsquo;s grandson, writing from Atlanta, composes a narrative introduction. He
@@ -498,6 +584,10 @@
         and an ending.
       </p>
       <p class="era-detail">The first time the collection is framed for an audience beyond the family.</p>
+      <button type="button" class="era-read-doc" onclick="openCollectionDoc()" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Read his actual words<span class="erd-sub">The 1996 introduction &middot; primary source</span></span>
+      </button>
     </div>
   </div>
 
@@ -507,6 +597,19 @@
       <div class="era-year">2010s</div>
     </div>
     <div class="era-body">
+      <figure class="hero-loop era-loop" data-hero-loop data-placeholder="true">
+        <img class="hero-loop__poster" src="/experience-v2/assets/preservation/thumbs/typewriter-poster.webp"
+             alt="Placeholder oil-painting montage of the preservation chain — a candlelit trunk of letters, a woman at a typewriter, a monitor and a laptop — standing in for the scanner digitizing the typed pages until bespoke art is generated."
+             decoding="async" width="1600" height="900">
+        <video class="hero-loop__video" data-src="/experience-v2/assets/loops/loop-preservation-v2.webm"
+               muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+        <div class="hero-loop__scrim" aria-hidden="true"></div>
+        <figcaption class="hero-loop__caption">
+          <span class="hl-eyebrow">Stage 04 &middot; 2010s</span>
+          <span class="hl-title">The scan</span>
+          <span class="hl-prov">Bruce Levitt digitizing Gladys&rsquo;s typewritten pages &mdash; an interpretive painting. Placeholder art; the bespoke scene is pending.</span>
+        </figcaption>
+      </figure>
       <h3>Bruce Levitt Digitizes</h3>
       <p>
         Fred Jr.&rsquo;s son-in-law scans Gladys&rsquo;s typewritten pages into high-resolution
@@ -524,6 +627,19 @@
       <div class="era-year">2026</div>
     </div>
     <div class="era-body">
+      <figure class="hero-loop era-loop" data-hero-loop data-placeholder="true">
+        <img class="hero-loop__poster" src="/experience-v2/assets/preservation/thumbs/typewriter-poster.webp"
+             alt="Placeholder oil-painting montage of the preservation chain — a candlelit trunk of letters, a woman at a typewriter, a monitor and a laptop — standing in for the present-day digital analysis until bespoke art is generated."
+             decoding="async" width="1600" height="900">
+        <video class="hero-loop__video" data-src="/experience-v2/assets/loops/loop-preservation-v2.webm"
+               muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+        <div class="hero-loop__scrim" aria-hidden="true"></div>
+        <figcaption class="hero-loop__caption">
+          <span class="hl-eyebrow">Stage 05 &middot; 2026</span>
+          <span class="hl-title">The digital layer</span>
+          <span class="hl-prov">The letters become searchable data, maps, and visualizations &mdash; an interpretive painting of this site&rsquo;s work. Placeholder art; the bespoke scene is pending.</span>
+        </figcaption>
+      </figure>
       <h3>The Descendants Analyze</h3>
       <p>
         Alexander Hubbell Levitt &mdash; Alexander&rsquo;s great-great-grandson and namesake &mdash;
@@ -642,7 +758,37 @@
 <script src="_overlay-data.js"></script>
 <script src="_letter-nav.js"></script>
 <script src="_overlay.js"></script>
+<script src="_reader.js"></script>
+<script>
+/* ── Keystone provenance document ─────────────────────────────────────────
+   Fred Alexander Hubbell, Jr.'s October 28, 1996 family introduction
+   (DOC-INTRO-1996-10-28-001). It is surfaced in the letter reader at the 1996
+   era via the "Read his actual words" button, but is deliberately NOT added to
+   the LETTERS corpus — so it is openable here yet ABSENT from global site
+   search (the search engine indexes only the LETTERS array). It is handed to
+   the reader inline through opts.letter + opts.asDocument (document mode
+   suppresses the corpus-only map link / prev-next nav / share controls).
+   Transcription preserves the author's original spelling, per the project's
+   provenance ethos. Source: 02-transcribed-markdown/other-documents/
+   DOC-INTRO-1996-10-28-001.md ───────────────────────────────────────────── */
+var DOC_INTRO_1996 = {
+  id: 'DOC-INTRO-1996-10-28-001',
+  a: 'fredjr',
+  an: 'Fred Alexander Hubbell, Jr.',
+  d: '1996-10-28',
+  r: 'His children & future readers',
+  loc: 'Atlanta, Georgia',
+  ss: "The keystone of the collection's provenance — written by Alexander's grandson. He explains how his mother transcribed the water‑stained originals from a basement trunk over 1947–49, names the four brothers and their regiments and fates, and entrusts the letters to others “as well as … my children.”",
+  t: "The following letters were transcribed by my mother, from the original hand written pages, in what was a true labor of love. The originals had been stored in a trunk in a basement, and many of them were somewhat water stained. The transcribing was very tedious in some instances and took over two and a half years, from early 1947 to the latter part of 1949. This was painstakenly accomplished and are true copies of the originals insofar as both spelling and grammatical useage are concerned, along with notations of when they were entirelly illegible, or with portions missing. The Hubbell home was Champlain, upper state New York.\n\nAll of these were communications between four brothers, their mother, their sister, and in a few instances, with others; while they were in the Union Army during the civil war.\n\nThe U. S. Army identifications were as follows:\n\nCharles F. Hubbell — Co. I, 153rd Reg't, New York Volunteers. Charles died in 1875 as a result of wounds suffered during the war.\n\nHenry Hubbell, Mo C 58119 — Co. D, 34th Reg't, New York Volunteers. Henry was killed at battle of Antietam, Sept. 17, 1862.\n\nJames Hubbell — Co. I, 153rd Reg't, New York Volunteers. James died on the way home from Savannah, Ga. Oct. 19, 1865.\n\nAlexander F. Hubbell, WC 658842 — Co. H, 60th Reg't, New York Infantry. Alexander died on his farm at Fonda, Iowa in November 1894.\n\nAlexander Fullerton Hubbell, listed above, was my grandfather. His father (my Great Grand father) Frederick Agustus Hubbell, passed away in Apr. 1853 when Alex was only nine years old.\n\nTrusting that these letters may be of interest to others, as well as with my children, I am,\n\nsincerely,\nFred Alexander Hubbell, Jr."
+};
+function openCollectionDoc() {
+  if (window.HubbellReader) {
+    HubbellReader.open(DOC_INTRO_1996.id, { letter: DOC_INTRO_1996, asDocument: true });
+  }
+}
+</script>
 <script>if (window.HubbellOverlay) HubbellOverlay.bindPage({ tags: true, locations: true, prose: '.coll-intro p, .era-body p, .approach-section p' });</script>
 <script>if (window.HubbellDeepLink) HubbellDeepLink.injectShareButton();</script>
+<script src="_hero.js"></script>
 </body>
 </html>

@@ -262,10 +262,17 @@ window.HubbellReader = (function () {
 
   function updateNavBar() {
     if (!overlay || !currentLetterId) return;
+    var navBarEl = document.getElementById('hubbellReaderNav');
+    // Document mode (e.g. the standalone 1996 letter): no prev/next siblings to
+    // walk, so hide the whole nav bar rather than show two dead arrows.
+    if (currentOpts && currentOpts.asDocument) {
+      if (navBarEl) navBarEl.style.display = 'none';
+      return;
+    }
+    if (navBarEl) navBarEl.style.display = ''; // restore after a doc was shown
     var Nav = window.HubbellLetterNav;
     if (!Nav) {
-      var bar = document.getElementById('hubbellReaderNav');
-      if (bar) bar.style.display = 'none';
+      if (navBarEl) navBarEl.style.display = 'none';
       return;
     }
 
@@ -517,6 +524,12 @@ window.HubbellReader = (function () {
     currentOpts = opts;
     currentLetterId = letterId;
 
+    // Document mode: the id is a standalone document (e.g. the 1996 provenance
+    // letter), NOT a dated corpus letter. Suppress the corpus-only affordances
+    // — the war-map link, the prev/next letter nav, and the deep-link share —
+    // which would all point nowhere meaningful for a non-corpus document.
+    var asDocument = !!opts.asDocument;
+
     // Apply initial nav mode if specified by caller
     if (opts.initialNavMode && window.HubbellLetterNav) {
       HubbellLetterNav.setMode(opts.initialNavMode);
@@ -544,7 +557,7 @@ window.HubbellReader = (function () {
     // Map link \u2014 lands on the Map That Moves at this letter's date. Frances
     // now appears as a fixed dot at Champlain, so her letters get the link too;
     // the &brother lock-follow is omitted for her (she never moves).
-    var mapLink =
+    var mapLink = asDocument ? '' :
       '<a class="reader-map-link" href="viz-map-fullwar?date=' +
       encodeURIComponent(letter.d) +
       (letter.a !== 'mother'
@@ -664,7 +677,7 @@ window.HubbellReader = (function () {
     // (anchored to .reader-panel) so it sits inline at the top-right beside the
     // close on desktop, and re-centers as a banner on mobile — see the
     // .reader-panel .dl-modal-share rules in _design.css.
-    if (window.HubbellDeepLink) {
+    if (window.HubbellDeepLink && !asDocument) {
       var existing = overlay.querySelector('.dl-modal-share');
       if (existing) existing.remove();
       var navBar = overlay.querySelector('.reader-nav-bar');
