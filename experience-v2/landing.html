@@ -207,7 +207,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
   display:flex;align-items:center;justify-content:center;background:rgba(10,11,15,.5);backdrop-filter:blur(2px);
   box-shadow:0 3px 12px rgba(0,0,0,.45),inset 0 0 0 1px rgba(236,227,210,.14)}
 .scrollind .adv.down::before{content:"";position:absolute;left:0;right:0;bottom:0;height:calc(var(--fill,0)*100%);
-  background:linear-gradient(180deg,rgba(224,176,112,.45),rgba(224,176,112,.88));transition:height .18s linear;pointer-events:none}
+  background:linear-gradient(180deg,rgba(224,176,112,.45),rgba(224,176,112,.88));transition:height .05s linear;pointer-events:none}
 .scrollind .adv.down svg{position:relative;z-index:1;width:22px;height:13px;animation:none}   /* no bob; the fill is the cue */
 .scrollind .adv.down.swell svg{animation:chevswell .3s ease}
 .scrollind .adv.down path{stroke:#f3ecdd;opacity:calc(.5 + var(--fill,0)*.5)}
@@ -687,15 +687,18 @@ if(reduced){
     if(p>=SEG.brothers[0] && p<0.578 && seqIdx<0) dwell = clamp((now-bareArrival)/3500, 0, 1);  // brothers bare→headline beat
     return clamp(Math.min(motion, media, dwell), 0, 1);
   }
-  // MONOTONIC fill: hold the max within a checkpoint, reset only when the nearest anchor changes (i.e. on a real advance / crossing a beat).
-  // This kills the jitter where the raw signal (esp. video readyState flicker / glide basis-switch) skipped back and re-filled.
-  let readyHold=0,lastNear=-1,wasReady=false;
+  // Fill always resets HARD to 0 at the start of every transition (nearest-anchor change), then EASES up toward
+  // readiness (settle × media-load × dwell) — monotonic within the checkpoint so it never skips back. The easing
+  // (not the raw signal) is what's displayed, so the empty→full ramp is consistent regardless of anchor spacing.
+  let fillVal=0,lastNear=-1,fillReady=false;
   function meterFill(now){
     const ni=nearIdx();
-    if(ni!==lastNear){lastNear=ni;readyHold=0;wasReady=false;}   // entered a new checkpoint zone → refill from 0 (re-arms the sparkle)
-    const raw=advReadiness(now);
-    if(raw>readyHold)readyHold=raw;                              // never decreases until the next zone → smooth, no skip-back
-    return readyHold;
+    if(ni!==lastNear){lastNear=ni;fillVal=0;fillReady=false;return 0;}  // show a true empty THIS frame; ramp begins next frame
+    const target=Math.max(fillVal,advReadiness(now));           // monotonic target within the zone → no skip-back / flicker
+    fillVal += (target-fillVal)*0.12;                           // smooth ramp up from empty
+    if(target-fillVal<0.004) fillVal=target;                    // settle exactly
+    if(!fillReady && fillVal>=0.97){fillReady=true; sparkle();}  // sparkle the moment the fill visually completes
+    return fillVal;
   }
   function sparkle(){const s=S('advspark'); if(!s)return; s.classList.remove('go'); void s.offsetWidth; s.classList.add('go'); setTimeout(()=>s.classList.remove('go'),720);}
 
@@ -754,13 +757,10 @@ if(reduced){
     // navbar: present on the cold open too — enters with the title, then anchors through the flow
     S('nav').classList.toggle('in', el>1500 || p>0.05);
 
-    // progress indicator: ring fills toward next beat; label + fade
-    // forward button FILLS with advance-readiness (desktop + mobile); a sparkle fires the moment it completes
+    // forward button FILLS with advance-readiness (desktop + mobile); meterFill() handles the reset/ease/sparkle
     const rdy=meterFill(now);
     const ad=S('advdown'); ad.style.setProperty('--fill',rdy.toFixed(3));
-    const isReady=rdy>=0.97; ad.classList.toggle('ready',isReady);
-    if(isReady && !wasReady) sparkle();         // rising edge → one-shot "transition complete" twinkle
-    wasReady=isReady;
+    ad.classList.toggle('ready',rdy>=0.97);
     S('indlab').textContent = p<0.02 ? 'Click, arrow, or scroll to enter the collection' : (p>0.94 ? 'Explore the archive' : 'Click or scroll to continue');
     // advance chevrons: up appears once past the first stop, down hides at the last
     const ni=nearIdx();
