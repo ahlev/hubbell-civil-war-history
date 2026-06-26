@@ -16,7 +16,8 @@
   --b-alex:#B8860B; --b-henry:#2D5F8A; --b-james:#4A7C59; --b-charles:#8B3A3A;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{background:#0a0b0e}
+html{background:#0a0b0e;scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}   /* hide native bar — replaced by the custom progress rail */
 body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-smoothing:antialiased}
 .track{height:3000vh;position:relative}
 .stage{position:fixed;inset:0;overflow:hidden;background:#0a0b0e}
@@ -59,24 +60,27 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 .beat h1{font-weight:300;font-size:clamp(38px,7vw,84px);line-height:1.03;letter-spacing:-.01em}
 .beat h1 em{font-style:italic;color:var(--lantern)}
 .vista{width:min(92vw,820px)}
-.vista h1{font-weight:300;font-size:clamp(30px,5.2vw,62px);line-height:1.08;max-width:18ch;margin:0 auto}
+.vista h1{font-weight:700;font-size:clamp(30px,5.2vw,62px);line-height:1.08;max-width:18ch;margin:0 auto}
 .distance{margin-top:20px;font-style:italic;font-size:clamp(16px,2.1vw,22px);color:#e6dcc9;max-width:32ch;margin-inline:auto;line-height:1.5}
 /* cold-open second layer — brand thread; fades in after the title settles, fades out as the descent begins */
-.hero-thesis{opacity:0;margin-top:26px}
-.hero-thesis .thesis{font-style:italic;font-weight:500;font-size:clamp(14px,1.55vw,18px);line-height:1.55;color:#e3d8c0;max-width:48ch;margin:0 auto}
-.hero-thesis .thesis em{font-style:italic;color:var(--lantern)}
-.hero-thesis .prov{margin-top:15px;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#bcc3ca}
+/* project-identity statement — distinctly framed (gold rule + upright refined serif), anchoring what this project IS */
+.hero-thesis{opacity:0;margin-top:26px;position:relative;padding-top:22px}
+.hero-thesis::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:54px;height:1px;background:linear-gradient(90deg,transparent,var(--lantern),transparent)}
+.hero-thesis .identity{font-weight:400;font-size:clamp(13.5px,1.55vw,18px);line-height:1.62;color:#dcd2bc;max-width:54ch;margin:0 auto;letter-spacing:.004em}
+.hero-thesis .identity em{font-style:italic;color:var(--lantern)}
 .quote p{font-weight:600;font-size:clamp(22px,3vw,34px);line-height:1.4;font-style:italic;color:#f3ecdd}
 .quote p em{font-style:italic;color:var(--lantern)}                       /* signature phrases lift to lantern-gold */
 .quote.long{width:min(94vw,760px)}                                        /* contemplative multi-paragraph passage */
 .quote.long p{font-weight:500;font-size:clamp(15px,1.95vw,23px);line-height:1.55}
 .quote.long p+p{margin-top:.75em}
 .cite{margin-top:22px;font-family:"JetBrains Mono",monospace;font-style:normal;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#dfe5ea;font-weight:500;line-height:1.7}
-.cite b{display:block;color:var(--lantern);font-weight:700;font-size:17px;letter-spacing:.04em;margin-bottom:3px}
+.cite .who{display:block;margin-bottom:3px}
+.cite b{color:var(--lantern);font-weight:700;font-size:17px;letter-spacing:.04em}
+.cite .unit{color:#c9b58a;font-weight:600;font-size:13px}
 .cite .age{color:#e6dcc9;font-weight:600}
 
 /* brothers headline (intro over the 4-up) */
-#b-bhead{width:min(92vw,920px)}
+#b-bhead{width:min(92vw,920px);transition:opacity .7s ease}   /* subtle fade in/out (was an abrupt toggle) */
 #b-bhead h2{font-weight:700;font-size:clamp(26px,4vw,52px);line-height:1.1;letter-spacing:-.01em;color:#f3ecdd}
 #b-bhead .sub{display:block;margin-top:14px;font-weight:500;font-size:clamp(16px,2vw,24px);color:#e0b070}
 
@@ -87,7 +91,9 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
   padding:14px 13px 12px;text-align:center;backdrop-filter:blur(2px);box-shadow:0 14px 34px rgba(0,0,0,.5)}
 #cascade .ex p{font-style:italic;font-weight:600;font-size:clamp(12px,1.05vw,15px);line-height:1.5;color:#f3ecdd}
 #cascade .ex .c{margin-top:10px;padding-top:9px;border-top:1px solid rgba(236,227,210,.16);font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#cdd3d9;line-height:1.6}
-#cascade .ex .c b{font-weight:700;display:block;margin-bottom:3px;font-size:11px;letter-spacing:.03em}
+#cascade .ex .c .who{display:block;margin-bottom:3px}
+#cascade .ex .c b{font-weight:700;font-size:11px;letter-spacing:.03em}
+#cascade .ex .c .unit{font-weight:500;color:#aab2b9}
 /* columns: each 25% wide; box 21% centered in its column → left = idx*25 + 2 */
 #cascade .ex.alex{left:2%}#cascade .ex.henry{left:27%}#cascade .ex.james{left:52%}#cascade .ex.charles{left:77%}
 #cascade .ex.alex .c b{color:var(--b-alex)}#cascade .ex.henry .c b{color:var(--b-henry)}
@@ -105,19 +111,21 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 #cascade .ex.charles .bio-btn{color:#cf7b7b;border-color:#cf7b7b}#cascade .ex.charles .bio-btn:hover{background:#cf7b7b;color:#180a0a}
 
 /* exploration grid */
-.explore{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(94vw,1080px);opacity:0;pointer-events:none}
+.explore{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(96vw,1180px);opacity:0;pointer-events:none}
 .explore::before{content:"";position:absolute;inset:-24% -14% -10%;z-index:-1;pointer-events:none;
   background:radial-gradient(64% 54% at 50% 24%, rgba(5,6,9,.95), rgba(5,6,9,.82) 50%, rgba(5,6,9,.46) 76%, transparent);filter:blur(10px)}
 .explore .eyb{text-align:center;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--lantern);margin-bottom:7px;text-shadow:0 2px 18px rgba(0,0,0,.95)}
-.explore h2{text-align:center;font-weight:500;font-size:clamp(24px,3.4vw,40px);margin-bottom:26px;color:#f7f0e2;text-shadow:0 2px 28px rgba(0,0,0,.98),0 1px 3px rgba(0,0,0,.92)}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-@media(max-width:820px){.cards{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.cards{grid-template-columns:1fr}}
+.explore h2{text-align:center;font-weight:500;font-size:clamp(20px,2.7vw,31px);margin-bottom:10px;color:#f7f0e2;text-wrap:balance;text-shadow:0 2px 28px rgba(0,0,0,.98),0 1px 3px rgba(0,0,0,.92)}
+.explore .subcta{text-align:center;font-family:"Inter",sans-serif;font-size:13.5px;color:#cdd3d9;margin-bottom:24px;text-shadow:0 2px 16px rgba(0,0,0,.9)}
+/* flex (not grid) so the final partial row centres (5 cards → 3 + 2 centred) */
+.cards{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
 /* each card carries a distinct accent; on hover it floods with that colour → clearly clickable + memorable */
-.card{--acc:var(--lantern);display:block;text-decoration:none;color:var(--paper);background:rgba(8,9,13,.8);border:1px solid rgba(236,227,210,.16);border-radius:10px;padding:16px;backdrop-filter:blur(4px);
+.card{--acc:var(--lantern);flex:0 1 calc((100% - 28px)/3);display:block;text-decoration:none;color:var(--paper);background:rgba(8,9,13,.8);border:1px solid rgba(236,227,210,.16);border-radius:10px;padding:16px;backdrop-filter:blur(4px);
   transition:transform .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease}
+@media(max-width:820px){.card{flex-basis:calc((100% - 14px)/2)}}
+@media(max-width:520px){.card{flex-basis:100%}}
 .card:nth-child(1){--acc:#3E86C4}.card:nth-child(2){--acc:#52A86E}.card:nth-child(3){--acc:#CB5C5C}
-.card:nth-child(4){--acc:#D9A441}.card:nth-child(5){--acc:#9A78C7}.card:nth-child(6){--acc:#CE8A46}
+.card:nth-child(4){--acc:#9A78C7}.card:nth-child(5){--acc:#CE8A46}
 .card:hover{transform:translateY(-3px);border-color:var(--acc);
   background:color-mix(in srgb, var(--acc) 28%, rgba(8,9,13,.9));
   box-shadow:0 16px 34px rgba(0,0,0,.55), inset 0 0 0 1px var(--acc)}
@@ -131,20 +139,38 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 .prosebeat .eyb{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
 .prosebeat h2{font-weight:300;font-size:clamp(26px,4vw,46px);line-height:1.12;margin-bottom:18px}
 .prosebeat p{font-size:clamp(16px,1.7vw,19px);line-height:1.6;color:#ece2d1;max-width:60ch;margin:0 auto}
-.prosebeat .cta{display:inline-block;margin-top:26px;pointer-events:auto;font-family:"Inter",sans-serif;font-size:14px;color:var(--ink);background:var(--lantern);padding:11px 20px;border-radius:6px;text-decoration:none;font-weight:600}
-/* ---- Letters beat: lead + four real excerpt chips (does real work, not just a line) ---- */
-.prosebeat.letters{width:min(94vw,1000px)}
-.prosebeat.letters::before,#b-preserve::before{content:"";position:absolute;inset:-18% -10%;z-index:-1;pointer-events:none;
-  background:radial-gradient(60% 58% at 50% 36%, rgba(5,6,9,.93), rgba(5,6,9,.8) 54%, rgba(5,6,9,.42) 78%, transparent);filter:blur(10px)}
-.prosebeat.letters p.lead{max-width:62ch}
-.lettergrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px;text-align:left}
-@media(max-width:880px){.lettergrid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.lettergrid{grid-template-columns:1fr}}
-.lq{background:rgba(8,9,13,.84);border:1px solid rgba(236,227,210,.13);border-left:3px solid var(--acc,var(--lantern));border-radius:8px;padding:13px 14px;backdrop-filter:blur(3px)}
+/* NOTE: no forced pointer-events here — the CTA inherits its beat's gated pointer-events, so the hidden
+   Letters/Preservation CTAs don't steal hover from the centred Exploration card (the People Web flicker). */
+.prosebeat .cta{display:inline-block;margin-top:26px;font-family:"Inter",sans-serif;font-size:14px;color:var(--ink);background:var(--lantern);padding:11px 20px;border-radius:6px;text-decoration:none;font-weight:600;transition:filter .15s ease,transform .12s ease,box-shadow .15s ease}
+.prosebeat .cta:hover{filter:brightness(.88);box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.prosebeat .cta:active{transform:scale(1.06)}
+/* ---- Letters beat: editorial read (left) + four brother voices (right), shown TOGETHER ---- */
+.prosebeat.letters{width:min(96vw,1180px)}
+.letters .lcols{display:grid;grid-template-columns:1.06fr 0.94fr;gap:38px;align-items:center;text-align:left}
+@media(max-width:860px){.letters .lcols{grid-template-columns:1fr;gap:18px}}
+.letters .lread .eyb,.letters .lread h2{text-align:left}
+.letters .lread h2{font-size:clamp(23px,2.5vw,33px);margin-bottom:14px}
+.letters .editorial{max-width:48ch;margin:0;text-shadow:0 2px 16px rgba(0,0,0,.95),0 1px 3px rgba(0,0,0,.85)}
+.letters .editorial p{font-size:clamp(13px,1.05vw,15px);line-height:1.6;color:#efe6d6;margin:0}
+.letters .editorial p+p{margin-top:11px}
+.letters .editorial em{font-style:italic;color:#f6efe0}
+.letters .lread .cta{margin-top:18px}
+.letters .lquotes{display:flex;flex-direction:column;gap:9px}
+.lq{background:rgba(8,9,13,.72);border:1px solid rgba(236,227,210,.12);border-left:3px solid var(--acc,var(--lantern));border-radius:8px;padding:11px 13px;backdrop-filter:blur(3px)}
 .lq.alex{--acc:#d9a441}.lq.henry{--acc:#5b95c9}.lq.james{--acc:#6fae81}.lq.charles{--acc:#cf7b7b}
-.lq blockquote{font-style:italic;font-weight:500;font-size:13.5px;line-height:1.5;color:#f1ead9}
-.lq figcaption{margin-top:11px;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:#c4cbd2;line-height:1.55}
-.lq figcaption b{display:block;color:var(--acc,var(--lantern));font-weight:700;font-size:10px;letter-spacing:.03em;margin-bottom:2px}
+.lq blockquote{font-style:italic;font-weight:500;font-size:12.5px;line-height:1.48;color:#f1ead9}
+.lq figcaption{margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:8.5px;letter-spacing:.04em;text-transform:uppercase;color:#bcc3ca;line-height:1.5}
+.lq figcaption .who{display:block;margin-bottom:1px}
+.lq figcaption b{color:var(--acc,var(--lantern));font-weight:700;font-size:9.5px;letter-spacing:.03em}
+.lq figcaption .unit{color:#9aa2a9;font-weight:500}
+/* soft dark aura behind the editorial column (left) for contrast — same treatment as the opening Alexander quote's .beat::before */
+.letters .lread{position:relative;z-index:0}
+.letters .lread::before{content:"";position:absolute;inset:-26% -20% -20% -26%;z-index:-1;pointer-events:none;
+  background:radial-gradient(62% 60% at 45% 50%, rgba(4,5,8,.92), rgba(4,5,8,.7) 46%, rgba(4,5,8,.32) 70%, transparent 86%);filter:blur(20px)}
+/* lighter overall scene darken so the aura provides the local contrast (like the valley slide) */
+#s-letters::before{background:rgba(5,6,10,.5)}
+#b-preserve::before{content:"";position:absolute;inset:-18% -10%;z-index:-1;pointer-events:none;
+  background:radial-gradient(60% 58% at 50% 36%, rgba(5,6,9,.93), rgba(5,6,9,.8) 54%, rgba(5,6,9,.42) 78%, transparent);filter:blur(10px)}
 
 /* ===== persistent navbar (V1-style; hero reforms into this) ===== */
 .nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;gap:18px;padding:13px 26px;
@@ -158,7 +184,10 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 .nav .spacer{flex:1}
 .nav .links{display:flex;gap:4px;flex-wrap:wrap}
 .nav .links a{font-family:"Inter",sans-serif;font-size:13px;color:#c9d0d6;text-decoration:none;padding:6px 9px;border-radius:5px;transition:background .15s,color .15s}
-.nav .links a:hover{background:rgba(236,227,210,.08);color:var(--paper)}
+/* navbar hover mirrors the Exploration cards' per-section accent colours */
+.nav .links a:nth-child(1){--acc:#CE8A46}.nav .links a:nth-child(2){--acc:#3E86C4}.nav .links a:nth-child(3){--acc:#52A86E}
+.nav .links a:nth-child(4){--acc:#CB5C5C}.nav .links a:nth-child(5){--acc:#9A78C7}.nav .links a:nth-child(6){--acc:#6FB0A6}
+.nav .links a:hover{background:color-mix(in srgb, var(--acc,var(--lantern)) 34%, rgba(8,9,12,.5));color:#fff;box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--acc,var(--lantern)) 55%, transparent)}
 @media(max-width:900px){.nav .links{display:none}}
 
 /* ===== progress indicator + persistent CTA (themed) ===== */
@@ -198,14 +227,19 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 @keyframes akp{0%,100%{transform:translateY(0);opacity:.65}55%{transform:translateY(2px);opacity:1}}
 .scrollind .lab{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#e6dcca;text-shadow:0 2px 14px rgba(0,0,0,.85);max-width:94vw}
 
-/* ===== cursor progress halo — mirrors the scroll-progress ring around the pointer (thicker) ===== */
-.curhalo{position:fixed;left:0;top:0;width:46px;height:46px;margin:-23px 0 0 -23px;pointer-events:none;z-index:45;opacity:0;transition:opacity .35s ease}
-.curhalo svg{position:absolute;inset:0;width:100%;height:100%}
-.curhalo circle{fill:none;transform:rotate(-90deg);transform-origin:50% 50%}
-.curhalo .bg{stroke:rgba(236,227,210,.20);stroke-width:3.5}
-.curhalo .fg{stroke:var(--lantern);stroke-width:3.5;stroke-linecap:round;transition:stroke-dashoffset .12s linear;filter:drop-shadow(0 0 4px rgba(224,176,112,.55))}
-.curhalo.show{opacity:1}
-@media(max-width:760px),(pointer:coarse){.curhalo{display:none}}
+/* ===== custom progress rail — larger, themed, draggable scrubber (replaces the native scrollbar) ===== */
+.progressrail{position:fixed;top:62px;bottom:60px;right:9px;width:8px;z-index:29;border-radius:6px;cursor:pointer;
+  background:linear-gradient(180deg,rgba(236,227,210,.05),rgba(236,227,210,.12),rgba(236,227,210,.05));
+  box-shadow:inset 0 0 0 1px rgba(236,227,210,.09);opacity:0;transition:opacity .5s}
+.progressrail.on{opacity:1}
+.prail-thumb{position:absolute;top:0;left:50%;transform:translateX(-50%);width:18px;height:58px;border-radius:10px;cursor:grab;touch-action:none;
+  background:linear-gradient(180deg,#f2d49b,#e0b070 52%,#c4924e);
+  box-shadow:0 2px 10px rgba(0,0,0,.5),0 0 12px rgba(224,176,112,.4),inset 0 1px 0 rgba(255,255,255,.45);
+  display:flex;align-items:center;justify-content:center;transition:width .14s ease,filter .14s ease,box-shadow .14s ease}
+.prail-thumb .grip{width:9px;height:12px;background:repeating-linear-gradient(180deg,rgba(22,19,13,.6) 0 1.6px,transparent 1.6px 4px)}
+.progressrail:hover .prail-thumb,.prail-thumb.drag{width:23px;filter:brightness(1.08);box-shadow:0 3px 15px rgba(0,0,0,.55),0 0 20px rgba(224,176,112,.7),inset 0 1px 0 rgba(255,255,255,.55)}
+.prail-thumb.drag{cursor:grabbing}
+@media(max-width:760px),(pointer:coarse){.progressrail{display:none}}
 
 @media (prefers-reduced-motion: reduce){
   .track{height:auto}.stage{position:static}
@@ -230,7 +264,6 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
     <a href="hubbell-dashboard.html">Parallel Lives</a>
     <a href="viz-map-fullwar.html">Map That Moves</a>
     <a href="viz-health-ledger.html">Wellness Ledger</a>
-    <a href="viz-money-story.html">Money Story</a>
     <a href="viz-people-web.html">People Web</a>
     <a href="who-they-were.html">Who They Were</a>
   </div>
@@ -274,8 +307,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
         <h1>The Hubbell <em>Brothers</em></h1>
         <p class="distance">Four brothers. Four years of war. Two hundred and seventy-three letters across the distance between them.</p>
         <div class="hero-thesis" id="b-thesis">
-          <p class="thesis">Now read with modern data science and interactive visualizations — their words, and the humanity of living through the war, brought to life <em>in ways the letters alone never could.</em></p>
-          <div class="prov">A rare archive, preserved and studied across five generations of descendants.</div>
+          <h3 class="identity">This rare family collection has been brought to life by a descendant, using modern data science and interactive technology. Their words, their connections, and the humanity of experiencing the war, <em>brought to life in ways the letters alone never could before&hellip;</em></h3>
         </div>
       </div>
       <!-- editorial pre-headline over the sunny vista, before Alexander's Part 1 -->
@@ -285,11 +317,11 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
       <div class="beat quote long" id="b-painting">
         <p>&ldquo;&lsquo;Way down South in Dixie.&rsquo; That is where I am. And a beautiful country too if it were not cursed by the existence of slavery. I am encamped on the summit of a high hill and the view is very fine. Green fields, meadows, large farms, patches of woods, roads winding here and there&hellip; all of this spread out before me <em>like a beautiful painting</em>.</p>
         <p>I was sitting on the hill just now watching the sun as it was setting behind the Blue Ridge. The soft notes of the bugle were floating through the air when I <em>almost forgot I was a soldier</em>&hellip;&rdquo;</p>
-        <div class="cite"><b>Alexander Hubbell</b> Pine Mountain, VA · July 14, 1862 · <span class="age">(Age 18)</span></div>
+        <div class="cite"><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span> Pine Mountain, VA · July 14, 1862 · <span class="age">(Age 18)</span></div>
       </div>
       <div class="beat quote" id="b-rock">
         <p>&ldquo;&hellip;But if the drum should beat to arms tomorrow, there will be a different scene. Troops will be forming in line of battle&hellip; the skirmishers will be thrown out, and then <em>the earth will fairly rock.</em>&rdquo;</p>
-        <div class="cite"><b>Alexander Hubbell</b> Pine Mountain, VA · July 14, 1862</div>
+        <div class="cite"><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span> Pine Mountain, VA · July 14, 1862</div>
       </div>
 
       <!-- brothers headline (precedes the cascade) -->
@@ -299,36 +331,45 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 
       <!-- brothers cascade (column-locked) -->
       <div id="cascade">
-        <div class="ex alex"><p>&ldquo;Here I am safe and sound in the barracks. How strange it does seem. Ah! what a bedlam!&rdquo;</p><div class="c"><b>Alexander Hubbell</b>Ogdensburgh, NY · Sept 20, 1861</div><a class="bio-btn" href="brother-alexander.html">Read his story →</a></div>
-        <div class="ex henry"><p>&ldquo;How I long to have one good meal at home, even if it wasn&rsquo;t anything but potatoes and salt…&rdquo;</p><div class="c"><b>Henry Hubbell</b>Near Richmond, VA · June 22, 1862</div><a class="bio-btn" href="brother-henry.html">Read his story →</a></div>
-        <div class="ex james"><p>&ldquo;It is nothing but a flesh wound and is doing well. I walked several miles after being hit in order not to fall into the Johnnies&rsquo; hands.&rdquo;</p><div class="c"><b>James Hubbell</b>Baltimore, MD · Oct 29, 1864</div><a class="bio-btn" href="brother-james.html">Read his story →</a></div>
-        <div class="ex charles"><p>&ldquo;A pleasant place here, a good deal better than being in the field… when night comes I spread my blankets on the floor and sleep soundly.&rdquo;</p><div class="c"><b>Charles Hubbell</b>New Orleans, LA · March 6, 1864</div><a class="bio-btn" href="brother-charles.html">Read his story →</a></div>
+        <div class="ex alex"><p>&ldquo;Here I am safe and sound in the barracks. How strange it does seem. Ah! what a bedlam!&rdquo;</p><div class="c"><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span>Ogdensburgh, NY · Sept 20, 1861</div><a class="bio-btn" href="brother-alexander.html">Read his story →</a></div>
+        <div class="ex henry"><p>&ldquo;How I long to have one good meal at home, even if it wasn&rsquo;t anything but potatoes and salt…&rdquo;</p><div class="c"><span class="who"><b>Henry Hubbell</b> · <span class="unit">Co. D, 34th N.Y.</span></span>Near Richmond, VA · June 22, 1862</div><a class="bio-btn" href="brother-henry.html">Read his story →</a></div>
+        <div class="ex james"><p>&ldquo;It is nothing but a flesh wound and is doing well. I walked several miles after being hit in order not to fall into the Johnnies&rsquo; hands.&rdquo;</p><div class="c"><span class="who"><b>James Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>Baltimore, MD · Oct 29, 1864</div><a class="bio-btn" href="brother-james.html">Read his story →</a></div>
+        <div class="ex charles"><p>&ldquo;A pleasant place here, a good deal better than being in the field… when night comes I spread my blankets on the floor and sleep soundly.&rdquo;</p><div class="c"><span class="who"><b>Charles Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>New Orleans, LA · March 6, 1864</div><a class="bio-btn" href="brother-charles.html">Read his story →</a></div>
       </div>
 
       <div class="explore" id="b-explore">
         <div class="eyb">The Explorations</div>
-        <h2>What 273 letters reveal when you read them as data.</h2>
+        <h2>What their 273 letters reveal when read, researched, and analyzed as data</h2>
+        <p class="subcta">Choose a section to explore, or use the top navigation bar at any time.</p>
         <div class="cards">
-          <a class="card" href="hubbell-dashboard.html"><div class="num">01 · Timeline</div><h3>Parallel Lives</h3><p>Every letter by date and author — four brothers, four theaters of war.</p></a>
-          <a class="card" href="viz-map-fullwar.html"><div class="num">02 · Geography</div><h3>The Map That Moves</h3><p>Follow four soldiers across the eastern theater, letter by letter.</p></a>
-          <a class="card" href="viz-health-ledger.html"><div class="num">03 · Wellness</div><h3>The Wellness Ledger</h3><p>For every soldier killed in battle, two died of disease.</p></a>
-          <a class="card" href="viz-money-story.html"><div class="num">04 · Economy</div><h3>The Money Story</h3><p>Every dollar — pay, bounties, money begged from home.</p></a>
-          <a class="card" href="viz-people-web.html"><div class="num">05 · Network</div><h3>The People Web</h3><p>Nearly 600 people, mapped as the connections between them.</p></a>
-          <a class="card" href="the-collection.html"><div class="num">The Archive</div><h3>Five Generations</h3><p>How 273 letters survived 160 years of careful stewardship.</p></a>
+          <a class="card" href="hubbell-dashboard.html"><div class="num">01 · Timeline</div><h3>Parallel Lives</h3><p>Every letter by date and author — four brothers across four theaters of war, on one explorable timeline.</p></a>
+          <a class="card" href="viz-map-fullwar.html"><div class="num">02 · Geography</div><h3>The Map That Moves</h3><p>Follow the four brothers across the eastern theater — letter by letter, day by day, place by place.</p></a>
+          <a class="card" href="viz-health-ledger.html"><div class="num">03 · Wellness</div><h3>The Wellness Ledger</h3><p>Every mention of illness or injury — a detailed, interactive exploration of each brother&rsquo;s health and well-being through the war.</p></a>
+          <a class="card" href="viz-people-web.html"><div class="num">04 · Network</div><h3>The People Web</h3><p>The nearly 600 people written about or mentioned by the brothers, threaded together by their mutual connections.</p></a>
+          <a class="card" href="the-collection.html"><div class="num">The Archive</div><h3>Five Generations</h3><p>How 273 letters survived 160 years of careful stewardship across five generations of descendants.</p></a>
         </div>
       </div>
 
       <div class="prosebeat letters" id="b-letters">
-        <div class="eyb">The Letters</div>
-        <h2>What they wrote home.</h2>
-        <p class="lead">Not the heroic correspondence of myth — young men writing to their mother about being sick among strangers, about money, about the long grinding weeks between battles. Read together, an unedited record of what the war felt like from inside it.</p>
-        <div class="lettergrid">
-          <figure class="lq alex"><blockquote>&ldquo;I sometimes feel very lonely … I think of all of you often, very, very, often.&rdquo;</blockquote><figcaption><b>Alexander Hubbell</b>Camp Jackson, MD · Nov 13, 1861</figcaption></figure>
-          <figure class="lq henry"><blockquote>&ldquo;I should like it very well if peace should be proclaimed just before Sugar time … but there is no such luck for me.&rdquo;</blockquote><figcaption><b>Henry Hubbell</b>Harrison&rsquo;s Landing, VA · July 28, 1862</figcaption></figure>
-          <figure class="lq james"><blockquote>&ldquo;Bake a flour and water cake with no salt … throw it on a shelf for three or four days and see what kind of a meal it will make.&rdquo;</blockquote><figcaption><b>James Hubbell</b>Frederick City, MD · Aug 15, 1864</figcaption></figure>
-          <figure class="lq charles"><blockquote>&ldquo;Mr. Averill told me I was too honest, to tell the Dr. that I was near sighted.&rdquo;</blockquote><figcaption><b>Charles Hubbell</b>Plattsburgh, NY · Sep 9, 1862</figcaption></figure>
+        <div class="lcols">
+          <div class="lread">
+            <div class="eyb">The Letters</div>
+            <h2>What they wrote home.</h2>
+            <div class="editorial">
+              <p>Their father, Frederick Augustus Hubbell, had died in 1853, when Alexander was nine. Frances McNeil Hubbell raised four sons and a daughter alone in Champlain, on the Canadian border of New York. When the call came for volunteers in 1861, she sent all four.</p>
+              <p>What followed was not the heroic correspondence of myth &mdash; young men writing to their mother about being sick among strangers, about money begged from home, about the ache of months without a letter, about the long grinding weeks between the battles.</p>
+              <p>What makes them extraordinary is not any single revelation but the accumulation of ordinary detail across four years. Read together, they become something larger &mdash; <em>an unedited record of what the Civil War felt like from inside it.</em></p>
+            </div>
+            <a class="cta" href="the-collection.html">Read the letters &rarr;</a>
+          </div>
+          <!-- the four voices — color-accent block format; each extended with one more line of depth from the same letter -->
+          <div class="lquotes">
+            <figure class="lq alex"><blockquote>&ldquo;The rebel picket stands on one side and I on the other. We sit and look at each other very composedly &mdash; as we have both learned better manners than to fire at each other&hellip; If the settling of the war was left to the soldiers, we would do it in short order.&rdquo;</blockquote><figcaption><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span>Ellis Ford, VA · Sep 3, 1863</figcaption></figure>
+            <figure class="lq henry"><blockquote>&ldquo;While I am writing there is a battle going on. I can hear cannons firing not over twenty-eight miles from here&hellip; Wherever we go, I am ready &mdash; I know I shall not be forsaken if I put my trust in the all-seeing power.&rdquo;</blockquote><figcaption><span class="who"><b>Henry Hubbell</b> · <span class="unit">Co. D, 34th N.Y.</span></span>Washington, D.C. · July 21, 1861</figcaption></figure>
+            <figure class="lq james"><blockquote>&ldquo;What are your views on the coming elections? I&rsquo;m a voter; I go for old Abe &mdash; he is the man, I think&hellip; This war has lasted nearly four years; I would like to see it ended, and believe it will be soon.&rdquo;</blockquote><figcaption><span class="who"><b>James Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>Harrisonburg, VA · Oct 4, 1864</figcaption></figure>
+            <figure class="lq charles"><blockquote>&ldquo;Now, Mother, I am much obliged to you &mdash; for you are at the bottom of this matter&hellip; The Colonel asked if I was able to stand a long march; I told him no.&rdquo;</blockquote><figcaption><span class="who"><b>Charles Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>New Orleans, LA · March 6, 1864</figcaption></figure>
+          </div>
         </div>
-        <a class="cta" href="the-collection.html">Read the letters →</a>
       </div>
 
       <div class="prosebeat" id="b-preserve">
@@ -355,10 +396,8 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
   <div class="lab" id="indlab">Click or scroll to begin</div>
 </div>
 
-<!-- cursor progress halo (mirrors the scroll ring around the pointer) -->
-<div class="curhalo" id="curhalo" aria-hidden="true">
-  <svg viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="17"/><circle class="fg" id="curfg" cx="22" cy="22" r="17"/></svg>
-</div>
+<!-- custom progress rail (draggable scrubber; reflects position in the flow) -->
+<div class="progressrail" id="prail" aria-hidden="true"><div class="prail-thumb" id="pthumb"><span class="grip"></span></div></div>
 
 <script>
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -386,9 +425,7 @@ if(reduced){
   const startT=performance.now();
   let p=0,target=0,mx=0,my=0,tmx=0,tmy=0,t=0;
   addEventListener('scroll',()=>{const m=document.body.scrollHeight-innerHeight;target=m>0?clamp(scrollY/m,0,1):0;},{passive:true});
-  addEventListener('mousemove',e=>{tmx=e.clientX/innerWidth-.5;tmy=e.clientY/innerHeight-.5;
-    const ch=S('curhalo'); ch.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0)`; ch.classList.add('show');},{passive:true});
-  addEventListener('mouseout',e=>{if(!e.relatedTarget)S('curhalo').classList.remove('show');},{passive:true});
+  addEventListener('mousemove',e=>{tmx=e.clientX/innerWidth-.5;tmy=e.clientY/innerHeight-.5;},{passive:true});
 
   /* ---- snap-advance: click a chevron / press a direction key to glide to the next held beat.
          Velocity model: gentle base pace, and it SLOWS HARD inside transition zones so the
@@ -427,6 +464,20 @@ if(reduced){
   const cancelAdv=()=>{advActive=false;advTarget=null;};
   addEventListener('wheel',cancelAdv,{passive:true}); addEventListener('touchstart',cancelAdv,{passive:true});
 
+  /* ---- custom progress rail: draggable scrubber that reflects position in the flow ---- */
+  const prail=S('prail'), pthumb=S('pthumb');
+  const railUsable=()=>prail.clientHeight-pthumb.offsetHeight;
+  function setThumb(pp){pthumb.style.top=(clamp(pp,0,1)*Math.max(0,railUsable())).toFixed(1)+'px';}
+  let pdragging=false, pStartY=0, pStartTop=0;
+  pthumb.addEventListener('pointerdown',e=>{pdragging=true;pthumb.classList.add('drag');pStartY=e.clientY;pStartTop=parseFloat(pthumb.style.top)||0;
+    try{pthumb.setPointerCapture(e.pointerId);}catch(_){ } cancelAdv(); e.preventDefault(); e.stopPropagation();});
+  addEventListener('pointermove',e=>{if(!pdragging)return; const u=railUsable(); const nt=clamp(pStartTop+(e.clientY-pStartY),0,u);
+    pthumb.style.top=nt+'px';                                  // thumb follows the cursor in real time
+    const np=u>0?nt/u:0; window.scrollTo(0,np*maxPx()); target=np;});   // and the page tracks in-step (set target directly → no lag)
+  addEventListener('pointerup',()=>{if(pdragging){pdragging=false;pthumb.classList.remove('drag');}});
+  prail.addEventListener('pointerdown',e=>{ if(e.target===pthumb||pthumb.contains(e.target))return;   // click the track → jump there
+    const u=railUsable(); const nt=clamp(e.clientY-prail.getBoundingClientRect().top-pthumb.offsetHeight/2,0,u); window.scrollTo(0,(u>0?nt/u:0)*maxPx()); cancelAdv();});
+
   function lazy(){
     for(const id in scenes){const [a,b]=scenes[id];const near=p>a-0.10&&p<b+0.10;
       S(id).querySelectorAll('video').forEach(v=>{ if(near){if(!v.src)v.src=v.dataset.src; if(v.paused)v.play().catch(()=>{});} else if(v.src&&!v.paused)v.pause(); });}
@@ -461,7 +512,6 @@ if(reduced){
 
   /* ---- brothers reveal sequence: headline → quotes L→R, min 1s each ---- */
   const RING=2*Math.PI*21; S('ringfg').style.strokeDasharray=RING;
-  const CURC=2*Math.PI*17; S('curfg').style.strokeDasharray=CURC;   // cursor halo ring (thicker, smaller radius)
   const exEls={headline:S('b-bhead'),alex:document.querySelector('#cascade .ex.alex'),henry:document.querySelector('#cascade .ex.henry'),james:document.querySelector('#cascade .ex.james'),charles:document.querySelector('#cascade .ex.charles')};
   const STEPS=['headline','alex','henry','james','charles']; // 0..4
   let seqIdx=-1,lastAdv=0;
@@ -535,16 +585,15 @@ if(reduced){
     S('cascade').classList.toggle('live', p>=SEG.brothers[0] && p<0.69 && cOp>0.9);
     setO(S('b-explore'),seg(p,0.735,0.76)*(1-seg(p,0.80,0.815))); S('b-explore').style.pointerEvents=(p>0.725&&p<0.815)?'auto':'none';
     setO(S('b-letters'),seg(p,0.865,0.88)*(1-seg(p,0.915,0.925))); S('b-letters').style.pointerEvents=(p>0.855&&p<0.925)?'auto':'none';
-    setO(S('b-preserve'),seg(p,0.955,0.97)); S('b-preserve').style.pointerEvents=(p>0.948)?'auto':'none';
+    setO(S('b-preserve'),seg(p,0.952,0.99)); S('b-preserve').style.pointerEvents=(p>0.95)?'auto':'none';   // resolve right up to the bottom → minimal dead scroll after the text is in
 
-    // navbar: hero reforms into it once you scroll past beat 1
-    S('nav').classList.toggle('in',p>0.07);
+    // navbar: present on the cold open too — enters with the title, then anchors through the flow
+    S('nav').classList.toggle('in', el>1500 || p>0.05);
 
     // progress indicator: ring fills toward next beat; label + fade
     let bi=0; for(let i=0;i<BEATS.length-1;i++){if(p>=BEATS[i])bi=i;}
     const within=seg(p,BEATS[bi],BEATS[bi+1]);
     S('ringfg').style.strokeDashoffset=(RING*(1-within)).toFixed(1);
-    S('curfg').style.strokeDashoffset=(CURC*(1-within)).toFixed(1);   // cursor halo mirrors the same progress
     S('indlab').textContent = p<0.02 ? 'Click, arrow, or scroll to enter the collection' : (p>0.94 ? 'Explore the archive' : 'Click or scroll to continue');
     // advance chevrons: up appears once past the first stop, down hides at the last
     const ni=nearIdx();
@@ -555,7 +604,9 @@ if(reduced){
     const ind=S('ind');
     ind.classList.toggle('intro',intro>0.5);
     ind.style.transform=`translateX(-50%) translateY(${(-intro*26).toFixed(1)}px) scale(${(1+intro*0.55).toFixed(3)})`;
-    setO(ind,clamp(el>3200?1:0,0,1)*(1-seg(p,0.985,1.0)));
+    setO(ind,clamp(el>3200?1:0,0,1)*(1-seg(p,0.99,1.0)));
+    if(!pdragging) setThumb(p);                 // custom progress rail tracks position (unless the user is dragging it)
+    prail.classList.toggle('on', el>1500);
   }
 
   let lastFrameT=performance.now();
