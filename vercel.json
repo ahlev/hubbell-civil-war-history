@@ -3,7 +3,7 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/", "destination": "/hubbell-dashboard.html" }
+    { "source": "/", "destination": "/experience-v2/landing" }
   ],
   "headers": [
     {
