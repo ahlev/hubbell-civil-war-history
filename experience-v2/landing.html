@@ -688,7 +688,9 @@ if(reduced){
     if(v && v.src) media = v.readyState>=3 ? 1 : v.readyState>=1 ? 0.5 : 0;   // poster → playable loop (the scene still "generating")
     let dwell=1;
     if(p>=SEG.brothers[0] && p<0.578 && seqIdx<0) dwell = clamp((now-bareArrival)/3500, 0, 1);  // brothers bare→headline pause
-    return clamp(Math.min(motion, media, dwell), 0, 1);   // the slowest of motion / load / dwell governs → fill tracks the real step
+    let text=1;
+    if(p>=SEG.preserve[0]) text = seg(p,0.948,0.957);   // CLOSING beat: not "ready" (no sparkle) until its text + dark aura are fully faded in
+    return clamp(Math.min(motion, media, dwell, text), 0, 1);   // the slowest of motion / load / dwell / text governs → fill tracks the real step
   }
   // Each user advance hard-empties the fill (resetFill() in goTo), then it EASES up toward readiness
   // (motion × media-load × dwell), monotonic within the step so it never skips back. Mid-glide is NEVER
@@ -757,7 +759,7 @@ if(reduced){
     if(isMobile){ const lp=seg(p,0.878,0.92);                     // mobile: two phases — editorial first, then the four voices
       lread.style.opacity=(1-seg(lp,0.40,0.54)).toFixed(2); lquotes.style.opacity=seg(lp,0.46,0.6).toFixed(2);
     } else { lread.style.opacity=''; lquotes.style.opacity=''; }   // desktop: both shown together
-    setO(S('b-preserve'),seg(p,0.948,0.97)); S('b-preserve').style.pointerEvents=(p>0.945)?'auto':'none';   // text + dark aura reach FULL opacity at 0.97 — well before the 0.99 anchor, so the closing glide rests on full contrast (no asymptotic-tail creep finishing the fade after the advance visually stops)
+    setO(S('b-preserve'),seg(p,0.948,0.957)); S('b-preserve').style.pointerEvents=(p>0.945)?'auto':'none';   // text + dark aura reach FULL opacity EARLY (0.957, right as the scene settles) so ANY rest point in the closing scene — incl. mobile swipe-advance settling ~0.96 — already shows full contrast
 
     // navbar: present on the cold open too — enters with the title, then anchors through the flow
     S('nav').classList.toggle('in', el>1500 || p>0.05);
@@ -770,9 +772,9 @@ if(reduced){
     // advance chevrons: up appears once past the first stop, down hides at the last
     const ni=nearIdx();
     S('advup').classList.toggle('show',ni>0);
-    // forward affordance stays through the entire final descent — fills, completes, and sparkles as the closing
-    // Preservation text + dark aura settle in (full at 0.97) — and only tucks away at the very bottom (0.988).
-    const ended = ni>=ANCHORS.length-1 && p>=0.988;
+    // forward affordance stays through the final descent — fills, completes, sparkles as the closing
+    // Preservation text + dark aura settle in — and tucks away once they're fully in (0.957).
+    const ended = ni>=ANCHORS.length-1 && p>=0.957;
     S('advdown').style.visibility = ended ? 'hidden':'visible';
     // cold-open prominence: indicator (esp. the down chevron) starts big & lifted, shrinks to the persistent size as you leave
     const intro=1-seg(p,0.0,0.05);
