@@ -6,7 +6,7 @@
 <title>The Hubbell Brothers — an immersive archive</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 /* ============================================================
    THE HUBBELL BROTHERS — immersive descent landing (refined)
@@ -59,6 +59,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 .ey{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
 .beat h1{font-weight:300;font-size:clamp(38px,7vw,84px);line-height:1.03;letter-spacing:-.01em}
 .beat h1 em{font-style:italic;color:var(--lantern)}
+#b-title h1{font-weight:700}   /* cold-open title bolded; the em "Brothers" keeps its italic + lantern gold (now bold-italic) */
 .vista{width:min(92vw,820px)}
 .vista h1{font-weight:700;font-size:clamp(30px,5.2vw,62px);line-height:1.08;max-width:18ch;margin:0 auto}
 .distance{margin-top:20px;font-style:italic;font-size:clamp(16px,2.1vw,22px);color:#e6dcc9;max-width:32ch;margin-inline:auto;line-height:1.5}
@@ -163,6 +164,12 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 .lq figcaption .who{display:block;margin-bottom:1px}
 .lq figcaption b{color:var(--acc,var(--lantern));font-weight:700;font-size:9.5px;letter-spacing:.03em}
 .lq figcaption .unit{color:#9aa2a9;font-weight:500}
+/* per-voice "Read letter" pill — color-coded to the brother, opens the overlay reader for that letter */
+.lq .read-letter{display:inline-block;margin-top:10px;font-family:"Inter",sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;
+  padding:5px 12px;border-radius:999px;border:1px solid var(--acc,var(--lantern));color:var(--acc,var(--lantern));background:rgba(255,255,255,.03);
+  transition:background .16s ease,color .16s ease,transform .12s ease}
+.lq .read-letter:hover{background:var(--acc,var(--lantern));color:#12100b}
+.lq .read-letter:active{transform:scale(1.05)}
 /* soft dark aura behind the editorial column (left) for contrast — same treatment as the opening Alexander quote's .beat::before */
 .letters .lread{position:relative;z-index:0}
 .letters .lread::before{content:"";position:absolute;inset:-26% -20% -20% -26%;z-index:-1;pointer-events:none;
@@ -276,11 +283,17 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
   .nav .spacer{display:none}
   .navtoggle{display:inline-flex;align-items:center;justify-content:center;margin-left:auto;width:36px;height:36px;
     background:rgba(8,9,12,.55);border:1px solid rgba(236,227,210,.2);border-radius:8px;color:var(--paper);font-size:18px;line-height:1;cursor:pointer}
-  .nav .links{position:fixed;top:54px;right:10px;flex-direction:column;gap:2px;width:230px;max-width:82vw;flex-wrap:nowrap;
+  .nav .links{position:fixed;top:54px;right:10px;flex-direction:column;gap:6px;width:238px;max-width:84vw;flex-wrap:nowrap;
     background:rgba(10,11,15,.97);backdrop-filter:blur(10px);border:1px solid rgba(236,227,210,.15);border-radius:11px;padding:8px;
     box-shadow:0 14px 34px rgba(0,0,0,.6);opacity:0;pointer-events:none;transform:translateY(-8px) scale(.98);transform-origin:top right;transition:opacity .2s ease,transform .2s ease}
   .nav.menuopen .links{opacity:1;pointer-events:auto;transform:none}
-  .nav .links a{font-size:15px;padding:10px 12px;border-radius:7px}
+  /* no hover on touch → make each item read as a distinct, color-coded button at rest (accent text + tint + accent edge) */
+  .nav .links a{font-size:14.5px;font-weight:600;padding:11px 13px;border-radius:8px;
+    color:color-mix(in srgb, var(--acc,#aab2b9) 78%, #fff);
+    background:color-mix(in srgb, var(--acc,#9aa3ab) 15%, rgba(8,9,12,.6));
+    border:1px solid color-mix(in srgb, var(--acc,#9aa3ab) 38%, transparent);
+    border-left:3px solid var(--acc,var(--lantern))}
+  .nav .links a:active{background:color-mix(in srgb, var(--acc,#9aa3ab) 36%, rgba(8,9,12,.65));color:#fff}
 
   /* brothers → one brother at a time (full-width panel + single quote) */
   #s-brothers .composite{display:block}
@@ -304,9 +317,11 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
   #b-letters .lread h2{font-size:clamp(22px,6vw,30px)}
   #b-letters .editorial{max-width:none}
   #b-letters .editorial p{font-size:13.5px}
-  #b-letters .lquotes{gap:8px}
-  #b-letters .lq{padding:10px 12px}
-  #b-letters .lq blockquote{font-size:12.5px;line-height:1.45}
+  #b-letters .lquotes{gap:7px}
+  #b-letters .lq{padding:9px 11px}
+  #b-letters .lq blockquote{font-size:12px;line-height:1.42}
+  #b-letters .lq figcaption{margin-top:6px}
+  #b-letters .lq .read-letter{margin-top:7px;padding:4px 11px;font-size:9.5px}   /* compact pill so four quotes + buttons fit one screen */
 
   /* Explorations → compact so the headline + 5 cards fit one screen */
   .explore{width:92vw}
@@ -321,6 +336,10 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
   .vista h1{font-size:clamp(26px,7vw,40px)}
   .quote.long p{font-size:clamp(14px,4.2vw,18px)}
   .prosebeat p{font-size:clamp(14px,4vw,17px)}
+  /* page-level overlay-quote cites: drop the unit onto its OWN line under the name so name/unit stop wrapping mid-phrase */
+  .cite .unit{display:block;margin-top:2px}
+  .cite .usep{display:none}            /* hide the inline separator now that the unit is on its own line */
+  .cite .age{white-space:nowrap}       /* keep "(Age 18)" intact instead of breaking "(Age / 18)" */
   /* ===== advance cluster → bottom-right thumb (base styles supply the fill/sparkle/ready; here we corner-anchor + size up) ===== */
   /* JS stops writing the centering transform on mobile; !important also overrides any stale inline transform on resize */
   .scrollind{left:auto;right:max(14px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));
@@ -411,11 +430,11 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
       <div class="beat quote long" id="b-painting">
         <p>&ldquo;&lsquo;Way down South in Dixie.&rsquo; That is where I am. And a beautiful country too if it were not cursed by the existence of slavery. I am encamped on the summit of a high hill and the view is very fine. Green fields, meadows, large farms, patches of woods, roads winding here and there&hellip; all of this spread out before me <em>like a beautiful painting</em>.</p>
         <p>I was sitting on the hill just now watching the sun as it was setting behind the Blue Ridge. The soft notes of the bugle were floating through the air when I <em>almost forgot I was a soldier</em>&hellip;&rdquo;</p>
-        <div class="cite"><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span> Pine Mountain, VA · July 14, 1862 · <span class="age">(Age 18)</span></div>
+        <div class="cite"><span class="who"><b>Alexander Hubbell</b><span class="usep"> · </span><span class="unit">Co. H, 60th N.Y.</span></span> Pine Mountain, VA · July 14, 1862 · <span class="age">(Age 18)</span></div>
       </div>
       <div class="beat quote" id="b-rock">
         <p>&ldquo;&hellip;But if the drum should beat to arms tomorrow, there will be a different scene. Troops will be forming in line of battle&hellip; the skirmishers will be thrown out, and then <em>the earth will fairly rock.</em>&rdquo;</p>
-        <div class="cite"><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span> Pine Mountain, VA · July 14, 1862</div>
+        <div class="cite"><span class="who"><b>Alexander Hubbell</b><span class="usep"> · </span><span class="unit">Co. H, 60th N.Y.</span></span> Pine Mountain, VA · July 14, 1862</div>
       </div>
 
       <!-- brothers headline (precedes the cascade) -->
@@ -458,10 +477,10 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
           </div>
           <!-- the four voices — color-accent block format; each extended with one more line of depth from the same letter -->
           <div class="lquotes">
-            <figure class="lq alex"><blockquote>&ldquo;The rebel picket stands on one side and I on the other. We sit and look at each other very composedly &mdash; as we have both learned better manners than to fire at each other&hellip; If the settling of the war was left to the soldiers, we would do it in short order.&rdquo;</blockquote><figcaption><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span>Ellis Ford, VA · Sep 3, 1863</figcaption></figure>
-            <figure class="lq henry"><blockquote>&ldquo;While I am writing there is a battle going on. I can hear cannons firing not over twenty-eight miles from here&hellip; Wherever we go, I am ready &mdash; I know I shall not be forsaken if I put my trust in the all-seeing power.&rdquo;</blockquote><figcaption><span class="who"><b>Henry Hubbell</b> · <span class="unit">Co. D, 34th N.Y.</span></span>Washington, D.C. · July 21, 1861</figcaption></figure>
-            <figure class="lq james"><blockquote>&ldquo;What are your views on the coming elections? I&rsquo;m a voter; I go for old Abe &mdash; he is the man, I think&hellip; This war has lasted nearly four years; I would like to see it ended, and believe it will be soon.&rdquo;</blockquote><figcaption><span class="who"><b>James Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>Harrisonburg, VA · Oct 4, 1864</figcaption></figure>
-            <figure class="lq charles"><blockquote>&ldquo;Now, Mother, I am much obliged to you &mdash; for you are at the bottom of this matter&hellip; The Colonel asked if I was able to stand a long march; I told him no.&rdquo;</blockquote><figcaption><span class="who"><b>Charles Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>New Orleans, LA · March 6, 1864</figcaption></figure>
+            <figure class="lq alex"><blockquote>&ldquo;The rebel picket stands on one side and I on the other. We sit and look at each other very composedly &mdash; as we have both learned better manners than to fire at each other&hellip; If the settling of the war was left to the soldiers, we would do it in short order.&rdquo;</blockquote><figcaption><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span>Ellis Ford, VA · Sep 3, 1863</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1863-09-03-001">Read letter &rarr;</a></figure>
+            <figure class="lq henry"><blockquote>&ldquo;While I am writing there is a battle going on. I can hear cannons firing not over twenty-eight miles from here&hellip; Wherever we go, I am ready &mdash; I know I shall not be forsaken if I put my trust in the all-seeing power.&rdquo;</blockquote><figcaption><span class="who"><b>Henry Hubbell</b> · <span class="unit">Co. D, 34th N.Y.</span></span>Washington, D.C. · July 21, 1861</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1861-07-21-001">Read letter &rarr;</a></figure>
+            <figure class="lq james"><blockquote>&ldquo;What are your views on the coming elections? I&rsquo;m a voter; I go for old Abe &mdash; he is the man, I think&hellip; This war has lasted nearly four years; I would like to see it ended, and believe it will be soon.&rdquo;</blockquote><figcaption><span class="who"><b>James Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>Harrisonburg, VA · Oct 4, 1864</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1864-10-04-001">Read letter &rarr;</a></figure>
+            <figure class="lq charles"><blockquote>&ldquo;Now, Mother, I am much obliged to you &mdash; for you are at the bottom of this matter&hellip; The Colonel asked if I was able to stand a long march; I told him no.&rdquo;</blockquote><figcaption><span class="who"><b>Charles Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>New Orleans, LA · March 6, 1864</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1864-03-06-001">Read letter &rarr;</a></figure>
           </div>
         </div>
       </div>
@@ -531,8 +550,14 @@ if(reduced){
   /* ---- snap-advance: click a chevron / press a direction key to glide to the next held beat.
          Velocity model: gentle base pace, and it SLOWS HARD inside transition zones so the
          cannon-smoke & rain-wash clips actually play out even when advancing without scrolling. ---- */
-  const ANCHORS=[0.0,0.155,0.255,0.40,0.535,0.59,0.612,0.634,0.655,0.785,0.885,0.99]; // …,bare-brothers(headline auto-reveals ~3.5s after landing),+alex,+henry,+james,+charles,…,preserve(0.99: glides PAST the text fade-in so a single advance lands on full contrast, matching a manual scroll to the bottom)
-  const TRANS=[[0.07,0.095],[0.295,0.345],[0.435,0.50],[0.797,0.855],[0.925,0.946]]; // dawn · cannon-smoke · rain-wash · dusk-embers · fog
+  // …,bare-brothers(headline auto-reveals ~3.5s after landing),+alex,+henry,+james,+charles,explore,letters,…,preserve(0.99: glides PAST the text fade-in so a single advance lands on full contrast).
+  // MOBILE inserts a 'voices' hold (0.905) inside the Letters scene — on phones it's two-phase (editorial → four voices),
+  // so the four voices get their own stop to be read/tapped; desktop shows editorial+voices together and skips that stop.
+  const ANCHORS_D=[0.0,0.155,0.255,0.40,0.535,0.59,0.612,0.634,0.655,0.785,0.885,0.99];
+  const ANCHORS_M=[0.0,0.155,0.255,0.40,0.535,0.59,0.612,0.634,0.655,0.785,0.885,0.905,0.99];
+  let ANCHORS=isMobile?ANCHORS_M:ANCHORS_D;
+  addEventListener('resize',()=>{ANCHORS=matchMedia('(max-width:760px)').matches?ANCHORS_M:ANCHORS_D;},{passive:true});
+  const TRANS=[[0.07,0.095],[0.295,0.345],[0.447,0.489],[0.797,0.855],[0.925,0.946]]; // dawn · cannon-smoke · rain-wash (trimmed dwell) · dusk-embers · fog
   let advActive=false,advTo=0,advFrom=0,advDir=1,glideV=0,advTarget=null;
   const maxPx=()=>document.body.scrollHeight-innerHeight;
   const inTrans=x=>TRANS.some(([a,b])=>x>=a&&x<b);
@@ -608,8 +633,8 @@ if(reduced){
   function par(el){el.style.transform=`translate3d(${(mx*13).toFixed(1)}px,${(my*10).toFixed(1)}px,0)`;}
   function beat(el,o,rise){el.style.opacity=o.toFixed(3);el.style.transform=`translate(-50%,calc(-50% + ${((1-o)*(rise||0))|0}px))`;}
 
-  function gen(gid,range){const wrap=S(gid),v=wrap.querySelector('video');
-    if(p>=range[0]&&p<range[1]){setO(wrap,1);if(v.src&&v.paused&&v.currentTime<0.02)v.play().catch(()=>{});}
+  function gen(gid,range,rate){const wrap=S(gid),v=wrap.querySelector('video');
+    if(p>=range[0]&&p<range[1]){setO(wrap,1);if(rate&&v.playbackRate!==rate)v.playbackRate=rate;if(v.src&&v.paused&&v.currentTime<0.02)v.play().catch(()=>{});}
     else if(p<range[0]){setO(wrap,0);if(v.src){v.pause();try{v.currentTime=0;}catch(e){}}}
     else setO(wrap,clamp(1-(p-range[1])*30,0,1)); }
 
@@ -730,7 +755,7 @@ if(reduced){
 
     // transitions
     S('dawn').style.opacity=(Math.sin(seg(p,SEG.dawn[0],SEG.dawn[1])*Math.PI)*0.9).toFixed(3);
-    gen('g-smoke',SEG.smoke); gen('g-rain',SEG.rain);
+    gen('g-smoke',SEG.smoke); gen('g-rain',SEG.rain,1.35);   // rain-wash plays ~35% faster → shorter, snappier transition
     // dusk: sunset/firelight warmth leads, darkness deepens behind it, embers blow strongest at the dark peak.
     // The lighting envelope is WIDER than the explore→letters scene-swap (SEG.dusk) so the dusk breathes longer &
     // smoother — the embers/fire glow begin over the still-lit tent, then the scene swaps under the darkness.
@@ -757,8 +782,10 @@ if(reduced){
     setO(S('b-explore'),seg(p,0.735,0.76)*(1-seg(p,0.80,0.815))); S('b-explore').style.pointerEvents=(p>0.725&&p<0.815)?'auto':'none';
     setO(S('b-letters'),seg(p,0.865,0.88)*(1-seg(p,0.915,0.925))); S('b-letters').style.pointerEvents=(p>0.855&&p<0.925)?'auto':'none';
     if(isMobile){ const lp=seg(p,0.878,0.92);                     // mobile: two phases — editorial first, then the four voices
-      lread.style.opacity=(1-seg(lp,0.40,0.54)).toFixed(2); lquotes.style.opacity=seg(lp,0.46,0.6).toFixed(2);
-    } else { lread.style.opacity=''; lquotes.style.opacity=''; }   // desktop: both shown together
+      const lo=1-seg(lp,0.40,0.54), qo=seg(lp,0.46,0.6);
+      lread.style.opacity=lo.toFixed(2);  lread.style.pointerEvents  = lo>0.5?'auto':'none';   // only the visible phase
+      lquotes.style.opacity=qo.toFixed(2);lquotes.style.pointerEvents= qo>0.5?'auto':'none';   // captures taps (Read-letter pills)
+    } else { lread.style.opacity=''; lquotes.style.opacity=''; lread.style.pointerEvents=''; lquotes.style.pointerEvents=''; }   // desktop: both shown together
     setO(S('b-preserve'),seg(p,0.948,0.957)); S('b-preserve').style.pointerEvents=(p>0.945)?'auto':'none';   // text + dark aura reach FULL opacity EARLY (0.957, right as the scene settles) so ANY rest point in the closing scene — incl. mobile swipe-advance settling ~0.96 — already shows full contrast
 
     // navbar: present on the cold open too — enters with the title, then anchors through the flow
