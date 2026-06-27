@@ -7,6 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<!-- in-page overlay reader (the four "Read letter" pills open it without leaving the landing).
+     Loaded BEFORE the landing's <style> so the landing's bespoke rules win every shared selector. -->
+<link rel="stylesheet" href="/_design.css"/>
+<link rel="stylesheet" href="/_overlay.css"/>
 <style>
 /* ============================================================
    THE HUBBELL BROTHERS — immersive descent landing (refined)
@@ -157,15 +161,17 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 .letters .editorial em{font-style:italic;color:#f6efe0}
 .letters .lread .cta{margin-top:18px}
 .letters .lquotes{display:flex;flex-direction:column;gap:9px}
-.lq{background:rgba(8,9,13,.72);border:1px solid rgba(236,227,210,.12);border-left:3px solid var(--acc,var(--lantern));border-radius:8px;padding:11px 13px;backdrop-filter:blur(3px)}
+/* flex-wrap: blockquote spans the full row; the attribution + Read-letter pill share the next row (caption left, pill pinned right) */
+.lq{background:rgba(8,9,13,.72);border:1px solid rgba(236,227,210,.12);border-left:3px solid var(--acc,var(--lantern));border-radius:8px;padding:11px 13px;backdrop-filter:blur(3px);
+  display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
 .lq.alex{--acc:#d9a441}.lq.henry{--acc:#5b95c9}.lq.james{--acc:#6fae81}.lq.charles{--acc:#cf7b7b}
-.lq blockquote{font-style:italic;font-weight:500;font-size:12.5px;line-height:1.48;color:#f1ead9}
-.lq figcaption{margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:8.5px;letter-spacing:.04em;text-transform:uppercase;color:#bcc3ca;line-height:1.5}
+.lq blockquote{flex:0 0 100%;font-style:italic;font-weight:500;font-size:12.5px;line-height:1.48;color:#f1ead9}
+.lq figcaption{flex:1 1 auto;min-width:0;font-family:"JetBrains Mono",monospace;font-size:8.5px;letter-spacing:.04em;text-transform:uppercase;color:#bcc3ca;line-height:1.5}
 .lq figcaption .who{display:block;margin-bottom:1px}
 .lq figcaption b{color:var(--acc,var(--lantern));font-weight:700;font-size:9.5px;letter-spacing:.03em}
 .lq figcaption .unit{color:#9aa2a9;font-weight:500}
-/* per-voice "Read letter" pill — color-coded to the brother, opens the overlay reader for that letter */
-.lq .read-letter{display:inline-block;margin-top:10px;font-family:"Inter",sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;
+/* per-voice "Read letter" pill — color-coded to the brother; pinned to the right of the attribution (margin-left:auto) */
+.lq .read-letter{flex:0 0 auto;margin-left:auto;white-space:nowrap;font-family:"Inter",sans-serif;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;
   padding:5px 12px;border-radius:999px;border:1px solid var(--acc,var(--lantern));color:var(--acc,var(--lantern));background:rgba(255,255,255,.03);
   transition:background .16s ease,color .16s ease,transform .12s ease}
 .lq .read-letter:hover{background:var(--acc,var(--lantern));color:#12100b}
@@ -318,19 +324,24 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
   #b-letters .editorial{max-width:none}
   #b-letters .editorial p{font-size:13.5px}
   #b-letters .lquotes{gap:7px}
-  #b-letters .lq{padding:9px 11px}
+  #b-letters .lq{padding:9px 11px;gap:6px 10px}
   #b-letters .lq blockquote{font-size:12px;line-height:1.42}
-  #b-letters .lq figcaption{margin-top:6px}
-  #b-letters .lq .read-letter{margin-top:7px;padding:4px 11px;font-size:9.5px}   /* compact pill so four quotes + buttons fit one screen */
+  #b-letters .lq .read-letter{padding:4px 11px;font-size:9.5px}   /* compact pill, pinned right inline with the attribution */
 
-  /* Explorations → compact so the headline + 5 cards fit one screen */
+  /* Explorations → compact + clearly-tappable color-coded section buttons (touch has no hover, so colour them at rest) */
   .explore{width:92vw}
-  .explore .subcta{font-size:12px;margin-bottom:14px}
+  .explore .eyb{margin-bottom:5px}
+  .explore h2{font-size:clamp(17px,4.7vw,22px);margin-bottom:9px}   /* smaller headline so it fits neatly above the 5 cards */
+  .explore .subcta{display:none}                                   /* the coloured cards now read AS the navigation — drop the instruction line */
   .cards{gap:8px}
-  .card{padding:10px 13px}
-  .card .num{font-size:9px}
-  .card h3{font-size:15.5px;margin:3px 0}
-  .card p{font-size:12px;line-height:1.4}
+  .card{padding:11px 34px 11px 13px;position:relative;             /* right padding leaves room for the chevron */
+    border:1px solid color-mix(in srgb, var(--acc) 32%, rgba(236,227,210,.16));
+    border-left:3px solid var(--acc);
+    background:color-mix(in srgb, var(--acc) 13%, rgba(8,9,13,.84))}
+  .card .num{font-size:9px;color:var(--acc)}
+  .card h3{font-size:15.5px;margin:3px 0;color:#fff}
+  .card p{font-size:11.5px;line-height:1.38;color:#d2d8de}
+  .card::after{content:"\203A";position:absolute;right:13px;top:50%;transform:translateY(-50%);color:var(--acc);font-size:24px;font-weight:400;line-height:0}
 
   /* other beats: a touch tighter */
   .vista h1{font-size:clamp(26px,7vw,40px)}
@@ -477,10 +488,10 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
           </div>
           <!-- the four voices — color-accent block format; each extended with one more line of depth from the same letter -->
           <div class="lquotes">
-            <figure class="lq alex"><blockquote>&ldquo;The rebel picket stands on one side and I on the other. We sit and look at each other very composedly &mdash; as we have both learned better manners than to fire at each other&hellip; If the settling of the war was left to the soldiers, we would do it in short order.&rdquo;</blockquote><figcaption><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span>Ellis Ford, VA · Sep 3, 1863</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1863-09-03-001">Read letter &rarr;</a></figure>
-            <figure class="lq henry"><blockquote>&ldquo;While I am writing there is a battle going on. I can hear cannons firing not over twenty-eight miles from here&hellip; Wherever we go, I am ready &mdash; I know I shall not be forsaken if I put my trust in the all-seeing power.&rdquo;</blockquote><figcaption><span class="who"><b>Henry Hubbell</b> · <span class="unit">Co. D, 34th N.Y.</span></span>Washington, D.C. · July 21, 1861</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1861-07-21-001">Read letter &rarr;</a></figure>
-            <figure class="lq james"><blockquote>&ldquo;What are your views on the coming elections? I&rsquo;m a voter; I go for old Abe &mdash; he is the man, I think&hellip; This war has lasted nearly four years; I would like to see it ended, and believe it will be soon.&rdquo;</blockquote><figcaption><span class="who"><b>James Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>Harrisonburg, VA · Oct 4, 1864</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1864-10-04-001">Read letter &rarr;</a></figure>
-            <figure class="lq charles"><blockquote>&ldquo;Now, Mother, I am much obliged to you &mdash; for you are at the bottom of this matter&hellip; The Colonel asked if I was able to stand a long march; I told him no.&rdquo;</blockquote><figcaption><span class="who"><b>Charles Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>New Orleans, LA · March 6, 1864</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1864-03-06-001">Read letter &rarr;</a></figure>
+            <figure class="lq alex"><blockquote>&ldquo;The rebel picket stands on one side and I on the other. We sit and look at each other very composedly &mdash; as we have both learned better manners than to fire at each other&hellip; If the settling of the war was left to the soldiers, we would do it in short order.&rdquo;</blockquote><figcaption><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span>Ellis Ford, VA · Sep 3, 1863</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1863-09-03-001" onclick="if(window.HubbellOverlay){HubbellOverlay.showLetter('LTR-1863-09-03-001');return false}">Read letter &rarr;</a></figure>
+            <figure class="lq henry"><blockquote>&ldquo;While I am writing there is a battle going on. I can hear cannons firing not over twenty-eight miles from here&hellip; Wherever we go, I am ready &mdash; I know I shall not be forsaken if I put my trust in the all-seeing power.&rdquo;</blockquote><figcaption><span class="who"><b>Henry Hubbell</b> · <span class="unit">Co. D, 34th N.Y.</span></span>Washington, D.C. · July 21, 1861</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1861-07-21-001" onclick="if(window.HubbellOverlay){HubbellOverlay.showLetter('LTR-1861-07-21-001');return false}">Read letter &rarr;</a></figure>
+            <figure class="lq james"><blockquote>&ldquo;What are your views on the coming elections? I&rsquo;m a voter; I go for old Abe &mdash; he is the man, I think&hellip; This war has lasted nearly four years; I would like to see it ended, and believe it will be soon.&rdquo;</blockquote><figcaption><span class="who"><b>James Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>Harrisonburg, VA · Oct 4, 1864</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1864-10-04-001" onclick="if(window.HubbellOverlay){HubbellOverlay.showLetter('LTR-1864-10-04-001');return false}">Read letter &rarr;</a></figure>
+            <figure class="lq charles"><blockquote>&ldquo;Now, Mother, I am much obliged to you &mdash; for you are at the bottom of this matter&hellip; The Colonel asked if I was able to stand a long march; I told him no.&rdquo;</blockquote><figcaption><span class="who"><b>Charles Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>New Orleans, LA · March 6, 1864</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1864-03-06-001" onclick="if(window.HubbellOverlay){HubbellOverlay.showLetter('LTR-1864-03-06-001');return false}">Read letter &rarr;</a></figure>
           </div>
         </div>
       </div>
@@ -821,5 +832,11 @@ if(reduced){
   lazy();apply(performance.now());requestAnimationFrame(frame);
 }
 </script>
+<!-- overlay reader stack — lets the four "Read letter" pills open the letter in-page (HubbellOverlay.showLetter) -->
+<script src="/_deeplink.js"></script>
+<script src="/_overlay-data.js"></script>
+<script src="/_letter-nav.js"></script>
+<script src="/_overlay.js"></script>
+<script src="/_reader.js"></script>
 </body>
 </html>
