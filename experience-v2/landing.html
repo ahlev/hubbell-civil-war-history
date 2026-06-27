@@ -531,16 +531,16 @@ if(reduced){
   /* ---- snap-advance: click a chevron / press a direction key to glide to the next held beat.
          Velocity model: gentle base pace, and it SLOWS HARD inside transition zones so the
          cannon-smoke & rain-wash clips actually play out even when advancing without scrolling. ---- */
-  const ANCHORS=[0.0,0.155,0.255,0.40,0.535,0.59,0.612,0.634,0.655,0.785,0.885,0.975]; // …,bare-brothers(headline auto-reveals ~3.5s after landing),+alex,+henry,+james,+charles,…
+  const ANCHORS=[0.0,0.155,0.255,0.40,0.535,0.59,0.612,0.634,0.655,0.785,0.885,0.99]; // …,bare-brothers(headline auto-reveals ~3.5s after landing),+alex,+henry,+james,+charles,…,preserve(0.99: glides PAST the text fade-in so a single advance lands on full contrast, matching a manual scroll to the bottom)
   const TRANS=[[0.07,0.095],[0.295,0.345],[0.435,0.50],[0.797,0.855],[0.925,0.946]]; // dawn · cannon-smoke · rain-wash · dusk-embers · fog
-  let advActive=false,advTo=0,advDir=1,glideV=0,advTarget=null;
+  let advActive=false,advTo=0,advFrom=0,advDir=1,glideV=0,advTarget=null;
   const maxPx=()=>document.body.scrollHeight-innerHeight;
   const inTrans=x=>TRANS.some(([a,b])=>x>=a&&x<b);
   function nextIdx(){const r=advTarget!=null?advTarget:p; for(let i=0;i<ANCHORS.length;i++)if(ANCHORS[i]>r+0.006)return i; return ANCHORS.length-1;}
   function prevIdx(){const r=advTarget!=null?advTarget:p; for(let i=ANCHORS.length-1;i>=0;i--)if(ANCHORS[i]<r-0.006)return i; return 0;}
   function nearIdx(){const r=advTarget!=null?advTarget:p; let b=0,bd=9; ANCHORS.forEach((a,i)=>{const d=Math.abs(a-r); if(d<bd){bd=d;b=i;}}); return b;}
   function swell(btn){btn.classList.remove('swell'); void btn.offsetWidth; btn.classList.add('swell'); setTimeout(()=>btn.classList.remove('swell'),320);}
-  function goTo(i){i=clamp(i,0,ANCHORS.length-1); advTo=ANCHORS[i]; advTarget=ANCHORS[i]; advDir=Math.sign(advTo-target)||1; advActive=true;}
+  function goTo(i){i=clamp(i,0,ANCHORS.length-1); advTo=ANCHORS[i]; advTarget=ANCHORS[i]; advDir=Math.sign(advTo-target)||1; advFrom=p; advActive=true; resetFill();}  // advFrom anchors the fill's span; resetFill() empties it the instant the user advances
   function goNext(){goTo(nextIdx()); swell(S('advdown'));}
   function goPrev(){goTo(prevIdx()); swell(S('advup'));}
   function stepAdvance(dt){ if(!advActive)return;
@@ -677,27 +677,32 @@ if(reduced){
     for(const id in scenes){const a=scenes[id][0],b=scenes[id][1]; if(p>=a&&p<b&&a>bestA){bestA=a;best=id;}}
     return best?S(best).querySelector('video'):null;
   }
-  function advReadiness(now){                 // 0 = current view still settling/loading · 1 = ready to advance
+  function advReadiness(now){                 // 0 = step just begun · 1 = step fully presented & ready to advance
+    // motion = how far THIS step has presented. Normalising by the step's OWN span (advFrom→advTo) makes a
+    // short hop and a long descent fill at the same visual pace — the old fixed 0.14 window made small steps
+    // start near-full and large steps start empty, which read as the "odd amounts" of inconsistent fill.
     const motion = advActive
-      ? 1 - clamp(Math.abs(advTo - p)/0.14, 0, 1)        // tap-glide: fill across the span to the target anchor (covers transition clips)
-      : 1 - clamp(Math.abs(target - p)/0.012, 0, 1);     // free swipe: fill as p eases to rest
+      ? clamp(Math.abs(p - advFrom)/(Math.abs(advTo - advFrom)||1), 0, 1)   // tap-glide: fraction of the step's span travelled
+      : 1 - clamp(Math.abs(target - p)/0.012, 0, 1);                        // free scroll: fill as p eases to rest
     let media=1; const v=activeSceneVideo();
-    if(v && v.src) media = v.readyState>=3 ? 1 : v.readyState>=1 ? 0.5 : 0;   // poster → playable loop
+    if(v && v.src) media = v.readyState>=3 ? 1 : v.readyState>=1 ? 0.5 : 0;   // poster → playable loop (the scene still "generating")
     let dwell=1;
-    if(p>=SEG.brothers[0] && p<0.578 && seqIdx<0) dwell = clamp((now-bareArrival)/3500, 0, 1);  // brothers bare→headline beat
-    return clamp(Math.min(motion, media, dwell), 0, 1);
+    if(p>=SEG.brothers[0] && p<0.578 && seqIdx<0) dwell = clamp((now-bareArrival)/3500, 0, 1);  // brothers bare→headline pause
+    return clamp(Math.min(motion, media, dwell), 0, 1);   // the slowest of motion / load / dwell governs → fill tracks the real step
   }
-  // Fill always resets HARD to 0 at the start of every transition (nearest-anchor change), then EASES up toward
-  // readiness (settle × media-load × dwell) — monotonic within the checkpoint so it never skips back. The easing
-  // (not the raw signal) is what's displayed, so the empty→full ramp is consistent regardless of anchor spacing.
+  // Each user advance hard-empties the fill (resetFill() in goTo), then it EASES up toward readiness
+  // (motion × media-load × dwell), monotonic within the step so it never skips back. Mid-glide is NEVER
+  // reset (only a free-scroll crossing into a new step re-zeroes), so a multi-anchor descent fills smoothly.
   let fillVal=0,lastNear=-1,fillReady=false;
+  function resetFill(){fillVal=0;fillReady=false;}              // hard empty — fired on every advance and on free-scroll step changes
   function meterFill(now){
     const ni=nearIdx();
-    if(ni!==lastNear){lastNear=ni;fillVal=0;fillReady=false;return 0;}  // show a true empty THIS frame; ramp begins next frame
-    const target=Math.max(fillVal,advReadiness(now));           // monotonic target within the zone → no skip-back / flicker
-    fillVal += (target-fillVal)*0.12;                           // smooth ramp up from empty
-    if(target-fillVal<0.004) fillVal=target;                    // settle exactly
-    if(!fillReady && fillVal>=0.97){fillReady=true; sparkle();}  // sparkle the moment the fill visually completes
+    if(!advActive && ni!==lastNear) resetFill();                // free-scroll crossed into a new step → true empty (a tap-glide never resets mid-flight)
+    lastNear=ni;
+    const tgt=Math.max(fillVal,advReadiness(now));              // monotonic within the step → no skip-back / flicker
+    fillVal += (tgt-fillVal)*0.12;                             // smooth ramp up from empty
+    if(tgt-fillVal<0.004) fillVal=tgt;                          // settle exactly
+    if(!fillReady && fillVal>=0.97){fillReady=true; sparkle();} // sparkle the instant the fill visually completes
     return fillVal;
   }
   function sparkle(){const s=S('advspark'); if(!s)return; s.classList.remove('go'); void s.offsetWidth; s.classList.add('go'); setTimeout(()=>s.classList.remove('go'),720);}
@@ -752,7 +757,7 @@ if(reduced){
     if(isMobile){ const lp=seg(p,0.878,0.92);                     // mobile: two phases — editorial first, then the four voices
       lread.style.opacity=(1-seg(lp,0.40,0.54)).toFixed(2); lquotes.style.opacity=seg(lp,0.46,0.6).toFixed(2);
     } else { lread.style.opacity=''; lquotes.style.opacity=''; }   // desktop: both shown together
-    setO(S('b-preserve'),seg(p,0.952,0.99)); S('b-preserve').style.pointerEvents=(p>0.95)?'auto':'none';   // resolve right up to the bottom → minimal dead scroll after the text is in
+    setO(S('b-preserve'),seg(p,0.948,0.97)); S('b-preserve').style.pointerEvents=(p>0.945)?'auto':'none';   // text + dark aura reach FULL opacity at 0.97 — well before the 0.99 anchor, so the closing glide rests on full contrast (no asymptotic-tail creep finishing the fade after the advance visually stops)
 
     // navbar: present on the cold open too — enters with the title, then anchors through the flow
     S('nav').classList.toggle('in', el>1500 || p>0.05);
@@ -765,7 +770,10 @@ if(reduced){
     // advance chevrons: up appears once past the first stop, down hides at the last
     const ni=nearIdx();
     S('advup').classList.toggle('show',ni>0);
-    S('advdown').style.visibility = ni<ANCHORS.length-1 ? 'visible':'hidden';
+    // forward affordance stays through the entire final descent — fills, completes, and sparkles as the closing
+    // Preservation text + dark aura settle in (full at 0.97) — and only tucks away at the very bottom (0.988).
+    const ended = ni>=ANCHORS.length-1 && p>=0.988;
+    S('advdown').style.visibility = ended ? 'hidden':'visible';
     // cold-open prominence: indicator (esp. the down chevron) starts big & lifted, shrinks to the persistent size as you leave
     const intro=1-seg(p,0.0,0.05);
     const ind=S('ind');
