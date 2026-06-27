@@ -7,10 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<!-- in-page overlay reader (the four "Read letter" pills open it without leaving the landing).
-     Loaded BEFORE the landing's <style> so the landing's bespoke rules win every shared selector. -->
-<link rel="stylesheet" href="/_design.css"/>
-<link rel="stylesheet" href="/_overlay.css"/>
 <style>
 /* ============================================================
    THE HUBBELL BROTHERS — immersive descent landing (refined)
@@ -270,6 +266,11 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 .prail-thumb.drag{cursor:grabbing}
 @media(max-width:760px),(pointer:coarse){.progressrail{display:none}}
 
+/* ===== in-page letter reader (isolated iframe overlay) ===== */
+.rdrwrap{position:fixed;inset:0;z-index:100;opacity:0;pointer-events:none;transition:opacity .26s ease}
+.rdrwrap.open{opacity:1;pointer-events:auto}
+.rdrwrap .rdr-frame{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent}
+
 @media (prefers-reduced-motion: reduce){
   .track{height:auto}.stage{position:static}
   .scene{position:relative;opacity:1 !important;height:100svh}
@@ -488,10 +489,10 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
           </div>
           <!-- the four voices — color-accent block format; each extended with one more line of depth from the same letter -->
           <div class="lquotes">
-            <figure class="lq alex"><blockquote>&ldquo;The rebel picket stands on one side and I on the other. We sit and look at each other very composedly &mdash; as we have both learned better manners than to fire at each other&hellip; If the settling of the war was left to the soldiers, we would do it in short order.&rdquo;</blockquote><figcaption><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span>Ellis Ford, VA · Sep 3, 1863</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1863-09-03-001" onclick="if(window.HubbellOverlay){HubbellOverlay.showLetter('LTR-1863-09-03-001');return false}">Read letter &rarr;</a></figure>
-            <figure class="lq henry"><blockquote>&ldquo;While I am writing there is a battle going on. I can hear cannons firing not over twenty-eight miles from here&hellip; Wherever we go, I am ready &mdash; I know I shall not be forsaken if I put my trust in the all-seeing power.&rdquo;</blockquote><figcaption><span class="who"><b>Henry Hubbell</b> · <span class="unit">Co. D, 34th N.Y.</span></span>Washington, D.C. · July 21, 1861</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1861-07-21-001" onclick="if(window.HubbellOverlay){HubbellOverlay.showLetter('LTR-1861-07-21-001');return false}">Read letter &rarr;</a></figure>
-            <figure class="lq james"><blockquote>&ldquo;What are your views on the coming elections? I&rsquo;m a voter; I go for old Abe &mdash; he is the man, I think&hellip; This war has lasted nearly four years; I would like to see it ended, and believe it will be soon.&rdquo;</blockquote><figcaption><span class="who"><b>James Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>Harrisonburg, VA · Oct 4, 1864</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1864-10-04-001" onclick="if(window.HubbellOverlay){HubbellOverlay.showLetter('LTR-1864-10-04-001');return false}">Read letter &rarr;</a></figure>
-            <figure class="lq charles"><blockquote>&ldquo;Now, Mother, I am much obliged to you &mdash; for you are at the bottom of this matter&hellip; The Colonel asked if I was able to stand a long march; I told him no.&rdquo;</blockquote><figcaption><span class="who"><b>Charles Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>New Orleans, LA · March 6, 1864</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1864-03-06-001" onclick="if(window.HubbellOverlay){HubbellOverlay.showLetter('LTR-1864-03-06-001');return false}">Read letter &rarr;</a></figure>
+            <figure class="lq alex"><blockquote>&ldquo;The rebel picket stands on one side and I on the other. We sit and look at each other very composedly &mdash; as we have both learned better manners than to fire at each other&hellip; If the settling of the war was left to the soldiers, we would do it in short order.&rdquo;</blockquote><figcaption><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span>Ellis Ford, VA · Sep 3, 1863</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1863-09-03-001" onclick="return openReader('LTR-1863-09-03-001')">Read letter &rarr;</a></figure>
+            <figure class="lq henry"><blockquote>&ldquo;While I am writing there is a battle going on. I can hear cannons firing not over twenty-eight miles from here&hellip; Wherever we go, I am ready &mdash; I know I shall not be forsaken if I put my trust in the all-seeing power.&rdquo;</blockquote><figcaption><span class="who"><b>Henry Hubbell</b> · <span class="unit">Co. D, 34th N.Y.</span></span>Washington, D.C. · July 21, 1861</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1861-07-21-001" onclick="return openReader('LTR-1861-07-21-001')">Read letter &rarr;</a></figure>
+            <figure class="lq james"><blockquote>&ldquo;What are your views on the coming elections? I&rsquo;m a voter; I go for old Abe &mdash; he is the man, I think&hellip; This war has lasted nearly four years; I would like to see it ended, and believe it will be soon.&rdquo;</blockquote><figcaption><span class="who"><b>James Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>Harrisonburg, VA · Oct 4, 1864</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1864-10-04-001" onclick="return openReader('LTR-1864-10-04-001')">Read letter &rarr;</a></figure>
+            <figure class="lq charles"><blockquote>&ldquo;Now, Mother, I am much obliged to you &mdash; for you are at the bottom of this matter&hellip; The Colonel asked if I was able to stand a long march; I told him no.&rdquo;</blockquote><figcaption><span class="who"><b>Charles Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>New Orleans, LA · March 6, 1864</figcaption><a class="read-letter" href="/the-collection.html?overlay=letter:LTR-1864-03-06-001" onclick="return openReader('LTR-1864-03-06-001')">Read letter &rarr;</a></figure>
           </div>
         </div>
       </div>
@@ -523,6 +524,10 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 <!-- custom progress rail (draggable scrubber; reflects position in the flow) -->
 <div class="progressrail" id="prail" aria-hidden="true"><div class="prail-thumb" id="pthumb"><span class="grip"></span></div></div>
 
+<!-- in-page letter reader — an ISOLATED iframe (reader.html owns its own CSS, so it can't touch the landing).
+     Opened atop the landing by the "Read letter" pills; the reader's own close/backdrop posts back to dismiss. -->
+<div class="rdrwrap" id="rdrwrap" aria-hidden="true"><iframe class="rdr-frame" id="rdrframe" title="Letter reader" src="about:blank"></iframe></div>
+
 <script>
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -530,6 +535,27 @@ const seg=(p,a,b)=>clamp((p-a)/(b-a),0,1);
 const S=id=>document.getElementById(id);
 let isMobile = matchMedia('(max-width:760px)').matches;   // phone layout flag (desktop path untouched)
 addEventListener('resize',()=>{isMobile=matchMedia('(max-width:760px)').matches;},{passive:true});
+
+/* ── in-page letter reader: load reader.html in an isolated iframe atop the landing.
+      reader.html owns the dashboard CSS, so nothing leaks into this page. It posts
+      'hubbell-reader-close' back when the reader is dismissed (X / backdrop / Esc). ── */
+const rdrwrap=S('rdrwrap'), rdrframe=S('rdrframe');
+function readerOpen(){ return rdrwrap && rdrwrap.classList.contains('open'); }
+function openReader(id){
+  if(!rdrwrap||!rdrframe) return true;                       // no overlay present → let the href fallback navigate
+  rdrframe.src='/reader.html?id='+encodeURIComponent(id);
+  rdrwrap.classList.add('open'); rdrwrap.setAttribute('aria-hidden','false');
+  return false;                                              // cancel the link navigation
+}
+function closeReader(){
+  if(!rdrwrap) return;
+  rdrwrap.classList.remove('open'); rdrwrap.setAttribute('aria-hidden','true');
+  setTimeout(()=>{ if(!readerOpen()) rdrframe.src='about:blank'; }, 320);   // unload the frame after the fade
+}
+window.openReader=openReader;                                // reachable from the pills' inline onclick
+addEventListener('message',e=>{ if(e&&e.data==='hubbell-reader-close') closeReader(); });
+addEventListener('keydown',e=>{ if(e.key==='Escape'&&readerOpen()){ e.preventDefault(); closeReader(); } });
+
 /* hamburger menu toggle (top-level → works in reduced-motion too) */
 (function(){const nt=S('navtoggle'); if(!nt)return; const navEl=document.querySelector('.nav');
   nt.addEventListener('click',e=>{e.stopPropagation();const open=navEl.classList.toggle('menuopen');nt.setAttribute('aria-expanded',open);});
@@ -594,7 +620,7 @@ if(reduced){
   }
   S('advdown').addEventListener('click',()=>{goNext();S('advdown').blur();});
   S('advup').addEventListener('click',()=>{goPrev();S('advup').blur();});
-  addEventListener('keydown',e=>{ if(e.altKey||e.ctrlKey||e.metaKey)return;
+  addEventListener('keydown',e=>{ if(e.altKey||e.ctrlKey||e.metaKey||readerOpen())return;
     if(['ArrowDown','ArrowRight','PageDown',' ','Spacebar'].includes(e.key)){e.preventDefault();goNext();}
     else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();goPrev();}});
   // any manual scroll input cancels an in-flight glide and hands control back to free scroll
@@ -832,11 +858,5 @@ if(reduced){
   lazy();apply(performance.now());requestAnimationFrame(frame);
 }
 </script>
-<!-- overlay reader stack — lets the four "Read letter" pills open the letter in-page (HubbellOverlay.showLetter) -->
-<script src="/_deeplink.js"></script>
-<script src="/_overlay-data.js"></script>
-<script src="/_letter-nav.js"></script>
-<script src="/_overlay.js"></script>
-<script src="/_reader.js"></script>
 </body>
 </html>
