@@ -1,8 +1,37 @@
-node_modules
-.git
-.obsidian
-.claude
-.playwright-mcp
-tasks
-__pycache__
-*.pyc
+# ============================================================
+#  PUBLIC SURFACE — default-deny allowlist.
+#  Everything is ignored; only the web assets explicitly
+#  re-included below are deployed and reachable by URL.
+#  Internal research, analysis, dossiers, drafts, build
+#  scripts, and prototypes stay in git but never reach a URL.
+#  (outputDirectory is ".", so this file is the ONLY gate.)
+# ============================================================
+/*
+
+# --- Vercel config + edge middleware (needed to build & route) ---
+!/vercel.json
+!/middleware.js
+
+# --- Public pages (all top-level HTML) ---
+!/*.html
+# ...but underscore-prefixed HTML is internal (backups/partials) — keep private
+/_*.html
+
+# --- Public front-end assets (root) ---
+!/_*.css
+!/_*.js
+!/_*.json
+!/logo.svg
+!/viz-data-compact.json
+
+# --- Immersive landing: ONLY the landing + its media (prototypes/review shots stay private) ---
+!/experience-v2
+/experience-v2/*
+!/experience-v2/landing.html
+!/experience-v2/assets
+
+# --- Runtime data the dashboards/vizzes fetch (top-level json/js only; dossier subdirs stay private) ---
+!/03-data
+/03-data/*
+!/03-data/*.json
+!/03-data/*.js
