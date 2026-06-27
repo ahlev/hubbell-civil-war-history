@@ -26,19 +26,40 @@ window.HubbellHero = (function () {
   var reduced = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Set the real src exactly once, and fade the loop in when it can paint.
+  // Set the real source(s) exactly once, and fade the loop in when it can paint.
+  // Two markup forms are supported:
+  //   • <video data-src="loop.webm">                     (single source)
+  //   • <video><source data-src="a.webm"><source data-src="a.mp4"></video>
+  //     (the browser picks the first type it supports — webm for Chrome/Firefox/
+  //     Android, mp4/h264 for Safari/iOS — so loops play everywhere).
   function ensureLoaded(fig, video) {
     if (video.dataset.heroLoaded) return;
-    var src = video.getAttribute('data-src');
-    if (!src) return;
-    video.dataset.heroLoaded = '1';
 
     var reveal = function () { fig.classList.add('is-playing'); };
     // 'loadeddata' = first frame decoded; 'playing' = actually rolling. Either
     // is a safe moment to cross-fade the loop over the poster.
-    video.addEventListener('loadeddata', reveal, { once: true });
-    video.addEventListener('playing', reveal, { once: true });
+    var armReveal = function () {
+      video.addEventListener('loadeddata', reveal, { once: true });
+      video.addEventListener('playing', reveal, { once: true });
+    };
 
+    var sources = video.querySelectorAll('source[data-src]');
+    if (sources.length) {
+      var any = false;
+      for (var i = 0; i < sources.length; i++) {
+        if (sources[i].dataset.src) { sources[i].src = sources[i].dataset.src; any = true; }
+      }
+      if (!any) return;
+      video.dataset.heroLoaded = '1';
+      armReveal();
+      video.load();   // re-evaluate <source> list now that srcs are populated
+      return;
+    }
+
+    var src = video.getAttribute('data-src');
+    if (!src) return;
+    video.dataset.heroLoaded = '1';
+    armReveal();
     video.src = src;
   }
 
