@@ -28,6 +28,25 @@
     var thumb = document.createElement('div'); thumb.className = 'hub-scrollthumb';
     rail.appendChild(thumb); host.appendChild(rail);
 
+    // OPTIONAL on-screen diagnostics: load any page with ?raildebug=1 to see live values
+    // (innerHeight changing = URL-bar shift; screenY vs clientY divergence; scrollTop).
+    var dbg = null;
+    try {
+      if (/[?&]raildebug=1/.test(location.search)){
+        var box = document.createElement('div');
+        box.style.cssText = 'position:fixed;left:6px;bottom:6px;z-index:99999;background:rgba(0,0,0,.82);color:#9f8;font:11px/1.45 monospace;padding:6px 8px;border-radius:6px;pointer-events:none;white-space:pre;max-width:60vw';
+        document.body.appendChild(box);
+        dbg = function(tag, thumbTop){
+          box.textContent =
+            tag + '\n' +
+            'innerH ' + window.innerHeight + '\n' +
+            'screenY d ' + Math.round(lastScreenY - startScreenY) + '\n' +
+            'thumbTop ' + Math.round(thumbTop) + '/' + Math.round(dragMaxTop) + '\n' +
+            'scrollTop ' + Math.round(getScrollTop());
+        };
+      }
+    } catch(e){}
+
     function viewport(){ return docMode ? window.innerHeight : scroller.clientHeight; }
 
     // Inset = height of the top-docked sticky/fixed navbar, so the rail starts BELOW it.
@@ -77,15 +96,20 @@
     // changing innerHeight/scrollHeight mid-drag can't corrupt the mapping → no rattle).
     // Only the captured pointer counts (ignore stray/2nd touches), and scroll writes are
     // throttled to one per animation frame from the LATEST pointer position.
-    var dragging = false, activeId = null, startY = 0, lastY = 0,
+    // Delta is measured in SCREEN coordinates (e.screenY), not clientY: on mobile the
+    // URL bar hides as you scroll, which shifts the viewport top and makes clientY jump
+    // with no real finger movement → a runaway toward the drag direction. screenY is
+    // relative to the physical screen, so its delta is pure finger movement.
+    var dragging = false, activeId = null, startScreenY = 0, lastScreenY = 0,
         startThumbTop = 0, dragMaxTop = 0, dragOverflow = 0, rafId = 0;
 
     function applyDrag(){
       rafId = 0;
       if (!dragging) return;
-      var thumbTop = Math.max(0, Math.min(dragMaxTop, startThumbTop + (lastY - startY)));
+      var thumbTop = Math.max(0, Math.min(dragMaxTop, startThumbTop + (lastScreenY - startScreenY)));
       thumb.style.transform = 'translateY(' + thumbTop + 'px)';
       setScrollTop(dragMaxTop > 0 ? (thumbTop / dragMaxTop) * dragOverflow : 0);
+      if (dbg) dbg('drag', thumbTop);
     }
 
     function update(){
@@ -110,7 +134,7 @@
       if (activeId !== null) return;               // ignore a second finger
       var m = metrics();
       dragging = true; activeId = e.pointerId;
-      startY = e.clientY; lastY = e.clientY;
+      startScreenY = e.screenY; lastScreenY = e.screenY;
       dragMaxTop = m.maxTop;
       dragOverflow = m.overflow;
       startThumbTop = m.overflow > 0 ? (getScrollTop() / m.overflow) * m.maxTop : 0;
@@ -122,7 +146,7 @@
     });
     thumb.addEventListener('pointermove', function(e){
       if (!dragging || e.pointerId !== activeId) return;   // only the captured pointer
-      lastY = e.clientY;                                    // record latest; apply once per frame
+      lastScreenY = e.screenY;                              // record latest; apply once per frame
       if (!rafId) rafId = requestAnimationFrame(applyDrag);
       e.preventDefault();
     });
