@@ -546,12 +546,14 @@ function openReader(id){
   rdrframe.src='/reader?id='+encodeURIComponent(id)+'&rv=4';   // clean URL (cleanUrls serves reader.html); rv busts the 1h cache when reader.html/_reader-era.css change — bump on edits
   rdrwrap.classList.add('open'); rdrwrap.setAttribute('aria-hidden','false');
   document.documentElement.style.overflow='hidden';          // lock the landing scroll → scroll/arrows only affect the reader, not the page behind
+  document.body.style.overflow='hidden';
   return false;                                              // cancel the link navigation
 }
 function closeReader(){
   if(!rdrwrap) return;
   rdrwrap.classList.remove('open'); rdrwrap.setAttribute('aria-hidden','true');
   document.documentElement.style.overflow='';                // restore landing scroll
+  document.body.style.overflow='';
   setTimeout(()=>{ if(!readerOpen()) rdrframe.src='about:blank'; }, 320);   // unload the frame after the fade
 }
 window.openReader=openReader;                                // reachable from the pills' inline onclick
