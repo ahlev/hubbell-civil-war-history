@@ -1,0 +1,81 @@
+/* ============================================================
+   _reveal.css — Reusable scroll-choreography primitives.
+
+   Generic entrance + parallax vocabulary, built for the the-collection.html
+   preservation sequence but kept page-agnostic so the brother bios and data
+   pages can reuse it. Pairs with _reveal.js.
+
+   ── Primitives ─────────────────────────────────────────────
+   • [data-reveal="rise"]   — fades + rises into place on entry.
+   • [data-reveal="wipe"]   — "develops in": a clip-path wipe (down from the top)
+                              + fade. Used for the painted hero so `transform`
+                              stays free for parallax.
+   • [data-reveal-stagger]  — a container whose direct children rise in sequence
+                              (JS sets --rvl-i per child; CSS delays by index).
+   • [data-parallax="N"]    — element drifts ±N px against the scroll as it
+                              passes through the viewport (transform-only).
+
+   ── Why animations, not transitions ────────────────────────
+   Entrances use CSS @keyframes (not `transition`) on purpose: many targets
+   (e.g. the archive cards) already own a `transition` for hover, and a reveal
+   `transition` would clobber it (or be clobbered). `animation` is independent
+   of `transition`, so reveals never fight an element's own hover transition.
+
+   ── No FOUC / no-JS safe ───────────────────────────────────
+   Hidden states are scoped under `.reveal-on` (set on <html> in <head> before
+   first paint). With JS: content starts hidden, no flash. Without JS: no
+   `.reveal-on`, so everything is simply visible. prefers-reduced-motion forces
+   everything visible + still regardless.
+
+   ── Perf / a11y ────────────────────────────────────────────
+   Only opacity / transform / clip-path animate → GPU-composited, no reflow,
+   CLS≈0. Never put [data-parallax] on a "rise" element (both want transform);
+   parallax lives on "wipe" (clip-path) elements only.
+   ============================================================ */
+
+/* ── Hidden states (only when JS is on; scoped → no FOUC, no-JS safe) ── */
+.reveal-on [data-reveal="rise"] { opacity: 0; }
+.reveal-on [data-reveal="wipe"] { opacity: 0; clip-path: inset(0 0 100% 0); }
+.reveal-on [data-reveal-stagger] > * { opacity: 0; }
+
+/* ── Entrances (CSS animations → independent of any element transition) ── */
+@keyframes rvl-rise {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes rvl-wipe {
+  from { opacity: 0; clip-path: inset(0 0 100% 0); }
+  to   { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+
+[data-reveal="rise"].is-revealed {
+  animation: rvl-rise 0.65s var(--ease, ease) both;
+}
+[data-reveal="wipe"].is-revealed {
+  animation: rvl-wipe 0.8s var(--ease, ease) both;
+}
+[data-reveal-stagger].is-revealed > * {
+  animation: rvl-rise 0.55s var(--ease, ease) both;
+  animation-delay: calc(var(--rvl-i, 0) * 70ms);
+}
+
+/* ── Parallax: JS writes --prlx each frame; transform drives the drift.
+      Lives only on `wipe` heroes, so it never collides with a rise reveal. ── */
+[data-parallax] {
+  transform: translate3d(0, var(--prlx, 0px), 0);
+}
+
+/* ── Reduced-motion: hold everything visible + still, no matter what. ── */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal="rise"],
+  [data-reveal="wipe"],
+  [data-reveal-stagger] > * {
+    opacity: 1 !important;
+    clip-path: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  [data-parallax] {
+    transform: none !important;
+  }
+}
