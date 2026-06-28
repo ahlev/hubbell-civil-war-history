@@ -29,27 +29,32 @@
     rail.appendChild(thumb); host.appendChild(rail);
 
     function viewport(){ return docMode ? window.innerHeight : scroller.clientHeight; }
-    // measure a top-docked sticky/fixed navbar so the rail starts BELOW it (never spans the nav)
-    function topInset(){
-      if (typeof opts.topInset === 'number') return opts.topInset;
-      if (!docMode) return 0;
+
+    // Inset = height of the top-docked sticky/fixed navbar, so the rail starts BELOW it.
+    // Measured from offsetHeight (LAYOUT height — immune to the scroll-time transforms that
+    // make getBoundingClientRect jitter, which was bouncing the thumb up into the nav). Cached
+    // and recomputed only on resize, never per scroll frame.
+    var _inset = 0;
+    function measureInset(){
+      if (typeof opts.topInset === 'number'){ _inset = opts.topInset; return; }
+      if (!docMode){ _inset = 0; return; }
       var vw = window.innerWidth, max = 0;
       document.querySelectorAll('nav, header, .site-nav, #site-nav, [data-rail-clear]').forEach(function(el){
         var cs = getComputedStyle(el);
-        if (cs.position === 'fixed' || cs.position === 'sticky'){
-          var r = el.getBoundingClientRect();
-          if (r.top <= 1 && r.height > 8 && r.width > vw * 0.6) max = Math.max(max, r.bottom);
-        }
+        if (cs.position !== 'fixed' && cs.position !== 'sticky') return;
+        var r = el.getBoundingClientRect();
+        var h = el.offsetHeight;
+        if (h > 8 && r.width > vw * 0.6 && r.top <= h + 1) max = Math.max(max, h);   // top-docked, ~full-width
       });
-      return max;
+      _inset = max;
     }
+
     function metrics(){
       var vh = viewport();
-      var inset = topInset();
       var sh = scroller.scrollHeight;
-      var railH = Math.max(40, vh - inset);              // track is the viewport BELOW the nav
-      var thumbH = Math.max(38, railH * (vh / sh));
-      return { vh:vh, inset:inset, sh:sh, overflow: sh - vh, railH:railH, thumbH:thumbH, maxTop: railH - thumbH };
+      var railH = Math.max(40, vh - _inset);             // track is the viewport BELOW the nav
+      var thumbH = Math.max(48, railH * (vh / sh));
+      return { vh:vh, inset:_inset, sh:sh, overflow: sh - vh, railH:railH, thumbH:thumbH, maxTop: railH - thumbH };
     }
     // the element whose CSS scroll-behavior governs programmatic scrolls
     var sbEl = docMode ? document.documentElement : scroller;
@@ -77,8 +82,10 @@
       thumb.style.transform = 'translateY(' + Math.max(0, Math.min(m.maxTop, top)) + 'px)';
     }
 
+    function remeasure(){ measureInset(); update(); }
     (docMode ? window : scroller).addEventListener('scroll', update, { passive:true });
-    window.addEventListener('resize', update);
+    window.addEventListener('resize', remeasure);
+    window.addEventListener('orientationchange', remeasure);
     if (window.ResizeObserver){ try{ new ResizeObserver(update).observe(docMode ? document.body : scroller); }catch(e){} }
 
     // drag the thumb → scroll
@@ -104,7 +111,10 @@
     thumb.addEventListener('pointerup', endDrag);
     thumb.addEventListener('pointercancel', endDrag);
 
+    measureInset();
     update();
+    // a sticky navbar can settle its height a frame or two after load — re-measure shortly after
+    setTimeout(remeasure, 250);
     return { update: update, el: rail };
   }
 
