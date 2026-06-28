@@ -543,7 +543,7 @@ const rdrwrap=S('rdrwrap'), rdrframe=S('rdrframe');
 function readerOpen(){ return rdrwrap && rdrwrap.classList.contains('open'); }
 function openReader(id){
   if(!rdrwrap||!rdrframe) return true;                       // no overlay present → let the href fallback navigate
-  rdrframe.src='/reader.html?id='+encodeURIComponent(id);
+  rdrframe.src='/reader?id='+encodeURIComponent(id);   // clean URL (cleanUrls serves reader.html) — no redirect hop
   rdrwrap.classList.add('open'); rdrwrap.setAttribute('aria-hidden','false');
   return false;                                              // cancel the link navigation
 }
