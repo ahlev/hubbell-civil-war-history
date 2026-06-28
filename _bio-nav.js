@@ -121,8 +121,10 @@
       allYearHeadings.forEach(function (y) {
         y.classList.toggle('active', y.textContent === activeYear);
       });
-      // Keep active link visible in sidebar (skip during click-scroll to avoid conflicts)
-      if (activeLink && !isClickScrolling) {
+      // Keep active link visible in sidebar (skip during click-scroll, and while the user
+      // is dragging the scroll-rail — its scroll would otherwise trip this scrollIntoView,
+      // which scrolls the document and fights the drag, snapping toward section edges)
+      if (activeLink && !isClickScrolling && !document.documentElement.classList.contains('hub-dragging')) {
         activeLink.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       }
     }
