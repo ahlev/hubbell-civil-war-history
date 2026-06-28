@@ -1626,9 +1626,10 @@ body.letter-reader-open .narrative-caption {
 }
 </style>
 <link rel="stylesheet" href="_overlay.css?v=1775363534">
-<link rel="stylesheet" href="_scrollrail.css?v=8">
+<link rel="stylesheet" href="_reader-era.css?v=13">
+<link rel="stylesheet" href="_scrollrail.css?v=9">
 <style>:root{ --rail-accent:#52A86E; }</style>
-<script src="_scrollrail.js?v=8"></script>
+<script src="_scrollrail.js?v=9"></script>
 </head>
 <body>
 
@@ -3907,7 +3908,7 @@ function toggleLock(brotherId) {
 // ============================================================
 // LETTER OVERLAY
 // ============================================================
-function openLetterOverlay(letterId, brotherId, highlight) {
+function openLetterOverlay(letterId, brotherId, highlight, excerpt) {
   // Close any sticky Leaflet tooltips on map markers.
   // closeTooltip() is null-safe; isTooltipOpen() is NOT (throws when no tooltip is bound).
   newLetterMarkers.forEach(function(m) { m.closeTooltip(); });
@@ -3944,6 +3945,7 @@ function openLetterOverlay(letterId, brotherId, highlight) {
     }
   };
   if (highlight) opts.highlight = Array.isArray(highlight) ? highlight : [highlight];
+  if (excerpt) opts.excerpt = excerpt;   // teased passage → soft-grey anchor (gold highlight stays for place names)
   HubbellReader.open(letterId, opts);
 }
 
@@ -4160,8 +4162,8 @@ document.addEventListener('DOMContentLoaded', () => {
     var el = e.target.closest('[data-lid]');
     if (!el || (!el.classList.contains('place-pin-letter') && !el.classList.contains('map-letter-link'))) return;
     e.preventDefault();
-    var hl = [];
-    if (el.dataset.excerpt) hl.push(el.dataset.excerpt.slice(0, 60));
+    var hl = [], excerpt = null;
+    if (el.dataset.excerpt) excerpt = el.dataset.excerpt;   // teased passage → grey anchor
     if (el.dataset.hl) {
       var placeName = el.dataset.hl;
       hl.push(placeName);
@@ -4169,7 +4171,7 @@ document.addEventListener('DOMContentLoaded', () => {
       var commaIdx = placeName.indexOf(',');
       if (commaIdx > 0) hl.push(placeName.substring(0, commaIdx));
     }
-    openLetterOverlay(el.dataset.lid, el.dataset.bro, hl.length > 0 ? hl : null);
+    openLetterOverlay(el.dataset.lid, el.dataset.bro, hl.length > 0 ? hl : null, excerpt);
   });
 
   // Lock button clicks (stop propagation so panel click doesn't also fire)
@@ -4208,7 +4210,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <script src="_design-ui.js"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
-<script src="_reader.js"></script>
+<script src="_reader.js?v=13"></script>
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=1775363534"></script>
 <script src="_overlay.js?v=1775363534"></script>

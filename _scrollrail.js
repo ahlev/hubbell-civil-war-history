@@ -109,17 +109,21 @@
     function applyDrag(){
       rafId = 0;
       if (!dragging) return;
-      // BREAK THE iOS FEEDBACK LOOP: during a captured drag, iOS inflates the pointer's
-      // clientY by the amount we've scrolled (clientY and scrollTop are both CSS px, and
-      // ?raildebug showed the coordinate delta ≈ the scroll range). Subtract the scroll
-      // applied since grab to recover the TRUE finger delta — the loop can no longer build.
-      var scrollSoFar = getScrollTop() - startScroll;
-      var fingerDelta = (lastClientY - startClientY) - scrollSoFar;
+      // Native scrolling is BLOCKED during the drag (see blockTouch below), so clientY is
+      // clean: a plain finger delta drives the thumb, and the thumb drives the scroll.
+      var fingerDelta = lastClientY - startClientY;
       var thumbTop = Math.max(0, Math.min(dragMaxTop, startThumbTop + fingerDelta));
       thumb.style.transform = 'translateY(' + thumbTop + 'px)';
       setScrollTop(dragMaxTop > 0 ? (thumbTop / dragMaxTop) * dragOverflow : 0);
       if (dbg) dbg('drag', thumbTop, fingerDelta);
     }
+
+    // CRITICAL for iOS: touch-action:none alone does NOT reliably stop the browser's own
+    // touch-scroll during a captured-pointer drag. A non-passive touchmove listener that
+    // preventDefault()s while dragging is what actually suppresses native scrolling — so it
+    // can't fight our drag-scroll (the "flings to top/bottom vs my middle target" tug-of-war).
+    function blockTouch(e){ if (dragging && e.cancelable) e.preventDefault(); }
+    document.addEventListener('touchmove', blockTouch, { passive: false });
 
     function update(){
       if (dragging) return;   // during a drag the pointer owns the thumb — ignore scroll/resize-driven updates

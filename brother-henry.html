@@ -11,13 +11,14 @@
 <link rel="stylesheet" href="_design.css">
 <link rel="stylesheet" href="_bio.css">
 <link rel="stylesheet" href="_overlay.css">
+<link rel="stylesheet" href="_reader-era.css?v=13">
 <link rel="stylesheet" href="_hero.css?v=2">
-<link rel="stylesheet" href="_scrollrail.css?v=8">
+<link rel="stylesheet" href="_scrollrail.css?v=9">
 <script src="_hero.js?v=2" defer></script>
 <style>
 :root { --person: var(--henry); --person-soft: #E8F0F8; --person-bg: #F4F8FC; }
 </style>
-<script src="_scrollrail.js?v=8"></script>
+<script src="_scrollrail.js?v=9"></script>
 </head>
 <body>
 
@@ -306,7 +307,7 @@
 <script src="_design-ui.js"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
-<script src="_reader.js"></script>
+<script src="_reader.js?v=13"></script>
 <script>
 var AUTHOR_COLORS = {henry:'#2D5F8A',alexander:'#B8860B',james:'#4A7C59',charles:'#8B3A3A',mother:'#7B5EA7'};
 var AUTHOR_NAMES = {henry:'Henry Hubbell',alexander:'Alexander F. Hubbell',james:'James Hubbell',charles:'Charles F. Hubbell',mother:'Frances Hubbell (Mother)'};
@@ -429,70 +430,18 @@ function buildFootprintMap(brotherId, color) {
   map.fitBounds(bounds, { padding: [30, 30] });
 }
 
-function openLetter(id, highlight) {
-  HubbellReader.open(id, { highlight: highlight, contextStrip: true });
+function openLetter(id, excerpt) {
+  HubbellReader.open(id, { excerpt: excerpt, contextStrip: true });
 }
 
 function closeReader() {
   HubbellReader.close();
 }
 
-// Auto-extract highlight context from surrounding DOM when opening letters
+// Wire pull-quotes (.lq-link) + inline refs (a.ref) so the reader opens with
+// the teased passage softly greyed (centralized in _reader.js).
 document.addEventListener('DOMContentLoaded', function() {
-  // Letter-quote citations: extract the quote text
-  document.querySelectorAll('.lq-link').forEach(function(link) {
-    var origOnclick = link.getAttribute('onclick');
-    if (!origOnclick) return;
-    var match = origOnclick.match(/openLetter\('([^']+)'\)/);
-    if (!match) return;
-    var letterId = match[1];
-    link.removeAttribute('onclick');
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      var quoteBox = link.closest('.letter-quote');
-      var hl = [];
-      if (quoteBox) {
-        var clone = quoteBox.cloneNode(true);
-        var cite = clone.querySelector('cite');
-        if (cite) cite.remove();
-        var text = clone.textContent.trim();
-        // Use a distinctive phrase (last 6+ words) for highlighting
-        var words = text.split(/\s+/);
-        if (words.length > 8) {
-          hl.push(words.slice(-8).join(' '));
-          hl.push(words.slice(0, 8).join(' '));
-        } else {
-          hl.push(text);
-        }
-      }
-      openLetter(letterId, hl);
-    });
-  });
-
-  // Narrative ref links: extract nearby <em> quoted text
-  document.querySelectorAll('a.ref[onclick]').forEach(function(link) {
-    var origOnclick = link.getAttribute('onclick');
-    if (!origOnclick) return;
-    var match = origOnclick.match(/openLetter\('([^']+)'\)/);
-    if (!match) return;
-    var letterId = match[1];
-    link.removeAttribute('onclick');
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      var para = link.closest('p') || link.parentElement;
-      var hl = [];
-      // Gather <em> text from the same paragraph as highlight candidates
-      para.querySelectorAll('em').forEach(function(em) {
-        var t = em.textContent.trim().replace(/^[""\u201C\u201D]+|[""\u201C\u201D]+$/g, '').trim();
-        if (t.length < 10) return;
-        // Use a distinctive middle segment for reliable matching
-        var words = t.split(/\s+/);
-        if (words.length > 6) { hl.push(words.slice(0, 6).join(' ')); }
-        else { hl.push(t); }
-      });
-      openLetter(letterId, hl);
-    });
-  });
+  HubbellReader.bindQuoteHooks();
 });
 
 </script>

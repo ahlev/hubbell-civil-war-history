@@ -543,7 +543,7 @@ const rdrwrap=S('rdrwrap'), rdrframe=S('rdrframe');
 function readerOpen(){ return rdrwrap && rdrwrap.classList.contains('open'); }
 function openReader(id){
   if(!rdrwrap||!rdrframe) return true;                       // no overlay present → let the href fallback navigate
-  rdrframe.src='/reader?id='+encodeURIComponent(id)+'&rv=7';   // clean URL (cleanUrls serves reader.html); rv busts the 1h cache when reader.html/_reader-era.css change — bump on EVERY reader.html content change (rv is its only cache key)
+  rdrframe.src='/reader?id='+encodeURIComponent(id)+'&rv=8';   // clean URL (cleanUrls serves reader.html); rv busts the 1h cache when reader.html/_reader-era.css change — bump on EVERY reader.html content change (rv is its only cache key)
   rdrwrap.classList.add('open'); rdrwrap.setAttribute('aria-hidden','false');
   document.documentElement.style.overflow='hidden';          // lock the landing scroll → scroll/arrows only affect the reader, not the page behind
   document.body.style.overflow='hidden';
