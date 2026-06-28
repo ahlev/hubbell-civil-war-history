@@ -31,9 +31,27 @@ window.HubbellReveal = (function () {
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var mqMobile = window.matchMedia ? window.matchMedia('(max-width: 700px)') : { matches: false };
 
+  // Add the reveal class AND kick any lazy loop inside to play. A reveal
+  // "presents" the element; mobile browsers frequently refuse to autoplay a
+  // video that wasn't visible when play() was first called (here the figure was
+  // opacity:0 / clip-hidden when _hero first tried), and never retry. So once
+  // the reveal makes it visible, nudge the video a few times across the wipe.
+  function markRevealed(el) {
+    if (el.classList.contains('is-revealed')) return;
+    el.classList.add('is-revealed');
+    var vid = el.querySelector && el.querySelector('video');
+    if (!vid || !(vid.currentSrc || vid.src)) return;
+    var kick = function () {
+      if (vid.paused) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); }
+    };
+    kick();
+    setTimeout(kick, 250);
+    setTimeout(kick, 650);
+  }
+
   function revealAll(root) {
     var els = (root || document).querySelectorAll('[data-reveal], [data-reveal-stagger]');
-    for (var i = 0; i < els.length; i++) els[i].classList.add('is-revealed');
+    for (var i = 0; i < els.length; i++) markRevealed(els[i]);
   }
 
   // ── Entrance reveals (one-shot) ──────────────────────────────
@@ -62,7 +80,7 @@ window.HubbellReveal = (function () {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) {
-          e.target.classList.add('is-revealed');
+          markRevealed(e.target);
           io.unobserve(e.target);
         }
       });
@@ -107,7 +125,7 @@ window.HubbellReveal = (function () {
   function initFocusReveal() {
     document.addEventListener('focusin', function (e) {
       var host = e.target.closest && e.target.closest('[data-reveal], [data-reveal-stagger]');
-      if (host && !host.classList.contains('is-revealed')) host.classList.add('is-revealed');
+      if (host) markRevealed(host);
     });
   }
 
