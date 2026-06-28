@@ -15,50 +15,92 @@
 <link rel="stylesheet" href="_reveal.css">
 <script>document.documentElement.classList.add('reveal-on');</script>
 <style>
-/* ===== HERO ===== */
-.coll-hero {
-  padding: 72px 32px 48px;
-  text-align: center;
-  border-bottom: 1px solid var(--rule);
+/* ===== MASTHEAD (cinematic preservation header) ===== */
+.coll-masthead {
+  position: relative;
+  min-height: 64vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: #16130d;
 }
-.coll-hero .hero-rule {
-  width: 48px;
-  height: 1px;
-  background: var(--accent);
-  margin: 0 auto 20px;
+/* the montage loop fills the masthead (override the component's 16:9 box) */
+.coll-masthead .hero-loop {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+  height: 100%;
+  border-radius: 0;
+  box-shadow: none;
 }
-.coll-hero .hero-sub {
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  color: var(--ink-2);
-  font-style: italic;
-  line-height: 1.85;
-  max-width: 600px;
+.coll-masthead__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(8,7,6,0.90) 0%, rgba(8,7,6,0.52) 36%, rgba(8,7,6,0.30) 70%, rgba(8,7,6,0.42) 100%);
+}
+.coll-masthead__inner {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  max-width: var(--col-max, 1200px);
   margin: 0 auto;
+  padding: 0 32px 60px;
+  color: #fff;
+}
+.coll-masthead .mh-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lantern, #e0b070);
+  margin-bottom: 14px;
+}
+.coll-masthead h1.page-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(42px, 7.2vw, 88px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  margin: 0 0 18px;
+  color: #fff;
+  text-shadow: 0 2px 34px rgba(0,0,0,0.55);
+}
+.coll-masthead .mh-sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.06rem, 2vw, 1.32rem);
+  line-height: 1.6;
+  color: rgba(236,227,210,0.94);
+  max-width: 32em;
+  margin: 0;
+  text-shadow: 0 1px 18px rgba(0,0,0,0.5);
 }
 
-/* ===== INTRODUCTION ===== */
+/* ===== INTRODUCTION (tightened, character) ===== */
 .coll-intro {
-  max-width: 960px;
+  max-width: 680px;
   margin: 0 auto;
-  padding: 56px 32px 48px;
+  padding: 52px 32px 46px;
   border-bottom: 1px solid var(--rule);
 }
 .coll-intro p {
   font-family: var(--font-serif);
-  font-size: 1.08rem;
-  line-height: 2;
+  font-size: 1.13rem;
+  line-height: 1.72;
   color: var(--ink-2);
-  text-indent: 2em;
+  margin: 0 0 18px;
 }
-.coll-intro p:first-child { text-indent: 2em; }
+.coll-intro p:last-of-type { margin-bottom: 0; }
 .coll-intro .lead-sentence {
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-size: 1.42rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
   color: var(--ink);
-  line-height: 1.7;
+  line-height: 1.45;
 }
 
 /* ===== MEET THE FAMILY CTA ===== */
@@ -447,14 +489,23 @@
 <div id="site-nav"></div>
 
 <main>
-<!-- ===== HERO ===== -->
-<header class="coll-hero">
-  <h1 class="page-title">The Collection</h1>
-  <div class="hero-rule"></div>
-  <p class="hero-sub">
-    A family heirloom &mdash; carried forward through five generations,<br>
-    from a trunk of fading letters to the archive you see here.
-  </p>
+<!-- ===== MASTHEAD ===== -->
+<header class="coll-masthead">
+  <figure class="hero-loop" data-hero-loop>
+    <img class="hero-loop__poster" src="/experience-v2/assets/preservation/stages/pres-00-masthead.webp"
+         alt="An oil-painting montage of the collection's preservation chain &mdash; a candlelit trunk of letters, a woman at a typewriter, a period computer monitor, and a laptop with a thread of light."
+         decoding="async" width="1600" height="900">
+    <video class="hero-loop__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+      <source data-src="/experience-v2/assets/preservation/stages/pres-00-masthead.webm" type="video/webm">
+      <source data-src="/experience-v2/assets/preservation/stages/pres-00-masthead.mp4" type="video/mp4">
+    </video>
+  </figure>
+  <div class="coll-masthead__scrim" aria-hidden="true"></div>
+  <div class="coll-masthead__inner" data-reveal-stagger>
+    <div class="mh-eyebrow">Five Generations of Stewardship</div>
+    <h1 class="page-title">The Collection</h1>
+    <p class="mh-sub">A family heirloom &mdash; carried forward through five generations, from a trunk of fading letters to the archive you see here.</p>
+  </div>
 </header>
 
 <!-- ===== INTRODUCTION ===== -->
