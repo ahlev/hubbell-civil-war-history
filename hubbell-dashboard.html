@@ -418,29 +418,29 @@
             gap: 6px;
             flex-shrink: 0;
         }
-        /* Letter share: inline in the nav row (far right, just before close)
-           instead of a top-centered banner that ate its own line. Solid golden
-           fill = bolder hue, sized to sit flush with the nav controls. */
-        #detail-panel .detail-nav-arrows .dl-modal-share {
+        /* Letter share: a small ICON button (no "Share" label) clustered with the
+           close in the header — matches the overlay reader's compact icon. */
+        .detail-header-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        #detail-panel .detail-header-actions .dl-modal-share {
             position: static !important;
             transform: none !important;
-            top: auto !important; left: auto !important; right: auto !important;
+            top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
             margin: 0 !important;
-            height: 36px !important;
-            padding: 0 14px !important;
+            width: 34px !important; height: 34px !important; padding: 0 !important;
+            display: inline-flex !important; align-items: center; justify-content: center;
+            font-size: 0 !important;                 /* hide the word "Share", keep the icon */
             border-radius: 8px !important;
-            background: #B8860B !important;
-            border: 1px solid #B8860B !important;
-            color: #FBF6EB !important;
-            font-size: 12px !important;
-            box-shadow: 0 2px 6px rgba(184,134,11,0.28) !important;
+            background: transparent !important;
+            border: 1px solid var(--era-rule) !important;
+            color: var(--era-on-frame-2) !important;
+            box-shadow: none !important;
         }
-        #detail-panel .detail-nav-arrows .dl-modal-share:hover {
-            background: #9C7209 !important;
-            border-color: #9C7209 !important;
-            color: #fff !important;
-            transform: translateY(-1px) !important;
-            box-shadow: 0 3px 10px rgba(184,134,11,0.4) !important;
+        #detail-panel .detail-header-actions .dl-modal-share svg { width: 16px !important; height: 16px !important; }
+        #detail-panel .detail-header-actions .dl-modal-share:hover {
+            background: rgba(226,181,116,0.14) !important;
+            border-color: var(--era-lantern) !important;
+            color: var(--era-lantern) !important;
+            transform: none !important; box-shadow: none !important;
         }
         .detail-meta-row-inline {
             display: flex;
@@ -488,6 +488,20 @@
             cursor: default;
             box-shadow: none;
         }
+
+        /* Footer nav rail — [ ← | Name's Letters / All Letters | → ] grouped as
+           one control at the bottom of the letter (mirrors the overlay reader). */
+        .detail-nav-rail {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid var(--era-rule, var(--border));
+            flex-shrink: 0;
+        }
+        .detail-nav-rail .nav-mode-wrap { flex: 0 1 auto; min-width: 0; }
 
         /* Nav mode segmented control */
         .nav-mode-wrap {
@@ -1141,7 +1155,7 @@
           .detail-panel .reader-pill-label { font-size: 9px; min-width: 22px; }
           .detail-nav-btn { width: 34px; height: 34px; font-size: 16px; }
           .detail-scroll .reader-body { padding: 14px 16px; font-size: 14px; }
-          .nav-mode-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+          .nav-mode-wrap { overflow-x: visible; }   /* toggle now lives in the footer rail; no internal scroll */
           .nav-mode-btn { font-size: 10px; padding: 4px 10px; }
           .kpi-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
           .kpi-card { flex: none; min-width: 0; padding: 12px; }
@@ -1239,7 +1253,7 @@
 /* ============================================================
    PARALLEL LIVES — embedded letter reader in the v2 "lamplight" theme.
    _reader-era.css (loaded after _overlay.css) carries the unscoped .reader-*
-   CONTENT rules (parchment body, wax-seal pills, dateline, .rhl-*/anchor
+   CONTENT rules (parchment body, wax-seal pills, dateline, .rhl-* + anchor
    washes); they resolve once the --era-* palette is defined on #detail-panel
    below. Here we add only the embedded-specific FRAME, editorial sidebar, nav
    chrome, and the mobile full-viewport sheet.
@@ -1275,8 +1289,7 @@
 #detail-panel .detail-nav-btn:disabled{ opacity:.3; }
 #detail-panel .detail-close{ background: transparent; border:0; color: var(--era-on-frame-2); }
 #detail-panel .detail-close:hover{ color: var(--era-lantern); background: transparent; }
-#detail-panel .detail-nav-arrows .dl-modal-share{ background:transparent !important; border:0 !important; color: var(--era-on-frame-2) !important; }
-#detail-panel .detail-nav-arrows .dl-modal-share:hover{ color: var(--era-lantern) !important; }
+/* (share icon is styled in the main block as .detail-header-actions .dl-modal-share) */
 #detail-panel .nav-mode-wrap{ background: rgba(0,0,0,.34); border:1px solid var(--era-rule); }
 #detail-panel .nav-mode-btn{ color: var(--era-on-frame-3); }
 #detail-panel .nav-mode-btn.active,
@@ -1288,33 +1301,34 @@
 #detail-panel .reader-context-strip .rcs-yr{ color: var(--era-on-frame-3); }
 #detail-panel .reader-context-strip .rcs-tip{ background:#231d12; color: var(--era-lantern); }
 
-/* ── Mobile: the embedded reader becomes a FIXED full-viewport sheet so it
-   fits completely on screen (the in-flow panel used to overflow below the
-   chart). The whole inner scrolls; the From/To + nav/close header pins. ── */
+/* ── Mobile: the reader stays IN-FLOW directly below the timeline (NEVER a
+   fixed overlay). It's a single column (letter, then editorial notes) on the
+   opaque era frame, capped to ~a viewport tall and scrolling INTERNALLY — so
+   once it's scrolled into view it reads like a full screen while still sitting
+   under the chart. openDetail() scrolls it into view on a phone. ── */
 @media (max-width: 640px){
-  #detail-panel.open{
-    position: fixed; inset: 0; z-index: 3000;
-    max-height: none; height: 100vh; height: 100dvh;
-    margin: 0; padding: 0; border:0; border-radius:0;
-    display: flex; flex-direction: column; overflow: hidden;
-  }
+  #detail-panel.open{ padding: 0 14px 16px; overflow-x: hidden; }   /* in-flow; opaque era frame from the base .open rule; no lateral drag */
   #detail-panel.open .detail-inner{
-    display: flex; flex-direction: column;
-    grid-template-columns: none; height: auto; max-height: none; min-height: 0;
-    flex: 1 1 auto; overflow-y: auto; -webkit-overflow-scrolling: touch;
-    padding: 0 14px 20px; gap: 0; border-top: 0;
+    grid-template-columns: 1fr;
+    height: auto; max-height: calc(100dvh - 26px); min-height: 0;
+    overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;   /* vertical scroll only — kills the sideways drag */
+    gap: 14px; padding-top: 12px;
   }
+  /* keep the [← toggle →] rail on one tidy line at phone width */
+  #detail-panel.open .detail-nav-rail{ gap: 8px; }
+  #detail-panel.open .detail-nav-rail .nav-mode-btn{ font-size: 10.5px; padding: 5px 9px; }
+  #detail-panel.open .detail-nav-rail .detail-nav-btn{ width: 36px; height: 36px; }
+  /* pin the From/To + nav/close header while the panel scrolls internally */
   #detail-panel.open .detail-header{
     position: sticky; top: 0; z-index: 6;
     background: linear-gradient(180deg,#1a1509, var(--era-frame));
-    margin: 0 -14px 6px; padding: 10px 14px;
+    margin: 0 0 6px; padding: 10px 0;   /* no negative margins → no horizontal overflow */
     border-bottom: 1px solid var(--era-rule);
   }
-  /* the SHEET scrolls (not the inner letter box) so the whole letter + notes flow */
-  #detail-panel.open .detail-scroll{ overflow: visible; flex: none; min-height: 0; }
+  #detail-panel.open .detail-scroll{ overflow: visible; flex: none; }
   #detail-panel.open .detail-right{
     border-left: 0; border-top: 1px solid var(--era-rule);
-    padding-left: 0; padding-top: 16px; margin-top: 10px; overflow: visible;
+    padding-left: 0; padding-top: 16px;
   }
 }
     </style>
@@ -1323,9 +1337,9 @@
      embedded Parallel-Lives reader once --era-* tokens exist on #detail-panel
      (defined in the main <style>); loaded AFTER _overlay.css so it wins. -->
 <link rel="stylesheet" href="_reader-era.css?v=13">
-<link rel="stylesheet" href="_scrollrail.css?v=10">
+<link rel="stylesheet" href="_scrollrail.css?v=11">
 <style>:root{ --rail-accent:#3E86C4; }</style>
-<script src="_scrollrail.js?v=10"></script>
+<script src="_scrollrail.js?v=11"></script>
 </head>
 <body>
 <div id="site-nav"></div>
@@ -2685,9 +2699,7 @@
                             <span class="reader-pill-label" style="min-width:auto">To</span>${recipientPill}
                         </div>
                     </div>
-                    <div class="detail-nav-arrows">
-                        <button class="detail-nav-btn" onclick="openDetail(${prevIdx})" ${prevIdx === null ? 'disabled' : ''} title="Previous letter">←</button>
-                        <button class="detail-nav-btn" onclick="openDetail(${nextIdx})" ${nextIdx === null ? 'disabled' : ''} title="Next letter">→</button>
+                    <div class="detail-header-actions">
                         ${window.HubbellDeepLink ? HubbellDeepLink.letterShareBtn(l.id) : ''}
                         <button class="detail-close" onclick="closeDetail()" title="Close (Esc)">✕</button>
                     </div>
@@ -2698,13 +2710,6 @@
                         <span class="rm-loc">from ${enrichedLocation || escapeHtml(l.location || 'Unknown location')}</span>
                         ${mapLink}
                     </div>
-                    <div class="nav-mode-wrap">
-                        <button class="nav-mode-btn ${navMode === 'author' ? 'active' : ''}" data-mode="author" style="--author-c:${color}" onclick="setNavMode('author')">
-                            <span class="nav-author-dot" style="background:${color}"></span>
-                            ${NAMES[l.author]}'s Letters
-                        </button>
-                        <button class="nav-mode-btn ${navMode === 'date' ? 'active' : ''}" data-mode="date" onclick="setNavMode('date')">All Letters</button>
-                    </div>
                 </div>
                 ${buildDashContextStrip(idx)}
                 ${l.sigSummary ? `<div class="reader-exec-summary" style="--exec-c:${color}">${escapeHtml(l.sigSummary.replace(/\*\*/g, ''))}</div>` : ''}
@@ -2712,6 +2717,19 @@
                     ${flags ? `<div class="reader-flags">${flags}</div>` : ''}
                     ${pplHtml}${plcHtml}
                     <div class="reader-body">${transText}</div>
+                </div>
+                <!-- Footer nav rail: prev / author-vs-all toggle / next, grouped so
+                     they read as one control (matches the overlay reader). -->
+                <div class="detail-nav-rail">
+                    <button class="detail-nav-btn" onclick="openDetail(${prevIdx})" ${prevIdx === null ? 'disabled' : ''} title="Previous letter" aria-label="Previous letter">←</button>
+                    <div class="nav-mode-wrap">
+                        <button class="nav-mode-btn ${navMode === 'author' ? 'active' : ''}" data-mode="author" style="--author-c:${color}" onclick="setNavMode('author')">
+                            <span class="nav-author-dot" style="background:${color}"></span>
+                            ${NAMES[l.author]}'s Letters
+                        </button>
+                        <button class="nav-mode-btn ${navMode === 'date' ? 'active' : ''}" data-mode="date" onclick="setNavMode('date')">All Letters</button>
+                    </div>
+                    <button class="detail-nav-btn" onclick="openDetail(${nextIdx})" ${nextIdx === null ? 'disabled' : ''} title="Next letter" aria-label="Next letter">→</button>
                 </div>
             </div>
             <div class="detail-right">
@@ -2738,9 +2756,12 @@
         // Bind overlay links on dynamically-rendered content
         if (window.HubbellOverlay) HubbellOverlay.bindDynamic(inner);
 
-        // Scroll panel into view smoothly
+        // Scroll panel into view smoothly. On phones the panel is capped to ~a
+        // viewport tall and scrolls internally, so align it to the TOP so it
+        // fills the screen (while still living below the chart in the flow).
         setTimeout(() => {
-            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            var mobile = window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
+            panel.scrollIntoView({ behavior: 'smooth', block: mobile ? 'start' : 'nearest' });
         }, 100);
 
         // Replace (not push) history when navigating ←/→ within open panel

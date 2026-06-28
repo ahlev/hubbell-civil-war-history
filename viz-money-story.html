@@ -173,8 +173,9 @@ table.ref-table tr{cursor:pointer}
 }
 </style>
 <link rel="stylesheet" href="_overlay.css?v=1775363534">
-<link rel="stylesheet" href="_scrollrail.css?v=10">
-<script src="_scrollrail.js?v=10"></script>
+<link rel="stylesheet" href="_reader-era.css?v=13">
+<link rel="stylesheet" href="_scrollrail.css?v=11">
+<script src="_scrollrail.js?v=11"></script>
 </head>
 <body>
 <div id="site-nav"></div>
@@ -243,7 +244,7 @@ table.ref-table tr{cursor:pointer}
 <script src="_design-ui.js"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
-<script src="_reader.js"></script>
+<script src="_reader.js?v=13"></script>
 <script>
 var RAW_LETTERS = LETTERS;
 
@@ -1024,7 +1025,7 @@ function showDetail(ref, sourceHighlight) {
     otherRefsHtml +
     fullLetterHtml +
     '<div style="margin-top:12px;text-align:center">' +
-      '<button class="read-full-btn" data-lid="' + esc(ref.letterId) + '"' + (ref.context ? ' data-hl="' + esc(ref.context.slice(0, 80)) + '"' : '') + ' onclick="event.stopPropagation();HubbellReader.open(this.dataset.lid,{highlight:this.dataset.hl?[this.dataset.hl]:[]})" style="font-family:var(--font-sans);font-size:0.78rem;color:#2D5F8A;background:#E3F2FD;border:1px solid #BBDEFB;border-radius:10px;padding:5px 14px;cursor:pointer;font-weight:500;transition:background 0.15s">Read full letter \u2192</button>' +
+      '<button class="read-full-btn" data-lid="' + esc(ref.letterId) + '"' + (ref.context ? ' data-hl="' + esc(ref.context.slice(0, 80)) + '"' : '') + ' onclick="event.stopPropagation();HubbellReader.open(this.dataset.lid,{excerpt:this.dataset.hl||''})" style="font-family:var(--font-sans);font-size:0.78rem;color:#2D5F8A;background:#E3F2FD;border:1px solid #BBDEFB;border-radius:10px;padding:5px 14px;cursor:pointer;font-weight:500;transition:background 0.15s">Read full letter \u2192</button>' +
     '</div>';
 
   overlay.classList.add('show');

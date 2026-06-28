@@ -15,18 +15,14 @@
    ============================================================================ */
 .hub-scrollrail{
   position:fixed; top:0; right:0; width:20px; height:100vh; z-index:9000;
-  display:none; pointer-events:none;   /* only the thumb is interactive — never blocks content taps */
-  touch-action:none;
+  display:none; pointer-events:auto;   /* the whole rail is the tap target (press anywhere to jump) */
+  touch-action:none; cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
 }
 .hub-scrollthumb{
-  position:absolute; top:0; right:0; width:20px; min-height:48px;   /* 20px grab zone, taller thumb = easier hold */
+  position:absolute; top:0; right:0; width:20px; min-height:48px;   /* purely a position INDICATOR */
   display:flex; justify-content:flex-end; align-items:stretch;
-  background:transparent; pointer-events:auto; cursor:grab;
-  -webkit-tap-highlight-color:transparent;
-  /* CRITICAL: the thumb owns the touch gesture. Without this the browser ALSO
-     pans the page natively while JS scrolls it → the two fight (stutter/flash/
-     pull-back). touch-action:none suppresses native panning on the thumb. */
-  touch-action:none; user-select:none; -webkit-user-select:none;
+  background:transparent; pointer-events:none;   /* taps pass through to the rail */
 }
 /* the visible bar — slim & glossy at rest, accent-tinted. The sheen gradient is
    plain rgba over the accent (no color-mix) so it renders on every mobile browser. */
