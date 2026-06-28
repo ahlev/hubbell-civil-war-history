@@ -71,7 +71,14 @@
       else scroller.scrollTop = v;
     }
 
+    // drag state. While dragging, the POINTER drives the thumb and the thumb drives
+    // the scroll — we never read scrollTop back (that caused a feedback loop) and we
+    // FREEZE the metrics captured at grab time (so the mobile URL-bar / lazy content
+    // changing innerHeight/scrollHeight mid-drag can't corrupt the mapping → no rattle).
+    var dragging = false, startY = 0, startThumbTop = 0, dragMaxTop = 0, dragOverflow = 0;
+
     function update(){
+      if (dragging) return;   // during a drag the pointer owns the thumb — ignore scroll/resize-driven updates
       var m = metrics();
       if (m.overflow <= 8){ rail.style.display = 'none'; return; }   // nothing to scroll → hide
       rail.style.display = 'block';
@@ -88,27 +95,34 @@
     window.addEventListener('orientationchange', remeasure);
     if (window.ResizeObserver){ try{ new ResizeObserver(update).observe(docMode ? document.body : scroller); }catch(e){} }
 
-    // drag the thumb → scroll
-    var dragging = false, startY = 0, startScroll = 0;
     thumb.addEventListener('pointerdown', function(e){
-      dragging = true; startY = e.clientY; startScroll = getScrollTop();
+      var m = metrics();
+      dragging = true;
+      startY = e.clientY;
+      dragMaxTop = m.maxTop;
+      dragOverflow = m.overflow;
+      startThumbTop = m.overflow > 0 ? (getScrollTop() / m.overflow) * m.maxTop : 0;
+      thumb.style.height = m.thumbH + 'px';        // lock the thumb size for the drag
       thumb.classList.add('is-dragging');
-      suspendSmooth();   // instant tracking under the finger
+      suspendSmooth();
       try{ thumb.setPointerCapture(e.pointerId); }catch(_){}
       e.preventDefault(); e.stopPropagation();
     });
     thumb.addEventListener('pointermove', function(e){
       if (!dragging) return;
-      var m = metrics();
-      var dScroll = m.maxTop > 0 ? ((e.clientY - startY) / m.maxTop) * m.overflow : 0;
-      setScrollTop(startScroll + dScroll);
-      update();                 // sync the thumb to the new position immediately (no wait-for-scroll-event jitter)
+      // thumb follows the finger 1:1 (clamped to the track)…
+      var thumbTop = Math.max(0, Math.min(dragMaxTop, startThumbTop + (e.clientY - startY)));
+      thumb.style.transform = 'translateY(' + thumbTop + 'px)';
+      // …and the page scroll is derived from the thumb position (frozen metrics → stable)
+      setScrollTop(dragMaxTop > 0 ? (thumbTop / dragMaxTop) * dragOverflow : 0);
       e.preventDefault();
     });
     function endDrag(e){
+      if (!dragging) return;
       dragging = false; thumb.classList.remove('is-dragging');
       restoreSmooth();
       try{ thumb.releasePointerCapture(e.pointerId); }catch(_){}
+      update();   // reconcile the thumb to the true scroll position now that the drag is over
     }
     thumb.addEventListener('pointerup', endDrag);
     thumb.addEventListener('pointercancel', endDrag);

@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>The Hubbell Brothers &mdash; Civil War Letters, 1861&ndash;1865</title>
+<meta name="description" content="273 letters from four brothers writing home during the American Civil War. An interactive archive."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="icon" href="logo.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="_design.css"/>
+<link rel="stylesheet" href="_overlay.css"/>
+<style>
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+  #letters .container > .letters-columns { grid-template-columns: 1fr !important; gap: 32px !important; }
+}
+</style>
+</head>
+<body>
+<div id="site-nav"></div>
+
+<!-- ===== HERO ===== -->
+<header class="hero section" style="padding-top: 64px; padding-bottom: 48px;">
+  <div class="container">
+    <div class="hero-grid" style="display:grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center;">
+      <div class="hero-copy reveal">
+        <div class="eyebrow" style="margin-bottom: 24px;">Hubbell Family Archive &middot; Est. 1861</div>
+        <h1 class="hero-title" style="font-size: clamp(32px, 5vw, 72px);">
+          Four brothers<br/>
+          connected by letters<br/>
+          written throughout<br/>
+          the <em>Civil War.</em>
+        </h1>
+        <p class="prose" style="margin-top: 28px; max-width: 44ch;">
+          Between 1861 and 1865, Henry, Alexander, James, and Charles Hubbell &mdash; sons of a widowed
+          mother in upstate New York &mdash; wrote letters from camps, hospitals, marches, and
+          battlefields. They are not memoirs or histories. They are unfiltered, unedited, and
+          unaware of how the story ends.
+        </p>
+        <div class="flex gap-8 mt-32" style="align-items:center; flex-wrap: wrap;">
+          <a href="hubbell-dashboard.html" class="btn">Enter the archive
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#exploration" class="btn ghost">What the letters reveal</a>
+        </div>
+      </div>
+      <div class="hero-viz reveal" style="transition-delay: .12s;">
+        <figure style="margin:0;">
+          <a href="hubbell-dashboard.html" id="heroLink" style="display:block; text-decoration:none; color:inherit; max-width:560px; margin-left:auto;" title="Explore the Parallel Lives timeline">
+          <div id="heroCanvasWrap" style="aspect-ratio: 4/5; width:100%; background: var(--bg-sunken); border: 1px solid var(--rule); border-radius: 4px; position: relative; overflow: hidden; cursor:pointer; transition: border-color .2s;">
+            <svg id="heroCanvas" class="chart" viewBox="0 0 560 700" preserveAspectRatio="xMidYMid meet" style="width:100%; height:100%;"></svg>
+            <div class="mono" style="position:absolute; top:14px; left:16px; font-size:10px; letter-spacing:.12em; text-transform:uppercase;">Fig. 01 &middot; Every letter, by date</div>
+            <div class="mono" style="position:absolute; bottom:56px; left:16px; font-size:10px;">273 letters &middot; 1861 &ndash; 1865</div>
+            <div class="mono" id="heroMonth" style="position:absolute; bottom:14px; right:16px; font-size:10px;">&mdash;</div>
+          </div>
+          <figcaption class="mono" style="margin-top:10px; text-align:right; max-width: 560px; margin-left:auto;">
+            Each dot is a letter. Watch them arrive. <span style="color:var(--accent); font-weight:500;">Explore the timeline &rarr;</span>
+          </figcaption>
+          </a>
+        </figure>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== STATS ===== -->
+<section class="section" style="padding: 24px 0 72px;">
+  <div class="container">
+    <div class="stat-row reveal">
+      <div><div class="stat-number" data-count="274">274</div><div class="stat-label">Letters transcribed</div></div>
+      <div><div class="stat-number" data-count="4">4</div><div class="stat-label">Brothers</div></div>
+      <div><div class="stat-number">1861&ndash;65</div><div class="stat-label">Span of correspondence</div></div>
+      <div><div class="stat-number" data-count="5">5</div><div class="stat-label">Generations of stewardship</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BROTHERS editorial column ===== -->
+<section class="section" id="brothers" style="padding-top: 40px;">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">The Correspondents</div>
+      <h2>Four brothers. Four journeys. One war.</h2>
+    </div>
+    <div id="brothersCol"></div>
+  </div>
+</section>
+
+<!-- ===== EXPLORATION GRID ===== -->
+<section class="section" id="exploration" style="padding-top: 40px;">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">The Explorations</div>
+      <h2>What 273 letters reveal when you read them as data.</h2>
+    </div>
+    <p class="prose reveal" style="margin-bottom: 40px;">
+      The letters were transcribed into structured data and text-mined for patterns no single
+      reader could see. Each view illuminates a different dimension of the correspondence &mdash; where
+      they were, who they knew, and what they couldn&rsquo;t yet know was coming.
+    </p>
+    <div class="explore-grid reveal">
+      <a class="explore-card" href="hubbell-dashboard.html">
+        <div class="mono" style="color: var(--ink-3); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">01 &middot; Timeline</div>
+        <h3>Parallel Lives</h3>
+        <p>Every letter plotted by date and author &mdash; four brothers writing from four different theaters of war, their lives diverging and intersecting.</p>
+        <div class="meta">273 letters &middot; Interactive timeline</div>
+        <svg class="explore-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="explore-card" href="viz-map-fullwar.html">
+        <div class="mono" style="color: var(--ink-3); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">02 &middot; Geography</div>
+        <h3>The Map That Moves</h3>
+        <p>Follow four soldiers across the eastern theater. From Champlain to Antietam, Chattanooga to Savannah &mdash; every letter placed where it was written.</p>
+        <div class="meta">Geographic visualization &middot; Movement patterns</div>
+        <svg class="explore-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="explore-card" href="viz-health-ledger.html">
+        <div class="mono" style="color: var(--ink-3); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">03 &middot; Wellness</div>
+        <h3>The Wellness Ledger</h3>
+        <p>For every soldier killed in battle, two died of disease. Track each brother&rsquo;s physical condition through their own words &mdash; fever, scurvy, night blindness, exhaustion.</p>
+        <div class="meta">Wellness classification &middot; Text-mined reports</div>
+        <svg class="explore-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="explore-card" href="viz-money-story.html">
+        <div class="mono" style="color: var(--ink-3); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">04 &middot; Economy</div>
+        <h3>The Money Story</h3>
+        <p>Every dollar mentioned &mdash; pay, bounties, expenses, money begged from home when the army didn&rsquo;t pay for months. The private economy of a private&rsquo;s war.</p>
+        <div class="meta">Financial text mining &middot; CPI adjustment</div>
+        <svg class="explore-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="explore-card" href="viz-people-web.html">
+        <div class="mono" style="color: var(--ink-3); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">05 &middot; Network</div>
+        <h3>The People Web</h3>
+        <p>Officers, comrades, family, strangers &mdash; the network of nearly 600 people mentioned across the letters, and the connections between them.</p>
+        <div class="meta">Network graph &middot; Person identity</div>
+        <svg class="explore-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE LETTERS narrative ===== -->
+<section class="section" id="letters" style="padding-top: 56px;">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">The Letters</div>
+      <h2>What they wrote home.</h2>
+    </div>
+    <div class="letters-columns reveal" style="display:grid; grid-template-columns: 1.1fr 1fr; gap: 64px;">
+      <div class="prose">
+        <p>
+          Their father, Frederick Augustus Hubbell, had died in 1853 when Alexander was nine years
+          old. Frances McNeil Hubbell raised four sons and a daughter alone in Champlain, on the
+          Canadian border of New York. When the call came for volunteers in 1861, she sent all
+          four.
+        </p>
+        <p>
+          What followed was not the heroic correspondence of myth. These were young men writing to
+          their mother &mdash; about being sick among strangers, about the ache of months without a
+          letter from home. They worried about money: eight dollars sent home from a month&rsquo;s pay,
+          five dollars begged back when the army failed to pay them at all. They described not
+          just battles but the long, grinding weeks between them.
+        </p>
+        <p>
+          What makes these letters extraordinary is not any single revelation but the accumulation
+          of ordinary detail across four years. Read together, they become something larger &mdash; an
+          unedited record of what the Civil War felt like from inside it.
+        </p>
+      </div>
+      <aside style="display:flex; flex-direction:column; gap:40px;">
+        <blockquote class="pull-quote">
+          You know, Mother, what it is to be away from home, sick among strangers and to be
+          without money. I will not try to describe my feelings when I ask for this&hellip; Do you
+          suppose you could spare me five dollars, if not, less will do.
+          <cite>Alexander &middot; Hospital at Harper&rsquo;s Ferry &middot; Sept 27, 1862</cite>
+        </blockquote>
+        <blockquote class="pull-quote">
+          Please excuse me, Mother, but I did have a hearty laugh when I took in the idea of your
+          three hopeful sons being in the hospital at the one and same time.
+          <cite>Alexander &middot; Hospital at Chattanooga &middot; Aug 30, 1864</cite>
+        </blockquote>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE PRESERVATION ===== -->
+<section class="section" id="preservation" style="padding-top: 40px;">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">The Preservation</div>
+      <h2>A trunk in a basement. Five generations of care.</h2>
+    </div>
+    <p class="prose reveal">
+      After the war the letters were bundled and put away. They sat in a trunk for eighty years &mdash;
+      water-stained, fading, and largely forgotten. They might easily have been lost. Instead, a
+      remarkable chain of stewardship carried them forward.
+    </p>
+    <ol id="stewardshipList" class="reveal" style="list-style:none; padding:0; margin: 56px 0 0; display:flex; flex-direction:column;"></ol>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <div class="mono" style="margin-bottom: 10px;">Hubbell Civil War Archive</div>
+      <div style="color: var(--ink-3); font-size: 13px; max-width: 52ch; line-height: 1.55;">
+        Based on 274 transcribed letters from the Hubbell family collection, 1861&ndash;1865.
+        Transcribed by Gladys Sands Hubbell (1947&ndash;49). Introduced by Fred Alexander Hubbell Jr.
+        (1996). Digitized by Bruce Levitt (2010s). Analyzed by the descendants (2026).
+      </div>
+    </div>
+    <div style="text-align:right; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-3); text-transform: uppercase;">
+      Champlain &middot; Clinton County &middot; New York
+    </div>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="_design-data.js"></script>
+<script src="_design-ui.js"></script>
+<script src="_search-data.js"></script>
+<script src="_reader.js"></script>
+<script src="_search-engine.js"></script>
+<script>
+/* ===================== HERO — Animated Timeline ===================== */
+(function () {
+  var svg = document.getElementById('heroCanvas');
+  var monthLabel = document.getElementById('heroMonth');
+  if (!svg) return;
+
+  var W = 560, H = 700;
+  var pad = { l: 100, r: 28, t: 60, b: 80 };
+  var innerW = W - pad.l - pad.r;
+  var innerH = H - pad.t - pad.b;
+
+  var brothers = HUBBELL.brothers;
+  var byId = {};
+  brothers.forEach(function (b) { byId[b.id] = b; });
+
+  /* Time range */
+  var startY = 1861, startM = 6;
+  var endY = 1865, endM = 10;
+  var months = [];
+  for (var y = startY, m = startM; !(y > endY || (y === endY && m > endM)); ) {
+    months.push({ y: y, m: m });
+    m++; if (m > 11) { m = 0; y++; }
+  }
+  var nMonths = months.length;
+
+  /* Lane layout — horizontal lanes for each brother */
+  var laneGap = innerH / (brothers.length + 1);
+  var laneY = {};
+  brothers.forEach(function (b, i) { laneY[b.id] = pad.t + laneGap * (i + 1); });
+
+  /* Generate letters, then consolidate to one dot per brother per month */
+  var spans = { henry: [0, 12], alexander: [0, nMonths - 5], james: [14, nMonths - 2], charles: [14, nMonths - 4] };
+  var totals = { henry: 42, alexander: 98, james: 62, charles: 72 };
+
+  /* Count letters per brother per month */
+  var countMap = {}; /* key: "brother-monthIdx" → count */
+  brothers.forEach(function (b) {
+    var s = spans[b.id][0], e = spans[b.id][1];
+    var n = totals[b.id];
+    for (var i = 0; i < n; i++) {
+      var t = (i + 0.5) / n;
+      var bias = 0.5 + 0.5 * Math.sin(Math.PI * t - Math.PI / 2);
+      var jitter = ((i * 2654435761) % 7) / 7 - 0.5;
+      var mi = Math.max(s, Math.min(e - 1, Math.floor(s + bias * (e - s) + jitter * 1.5)));
+      var key = b.id + '-' + mi;
+      countMap[key] = (countMap[key] || 0) + 1;
+    }
+  });
+
+  /* Build consolidated dots: one per brother per month */
+  var dots = [];
+  brothers.forEach(function (b) {
+    var s = spans[b.id][0], e = spans[b.id][1];
+    for (var mi = s; mi < e; mi++) {
+      var key = b.id + '-' + mi;
+      var count = countMap[key] || 0;
+      if (count > 0) {
+        dots.push({ brother: b.id, monthIdx: mi, count: count });
+      }
+    }
+  });
+
+  /* Sort by month for sequential reveal */
+  dots.sort(function (a, b) { return a.monthIdx - b.monthIdx; });
+
+  /* Compute positions — one dot per brother per month, on their lane */
+  var xScale = function (mi) { return pad.l + (mi + 0.5) * (innerW / nMonths); };
+  function count2r(c) { return c <= 1 ? 0 : Math.sqrt(c) * 1.4; }
+  dots.forEach(function (d) {
+    d.x = xScale(d.monthIdx);
+    d.y = laneY[d.brother];
+    /* Radius scales with letter count: base 2.5, larger for months with multiple letters */
+    d.r = 2.5 + Math.min(count2r(d.count), 4);
+  });
+
+  /* SVG helpers */
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs, parent) {
+    var n = document.createElementNS(NS, tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) { n.setAttribute(k, attrs[k]); });
+    (parent || svg).appendChild(n);
+    return n;
+  }
+
+  /* --- Static elements --- */
+
+  /* Subtle lane lines */
+  brothers.forEach(function (b) {
+    el('line', { x1: pad.l, x2: W - pad.r, y1: laneY[b.id], y2: laneY[b.id],
+      stroke: 'var(--rule)', 'stroke-width': 0.5, 'stroke-opacity': 0.35 });
+  });
+
+  /* Year ticks + labels along the bottom */
+  var axisY = H - pad.b + 20;
+  el('line', { x1: pad.l, x2: W - pad.r, y1: axisY, y2: axisY,
+    stroke: 'var(--rule)', 'stroke-width': 1, 'stroke-opacity': 0.5 });
+
+  [1861, 1862, 1863, 1864, 1865].forEach(function (yr) {
+    var mi = -1;
+    for (var i = 0; i < months.length; i++) { if (months[i].y === yr) { mi = i; break; } }
+    if (mi < 0) return;
+    var x = xScale(mi);
+    el('line', { x1: x, x2: x, y1: axisY - 4, y2: axisY + 4,
+      stroke: 'var(--ink-3)', 'stroke-width': 1 });
+    var txt = el('text', { x: x, y: axisY + 18, 'text-anchor': 'middle',
+      'font-family': 'var(--font-mono)', 'font-size': 10, fill: 'var(--ink-3)',
+      'letter-spacing': '0.05em' });
+    txt.textContent = yr;
+  });
+
+  /* Brother labels on left */
+  brothers.forEach(function (b) {
+    var txt = el('text', { x: pad.l - 14, y: laneY[b.id] + 4, 'text-anchor': 'end',
+      'font-family': 'var(--font-mono)', 'font-size': 10, fill: b.color,
+      'font-weight': 500, 'letter-spacing': '0.03em' });
+    txt.textContent = b.first;
+  });
+
+  /* --- Animated elements --- */
+
+  /* Cursor / scanline */
+  var cursor = el('line', { x1: pad.l, x2: pad.l,
+    y1: pad.t, y2: H - pad.b + 8,
+    stroke: 'var(--ink-3)', 'stroke-width': 1, 'stroke-opacity': 0 });
+
+  /* Dot group */
+  var dotGroup = el('g', {});
+
+  /* Create dot elements (all hidden initially) */
+  var dotEls = dots.map(function (d) {
+    return el('circle', {
+      cx: d.x, cy: d.y, r: d.r,
+      fill: byId[d.brother].color,
+      opacity: 0
+    }, dotGroup);
+  });
+
+  /* --- Animation engine --- */
+  var FILL_DURATION = 8000;
+  var HOLD_DURATION = 2800;
+  var FADE_DURATION = 1400;
+  var REST_DURATION = 1800;
+
+  var revealed = 0;
+  var phase = 'rest';
+  var running = false;
+
+  function resetAll() {
+    for (var i = 0; i < dotEls.length; i++) {
+      dotEls[i].setAttribute('opacity', 0);
+      dotEls[i].style.transition = 'none';
+    }
+    cursor.setAttribute('stroke-opacity', 0);
+    revealed = 0;
+    monthLabel.textContent = '\u2014';
+  }
+
+  function loop() {
+    if (!running) return;
+    resetAll();
+    phase = 'fill';
+    var t0 = performance.now();
+
+    function frame(now) {
+      if (!running) return;
+      var elapsed = now - t0;
+
+      if (phase === 'fill') {
+        var p = Math.min(1, elapsed / FILL_DURATION);
+        var ep = p < 0.5
+          ? 2 * p * p
+          : 1 - Math.pow(-2 * p + 2, 2) / 2;
+
+        /* Cursor */
+        var curX = pad.l + ep * innerW;
+        cursor.setAttribute('x1', curX);
+        cursor.setAttribute('x2', curX);
+        cursor.setAttribute('stroke-opacity', 0.3);
+
+        /* Reveal dots whose x position the cursor has passed */
+        var targetIdx = 0;
+        for (var i = 0; i < dots.length; i++) {
+          if (dots[i].x <= curX) targetIdx = i + 1;
+          else break;
+        }
+        while (revealed < targetIdx && revealed < dotEls.length) {
+          dotEls[revealed].setAttribute('opacity', 0.85);
+          dotEls[revealed].style.transition = 'opacity .2s ease-out';
+          revealed++;
+        }
+
+        /* Month label */
+        var activeMonth = Math.min(nMonths - 1, Math.floor(ep * nMonths));
+        var mm = months[activeMonth];
+        var monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        monthLabel.textContent = monthNames[mm.m] + ' ' + mm.y;
+
+        if (p >= 1) {
+          phase = 'hold';
+          cursor.setAttribute('stroke-opacity', 0);
+          t0 = now;
+        }
+      } else if (phase === 'hold') {
+        if (now - t0 > HOLD_DURATION) {
+          phase = 'fade';
+          t0 = now;
+          for (var j = 0; j < dotEls.length; j++) {
+            dotEls[j].style.transition = 'opacity ' + FADE_DURATION + 'ms ease-in';
+            dotEls[j].setAttribute('opacity', 0);
+          }
+        }
+      } else if (phase === 'fade') {
+        if (now - t0 > FADE_DURATION) {
+          phase = 'rest';
+          t0 = now;
+          monthLabel.textContent = '\u2014';
+        }
+      } else if (phase === 'rest') {
+        if (now - t0 > REST_DURATION) {
+          loop();
+          return;
+        }
+      }
+
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* Visibility-aware start/stop */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting && !running) {
+        running = true;
+        loop();
+      } else if (!e.isIntersecting && running) {
+        running = false;
+      }
+    });
+  }, { threshold: 0.2 });
+  io.observe(svg);
+})();
+
+/* ===================== BROTHERS COLUMN ===================== */
+(function () {
+  var mount = document.getElementById('brothersCol');
+  if (!mount) return;
+  HUBBELL.brothers.forEach(function (b, i) {
+    var entry = document.createElement('article');
+    entry.className = 'brother-entry reveal';
+    entry.style.setProperty('--brother-color', b.color);
+    entry.innerHTML =
+      '<div class="brother-meta">' +
+        '<div class="brother-swatch" aria-hidden="true"></div>' +
+        '<div class="mono" style="color:var(--ink-3); margin-bottom: 6px;">0' + (i+1) + '</div>' +
+        '<h3 class="brother-name">' + b.full + '</h3>' +
+        '<div class="brother-regiment">' + b.unit + '</div>' +
+        '<div class="brother-fate">' + b.fate + '</div>' +
+      '</div>' +
+      '<div>' +
+        '<p class="prose" style="margin:0 0 28px;">' + b.paragraph + '</p>' +
+        '<blockquote class="pull-quote" style="border-left-color: ' + b.color + ';">' +
+          b.pullQuote +
+          '<cite>' + b.pullCite + '</cite>' +
+        '</blockquote>' +
+      '</div>';
+    mount.appendChild(entry);
+  });
+})();
+
+/* ===================== STEWARDSHIP LIST ===================== */
+(function () {
+  var mount = document.getElementById('stewardshipList');
+  if (!mount) return;
+  HUBBELL.stewardship.forEach(function (s, i) {
+    var li = document.createElement('li');
+    li.style.cssText = 'display:grid; grid-template-columns: 160px 1fr; gap: 40px; padding: 36px 0; border-top: 1px solid var(--rule);';
+    li.innerHTML =
+      '<div>' +
+        '<div class="mono" style="color:var(--ink-3); font-size: 11px; letter-spacing:.08em;">Era 0' + (i+1) + '</div>' +
+        '<div style="font-family: var(--font-display); font-size: 28px; letter-spacing:-.02em; margin-top:8px; color: var(--accent);">' + s.year + '</div>' +
+      '</div>' +
+      '<div>' +
+        '<h3 style="margin:0 0 12px; font-size: 22px;">' + s.title + '</h3>' +
+        '<p class="prose" style="margin:0;">' + s.body + '</p>' +
+      '</div>';
+    mount.appendChild(li);
+  });
+  var last = mount.lastElementChild;
+  if (last) last.style.borderBottom = '1px solid var(--rule)';
+  var mq = window.matchMedia('(max-width: 700px)');
+  function respond() {
+    mount.querySelectorAll('li').forEach(function (li) {
+      li.style.gridTemplateColumns = mq.matches ? '1fr' : '160px 1fr';
+      li.style.gap = mq.matches ? '12px' : '40px';
+    });
+  }
+  respond(); mq.addEventListener('change', respond);
+})();
+
+/* ===================== LETTER READER (used by shared search dropdown) ===================== */
+(function () {
+  // Handle ?q= param — redirect to search.html
+  var urlQ = new URLSearchParams(window.location.search).get('q');
+  if (urlQ) window.location.replace('search.html?q=' + encodeURIComponent(urlQ));
+
+  // Expose openReader for nav search dropdown compatibility
+  window.openReader = function openReader(letter, terms) {
+    HubbellReader.open(letter.id, { highlight: terms });
+  };
+})();
+</script>
+
+<script src="_deeplink.js"></script>
+<script src="_overlay-data.js"></script>
+<script src="_overlay.js"></script>
+<script>if (window.HubbellOverlay) HubbellOverlay.bindPage({ tags: true, locations: true, prose: '.prose p' });</script>
+<script>if (window.HubbellDeepLink) HubbellDeepLink.injectShareButton();</script>
+</body>
+</html>
