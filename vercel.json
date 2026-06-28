@@ -7,9 +7,15 @@
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/(.*)\\.(webm|mp4|webp|jpg|jpeg|png|gif|svg|ico|woff|woff2|css|js)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600" }
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/((?!.*\\.(?:webm|mp4|webp|jpg|jpeg|png|gif|svg|ico|woff|woff2|css|js)).*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
   ]

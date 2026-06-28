@@ -17,6 +17,8 @@ Phase 3 scaffolding in place (no data yet): `03-data/external-sources/{README.md
 
 Prior phases (transcription, knowledge graph, visualizations, novel, web platform) are complete or descoped. See `tasks/todo.md` for legacy phase tracking.
 
+**Parallel active track — V2 Visual Revamp (`v2-ui` branch, Phase 5c):** the cinematic oil-painting aesthetic of the v2 landing (`experience-v2/landing.html`) is being carried across the site. LIVE: the landing, `the-collection.html`'s preservation masthead, and the four `brother-*.html` bios now open with animated frontispiece portrait heroes via the shared `.hero-loop` component (`_hero.css` / `_hero.js`). Plan + status: `tasks/site-v2-graphic-revamp-PLAN.md` (Execution Log) and `tasks/PROJECT-PHASES.md` §5c. One open P1 asset: a portrait + loop for Mrs. Hubbell (`mother-frances.html` currently shows a placeholder frame).
+
 ## Architecture
 - **Single file**: `hubbell-dashboard.html` contains all CSS, HTML, SVG rendering, and JavaScript
 - **Data**: `LETTERS` array (~2000 lines, lines 2780–4751) and `EVENTS` array embedded in the file
@@ -35,6 +37,8 @@ Prior phases (transcription, knowledge graph, visualizations, novel, web platfor
 - **Transcription formatting**: collapse single `\n` to spaces, only `\n\n` creates paragraph breaks — original line breaks are paper-width artifacts
 - Use `parseDate(str)` for all date parsing (appends `T12:00:00` to avoid timezone issues)
 - SVG paint order = z-index (brush overlay must render BEFORE dots in markup)
+- **Animated hero loops** use the shared `.hero-loop` component (`_hero.css` / `_hero.js`): poster-first `<img>` + lazy `<video>` with child `<source>` (webm + mp4), `autoplay muted loop playsinline`. Brother hero assets are **locked to the landing filmstrip** (`experience-v2/landing.html`): Henry=`loop-henry`, Alexander=`loop-alexander-fav`, James=`loop-james-wide`, Charles=`loop-charles`; posters = `brothers/web/window-*.webp`.
+- **Cache-busting (`vercel.json`):** static assets (css/js/img/video) cache 1 day; HTML pages revalidate every load. When you change a shared `_*.css` / `_*.js` (e.g. `_hero.js`, `_scrollrail.js`), you MUST bump its `?v=N` query string on every page that links it — otherwise returning visitors keep the stale cached file (this is what caused hero loops to "freeze static on mobile").
 
 ## File Locations
 - Dashboard: `hubbell-dashboard.html` (this directory)

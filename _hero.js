@@ -63,8 +63,16 @@ window.HubbellHero = (function () {
     video.src = src;
   }
 
+  // A <video> that carries its URL on child <source> elements has an EMPTY
+  // video.src — so a naive `if (!video.src)` guard wrongly skips play() and the
+  // loop freezes on its first frame. Treat a populated source list (heroLoaded)
+  // or a resolved currentSrc as "has a source".
+  function hasSource(video) {
+    return !!(video && (video.src || video.currentSrc || video.dataset.heroLoaded));
+  }
+
   function tryPlay(video) {
-    if (!video || !video.src) return;
+    if (!hasSource(video)) return;
     var p = video.play();
     // Autoplay can be blocked until a user gesture; we retry on first input.
     if (p && p.catch) p.catch(function () {});
@@ -96,7 +104,7 @@ window.HubbellHero = (function () {
         if (e.isIntersecting) {
           ensureLoaded(e.target, v);   // lazy: load only as it nears view
           tryPlay(v);
-        } else if (v.src && !v.paused) {
+        } else if (hasSource(v) && !v.paused) {
           v.pause();                   // off screen → stop burning cycles
         }
       });
@@ -109,7 +117,7 @@ window.HubbellHero = (function () {
     var resume = function () {
       figs.forEach(function (f) {
         var v = f.querySelector('.hero-loop__video');
-        if (v && v.src && v.paused) tryPlay(v);
+        if (hasSource(v) && v.paused) tryPlay(v);
       });
     };
     ['pointerdown', 'keydown', 'touchstart'].forEach(function (ev) {
