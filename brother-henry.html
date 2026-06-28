@@ -11,15 +11,37 @@
 <link rel="stylesheet" href="_design.css">
 <link rel="stylesheet" href="_bio.css">
 <link rel="stylesheet" href="_overlay.css">
-<link rel="stylesheet" href="_scrollrail.css?v=2">
+<link rel="stylesheet" href="_hero.css">
+<link rel="stylesheet" href="_scrollrail.css?v=3">
+<script src="_hero.js" defer></script>
 <style>
 :root { --person: var(--henry); --person-soft: #E8F0F8; --person-bg: #F4F8FC; }
 </style>
-<script src="_scrollrail.js?v=2"></script>
+<script src="_scrollrail.js?v=3"></script>
 </head>
 <body>
 
 <div id="site-nav"></div>
+
+<!-- ===== FRONTISPIECE — animated portrait (interpretive painting) ===== -->
+<div class="bio-frontis">
+  <figure class="hero-loop" data-hero-loop>
+    <img class="hero-loop__poster"
+         src="/experience-v2/assets/brothers/loops/loop-henry-poster.jpg"
+         alt="An interpretive oil painting of Henry Hubbell writing a letter home by lantern light inside his tent, the army's camp dissolving into dusk behind him."
+         decoding="async" width="1248" height="1664">
+    <video class="hero-loop__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+      <source data-src="/experience-v2/assets/brothers/loops/loop-henry.webm" type="video/webm">
+      <source data-src="/experience-v2/assets/brothers/loops/loop-henry.mp4" type="video/mp4">
+    </video>
+    <div class="hero-loop__scrim" aria-hidden="true"></div>
+    <figcaption class="hero-loop__caption">
+      <span class="hl-eyebrow">The Eldest &middot; First to Enlist</span>
+      <span class="hl-title">The brother who counted every dollar home &mdash; killed at Antietam, his body never found.</span>
+      <span class="hl-prov">Interpretive painting &mdash; no photograph of Henry is known to survive.</span>
+    </figcaption>
+  </figure>
+</div>
 
 <!-- ===== HERO ===== -->
 <div class="bio-hero">

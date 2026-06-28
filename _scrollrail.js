@@ -56,11 +56,11 @@
       var thumbH = Math.max(48, railH * (vh / sh));
       return { vh:vh, inset:_inset, sh:sh, overflow: sh - vh, railH:railH, thumbH:thumbH, maxTop: railH - thumbH };
     }
-    // the element whose CSS scroll-behavior governs programmatic scrolls
-    var sbEl = docMode ? document.documentElement : scroller;
-    var savedSB = null;
-    function suspendSmooth(){ savedSB = sbEl.style.scrollBehavior; sbEl.style.scrollBehavior = 'auto'; }
-    function restoreSmooth(){ if (savedSB !== null){ sbEl.style.scrollBehavior = savedSB; savedSB = null; } }
+    // While dragging we add html.hub-dragging, whose CSS forces scroll-behavior:auto
+    // and scroll-snap-type:none (!important) on html+body — so no smooth-scroll easing
+    // or snap points fight the drag. Applied globally so it covers every page's own rules.
+    function suspendSmooth(){ document.documentElement.classList.add('hub-dragging'); }
+    function restoreSmooth(){ document.documentElement.classList.remove('hub-dragging'); }
 
     function getScrollTop(){ return docMode ? (scroller.scrollTop || window.pageYOffset || 0) : scroller.scrollTop; }
     function setScrollTop(v){
@@ -102,6 +102,8 @@
       var m = metrics();
       var dScroll = m.maxTop > 0 ? ((e.clientY - startY) / m.maxTop) * m.overflow : 0;
       setScrollTop(startScroll + dScroll);
+      update();                 // sync the thumb to the new position immediately (no wait-for-scroll-event jitter)
+      e.preventDefault();
     });
     function endDrag(e){
       dragging = false; thumb.classList.remove('is-dragging');

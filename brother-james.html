@@ -11,13 +11,37 @@
 <link rel="stylesheet" href="_design.css">
 <link rel="stylesheet" href="_bio.css">
 <link rel="stylesheet" href="_overlay.css">
+<link rel="stylesheet" href="_hero.css">
+<script src="_hero.js" defer></script>
 <style>
 :root { --person: var(--james); --person-soft: #E5F0E8; --person-bg: #F4FAF6; }
 </style>
+<link rel="stylesheet" href="_scrollrail.css?v=3">
+<style>:root{ --rail-accent: var(--james); }</style>
+<script src="_scrollrail.js?v=3"></script>
 </head>
 <body>
 
 <div id="site-nav"></div>
+
+<!-- ===== FRONTISPIECE — animated portrait (interpretive painting) ===== -->
+<div class="bio-frontis">
+  <figure class="hero-loop" data-hero-loop>
+    <img class="hero-loop__poster"
+         src="/experience-v2/assets/brothers/loops/loop-james-poster.jpg"
+         alt="An interpretive oil painting of James Hubbell writing a letter from a convalescent ward cot, snow at the window and other patients resting in the rows behind him."
+         decoding="async" width="1248" height="1664">
+    <video class="hero-loop__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+      <source data-src="/experience-v2/assets/brothers/loops/loop-james.webm" type="video/webm">
+      <source data-src="/experience-v2/assets/brothers/loops/loop-james.mp4" type="video/mp4">
+    </video>
+    <div class="hero-loop__scrim" aria-hidden="true"></div>
+    <figcaption class="hero-loop__caption">
+      <span class="hl-eyebrow">Interpretive portrait</span>
+      <span class="hl-prov">A painted likeness &mdash; no wartime photograph of James Hubbell is known to survive.</span>
+    </figcaption>
+  </figure>
+</div>
 
 <!-- ===== HERO ===== -->
 <div class="bio-hero">

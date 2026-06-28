@@ -10,13 +10,31 @@
 <link rel="stylesheet" href="_design.css">
 <link rel="stylesheet" href="_bio.css">
 <link rel="stylesheet" href="_overlay.css">
+<link rel="stylesheet" href="_hero.css">
+<script src="_hero.js" defer></script>
 <style>
 :root { --person: var(--mother); --person-soft: #F0EAF7; --person-bg: #F8F5FC; }
 </style>
+<link rel="stylesheet" href="_scrollrail.css?v=3">
+<style>:root{ --rail-accent: var(--mother); }</style>
+<script src="_scrollrail.js?v=3"></script>
 </head>
 <body>
 
 <div id="site-nav"></div>
+
+<!-- ===== FRONTISPIECE — portrait in preparation (PLACEHOLDER) =====
+     TODO (asset): generate Frances Hubbell's interpretive portrait + 5–6s loop
+     to match the four brothers (see tasks/site-v2-graphic-revamp-PLAN.md). No
+     reference still exists for her, so this needs a from-scratch still first
+     (higgsfield generate_image → image-to-video loop → poster). Drop the pair in
+     at /experience-v2/assets/brothers/loops/loop-mother.{webm,mp4} + poster,
+     then swap this placeholder block for the brothers' figure markup. -->
+<div class="bio-frontis">
+  <figure class="hero-loop" data-placeholder="true">
+    <div class="hero-loop__pending">A portrait of Frances Hubbell is in preparation. No photograph of her is known to survive.</div>
+  </figure>
+</div>
 
 <!-- ===== HERO ===== -->
 <div class="bio-hero">

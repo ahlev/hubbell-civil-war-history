@@ -23,6 +23,10 @@
   display:flex; justify-content:flex-end; align-items:stretch;
   background:transparent; pointer-events:auto; cursor:grab;
   -webkit-tap-highlight-color:transparent;
+  /* CRITICAL: the thumb owns the touch gesture. Without this the browser ALSO
+     pans the page natively while JS scrolls it → the two fight (stutter/flash/
+     pull-back). touch-action:none suppresses native panning on the thumb. */
+  touch-action:none; user-select:none; -webkit-user-select:none;
 }
 /* the visible bar — slim & glossy at rest, accent-tinted. The sheen gradient is
    plain rgba over the accent (no color-mix) so it renders on every mobile browser. */
@@ -42,6 +46,10 @@
   width:12px; margin-right:4px; opacity:1;
   box-shadow:0 2px 10px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.55);
 }
+
+/* during a thumb drag: kill smooth-scroll easing and any scroll-snap so nothing
+   fights the programmatic scroll (steady page flow + steady pill slide) */
+html.hub-dragging, html.hub-dragging body{ scroll-behavior:auto !important; scroll-snap-type:none !important; }
 
 @media (min-width:641px){ .hub-scrollrail{ display:none !important; } }   /* mobile only */
 @media (prefers-reduced-motion: reduce){ .hub-scrollthumb::before{ transition:none; } }
