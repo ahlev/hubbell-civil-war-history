@@ -4,6 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Letter — The Hubbell Brothers</title>
+<link rel="icon" href="/logo.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -26,24 +27,30 @@
 <script src="/_reader.js"></script>
 <script>
 (function(){
+  var closed=false;
   function getId(){ try{ return new URLSearchParams(location.search).get('id'); }catch(e){ return null; } }
-  function notifyClose(){ try{ parent.postMessage('hubbell-reader-close','*'); }catch(e){} }
+  function notifyClose(){ if(closed) return; closed=true; try{ parent.postMessage('hubbell-reader-close','*'); }catch(e){} }
   function start(){
     var id=getId();
     if(!id || !window.HubbellOverlay || typeof HubbellOverlay.showLetter!=='function'){ notifyClose(); return; }
+    // Mechanism 1 (instant): wrap the close API so the ✕ button / programmatic close tell the parent right away.
+    ['close','_close'].forEach(function(k){
+      if(typeof HubbellOverlay[k]==='function'){
+        var orig=HubbellOverlay[k];
+        HubbellOverlay[k]=function(){ try{ orig.apply(this,arguments); }catch(e){} notifyClose(); };
+      }
+    });
     HubbellOverlay.showLetter(id);
-    // Watch the reader panel: once it has been shown and then loses 'visible' (X / backdrop / Esc),
-    // tell the parent landing to tear down the iframe overlay. Robust to every dismiss path.
-    setTimeout(function(){
+    // Mechanism 2 (timing-independent safety net): poll the panel's 'visible' state. closeOverlay() only
+    // toggles that class (backdrop-click & Esc go straight to it, bypassing the wrapped API), so once the
+    // panel has BEEN visible and then isn't, the reader is closed → notify the parent. Catches every path.
+    var wasVisible=false;
+    var poll=setInterval(function(){
       var panel=document.querySelector('.hubbell-overlay-panel');
-      if(!panel){ return; }
-      var seen=false;
-      var obs=new MutationObserver(function(){
-        if(panel.classList.contains('visible')){ seen=true; }
-        else if(seen){ obs.disconnect(); notifyClose(); }
-      });
-      obs.observe(panel,{attributes:true,attributeFilter:['class']});
-    },140);
+      var vis=panel && panel.classList.contains('visible');
+      if(vis){ wasVisible=true; }
+      else if(wasVisible || closed){ clearInterval(poll); notifyClose(); }
+    },200);
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){ setTimeout(start,60); });
   else setTimeout(start,60);
