@@ -224,6 +224,8 @@ a.reader-tag:hover{ border-color: var(--era-lantern) !important; color: var(--er
   font-size: var(--era-body-size) !important; line-height: var(--era-body-leading) !important;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 26px 46px -16px rgba(0,0,0,.55), 0 0 60px -16px rgba(226,181,116,.12) !important;
   position:relative; overflow:hidden;
+  max-height:none !important;   /* _design.css caps .reader-body at 520px + its own scroll — kill it so the
+                                   whole letter renders and the OUTER #hubbellReaderContent scrolls to the end */
 }
 .reader-body::before{
   content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
@@ -290,18 +292,27 @@ a.reader-tag:hover{ border-color: var(--era-lantern) !important; color: var(--er
 @media (prefers-reduced-motion: reduce){ .reader-panel, .reader-overlay{ transition:none !important; } }
 @media (max-width: 640px){
   .reader-panel{ width:100%; max-height:94vh; }
-  /* WIDER letter column: trim the frame padding so the verbatim text isn't crushed into a narrow strip */
-  .reader-body{ margin:8px 7px 14px !important; padding:20px 15px 22px !important; font-size:15.5px !important; }
+  /* WIDER letter column + smaller verbatim font (founder: −1.5pt → 14px) */
+  .reader-body{ margin:8px 7px 14px !important; padding:20px 15px 22px !important; font-size:14px !important; }
   .reader-body p.reader-para{ text-indent:1.1em; }
   /* TIGHTER, SMALLER header so it doesn't eat the top of the screen */
   .reader-header{ padding:11px 14px 9px !important; }
-  .reader-correspondence{ gap:4px 6px !important; margin-bottom:4px !important; }
+  .reader-correspondence{ gap:3px 6px !important; margin-bottom:4px !important; }
   .hubbell-overlay-title, .reader-pill{ font-size:.84rem !important; padding-left:15px !important; }
   .reader-pill::before{ width:9px !important; height:9px !important; }
   .reader-pill-label{ font-size:8px !important; }
   .reader-meta{ font-size:9px !important; line-height:1.45 !important; }
   .reader-meta .rm-date{ font-size:11px !important; }
+  .reader-meta .rm-id{ display:none !important; }   /* drop the "ref. LTR-…" — unnecessary clutter on a phone */
   .reader-map-link{ font-size:.6rem !important; padding:1px 6px !important; }
   .reader-exec-summary{ font-size:12.5px !important; line-height:1.5 !important; margin:9px 0 !important; padding:9px 2px 9px 12px !important; }
-  .reader-flags-inline, .reader-flags{ margin:9px 0 4px !important; }
+  /* smaller "Highlight in letter" label + toggle pills */
+  .reader-flags-inline, .reader-flags{ margin:8px 0 4px !important; gap:5px !important; }
+  .reader-flags-inline::before, .reader-flags::before{ font-size:7.5px !important; letter-spacing:.07em; }
+  .reader-flag{ font-size:8px !important; padding:2px 9px 2px 18px !important; }
+  .reader-flag::before{ width:7px !important; height:7px !important; left:7px !important; }
+}
+/* PORTRAIT phones: From and To on their OWN lines (landscape ≥640px keeps them inline) */
+@media (max-width: 640px) and (orientation: portrait){
+  .reader-correspondence .reader-pill-label:nth-of-type(2){ flex-basis:100%; margin-top:3px; }
 }
