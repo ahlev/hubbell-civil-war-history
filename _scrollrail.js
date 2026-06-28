@@ -36,12 +36,12 @@
         var box = document.createElement('div');
         box.style.cssText = 'position:fixed;left:6px;bottom:6px;z-index:99999;background:rgba(0,0,0,.82);color:#9f8;font:11px/1.45 monospace;padding:6px 8px;border-radius:6px;pointer-events:none;white-space:pre;max-width:60vw';
         document.body.appendChild(box);
-        dbg = function(tag, thumbTop){
+        dbg = function(tag, thumbTop, fingerDelta){
           box.textContent =
             tag + '\n' +
             'innerH ' + window.innerHeight + '\n' +
             'clientY d ' + Math.round(lastClientY - startClientY) + '\n' +
-            'screenY d ' + Math.round(lastScreenY - startScreenY) + '\n' +
+            'fingerD ' + Math.round(fingerDelta || 0) + '\n' +
             'thumbTop ' + Math.round(thumbTop) + '/' + Math.round(dragMaxTop) + '\n' +
             'scrollTop ' + Math.round(getScrollTop());
         };
@@ -104,15 +104,21 @@
     // to an extreme. Verified via ?raildebug: screenY d swung ±~scrollHeight.)
     var dragging = false, activeId = null,
         startClientY = 0, lastClientY = 0, startScreenY = 0, lastScreenY = 0,
-        startThumbTop = 0, dragMaxTop = 0, dragOverflow = 0, rafId = 0;
+        startScroll = 0, startThumbTop = 0, dragMaxTop = 0, dragOverflow = 0, rafId = 0;
 
     function applyDrag(){
       rafId = 0;
       if (!dragging) return;
-      var thumbTop = Math.max(0, Math.min(dragMaxTop, startThumbTop + (lastClientY - startClientY)));
+      // BREAK THE iOS FEEDBACK LOOP: during a captured drag, iOS inflates the pointer's
+      // clientY by the amount we've scrolled (clientY and scrollTop are both CSS px, and
+      // ?raildebug showed the coordinate delta ≈ the scroll range). Subtract the scroll
+      // applied since grab to recover the TRUE finger delta — the loop can no longer build.
+      var scrollSoFar = getScrollTop() - startScroll;
+      var fingerDelta = (lastClientY - startClientY) - scrollSoFar;
+      var thumbTop = Math.max(0, Math.min(dragMaxTop, startThumbTop + fingerDelta));
       thumb.style.transform = 'translateY(' + thumbTop + 'px)';
       setScrollTop(dragMaxTop > 0 ? (thumbTop / dragMaxTop) * dragOverflow : 0);
-      if (dbg) dbg('drag', thumbTop);
+      if (dbg) dbg('drag', thumbTop, fingerDelta);
     }
 
     function update(){
@@ -141,7 +147,8 @@
       startScreenY = e.screenY; lastScreenY = e.screenY;
       dragMaxTop = m.maxTop;
       dragOverflow = m.overflow;
-      startThumbTop = m.overflow > 0 ? (getScrollTop() / m.overflow) * m.maxTop : 0;
+      startScroll = getScrollTop();
+      startThumbTop = m.overflow > 0 ? (startScroll / m.overflow) * m.maxTop : 0;
       thumb.style.height = m.thumbH + 'px';        // lock the thumb size for the drag
       thumb.classList.add('is-dragging');
       suspendSmooth();
