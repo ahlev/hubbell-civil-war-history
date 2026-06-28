@@ -104,18 +104,32 @@
     // to an extreme. Verified via ?raildebug: screenY d swung ±~scrollHeight.)
     var dragging = false, activeId = null,
         startClientY = 0, lastClientY = 0, startScreenY = 0, lastScreenY = 0,
-        startScroll = 0, startThumbTop = 0, dragMaxTop = 0, dragOverflow = 0, rafId = 0;
+        startScroll = 0, startThumbTop = 0, dragMaxTop = 0, dragOverflow = 0, rafId = 0,
+        lastThumbTop = null;
 
     function applyDrag(){
       rafId = 0;
       if (!dragging) return;
-      // Native scrolling is BLOCKED during the drag (see blockTouch below), so clientY is
-      // clean: a plain finger delta drives the thumb, and the thumb drives the scroll.
-      var fingerDelta = lastClientY - startClientY;
-      var thumbTop = Math.max(0, Math.min(dragMaxTop, startThumbTop + fingerDelta));
+      // SYNTHESIS of the two partial fixes:
+      //  (1) native scroll is BLOCKED (blockTouch) → the only scrolling is ours, so the
+      //      scroll we read back equals exactly what we commanded.
+      //  (2) iOS reports the captured pointer's clientY in DOCUMENT space (it drifts by the
+      //      scroll), so subtract the scroll applied since grab to recover the true finger
+      //      delta. With (1) making that scroll exact, this cancellation is exact.
+      //  vpDelta = recovered finger movement in the viewport.
+      var vpDelta = (lastClientY - startClientY) - (getScrollTop() - startScroll);
+      var thumbTop = Math.max(0, Math.min(dragMaxTop, startThumbTop + vpDelta));
+      // flicker-guard: never let the thumb jump more than a quarter-track in one frame.
+      // If compensation is exact, per-frame moves are tiny and this never bites; if it's
+      // slightly off, the worst case is a fast smooth move, not a violent end-to-end flick.
+      if (lastThumbTop !== null){
+        var maxStep = dragMaxTop * 0.25 + 12;
+        thumbTop = Math.max(lastThumbTop - maxStep, Math.min(lastThumbTop + maxStep, thumbTop));
+      }
+      lastThumbTop = thumbTop;
       thumb.style.transform = 'translateY(' + thumbTop + 'px)';
       setScrollTop(dragMaxTop > 0 ? (thumbTop / dragMaxTop) * dragOverflow : 0);
-      if (dbg) dbg('drag', thumbTop, fingerDelta);
+      if (dbg) dbg('drag', thumbTop, vpDelta);
     }
 
     // CRITICAL for iOS: touch-action:none alone does NOT reliably stop the browser's own
@@ -153,6 +167,7 @@
       dragOverflow = m.overflow;
       startScroll = getScrollTop();
       startThumbTop = m.overflow > 0 ? (startScroll / m.overflow) * m.maxTop : 0;
+      lastThumbTop = startThumbTop;                 // flicker-guard baseline
       thumb.style.height = m.thumbH + 'px';        // lock the thumb size for the drag
       thumb.classList.add('is-dragging');
       suspendSmooth();

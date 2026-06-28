@@ -1235,11 +1235,97 @@
 @media (prefers-reduced-motion: reduce) {
   .pli-primary svg { animation: none; }
 }
+
+/* ============================================================
+   PARALLEL LIVES — embedded letter reader in the v2 "lamplight" theme.
+   _reader-era.css (loaded after _overlay.css) carries the unscoped .reader-*
+   CONTENT rules (parchment body, wax-seal pills, dateline, .rhl-*/anchor
+   washes); they resolve once the --era-* palette is defined on #detail-panel
+   below. Here we add only the embedded-specific FRAME, editorial sidebar, nav
+   chrome, and the mobile full-viewport sheet.
+   ============================================================ */
+#detail-panel{
+  --era-frame:#14110a; --era-frame-lo:#0e0c07;
+  --era-glow:rgba(232,182,104,.16);
+  --era-paper:#f1e7d1; --era-paper-hi:#f6eedb; --era-paper-lo:#e7dabd; --era-paper-edge:#d8c8a6;
+  --era-ink:#251d11; --era-ink-soft:#5a4c34;
+  --era-lantern:#e2b574; --era-lantern-d:#bb9258;
+  --era-on-frame:#ece2cd; --era-on-frame-2:#bcb094; --era-on-frame-3:#8e8366;
+  --era-rule:rgba(226,181,116,.24); --era-rule-soft:rgba(236,227,210,.10);
+  --era-battle:#b06a52; --era-illness:#c79a4e; --era-wound:#a85c4e; --era-death:#6f7783;
+  --era-body-size:16px; --era-body-leading:1.45;
+}
+/* the panel becomes the dark, lamplit frame (matches the overlay reader) */
+#detail-panel.open{
+  background:
+    radial-gradient(95% 60% at 50% 0%, var(--era-glow), transparent 60%),
+    linear-gradient(180deg,#1a1509 0%, var(--era-frame) 46%, var(--era-frame-lo) 100%);
+  border:1px solid var(--era-rule); border-top:none;
+}
+#detail-panel .detail-inner{ border-top-color: var(--era-rule); }
+/* editorial sidebar → on-frame text on the dark frame */
+#detail-panel .detail-right{ border-left-color: var(--era-rule); }
+#detail-panel .sidebar-label{ color: var(--era-on-frame-3); }
+#detail-panel .sidebar-editorial,
+#detail-panel .sidebar-editorial p{ color: var(--era-on-frame-2); }
+#detail-panel .sidebar-editorial::-webkit-scrollbar-thumb{ background: var(--era-rule); }
+/* nav arrows / close / share / mode toggle → era */
+#detail-panel .detail-nav-btn{ background:#2a2316; border:1px solid var(--era-rule); color: var(--era-lantern); }
+#detail-panel .detail-nav-btn:hover:not(:disabled){ background: rgba(226,181,116,.2); border-color: var(--era-lantern); color:#fff3df; }
+#detail-panel .detail-nav-btn:disabled{ opacity:.3; }
+#detail-panel .detail-close{ background: transparent; border:0; color: var(--era-on-frame-2); }
+#detail-panel .detail-close:hover{ color: var(--era-lantern); background: transparent; }
+#detail-panel .detail-nav-arrows .dl-modal-share{ background:transparent !important; border:0 !important; color: var(--era-on-frame-2) !important; }
+#detail-panel .detail-nav-arrows .dl-modal-share:hover{ color: var(--era-lantern) !important; }
+#detail-panel .nav-mode-wrap{ background: rgba(0,0,0,.34); border:1px solid var(--era-rule); }
+#detail-panel .nav-mode-btn{ color: var(--era-on-frame-3); }
+#detail-panel .nav-mode-btn.active,
+#detail-panel .nav-mode-btn.active[data-mode="author"],
+#detail-panel .nav-mode-btn.active[data-mode="date"]{ background: var(--era-lantern) !important; border-color: var(--era-lantern) !important; color:#1a1407 !important; }
+#detail-panel .nav-mode-btn:hover:not(.active){ color: var(--era-on-frame); }
+/* context-strip ribbon retone */
+#detail-panel .reader-context-strip .rcs-caption,
+#detail-panel .reader-context-strip .rcs-yr{ color: var(--era-on-frame-3); }
+#detail-panel .reader-context-strip .rcs-tip{ background:#231d12; color: var(--era-lantern); }
+
+/* ── Mobile: the embedded reader becomes a FIXED full-viewport sheet so it
+   fits completely on screen (the in-flow panel used to overflow below the
+   chart). The whole inner scrolls; the From/To + nav/close header pins. ── */
+@media (max-width: 640px){
+  #detail-panel.open{
+    position: fixed; inset: 0; z-index: 3000;
+    max-height: none; height: 100vh; height: 100dvh;
+    margin: 0; padding: 0; border:0; border-radius:0;
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  #detail-panel.open .detail-inner{
+    display: flex; flex-direction: column;
+    grid-template-columns: none; height: auto; max-height: none; min-height: 0;
+    flex: 1 1 auto; overflow-y: auto; -webkit-overflow-scrolling: touch;
+    padding: 0 14px 20px; gap: 0; border-top: 0;
+  }
+  #detail-panel.open .detail-header{
+    position: sticky; top: 0; z-index: 6;
+    background: linear-gradient(180deg,#1a1509, var(--era-frame));
+    margin: 0 -14px 6px; padding: 10px 14px;
+    border-bottom: 1px solid var(--era-rule);
+  }
+  /* the SHEET scrolls (not the inner letter box) so the whole letter + notes flow */
+  #detail-panel.open .detail-scroll{ overflow: visible; flex: none; min-height: 0; }
+  #detail-panel.open .detail-right{
+    border-left: 0; border-top: 1px solid var(--era-rule);
+    padding-left: 0; padding-top: 16px; margin-top: 10px; overflow: visible;
+  }
+}
     </style>
 <link rel="stylesheet" href="_overlay.css?v=1775363534">
-<link rel="stylesheet" href="_scrollrail.css?v=9">
+<!-- v2 "lamplight" era theme — its unscoped .reader-* CONTENT rules style the
+     embedded Parallel-Lives reader once --era-* tokens exist on #detail-panel
+     (defined in the main <style>); loaded AFTER _overlay.css so it wins. -->
+<link rel="stylesheet" href="_reader-era.css?v=13">
+<link rel="stylesheet" href="_scrollrail.css?v=10">
 <style>:root{ --rail-accent:#3E86C4; }</style>
-<script src="_scrollrail.js?v=9"></script>
+<script src="_scrollrail.js?v=10"></script>
 </head>
 <body>
 <div id="site-nav"></div>
