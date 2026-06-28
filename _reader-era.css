@@ -25,7 +25,7 @@
   --era-rule:rgba(226,181,116,.24);  --era-rule-soft:rgba(236,227,210,.10);
   /* key-event categories (muted, dignified) */
   --era-battle:#b06a52;  --era-illness:#c79a4e;  --era-wound:#a85c4e;  --era-death:#6f7783; /* slate (mourning), not a UI-grey */
-  --era-body-size:16.5px; --era-body-leading:1.78; --era-ease:cubic-bezier(.22,.61,.36,1);
+  --era-body-size:16px; --era-body-leading:1.45; --era-ease:cubic-bezier(.22,.61,.36,1);  /* font −0.5, leading −~20% per founder mobile feedback */
 
   /* retone dashboard tokens the .reader-* rules consume */
   --bg:var(--era-frame); --bg-elev:#1b1710; --bg-sunken:#221c12;
@@ -44,7 +44,7 @@
   padding: clamp(14px, 4vh, 40px) !important;
 }
 .reader-panel{
-  width: 620px; max-width: 96vw; max-height: 92vh;
+  width: 880px; max-width: 94vw; max-height: 92vh;   /* desktop: as wide as the landing's content column (was cramped at 620) */
   display:flex; flex-direction:column; overflow:hidden;
   background:
     radial-gradient(95% 42% at 50% 0%, var(--era-glow), transparent 60%),
@@ -63,10 +63,21 @@
 /* scroll region: everything between header and footer */
 .reader-panel{ }
 .reader-close{
-  position:absolute; top:10px; right:12px; z-index:5;
+  position:absolute; top:12px; right:14px; z-index:6;
   color: var(--era-on-frame-2) !important; background: transparent !important;
 }
 .reader-close:hover{ color: var(--era-lantern) !important; }
+/* Share — was injected position:absolute and overlapped the title/nav. Reseat as a compact
+   icon clustered just LEFT of the close, so the two form a tidy top-right action group. */
+.reader-panel .dl-modal-share, .dl-modal-share{
+  position:absolute !important; top:14px !important; right:50px !important; left:auto !important; bottom:auto !important; z-index:6 !important;
+  font-size:0 !important; padding:6px !important; margin:0 !important;
+  background:transparent !important; border:0 !important; color: var(--era-on-frame-2) !important;
+}
+.dl-modal-share svg{ width:16px !important; height:16px !important; }
+.dl-modal-share:hover{ color: var(--era-lantern) !important; }
+/* SCROLL FIX: the content region must shrink below its content height to scroll inside the flex panel */
+#hubbellReaderContent{ min-height:0 !important; overflow-y:auto !important; padding: 0 24px 24px !important; }
 
 /* ============================================================
    LETTERHEAD — From → To (wax seals), serif dateline
@@ -74,9 +85,10 @@
 .reader-header{
   background: transparent !important; border:0 !important;
   border-bottom:1px solid var(--era-rule) !important; border-radius:0 !important;
-  padding: 20px 26px 14px !important; margin: 0 !important; position:relative; z-index:1;
+  padding: 14px 58px 12px 2px !important;   /* right reserve clears the close+share cluster; tighter top/bottom */
+  margin: 0 !important; position:relative; z-index:1;
 }
-.reader-correspondence{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:9px !important; }
+.reader-correspondence{ display:flex; align-items:baseline; gap:5px 8px; flex-wrap:wrap; margin-bottom:6px !important; }
 .reader-pill-label{
   font-family: var(--font-mono) !important; font-size:9px !important; letter-spacing:.14em;
   color: var(--era-on-frame-3) !important;
@@ -206,7 +218,7 @@ a.reader-tag:hover{ border-color: var(--era-lantern) !important; color: var(--er
     radial-gradient(120% 80% at 50% 10%, var(--era-paper-hi), transparent 60%),
     linear-gradient(180deg, var(--era-paper) 0%, var(--era-paper-lo) 100%) !important;
   color: var(--era-ink) !important;
-  margin: 14px 22px 22px !important; padding: 32px 34px 36px !important;
+  margin: 12px 6px 18px !important; padding: 34px 40px 38px !important;   /* desktop: minimal side margin → wide letter; comfortable inner padding */
   border:1px solid var(--era-paper-edge) !important; border-radius:2px !important;
   font-family:'Source Serif 4',Georgia,serif !important;
   font-size: var(--era-body-size) !important; line-height: var(--era-body-leading) !important;
@@ -256,6 +268,7 @@ a.reader-tag:hover{ border-color: var(--era-lantern) !important; color: var(--er
    FOOTER RAIL — reader-nav-bar (mode toggle + prev/next)
    ============================================================ */
 .reader-nav-bar{
+  order: 90;   /* push the brother-filter + prev/next to the panel BOTTOM (footer rail), clearing the crowded top row */
   background: linear-gradient(180deg, transparent, rgba(0,0,0,.34)) !important;
   border-top:1px solid var(--era-rule) !important; border-bottom:0 !important;
   padding: 11px 24px 13px !important;
@@ -277,6 +290,18 @@ a.reader-tag:hover{ border-color: var(--era-lantern) !important; color: var(--er
 @media (prefers-reduced-motion: reduce){ .reader-panel, .reader-overlay{ transition:none !important; } }
 @media (max-width: 640px){
   .reader-panel{ width:100%; max-height:94vh; }
-  .reader-body{ margin:12px 12px 18px !important; padding:24px 20px 26px !important; font-size:16px !important; }
-  .reader-header{ padding:16px 16px 12px !important; }
+  /* WIDER letter column: trim the frame padding so the verbatim text isn't crushed into a narrow strip */
+  .reader-body{ margin:8px 7px 14px !important; padding:20px 15px 22px !important; font-size:15.5px !important; }
+  .reader-body p.reader-para{ text-indent:1.1em; }
+  /* TIGHTER, SMALLER header so it doesn't eat the top of the screen */
+  .reader-header{ padding:11px 14px 9px !important; }
+  .reader-correspondence{ gap:4px 6px !important; margin-bottom:4px !important; }
+  .hubbell-overlay-title, .reader-pill{ font-size:.84rem !important; padding-left:15px !important; }
+  .reader-pill::before{ width:9px !important; height:9px !important; }
+  .reader-pill-label{ font-size:8px !important; }
+  .reader-meta{ font-size:9px !important; line-height:1.45 !important; }
+  .reader-meta .rm-date{ font-size:11px !important; }
+  .reader-map-link{ font-size:.6rem !important; padding:1px 6px !important; }
+  .reader-exec-summary{ font-size:12.5px !important; line-height:1.5 !important; margin:9px 0 !important; padding:9px 2px 9px 12px !important; }
+  .reader-flags-inline, .reader-flags{ margin:9px 0 4px !important; }
 }
