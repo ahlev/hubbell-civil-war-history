@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/_design.css"/>
 <link rel="stylesheet" href="/_overlay.css"/>
 <!-- era theme — loaded LAST so it retones/overrides the dashboard reader styling, scoped to this iframe only -->
-<link rel="stylesheet" href="/_reader-era.css?v=11"/>
+<link rel="stylesheet" href="/_reader-era.css?v=12"/>
 <style>
   /* transparent so the landing shows (dimmed by the reader's own backdrop) behind the panel */
   html,body{margin:0;background:transparent}
@@ -46,6 +46,7 @@
       HubbellReader.close=function(){ try{ orig.apply(this,arguments); }catch(e){} notifyClose(); };
     }
     HubbellReader.open(id);
+    setTimeout(mountScrollRail, 140);   // visible draggable scrollbar on mobile (after the content renders)
     // timing-independent safety net: once the reader HAS been open and then closes (X / backdrop / Esc),
     // tell the parent to tear down the iframe overlay.
     var wasOpen=false;
@@ -55,6 +56,56 @@
       else if(wasOpen || closed){ clearInterval(poll); notifyClose(); }
     },200);
   }
+  // ── Mobile scroll rail: a visible, draggable scrollbar for the letter region.
+  //    Scoped to this landing iframe only (not the shared reader). Sized to the
+  //    #hubbellReaderContent scroll viewport so it spans exactly the letter — clearing
+  //    the header above and the footer/advance buttons below. CSS hides it ≥641px.
+  function mountScrollRail(){
+    var panel = document.querySelector('.reader-panel');
+    var content = document.getElementById('hubbellReaderContent');
+    if(!panel || !content || panel.querySelector('.era-scrollrail')) return;
+    var rail = document.createElement('div'); rail.className = 'era-scrollrail';
+    var thumb = document.createElement('div'); thumb.className = 'era-scrollthumb';
+    rail.appendChild(thumb); panel.appendChild(rail);
+
+    function metrics(){
+      var ch = content.clientHeight, sh = content.scrollHeight;
+      var railH = ch, thumbH = Math.max(30, railH * (ch / sh));
+      return { ch:ch, sh:sh, overflow: sh - ch, railH:railH, thumbH:thumbH, maxThumbTop: railH - thumbH };
+    }
+    function update(){
+      var m = metrics();
+      if(m.overflow <= 4){ rail.style.display = 'none'; return; }
+      rail.style.display = 'block';
+      rail.style.top = content.offsetTop + 'px';   // align to the scroll viewport within the panel
+      rail.style.height = m.ch + 'px';
+      var top = m.overflow > 0 ? (content.scrollTop / m.overflow) * m.maxThumbTop : 0;
+      thumb.style.height = m.thumbH + 'px';
+      thumb.style.transform = 'translateY(' + top + 'px)';
+    }
+    content.addEventListener('scroll', update, { passive:true });
+    if(window.ResizeObserver){ try{ new ResizeObserver(update).observe(content); }catch(e){} }
+    window.addEventListener('resize', update);
+
+    var dragging = false, startY = 0, startScroll = 0;
+    thumb.addEventListener('pointerdown', function(e){
+      dragging = true; startY = e.clientY; startScroll = content.scrollTop;
+      try{ thumb.setPointerCapture(e.pointerId); }catch(_){}
+      e.preventDefault(); e.stopPropagation();
+    });
+    thumb.addEventListener('pointermove', function(e){
+      if(!dragging) return;
+      var m = metrics();
+      var dScroll = m.maxThumbTop > 0 ? ((e.clientY - startY) / m.maxThumbTop) * m.overflow : 0;
+      content.scrollTop = startScroll + dScroll;
+    });
+    function endDrag(e){ dragging = false; try{ thumb.releasePointerCapture(e.pointerId); }catch(_){} }
+    thumb.addEventListener('pointerup', endDrag);
+    thumb.addEventListener('pointercancel', endDrag);
+
+    update();
+  }
+
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){ setTimeout(start,60); });
   else setTimeout(start,60);
 })();

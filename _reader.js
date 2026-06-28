@@ -634,8 +634,8 @@ window.HubbellReader = (function () {
     // Build sender pill
     var senderPage = BIO_PAGES[letter.a] || '';
     var senderPill = senderPage
-      ? '<a href="' + senderPage + '" class="reader-pill" style="background:' + color + '" onclick="event.stopPropagation()">' + esc(name) + '</a>'
-      : '<span class="reader-pill" style="background:' + color + '">' + esc(name) + '</span>';
+      ? '<a href="' + senderPage + '" class="reader-pill" style="background:' + color + ';--pc:' + color + '" onclick="event.stopPropagation()">' + esc(name) + '</a>'
+      : '<span class="reader-pill" style="background:' + color + ';--pc:' + color + '">' + esc(name) + '</span>';
 
     // Build recipient pill
     var recipientName = letter.r || 'Unknown';
@@ -643,8 +643,8 @@ window.HubbellReader = (function () {
     var recipientColor = recipientKey ? getColor(recipientKey) : '#666';
     var recipientPage = recipientKey ? BIO_PAGES[recipientKey] : '';
     var recipientPill = recipientPage
-      ? '<a href="' + recipientPage + '" class="reader-pill" style="background:' + recipientColor + '" onclick="event.stopPropagation()">' + esc(recipientName) + '</a>'
-      : '<span class="reader-pill" style="background:' + recipientColor + '">' + esc(recipientName) + '</span>';
+      ? '<a href="' + recipientPage + '" class="reader-pill" style="background:' + recipientColor + ';--pc:' + recipientColor + '" onclick="event.stopPropagation()">' + esc(recipientName) + '</a>'
+      : '<span class="reader-pill" style="background:' + recipientColor + ';--pc:' + recipientColor + '">' + esc(recipientName) + '</span>';
 
     // Letter Context Strip (opt-in) — the corpus-wide "you are here" timeline.
     var contextStrip = opts.contextStrip ? buildLetterContextStrip(letterId) : '';

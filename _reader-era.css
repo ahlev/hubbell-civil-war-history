@@ -12,6 +12,9 @@
    v6 — full-reader theme + Round-1 review (lamp glow, warm textured parchment
    w/ squared lit edge, serif dateline, drop-cap off the date, soft inline
    links, brighter nav) + redesigned key-event toggles & in-text highlights.
+   v12 — From/To label+value stay paired per line (portrait = 2-col grid, stacked
+   rows; landscape = inline), per-person wax-seal dot color via inline --pc,
+   slightly smaller From/To text, wider panel (960/96vw) w/ tighter edge padding.
    ============================================================================ */
 
 :root{
@@ -41,10 +44,10 @@
     radial-gradient(80% 60% at 50% 38%, var(--era-glow), transparent 60%),
     radial-gradient(120% 90% at 84% 4%, rgba(226,181,116,.08), transparent 55%),
     rgba(8,6,3,.74) !important;
-  padding: clamp(14px, 4vh, 40px) !important;
+  padding: clamp(8px, 2.4vh, 22px) !important;   /* tighter — let the panel sit close to the edges, less page peeking around it */
 }
 .reader-panel{
-  width: 880px; max-width: 94vw; max-height: 92vh;   /* desktop: as wide as the landing's content column (was cramped at 620) */
+  width: 960px; max-width: 96vw; max-height: 94vh;   /* desktop: a touch wider than the landing column; near-fills the viewport */
   display:flex; flex-direction:column; overflow:hidden;
   background:
     radial-gradient(95% 42% at 50% 0%, var(--era-glow), transparent 60%),
@@ -90,33 +93,33 @@
 }
 .reader-correspondence{ display:flex; align-items:baseline; gap:5px 8px; flex-wrap:wrap; margin-bottom:6px !important; }
 .reader-pill-label{
-  font-family: var(--font-mono) !important; font-size:9px !important; letter-spacing:.14em;
+  font-family: var(--font-mono) !important; font-size:8.5px !important; letter-spacing:.13em;
   color: var(--era-on-frame-3) !important;
 }
 /* From / To names as MATTE wax-seal markers in each person's hue (color arrives inline as background) */
 .reader-pill{
   background: transparent !important; color: var(--era-on-frame) !important;
   font-family:'Source Serif 4',Georgia,serif !important; font-weight:600 !important;
-  font-size:1rem !important; letter-spacing:0 !important;
-  padding: 1px 4px 1px 18px !important; border-radius:0 !important; position:relative;
+  font-size:.92rem !important; letter-spacing:0 !important;
+  padding: 1px 4px 1px 17px !important; border-radius:0 !important; position:relative;
 }
 .reader-pill::before{
   content:''; position:absolute; left:1px; top:50%; transform:translateY(-50%);
   width:11px; height:11px; border-radius:50%;
+  /* wax-seal dot keyed to THIS person's app color — _reader.js passes it inline as --pc on the pill */
   background:
     radial-gradient(120% 120% at 32% 26%, rgba(255,255,255,.30), transparent 55%),
-    color-mix(in srgb, var(--exec-c, var(--era-lantern)) 80%, #3a2c18);
+    color-mix(in srgb, var(--pc, var(--era-lantern)) 82%, #3a2c18);
   box-shadow: inset 0 -1px 2px rgba(0,0,0,.5), 0 0 0 1px rgba(0,0,0,.5), 0 1px 2px rgba(0,0,0,.4);
 }
 a.reader-pill:hover{ filter:none !important; box-shadow:none !important; color: var(--era-lantern) !important; }
-/* the From/To pills get the brother color via inline style on the pill itself; pull it onto the seal dot */
-.reader-pill[style*="background"]{ --exec-c: initial; }
 .reader-meta{ font-family: var(--font-mono) !important; font-size:10px !important; color: var(--era-on-frame-2) !important; line-height:1.7 !important; }
 .reader-meta .rm-date{ color: var(--era-lantern) !important; font-weight:600 !important; }
 .reader-meta .rm-loc{ color:#cdbf9f !important; font-style:italic !important; }
 .reader-meta .rm-id{ display:inline-block !important; margin-left:8px; color: var(--era-on-frame-3) !important; font-size:8.5px !important; }
 .reader-meta .rm-id::before{ content:'ref. '; opacity:.7; }
 .reader-map-link{
+  display:flex !important; width:fit-content; margin:9px auto 3px !important;   /* always its own line → center it */
   color: var(--era-lantern) !important; background: rgba(226,181,116,.10) !important;
   border:1px solid var(--era-rule) !important;
 }
@@ -287,6 +290,27 @@ a.reader-tag:hover{ border-color: var(--era-lantern) !important; color: var(--er
 .reader-nav-mode-btn:hover:not(.active){ color: var(--era-on-frame) !important; }
 
 /* ============================================================
+   MOBILE SCROLL RAIL — a visible, draggable scrollbar on the right
+   rail of the letter region. Built in reader.html (mounted on .reader-panel,
+   sized to #hubbellReaderContent so it never overlaps header/footer/advance
+   buttons). Desktop keeps the native scrollbar — rail hidden ≥641px.
+   ============================================================ */
+.era-scrollrail{
+  position:absolute; right:4px; width:7px; z-index:7; display:none;
+  border-radius:999px; background:rgba(236,227,210,.07);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.25);
+  touch-action:none;   /* the thumb owns the gesture; don't scroll the page under a drag */
+}
+.era-scrollthumb{
+  position:absolute; left:0; right:0; top:0; min-height:30px;
+  border-radius:999px; cursor:grab;
+  background: linear-gradient(180deg, var(--era-lantern), var(--era-lantern-d));
+  box-shadow: 0 1px 3px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.35);
+}
+.era-scrollthumb:active{ cursor:grabbing; }
+@media (min-width: 641px){ .era-scrollrail{ display:none !important; } }   /* mobile only */
+
+/* ============================================================
    MOTION / RESPONSIVE
    ============================================================ */
 @media (prefers-reduced-motion: reduce){ .reader-panel, .reader-overlay{ transition:none !important; } }
@@ -312,7 +336,15 @@ a.reader-tag:hover{ border-color: var(--era-lantern) !important; color: var(--er
   .reader-flag{ font-size:8px !important; padding:2px 9px 2px 18px !important; }
   .reader-flag::before{ width:7px !important; height:7px !important; left:7px !important; }
 }
-/* PORTRAIT phones: From and To on their OWN lines (landscape ≥640px keeps them inline) */
+/* PORTRAIT phones: From-row and To-row STACKED, but each LABEL stays on the same line as its value.
+   A 2-col grid pairs [label | value] per row; flags span the full width underneath.
+   (Landscape ≥640px keeps the default inline flex — From and To on one line.) */
 @media (max-width: 640px) and (orientation: portrait){
-  .reader-correspondence .reader-pill-label:nth-of-type(2){ flex-basis:100%; margin-top:3px; }
+  .reader-correspondence{
+    display:grid !important;
+    grid-template-columns:auto 1fr;
+    column-gap:8px; row-gap:3px;
+    align-items:baseline;
+  }
+  .reader-correspondence .reader-flags-inline{ grid-column:1 / -1; margin-top:2px; }
 }
