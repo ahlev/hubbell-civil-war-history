@@ -12,6 +12,8 @@
      iframe on the landing, none of these global rules can reach the immersive landing page. -->
 <link rel="stylesheet" href="/_design.css"/>
 <link rel="stylesheet" href="/_overlay.css"/>
+<!-- era theme — loaded LAST so it retones/overrides the dashboard reader styling, scoped to this iframe only -->
+<link rel="stylesheet" href="/_reader-era.css?v=8"/>
 <style>
   /* transparent so the landing shows (dimmed by the reader's own backdrop) behind the panel */
   html,body{margin:0;background:transparent}
@@ -22,6 +24,9 @@
 <script src="/_design-ui.js"></script>
 <script src="/_deeplink.js"></script>
 <script src="/_overlay-data.js"></script>
+<!-- full LETTERS array (transcriptions + flags + people/places) so the FULL reader (HubbellReader.open)
+     renders the key-event toggles, synopsis, and people/places apparatus -->
+<script src="/_search-data.js"></script>
 <script src="/_letter-nav.js"></script>
 <script src="/_overlay.js"></script>
 <script src="/_reader.js"></script>
@@ -32,24 +37,22 @@
   function notifyClose(){ if(closed) return; closed=true; try{ parent.postMessage('hubbell-reader-close','*'); }catch(e){} }
   function start(){
     var id=getId();
-    if(!id || !window.HubbellOverlay || typeof HubbellOverlay.showLetter!=='function'){ notifyClose(); return; }
-    // Mechanism 1 (instant): wrap the close API so the ✕ button / programmatic close tell the parent right away.
-    ['close','_close'].forEach(function(k){
-      if(typeof HubbellOverlay[k]==='function'){
-        var orig=HubbellOverlay[k];
-        HubbellOverlay[k]=function(){ try{ orig.apply(this,arguments); }catch(e){} notifyClose(); };
-      }
-    });
-    HubbellOverlay.showLetter(id);
-    // Mechanism 2 (timing-independent safety net): poll the panel's 'visible' state. closeOverlay() only
-    // toggles that class (backdrop-click & Esc go straight to it, bypassing the wrapped API), so once the
-    // panel has BEEN visible and then isn't, the reader is closed → notify the parent. Catches every path.
-    var wasVisible=false;
+    // Use the FULL reader (HubbellReader.open) — same as the Preservation page — so the landing reader
+    // carries the key-event toggle pills, the synopsis, and the people/places apparatus.
+    if(!id || !window.HubbellReader || typeof HubbellReader.open!=='function'){ notifyClose(); return; }
+    // wrap close so the ✕ / programmatic close notify the parent instantly
+    if(typeof HubbellReader.close==='function'){
+      var orig=HubbellReader.close;
+      HubbellReader.close=function(){ try{ orig.apply(this,arguments); }catch(e){} notifyClose(); };
+    }
+    HubbellReader.open(id);
+    // timing-independent safety net: once the reader HAS been open and then closes (X / backdrop / Esc),
+    // tell the parent to tear down the iframe overlay.
+    var wasOpen=false;
     var poll=setInterval(function(){
-      var panel=document.querySelector('.hubbell-overlay-panel');
-      var vis=panel && panel.classList.contains('visible');
-      if(vis){ wasVisible=true; }
-      else if(wasVisible || closed){ clearInterval(poll); notifyClose(); }
+      var open = (typeof HubbellReader.isOpen==='function') ? HubbellReader.isOpen() : !!document.querySelector('.reader-overlay.open');
+      if(open){ wasOpen=true; }
+      else if(wasOpen || closed){ clearInterval(poll); notifyClose(); }
     },200);
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){ setTimeout(start,60); });

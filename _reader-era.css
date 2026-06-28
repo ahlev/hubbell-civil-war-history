@@ -1,0 +1,282 @@
+/* ============================================================================
+   _reader-era.css — "a letter read by lamplight"
+   Era theme for the experience-v2 landing's letter reader ONLY (loaded LAST
+   inside the isolated reader.html iframe → cannot touch the shared readers).
+
+   The landing now uses the FULL reader (HubbellReader.open → .reader-overlay /
+   .reader-panel / .reader-* ), so it carries the KEY-EVENT TOGGLE pills
+   (Battle/Illness/Wound/Death → highlight those moments in the letter), the
+   synopsis, and the people/places apparatus. We retone a dark, lamplit frame
+   and lift the letter body out as a luminous parchment document.
+
+   v6 — full-reader theme + Round-1 review (lamp glow, warm textured parchment
+   w/ squared lit edge, serif dateline, drop-cap off the date, soft inline
+   links, brighter nav) + redesigned key-event toggles & in-text highlights.
+   ============================================================================ */
+
+:root{
+  /* ---- TUNABLE era palette ---- */
+  --era-frame:    #14110a;  --era-frame-lo:#0e0c07;
+  --era-glow:     rgba(232,182,104,.16);
+  --era-paper:    #f1e7d1;  --era-paper-hi:#f6eedb;  --era-paper-lo:#e7dabd;  --era-paper-edge:#d8c8a6;
+  --era-ink:      #251d11;  --era-ink-soft:#5a4c34;
+  --era-lantern:  #e2b574;  --era-lantern-d:#bb9258;
+  --era-on-frame:#ece2cd;  --era-on-frame-2:#bcb094;  --era-on-frame-3:#8e8366;
+  --era-rule:rgba(226,181,116,.24);  --era-rule-soft:rgba(236,227,210,.10);
+  /* key-event categories (muted, dignified) */
+  --era-battle:#b06a52;  --era-illness:#c79a4e;  --era-wound:#a85c4e;  --era-death:#6f7783; /* slate (mourning), not a UI-grey */
+  --era-body-size:16.5px; --era-body-leading:1.78; --era-ease:cubic-bezier(.22,.61,.36,1);
+
+  /* retone dashboard tokens the .reader-* rules consume */
+  --bg:var(--era-frame); --bg-elev:#1b1710; --bg-sunken:#221c12;
+  --ink:var(--era-on-frame); --ink-2:var(--era-on-frame-2); --ink-3:var(--era-on-frame-3); --ink-4:#6b6147;
+  --rule:var(--era-rule-soft); --rule-2:var(--era-rule); --chip:rgba(236,227,210,.06); --accent:var(--era-lantern);
+}
+
+/* ============================================================
+   THE FRAME — dark, warm, LAMPLIT centered modal
+   ============================================================ */
+.reader-overlay{
+  background:
+    radial-gradient(80% 60% at 50% 38%, var(--era-glow), transparent 60%),
+    radial-gradient(120% 90% at 84% 4%, rgba(226,181,116,.08), transparent 55%),
+    rgba(8,6,3,.74) !important;
+  padding: clamp(14px, 4vh, 40px) !important;
+}
+.reader-panel{
+  width: 620px; max-width: 96vw; max-height: 92vh;
+  display:flex; flex-direction:column; overflow:hidden;
+  background:
+    radial-gradient(95% 42% at 50% 0%, var(--era-glow), transparent 60%),
+    linear-gradient(180deg,#1a1509 0%, var(--era-frame) 42%, var(--era-frame-lo) 100%) !important;
+  color: var(--era-on-frame) !important;
+  font-family:'Source Serif 4',Georgia,serif !important;
+  border:1px solid var(--era-rule) !important; border-radius: 4px !important;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,.8), 0 0 90px -30px rgba(226,181,116,.2) !important;
+  position: relative;
+}
+.reader-panel::before{
+  content:''; position:absolute; inset:0; z-index:0; pointer-events:none; border-radius:4px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity:.05; mix-blend-mode:overlay;
+}
+/* scroll region: everything between header and footer */
+.reader-panel{ }
+.reader-close{
+  position:absolute; top:10px; right:12px; z-index:5;
+  color: var(--era-on-frame-2) !important; background: transparent !important;
+}
+.reader-close:hover{ color: var(--era-lantern) !important; }
+
+/* ============================================================
+   LETTERHEAD — From → To (wax seals), serif dateline
+   ============================================================ */
+.reader-header{
+  background: transparent !important; border:0 !important;
+  border-bottom:1px solid var(--era-rule) !important; border-radius:0 !important;
+  padding: 20px 26px 14px !important; margin: 0 !important; position:relative; z-index:1;
+}
+.reader-correspondence{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:9px !important; }
+.reader-pill-label{
+  font-family: var(--font-mono) !important; font-size:9px !important; letter-spacing:.14em;
+  color: var(--era-on-frame-3) !important;
+}
+/* From / To names as MATTE wax-seal markers in each person's hue (color arrives inline as background) */
+.reader-pill{
+  background: transparent !important; color: var(--era-on-frame) !important;
+  font-family:'Source Serif 4',Georgia,serif !important; font-weight:600 !important;
+  font-size:1rem !important; letter-spacing:0 !important;
+  padding: 1px 4px 1px 18px !important; border-radius:0 !important; position:relative;
+}
+.reader-pill::before{
+  content:''; position:absolute; left:1px; top:50%; transform:translateY(-50%);
+  width:11px; height:11px; border-radius:50%;
+  background:
+    radial-gradient(120% 120% at 32% 26%, rgba(255,255,255,.30), transparent 55%),
+    color-mix(in srgb, var(--exec-c, var(--era-lantern)) 80%, #3a2c18);
+  box-shadow: inset 0 -1px 2px rgba(0,0,0,.5), 0 0 0 1px rgba(0,0,0,.5), 0 1px 2px rgba(0,0,0,.4);
+}
+a.reader-pill:hover{ filter:none !important; box-shadow:none !important; color: var(--era-lantern) !important; }
+/* the From/To pills get the brother color via inline style on the pill itself; pull it onto the seal dot */
+.reader-pill[style*="background"]{ --exec-c: initial; }
+.reader-meta{ font-family: var(--font-mono) !important; font-size:10px !important; color: var(--era-on-frame-2) !important; line-height:1.7 !important; }
+.reader-meta .rm-date{ color: var(--era-lantern) !important; font-weight:600 !important; }
+.reader-meta .rm-loc{ color:#cdbf9f !important; font-style:italic !important; }
+.reader-meta .rm-id{ display:inline-block !important; margin-left:8px; color: var(--era-on-frame-3) !important; font-size:8.5px !important; }
+.reader-meta .rm-id::before{ content:'ref. '; opacity:.7; }
+.reader-map-link{
+  color: var(--era-lantern) !important; background: rgba(226,181,116,.10) !important;
+  border:1px solid var(--era-rule) !important;
+}
+.reader-map-link:hover{ background: rgba(226,181,116,.20) !important; }
+
+/* ============================================================
+   KEY-EVENT TOGGLES — Battle / Illness / Wound / Death
+   clickable pills that highlight those moments in the letter;
+   .flag-off = highlighting hidden. Redesigned as clear, dignified toggles.
+   ============================================================ */
+.reader-flags-inline, .reader-flags{
+  display:flex !important; gap:7px !important; flex-wrap:wrap !important;
+  align-items:center; margin: 14px 0 6px !important; padding-left: 0;
+}
+.reader-flags-inline::before, .reader-flags::before{
+  content:'Highlight in letter'; font-family: var(--font-mono); font-size:8.5px; letter-spacing:.1em;
+  text-transform:uppercase; color: var(--era-on-frame-2); margin-right:4px; white-space:nowrap;   /* lifted contrast — it's the key explainer */
+}
+.reader-flag{
+  font-family: var(--font-mono) !important; font-size:9.5px !important; letter-spacing:.04em !important;
+  text-transform:uppercase; font-weight:600 !important;
+  padding: 3px 12px 3px 23px !important; border-radius:999px !important;
+  border:1px solid transparent !important; cursor:pointer; position:relative;
+  transition: background .15s, border-color .15s, color .15s, opacity .15s; background: transparent !important;
+}
+.reader-flag.rf-battle{ --fc: var(--era-battle); } .reader-flag.rf-illness{ --fc: var(--era-illness); }
+.reader-flag.rf-wound{ --fc: var(--era-wound); } .reader-flag.rf-death{ --fc: var(--era-death); }
+.reader-flag::before{   /* state glyph: solid (on) / hollow (off) */
+  content:''; position:absolute; left:9px; top:50%; transform:translateY(-50%);
+  width:9px; height:9px; border-radius:50%;
+}
+/* ON — CONSISTENT dark fill for every category (fill-presence = ON, hue-independent);
+   the hue is carried by a bright solid dot + colored border, so dark/light categories
+   all read equally "on" (fixes ILLNESS popping while DEATH/WOUND looked off). */
+.reader-flag:not(.flag-off){
+  background: rgba(28,21,12,.62) !important;
+  border-color: color-mix(in srgb, var(--fc) 60%, transparent) !important;
+  color: #eae0cb !important;
+}
+.reader-flag:not(.flag-off)::before{ background: var(--fc); box-shadow: 0 0 7px color-mix(in srgb, var(--fc) 80%, transparent); }
+.reader-flag:not(.flag-off):hover{ border-color: var(--fc) !important; background: rgba(36,28,16,.72) !important; }
+/* OFF — no fill, hairline outline, hollow dot, dimmed ("available, not shown") */
+.reader-flag.flag-off{ background: transparent !important; border-color: var(--era-rule-soft) !important; color: var(--era-on-frame-3) !important; opacity:.6; }
+.reader-flag.flag-off::before{ background: transparent; box-shadow: inset 0 0 0 1.5px var(--era-on-frame-3); }
+.reader-flag.flag-off:hover{ opacity:.92; }
+
+/* ============================================================
+   ARCHIVIST'S ABSTRACT — exec summary
+   ============================================================ */
+.reader-exec-summary{
+  margin: 12px 0 !important; padding: 12px 2px 12px 14px !important;
+  background: transparent !important; border:0 !important; border-radius:0 !important;
+  border-left: 2px solid var(--exec-c, var(--era-lantern)) !important;
+  font: italic 400 13.5px/1.62 'Source Serif 4',Georgia,serif !important;
+  color: var(--era-on-frame) !important; position:relative;
+}
+.reader-exec-summary::before{
+  content:"Editor's summary"; display:block; font: 600 8.5px/1 var(--font-mono); font-style:normal;
+  letter-spacing:.14em; text-transform:uppercase; color: var(--era-on-frame-3); margin-bottom:7px;
+}
+
+/* context-strip timeline ribbon — retone */
+.reader-context-strip .rcs-tip{ background:#231d12 !important; color: var(--era-lantern) !important; }
+.reader-context-strip .rcs-caption, .reader-context-strip .rcs-yr{ color: var(--era-on-frame-3) !important; }
+
+/* ============================================================
+   CONDITION NOTE — health block
+   ============================================================ */
+.reader-health{
+  border:1px solid var(--era-rule) !important; border-radius:7px !important;
+  background: rgba(0,0,0,.22) !important; padding:12px 13px !important; margin: 6px 0 12px !important;
+}
+.reader-health-conf-desc{ color: var(--era-on-frame-2) !important; }
+.reader-health-symptom{ background: rgba(236,227,210,.06) !important; color: var(--era-on-frame-2) !important; font-family: var(--font-mono) !important; }
+
+/* ============================================================
+   "MENTIONED HERE" — people / places tags (gold-outline, no candy)
+   ============================================================ */
+/* a quiet finding-aid index, not a tag-cloud — de-weighted so it never out-weighs the letter */
+.reader-people, .reader-places{ margin: 3px 0 4px !important; }
+.reader-people h4, .reader-places h4{
+  font-family: var(--font-mono) !important; font-size:8.5px !important; letter-spacing:.12em; text-transform:uppercase;
+  color: var(--era-on-frame-3) !important; margin: 0 0 4px !important; font-weight:500 !important;
+}
+.reader-tags{ gap:3px 4px !important; }
+.reader-tag{
+  font-family: var(--font-mono) !important; font-size:8.5px !important; letter-spacing:.01em;
+  background: transparent !important; color: var(--era-on-frame-3) !important;
+  border:1px solid var(--era-rule-soft) !important; border-radius:999px !important; padding:1px 8px !important;
+}
+.reader-tag.person, .reader-tag.place{ background: transparent !important; color: var(--era-on-frame-3) !important; }
+a.reader-tag:hover{ border-color: var(--era-lantern) !important; color: var(--era-lantern) !important; filter:none !important; }
+
+/* ============================================================
+   THE PARCHMENT DOCUMENT — the letter body (the hero)
+   ============================================================ */
+.reader-body{
+  background:
+    radial-gradient(120% 80% at 50% 10%, var(--era-paper-hi), transparent 60%),
+    linear-gradient(180deg, var(--era-paper) 0%, var(--era-paper-lo) 100%) !important;
+  color: var(--era-ink) !important;
+  margin: 14px 22px 22px !important; padding: 32px 34px 36px !important;
+  border:1px solid var(--era-paper-edge) !important; border-radius:2px !important;
+  font-family:'Source Serif 4',Georgia,serif !important;
+  font-size: var(--era-body-size) !important; line-height: var(--era-body-leading) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 26px 46px -16px rgba(0,0,0,.55), 0 0 60px -16px rgba(226,181,116,.12) !important;
+  position:relative; overflow:hidden;
+}
+.reader-body::before{
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='130' height='130'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23p)'/></svg>");
+  opacity:.055; mix-blend-mode:multiply;
+}
+.reader-body > *{ position:relative; z-index:1; }
+.reader-body p.reader-para{ margin: 0 0 .85em !important; text-indent:1.4em; color: var(--era-ink) !important; }
+.reader-body p.reader-para:first-of-type{ text-indent:0; }   /* first line (salutation or dateline) flush-left */
+/* a modest illuminated initial opens the letter, wherever it begins (paragraph order varies per letter) */
+.reader-body p.reader-para:first-of-type::first-letter{
+  float:left; font-size:3.1em; line-height:.74; padding:.02em .06em 0 0; margin-top:.02em;
+  font-family:'Source Serif 4',Georgia,serif; font-weight:600; color: var(--era-lantern-d);
+}
+/* inline mentions — soft, recede during reading (the clickthroughs) */
+/* inline mentions — discoverable but quiet; a faint baseline tint, never a hyperlink-underline */
+.reader-body .hubbell-link{
+  color: var(--era-ink) !important; text-decoration: none !important;
+  border-bottom: 1px solid rgba(187,146,88,.30) !important; cursor:pointer;
+}
+.reader-body .hubbell-link:hover{ border-bottom-color: var(--era-lantern-d) !important; background: rgba(226,181,116,.16) !important; }
+.reader-body mark{ background: rgba(226,181,116,.42) !important; color:inherit !important; border-radius:2px; }
+
+/* KEY-EVENT HIGHLIGHTS in the parchment (controlled by the toggle pills) — a soft, dignified wash
+   that points at the passage without inking over it like a marker pen; .hide-<flag> collapses them */
+.reader-body .rhl-battle, .reader-body .rhl-wound, .reader-body .rhl-hospital{
+  background: color-mix(in srgb, var(--era-battle) 22%, transparent) !important; color:#7a3c2b !important; box-shadow:none !important; border-radius:2px; padding:0 1px;
+}
+.reader-body .rhl-illness, .reader-body .rhl-sick{
+  background: color-mix(in srgb, var(--era-illness) 24%, transparent) !important; color:#7c5b22 !important; box-shadow:none !important; border-radius:2px; padding:0 1px;
+}
+.reader-body .rhl-death{   /* slate, somber — not combat-rust */
+  background: color-mix(in srgb, var(--era-death) 26%, transparent) !important; color:#3f4954 !important; box-shadow:none !important; border-radius:2px; padding:0 1px;
+}
+.reader-body .rhl-healthy{ background: color-mix(in srgb, #4a7c59 18%, transparent) !important; color:#3c5e44 !important; box-shadow:none !important; border-radius:2px; padding:0 1px; }
+.reader-body.hide-battle .rhl-battle, .reader-body.hide-wound .rhl-wound,
+.reader-body.hide-illness .rhl-illness, .reader-body.hide-death .rhl-death{
+  background: transparent !important; box-shadow:none !important;
+}
+
+/* ============================================================
+   FOOTER RAIL — reader-nav-bar (mode toggle + prev/next)
+   ============================================================ */
+.reader-nav-bar{
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,.34)) !important;
+  border-top:1px solid var(--era-rule) !important; border-bottom:0 !important;
+  padding: 11px 24px 13px !important;
+}
+.reader-nav-arrow{
+  background:#2a2316 !important; border:1px solid var(--era-rule) !important;
+  color: var(--era-lantern) !important; box-shadow:none !important; border-radius:9px !important;
+}
+.reader-nav-arrow:hover:not(:disabled){ background: rgba(226,181,116,.20) !important; border-color: var(--era-lantern) !important; color:#fff3df !important; }
+.reader-nav-arrow:disabled{ opacity:.28 !important; }
+.reader-nav-mode{ background: rgba(0,0,0,.34) !important; border:1px solid var(--era-rule) !important; }
+.reader-nav-mode-btn{ font-family: var(--font-mono) !important; letter-spacing:.04em; color: var(--era-on-frame-3) !important; }
+.reader-nav-mode-btn.active{ background: var(--era-lantern) !important; color:#1a1407 !important; box-shadow:0 1px 6px rgba(226,181,116,.3) !important; }
+.reader-nav-mode-btn:hover:not(.active){ color: var(--era-on-frame) !important; }
+
+/* ============================================================
+   MOTION / RESPONSIVE
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){ .reader-panel, .reader-overlay{ transition:none !important; } }
+@media (max-width: 640px){
+  .reader-panel{ width:100%; max-height:94vh; }
+  .reader-body{ margin:12px 12px 18px !important; padding:24px 20px 26px !important; font-size:16px !important; }
+  .reader-header{ padding:16px 16px 12px !important; }
+}
