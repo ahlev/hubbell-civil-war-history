@@ -46,15 +46,17 @@
     var mount = document.getElementById('site-nav');
     if (!mount) return;
     var here = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    // Canonical link set = the v2 landing navbar's six (same labels, targets and
+    // per-section accent hues, in the same order) so the bar persists 1:1 across
+    // the whole site. Home is reachable via the brand logo; Money Story lives in
+    // the body nav, not this bar. The search field is retained for findability.
     var links = [
-      { href: 'index.html',                      label: 'Home' },
-      { href: 'the-collection.html',              label: 'The Collection' },
-      { href: 'hubbell-dashboard.html',           label: 'Parallel Lives' },
-      { href: 'viz-map-fullwar.html',             label: 'Map That Moves' },
-      { href: 'viz-health-ledger.html',           label: 'Wellness Ledger' },
-      { href: 'viz-money-story.html',             label: 'Money Story' },
-      { href: 'viz-people-web.html',              label: 'People Web' },
-      { href: 'who-they-were.html',               label: 'Who They Were' }
+      { href: 'the-collection.html',              label: 'The Collection', acc: '#CE8A46' },
+      { href: 'hubbell-dashboard.html',           label: 'Parallel Lives', acc: '#3E86C4' },
+      { href: 'viz-map-fullwar.html',             label: 'Map That Moves', acc: '#52A86E' },
+      { href: 'viz-health-ledger.html',           label: 'Wellness Ledger',acc: '#CB5C5C' },
+      { href: 'viz-people-web.html',              label: 'People Web',     acc: '#9A78C7' },
+      { href: 'who-they-were.html',               label: 'Who They Were',  acc: '#6FB0A6' }
     ];
     var navHTML =
       '<nav class="site-nav" aria-label="Primary">' +
@@ -70,19 +72,21 @@
               '<span class="dim">Civil War Letters &middot; 1861&ndash;1865</span>' +
             '</span>' +
           '</a>' +
-          '<div class="nav-spacer"></div>' +
-          '<div class="nav-links" role="menubar">' +
-            links.map(function (l) {
-              var active = (l.href.toLowerCase() === here) || (here === '' && l.href === 'index.html');
-              return '<a role="menuitem" class="nav-link ' + (active ? 'active' : '') + '" href="' + l.href + '">' + l.label + '</a>';
-            }).join('') +
-          '</div>' +
+          // Search sits centrally between the brand and the links; the links are
+          // pinned to the right edge (CSS), so they never shift as the search
+          // field is focused/resized.
           '<div class="search-wrap" id="navSearch">' +
             '<svg class="search-icon-nav" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">' +
               '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>' +
             '</svg>' +
             '<input type="text" class="search-input-nav" id="searchInput" placeholder="Search 273 letters\u2026" autocomplete="off" aria-label="Search the letter collection">' +
             '<div class="search-dropdown" id="searchDropdown"></div>' +
+          '</div>' +
+          '<div class="nav-links" role="menubar">' +
+            links.map(function (l) {
+              var active = (l.href.toLowerCase() === here) || (here === '' && l.href === 'index.html');
+              return '<a role="menuitem" class="nav-link ' + (active ? 'active' : '') + '" style="--acc:' + l.acc + '" href="' + l.href + '">' + l.label + '</a>';
+            }).join('') +
           '</div>' +
           '<button class="nav-menu-btn" id="menuBtn" aria-label="Menu">' +
             '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>' +
@@ -98,7 +102,7 @@
           '</div>' +
           links.map(function (l) {
             var active = (l.href.toLowerCase() === here);
-            return '<a class="nav-link ' + (active ? 'active' : '') + '" href="' + l.href + '">' + l.label + '</a>';
+            return '<a class="nav-link ' + (active ? 'active' : '') + '" style="--acc:' + l.acc + '" href="' + l.href + '">' + l.label + '</a>';
           }).join('') +
         '</div>' +
       '</nav>';
@@ -249,7 +253,7 @@
           dd.classList.remove('open');
           // Use shared reader if available, else fall back to page reader
           if (window.HubbellReader && typeof LETTERS !== 'undefined') {
-            HubbellReader.open(lid, { highlight: terms });
+            HubbellReader.open(lid, { highlight: terms, scrollToMatch: true });
             return;
           }
           if (typeof openReader === 'function' && typeof LETTERS !== 'undefined') {

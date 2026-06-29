@@ -320,7 +320,7 @@ a.inline:hover { color: var(--accent); border-bottom-color: var(--accent); }
   pointer-events: none;
 }
 .search-input-nav {
-  width: 160px;
+  width: 210px;
   padding: 7px 12px 7px 30px;
   border: 1px solid var(--rule);
   border-radius: 999px;
@@ -334,7 +334,7 @@ a.inline:hover { color: var(--accent); border-bottom-color: var(--accent); }
 }
 .search-input-nav::placeholder { color: var(--ink-4); }
 .search-input-nav:focus {
-  width: 240px;
+  width: 300px;
   border-color: var(--rule-2);
   background: var(--bg-elev);
 }
@@ -1641,3 +1641,83 @@ button, a, [onclick], [role="button"] {
   /* Footer */
   footer.site-footer { margin-top: 64px; padding: 32px 0 40px; }
 }
+
+/* ============================================================================
+   SITE NAV — v2-landing "dark, lamplit, sleek" treatment, used site-wide.
+   Mirrors experience-v2/landing.html's .nav: dark translucent bar, cream brand,
+   per-section accent-colour link hovers (--acc set inline per link in
+   _design-ui.js). Keeps the site nav's search + mobile drawer. Appended LAST so
+   it overrides the lighter base nav rules above.
+   ============================================================================ */
+/* EXACT mirror of the v2 landing navbar (experience-v2/landing.html .nav). Every
+   formatting value below is copied from that bar; the ONLY intended divergence is
+   that content pages don't reform from a hero, so this sits at full opacity from
+   the start (no entrance transform). Position stays sticky (vs the landing's
+   fixed) so it never overlays content — visually identical at the top of a page.
+   Search + mobile drawer are retained additions (per the agreed link set). */
+.site-nav{
+  position: sticky; top: 0; z-index: 9000; opacity: 1;
+  /* SOLID black on content pages — the landing's translucent gradient read
+     inconsistently over varied page backgrounds. (The landing keeps its gradient.) */
+  background: #08090c !important;
+  backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid rgba(236,227,210,.1) !important;
+}
+/* full-width bar with the landing's exact gap + padding (desktop only; the
+   collapsed/mobile nav below 1080px keeps its existing responsive rules). The
+   search sits centrally between brand and links, which stay pinned right. */
+@media (min-width: 1081px){
+  .site-nav .site-nav-inner{ max-width: none; margin: 0; gap: 18px; padding: 13px 26px; }
+  .site-nav .search-wrap{ margin-left: auto; margin-right: auto; }
+}
+/* brand — landing .brand: Source Serif 4 16px/500, cream #ece3d2, 11px gap;
+   .dim JetBrains Mono 9.5px / .08em / #9aa3ab. */
+.site-nav .site-brand,
+.site-nav .site-brand-text{ color: #ece3d2; }
+.site-nav .site-brand{
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 16px; font-weight: 500; line-height: 1.15; letter-spacing: normal; gap: 11px;
+}
+.site-nav .site-brand .dim{
+  font-family: "JetBrains Mono", monospace; font-size: 9.5px; font-weight: 400;
+  letter-spacing: .08em; text-transform: uppercase; color: #9aa3ab; margin-top: 1px;
+}
+.site-nav .site-brand-logo circle{ /* keep the brother-colour dots as-is */ }
+/* links — landing .nav .links a: Inter 13px #c9d0d6, 6/9 pad, radius 5px, 4px gap */
+.site-nav .nav-links{ gap: 4px; }
+.site-nav .nav-link{
+  font-family: "Inter", sans-serif; font-size: 13px; color: #c9d0d6;
+  padding: 6px 9px; border-radius: 5px;
+}
+.site-nav .nav-link:hover{
+  color: #fff;
+  background: color-mix(in srgb, var(--acc, #e0b070) 34%, rgba(8,9,12,.5));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc, #e0b070) 55%, transparent);
+}
+/* the landing navbar has NO active-page styling — mirror that exactly (no
+   differentiated formatting). The current page's link reads like the others. */
+.site-nav .nav-link.active{ color: #c9d0d6; background: transparent; }
+.site-nav .nav-link.active::after{ display: none; }
+.site-nav .nav-link.active:hover{
+  color: #fff;
+  background: color-mix(in srgb, var(--acc, #e0b070) 34%, rgba(8,9,12,.5));
+}
+
+/* search → dark glass */
+.site-nav .search-input-nav{
+  background: rgba(236,227,210,.06); border-color: rgba(236,227,210,.16); color: #ece2cd;
+}
+.site-nav .search-input-nav::placeholder{ color: rgba(255,255,255,.82); opacity: 1; }
+.site-nav .search-input-nav:focus{ background: rgba(236,227,210,.10); border-color: rgba(226,181,116,.5); }
+.site-nav .search-icon-nav{ color: #8e8366; }
+
+/* menu button → dark */
+.site-nav .nav-menu-btn{ color: #ece2cd; border-color: rgba(236,227,210,.20); }
+.site-nav .nav-menu-btn:hover{ background: rgba(236,227,210,.08); }
+
+/* mobile drawer → dark */
+.site-nav .mobile-drawer{ background: rgba(10,11,15,.97); border-top-color: rgba(236,227,210,.10); }
+.site-nav .mobile-drawer .nav-link{ color: #c9d0d6; }
+.site-nav .mobile-drawer .nav-link:hover,
+.site-nav .mobile-drawer .nav-link.active{ color: #fff; background: color-mix(in srgb, var(--acc, #e0b070) 26%, rgba(8,9,12,.5)); }
+.site-nav .mobile-drawer-search .search-input-nav{ background: rgba(236,227,210,.06); }

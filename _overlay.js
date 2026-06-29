@@ -38,6 +38,17 @@
     return window.LETTER_INDEX ? LETTER_INDEX[id] : null;
   }
 
+  // Full letter record (executive summary, people, places, event flags, full
+  // transcription) from the shared LETTERS array. LETTER_INDEX only carries the
+  // light {d,a,an,r,l,ss-teaser} fields, so the reader pulls the rest here.
+  function fullLetter(id) {
+    if (!window.LETTERS) return null;
+    for (var i = 0; i < LETTERS.length; i++) {
+      if (LETTERS[i].id === id) return LETTERS[i];
+    }
+    return null;
+  }
+
   function fmtDate(d) {
     if (!d) return '';
     const parts = d.split('-');
@@ -93,10 +104,14 @@
   }
 
   /* ── Open / Close ── */
-  function openPanel(html) {
+  function openPanel(html, viewType) {
     ensureDOM();
     hideDotTooltip();
     if (window.hideTooltip) window.hideTooltip();
+    // Per-view modifier (e.g. 'place') for view-specific theming, without
+    // disturbing .visible (so the panel doesn't re-slide on every navigation).
+    panel.classList.remove('hubbell-overlay-panel--person', 'hubbell-overlay-panel--place', 'hubbell-overlay-panel--letter');
+    if (viewType) panel.classList.add('hubbell-overlay-panel--' + viewType);
     panel.innerHTML = html;
     // Force reflow before adding visible class for transition
     void panel.offsetWidth;
@@ -156,15 +171,18 @@
 
   function headerActions() {
     const hasBack = overlayStack.length > 1;
+    var share = (function() {
+      if (!window.HubbellDeepLink) return '';
+      var top = overlayStack[overlayStack.length - 1];
+      if (top && top.type === 'letter') return HubbellDeepLink.letterShareBtn(top.key);
+      return '';
+    })();
+    // Order: back, share, close \u2014 close (X) stays rightmost (the conventional
+    // dismiss slot) and the icons read as one tidy cluster.
     return '<div class="hubbell-overlay-header-actions">' +
       (hasBack ? '<button class="hubbell-overlay-back" onclick="HubbellOverlay._back()" title="Back">\u2190</button>' : '') +
+      share +
       '<button class="hubbell-overlay-close" onclick="HubbellOverlay._close()" title="Close">\u2715</button>' +
-      (function() {
-        if (!window.HubbellDeepLink) return '';
-        var top = overlayStack[overlayStack.length - 1];
-        if (top && top.type === 'letter') return HubbellDeepLink.letterShareBtn(top.key);
-        return '';
-      })() +
       '</div>';
   }
 
@@ -312,12 +330,31 @@
     return html;
   }
 
+  // Family authors (incl. the mother) keyed precisely by profile id — used to
+  // split a profile's letters into "written" vs "mentioned in".
+  var _FAMILY_AUTHOR_KEY = {
+    'PER-henry-hubbell': 'henry', 'PER-alexander-hubbell': 'alexander',
+    'PER-james-hubbell': 'james', 'PER-charles-hubbell': 'charles',
+    'PER-mother-alice': 'mother'
+  };
+  function _profileAuthorKey(person) { return (person && _FAMILY_AUTHOR_KEY[person.id]) || null; }
+
   /* ── Show Person Overlay ── */
   function showPerson(name) {
     const person = lookupPerson(name);
     if (!person) return false;
 
     pushStack('person', name);
+
+    // Split the profile's letters into WRITTEN (authored by this person) and
+    // MENTIONED IN (in someone else's letter). Non-authors are all "mentioned in".
+    var _authorKey = _profileAuthorKey(person);
+    var written = [], mentioned = [];
+    (person.ltrs || []).forEach(function (id) {
+      var m = letterMeta(id);
+      if (_authorKey && m && m.a === _authorKey) written.push(id);
+      else mentioned.push(id);
+    });
 
     let rolesHtml = '';
     if (person.roles && person.roles.length > 0) {
@@ -350,7 +387,8 @@
       '<div class="hubbell-overlay-body">' +
         '<div class="hubbell-overlay-section">' +
           '<div class="hubbell-overlay-stats">' +
-            '<span><span class="hubbell-overlay-stat-value">' + person.lc + '</span> letters</span>' +
+            (written.length ? '<span><span class="hubbell-overlay-stat-value">' + written.length + '</span> written</span>' : '') +
+            (mentioned.length ? '<span><span class="hubbell-overlay-stat-value">' + mentioned.length + '</span> mentioned in</span>' : '') +
             (dateRange ? '<span>' + dateRange + '</span>' : '') +
           '</div>' +
         '</div>' +
@@ -363,10 +401,14 @@
           '<div class="hubbell-overlay-section-title">Timeline</div>' +
           miniTimeline(person.ltrs) +
         '</div>' : '') +
-        '<div class="hubbell-overlay-section">' +
-          '<div class="hubbell-overlay-section-title">Letters (' + person.lc + ')</div>' +
-          letterListHTML(person.ltrs) +
-        '</div>' +
+        (written.length ? '<div class="hubbell-overlay-section">' +
+          '<div class="hubbell-overlay-section-title">Written (' + written.length + ')</div>' +
+          letterListHTML(written) +
+        '</div>' : '') +
+        (mentioned.length ? '<div class="hubbell-overlay-section">' +
+          '<div class="hubbell-overlay-section-title">Mentioned in (' + mentioned.length + ')</div>' +
+          letterListHTML(mentioned) +
+        '</div>' : '') +
       '</div>';
 
     openPanel(html);
@@ -434,7 +476,7 @@
         '</div>' +
       '</div>';
 
-    openPanel(html);
+    openPanel(html, 'place');
     return true;
   }
 
@@ -457,6 +499,18 @@
   /* ── Letter Sub-Reader ── */
   var currentLetterOpts = null;
   var currentOverlayLetterId = null;
+
+  // The person/place this letter was drilled into FROM — the nearest non-letter
+  // frame still on the overlay stack. Used to grey that name in the letter body
+  // so a reference preview lands the eye on its mention even when no quote/excerpt
+  // was passed. Returns null when the reader was opened standalone.
+  function _currentReferenceName() {
+    for (var i = overlayStack.length - 1; i >= 0; i--) {
+      var e = overlayStack[i];
+      if (e && (e.type === 'person' || e.type === 'place')) return e.key;
+    }
+    return null;
+  }
 
   function showLetterReader(letterId, opts) {
     var meta = letterMeta(letterId);
@@ -495,28 +549,48 @@
     var fromPill = personPill(meta.an, authorColor);
     var toPill = personPill(meta.r, null);
 
-    var mapBtn = '<a class="hubbell-overlay-nav-btn hubbell-overlay-nav-btn--header" ' +
+    // Compact "View on Map" \u2014 a small inline pill that rides on the date/loc
+    // line instead of claiming its own column, so the header stays uncrowded.
+    var mapBtn = '<a class="hubbell-overlay-maplink" ' +
       'href="viz-map-fullwar?date=' + encodeURIComponent(meta.d) +
       '&brother=' + encodeURIComponent(meta.a) +
       '&letter=' + encodeURIComponent(letterId) + '">' +
-      '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
+      '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
       '<path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
-      ' View on Map</a>';
+      ' Map</a>';
 
+    // Header: From\u2192To title + a single meta line (date \u00b7 loc \u00b7 Map pill); the
+    // back/share/close icons are pinned top-right by CSS so nothing competes for
+    // the cramped top edge.
     var headerHtml =
-      '<div class="hubbell-overlay-header">' +
-        '<div class="hubbell-overlay-header-left">' +
-          '<h2 class="hubbell-overlay-title">' + fromPill + ' <span class="hubbell-overlay-arrow">\u2192</span> ' + toPill + '</h2>' +
-          '<div class="hubbell-overlay-subtitle">' + subtitleParts + subtitleExtra + '</div>' +
-        '</div>' +
-        mapBtn +
+      '<div class="hubbell-overlay-header hubbell-overlay-letterhead">' +
         headerActions() +
+        '<div class="hubbell-overlay-header-left">' +
+          '<h2 class="hubbell-overlay-title">' +
+            '<span class="hubbell-overlay-pill-label">From</span>' + fromPill +
+            '<span class="hubbell-overlay-pill-label">To</span>' + toPill +
+          '</h2>' +
+          '<div class="hubbell-overlay-subtitle">' +
+            '<span class="hubbell-overlay-subtitle-meta">' + subtitleParts + subtitleExtra + '</span>' +
+            mapBtn +
+          '</div>' +
+        '</div>' +
       '</div>';
 
-    // Nav bar
+    // Nav bar (prev / author toggle / next) — now lives in the FROZEN bottom
+    // panel, beneath the people/places it shares that panel with, so the controls
+    // stay put while the letter scrolls.
     var navBarHtml = _buildOverlayNavBar(letterId);
 
-    openPanel(headerHtml + navBarHtml + '<div class="hubbell-overlay-body"><div class="hubbell-overlay-loading">Loading letter</div></div>');
+    openPanel(
+      headerHtml +
+      '<div class="hubbell-overlay-body"><div class="hubbell-overlay-loading">Loading letter</div></div>' +
+      '<div class="hubbell-overlay-footer" id="overlayFooter">' +
+        '<div class="hubbell-overlay-footer-flags" id="overlayFooterFlags"></div>' +
+        '<div class="hubbell-overlay-footer-meta" id="overlayFooterMeta"></div>' +
+        navBarHtml +
+      '</div>'
+    );
 
     // Wire nav bar events
     _bindOverlayNav(letterId);
@@ -540,8 +614,27 @@
         healthHtml = buildHealthSection(healthCtx);
       }
 
+      // Strip the redundant date/location header at the top of the transcription
+      // (parity with the modal reader, which never shows the "Sept. 21st, 1864 /
+      // In the field… / Dear Mother" block since the header rail already carries
+      // the date, From and To).
+      var srcText = (window.HubbellReader && HubbellReader.stripLetterHeader)
+        ? HubbellReader.stripLetterHeader(text) : text;
+
+      // Reference anchor — grey the passage / name that invited the click, exactly
+      // like the modal reader. A teased quote (opts.excerpt) greys via run match →
+      // sentence fallback; otherwise the person/place this letter was opened FROM
+      // greys its verbatim name mentions. Sentinels go in pre-split, survive esc().
+      var R = window.HubbellReader || null;
+      var anchorHealthOwns = !!(healthCtx && healthCtx.sentences);
+      var _anc = { active: false };
+      if (R && R.wrapExcerptSentinels && opts && opts.excerpt && !anchorHealthOwns) {
+        _anc = R.wrapExcerptSentinels(srcText, opts.excerpt);
+        srcText = _anc.text;
+      }
+
       // Format: collapse single \n to space, \n\n = paragraph break
-      var paragraphs = text.split(/\n\n+/);
+      var paragraphs = srcText.split(/\n\n+/);
       var formatted;
 
       if (healthCtx && healthCtx.sentences) {
@@ -557,10 +650,128 @@
           .map(function (p) { return '<p>' + esc(p.replace(/\n/g, ' ').trim()) + '</p>'; })
           .filter(function (p) { return p !== '<p></p>'; })
           .join('');
+        // Tint flag-category keywords (Battle/Wound/Illness/Death) in the body,
+        // exactly like the modal reader, so the two surfaces read 1:1.
+        var _lfFlags = fullLetter(letterId);
+        if (_lfFlags && R && R.wrapFlagCategoryTerms) {
+          var activeFlags = [];
+          if (_lfFlags.bat) activeFlags.push('battle');
+          if (_lfFlags.ill) activeFlags.push('illness');
+          if (_lfFlags.dth) activeFlags.push('death');
+          if (_lfFlags.wnd) activeFlags.push('wound');
+          if (activeFlags.length) formatted = R.wrapFlagCategoryTerms(formatted, activeFlags);
+        }
+      }
+
+      // Turn excerpt sentinels into grey <mark>s; or, when opened from a person /
+      // place rather than a quote, grey that name's mentions — so a reference
+      // preview always lands the eye on its context (parity with the modal).
+      if (_anc.active && R && R.swapAnchorSentinels) {
+        formatted = R.swapAnchorSentinels(formatted);
+      } else if (R && R.wrapTermAnchors && !anchorHealthOwns) {
+        var _refName = (opts && (opts.personHighlight || opts.placeHighlight)) || _currentReferenceName();
+        if (_refName) formatted = R.wrapTermAnchors(formatted, [_refName]);
       }
 
       body.innerHTML = healthHtml + '<div class="hubbell-overlay-reader-body">' + formatted + '</div>';
-      autoLinkProse(body.querySelector('.hubbell-overlay-reader-body'));
+
+      // Editorial context — pulled from the full LETTERS record. The exec
+      // summary orients the reader ABOVE the parchment; people / places / event
+      // tags sit BELOW it as a reference footer, mirroring the v2 reader's set
+      // of fields while keeping the letter itself the hero. All inserted via
+      // insertAdjacentHTML around the parchment (values escaped through esc()).
+      var rb = body.querySelector('.hubbell-overlay-reader-body');
+      var lf = fullLetter(letterId);
+      if (lf && rb) {
+        if (lf.ss) {
+          rb.insertAdjacentHTML('beforebegin',
+            '<div class="hubbell-overlay-exec">' + esc(lf.ss) + '</div>');
+        }
+        // "Health context:" — the medical-historian clinical read (Wellness Ledger
+        // only; present when the caller passes opts.health.healthContext). Distinct
+        // teal voice with a medical-pulse icon; never replaces the editor's summary.
+        var _ohc = (currentLetterOpts && currentLetterOpts.health && currentLetterOpts.health.healthContext) ? currentLetterOpts.health.healthContext : '';
+        if (_ohc) {
+          rb.insertAdjacentHTML('beforebegin',
+            '<div class="hubbell-overlay-health-context">' +
+              '<div class="ohc-eyebrow">' +
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg>' +
+                'Health context' +
+              '</div>' + esc(_ohc) +
+            '</div>');
+        }
+        // Event flags as clickable FILTERS (1:1 with the modal reader): each pill
+        // toggles its category's body highlighting on/off. data-flag drives the
+        // handler wired after insertion.
+        var flagTags = '';
+        var _fp = function (on, key, label) {
+          return on ? '<span class="hubbell-overlay-flagtag ' + key + '" data-flag="' + key +
+            '" role="button" tabindex="0" title="Toggle ' + key + ' highlighting">' + label + '</span>' : '';
+        };
+        flagTags += _fp(lf.bat, 'battle', 'Battle');
+        flagTags += _fp(lf.ill, 'illness', 'Illness');
+        flagTags += _fp(lf.dth, 'death', 'Death');
+        flagTags += _fp(lf.wnd, 'wound', 'Wound');
+        var pplTags = (lf.ppl || []).map(function (p) {
+          return '<a class="hubbell-overlay-tag person" href="viz-people-web?person=' +
+            encodeURIComponent(p) + '">' + esc(p) + '</a>';
+        }).join('');
+        var plcTags = (lf.plc || []).map(function (p) {
+          return '<a class="hubbell-overlay-tag place" href="viz-map-fullwar?date=' +
+            encodeURIComponent(meta.d) + '&brother=' + encodeURIComponent(meta.a) +
+            '&place=' + encodeURIComponent(p) + '">' + esc(p) + '</a>';
+        }).join('');
+        var metaGroup = function (title, tags) {
+          return tags ? '<div class="hubbell-overlay-meta-group">' +
+            '<div class="hubbell-overlay-meta-title">' + title + '</div>' +
+            '<div class="hubbell-overlay-tags">' + tags + '</div></div>' : '';
+        };
+        // Event flags become the TOP ROW of the frozen bottom panel — labeled
+        // ("Highlight in letter") and clickable exactly like the modal reader's
+        // flag cluster. Each pill toggles its category's parchment highlighting,
+        // even though it now lives in the footer (the handler holds a ref to rb).
+        var footFlags = panel.querySelector('#overlayFooterFlags');
+        if (footFlags && flagTags) {
+          footFlags.innerHTML = metaGroup('Highlight in letter', flagTags);
+          footFlags.querySelectorAll('.hubbell-overlay-flagtag[data-flag]').forEach(function (pill) {
+            var toggle = function (e) {
+              e.preventDefault(); e.stopPropagation();
+              var f = pill.getAttribute('data-flag');
+              var off = pill.classList.toggle('flag-off');
+              rb.classList.toggle('hide-' + f, off);
+            };
+            pill.addEventListener('click', toggle);
+            pill.addEventListener('keydown', function (e) {
+              if (e.key === 'Enter' || e.key === ' ') toggle(e);
+            });
+          });
+        }
+        // People / Places Mentioned sit below the flags in the frozen bottom panel
+        // (above the nav controls), always visible without scrolling to the
+        // letter's end. Rendered into the #overlayFooterMeta slot from openPanel().
+        var footMeta = panel.querySelector('#overlayFooterMeta');
+        if (footMeta) {
+          footMeta.innerHTML = metaGroup('People Mentioned', pplTags) +
+                               metaGroup('Places Mentioned', plcTags);
+        }
+      }
+
+      // Corpus "you are here" strip — the same timeline the modal reader shows,
+      // now in every reader. Sits at the top of the body (below the header's
+      // date/location, above the editor's summary). Taps jump WITHIN the
+      // infopanel via showLetterReader, not the modal reader.
+      if (window.HubbellReader && HubbellReader.buildContextStrip) {
+        var stripHtml = HubbellReader.buildContextStrip(letterId);
+        if (stripHtml) {
+          body.insertAdjacentHTML('afterbegin', stripHtml);
+          var stripEl = body.querySelector('.reader-context-strip');
+          if (stripEl && HubbellReader.bindContextStrip) {
+            HubbellReader.bindContextStrip(stripEl, function (id) { showLetterReader(id); });
+          }
+        }
+      }
+
+      autoLinkProse(rb);
       bindInternalLinks(body);
       // Scroll to top of letter content
       body.scrollTop = 0;

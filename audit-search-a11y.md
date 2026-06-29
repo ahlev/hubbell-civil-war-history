@@ -1,0 +1,16 @@
+- generic [active] [ref=e1]:
+  - navigation "Primary" [ref=e2]:
+    - generic [ref=e3]:
+      - link "Hubbell Brothers, home" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - img [ref=e5]
+        - generic [ref=e10]:
+          - text: The Hubbell Brothers
+          - generic [ref=e11]: Civil War Letters · 1861–1865
+      - button "Menu" [ref=e12] [cursor=pointer]:
+        - img [ref=e13]
+  - heading "Search Results" [level=1] [ref=e17]:
+    - text: Search Results
+    - img [ref=e18]
+  - button "Copy share link" [ref=e23] [cursor=pointer]:
+    - img [ref=e24]

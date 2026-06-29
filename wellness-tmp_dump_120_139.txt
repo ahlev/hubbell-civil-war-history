@@ -1,0 +1,56 @@
+Traceback (most recent call last):
+  File "<string>", line 11, in <module>
+    print('health(prior):',L.get('health'))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 62: character maps to <undefined>
+========== INDEX 120 ==========
+id: LTR-1862-11-10-001 | date: 1862-11-10 | author: mother ( Mother ) -> recipient: Charles Hubbell
+location: Champlain, NY
+flags: ill False wound False death False battle False
+sigSummary: In uncertainty over Henry, Mother writes: "We are still in uncertainty with regard to Henry — it is terrible," yet still feels hopeful as letters from Mr. Vossey, Miss Cundia, and Ida Niles seem to have heard the worst. Fannie signs as Charles's sister, urging him to wear flannel across his chest; Mother's Tuesday postscript notes milk froze in the kitchen — "January weather." A rebel officer named Hubbell, glimpsed in a prison camp, hints at kin on the other side.
+health(prior): None
+--- TRANSCRIPTION ---
+Nov. 10th, 1862
+Champlain, N.Y.
+
+My dear Charles:
+
+We miss you more and more every day. Mr. Savage's store gives me such a lonely feeling since you have left, that were it not that I am obliged I should avoid it entirely until you return.
+
+I have received your note today for the money you wished put out at interest. You may think it very late for me to attend to it, but I have had any amount of trouble about it. At first the Messrs. Savage thought that they could not take it, but finally concluded to take it & to oblige you. The $50 is for one year. I think they will continue to take your money. I shall have to make other arrangements for H and A's money.
+
+The Messrs. Savage have no clerk as yet. They seem to feel a great interest in you, always speaking particularly about you. J. Morrison has taken Alek Douglas's place. The drafts took place today. We shall not know the results for five days. Only five days will be given then before leaving.
+
+I have got quite into the business of writing love letters. Mr. Averill's servant girl has quite an extensive correspondence, writing an affectionate love letters to one & another — she comes to me as no one else can write French for her. I enjoy it finely — never fully realized the meaning of the word love letters before this correspondence.
+
+We are still in uncertainty with regard to Henry — it is terrible. I have received letters from Mr. Vossey, Miss Cundia, Ida Niles respecting him. They see me to have heard the worst. I still feel very hopeful. B. Misner has been home on a short furlough, which I understand he took without leave or license. He has changed his politics, which has given him the name of a secessionist. Albert Cook and Cyrus Kellogg are at Annapolis making themselves as comfortable as possible until exchanged. Albert, while a prisoner, expressed his views very plainly to the rebels & they seem to have respected him for it. B.M. says that he saw a young Hubbell, a rebel officer, while a prisoner, who told his that Bash[?] Loring was in his reg. (Quartermaster). (?) He has been home also on a furlough, has improved very much. Says that a young Hubbell was in one of the Regts. (rebel), probably Inlis or Octave, the first one that I mentioned was a nephew of Uncle L.
+
+You wished to know if I received all of the money. I recd. $25.00 by Marshall, $25.00 by Tenn[?]. We are having most excellent sleighing today — never had better. You must take as good care of yourself as possible. If I were you I would wear flannel across my chest.
+
+Please write me often, dear Charles. It is alive have to look forward to in
+
+[page break]
+
+the way of pleasure this winter. Write soon and what you would like. Good night, dear Charles.
+
+Aff. your sister,
+
+Fannie
+
+Do everything in your power to learn something of Henry.
+
+Tuesday Morn: I'm thinking of taking a sleigh ride this morning — the sleighing is fine. Milk froze here in the kitchen two or three nights since & froze last night. It is January weather. Take good care of your health. I am very anxious about you this cold weather. Do get some warm undershirts — if you throw them away in the Spring. You need them.
+
+Aff. in haste,
+
+Mother
+
+========== INDEX 121 ==========
+id: LTR-1862-11-12-001 | date: 1862-11-12 | author: alexander ( Alexander ) -> recipient: Mrs. Hubbell (Mother)
+location: Harpers Ferry
+flags: ill True wound False death False battle False
+sigSummary: Alexander breaks a long silence from Harpers Ferry — "It is a long, long time since I last wrote you" — and the reason is a body unraveling: an indisposition that "took a permanent form in the shape of Jaundice," then a cold, then a facial eruption that left his eyes so weak he feared he would lose them. He writes only enough to ease his mother's worry, notes Capt. Ransom's great kindness, and promises a good long letter once his eyes are stronger.
+health(prior): 

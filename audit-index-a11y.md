@@ -1,0 +1,130 @@
+- generic [active] [ref=e1]:
+  - navigation "Primary" [ref=e2]:
+    - generic [ref=e3]:
+      - link "Hubbell Brothers, home" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - img [ref=e5]
+        - generic [ref=e10]:
+          - text: The Hubbell Brothers
+          - generic [ref=e11]: Civil War Letters · 1861–1865
+      - button "Menu" [ref=e12] [cursor=pointer]:
+        - img [ref=e13]
+  - banner [ref=e15]:
+    - heading "The Collection" [level=1] [ref=e16]:
+      - text: The Collection
+      - img [ref=e17]
+    - paragraph [ref=e23]:
+      - text: A family heirloom — carried forward through five generations,
+      - text: from a trunk of fading letters to the archive you see here.
+  - generic [ref=e24]:
+    - paragraph [ref=e25]: What you are reading is a family heirloom — brought to life with new technology — 274 letters kept close and passed down through five generations, surviving 160 years because at each critical moment someone in the family decided they mattered enough to preserve.
+    - paragraph [ref=e26]: The letters were written between 1861 and 1865 by four brothers — Henry, Alexander, James, and Charles Hubbell — to their widowed mother Frances in Champlain, New York. They wrote from camps, marches, hospitals, and battlefields. They asked for money. They reported on their health. They described what they saw without knowing what it meant. Not one of them wrote for posterity.
+    - paragraph [ref=e27]: That they survived at all is the first remarkable thing. That they were transcribed, introduced, digitized, and finally analyzed — each by a different family member, each in a different decade — is the second. This page tells the story of that chain of care.
+    - generic [ref=e28]:
+      - link "Meet the family →" [ref=e29] [cursor=pointer]:
+        - /url: who-they-were.html
+      - link "Henry" [ref=e30] [cursor=pointer]:
+        - /url: brother-henry.html
+      - link "Alexander" [ref=e31] [cursor=pointer]:
+        - /url: brother-alexander.html
+      - link "James" [ref=e32] [cursor=pointer]:
+        - /url: brother-james.html
+      - link "Charles" [ref=e33] [cursor=pointer]:
+        - /url: brother-charles.html
+      - link "Frances" [ref=e34] [cursor=pointer]:
+        - /url: mother-frances.html
+  - generic [ref=e35]:
+    - heading "Five Generations of Stewardship" [level=2] [ref=e36]
+    - paragraph [ref=e37]: Each era preserved the collection in the way its technology and circumstances allowed. Together they form an unbroken chain from the 1860s to today.
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - generic [ref=e40]: Era 01
+        - generic [ref=e41]: 1861–65
+      - generic [ref=e42]:
+        - heading "The Brothers Write Home" [level=3] [ref=e43]
+        - paragraph [ref=e44]: "Henry, Alexander, James, and Charles Hubbell write to their mother from camps, marches, hospitals, and battlefields across Virginia, Maryland, Tennessee, Georgia, and Louisiana. Frances receives the letters and keeps every one — bundling them by sender, tying them with string, and storing them in a trunk. It is an unconscious act of preservation: a mother saving her sons’ words."
+        - paragraph [ref=e45]: 274 letters. Four theaters of war. One return address.
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]: Era 02
+        - generic [ref=e49]: 1947–49
+      - generic [ref=e50]:
+        - heading "Gladys Sands Hubbell Transcribes" [level=3] [ref=e51]
+        - paragraph [ref=e52]: Alexander’s daughter-in-law opens the trunk and finds the originals deteriorating — ink fading, paper crumbling at the folds. Over two and a half years, she transcribes them by typewriter. She preserves every misspelling, every grammatical choice, every crossed-out word. Where the paper has rotted beyond legibility, she marks the gap honestly. It is a labor of devotion performed without any audience in mind.
+        - paragraph [ref=e53]: The typewritten pages become the primary surviving record.
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - generic [ref=e56]: Era 03
+        - generic [ref=e57]: "1996"
+      - generic [ref=e58]:
+        - heading "Fred Alexander Hubbell Jr. Introduces" [level=3] [ref=e59]
+        - paragraph [ref=e60]: Alexander’s grandson, writing from Atlanta, composes a narrative introduction. He identifies the four brothers, their regiments, and their fates — placing the story in context for readers who no longer remember the family tree by heart. His introduction transforms the collection from a stack of letters into a story with characters, a setting, and an ending.
+        - paragraph [ref=e61]: The first time the collection is framed for an audience beyond the family.
+    - generic [ref=e62]:
+      - generic [ref=e63]:
+        - generic [ref=e64]: Era 04
+        - generic [ref=e65]: 2010s
+      - generic [ref=e66]:
+        - heading "Bruce Levitt Digitizes" [level=3] [ref=e67]
+        - paragraph [ref=e68]: Fred Jr.’s son-in-law scans Gladys’s typewritten pages into high-resolution digital files. For the first time, the collection exists in a form that cannot burn, flood, or crumble. The physical record is no longer the only one. But the letters remain flat images — readable by humans, invisible to search, and silent on their patterns.
+        - paragraph [ref=e69]: The collection becomes durable. Not yet alive.
+    - generic [ref=e70]:
+      - generic [ref=e71]:
+        - generic [ref=e72]: Era 05
+        - generic [ref=e73]: "2026"
+      - generic [ref=e74]:
+        - heading "The Descendants Analyze" [level=3] [ref=e75]
+        - paragraph [ref=e76]: "Alexander Hubbell Levitt — Alexander’s great-great-grandson and namesake — visits Gettysburg to trace ancestral footsteps, then turns to modern technology. Every letter is transcribed into structured data: dates, locations, people mentioned, emotional tone, health reports, financial references. The collection is text-mined for the patterns, connections, and emotional arcs that emerge only when the full correspondence is read computationally as one."
+        - paragraph [ref=e77]: The letters finally speak to each other.
+  - generic [ref=e78]:
+    - heading "The Approach" [level=2] [ref=e79]
+    - paragraph [ref=e80]: "Reading 274 letters one at a time, you see four individual stories. Reading them as a dataset, you see something else entirely: the shape of a war as experienced by one family. Patterns that no single reader could hold in memory — the rhythm of correspondence breaking down under stress, the geographic dispersal of four brothers across the continent, the slow accumulation of disease and exhaustion — become visible only when the collection is treated as structured evidence."
+    - paragraph [ref=e81]: This project combines close reading with computational analysis. A descendant’s familiarity with the family, the period, and the places these men lived through informs every layer of the work — adding context, resolving ambiguity, and drawing connections that raw transcription alone cannot surface. The data is then explored through purpose-built visualizations, each designed to illuminate a different dimension of what the letters contain.
+    - paragraph [ref=e82]: The result is not a replacement for reading the letters. It is a way of seeing what the letters reveal when you read all of them at once.
+  - generic [ref=e83]:
+    - heading "What the Archive Reveals" [level=2] [ref=e84]
+    - paragraph [ref=e85]: Each exploration illuminates a different dimension of the correspondence — a question that 274 letters can answer but a single letter cannot.
+    - generic [ref=e86]:
+      - link "01 Parallel Lives Every letter plotted by date and author. Four brothers writing from four theaters of war — their lives diverging, intersecting, and in one case ending. The timeline is the spine of the archive. Interactive timeline · 274 letters" [ref=e87] [cursor=pointer]:
+        - /url: hubbell-dashboard.html
+        - generic [ref=e88]: "01"
+        - generic [ref=e89]:
+          - heading "Parallel Lives" [level=3] [ref=e90]
+          - paragraph [ref=e91]: Every letter plotted by date and author. Four brothers writing from four theaters of war — their lives diverging, intersecting, and in one case ending. The timeline is the spine of the archive.
+          - generic [ref=e92]: Interactive timeline · 274 letters
+      - link "02 The Map That Moves Follow four soldiers across the eastern theater. Every letter placed where it was written — from Champlain to Antietam, Chattanooga to Savannah. Watch the family scatter across a continent. Geographic visualization · Movement patterns" [ref=e93] [cursor=pointer]:
+        - /url: viz-map-fullwar.html
+        - generic [ref=e94]: "02"
+        - generic [ref=e95]:
+          - heading "The Map That Moves" [level=3] [ref=e96]
+          - paragraph [ref=e97]: Follow four soldiers across the eastern theater. Every letter placed where it was written — from Champlain to Antietam, Chattanooga to Savannah. Watch the family scatter across a continent.
+          - generic [ref=e98]: Geographic visualization · Movement patterns
+      - link "03 The Wellness Ledger For every soldier killed in battle, two died of disease. Track each brother’s physical condition through their own words — fever, scurvy, night blindness, exhaustion. The war they fought against their own bodies. Wellness classification · Text-mined health reports" [ref=e99] [cursor=pointer]:
+        - /url: viz-health-ledger.html
+        - generic [ref=e100]: "03"
+        - generic [ref=e101]:
+          - heading "The Wellness Ledger" [level=3] [ref=e102]
+          - paragraph [ref=e103]: For every soldier killed in battle, two died of disease. Track each brother’s physical condition through their own words — fever, scurvy, night blindness, exhaustion. The war they fought against their own bodies.
+          - generic [ref=e104]: Wellness classification · Text-mined health reports
+      - link "04 The Money Story Every dollar mentioned — pay, bounties, expenses, money begged from home when the army didn’t pay for months. The private economy of a private’s war, adjusted to modern purchasing power. Financial text mining · CPI adjustment" [ref=e105] [cursor=pointer]:
+        - /url: viz-money-story.html
+        - generic [ref=e106]: "04"
+        - generic [ref=e107]:
+          - heading "The Money Story" [level=3] [ref=e108]
+          - paragraph [ref=e109]: Every dollar mentioned — pay, bounties, expenses, money begged from home when the army didn’t pay for months. The private economy of a private’s war, adjusted to modern purchasing power.
+          - generic [ref=e110]: Financial text mining · CPI adjustment
+      - link "05 The People Web Officers, comrades, family, strangers — nearly 600 people mentioned across the letters. A network graph of who knew whom, who appeared together, and who connected the brothers to the wider war. Network graph · Person identity" [ref=e111] [cursor=pointer]:
+        - /url: viz-people-web.html
+        - generic [ref=e112]: "05"
+        - generic [ref=e113]:
+          - heading "The People Web" [level=3] [ref=e114]
+          - paragraph [ref=e115]: Officers, comrades, family, strangers — nearly 600 people mentioned across the letters. A network graph of who knew whom, who appeared together, and who connected the brothers to the wider war.
+          - generic [ref=e116]: Network graph · Person identity
+  - contentinfo [ref=e117]:
+    - generic [ref=e118]:
+      - generic [ref=e119]:
+        - generic [ref=e120]: Hubbell Civil War Archive
+        - generic [ref=e121]: Based on 274 transcribed letters from the Hubbell family collection, 1861–1865. Transcribed by Gladys Sands Hubbell (1947–49). Introduced by Fred Alexander Hubbell Jr. (1996). Digitized by Bruce Levitt (2010s). Analyzed by the descendants (2026).
+      - generic [ref=e122]: Champlain · Clinton County · New York
+  - button "Copy share link" [ref=e123] [cursor=pointer]:
+    - img [ref=e124]

@@ -197,6 +197,232 @@ window.HubbellReader = (function () {
     return result.join('\n\n');
   }
 
+  // ── Excerpt anchor ─────────────────────────────────────────────────────
+  // When the reader is opened FROM a teased quote (a bio pull-quote, a map
+  // context line), we softly grey the matching passage in the letter so the
+  // reader lands on the very words that invited the click. Matching is
+  // whitespace/punctuation/case-insensitive: we project the raw text to a
+  // normalized string while keeping a map back to raw offsets, find the
+  // excerpt there, then wrap that raw slice with sentinel chars (U+E000/U+E001)
+  // that survive escaping + paragraphing and become a <mark class="reader-anchor">.
+  function normalizeWithMap(raw) {
+    var s = '', map = [], prevSpace = true;
+    for (var i = 0; i < raw.length; i++) {
+      var ch = raw.charAt(i).toLowerCase();
+      if ((ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9')) {
+        s += ch; map.push(i); prevSpace = false;
+      } else if (!prevSpace) {
+        s += ' '; map.push(i); prevSpace = true;
+      }
+    }
+    return { s: s, map: map };
+  }
+  // Map a normalized [idx..endN] span back to a raw {start,end} range.
+  function _rawRange(body, idx, endN) {
+    while (endN > idx && body.s.charAt(endN) === ' ') endN--;   // land on a real char
+    var start = body.map[idx], end = body.map[endN];
+    if (start == null || end == null) return null;
+    return { start: start, end: end + 1 };
+  }
+
+  // Find every substantial contiguous run of the excerpt that actually appears
+  // in the letter, and return their raw ranges. Why runs (plural) instead of one
+  // prefix probe: editorial pull-quotes routinely differ from the source at the
+  // EDGES or MIDDLE — dialect cleaned up ("wasn't"↔"was not"), a word dropped, or
+  // several sentences stitched with "…". A single leading-prefix match then finds
+  // nothing and the passage never greys. Matching the longest verbatim run(s)
+  // greys the real source words wherever they survived the editing.
+  var ANCHOR_MIN_N = 16;        // a run must be ≥16 normalized chars (~3-4 words)
+  function findAnchorRanges(rawText, excerpt) {
+    if (!rawText || !excerpt) return [];
+    var body = normalizeWithMap(rawText);
+    var exN = normalizeWithMap(excerpt).s.trim();
+    if (exN.length < 12) return [];
+    var padded = ' ' + body.s + ' ';
+
+    // Fast path: the whole excerpt is present verbatim.
+    var whole = body.s.indexOf(exN);
+    if (whole !== -1) {
+      var r = _rawRange(body, whole, whole + exN.length - 1);
+      return r ? [r] : [];
+    }
+
+    // Otherwise walk the excerpt word by word, greedily taking the longest
+    // contiguous run that matches the body, then continuing past it.
+    var words = exN.split(' ');
+    var ranges = [], i = 0;
+    while (i < words.length) {
+      var bestLen = 0, bestPhrase = '';
+      var phrase = '';
+      for (var j = i; j < words.length; j++) {
+        phrase = phrase ? phrase + ' ' + words[j] : words[j];
+        if (padded.indexOf(' ' + phrase + ' ') !== -1) { bestLen = j - i + 1; bestPhrase = phrase; }
+        else break;   // contiguous run ended
+      }
+      if (bestPhrase.length >= ANCHOR_MIN_N) {
+        var at = body.s.indexOf(bestPhrase);
+        if (at !== -1) {
+          var rr = _rawRange(body, at, at + bestPhrase.length - 1);
+          if (rr) ranges.push(rr);
+        }
+        i += bestLen;
+      } else {
+        i++;
+      }
+    }
+    // Merge ranges that touch/overlap (and sort by position).
+    ranges.sort(function (a, b) { return a.start - b.start; });
+    var merged = [];
+    for (var k = 0; k < ranges.length; k++) {
+      var cur = ranges[k];
+      if (merged.length && cur.start <= merged[merged.length - 1].end + 1) {
+        if (cur.end > merged[merged.length - 1].end) merged[merged.length - 1].end = cur.end;
+      } else merged.push({ start: cur.start, end: cur.end });
+    }
+    return merged;
+  }
+
+  // Back-compat single-range helper (first/longest run).
+  function findAnchorRange(rawText, excerpt) {
+    var rs = findAnchorRanges(rawText, excerpt);
+    return rs.length ? rs[0] : null;
+  }
+
+  // ── Sentence-overlap fallback ──────────────────────────────────────────
+  // When no contiguous run of the teased quote survives in the source (the
+  // editor cleaned dialect, dropped words, or stitched several sentences with
+  // an ellipsis), we still want to land the reader on context rather than grey
+  // nothing. Find the single sentence in the letter that shares the most
+  // distinctive words with the quote and grey that whole sentence — a "closest
+  // we could find" anchor. Distinctive = words >=4 chars (skips the/and/was…).
+  function _sentenceSpans(raw) {
+    var spans = [], start = 0;
+    raw.replace(/[.?!]["'”’)]?(?=\s)|\n\n+/g, function (m, idx) {
+      var end = idx + m.length;
+      spans.push({ start: start, end: end });
+      start = end;
+      return m;
+    });
+    if (start < raw.length) spans.push({ start: start, end: raw.length });
+    return spans;
+  }
+  function _bestSentenceRange(raw, excerpt) {
+    var exTokens = normalizeWithMap(excerpt).s.trim().split(' ').filter(function (w) { return w.length >= 4; });
+    if (exTokens.length < 2) return null;
+    var exSet = {}; exTokens.forEach(function (w) { exSet[w] = 1; });
+    var spans = _sentenceSpans(raw), best = null, bestScore = 0;
+    spans.forEach(function (sp) {
+      var toks = normalizeWithMap(raw.slice(sp.start, sp.end)).s.trim().split(' ');
+      var hit = 0, seen = {};
+      toks.forEach(function (w) { if (exSet[w] && !seen[w]) { seen[w] = 1; hit++; } });
+      if (hit > bestScore) { bestScore = hit; best = sp; }
+    });
+    // Require a real overlap: >=2 shared distinctive words, or >=35% of the quote's.
+    if (!best || (bestScore < 2 && bestScore / exTokens.length < 0.35)) return null;
+    var s = best.start, e = best.end;
+    while (s < e && /\s/.test(raw.charAt(s))) s++;          // trim to the words
+    while (e > s && /\s/.test(raw.charAt(e - 1))) e--;
+    return s < e ? { start: s, end: e } : null;
+  }
+
+  // ── Shared anchor application (modal + infopanel readers) ──────────────
+  // Insert private-use sentinels around the matched passage in RAW text; they
+  // survive HTML-escaping + paragraphing, then swapAnchorSentinels() turns them
+  // into the grey <mark class="reader-anchor"> once the body HTML is built.
+  // Returns {text, active}. Exported so the infopanel renders anchors 1:1.
+  var ANCHOR_A = String.fromCharCode(0xE000), ANCHOR_Z = String.fromCharCode(0xE001);
+  function wrapExcerptSentinels(rawText, excerpt) {
+    var exStr = Array.isArray(excerpt) ? excerpt.filter(Boolean).join(' ') : excerpt;
+    if (!rawText || !exStr) return { text: rawText, active: false };
+    var ranges = findAnchorRanges(rawText, exStr);
+    if (!ranges.length) {
+      var sent = _bestSentenceRange(rawText, exStr);   // graceful fallback: closest sentence
+      if (sent) ranges = [sent];
+    }
+    if (!ranges.length) return { text: rawText, active: false };
+    for (var ri = ranges.length - 1; ri >= 0; ri--) {  // back-to-front keeps offsets valid
+      var range = ranges[ri];
+      var seg = rawText.slice(range.start, range.end);
+      var nn = seg.indexOf('\n\n');                    // never straddle a paragraph break
+      if (nn !== -1) range.end = range.start + nn;
+      rawText = rawText.slice(0, range.start) + ANCHOR_A +
+        rawText.slice(range.start, range.end) + ANCHOR_Z + rawText.slice(range.end);
+    }
+    return { text: rawText, active: true };
+  }
+  function swapAnchorSentinels(html) {
+    return html.split(ANCHOR_A).join('<mark class="reader-anchor">').split(ANCHOR_Z).join('</mark>');
+  }
+
+  // ── Term anchors (person / place mentioned) ────────────────────────────
+  // For reference previews that are a NAME rather than a quote (open a letter
+  // from a person or place), grey every verbatim occurrence of that name so the
+  // reader lands on the mention — the same soft grey as a teased quote. Operates
+  // on text BETWEEN HTML tags only, so it won't corrupt attributes or nest
+  // illegally inside an existing tag's markup.
+  function wrapTermAnchors(html, terms) {
+    if (!terms || !terms.length) return html;
+    terms.forEach(function (term) {
+      var t = term ? String(term).trim() : '';
+      if (t.length < 2) return;
+      var re;
+      try { re = new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'); }
+      catch (e) { return; }
+      html = html.split(/(<[^>]+>)/).map(function (part, i) {
+        if (i % 2 === 1) return part;                  // HTML tag — leave alone
+        return part.replace(re, '<mark class="reader-anchor">$1</mark>');
+      }).join('');
+    });
+    return html;
+  }
+
+  // ── Mobile scroll rail ─────────────────────────────────────────────────
+  // A visible, draggable scrollbar for the letter region on touch screens
+  // (CSS hides it >=641px). Mounted once on the panel; sized to the scroll
+  // viewport so it spans exactly the letter, clearing header + footer rail.
+  function mountReaderScrollRail() {
+    var panel = overlay && overlay.querySelector('.reader-panel');
+    var content = contentEl;
+    if (!panel || !content || panel.querySelector('.era-scrollrail')) return;
+    var rail = document.createElement('div'); rail.className = 'era-scrollrail';
+    var thumb = document.createElement('div'); thumb.className = 'era-scrollthumb';
+    rail.appendChild(thumb); panel.appendChild(rail);
+    function metrics() {
+      var ch = content.clientHeight, sh = content.scrollHeight;
+      var railH = ch, thumbH = Math.max(30, railH * (ch / sh));
+      return { ch: ch, sh: sh, overflow: sh - ch, railH: railH, thumbH: thumbH, maxThumbTop: railH - thumbH };
+    }
+    function update() {
+      var m = metrics();
+      if (m.overflow <= 4) { rail.style.display = 'none'; return; }
+      rail.style.display = 'block';
+      rail.style.top = content.offsetTop + 'px';
+      rail.style.height = m.ch + 'px';
+      var top = m.overflow > 0 ? (content.scrollTop / m.overflow) * m.maxThumbTop : 0;
+      thumb.style.height = m.thumbH + 'px';
+      thumb.style.transform = 'translateY(' + top + 'px)';
+    }
+    content.addEventListener('scroll', update, { passive: true });
+    if (window.ResizeObserver) { try { new ResizeObserver(update).observe(content); } catch (e) {} }
+    window.addEventListener('resize', update);
+    var dragging = false, startY = 0, startScroll = 0;
+    thumb.addEventListener('pointerdown', function (e) {
+      dragging = true; startY = e.clientY; startScroll = content.scrollTop;
+      try { thumb.setPointerCapture(e.pointerId); } catch (_) {}
+      e.preventDefault(); e.stopPropagation();
+    });
+    thumb.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      var m = metrics();
+      var dScroll = m.maxThumbTop > 0 ? ((e.clientY - startY) / m.maxThumbTop) * m.overflow : 0;
+      content.scrollTop = startScroll + dScroll;
+    });
+    function endDrag(e) { dragging = false; try { thumb.releasePointerCapture(e.pointerId); } catch (_) {} }
+    thumb.addEventListener('pointerup', endDrag);
+    thumb.addEventListener('pointercancel', endDrag);
+    update();
+  }
+
   function ensureOverlay() {
     if (overlay) return;
     overlay = document.createElement('div');
@@ -255,7 +481,9 @@ window.HubbellReader = (function () {
     // Strip stale letter/health from opts so open() fetches fresh data
     var navOpts = {};
     for (var k in currentOpts) {
-      if (k !== 'letter' && k !== 'health') navOpts[k] = currentOpts[k];
+      // Drop letter/health (refetched per letter) AND excerpt (the teased
+      // anchor belongs only to the letter we opened from, not its siblings).
+      if (k !== 'letter' && k !== 'health' && k !== 'excerpt') navOpts[k] = currentOpts[k];
     }
     open(nextId, navOpts);
   }
@@ -458,7 +686,7 @@ window.HubbellReader = (function () {
   // Rebuild the strip in place (e.g. after a nav-mode toggle) without re-opening
   // the whole reader. insertAdjacentHTML (not innerHTML) keeps the rest intact.
   function refreshContextStrip() {
-    if (!currentOpts || !currentOpts.contextStrip || !contentEl || !currentLetterId) return;
+    if (!contentEl || !currentLetterId) return;
     var existing = contentEl.querySelector('.reader-context-strip');
     if (!existing) return;
     existing.insertAdjacentHTML('beforebegin', buildLetterContextStrip(currentLetterId));
@@ -466,9 +694,13 @@ window.HubbellReader = (function () {
     bindContextStrip();
   }
 
-  function bindContextStrip() {
-    var strip = contentEl.querySelector('.reader-context-strip');
+  // bindContextStrip() with no args wires the modal reader's own strip (tap →
+  // HubbellReader.open). Pass (stripEl, onPick) to reuse the same strip inside
+  // another surface (e.g. the infopanel reader), routing taps to onPick(id).
+  function bindContextStrip(stripEl, onPick) {
+    var strip = stripEl || (contentEl && contentEl.querySelector('.reader-context-strip'));
     if (!strip || !_ctxStrip) return;
+    var pick = onPick || function (id) { open(id, currentOpts); };
     var tip = strip.querySelector('.rcs-tip');
     var hov = strip.querySelector('.rcs-hover');
     var fine = window.matchMedia && window.matchMedia('(any-pointer: fine)').matches;
@@ -492,7 +724,7 @@ window.HubbellReader = (function () {
     function clear() { hov.hidden = true; tip.hidden = true; }
     function commit(clientX) {
       var near = _ctxNearest(clientX, strip.getBoundingClientRect());
-      if (near && near.id !== _ctxStrip.activeId) { clear(); open(near.id, currentOpts); }
+      if (near && near.id !== _ctxStrip.activeId) { clear(); pick(near.id); }
     }
 
     if (fine) {
@@ -608,28 +840,43 @@ window.HubbellReader = (function () {
 
     // Body text — strip redundant date/location header
     var rawText = stripLetterHeader(letter.t || '');
+
+    // Excerpt anchor: wrap the teased passage with sentinels in the RAW text so
+    // the markers survive escaping + paragraphing. Skipped when health-sentence
+    // highlighting owns the body (the ledger never opens from a teased quote).
+    var anchorActive = false;
+    if (opts.excerpt && !(opts.health && opts.health.sentences)) {
+      var anchored = wrapExcerptSentinels(rawText, opts.excerpt);
+      rawText = anchored.text; anchorActive = anchored.active;
+    }
+
     var bodyText;
     if (opts.health && opts.health.sentences) {
       bodyText = formatBody(highlightHealthSentences(rawText, opts.health.sentences));
     } else {
       bodyText = formatBody(esc(rawText));
     }
+    if (anchorActive) bodyText = swapAnchorSentinels(bodyText);
 
-    // Apply highlights
+    // Apply search-term highlights (gold) — opts.highlight is search/term context.
     var highlightTermsList = [];
     if (opts.highlight) {
       // Can be string or array
       var terms = Array.isArray(opts.highlight) ? opts.highlight : [opts.highlight];
       highlightTermsList = highlightTermsList.concat(terms);
     }
-    if (opts.personHighlight) {
-      highlightTermsList.push(opts.personHighlight);
-    }
     bodyText = highlightTerms(bodyText, highlightTermsList);
     // Flag-category keyword highlighting: wrap matched terms with rhl-<flag>
     // spans, only for categories whose flag pill is rendered. Toggling a pill
     // off via CSS (.reader-body.hide-<flag>) collapses these spans to plain.
     bodyText = wrapFlagCategoryTerms(bodyText, activeFlags);
+    // Person / place reference previews: grey the named mention (the same soft
+    // anchor as a teased quote) so opening a letter FROM a name lands on it.
+    // personHighlight was formerly a gold search hit; it is a reference, so grey.
+    var anchorNames = [];
+    if (opts.personHighlight) anchorNames.push(opts.personHighlight);
+    if (opts.placeHighlight) anchorNames.push(opts.placeHighlight);
+    if (anchorNames.length) bodyText = wrapTermAnchors(bodyText, anchorNames);
 
     // Build sender pill
     var senderPage = BIO_PAGES[letter.a] || '';
@@ -646,13 +893,31 @@ window.HubbellReader = (function () {
       ? '<a href="' + recipientPage + '" class="reader-pill" style="background:' + recipientColor + ';--pc:' + recipientColor + '" onclick="event.stopPropagation()">' + esc(recipientName) + '</a>'
       : '<span class="reader-pill" style="background:' + recipientColor + ';--pc:' + recipientColor + '">' + esc(recipientName) + '</span>';
 
-    // Letter Context Strip (opt-in) — the corpus-wide "you are here" timeline.
-    var contextStrip = opts.contextStrip ? buildLetterContextStrip(letterId) : '';
+    // Letter Context Strip — the corpus-wide "you are here" timeline. Now shown
+    // in EVERY reader by default (below the date/location, above the summary),
+    // except the non-corpus document (which has no position on the war timeline)
+    // or when a caller explicitly opts out with contextStrip:false.
+    var contextStrip = (asDocument || opts.contextStrip === false) ? '' : buildLetterContextStrip(letterId);
     // Executive summary — the one-line editorial "what this letter is" the user
     // values. Shown in every reader (above people/places/tags), color-coded to
     // the author, whenever the letter has a summary.
     var summaryHtml = letter.ss
       ? '<div class="reader-exec-summary" style="--exec-c:' + color + '">' + esc(letter.ss) + '</div>' : '';
+
+    // "Health context:" — a medical-historian's read of the letter's health
+    // content, shown ONLY when the caller supplies it (the Wellness Ledger). A
+    // distinct CLINICAL voice with a medical-pulse icon; never replaces the
+    // editor's summary above it (both can show).
+    var _hc = (opts.health && opts.health.healthContext) ? opts.health.healthContext : '';
+    var healthContextHtml = _hc
+      ? '<div class="reader-health-context">' +
+          '<div class="rhc-eyebrow">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg>' +
+            'Health context' +
+          '</div>' +
+          '<div class="rhc-body">' + esc(_hc) + '</div>' +
+        '</div>'
+      : '';
 
     contentEl.innerHTML =
       '<div class="reader-header" style="border-bottom-color:' + color + '">' +
@@ -664,11 +929,11 @@ window.HubbellReader = (function () {
         '<div class="reader-meta">' +
           '<span class="rm-date">' + d + '</span>' +
           ' <span class="rm-loc">from ' + esc(letter.loc || 'Unknown location') + '</span>' +
-          mapLink +
-          '<span class="rm-id">' + esc(letter.id) + '</span></div>' +
+          mapLink + '</div>' +
       '</div>' +
       contextStrip +
       summaryHtml +
+      healthContextHtml +
       healthHtml +
       ppl + plc +
       '<div class="reader-body">' + bodyText + '</div>';
@@ -700,15 +965,23 @@ window.HubbellReader = (function () {
       });
     });
 
-    if (opts.contextStrip) bindContextStrip();
+    if (contextStrip) bindContextStrip();
 
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     updateNavBar();
+    mountReaderScrollRail();   // mobile draggable scrollbar (once; CSS hides >=641px)
 
-    // Scroll: to first highlight if present, otherwise to the top of the content
+    // Scroll behaviour: the reader ALWAYS opens at the top, EXCEPT for an explicit
+    // search match, which jumps to the first hit (that IS the search intent).
+    //  • Excerpt anchor (grey) and contextual gold highlights (a place name or
+    //    person opened from an infopanel) GROUND the reader in its source — the
+    //    highlight is there to find, not to chase. Yanking the scroll to it breaks
+    //    spatial consistency as the user moves letter to letter, so we don't.
+    //  • Only opts.scrollToMatch (set by the site search) opts into the jump.
     setTimeout(function () {
-      var mark = highlightTermsList.length > 0 ? contentEl.querySelector('.reader-body mark') : null;
+      var mark = (opts.scrollToMatch && !anchorActive && highlightTermsList.length > 0)
+        ? contentEl.querySelector('.reader-body mark') : null;
       if (mark) {
         mark.scrollIntoView({ block: 'center', behavior: 'smooth' });
       } else {
@@ -732,14 +1005,94 @@ window.HubbellReader = (function () {
 
   function getCurrentLetterId() {
     if (!overlay || !overlay.classList.contains('open')) return null;
-    var idEl = overlay.querySelector('.rm-id');
-    return idEl ? idEl.textContent : null;
+    return currentLetterId;   // the ref id is no longer rendered in the meta; use the state var
+  }
+
+  // ── Quote-hook auto-wiring ──────────────────────────────────────────────
+  // Editorial pages tease a letter with a pull-quote (.letter-quote → .lq-link)
+  // or an inline narrative reference (a.ref) whose onclick is openLetter('ID').
+  // This rewires those hooks so the reader opens with the TEASED PASSAGE softly
+  // greyed (the excerpt anchor). Centralized here so every page gets identical
+  // behavior from one call — HubbellReader.bindQuoteHooks() — instead of copying
+  // the DOM-scraping into each page. Routes through the page's own openLetter()
+  // when present (preserving its deep-link URL sync), else opens directly.
+  function _openWithExcerpt(id, excerpt) {
+    if (typeof window.openLetter === 'function') window.openLetter(id, excerpt);
+    else open(id, { excerpt: excerpt, contextStrip: true });
+  }
+  function _idFromOnclick(el) {
+    var oc = el.getAttribute('onclick'); if (!oc) return null;
+    var m = oc.match(/openLetter\(\s*'([^']+)'/); return m ? m[1] : null;
+  }
+  function bindQuoteHooks(root) {
+    root = root || document;
+    // Pull-quotes — anchor the whole quoted passage (minus its citation).
+    root.querySelectorAll('.lq-link').forEach(function (link) {
+      var id = _idFromOnclick(link); if (!id) return;
+      link.removeAttribute('onclick');
+      link.style.cursor = 'pointer';
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var excerpt = '';
+        var box = link.closest('.letter-quote');
+        if (box) {
+          var clone = box.cloneNode(true);
+          var cite = clone.querySelector('cite'); if (cite) cite.remove();
+          excerpt = clone.textContent.trim();
+        }
+        _openWithExcerpt(id, excerpt);
+      });
+    });
+    // Inline refs — anchor the quote THIS ref introduces. A paragraph often
+    // holds several refs and several <em> quotes (e.g. "James on April 6 … 'A' …
+    // Charles on April 18 … 'B'"); the teased passage is the <em> that FOLLOWS
+    // the link, not merely the longest one — pairing by proximity keeps each ref
+    // matched to its own source letter so the grey anchor lands. Falls back to
+    // the nearest preceding <em>, then the longest, then none.
+    root.querySelectorAll('a.ref[onclick]').forEach(function (link) {
+      var id = _idFromOnclick(link); if (!id) return;
+      link.removeAttribute('onclick');
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var para = link.closest('p') || link.parentElement;
+        var best = '';
+        if (para) {
+          var ems = [].slice.call(para.querySelectorAll('em'));
+          var after = '', before = '', longest = '';
+          ems.forEach(function (em) {
+            var t = em.textContent.trim().replace(/^[“”"']+|[“”"']+$/g, '').trim();
+            if (t.length < 8) return;
+            if (t.length > longest.length) longest = t;
+            var pos = link.compareDocumentPosition(em);
+            if (pos & Node.DOCUMENT_POSITION_FOLLOWING) { if (!after) after = t; }   // first quote after the ref
+            else before = t;                                                          // nearest quote before
+          });
+          best = after || before || longest;
+        }
+        _openWithExcerpt(id, best);
+      });
+    });
   }
 
   return {
     open: open,
     close: close,
     isOpen: isOpen,
-    getCurrentLetterId: getCurrentLetterId
+    getCurrentLetterId: getCurrentLetterId,
+    bindQuoteHooks: bindQuoteHooks,
+    // Reusable corpus "you are here" strip for other reader surfaces.
+    buildContextStrip: buildLetterContextStrip,
+    bindContextStrip: bindContextStrip,
+    // Shared body helpers so other reader surfaces (the infopanel) render 1:1:
+    // strip the redundant date/location header, and tint flag-category keywords.
+    stripLetterHeader: stripLetterHeader,
+    wrapFlagCategoryTerms: wrapFlagCategoryTerms,
+    // Shared grey-anchor engine. wrapExcerptSentinels() marks a teased quote in
+    // RAW text (run match → sentence fallback); swapAnchorSentinels() turns the
+    // sentinels into grey <mark>s once the body HTML is built; wrapTermAnchors()
+    // greys verbatim person/place name mentions. Lets the infopanel anchor 1:1.
+    wrapExcerptSentinels: wrapExcerptSentinels,
+    swapAnchorSentinels: swapAnchorSentinels,
+    wrapTermAnchors: wrapTermAnchors
   };
 })();

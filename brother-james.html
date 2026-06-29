@@ -8,10 +8,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="_design.css">
-<link rel="stylesheet" href="_bio.css">
-<link rel="stylesheet" href="_overlay.css">
-<link rel="stylesheet" href="_reader-era.css?v=13">
+<link rel="stylesheet" href="_design.css?v=7">
+<link rel="stylesheet" href="_bio.css?v=1">
+<link rel="stylesheet" href="_overlay.css?v=10">
+<link rel="stylesheet" href="_reader-era.css?v=16">
 <link rel="stylesheet" href="_hero.css?v=2">
 <script src="_hero.js?v=2" defer></script>
 <style>
@@ -178,7 +178,7 @@
   <p>In late June, the regiment was shipped north to defend Washington against Jubal Early's raid. James was thrown into rifle pits around the capital, then sent in pursuit of the retreating Confederates into the Shenandoah Valley. The forced marches broke him. His feet blistered. He fell out of the column, rode a wagon train, and ended up in a hospital at Frederick City, Maryland.</p>
 
   <div class="letter-quote">
-    My sickness was generally unwell and played out. I have been in the hospital about two weeks now and am nearly ready for duty.
+    I was quite sick but am now pretty well and expect soon to go to a convalescent camp. My sickness was generally unwell and played out.
     <cite><a class="lq-link" onclick="openLetter('LTR-1864-08-15-001')">August 15, 1864 &mdash; Frederick City, MD</a></cite>
   </div>
 
@@ -205,7 +205,7 @@
   <h2>Winchester</h2>
   <div class="ch-date">September 19, 1864 &mdash; Shenandoah Valley, Virginia</div>
   <p>James returned from the hospital at Frederick City and rejoined the regiment in the Shenandoah Valley. On September 19, Sheridan attacked Jubal Early's Confederates at the Third Battle of Winchester. It was James's first major engagement. Company H lost four killed and twelve wounded. The regiment lost sixty-five. James came through without a scratch.</p>
-  <p>Charles, writing to their mother <a class="ref" onclick="openLetter('LTR-1864-09-21-001')">two days later</a>, allowed himself a moment of cautious relief: <em>"James says he was not frightened, but I think he would own up if he was. It was a pretty warm place for green troops."</em> The boy who had studied artillery drill at West Point had now faced the real thing. The company that had once mustered at full strength was being cut in half, fight by fight.</p>
+  <p>Charles, writing to their mother <a class="ref" onclick="openLetter('LTR-1864-09-21-001')">two days later</a>, allowed himself a moment of cautious relief: <em>"&hellip;feeling very thankful that James came out of the battle near Winchester two days since unhurt."</em> The boy who had studied artillery drill at West Point had now faced the real thing. The company that had once mustered at full strength was being cut in half, fight by fight.</p>
 </div>
 
 <!-- CH 6: SHENANDOAH -->
@@ -219,7 +219,7 @@
     <cite><a class="lq-link" onclick="openLetter('LTR-1864-10-04-001')">October 4, 1864 &mdash; Harrisonburg, VA</a></cite>
   </div>
 
-  <p>He reported that Alex Douglas &mdash; the same man Charles would later report missing from Cedar Creek &mdash; had already been "gobbled by guerrillas" after falling behind on a march. He noted that the boys had a habit of running through Southern houses and taking whatever they chose, <em>"which I think exasperates the rebels very much."</em></p>
+  <p>He reported that Alex Douglas &mdash; the same man Charles would later report missing from Cedar Creek &mdash; had already been captured by guerrillas after falling behind on a march. He noted that the boys had a habit of running through Southern houses and taking whatever they chose, <em>"which I think exasperates the rebels very much."</em></p>
   <p>And then, in a letter to his brother, he stated his politics with the directness of a man who might not get another chance to say it:</p>
 
   <div class="letter-quote">
@@ -327,10 +327,10 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="03-data/map-movements.js"></script>
 <script src="_design-data.js"></script>
-<script src="_design-ui.js"></script>
+<script src="_design-ui.js?v=5"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
-<script src="_reader.js?v=13"></script>
+<script src="_reader.js?v=20"></script>
 <script>
 var AUTHOR_COLORS = { henry:'#2D5F8A', alexander:'#B8860B', james:'#4A7C59', charles:'#8B3A3A', mother:'#7B5EA7' };
 var AUTHOR_NAMES = { henry:'Henry Hubbell', alexander:'Alexander F. Hubbell', james:'James Hubbell', charles:'Charles F. Hubbell', mother:'Frances Hubbell' };
@@ -421,7 +421,7 @@ function closeReader() {
 }
 
 // Wire pull-quotes (.lq-link) + inline refs (a.ref) so the reader opens with
-// the teased passage softly greyed (centralized in _reader.js).
+// the teased passage softly greyed (centralized in _reader.js?v=20).
 document.addEventListener('DOMContentLoaded', function() {
   HubbellReader.bindQuoteHooks();
 });

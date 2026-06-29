@@ -669,9 +669,10 @@ body.letter-reader-open .hubbell-overlay-dot-tip {
   .overlay-letter-nav .reader-nav-arrow { width: 34px; height: 34px; font-size: 16px; }
   .overlay-letter-nav .reader-nav-mode-btn { font-size: 10px; padding: 3px 10px; }
 
-  /* Letter reader inside overlay */
+  /* Letter reader inside overlay (2-class selector to override the desktop base
+     rule, which is itself 2-class). Modal mobile body is 14px → rail 13.5px. */
   .hubbell-overlay-reader-header { padding: 12px 16px; }
-  .hubbell-overlay-reader-body { padding: 16px 16px 24px; font-size: 0.9rem; }
+  .hubbell-overlay-panel .hubbell-overlay-reader-body { padding: 16px 16px 24px; font-size: 13.5px; }
   .hubbell-overlay-reader-meta { font-size: 0.74rem; }
 
   /* Letter list rows */
@@ -681,3 +682,337 @@ body.letter-reader-open .hubbell-overlay-dot-tip {
   /* Nav buttons */
   .hubbell-overlay-nav-btn { padding: 10px 14px; font-size: 0.78rem; min-height: 44px; }
 }
+
+/* ============================================================================
+   LAMPLIT INFOPANEL — the right-rail person / place / letter overlay restyled to
+   the v2 "lamplight" reader aesthetic (dark warm frame + parchment letter),
+   tuned for the narrow ~460px rail so profile→letter reads as one cohesive
+   surface. Appended LAST so it overrides the light defaults by source order;
+   palette mirrors _reader-era.css.
+   ============================================================================ */
+.hubbell-overlay-panel{
+  --era-frame:#14110a; --era-frame-lo:#0e0c07;
+  --era-paper:#f1e7d1; --era-paper-hi:#f6eedb; --era-paper-lo:#e7dabd; --era-paper-edge:#d8c8a6;
+  --era-ink:#251d11;
+  --era-lantern:#e2b574; --era-lantern-d:#bb9258;
+  --era-on-frame:#ece2cd; --era-on-frame-2:#bcb094; --era-on-frame-3:#8e8366;
+  --era-rule:rgba(226,181,116,.24); --era-rule-soft:rgba(236,227,210,.10);
+  background:
+    radial-gradient(120% 46% at 100% 0%, rgba(226,181,116,.08), transparent 55%),
+    linear-gradient(180deg,#1a1509 0%, var(--era-frame) 44%, var(--era-frame-lo) 100%) !important;
+  color: var(--era-on-frame) !important;
+  border-left: 1px solid var(--era-rule);
+  box-shadow: -8px 0 44px -10px rgba(0,0,0,.62);
+}
+/* Places view — the dark golden frame is fully exposed here (no parchment letter
+   covering it). The brown gradient read muddy + dark, so this neutralises the
+   base to a lifted warm-grey (kills the yellow-brown cast) and lays a FAINT but
+   noticeable goldenrod (#DAA520) wash over it — subtle, clean, not heavy. */
+.hubbell-overlay-panel.hubbell-overlay-panel--place{
+  background:
+    radial-gradient(140% 82% at 50% 0%, rgba(218,165,32,.06), transparent 70%),
+    linear-gradient(180deg, #272420 0%, #201e1a 100%) !important;
+}
+.hubbell-overlay-panel::before{
+  content:''; position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+.hubbell-overlay-panel > *{ position:relative; z-index:1; }
+
+/* Header + titles */
+.hubbell-overlay-panel .hubbell-overlay-header{ border-bottom-color: var(--era-rule); }
+.hubbell-overlay-panel .hubbell-overlay-title{ color: var(--era-on-frame); }
+.hubbell-overlay-panel .hubbell-overlay-subtitle{ color: var(--era-on-frame-2); }
+.hubbell-overlay-panel .hubbell-overlay-subtitle strong{ color: var(--era-lantern); }
+.hubbell-overlay-panel .hubbell-overlay-arrow{ color: var(--era-on-frame-3); opacity:.7; }
+/* From / To eyebrow labels — mirror the modal reader's .reader-pill-label
+   (mono, uppercase) so the correspondence header reads 1:1, one point smaller
+   (modal 8.5px → 7.5px here). Title becomes a baseline-aligned inline row. */
+.hubbell-overlay-panel .hubbell-overlay-title{ display:flex; align-items:baseline; flex-wrap:wrap; gap:3px 7px; }
+.hubbell-overlay-panel .hubbell-overlay-pill-label{
+  font-family: var(--font-mono); font-size:7.5px; font-weight:600;
+  text-transform:uppercase; letter-spacing:.13em; color: var(--era-on-frame-3);
+}
+
+/* From/To person pills → matte WAX-SEAL markers in each person's colour (--pill-color) */
+.hubbell-overlay-panel .hubbell-overlay-person-pill{
+  background: transparent !important; color: var(--era-on-frame) !important;
+  font-family:'Source Serif 4',Georgia,serif; font-weight:600;
+  padding: 1px 4px 1px 18px !important; border-radius:0 !important; position:relative; box-shadow:none !important;
+}
+.hubbell-overlay-panel .hubbell-overlay-person-pill::before{
+  content:''; position:absolute; left:1px; top:50%; transform:translateY(-50%);
+  width:11px; height:11px; border-radius:50%;
+  background:
+    radial-gradient(120% 120% at 32% 26%, rgba(255,255,255,.30), transparent 55%),
+    color-mix(in srgb, var(--pill-color, var(--era-lantern)) 82%, #3a2c18);
+  box-shadow: inset 0 -1px 2px rgba(0,0,0,.5), 0 0 0 1px rgba(0,0,0,.5), 0 1px 2px rgba(0,0,0,.4);
+}
+.hubbell-overlay-panel .hubbell-overlay-person-pill:hover{ color: var(--era-lantern) !important; }
+
+/* Badge / close / back */
+.hubbell-overlay-panel .hubbell-overlay-badge,
+.hubbell-overlay-panel .hubbell-overlay-badge.family,
+.hubbell-overlay-panel .hubbell-overlay-badge.military,
+.hubbell-overlay-panel .hubbell-overlay-badge.civilian,
+.hubbell-overlay-panel .hubbell-overlay-badge.place{ background: rgba(236,227,210,.08); color: var(--era-on-frame-3); }
+.hubbell-overlay-panel .hubbell-overlay-close,
+.hubbell-overlay-panel .hubbell-overlay-back{ color: var(--era-on-frame-2); }
+.hubbell-overlay-panel .hubbell-overlay-close:hover,
+.hubbell-overlay-panel .hubbell-overlay-back:hover{ background: rgba(226,181,116,.14); color: var(--era-lantern); }
+
+/* Sections / roles / summary / stats */
+.hubbell-overlay-panel .hubbell-overlay-section-title{ color: var(--era-on-frame-3); border-bottom-color: var(--era-rule-soft); }
+.hubbell-overlay-panel .hubbell-overlay-roles li{ color: var(--era-on-frame-2); }
+.hubbell-overlay-panel .hubbell-overlay-roles li::before,
+.hubbell-overlay-panel .hubbell-overlay-roles li::after{ color: var(--era-on-frame-3); }
+.hubbell-overlay-panel .hubbell-overlay-summary{ color: var(--era-on-frame); border-left-color: var(--era-lantern); }
+.hubbell-overlay-panel .hubbell-overlay-expand-btn{ color: var(--era-lantern-d); }
+.hubbell-overlay-panel .hubbell-overlay-expand-btn:hover{ color: var(--era-lantern); }
+.hubbell-overlay-panel .hubbell-overlay-stats{ color: var(--era-on-frame-2); }
+.hubbell-overlay-panel .hubbell-overlay-stat-value{ color: var(--era-lantern); }
+
+/* Letter rows — readable on the dark frame; author chips keep each brother's hue */
+.hubbell-overlay-panel .hubbell-overlay-letter-row{ border-bottom-color: var(--era-rule-soft); color: var(--era-on-frame-2); }
+.hubbell-overlay-panel .hubbell-overlay-letter-row:hover{ background: rgba(226,181,116,.08); }
+.hubbell-overlay-panel .hubbell-overlay-letter-date{ color: var(--era-on-frame-3); }
+.hubbell-overlay-panel .hubbell-overlay-letter-detail{ color: var(--era-on-frame-2); }
+.hubbell-overlay-panel .hubbell-overlay-letter-author[data-author="henry"]    { background: rgba(45,95,138,.32);  color:#92b8db; }
+.hubbell-overlay-panel .hubbell-overlay-letter-author[data-author="alexander"]{ background: rgba(184,134,11,.32); color:#e3bd66; }
+.hubbell-overlay-panel .hubbell-overlay-letter-author[data-author="james"]    { background: rgba(74,124,89,.32);  color:#90c19d; }
+.hubbell-overlay-panel .hubbell-overlay-letter-author[data-author="charles"]  { background: rgba(139,58,58,.34);  color:#dc9a9a; }
+.hubbell-overlay-panel .hubbell-overlay-letter-author[data-author="mother"]   { background: rgba(123,94,167,.32); color:#bba1d4; }
+
+/* Cross-page nav buttons (View on Map / View in People Web) → era outline */
+.hubbell-overlay-panel .hubbell-overlay-nav-btn,
+.hubbell-overlay-panel .hubbell-overlay-nav-btn--header.family,
+.hubbell-overlay-panel .hubbell-overlay-nav-btn--header.military,
+.hubbell-overlay-panel .hubbell-overlay-nav-btn--header.civilian,
+.hubbell-overlay-panel .hubbell-overlay-nav-btn--header.place{
+  background: rgba(226,181,116,.10); color: var(--era-lantern); border-color: var(--era-rule);
+}
+.hubbell-overlay-panel .hubbell-overlay-nav-btn:hover,
+.hubbell-overlay-panel .hubbell-overlay-nav-btn--header.family:hover,
+.hubbell-overlay-panel .hubbell-overlay-nav-btn--header.military:hover,
+.hubbell-overlay-panel .hubbell-overlay-nav-btn--header.civilian:hover,
+.hubbell-overlay-panel .hubbell-overlay-nav-btn--header.place:hover{ background: rgba(226,181,116,.20); border-color: var(--era-lantern); color:#fff3df; }
+
+/* Frozen bottom panel: People/Places (top) + prev/next + author toggle (bottom).
+   flex-shrink:0 pins it under the scrolling letter body of the flex-column panel,
+   so the controls + reference tags stay put while the letter scrolls. */
+.hubbell-overlay-panel .hubbell-overlay-footer{
+  flex-shrink: 0;
+  border-top: 1px solid var(--era-rule);
+  background: rgba(0,0,0,.22);
+}
+/* flags = TOP ROW of the frozen panel ("Highlight in letter" + clickable pills) */
+.hubbell-overlay-panel .hubbell-overlay-footer-flags{ padding: 11px 14px 3px; }
+.hubbell-overlay-panel .hubbell-overlay-footer-flags:empty{ display: none; }
+.hubbell-overlay-panel .hubbell-overlay-footer-flags .hubbell-overlay-meta-group{ margin-top: 0; }
+.hubbell-overlay-panel .hubbell-overlay-footer-flags .hubbell-overlay-meta-title{ margin-bottom: 5px; }
+/* people / places row, below the flags */
+.hubbell-overlay-panel .hubbell-overlay-footer-meta{ padding: 8px 14px 2px; }
+.hubbell-overlay-panel .hubbell-overlay-footer-meta:empty{ display: none; }
+.hubbell-overlay-panel .hubbell-overlay-footer-meta .hubbell-overlay-meta-group{ margin-top: 9px; }
+.hubbell-overlay-panel .hubbell-overlay-footer-meta .hubbell-overlay-meta-group:first-child{ margin-top: 0; }
+.hubbell-overlay-panel .hubbell-overlay-footer-meta .hubbell-overlay-meta-title{ margin-bottom: 4px; }
+/* subtle divider between the flags row and the people/places row when both exist */
+.hubbell-overlay-panel .hubbell-overlay-footer-flags:not(:empty) + .hubbell-overlay-footer-meta:not(:empty){
+  border-top: 1px solid var(--era-rule-soft); margin: 0 14px; padding: 8px 0 2px;
+}
+/* nav rail now sits at the very bottom of the footer: its divider goes ABOVE it
+   (separating it from People/Places), not below; transparent so the footer shows. */
+.hubbell-overlay-panel .hubbell-overlay-footer .overlay-letter-nav{
+  border-bottom: 0 !important; border-top: 1px solid var(--era-rule) !important;
+  background: transparent !important;
+}
+/* when there are no People/Places, the footer's own top border already divides it
+   from the body, so the nav needs no extra top rule. */
+.hubbell-overlay-panel .hubbell-overlay-footer-meta:empty + .overlay-letter-nav{ border-top: 0 !important; }
+
+/* In-letter prev/next + mode nav rail (reuses .reader-nav-* classes) */
+.hubbell-overlay-panel .overlay-letter-nav{ border-color: var(--era-rule) !important; background: rgba(0,0,0,.22); }
+.hubbell-overlay-panel .reader-nav-arrow{ background:#2a2316; border:1px solid var(--era-rule); color: var(--era-lantern); }
+.hubbell-overlay-panel .reader-nav-arrow:hover:not(:disabled){ background: rgba(226,181,116,.2); border-color: var(--era-lantern); color:#fff3df; }
+.hubbell-overlay-panel .reader-nav-mode{ background: rgba(0,0,0,.34); border:1px solid var(--era-rule); }
+.hubbell-overlay-panel .reader-nav-mode-btn{ color: var(--era-on-frame-3); }
+.hubbell-overlay-panel .reader-nav-mode-btn.active{ background: var(--era-lantern) !important; color:#1a1407 !important; }
+
+/* THE LETTER — parchment document (the hero), matching the v2 reader body */
+.hubbell-overlay-panel .hubbell-overlay-reader-header{ background: transparent; border-bottom-color: var(--era-rule); }
+.hubbell-overlay-panel .hubbell-overlay-reader-meta{ color: var(--era-on-frame-2); }
+.hubbell-overlay-panel .hubbell-overlay-reader-meta strong{ color: var(--era-lantern); }
+.hubbell-overlay-panel .hubbell-overlay-reader-body{
+  background:
+    radial-gradient(120% 80% at 50% 8%, var(--era-paper-hi), transparent 60%),
+    linear-gradient(180deg, var(--era-paper) 0%, var(--era-paper-lo) 100%) !important;
+  color: var(--era-ink) !important;
+  margin: 14px 14px 18px; padding: 22px 20px 26px;
+  border:1px solid var(--era-paper-edge); border-radius:3px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 18px 36px -16px rgba(0,0,0,.5);
+}
+.hubbell-overlay-panel .hubbell-overlay-reader-body p{ color: var(--era-ink) !important; }
+.hubbell-overlay-panel .hubbell-overlay-reader-body .hl-hospital,
+.hubbell-overlay-panel .hubbell-overlay-reader-body .hl-sick,
+.hubbell-overlay-panel .hubbell-overlay-reader-body .rhl-hospital,
+.hubbell-overlay-panel .hubbell-overlay-reader-body .rhl-sick{ background: color-mix(in srgb, #c79a4e 26%, transparent); color:#7c5b22; border-radius:2px; padding:0 1px; }
+.hubbell-overlay-panel .hubbell-overlay-reader-body .hl-healthy,
+.hubbell-overlay-panel .hubbell-overlay-reader-body .rhl-healthy{ background: color-mix(in srgb, #4a7c59 18%, transparent); color:#3c5e44; border-radius:2px; padding:0 1px; }
+/* Flag-category keyword highlights — same palette as the modal reader so the
+   two surfaces read 1:1 (light washes with dark ink, legible on the parchment). */
+.hubbell-overlay-panel .hubbell-overlay-reader-body .rhl-battle { background:#F4A8A8; color:#5E1414; border-radius:2px; }
+.hubbell-overlay-panel .hubbell-overlay-reader-body .rhl-illness{ background:#F2D85C; color:#523506; border-radius:2px; }
+.hubbell-overlay-panel .hubbell-overlay-reader-body .rhl-death  { background:#B9C6D8; color:#232C3C; border-radius:2px; }
+.hubbell-overlay-panel .hubbell-overlay-reader-body .rhl-wound  { background:#D2AEF3; color:#3A206E; border-radius:2px; }
+/* EXCERPT / NAME ANCHOR — the grey "you clicked this" wash, identical to the
+   modal reader (.reader-body mark.reader-anchor) so a reference preview reads 1:1
+   on both surfaces. A soft neutral parchment-grey, distinct from the gold flags. */
+.hubbell-overlay-panel .hubbell-overlay-reader-body mark.reader-anchor{
+  background: rgba(74,62,42,.16); color: var(--era-ink);
+  border-radius:2px; padding:0 1px;
+  box-shadow: 0 1px 0 rgba(74,62,42,.18) inset;
+}
+/* auto-links inside the parchment — quiet, never a hyperlink underline */
+.hubbell-overlay-panel .hubbell-overlay-reader-body .hubbell-link{ color: var(--era-ink); text-decoration:none; border-bottom:1px solid rgba(187,146,88,.3); }
+.hubbell-overlay-panel .hubbell-overlay-reader-body .hubbell-link:hover{ border-bottom-color: var(--era-lantern-d); background: rgba(226,181,116,.16); }
+/* auto-links in profile prose (on the dark frame) */
+.hubbell-overlay-panel .hubbell-link{ text-decoration-color: var(--era-rule); }
+
+/* health condition block + misc */
+.hubbell-overlay-panel .hubbell-overlay-health{ border:1px solid var(--era-rule); background: rgba(0,0,0,.22); border-radius:7px; }
+.hubbell-overlay-panel .hubbell-overlay-hsymptom{ background: rgba(236,227,210,.06); color: var(--era-on-frame-2); }
+.hubbell-overlay-panel .hubbell-overlay-loading,
+.hubbell-overlay-panel .hubbell-overlay-reader-fallback{ color: var(--era-on-frame-3); }
+.hubbell-overlay-panel .hubbell-overlay-reader-fallback a{ color: var(--era-lantern); }
+.hubbell-overlay-panel .hubbell-overlay-body::-webkit-scrollbar-thumb{ background: var(--era-rule); }
+
+/* ============================================================================
+   LAMPLIT LETTER READER — compact header + editorial context sections.
+   Goals: un-cram the top row (back/share/close pinned top-right; "View on Map"
+   demoted to a small inline pill on the meta line); slightly smaller type
+   throughout; add the editor's summary (above the letter) and people / places /
+   event tags (below it). All scoped to the panel so the light overlay defaults
+   on other surfaces are untouched.
+   ============================================================================ */
+
+/* Compact letter header — single column, action icons pinned top-right */
+.hubbell-overlay-panel .hubbell-overlay-letterhead{ position: relative; display: block; padding: 13px 16px 11px; }
+.hubbell-overlay-panel .hubbell-overlay-letterhead .hubbell-overlay-header-left{ padding-right: 78px; }
+.hubbell-overlay-panel .hubbell-overlay-letterhead .hubbell-overlay-header-actions{
+  position: absolute; top: 9px; right: 11px; margin: 0; gap: 2px;
+}
+.hubbell-overlay-panel .hubbell-overlay-letterhead .hubbell-overlay-close,
+.hubbell-overlay-panel .hubbell-overlay-letterhead .hubbell-overlay-back{ font-size: .92rem; padding: 4px 6px; }
+/* Share → icon-only in the header (font-size:0 collapses the "Share" label; the
+   explicitly-sized SVG stays), so back + share + close read as three tidy icons
+   instead of the old cramped icon-plus-text row. */
+.hubbell-overlay-panel .hubbell-overlay-letterhead .dl-modal-share{
+  font-size: 0; gap: 0; padding: 5px 6px; border-color: var(--era-rule); color: var(--era-on-frame-2);
+}
+.hubbell-overlay-panel .hubbell-overlay-letterhead .dl-modal-share:hover{
+  color: var(--era-lantern); border-color: var(--era-lantern); background: rgba(226,181,116,.12);
+}
+/* Title + pills a touch smaller so two names + arrow fit one line in the rail */
+.hubbell-overlay-panel .hubbell-overlay-letterhead .hubbell-overlay-title{ font-size: 1.04rem; line-height: 1.3; gap: 3px 7px; }
+.hubbell-overlay-panel .hubbell-overlay-letterhead .hubbell-overlay-person-pill{ font-size: .9rem; padding-left: 16px !important; }
+.hubbell-overlay-panel .hubbell-overlay-letterhead .hubbell-overlay-person-pill::before{ width: 9px; height: 9px; }
+.hubbell-overlay-panel .hubbell-overlay-letterhead .hubbell-overlay-subtitle{
+  display: flex; align-items: center; flex-wrap: wrap; gap: 7px;
+  font-size: .72rem; margin-top: 5px;
+}
+.hubbell-overlay-panel .hubbell-overlay-subtitle-meta{
+  /* match the modal reader's mono date/location meta (.reader-meta 10px) − 1pt */
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: .02em;
+  color: var(--era-on-frame-2);
+}
+
+/* "View on Map" → small inline gold pill */
+.hubbell-overlay-panel .hubbell-overlay-maplink{
+  display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0;
+  font-size: .68rem; font-weight: 600; letter-spacing: .01em;
+  color: var(--era-lantern); text-decoration: none;
+  border: 1px solid var(--era-rule); border-radius: 20px; padding: 2px 9px;
+  white-space: nowrap; transition: background .15s, border-color .15s, color .15s;
+}
+.hubbell-overlay-panel .hubbell-overlay-maplink:hover{
+  background: rgba(226,181,116,.16); border-color: var(--era-lantern); color: #fff3df;
+}
+
+/* Editor's summary — italic orientation line above the parchment. Matches the
+   modal reader's .reader-exec-summary (13.5px italic Source Serif + a mono
+   "Editor's summary" eyebrow), one point smaller: 12.5px body / 7.5px eyebrow. */
+.hubbell-overlay-panel .hubbell-overlay-exec{
+  font-family: 'Source Serif 4', Georgia, serif; font-style: italic;
+  font-size: 12.5px; line-height: 1.6; color: var(--era-on-frame);
+  border-left: 2px solid var(--exec-c, var(--era-lantern)); padding: 1px 0 1px 12px;
+  margin: 14px 14px 0;
+}
+.hubbell-overlay-panel .hubbell-overlay-exec::before{
+  content:"Editor's summary"; display:block; font: 600 7.5px/1 var(--font-mono); font-style:normal;
+  letter-spacing:.14em; text-transform:uppercase; color: var(--era-on-frame-3); margin-bottom:6px;
+}
+/* "Health context:" — medical historian's clinical read (Wellness Ledger only),
+   1pt smaller than the modal, distinct clinical-teal voice with a pulse eyebrow. */
+.hubbell-overlay-panel .hubbell-overlay-health-context{
+  font-family: 'Source Serif 4', Georgia, serif; font-style: italic;
+  font-size: 11.5px; line-height: 1.6; color: var(--era-on-frame);
+  border-left: 2px solid #6BA6B5; padding: 1px 0 1px 12px; margin: 12px 14px 0;
+}
+.hubbell-overlay-panel .hubbell-overlay-health-context .ohc-eyebrow{
+  display:flex; align-items:center; gap:5px;
+  font: 600 7.5px/1 var(--font-mono); font-style:normal; letter-spacing:.14em; text-transform:uppercase;
+  color:#8fb9c4; margin-bottom:6px;
+}
+.hubbell-overlay-panel .hubbell-overlay-health-context .ohc-eyebrow svg{ width:11px; height:11px; flex:none; }
+
+/* Letter body — modal reader is 16px; the narrow rail runs one point smaller. */
+.hubbell-overlay-panel .hubbell-overlay-reader-body{ font-size: 15px; line-height: 1.65; }
+
+/* Reference footer — people / places / event tags below the letter. Type and
+   fonts mirror the modal reader's footer (mono 8.5px), one point smaller (7.5px). */
+.hubbell-overlay-panel .hubbell-overlay-meta{ margin: 4px 14px 12px; }
+.hubbell-overlay-panel .hubbell-overlay-meta-group{ margin-top: 13px; }
+.hubbell-overlay-panel .hubbell-overlay-meta-title{
+  font-family: var(--font-mono); font-size: 7.5px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .12em;
+  color: var(--era-on-frame-3); margin-bottom: 7px;
+}
+.hubbell-overlay-panel .hubbell-overlay-tags{ display: flex; flex-wrap: wrap; gap: 4px 5px; }
+.hubbell-overlay-panel .hubbell-overlay-tag{
+  font-family: var(--font-mono); font-size: 7.5px; line-height: 1.3; letter-spacing: .01em;
+  padding: 2px 8px; border-radius: 20px;
+  text-decoration: none; border: 1px solid var(--era-rule);
+  color: var(--era-on-frame-2); background: rgba(236,227,210,.05);
+  transition: background .15s, border-color .15s, color .15s;
+}
+.hubbell-overlay-panel .hubbell-overlay-tag:hover{ border-color: var(--era-lantern); color: var(--era-lantern); background: rgba(226,181,116,.12); }
+.hubbell-overlay-panel .hubbell-overlay-tag.place{ color: #9ec8a6; border-color: rgba(120,170,130,.3); }
+.hubbell-overlay-panel .hubbell-overlay-tag.place:hover{ border-color: #8fc29d; color: #b6dcbd; background: rgba(120,170,130,.14); }
+.hubbell-overlay-panel .hubbell-overlay-flagtag{
+  font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+  padding: 3px 9px; border-radius: 4px; line-height: 1.2;
+}
+.hubbell-overlay-panel .hubbell-overlay-flagtag.battle{ background: rgba(196,78,82,.2); color: #e69a9c; }
+.hubbell-overlay-panel .hubbell-overlay-flagtag.illness{ background: rgba(184,134,11,.22); color: #e3bd66; }
+.hubbell-overlay-panel .hubbell-overlay-flagtag.death{ background: rgba(150,150,150,.22); color: #d2ccc0; }
+.hubbell-overlay-panel .hubbell-overlay-flagtag.wound{ background: rgba(150,70,60,.24); color: #dca0a0; }
+/* Flag pills are clickable filters (1:1 with the modal reader). .flag-off dims
+   the pill; .hide-<flag> on the parchment collapses that category's washes. */
+.hubbell-overlay-panel .hubbell-overlay-flagtag[data-flag]{ cursor: pointer; user-select: none; transition: opacity .15s, filter .15s; }
+.hubbell-overlay-panel .hubbell-overlay-flagtag.flag-off{ opacity: .4; filter: saturate(.35); }
+.hubbell-overlay-panel .hubbell-overlay-reader-body.hide-battle .rhl-battle,
+.hubbell-overlay-panel .hubbell-overlay-reader-body.hide-illness .rhl-illness,
+.hubbell-overlay-panel .hubbell-overlay-reader-body.hide-death .rhl-death,
+.hubbell-overlay-panel .hubbell-overlay-reader-body.hide-wound .rhl-wound{
+  background: transparent !important; color: var(--era-ink) !important;
+}
+
+/* Corpus "you are here" context strip — era-toned for the dark panel */
+.hubbell-overlay-panel .reader-context-strip{ margin: 4px 14px 2px; }
+.hubbell-overlay-panel .reader-context-strip .rcs-axis{ stroke: var(--era-rule); }
+.hubbell-overlay-panel .reader-context-strip .rcs-grid{ stroke: var(--era-on-frame-3); opacity: .4; }
+.hubbell-overlay-panel .reader-context-strip .rcs-break{ stroke: var(--era-on-frame-3); }
+.hubbell-overlay-panel .reader-context-strip .rcs-marker{ box-shadow: 0 0 0 2.5px var(--era-frame), 0 0 0 3.5px rgba(0,0,0,.45); }
+.hubbell-overlay-panel .reader-context-strip .rcs-yr,
+.hubbell-overlay-panel .reader-context-strip .rcs-caption{ color: var(--era-on-frame-3); }
+.hubbell-overlay-panel .reader-context-strip .rcs-tip{ background: #231d12; color: var(--era-lantern); }

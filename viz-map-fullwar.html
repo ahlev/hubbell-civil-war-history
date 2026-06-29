@@ -10,7 +10,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="03-data/map-movements.js"></script>
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="_design.css">
+<link rel="stylesheet" href="_design.css?v=7">
 <style>
 
 html, body {
@@ -188,8 +188,13 @@ body {
 /* ── Info Panel (right side) ── */
 .info-panel {
   width: 360px;
-  background: var(--bg-elev);
-  border-left: 1px solid var(--rule);
+  /* Near-white with only a WHISPER of warm marigold — barely noticeable, so the
+     panel reads as a clean light surface against the map, not a yellow card. The
+     thin gold left-border (tied to the active place-label gold #B8860B) carries
+     the marigold identity instead of the fill. Dark (--ink) content keeps full
+     contrast. */
+  background: linear-gradient(180deg, #FCF8F0 0%, #F8F0DD 100%);
+  border-left: 1px solid rgba(184, 134, 11, 0.32);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -219,7 +224,7 @@ body {
 
 .info-header {
   padding: 10px 16px 6px;
-  border-bottom: 1px solid #F0ECE7;
+  border-bottom: 1px solid rgba(184, 134, 11, 0.22);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -350,7 +355,7 @@ body {
 .info-section {
   margin-top: 10px;
   padding-top: 8px;
-  border-top: 1px solid #F0ECE7;
+  border-top: 1px solid rgba(184, 134, 11, 0.2);
 }
 .info-section h4 {
   font-size: 0.72rem;
@@ -847,6 +852,17 @@ body {
   overscroll-behavior: contain;
 }
 .place-search-results.open { display: block; }
+/* On desktop, let the results panel grow wider than the 240px input so each
+   row can show its location context inline on one line instead of wrapping to
+   many short lines. Anchored at the input's left edge; extends rightward toward
+   (but not all the way to) the viewport edge. Mobile keeps the input width. */
+@media (min-width: 769px) {
+  .place-search-results {
+    right: auto;
+    width: 460px;
+    max-width: calc(100vw - 48px);
+  }
+}
 .search-result {
   padding: 7px 10px;
   cursor: pointer;
@@ -881,6 +897,8 @@ body {
   white-space: nowrap;
 }
 .search-result-snippet {
+  flex: 1;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1100,16 +1118,16 @@ body.letter-reader-open .narrative-caption {
 .recent-letter-card {
   padding: 5px 10px;
   margin-bottom: 3px;
-  background: #FAFAFA;
+  background: #FBF7EC;
   border-radius: 3px;
-  border-left: 3px solid var(--rule);
+  border-left: 3px solid rgba(184, 134, 11, 0.35);
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
   font-size: 0.73rem;
   line-height: 1.4;
 }
 .recent-letter-card:hover {
-  background: #F0F4F8;
+  background: #FFFBF0;
   border-left-color: #B8860B;
 }
 .recent-letter-card .letter-date {
@@ -1625,8 +1643,8 @@ body.letter-reader-open .narrative-caption {
   margin-top: 10px;
 }
 </style>
-<link rel="stylesheet" href="_overlay.css?v=1775363534">
-<link rel="stylesheet" href="_reader-era.css?v=13">
+<link rel="stylesheet" href="_overlay.css?v=10">
+<link rel="stylesheet" href="_reader-era.css?v=16">
 <link rel="stylesheet" href="_scrollrail.css?v=11">
 <style>:root{ --rail-accent:#52A86E; }</style>
 <script src="_scrollrail.js?v=11"></script>
@@ -4207,13 +4225,13 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script src="_design-data.js"></script>
-<script src="_design-ui.js"></script>
+<script src="_design-ui.js?v=5"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
-<script src="_reader.js?v=13"></script>
+<script src="_reader.js?v=20"></script>
 <script src="_deeplink.js"></script>
-<script src="_overlay-data.js?v=1775363534"></script>
-<script src="_overlay.js?v=1775363534"></script>
+<script src="_overlay-data.js?v=15"></script>
+<script src="_overlay.js?v=23"></script>
 <script>HubbellOverlay.bindPage({ tags: true, locations: true });</script>
 <script>
 HubbellDeepLink.injectShareButton();

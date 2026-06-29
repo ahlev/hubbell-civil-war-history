@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="_design.css">
+<link rel="stylesheet" href="_design.css?v=7">
 <style>
 :root{
   --card:var(--bg-elev);
@@ -16,7 +16,7 @@
 }
 
 .hero{text-align:center;padding:72px 32px 48px;max-width:900px;margin:0 auto}
-.hero h1{/* uses shared .page-title from _design.css */}
+.hero h1{/* uses shared .page-title from _design.css?v=7 */}
 .hero .subtitle{font-size:1.02rem;color:var(--text-mid);max-width:660px;margin:0 auto 20px;font-weight:300}
 .hero .stat-row{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:16px}
 .hero .stat{text-align:center}
@@ -172,8 +172,8 @@ table.ref-table tr{cursor:pointer}
   line-height: 1.5;
 }
 </style>
-<link rel="stylesheet" href="_overlay.css?v=1775363534">
-<link rel="stylesheet" href="_reader-era.css?v=13">
+<link rel="stylesheet" href="_overlay.css?v=10">
+<link rel="stylesheet" href="_reader-era.css?v=16">
 <link rel="stylesheet" href="_scrollrail.css?v=11">
 <script src="_scrollrail.js?v=11"></script>
 </head>
@@ -241,10 +241,10 @@ table.ref-table tr{cursor:pointer}
 </div>
 
 <script src="_design-data.js"></script>
-<script src="_design-ui.js"></script>
+<script src="_design-ui.js?v=5"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
-<script src="_reader.js?v=13"></script>
+<script src="_reader.js?v=20"></script>
 <script>
 var RAW_LETTERS = LETTERS;
 
@@ -1143,8 +1143,8 @@ document.getElementById('tlPanRightBtn').addEventListener('click', tlPanRight);
   Based on 273 transcribed letters from the Hubbell family collection, 1861–1870. Financial figures are extracted from letter text via pattern matching. Modern dollar equivalents use BLS CPI data.
 </footer>
 <script src="_deeplink.js"></script>
-<script src="_overlay-data.js?v=1775363534"></script>
-<script src="_overlay.js?v=1775363534"></script>
+<script src="_overlay-data.js?v=15"></script>
+<script src="_overlay.js?v=23"></script>
 <script>HubbellOverlay.bindPage({ tags: true, locations: true });</script>
 <script>
 HubbellDeepLink.injectShareButton();

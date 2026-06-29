@@ -1,0 +1,199 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation "Primary" [ref=e3]:
+      - generic [ref=e4]:
+        - link "Hubbell Brothers, home" [ref=e5] [cursor=pointer]:
+          - /url: index.html
+          - img [ref=e6]
+          - generic [ref=e11]:
+            - text: The Hubbell Brothers
+            - generic [ref=e12]: Civil War Letters · 1861–1865
+        - button "Menu" [ref=e13] [cursor=pointer]:
+          - img [ref=e14]
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - heading "The People Web" [level=1] [ref=e19]:
+            - text: The People Web
+            - img [ref=e20]
+          - generic [ref=e25]: Hubbell Civil War Letter Collection
+        - textbox "Search people by name..." [ref=e27]
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - heading "Most Mentioned People" [level=3] [ref=e30]
+            - generic [ref=e31] [cursor=pointer]:
+              - generic [ref=e32]: Frances Hubbell
+              - generic [ref=e33]: 44 mentions
+            - generic [ref=e34] [cursor=pointer]:
+              - generic [ref=e35]: Luther
+              - generic [ref=e36]: 39 mentions
+            - generic [ref=e37] [cursor=pointer]:
+              - generic [ref=e38]: Capt. Ransom
+              - generic [ref=e39]: 27 mentions
+            - generic [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: Capt. Rich/Reich
+              - generic [ref=e42]: 19 mentions
+            - generic [ref=e43] [cursor=pointer]:
+              - generic [ref=e44]: Alek Douglas
+              - generic [ref=e45]: 18 mentions
+            - generic [ref=e46] [cursor=pointer]:
+              - generic [ref=e47]: Silas
+              - generic [ref=e48]: 13 mentions
+            - generic [ref=e49] [cursor=pointer]:
+              - generic [ref=e50]: Mrs. Brinkerhoff
+              - generic [ref=e51]: 12 mentions
+            - generic [ref=e52] [cursor=pointer]:
+              - generic [ref=e53]: Lt. Scott
+              - generic [ref=e54]: 12 mentions
+            - generic [ref=e55] [cursor=pointer]:
+              - generic [ref=e56]: Sid
+              - generic [ref=e57]: 12 mentions
+            - generic [ref=e58] [cursor=pointer]:
+              - generic [ref=e59]: Cousin Nellie
+              - generic [ref=e60]: 11 mentions
+            - generic [ref=e61] [cursor=pointer]:
+              - generic [ref=e62]: Culver Bostwick
+              - generic [ref=e63]: 11 mentions
+            - generic [ref=e64] [cursor=pointer]:
+              - generic [ref=e65]: Col. Strain
+              - generic [ref=e66]: 11 mentions
+          - generic [ref=e67]:
+            - heading "Henry's Unique Connections" [level=4] [ref=e68]: Henry's Unique Connections
+            - generic [ref=e70]: Brink, Capt. Reich, The Chaplain, Albert, Kellogg, E. Graves, Henry Cooper, Gen. Gorman, + 4 more
+          - generic [ref=e71]:
+            - heading "Alexander's Unique Connections" [level=4] [ref=e72]: Alexander's Unique Connections
+            - generic [ref=e74]: Lt. White, Mrs. B., The Major, Mr. Partridge, Col. Hayward, Orderly Dickinson, Edwin Porter, Col. Green, + 30 more
+          - generic [ref=e75]:
+            - heading "Charles's Unique Connections" [level=4] [ref=e76]: Charles's Unique Connections
+            - generic [ref=e78]: Lt. Col. Armstrong, Pet Stacia, Mrs. Doolittle, Murray, Joel Savage, Cyrus Kellogg, Charles Dodds, Gen. Slough, + 15 more
+          - generic [ref=e79]:
+            - heading "Shared Between Brothers" [level=3] [ref=e80]
+            - generic [ref=e81] [cursor=pointer]:
+              - generic [ref=e82]: Frances Hubbell
+              - generic [ref=e83]: Alexander & Henry & Charles & James
+            - generic [ref=e84] [cursor=pointer]:
+              - generic [ref=e85]: Luther
+              - generic [ref=e86]: Alexander & Charles
+            - generic [ref=e87] [cursor=pointer]:
+              - generic [ref=e88]: Capt. Ransom
+              - generic [ref=e89]: Henry & Alexander & Charles
+            - generic [ref=e90] [cursor=pointer]:
+              - generic [ref=e91]: Capt. Rich/Reich
+              - generic [ref=e92]: Henry & Alexander & Charles
+            - generic [ref=e93] [cursor=pointer]:
+              - generic [ref=e94]: Alek Douglas
+              - generic [ref=e95]: Charles & James
+            - generic [ref=e96] [cursor=pointer]:
+              - generic [ref=e97]: Silas
+              - generic [ref=e98]: Henry & Alexander & Charles
+            - generic [ref=e99] [cursor=pointer]:
+              - generic [ref=e100]: Mrs. Brinkerhoff
+              - generic [ref=e101]: James & Henry & Alexander & Charles
+            - generic [ref=e102] [cursor=pointer]:
+              - generic [ref=e103]: Lt. Scott
+              - generic [ref=e104]: Henry & Alexander
+            - generic [ref=e105] [cursor=pointer]:
+              - generic [ref=e106]: Sid
+              - generic [ref=e107]: Henry & Alexander & Charles
+            - generic [ref=e108] [cursor=pointer]:
+              - generic [ref=e109]: Cousin Nellie
+              - generic [ref=e110]: Henry & Alexander
+            - generic [ref=e111] [cursor=pointer]:
+              - generic [ref=e112]: Col. Strain
+              - generic [ref=e113]: Charles & Alexander & James
+            - generic [ref=e114] [cursor=pointer]:
+              - generic [ref=e115]: Aunt Laura
+              - generic [ref=e116]: Henry & Alexander & Charles
+            - generic [ref=e117] [cursor=pointer]:
+              - generic [ref=e118]: Mr. Hoyle
+              - generic [ref=e119]: Alexander & Henry & Charles
+            - generic [ref=e120] [cursor=pointer]:
+              - generic [ref=e121]: Gen. McClellan
+              - generic [ref=e122]: Henry & Alexander
+            - generic [ref=e123] [cursor=pointer]:
+              - generic [ref=e124]: Albert Cook
+              - generic [ref=e125]: Alexander & Charles
+            - generic [ref=e126]: + 41 more shared connections
+          - generic [ref=e127]:
+            - heading "Network Statistics" [level=3] [ref=e128]
+            - generic [ref=e129]:
+              - generic [ref=e130]: Total people identified
+              - generic [ref=e131]: "405"
+            - generic [ref=e132]:
+              - generic [ref=e133]: Letters with people
+              - generic [ref=e134]: "273"
+            - generic [ref=e135]:
+              - generic [ref=e136]: Network edges
+              - generic [ref=e137]: "653"
+            - generic [ref=e138]:
+              - generic [ref=e139]: Military
+              - generic [ref=e140]: "140"
+            - generic [ref=e141]:
+              - generic [ref=e142]: Family
+              - generic [ref=e143]: "71"
+            - generic [ref=e144]:
+              - generic [ref=e145]: Civilian
+              - generic [ref=e146]: "77"
+            - generic [ref=e147]:
+              - generic [ref=e148]: Unknown
+              - generic [ref=e149]: "117"
+      - generic [ref=e150]:
+        - button "☰" [ref=e151] [cursor=pointer]
+        - button "Link & Explore Select a second node":
+          - generic: Link & Explore
+          - generic: Select a second node
+        - generic [ref=e152]:
+          - generic [ref=e153]: Date Range
+          - generic [ref=e154]:
+            - slider: "0"
+            - slider: "100"
+            - generic [ref=e156]:
+              - generic [ref=e157]: Jun 1861
+              - generic [ref=e158]: Jul 1865
+            - generic [ref=e159]: All dates
+            - button "Reset" [ref=e160] [cursor=pointer]
+        - generic [ref=e162]:
+          - generic [ref=e163]:
+            - strong [ref=e164]: "409"
+            - text: nodes
+          - generic [ref=e165]:
+            - strong [ref=e166]: "653"
+            - text: edges
+          - generic [ref=e167]:
+            - strong [ref=e168]: "273"
+            - text: letters
+        - generic [ref=e169]:
+          - button "+" [ref=e170] [cursor=pointer]
+          - button "−" [ref=e171] [cursor=pointer]
+          - button "↺" [ref=e172] [cursor=pointer]
+        - generic:
+          - generic [ref=e174]:
+            - generic [ref=e175]:
+              - generic [ref=e176]: ◆
+              - text: Henry
+            - generic [ref=e177]:
+              - generic [ref=e178]: ■
+              - text: Alexander
+            - generic [ref=e179]:
+              - generic [ref=e180]: ▲
+              - text: James
+            - generic [ref=e181]:
+              - generic [ref=e182]: ⬡
+              - text: Charles
+          - generic [ref=e183]:
+            - generic [ref=e184]: Min. mentions
+            - slider [ref=e185] [cursor=pointer]: "2"
+            - generic [ref=e186]: "2"
+            - generic [ref=e187]: (135 visible)
+          - generic [ref=e188]:
+            - generic [ref=e189]: "Show:"
+            - generic [ref=e190] [cursor=pointer]: Family
+            - generic [ref=e192] [cursor=pointer]: Military
+            - generic [ref=e194] [cursor=pointer]: Civilian
+            - generic [ref=e196] [cursor=pointer]: Unknown
+        - generic:
+          - heading "Building the People Web..." [level=2]
+          - paragraph: Simulating force-directed layout
+  - contentinfo [ref=e201]: Based on 273 transcribed letters from the Hubbell family collection, 1861–1865. Health, emotion, and significance assessments are editorial judgments by the researcher. Financial figures are extracted from letter text via pattern matching.
+  - button "Copy share link" [ref=e202] [cursor=pointer]:
+    - img [ref=e203]

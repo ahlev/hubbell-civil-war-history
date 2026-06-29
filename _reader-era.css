@@ -1,7 +1,11 @@
 /* ============================================================================
    _reader-era.css — "a letter read by lamplight"
-   Era theme for the experience-v2 landing's letter reader ONLY (loaded LAST
-   inside the isolated reader.html iframe → cannot touch the shared readers).
+   The shared era theme for the letter reader on EVERY page (bios, the
+   collection, the wellness ledger, the map, and the experience-v2 landing's
+   iframe). v13 made it PORTABLE: all token retoning is scoped to
+   .reader-overlay (the reader's own root, present on every page) instead of
+   :root, so loading this on a full content page retones only the reader, never
+   the host page. Loaded LAST so it overrides the base dashboard reader styling.
 
    The landing now uses the FULL reader (HubbellReader.open → .reader-overlay /
    .reader-panel / .reader-* ), so it carries the KEY-EVENT TOGGLE pills
@@ -17,7 +21,12 @@
    slightly smaller From/To text, wider panel (960/96vw) w/ tighter edge padding.
    ============================================================================ */
 
-:root{
+/* ── Token retoning is SCOPED to .reader-overlay (not :root) so this stylesheet
+   is portable onto full content pages (bios, collection, ledger, map): it
+   retones ONLY the reader subtree, never the host page's --bg/--ink/--accent.
+   On the isolated reader.html iframe the overlay is still present, so it works
+   there unchanged. ── */
+.reader-overlay{
   /* ---- TUNABLE era palette ---- */
   --era-frame:    #14110a;  --era-frame-lo:#0e0c07;
   --era-glow:     rgba(232,182,104,.16);
@@ -72,13 +81,13 @@
 .reader-close:hover{ color: var(--era-lantern) !important; }
 /* Share — was injected position:absolute and overlapped the title/nav. Reseat as a compact
    icon clustered just LEFT of the close, so the two form a tidy top-right action group. */
-.reader-panel .dl-modal-share, .dl-modal-share{
+.reader-overlay .dl-modal-share{
   position:absolute !important; top:14px !important; right:50px !important; left:auto !important; bottom:auto !important; z-index:6 !important;
   font-size:0 !important; padding:6px !important; margin:0 !important;
   background:transparent !important; border:0 !important; color: var(--era-on-frame-2) !important;
 }
-.dl-modal-share svg{ width:16px !important; height:16px !important; }
-.dl-modal-share:hover{ color: var(--era-lantern) !important; }
+.reader-overlay .dl-modal-share svg{ width:16px !important; height:16px !important; }
+.reader-overlay .dl-modal-share:hover{ color: var(--era-lantern) !important; }
 /* SCROLL FIX: the content region must shrink below its content height to scroll inside the flex panel */
 #hubbellReaderContent{ min-height:0 !important; overflow-y:auto !important; padding: 0 24px 24px !important; }
 
@@ -180,6 +189,21 @@ a.reader-pill:hover{ filter:none !important; box-shadow:none !important; color: 
   content:"Editor's summary"; display:block; font: 600 8.5px/1 var(--font-mono); font-style:normal;
   letter-spacing:.14em; text-transform:uppercase; color: var(--era-on-frame-3); margin-bottom:7px;
 }
+/* "Health context:" — the medical historian's clinical read (Wellness Ledger only).
+   Same italic form as the editor's summary but a distinct CLINICAL TEAL accent +
+   a medical-pulse eyebrow, so the two perspectives never read as the same voice. */
+.reader-health-context{
+  margin: 12px 0 !important; padding: 12px 2px 12px 14px !important;
+  border-left: 2px solid #6BA6B5 !important;
+  font: italic 400 13.5px/1.62 'Source Serif 4',Georgia,serif !important;
+  color: var(--era-on-frame) !important; position:relative;
+}
+.reader-health-context .rhc-eyebrow{
+  display:flex; align-items:center; gap:5px;
+  font: 600 8.5px/1 var(--font-mono); letter-spacing:.14em; text-transform:uppercase;
+  color:#8fb9c4; margin-bottom:7px;
+}
+.reader-health-context .rhc-eyebrow svg{ width:12px; height:12px; flex:none; }
 
 /* context-strip timeline ribbon — retone */
 .reader-context-strip .rcs-tip{ background:#231d12 !important; color: var(--era-lantern) !important; }
@@ -251,6 +275,15 @@ a.reader-tag:hover{ border-color: var(--era-lantern) !important; color: var(--er
 }
 .reader-body .hubbell-link:hover{ border-bottom-color: var(--era-lantern-d) !important; background: rgba(226,181,116,.16) !important; }
 .reader-body mark{ background: rgba(226,181,116,.42) !important; color:inherit !important; border-radius:2px; }
+/* EXCERPT ANCHOR — the teased quote that invited the click. A soft, neutral
+   parchment-grey wash (NOT the gold search hit) so the reader simply lands on
+   the passage and lets it settle, a quiet "you clicked this" marker. */
+.reader-body mark.reader-anchor{
+  background: rgba(74,62,42,.16) !important;
+  color: var(--era-ink) !important;
+  border-radius:2px; padding:0 1px;
+  box-shadow: 0 1px 0 rgba(74,62,42,.18) inset !important;
+}
 
 /* KEY-EVENT HIGHLIGHTS in the parchment (controlled by the toggle pills) — a soft, dignified wash
    that points at the passage without inking over it like a marker pen; .hide-<flag> collapses them */
@@ -309,6 +342,22 @@ a.reader-tag:hover{ border-color: var(--era-lantern) !important; color: var(--er
 }
 .era-scrollthumb:active{ cursor:grabbing; }
 @media (min-width: 641px){ .era-scrollrail{ display:none !important; } }   /* mobile only */
+
+/* ============================================================
+   DESKTOP — letter-panel-only scroll. The metadata + filters (header, timeline,
+   editor's summary, health, people/places, and the footer nav rail) stay
+   ANCHORED and visible; only the letter transcription (.reader-body) scrolls
+   within its own region. Mobile (<641px) keeps the whole-content scroll + the
+   draggable scroll rail above.
+   ============================================================ */
+@media (min-width: 641px){
+  #hubbellReaderContent{ display:flex; flex-direction:column; overflow:hidden !important; }
+  #hubbellReaderContent > *{ flex:0 0 auto; }                 /* chrome anchors */
+  #hubbellReaderContent > .reader-body{
+    flex:1 1 auto; min-height:0;                              /* fills the remaining height */
+    overflow-y:auto !important; overflow-x:hidden;            /* …and scrolls the transcription */
+  }
+}
 
 /* ============================================================
    MOTION / RESPONSIVE

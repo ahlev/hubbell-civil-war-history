@@ -7,11 +7,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="_design.css">
-<link rel="stylesheet" href="_overlay.css">
-<link rel="stylesheet" href="_bio.css">
+<link rel="stylesheet" href="_design.css?v=7">
+<link rel="stylesheet" href="_overlay.css?v=10">
+<link rel="stylesheet" href="_bio.css?v=1">
 <link rel="stylesheet" href="_hero.css">
-<link rel="stylesheet" href="_reader-era.css?v=13">
+<link rel="stylesheet" href="_reader-era.css?v=16">
 <style>
 :root{
   --henry-soft:#E8F0F8;--alexander-soft:#FDF5E0;--james-soft:#E8F3EC;
@@ -241,10 +241,10 @@ html{ scroll-behavior:smooth; }
 </div>
 
 <script src="_design-data.js"></script>
-<script src="_design-ui.js"></script>
+<script src="_design-ui.js?v=5"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
-<script src="_reader.js?v=14"></script>
+<script src="_reader.js?v=20"></script>
 <script src="_hero.js"></script>
 <script src="_bio-nav.js?v=2"></script>
 <script>
@@ -520,6 +520,8 @@ function renderFannie(){
         '<section class="pd-section"><h3>The Story</h3><div class="pd-bio">' +
           '<p>Fannie was the eldest child and only daughter, four years older than Henry. In early 1862 she took a teaching position in Canada; by spring 1864 she had risen to preceptress of Champlain Academy, prompting Charles to write, “Frances is rising in the world, but I am afraid it is too hard work for her.”</p>' +
           '<p>Though none of Fannie’s own letters survive, the brothers craved hers. She received at least 38 letters across the war — addressed “dear sister,” often warmer than the letters home to their mother. She never married, and around 1872 followed the family west to Iowa.</p>' +
+          '<p>One unexpected detail survives only in her brothers’ letters. In the autumn of 1862 — Henry still missing, the family reading the casualty lists each morning — Fannie, the household’s French teacher, had taken up an odd new occupation: writing love letters in French for a neighbor’s servant girl, and relayed it to Charles with plain delight:</p>' +
+          '<div class="letter-quote">I have got quite into the business of writing love letters. Mr. Averill’s servant girl has quite an extensive correspondence&hellip; she comes to me as no one else can write French for her. I enjoy it finely&hellip;<cite><a class="lq-link" onclick="openLetter(\'LTR-1862-11-10-001\')">November 10, 1862 &mdash; Fannie to Charles</a></cite></div>' +
         '</div></section>' +
         '<section class="pd-section"><h3>Letters Written to Her</h3>' +
           '<button class="letters-toggle" style="--person:var(--fannie)" data-recipient="fannie"><span class="lt-icon">▶</span> Letters written to her <span class="lt-count"></span></button>' +
@@ -606,7 +608,7 @@ function wireSectionNav(root){
 
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=15"></script>
-<script src="_overlay.js?v=16"></script>
+<script src="_overlay.js?v=23"></script>
 <script>if (window.HubbellDeepLink) HubbellDeepLink.injectShareButton();</script>
 </body>
 </html>
