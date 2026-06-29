@@ -1,0 +1,150 @@
+[
+  {
+    "id": "LTR-1864-05-03-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Charles makes no statement about his own body, though he came through a river skirmish in which men beside him were shot. He notes the regiment 'look thin in flesh' and that A. Douglass 'is not very well' — comrades, not the author."
+  },
+  {
+    "id": "LTR-1864-05-06-001",
+    "severity": "minor",
+    "tone": "reassuring",
+    "conditions": [
+      { "tag": "other-injury", "quote": "my used up feet will testify" }
+    ],
+    "healthContext": "Writing to report his 'welfare' after hard marching, Alexander notes the boots from home proved too small and chafed his feet raw; he sold them and switched to government bootees. A transient march injury, lightly framed."
+  },
+  {
+    "id": "LTR-1864-05-08-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Under campaign conditions Alexander affirms he is 'still all right' and unharmed, framing his survival in providential terms to ease his mother's anxiety. No ailment in the author."
+  },
+  {
+    "id": "LTR-1864-05-10-001",
+    "severity": "minor",
+    "tone": "reassuring",
+    "conditions": [
+      { "tag": "other-injury", "quote": "Those new boots used up my feet so that I was obliged to march two days in rear of the column and one day was carried in an ambulance" }
+    ],
+    "healthContext": "His ill-fitting new boots blistered his feet badly enough that he fell behind the column for two days and rode an ambulance one day — a disabling but transient foot injury from which he reports he is now 'all right.' Otherwise he affirms coming through the fighting unharmed."
+  },
+  {
+    "id": "LTR-1864-05-17-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Alexander reports coming out of the May 15 battle 'unscathed,' affirming he and all of Co. H were unhurt. No ailment in the author."
+  },
+  {
+    "id": "LTR-1864-05-20-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Alexander describes the shared hardship of constant marching under a scorching sun and his gratitude for a day's rest, but makes no claim of personal illness or injury. The exhaustion is framed collectively, not as his own ailment."
+  },
+  {
+    "id": "LTR-1864-05-23-001",
+    "severity": "minor",
+    "tone": "neutral",
+    "conditions": [
+      { "tag": "debility", "quote": "I kept up all the way here till within two miles of this place when I fell out and took my own time" }
+    ],
+    "healthContext": "Charles describes severe marching exhaustion on the retreat from Red River — a march he 'could never have stood' had he not been absent earlier — falling out two miles short of camp and recovering somewhat after a swim. Transient heat-and-march exhaustion in the Louisiana summer, not a named disease. He separately notes brother James 'looks well and healthy.'"
+  },
+  {
+    "id": "LTR-1864-05-31-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Written under fire near Dallas, Ga.; Alexander affirms he is 'all right thus far' and that the men have 'lain rather comfortably healthy.' (Letter is mis-signed C.F. Hubbell but is Alexander's.) Comrades Thurber and Rawlins of Co. H are wounded — others, not the author."
+  },
+  {
+    "id": "LTR-1864-06-02-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Charles reports he has 'got pretty well rested after our march and now have a good appetite,' the recovery implying the prior march left him too tired to eat. Current state affirmed as good."
+  },
+  {
+    "id": "LTR-1864-06-08-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "A cheerful letter about receiving six letters and settling bounty money; Alexander makes no statement about his own physical health. He notes Mr. Bass (a civilian) is convalescent from a gunshot — not the author."
+  },
+  {
+    "id": "LTR-1864-06-13-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "A business letter about money sent home by express and a foraging trip; Charles says nothing of his own health beyond that he 'rode out and walked back.'"
+  },
+  {
+    "id": "LTR-1864-06-20-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Amid daily fighting and nightly entrenching near Marietta, Alexander affirms he is 'still uninjured.' Though the relentless labor is physically taxing and the regiment's casualty list is mounting, he reports no ailment of his own."
+  },
+  {
+    "id": "LTR-1864-06-21-001",
+    "severity": "well",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "James, a new recruit, describes his first foraging march and reports he 'stood it pretty well considering I had used my legs so little' since enlisting — an affirmation that he handled the exertion without ill effect. His mention of being sick is a conditional ('if either of us are sick'), not a present illness."
+  },
+  {
+    "id": "LTR-1864-06-22-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "A short note appended to James's letter, concerning the new assistant surgeon and express charges. Charles records nothing of his own health."
+  },
+  {
+    "id": "LTR-1864-06-29-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Letter beginning is missing; the surviving text covers freight charges, camp food prices, and James's doughnut-making. No statement of the author's own health."
+  },
+  {
+    "id": "LTR-1864-07-00-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "A long narrative letter (beginning missing) about skirmishing near Marietta and the rivalry between eastern and western troops; Alexander makes no reference to his own physical health."
+  },
+  {
+    "id": "LTR-1864-07-02-001",
+    "severity": "minor",
+    "tone": "neutral",
+    "conditions": [
+      { "tag": "debility", "quote": "Culver and I are getting worn down bully thin" }
+    ],
+    "healthContext": "After weeks of near-continuous duty Alexander reports he is 'pretty tired' from working all night with pick and shovel, that he and Bostwick are 'worn down bully thin,' and that they 'suffer terribly from the heat.' This is cumulative campaign wasting and sleep deprivation in the Georgia summer rather than a named disease; he remains on duty and affirms God has preserved him from harm. Comrade Luther's flesh wound is another man's, not the author's."
+  },
+  {
+    "id": "LTR-1864-07-08-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Alexander thanks his mother for a silk handkerchief now used to wipe perspiration in the summer heat, but reports no illness or injury of his own. He notes wounded comrade Luther 'is doing well' — another man."
+  },
+  {
+    "id": "LTR-1864-07-24-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Written under shelling near Atlanta after the July 20 battle; Alexander reports 'None of the boys from Champlain were hurt' and closes 'How good God has been to me,' indicating he came through unharmed. Captain Delaney's arm wound is another man's."
+  },
+  {
+    "id": "LTR-1864-07-29-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Responding directly to his mother's question about his health, Alexander reports it is 'very good and has been generally during the campaign,' having been only slightly indisposed 'once or twice' — a passing, unspecified mildness now resolved. A clear affirmation of sustained good health through the Atlanta campaign."
+  }
+]

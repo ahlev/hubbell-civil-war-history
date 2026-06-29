@@ -1,0 +1,151 @@
+[
+  {
+    "id": "LTR-1862-11-10-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "The author (Mother, with a postscript from Fannie) reports nothing of her own physical health; her energy is consumed by uncertainty over the missing, possibly mortally wounded Henry and by anxious instructions for Charles to wear flannel against the January-like cold."
+  },
+  {
+    "id": "LTR-1862-11-12-001",
+    "severity": "serious",
+    "tone": "reassuring",
+    "conditions": [
+      { "tag": "jaundice", "quote": "took a permanent form in the shape of Jaundice" },
+      { "tag": "cough-cold", "quote": "I took cold and had my face break out" }
+    ],
+    "healthContext": "Alexander explains a long silence with a real cascade of illness: a lingering indisposition that settled into jaundice (period camps saw epidemic 'camp jaundice,' likely infectious hepatitis or biliary disease), then a cold and a facial eruption that left his eyes so weak he feared losing his sight. Though he reassures with 'better now though still very weak,' the underlying disease was genuine, so this rates serious despite the comforting frame; the eruption-with-ophthalmia is suggestive but unnamed, so left untagged."
+  },
+  {
+    "id": "LTR-1862-11-18-001",
+    "severity": "minor",
+    "tone": "reassuring",
+    "conditions": [
+      { "tag": "cough-cold", "quote": "My cold is better" }
+    ],
+    "healthContext": "Charles affirms 'Mine is good & has been good' with only a resolving cold, in a camp where 'a large number of our men are sick' and the tent hospital overflows. A separate soldier who 'bled at the lungs' and died (a pulmonary hemorrhage, likely consumption) is another man, not the author."
+  },
+  {
+    "id": "LTR-1862-11-19-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Alexander signs off 'I am enjoying excellent health,' marking recovery from the jaundice and eye trouble of a week earlier. The letter's substance is brother Henry, believed wounded and taken prisoner at Antietam, not the author's own body."
+  },
+  {
+    "id": "LTR-1862-11-25-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Alexander reports no ailment of his own; he describes the monotonous unpaid-soldier's Thanksgiving diet of bean soup, boiled pork, and hard tack, but voices no physical complaint."
+  },
+  {
+    "id": "LTR-1862-11-28-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Charles voices anxiety about 'becoming lousy' but says he keeps the lice off with ointment and clean clothes, so he reports no actual ailment (body lice were the vector for typhus and trench fever in such camps). A sickly Frenchman from his tent has died and been buried in the soldiers' cemetery — another man, not the author."
+  },
+  {
+    "id": "LTR-1862-12-04-001",
+    "severity": "minor",
+    "tone": "neutral",
+    "conditions": [
+      { "tag": "cough-cold", "quote": "with the exception of a cold" }
+    ],
+    "healthContext": "Charles tells his brother his health 'has been good since I enlisted with the exception of a cold,' amid a sickly regiment, several deaths, four men who shot off their own fingers/thumb/arm 'accidentally,' and one smallpox case that prompted mass (largely non-taking) vaccination. Alexander's reported recovery ('been sick, but are now quite well') concerns the recipient, not the author."
+  },
+  {
+    "id": "LTR-1862-12-08-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Charles reports no ailment of his own — he notes he has not been homesick and has been 'lucky about getting wet.' The chaplain is sick with a cold caught at a soldier's funeral (another man), and 10–12 thousand sick and convalescent men crowd the nearby camp."
+  },
+  {
+    "id": "LTR-1862-12-09-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "The author (Mother) describes profound grief over missing Henry — 'my poor shattered nerves,' fearing she 'cannot long bear up' — but this is emotional anguish, not a physical ailment in the clinical vocabulary, and she reports no bodily illness of her own."
+  },
+  {
+    "id": "LTR-1862-12-09-002",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "The author (Orderly Sergeant R. McDonald) writes nothing of his own health; the letter relays secondhand word that Henry's wound was 'very slight & in the leg' and argues he was taken prisoner — all concerning another man."
+  },
+  {
+    "id": "LTR-1862-12-21-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Alexander closes 'I am enjoying excellent health' despite hard winter marching and fingers numbing in the cold as he writes — the numbness is passing exposure, not frostbite. The eyewitness detail that Henry was seen to 'grasp his leg' and fall concerns his brother, not the author."
+  },
+  {
+    "id": "LTR-1862-12-26-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Charles reports nothing of his own health here. He observes that visiting brother Alek 'looks well' though the facial eruption from his earlier illness 'has not entirely cleared out,' and that Alek is underfed — details about another man."
+  },
+  {
+    "id": "LTR-1863-01-02-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Charles gives no account of his own health. He notes the poor sanitation of brother Alek's 60th NY — water drawn 'out of a kind of a ditch' and from 'mudholes in the road' — classic conditions for dysentery and typhoid, but affecting others, not the author."
+  },
+  {
+    "id": "LTR-1863-01-13-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Alexander reports no current ailment; he jokes about eating 'a good hunk of raw pork with my hard tack' (a trichinosis risk) and recalls past hardship of nights without a shirt or blanket, but voices no present illness or affirmation of health."
+  },
+  {
+    "id": "LTR-1863-01-14-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "The author (Capt. James H. Ransom) writes nothing of his own health; he reassures Mrs. Hubbell that Alexander is 'very well indeed' and that Charles 'looked well... except a cold' — all about the sons, not the author."
+  },
+  {
+    "id": "LTR-1863-01-31-001",
+    "severity": "minor",
+    "tone": "reassuring",
+    "conditions": [
+      { "tag": "cough-cold", "quote": "have got over my cough and hoarseness" }
+    ],
+    "healthContext": "Charles reassures his anxious mother his health is 'very good,' that he has gotten over a cough and hoarseness, and has 'not missed duty once on account of sickness since I enlisted.' The recently resolved cough and hoarseness mark a minor, transient respiratory complaint now past."
+  },
+  {
+    "id": "LTR-1863-02-06-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Alexander affirms 'I am very well' though writing with no fire on a raw, chilly February day amid relentless rain that has mired the army — exposure conditions he weathers without reported illness."
+  },
+  {
+    "id": "LTR-1863-02-13-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Charles affirms 'My health is good' and that he hopes to 'escape being sick as I have so far,' reassuring the family. One company man is hospitalized at Washington with smallpox and two others are ill — all other men, not the author."
+  },
+  {
+    "id": "LTR-1863-02-21-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Alexander reports arriving 'safe and sound' from his furlough after a forty-eight-hour journey and is now building fortifications; he reports no ailment and urges his mother to 'keep up a stout heart.'"
+  },
+  {
+    "id": "LTR-1863-02-22-001",
+    "severity": "minor",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Charles's only bodily mention is that a pair of boots 'hurt my feet' after a few days' wear, a mild transient foot complaint with no clean vocabulary tag. He notes a fourth death in his company (man buried the day before) but assures 'nearly all the men are well now' — those deaths concern others, not the author."
+  }
+]

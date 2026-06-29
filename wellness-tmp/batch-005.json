@@ -1,0 +1,151 @@
+[
+  {
+    "id": "LTR-1862-07-12-001",
+    "severity": "serious",
+    "tone": "neutral",
+    "conditions": [
+      { "tag": "diarrhea", "quote": "My diarrhea is very bad." }
+    ],
+    "healthContext": "Henry reports active, worsening diarrhea in the swampy James River bottomlands after the Seven Days' retreat — a classic camp-disease picture (contaminated water, crowding, exhaustion). He notes he twice refused the surgeon's urging to go to hospital, choosing duty over care; the matter-of-fact phrasing belies a genuine chronic bowel illness. The sun-struck officer Billings is another man, not the author."
+  },
+  {
+    "id": "LTR-1862-07-14-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1862-07-26-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Alexander affirms robust health: \"I am in excellent health and am one of the hardiest men in the company.\" The letter underscores how disease, not battle, was thinning the ranks around him — the First Lieutenant died overnight, two more men were being buried, and Luther lay sick in hospital (all others, not the author)."
+  },
+  {
+    "id": "LTR-1862-07-27-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1862-07-28-001",
+    "severity": "minor",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Henry writes from the grand review able to march in line of battle, but refers back to a recent illness — \"When I was sick I do not know what I should have done if it had not been for the Sutler\" — almost certainly the severe diarrhea reported earlier that month. The reference implies convalescence/recovery rather than active illness; no specific ailment is named in this letter."
+  },
+  {
+    "id": "LTR-1862-09-09-001",
+    "severity": "well",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Charles enters the collection passing his enlistment physical at Plattsburgh; the only bodily issue is near-sightedness, a refractive condition (not a disease or injury) that nearly disqualified him until a window eye-test of the lake shore satisfied Dr. Foote. He is otherwise sound and fit for service."
+  },
+  {
+    "id": "LTR-1862-09-19-001",
+    "severity": "minor",
+    "tone": "reassuring",
+    "conditions": [
+      { "tag": "wound", "quote": "The only injury I received was an inconsiderable bruise a little below the right knee by a ball nearly spent." }
+    ],
+    "healthContext": "Two days after Antietam Alexander reports a trivial combat injury — a contusion below the right knee from a nearly spent ball, which broke no skin and did not stop duty. He frames it reassuringly (\"safe and sound\"). His anxiety is entirely for the missing Henry, whose fate is another man's story."
+  },
+  {
+    "id": "LTR-1862-09-21-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1862-09-21-002",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Mother voices intense emotional anxiety over Henry's safety after Antietam, but reports nothing about her own physical health. Her distress is psychological/emotional, not a bodily ailment."
+  },
+  {
+    "id": "LTR-1862-09-27-001",
+    "severity": "serious",
+    "tone": "reassuring",
+    "conditions": [
+      { "tag": "diarrhea", "quote": "I have had an exhausting diarrhea for several weeks past, which with the severest military duty has brought me pretty low." },
+      { "tag": "debility", "quote": "has brought me pretty low" }
+    ],
+    "healthContext": "Alexander is hospitalized at Harpers Ferry with weeks of exhausting chronic diarrhea, which combined with hard duty has left him prostrate (\"brought me pretty low\") — a genuinely serious camp-disease illness, not a passing complaint. He softens it for his mother (\"I feel much better today... shall get along finely\") and is preoccupied with nourishment, but the hospitalization and prolonged course mark real severity. Henry's slight hand wound is another man's news."
+  },
+  {
+    "id": "LTR-1862-09-28-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Mother reports acute emotional agony (\"agony of mind\") at seeing Henry on the wounded list, but says nothing of her own physical health. Henry's wound (severity unknown) is another person's condition."
+  },
+  {
+    "id": "LTR-1862-09-30-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Charles writes only about his missing/wounded brother Henry, whom he hopes is a prisoner; no content about his own physical health. Henry's leg wound is another person's condition."
+  },
+  {
+    "id": "LTR-1862-09-30-002",
+    "severity": "well",
+    "tone": "neutral",
+    "conditions": [
+      { "tag": "wound", "quote": "I have had good health so he has not called on him." }
+    ],
+    "healthContext": "Charles affirms his own good health at Plattsburgh barracks — he has had no need of the post doctor and has had \"an easy time so far.\" The wound discussion concerns Henry (thigh, then taken prisoner), not the author. (Note: tag retained from the affirmation-of-health quote; Charles himself is well.)"
+  },
+  {
+    "id": "LTR-1862-10-01-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "The author, R.W. McDonald (Henry's tentmate and an outside correspondent), reports nothing of his own health. His entire account concerns Henry — a leg flesh wound \"not very badly\" plus ailing bowels (\"He had been ailing for a few days before with his bowels\") in the days before Antietam — all secondhand information about another man."
+  },
+  {
+    "id": "LTR-1862-10-02-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Mother is in near-collapsing grief over Henry's uncertain fate (\"I must sink under this great grief\"), but this is emotional distress, not a physical ailment of her own. Capt. Ransom's improving-but-not-fit-for-duty health and Henry's reported wound belong to others."
+  },
+  {
+    "id": "LTR-1862-10-06-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Mother describes being \"half deranged\" by reports of Henry being seen to fall — acute emotional distress, not a physical illness of her own. She even reports going out riding. The health concerns center on Henry (another person)."
+  },
+  {
+    "id": "LTR-1862-10-10-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Charles reports no health content about himself. The severe falling-timber injury to Alek Douglas's father, and Henry's presumed captivity, are other people's matters."
+  },
+  {
+    "id": "LTR-1862-10-12-001",
+    "severity": "serious",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "The author, Amos C. Luther (a comrade of Alexander's, not family), writes from Eckington Hospital in Washington recovering from \"a pretty long pull off sickness\" — a prolonged, hospitalizing illness marking real severity even though he frames it reassuringly (\"getting well now fast,\" expecting to rejoin the company). The specific disease is unnamed, so no vocabulary condition is tagged. Capt. Ransom's improved appearance is another man's note."
+  },
+  {
+    "id": "LTR-1862-10-15-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Charles describes camp conditions, rations, and a lost razor; no content about his own physical health."
+  },
+  {
+    "id": "LTR-1862-10-29-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Mother reports profound grief over Henry (now feared dead or \"dangerously wounded\"), but nothing about her own physical health. She notes a local typhoid epidemic — \"Clark Copeland is sick of the typhoid fever. It is prevailing here quite extensively\" — and an acquaintance's view that Charles is \"not robust enough\" for soldiering; all of these concern others, not the author."
+  }
+]

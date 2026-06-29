@@ -1,0 +1,146 @@
+[
+ {
+  "id": "LTR-1863-05-19-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1863-05-31-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Charles says nothing of his own body here; he reports his brother Alexander 'well' after visiting him at Aquia Creek."
+ },
+ {
+  "id": "LTR-1863-06-03-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "The only illness reference is a jest that powder-smoke would 'give them the ague' to the boys at Champlain — third-person and rhetorical, not the author's own ailment."
+ },
+ {
+  "id": "LTR-1863-06-10-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Charles affirms good health and notes swimming in the Potomac in June. The Fort Lyon magazine explosion that killed and wounded about twenty struck other men, not the author."
+ },
+ {
+  "id": "LTR-1863-06-29-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1863-07-04-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Writing from the Gettysburg field, Alexander stresses he came through the two-day fight physically unharmed despite his regiment's fifty-two casualties. The deaths and wounds named are of comrades, not the author."
+ },
+ {
+  "id": "LTR-1863-07-06-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Charles describes sweating through a Fourth-of-July parade with a whiskey ration, but states no ailment of his own."
+ },
+ {
+  "id": "LTR-1863-07-08-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Alexander again confirms he passed through Gettysburg uninjured; the wounds noted belong to comrades."
+ },
+ {
+  "id": "LTR-1863-07-20-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Charles reports his health good despite marching in the hot July sun in woolen clothes; no ailment claimed for himself."
+ },
+ {
+  "id": "LTR-1863-07-25-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1863-07-30-001",
+  "severity": "minor",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "debility", "quote": "I was nearly worn out when we reached this place, but am now fast gaining strength" }
+  ],
+  "healthContext": "Alexander describes transient exhaustion after long, painful marches in the hot Virginia summer, already recovering ('fast gaining strength') and framed cheerfully — physical depletion from campaigning rather than disease."
+ },
+ {
+  "id": "LTR-1863-08-16-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "The letter (signed C. F. Hubbell) notes a daily whiskey ration the author believed laced with quinine, marched to the hospital window — a period antimalarial prophylaxis — but reports no ailment of the author himself."
+ },
+ {
+  "id": "LTR-1863-08-21-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Charles states his health is good; the bed bugs he mentions are a barracks nuisance rather than an illness, and he is fortunate to have a clear bunk."
+ },
+ {
+  "id": "LTR-1863-08-25-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1863-09-03-001",
+  "severity": "minor",
+  "tone": "neutral",
+  "conditions": [
+   { "tag": "debility", "quote": "I was very much worn out when we reached here. The last day we marched thirty-five miles." }
+  ],
+  "healthContext": "Alexander reports exhaustion after a thirty-five-mile day's march — transient campaign fatigue, not disease. His following line about 'Job's comforters' is ambiguous (idiomatic for troublesome consolers, occasionally for boils) and is not tagged as a physical ailment for want of clear grounding."
+ },
+ {
+  "id": "LTR-1863-09-07-001",
+  "severity": "minor",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Charles states his health is very good; the bed bugs are a pest he is treating with unguentine and hot water. He recalls a passing headache the evening Burdick left ('did not feel very well then as I had a headache. Was all right the next morning') — a mild, already-resolved complaint with no matching vocabulary tag."
+ },
+ {
+  "id": "LTR-1863-09-15-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Charles reports 'a good deal of sickness in this regiment' — a corporal of about twenty-one suddenly dead and Pet Steais hospitalized with a chest complaint — but says nothing of his own health. The regimental sickness affects others, consistent with autumn camp disease around Washington."
+ },
+ {
+  "id": "LTR-1863-09-18-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1863-09-25-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Charles notes comrade Alex Douglas holds a twenty-day sick furlough likely leading to discharge — another man's condition, not the author's."
+ },
+ {
+  "id": "LTR-1863-09-29-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Charles affirms his health is good and hopes to 'stand the winter.' He describes his brother Alexander as looking healthy though much sunburnt — another person's condition."
+ }
+]

@@ -1,0 +1,97 @@
+[
+  {
+    "id": "LTR-1864-11-30-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Asked by his sister how he looks, Charles draws himself plainly from winter quarters near Newtown: his messmates say he 'never was fatter,' round-shouldered as ever. The self-portrait affirms good health and adequate flesh despite deep snow and a notably thin Thanksgiving turkey ration."
+  },
+  {
+    "id": "LTR-1864-12-05-001",
+    "severity": "minor",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Building breastworks inside the Nashville fortifications under Hood's advance, Alexander notes the heavy entrenchment labor 'comes pretty hard on me, but I will soon get inured to it again.' This is exertional strain from hard fatigue duty rather than illness, and he expects to reacclimate."
+  },
+  {
+    "id": "LTR-1864-12-09-001",
+    "severity": "serious",
+    "tone": "reassuring",
+    "conditions": [
+      { "tag": "wound", "quote": "My wound has nearly healed." }
+    ],
+    "healthContext": "Convalescing at Chestnut Hill Hospital, Philadelphia, James reports a genuine wound (from the autumn 1864 Valley campaign) that has nearly healed; he can 'now walk around very well' and is restless to rejoin his regiment. A real wound classed serious even though downplayed and near full recovery, with a furlough denied because he is 'so near well.'"
+  },
+  {
+    "id": "LTR-1864-12-12-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1864-12-12-002",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Alexander notes he has rigged a shanty and fireplace and is 'quite comfortable' against intense cold, and that on a wood-gathering foray beyond the pickets he 'was not fired at.' He reports no ailment of his own."
+  },
+  {
+    "id": "LTR-1864-12-27-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1865-01-11-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Frances (Mother) reports nothing of her own physical health. The letter's medical content concerns others: a hospitalized soldier she visited who 'is spitting blood' (possible pulmonary hemorrhage / consumption), and her acute dread that James, unheard from since Dec. 9, may have been sent to the front and killed or captured by guerrillas."
+  },
+  {
+    "id": "LTR-1865-06-12-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1865-06-16-001",
+    "severity": "minor",
+    "tone": "neutral",
+    "conditions": [
+      { "tag": "debility", "quote": "to buy bread to keep life in me" }
+    ],
+    "healthContext": "In a postscript Alexander recalls having had to sell his old watch 'to buy bread to keep life in me' — a retrospective, now-resolved glimpse of wartime privation when sick soldiers were not reliably fed. The debility tag is an inference from this hunger statement (no named illness); he is presently well and freshly paid. The letter's graphic amputation account (Chris Greene's leg severed with a pocket knife) concerns another man, not the author."
+  },
+  {
+    "id": "LTR-1865-06-27-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1865-07-13-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Charles affirms 'James & I are in good health.' He notes two ailments of others, not himself: James's new difficulty seeing after dark since reaching Savannah ('it troubles him to see at night, but he can see as well as usual in the day time') — classic nyctalopia / night blindness, a vitamin A deficiency common in camp on poor diet — and his mother's reported poor health."
+  },
+  {
+    "id": "LTR-1865-07-27-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1870-11-28-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  }
+]

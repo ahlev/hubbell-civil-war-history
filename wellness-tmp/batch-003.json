@@ -1,0 +1,144 @@
+[
+  {
+    "id": "LTR-1862-03-11-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Alexander reports nothing about his own body; his guard-duty narrative and confidence that he does not 'apprehend ever being seriously harmed' are about danger, not illness. The only sickness named is a neighbor's ('Mr. T. Hoyles illness'), a third party. The collective 'very good appetites' refers to the company, not a personal health claim."
+  },
+  {
+    "id": "LTR-1862-03-16-001",
+    "severity": "minor",
+    "tone": "reassuring",
+    "conditions": [
+      { "tag": "debility", "quote": "I was very much fatigued that night" }
+    ],
+    "healthContext": "Henry describes acute exhaustion after a roughly thirty-mile foot march to Winchester and back plus picket and skirmish duty — transient exertional fatigue rather than a chronic wasting, and he immediately downplays it: 'I have gone through a good many hardships ... but I am none the worse for it.' Uncle John is reported 'not well,' but that is a third party."
+  },
+  {
+    "id": "LTR-1862-03-17-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Answering his mother's questions directly, Alexander affirms 'I am enjoying excellent health,' and rates the regiment's health 'very good.' Despite a rough rainy guard shift that left water pooling in his trousers, he reports no resulting ailment — a formulaic but body-consistent wellness report."
+  },
+  {
+    "id": "LTR-1862-03-21-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1862-03-23-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Henry makes no statement about his own health. He notes that two comrades, Henry Cooper and 'Jacen,' have been sick and 'not been able to do duty for some time' and may be discharged — both third parties, not the author."
+  },
+  {
+    "id": "LTR-1862-03-26-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "A brief 'dispatch' whose explicit purpose is to reassure: 'I am enjoying excellent health and spirits,' and 'to let you know that I am well.' No ailment reported."
+  },
+  {
+    "id": "LTR-1862-03-30-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Alexander affirms 'I am enjoying excellent health' and notes he 'endured the march of nine miles very well' on his eighteenth birthday. 'I feel old ... thrown upon my own resources' is emotional/spiritual reflection, not a physical complaint."
+  },
+  {
+    "id": "LTR-1862-04-01-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Alexander closes 'My health is very good.' He mentions being 'rather tired' after drilling since nine, but this is incidental drill-session tiredness against an explicit good-health summary, not a reported ailment."
+  },
+  {
+    "id": "LTR-1862-04-02-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Henry calls the two-day Chesapeake steamboat passage 'anything but a pleasant trip' with cramped quarters and a diet of hard crackers and no coffee — privation and poor rations, but he reports no resulting illness or wellness state for himself."
+  },
+  {
+    "id": "LTR-1862-04-02-002",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Henry's stated purpose is to reassure: 'to let you know that I am well.' No ailment reported."
+  },
+  {
+    "id": "LTR-1862-04-02-003",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "No statement about the author's own health. His request that Charles send 'a fine comb' is consistent with routine grooming in crowded camp conditions but is not framed as treatment for any ailment, so no condition is inferred."
+  },
+  {
+    "id": "LTR-1862-04-06-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Of the hard marching Henry affirms 'I have stood it pretty well thus far.' On a one-mile double-quick 'a good many fell out,' but those were others; he kept up and reports no personal ailment."
+  },
+  {
+    "id": "LTR-1862-04-06-002",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Henry's 'really a hard time' refers to laboring as a pioneer and marching four or five miles with axe and shovel; 'when I march I am always sure to sweat' is exertion, not illness. He makes no personal wellness or sickness claim."
+  },
+  {
+    "id": "LTR-1862-04-09-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1862-04-11-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Across this multi-date sheet Alexander affirms 'I am very well' (Apr 11). On Apr 18 he notes 'Luther is quite unwell today. I hope is not going to be sick' — but Luther is a comrade, not the author. Alexander reports no ailment of his own."
+  },
+  {
+    "id": "LTR-1862-04-18-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Henry affirms 'I enjoy pretty good health now' and that a full wash 'felt first rate after that.' He admits being 'very tierd' and lonesome in an idle camp life, but frames it as boredom/fatigue against a clear good-health summary. Wounded men he describes (a sharpshooter, Vermont casualties) are others, not himself."
+  },
+  {
+    "id": "LTR-1862-04-21-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Henry affirms hardiness despite exposure: 'I can lay out all night on the ground and not have a cold.' No ailment reported."
+  },
+  {
+    "id": "LTR-1862-04-21-002",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Henry reassures his mother directly: 'I am well and have been since I have been in Virginia and have not taken any cold,' even after three hours on picket in a cold dark rain. A clear wellness affirmation."
+  },
+  {
+    "id": "LTR-1862-05-01-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Alexander opens 'I am well, Luther is well and all is well.' The injuries he relates — a prisoner accidentally shot through the leg, a Co. A man accidentally killed by a friend — are others, illustrating camp carelessness, not the author's own health."
+  },
+  {
+    "id": "LTR-1862-05-01-002",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Henry's letter is occupied with pay, expenses, and the tower being built under daily shelling; rising 'before daylight every morning ready for an attack' speaks to readiness, not health. He makes no statement about his own physical condition."
+  }
+]

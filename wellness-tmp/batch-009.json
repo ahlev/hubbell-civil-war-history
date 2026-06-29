@@ -1,0 +1,152 @@
+[
+  {
+    "id": "LTR-1863-10-11-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1863-10-12-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1863-10-21-001",
+    "severity": "minor",
+    "tone": "reassuring",
+    "conditions": [
+      { "tag": "cough-cold", "quote": "Nothing was the matter but a cold." }
+    ],
+    "healthContext": "Charles was excused from a general inspection by the regimental surgeon for a common cold — a minor seasonal complaint in winter quarters, which he explicitly downplays."
+  },
+  {
+    "id": "LTR-1863-10-31-001",
+    "severity": "minor",
+    "tone": "reassuring",
+    "conditions": [
+      { "tag": "cough-cold", "quote": "For about a week I had a cough and very little appetite and for that time did not do my duty." }
+    ],
+    "healthContext": "A week-long cough with loss of appetite kept Charles off duty and prompted a course of 'cough mixture,' but he reports full recovery and a return to duty — a self-limited respiratory ailment typical of late-autumn camp life."
+  },
+  {
+    "id": "LTR-1863-11-01-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Alexander reports only feeling 'particularly lonely' on receiving his mother's letter — an emotional rather than physical state; he states nothing of his own bodily health despite the nearby Wauhatchie fighting (Gen. Greene's wounding concerns another)."
+  },
+  {
+    "id": "LTR-1863-11-15-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Mother (Frances) reports no bodily illness; her remark that 'anxiety of mind tells upon my poor shattered nervous system' reflects grief over the lost Henry and fear for Alexander — an emotional/nervous strain rather than a physical ailment."
+  },
+  {
+    "id": "LTR-1863-11-19-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1863-11-20-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Charles affirms good health and normal appetite and sleep, expressing only the hope that he will 'stand the winter' — a routine reassurance to his mother with no ailment reported."
+  },
+  {
+    "id": "LTR-1863-11-21-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1863-12-01-001",
+    "severity": "serious",
+    "tone": "reassuring",
+    "conditions": [
+      { "tag": "wound", "quote": "I am wounded in my left side by a minie ball." }
+    ],
+    "healthContext": "Alexander was struck in the left side by a minie ball storming Lookout Mountain and writes from the Tullahoma general hospital; though he calls it 'rather a close call for my life,' he downplays it as 'not seriously hurt' and expects a quick return — a genuine gunshot wound framed reassuringly. George Hays (another man) was killed."
+  },
+  {
+    "id": "LTR-1863-12-01-002",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Charles reports no ailment of his own; his account of easy garrison duty and good rations ('ought to get fat') describes comfort rather than a stated health condition."
+  },
+  {
+    "id": "LTR-1863-12-09-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Mother (Frances) reports no physical illness; her 'deepest distress' and 'agony' over Alexander's unknown fate after Lookout Mountain and her grief for the dead Henry are acute emotional anguish rather than a bodily complaint."
+  },
+  {
+    "id": "LTR-1863-12-09-002",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1863-12-13-001",
+    "severity": "serious",
+    "tone": "neutral",
+    "conditions": [
+      { "tag": "wound", "quote": "My wound caused me to miss the fights of Missionary Ridge and Ringgold." }
+    ],
+    "healthContext": "Alexander tells his brother of his Lookout Mountain wound matter-of-factly — it kept him out of Missionary Ridge and Ringgold — indicating a genuine but convalescing gunshot wound; the company dead (Majo, Doten, Housedean) concern others."
+  },
+  {
+    "id": "LTR-1863-12-16-001",
+    "severity": "serious",
+    "tone": "reassuring",
+    "conditions": [
+      { "tag": "wound", "quote": "My side is still pretty sore but then I manage to get along first rate." }
+    ],
+    "healthContext": "Alexander has rejoined the regiment on duty though his wounded side is 'still pretty sore'; he left the hospital early against the usual course, downplaying a convalescing gunshot wound while the army subsisted on half rations."
+  },
+  {
+    "id": "LTR-1864-01-03-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Charles reports no ailment of his own; the only illness noted is fellow soldier George Dodds, who 'had been sick with a fever and was not then entirely well.'"
+  },
+  {
+    "id": "LTR-1864-01-08-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Alexander reports low spirits — 'I feel quite sad tonight... the blues' — an emotional rather than physical state as he traveled to rejoin the regiment; he mentions a coming medical examination at New York but states no bodily complaint."
+  },
+  {
+    "id": "LTR-1864-01-19-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Charles reports nothing of his own health; references to railroad-accident injuries in Alexander's regiment and to 'bucking and gagging' punishment concern others."
+  },
+  {
+    "id": "LTR-1864-01-29-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1864-02-15-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  }
+]

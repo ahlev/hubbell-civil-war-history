@@ -1,0 +1,156 @@
+[
+ {
+  "id": "LTR-1861-11-30-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1861-11-30-002",
+  "severity": "minor",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "homesickness", "quote": "I have been a little homesick lately, but I have got over it." }
+ ],
+  "healthContext": "A bout of homesickness, common among first-winter volunteers, which Henry reports as already resolved. He also corrects a rumor reaching home that his company had \"suffered so mucy,\" conceding only one hard stretch in Virginia — framed as shared circumstance, not personal illness."
+ },
+ {
+  "id": "LTR-1861-11-30-003",
+  "severity": "minor",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Reports only the shared discomfort of late-November cold in an unheated tent (\"we suffer with the cold some\"); his \"If I am sick I shall let you know\" is a future contingency implying he is presently not ill. No vocabulary ailment fits mere cold-weather exposure absent frostbite."
+ },
+ {
+  "id": "LTR-1861-12-08-001",
+  "severity": "minor",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Alexander's only note about his own body is mild discomfort from unseasonable Maryland heat on Dec 9 (\"I was really uncomfortable yesterday on account of the heat\"); no illness. The shot-off right thumb is a fellow picket's (David Dava[?]way) accidental rifle discharge, not the author's."
+ },
+ {
+  "id": "LTR-1861-12-08-002",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "His \"I feel about five hundred per cent better\" is emotional relief at finally receiving mail, not physical recovery; the \"if you have health\" line is advice to his brother James. No statement about the author's own physical condition."
+ },
+ {
+  "id": "LTR-1861-12-11-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Affirms \"excellent health\" amid warm, pleasant weather. The distress in this letter is financial and emotional (a Baltimore photography swindle), not bodily."
+ },
+ {
+  "id": "LTR-1861-12-16-001",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "debility", "quote": "Capt. Ransom was very, very, very, very kind to me when I was sick. He came often to see me and brought me toast and tea a number of times." }
+ ],
+  "healthContext": "Mentions in passing a recent illness during which Capt. Ransom nursed him with toast and tea and frequent visits; invalid fare and repeated attendance imply a genuine confining illness that laid him off duty, though its nature is unstated. He has since recovered enough to be on guard duty. The boiler-explosion deaths and Ransom's narrow escape concern others. Diagnosis unknown; severity inferred from the nursing detail and conservatively logged — the 'debility' tag is a placeholder for an unnamed convalescent illness rather than a specific diagnosis."
+ },
+ {
+  "id": "LTR-1861-12-19-001",
+  "severity": "minor",
+  "tone": "neutral",
+  "conditions": [
+   { "tag": "homesickness", "quote": "I get very lonesome now and then." }
+ ],
+  "healthContext": "Recurrent winter-quarters loneliness. The regiment is building a hospital, but that is a camp-construction detail, not a personal ailment."
+ },
+ {
+  "id": "LTR-1861-12-20-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1861-12-20-002",
+  "severity": "well",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Routine formulaic wellness (\"I am well and hope this will find you the same\"); no ailment. A Minnesota soldier's accidental self-inflicted arm wound is noted but is not the author."
+ },
+ {
+  "id": "LTR-1861-12-22-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1861-12-23-001",
+  "severity": "minor",
+  "tone": "neutral",
+  "conditions": [
+   { "tag": "homesickness", "quote": "I feel rather lonely today" }
+ ],
+  "healthContext": "Christmas-season loneliness far from home, tempered by his statement that he is \"very well contented\"; no physical complaint."
+ },
+ {
+  "id": "LTR-1861-12-26-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Cold weather prompts a sheet-iron stove purchase, after which Henry finds his tent \"comfortable\"; he stresses regular washing and cleanliness. No personal illness reported."
+ },
+ {
+  "id": "LTR-1861-12-29-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "A detailed camp-routine synopsis. All-night guard vigils by the fire are described as hardship, not illness, and a cold-brook morning wash is \"really refreshing.\" No statement of personal ailment."
+ },
+ {
+  "id": "LTR-1862-01-01-001",
+  "severity": "minor",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "debility", "quote": "I do not feel very bright after my yesterdays guard duty" }
+ ],
+  "healthContext": "Affirms \"excellent health and spirits\" on New Year's Day; the only complaint is ordinary tiredness after a night of guard duty — mild, transient fatigue, logged under 'debility' as the nearest vocabulary term for fatigue, with no implication of chronic weakness."
+ },
+ {
+  "id": "LTR-1862-01-09-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "His \"If you are sick I want you should write\" is concern for his mother, not a report of his own health. No statement about the author's body."
+ },
+ {
+  "id": "LTR-1862-01-09-002",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1862-01-13-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "His anguish (\"Are you all sick or are you dead?\") is fear for the silent family, and \"I have not much spirit to write\" reflects low morale after helping carry in a killed picket; neither concerns his own physical health. The killed picket is a fellow soldier."
+ },
+ {
+  "id": "LTR-1862-01-15-001",
+  "severity": "minor",
+  "tone": "worried",
+  "conditions": [
+   { "tag": "homesickness", "quote": "You have no idea how lonely I am." }
+ ],
+  "healthContext": "Intense loneliness driven by weeks of silence from home, framed anxiously. No physical ailment of his own; Corporal Myers's sickness (whose post Alexander took over) is another man's."
+ },
+ {
+  "id": "LTR-1862-01-17-001",
+  "severity": "minor",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "cough-cold", "quote": "I have had a severe cough and cold and am not entirely over them yet" }
+ ],
+  "healthContext": "Downplays a lingering \"severe cough and cold\" beneath an affirmation of \"excellent health\" — a real but minor winter respiratory complaint, not yet resolved and not escalated to lung fever. He had been nursing a sick mess-mate; the gruesome death of Porter, cut in two on the track, concerns another soldier."
+ }
+]

@@ -1,0 +1,163 @@
+[
+ {
+  "id": "LTR-1864-08-02-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1864-08-08-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Alexander says nothing of his own body. The only health content concerns others: a Pennsylvania soldier whose leg was taken off by a cannon shot, and camp reports that Charles (or James) is ill on the Peninsula."
+ },
+ {
+  "id": "LTR-1864-08-08-002",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "No mention of the author's own health. The only medical detail is another man's wound: \"Capt. Delaney was wounded in the fight of the 20th.\""
+ },
+ {
+  "id": "LTR-1864-08-15-001",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "debility", "quote": "My sickness was generally unwell and played out." },
+   { "tag": "other-injury", "quote": "a blistered foot" }
+  ],
+  "healthContext": "James was hospitalized two weeks at Frederick City after collapsing on the march from \"the want of sleep and food, a blistered foot and fatigue.\" \"Generally unwell and played out\" is the soldier's idiom for debility/exhaustion. Though he reassures (\"now pretty well\"), a two-week hospitalization marks a genuine breakdown from forced marching during Early's raid. He separately notes brother Charlie as \"thin and used up\" (not the author)."
+ },
+ {
+  "id": "LTR-1864-08-22-001",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "scurvy", "quote": "afflicted with what the surgeon calls genuine scurvy" }
+  ],
+  "healthContext": "Alexander is hospitalized with diagnosed scurvy — a vitamin-C deficiency from months of hardtack and salt pork without vegetables during the Atlanta siege; the surgeon remarks he is very young to have it, and the prescribed cure is vegetables. He downplays it (\"I think I shall soon be fit for duty\"), but it is a real, hospitalizing illness."
+ },
+ {
+  "id": "LTR-1864-08-26-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Charles affirms good health (\"As for myself I am well\") and has \"flatted in considerably\" — gained flesh — on good food in the convalescent department, where he serves as a clerk. He explicitly minimizes the army's diarrhea (\"I have been troubled very little with it\"). The illness in the letter is brother James's diarrhea, hospitalized at Frederick (not the author)."
+ },
+ {
+  "id": "LTR-1864-08-30-001",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "scurvy", "quote": "to get this scurvy out of my blood" }
+  ],
+  "healthContext": "Alexander's scurvy continues in the 2d Division hospital; he expects it will \"take some little time\" to clear and reports \"very good care.\" His gallows humor about \"three hopeful sons being in the hospital at the one and same time\" frames a still-serious condition. His dread of chronic diarrhea (\"a terrible disease\") is voiced for his brothers, not himself."
+ },
+ {
+  "id": "LTR-1864-09-02-001",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "scurvy", "quote": "I was pretty sick yesterday and last night" }
+  ],
+  "healthContext": "Alexander was evacuated by hospital train among \"sick and wounded,\" forced to halt at Chattanooga because Wheeler's raid tore up the Nashville road. The letter names only generic sickness (\"pretty sick yesterday and last night...much better today\"), but in continuity with the surrounding letters this is his ongoing scurvy; the tag rests on that documented continuity."
+ },
+ {
+  "id": "LTR-1864-09-18-001",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "scurvy", "quote": "to get this misnamed scurvy out of my blood" }
+  ],
+  "healthContext": "Still hospitalized at Chattanooga, Alexander is being dosed with lime water (\"limes, a fruit like lemons\") — a historically apt antiscorbutic, citrus being the classic scurvy remedy. He hedges on recovery (\"how soon I shall be fit for duty I am unable to say\") and even disputes the diagnosis (\"this misnamed scurvy\")."
+ },
+ {
+  "id": "LTR-1864-09-21-001",
+  "severity": "well",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Charles reports robust health at the Brigade Commissary: \"getting fat, the result of good living.\" The letter's wounds belong to others — four killed and twelve wounded in the company at Third Winchester — while brother James came through \"unhurt\" and \"looking very well.\""
+ },
+ {
+  "id": "LTR-1864-09-21-002",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "scurvy", "quote": "I am as blind as a bat" }
+  ],
+  "healthContext": "On his three-year anniversary Alexander notes his first hospitalization for sickness (as opposed to last fall's wound). His night blindness — \"as soon as it is night comes I am as blind as a bat,\" shared by \"a number here\" — is nyctalopia, a nutritional-deficiency symptom accompanying his scurvy. He downplays it (\"it may wear off in time\")."
+ },
+ {
+  "id": "LTR-1864-09-21-003",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "scurvy", "quote": "I do not feel very well today" }
+  ],
+  "healthContext": "A brief note written the same day from U.S. Field Hospital No. 2, where Alexander is an active scurvy patient (per the companion letter LTR-1864-09-21-002). The in-letter evidence is only \"I do not feel very well today,\" used as an excuse for brevity; the serious rating and tag derive from his documented same-day hospitalization rather than this letter's thin wording."
+ },
+ {
+  "id": "LTR-1864-09-25-001",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "scurvy", "quote": "I still continue to be blind at night" }
+  ],
+  "healthContext": "Alexander's night blindness persists in the Chattanooga hospital, with conflicting prognoses (\"Others tell me I will never get over it\"). This nyctalopia is the deficiency symptom shadowing his scurvy; he remains optimistic (\"the Dr. thinks it will wear off in time...I think I shall\")."
+ },
+ {
+  "id": "LTR-1864-10-04-001",
+  "severity": "well",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "James reports himself recovered — \"I have seen one month in the hospital since I enlisted. I'm all right now\" — reflecting the resolved August debility/exhaustion. Charley's health is noted as \"pretty good\" (not the author)."
+ },
+ {
+  "id": "LTR-1864-10-04-002",
+  "severity": "well",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Charles affirms health: \"I am quite fat and am in good health.\" His remark that \"a man is no soldier unless he is lousy\" describes universal camp lice/sanitation (no kettles to boil clothes on the march), not a personal ailment. James is \"very well\" (other)."
+ },
+ {
+  "id": "LTR-1864-10-10-001",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "scurvy", "quote": "a fellow that had the scurvy not near so bad as I did" }
+  ],
+  "healthContext": "Now at Nashville Hospital No. 3, Alexander is convalescing from scurvy (his own, explicitly: \"not near so bad as I did\") with the eye trouble improving (\"My eyes are much better\"). He is still an inpatient pressing the doctor to let him rejoin the regiment; the condition is resolving but genuine."
+ },
+ {
+  "id": "LTR-1864-10-22-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Charles came through the surprise at Cedar Creek physically unhurt: \"I am very thankful that I did not get scratched.\" The casualties are others — brother James's flesh wound to the thigh/hip, Lucas shot through head and arm, Pelkier through the leg, Strain's arm, plus killed and missing comrades."
+ },
+ {
+  "id": "LTR-1864-10-26-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Although written from U.S.A. Hospital No. 3, Nashville (per the heading), the letter itself gives no account of Alexander's physical condition, dwelling instead on the refused New York voting oath and his hunger for news from home."
+ },
+ {
+  "id": "LTR-1864-10-29-001",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "wound", "quote": "I was wounded in the left thigh at Cedar Run" }
+  ],
+  "healthContext": "James took a flesh wound to the left thigh at Cedar Creek (Oct 19) and is now at Patterson Park Hospital, Baltimore. Despite reassuring framing (\"nothing but a flesh wound and is doing well\"), a real wound remains serious — and he walked several miles on it to avoid capture, then endured a 150-mile transit (30 miles by army wagon, 120 by freight car): \"that journey was a hard one.\""
+ },
+ {
+  "id": "LTR-1864-11-04-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Charles is again unhurt: \"In the fight bullets flew all around me but I came out without a scratch.\" The letter's hardship belongs to others — the company down to 22 men, brother James's flesh wound, Lucas (head/arm, feared mortal), Pelkier (leg), and his grandmother's death at home."
+ }
+]

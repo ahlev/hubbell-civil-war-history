@@ -1,0 +1,639 @@
+========== INDEX 120 ==========
+id: LTR-1862-11-10-001 | date: 1862-11-10 | author: mother (Mother) -> Charles Hubbell
+location: Champlain, NY
+flags: ill False wound False death False battle False
+sigSummary: In uncertainty over Henry, Mother writes: "We are still in uncertainty with regard to Henry — it is terrible," yet still feels hopeful as letters from Mr. Vossey, Miss Cundia, and Ida Niles seem to have heard the worst. Fannie signs as Charles's sister, urging him to wear flannel across his chest; Mother's Tuesday postscript notes milk froze in the kitchen — "January weather." A rebel officer named Hubbell, glimpsed in a prison camp, hints at kin on the other side.
+health(prior): None
+--- TRANSCRIPTION ---
+Nov. 10th, 1862
+Champlain, N.Y.
+
+My dear Charles:
+
+We miss you more and more every day. Mr. Savage's store gives me such a lonely feeling since you have left, that were it not that I am obliged I should avoid it entirely until you return.
+
+I have received your note today for the money you wished put out at interest. You may think it very late for me to attend to it, but I have had any amount of trouble about it. At first the Messrs. Savage thought that they could not take it, but finally concluded to take it & to oblige you. The $50 is for one year. I think they will continue to take your money. I shall have to make other arrangements for H and A's money.
+
+The Messrs. Savage have no clerk as yet. They seem to feel a great interest in you, always speaking particularly about you. J. Morrison has taken Alek Douglas's place. The drafts took place today. We shall not know the results for five days. Only five days will be given then before leaving.
+
+I have got quite into the business of writing love letters. Mr. Averill's servant girl has quite an extensive correspondence, writing an affectionate love letters to one & another — she comes to me as no one else can write French for her. I enjoy it finely — never fully realized the meaning of the word love letters before this correspondence.
+
+We are still in uncertainty with regard to Henry — it is terrible. I have received letters from Mr. Vossey, Miss Cundia, Ida Niles respecting him. They see me to have heard the worst. I still feel very hopeful. B. Misner has been home on a short furlough, which I understand he took without leave or license. He has changed his politics, which has given him the name of a secessionist. Albert Cook and Cyrus Kellogg are at Annapolis making themselves as comfortable as possible until exchanged. Albert, while a prisoner, expressed his views very plainly to the rebels & they seem to have respected him for it. B.M. says that he saw a young Hubbell, a rebel officer, while a prisoner, who told his that Bash[?] Loring was in his reg. (Quartermaster). (?) He has been home also on a furlough, has improved very much. Says that a young Hubbell was in one of the Regts. (rebel), probably Inlis or Octave, the first one that I mentioned was a nephew of Uncle L.
+
+You wished to know if I received all of the money. I recd. $25.00 by Marshall, $25.00 by Tenn[?]. We are having most excellent sleighing today — never had better. You must take as good care of yourself as possible. If I were you I would wear flannel across my chest.
+
+Please write me often, dear Charles. It is alive have to look forward to in
+
+[page break]
+
+the way of pleasure this winter. Write soon and what you would like. Good night, dear Charles.
+
+Aff. your sister,
+
+Fannie
+
+Do everything in your power to learn something of Henry.
+
+Tuesday Morn: I'm thinking of taking a sleigh ride this morning — the sleighing is fine. Milk froze here in the kitchen two or three nights since & froze last night. It is January weather. Take good care of your health. I am very anxious about you this cold weather. Do get some warm undershirts — if you throw them away in the Spring. You need them.
+
+Aff. in haste,
+
+Mother
+
+========== INDEX 121 ==========
+id: LTR-1862-11-12-001 | date: 1862-11-12 | author: alexander (Alexander) -> Mrs. Hubbell (Mother)
+location: Harpers Ferry
+flags: ill True wound False death False battle False
+sigSummary: Alexander breaks a long silence from Harpers Ferry — "It is a long, long time since I last wrote you" — and the reason is a body unraveling: an indisposition that "took a permanent form in the shape of Jaundice," then a cold, then a facial eruption that left his eyes so weak he feared he would lose them. He writes only enough to ease his mother's worry, notes Capt. Ransom's great kindness, and promises a good long letter once his eyes are stronger.
+health(prior): [{'who': 'Alexander', 'type': 'physical', 'detail': 'Jaundice → cold → face broke out → eye problems (feared losing eyesight) → improving', 'confidence': 'stated · clear · definite'}]
+--- TRANSCRIPTION ---
+Nov. 12th, 1862
+Harpers Ferry
+
+My Dear Mother:
+
+It is a long, long time since I last wrote you. I know you must feel very anxious about me, but I do not think you will blame me when you know all. A day or two after I wrote you my last letter we marched shifted our Camp and continued changing until at length we settled down on Bolivar Heights. I have been indisposed for some time and there my indisposition took a permanent form in the shape of Jaundice. I had very little disposition to write and did not wish to until I had something more favorable to write about concerning myself.
+
+We left the Heights a day or two to guard Government property in this place where we now are. To "cap the Climax" I took cold and had my face break out in a way not to be envied. I suffered a great deal with my eyes and was sometimes afraid I should lose them, but they are better now though still very weak. I will write you a good long letter as soon as my eyes are stronger. I received your welcome letter of the 4th inst. last night. Will try and write soon. Capt. Ransom is very, very kind. Love to all.
+
+Your affectionate son,
+Alex. F. Hubbell
+
+========== INDEX 122 ==========
+id: LTR-1862-11-18-001 | date: 1862-11-18 | author: charles (Charles) -> Mrs. Hubbell (Mother)
+location: Camp near Alexandria, VA
+flags: ill True wound False death True battle False
+sigSummary: Garrison duty near Alexandria fills this letter with the texture of a soldier's winter: two regiments holding the city, no passing after nine p.m. without the countersign, twelve cold hours at a post with no picket fires allowed. Charles's 153rd guards the convalescent and parole camps and furnishes funeral escorts — one sickly man from Fonda bled at the lungs and died, his company raising $72 to send his body home.
+health(prior): None
+--- TRANSCRIPTION ---
+Nov. 18th, 1862
+Camp near Alexandria, Va.
+
+Dear Mother:
+
+I received your letter directed to Fonda some days since & have received three since, the last dated Nov. 10th I received on the 15th. We will receive our letters without being delayed, I think, after this. I have recd. two Observers, also for which I am much obliged. The daily newspapers are sold here from 3 to 5 cts. each.
+
+I am much pained that we hear nothing about Henry, but hope that he is a prisoner. I don't think he can be according to the surgeon's account. But we must make the best of whatever comes.
+
+I wrote Jones yesterday & sent Alek's letter to him. Hope he will succeed at West Point, but if he does not it will be nice to have him at home. I do not think
+
+[page break]
+
+I will be at home very soon as the war does not look to me as if it would close this winter. Number of the men expect to go home next spring as they think the war will close by that time. Also a great many wish they had never enlisted. Yet Charles for one. A. Douglas & I are not sorry that we came to the war. But I think we will not go to the front this winter as our regiment is not well drilled & there is plenty of guard duty to be done. Unless a lot of new troops come to take our place we will remain here. There is a resort that we are to go into the city into the barracks now building to stay this winter. I don't know whether it is true.
+
+Two regiments are now guarding the city. All citizens are allowed to come into the city, but none to go out except they have a pass. All soldiers are allowed to go in & out at it is a favorite their camp, but none to come into the city without a pass, after nine p.m. until morning none can pass either way without the countersign. I was glad that the Captains & Lieutenants have to be on guard duty also. I like to see them work. Their business is to pass the men on their post & to look after them once in a while to see that they are doing their duty. We are on 12 hours at a time outside the city. There are 2 or 3 men at a post so that the men can relieve each other. At night we carry our blankets, but it is cold to sleep on the ground & in the open air. No picket fires are allowed, but we find a fire sometimes where we can get warm. We come on duty nearly every day sometimes in the night & other times in the day.
+
+Our Regt. guards the convalescent camp, also the parole camp & furnish a funeral escort for the soldiers that die in the hospitals. So that we have no drill now as there are not men enough. No liquor is allowed to be sold in Alex., but it is done privately — good many bottles of liquor are daily taken from the soldiers in the city & sent to the provost marshals.
+
+A large number of our men are sick, some with one thing & some with another. The hospital here is in a tent. It is full & some are taken to the city. One sickly man enlisted & died not long after coming here. He bled at the lungs. His Co. sent his body home. He was from Fonda. It cost $50, for embalming & $25 for freight, making $45[sic]. His Co. raised $72, nearly every man paying $1.
+
+Two corporals in our Co. have been reduced to the ranks, that is, had their stripes taken off for absences from camp without leave. Another had his stripes cut off for threatening to shoot his Lieut & then he was tied to a telegraph pole till he could behave himself. He was an ugly fellow. Our Co. Corporals are all right for.
+
+I tent with James Lucas, Sam Pelky & a lot of Frenchmen. They all speak good English & are decent men. I was with A. Pouglias[?] some time when we had a change of men to fill up another tent. I heard that I was to go into this tent which was occupied by the worst men in the Co. But Lieut. Col. Frentress[?] made the change instead of someone else & I was put here into the best tent in the street. L. C. Frentress made quite friendly towards me. The men from Fonda do not like him. He is to strict I suppose. Col. Sabastine[?] has not been here since he came from. He has been sick, but is better. The officers boots are a short distance from ours, all in a row. Some of the men cook for them. Each tent has a corporal or sergeant in it. The tent I was in had three corporals so that it was unnecessary for some of us to move. There are a sergeant also with us. As there was no non officer in the at tent a sergeant was put in it & I got into a good place.
+
+Mrs. Ruth Hubbell & sons prosper pecuniarily & otherwise. I think we had better not buy any of their land — so we have more land now that we can manage. And besides we have not more timber enough in all on [?] land I do not think it would be good policy to strip our land of growing timber. You speak of perishable property. I do not think that timber is that kind of property. Those cedars that have been cut ought to be drawn from the first snow. There is where we missed it last winter.
+
+[page break]
+
+Battiste will draw them perhaps, if not he may know someone who will.
+
+That Plummer is a cheat. He owed us three loads at the end of last winter. They were small loads. I should threaten to sue him for trespass if he goes there again.
+
+The weather is now drily, but it has not rained much yet. Over a week since, on Nov. 7 it snowed all day, but it was all gone the next night. I heard that it was more snow that they have had for some years. I think I shall buy me a pair of boots for the mud.
+
+I think you had better dine out Thanksgiving if you are invited. You have lonesome times enough & ought to see company when you can. Frances must be full of business teaching French, etc. Fancy she likes Mr. Simons better than she did Mr. Karns. Has she got into a fight with that French teacher? I hope she will write & tell me all about her class & other things. Reed. her letter, will answer it soon. How is your health? Mine is good & has been good. My cold is better but is in a good place here to catch a new one. I hope that you will try to make yourself as comfortable as possible in every way. Two months & a half pay is now due us, but I do not know when we will be paid. Write soon & all the news.
+
+Aff. son,
+
+C. F. Hubbell
+
+..... 30 .....
+
+========== INDEX 123 ==========
+id: LTR-1862-11-19-001 | date: 1862-11-19 | author: alexander (Alexander) -> Mrs. Hubbell (Mother) & Fannie (Sister)
+location: Harpers Ferry
+flags: ill False wound True death False battle True
+sigSummary: Alexander had begged the Colonel to let him slip the ranks, then walked alone by bright moonlight past every guard to find Henry's tent near Georgetown: "Is there a man among you by the name of Hubbell?" A large bearded man stepped out — "Why Dick, is that you?" — and their hands flew together. Writing now from Harpers Ferry, Alexander tells Mother he and Henry fought Antietam a few hundred yards apart, and clings to hope that Henry, wounded and "undoubtedly taken prisoner," still survives.
+health(prior): None
+--- TRANSCRIPTION ---
+Nov. 19th, 1862
+Harpers Ferry
+
+My Dear Mother & Sister:
+
+How I long to see you. Wonder what you are doing today. Miss Fannie I expect is in that cozy room in the old academy (of pleasant memory to me) teaching (teaching the young ideas of how to Charles vous Francis (don't like my spelling do you Miss Fannie?) — and you, Mother, well — I cant imagine what you are about — what do you do with yourself these long days all alone as you are? I should enjoy your pleasant smiles. I am weary — weary of this an ugly day and stir. A little rest would do me oh so much good. Nevertheless, I am content to stay. Our Government is worth any sacrifice.
+
+The war cannot last much longer. Both sides are getting heartily sick of the affair. A vigorous winter campaign on our part will, I think, speedily put an end to the war — and then for home, sweet, sweet, home. And oh — how good it will seem to see you all once more, and shall we all — all — meet again. God grant it. Dear, dear, Henry how I long to see him. I have seen him but twice since I left home. You wished me in one of your letters to tell you all about our first meeting.
+
+About three miles beyond Georgetown, D.C., we passed a large encampment. I hailed a soldier and inquired what troops were encamped there and ascertained that it was Sedgwick's Division. He pointed out the position of the 34th to me. I could not then leave the ranks, but as soon we halted (about two miles beyond) I went to the Colonel and told him I had a brother in one of the regiments we had passed that I had not seen for over a year, and asked permission to go back and see him. The Colonel said he had not the power to grant my request, but said "If you are willing to run the risk, you can go." I said nothing about it. I was willing to run it. It was not dark, but there was a bright moon which gave me sufficient light to see by. I passed all the guards without difficulty. After a considerable search I found the regiment and company. "Is this B company?" I inquired. "Yes." "Is there a man among you by the name of Hubbell?" "Yes." "Hubbell, there is somebody out here that wants to see you." Oh, how my heart bumped. I was in a moment to see my long absent brother. A large bearded man stepped out from one of the tents. It was Henry. The way our two hands flew
+
+[page break]
+
+together was a caution. I laughed — I — well — I was so glad I did not know what to do. You can well imagine Henry's surprise at seeing me. "Why Dick, is that you — really you. I can hardly believe it. How glad I am to see you. Come in my tent and sit down." I soon had quite a crowd of the boys around me and we had a right merry time, I can assure you. It was quite a late hour when I left for Camp.
+
+I saw him again a few days after a little beyond Rockville, by day light. He was a noble looking soldier. He was, I think, undoubtedly taken prisoner at Antietam, and if he yet survives his wound (which from all that I can learn I do not think was dangerous) you will hear from him before long. What do you think, Mother, Henry and I were in the fight at the same time, and the 34th was but a few hundred yards to the left of us. Then I feel like it, Mother, I will try and tell you more of the battle. I have not told you a third.
+
+Please write often, and tell me all bout home affairs. Has the draft taken place yet. Love to all.
+
+Your affectionate son,
+
+Alexander F. Hubbell
+
+P.S. I am enjoying excellent health. Capt. Ransom is very — very kind.
+
+========== INDEX 124 ==========
+id: LTR-1862-11-25-001 | date: 1862-11-25 | author: alexander (Alexander) -> Mrs. Hubbell (Mother) & Fannie (Sister)
+location: Harpers Ferry
+flags: ill False wound False death False battle True
+sigSummary: Alexander writes from Harpers Ferry that in the thick of battle, "while the shot and shell were shrieking and whirring around me," he felt "as tho I had a Mother upon her knees praying for me" — God's arm wrapped around him. Days later, on Thanksgiving, he pictures the "old castle," the pony's flying heels, and Grandmother's table while he eats bean soup, boiled pork, and hard tack from a tin plate. The Government still hasn't paid them; he asks, gently, for a little money.
+health(prior): None
+--- TRANSCRIPTION ---
+Nov. 25th, 1862
+Harpers Ferry
+
+My Dear Mother and Sister:
+
+I received your most welcome letter last evening and oh! how much good it has done me. There is nothing, it seems to me, that gives half the joy that a letter from home does. It is one of the strongest links that binds men from vice. My letters are read, and reread and reread before I get another. Please write often, very often. Your letters do me worlds of good. I feel them tho't although I am here among strangers yet I have those who love & care and pray for me; that I am not alone and forgotten in this world. I take great comfort, Mother and Sister, in the thought that you are praying for me, that I may have grace to withstand all the temptations and allurements I am so much exposed to. I felt when in the battle while the shot and shell were shrieking and whirring around me, as tho I had a Mother upon her knees praying for me and I took great comfort in the thought. It seemed as tho God's arm was wrapt around me and I felt that if I fell all would be well with me.
+
+I have just reread your letter. So Mr. A. Whiteside and E. Doolittle are "paying and hoarding substitutes", eh! I hope they will give them the slip just when wanted. Wouldn't it be rich. The miserable, craven hearted cowards deserve it.
+
+Nov. 27. Today is "Thanksgiving" at home. How I wish I was there. Wouldn't I have a jolly time, eh? Rather think I would. Guess the "old castle" would ring a little, and if the sleighing was good wouldn't "pony's" heels fly. What a nice ride we could have, wouldn't we? Wonder what you are about — believe I can guess. You are about starting for church. It is now some after ten a.m. How I should like to hear the "Thanksgiving sermon" with you and then escort you over to Grandmothers for dinner. That a merry, merry time we would have — but God has ordered it otherwise and I must try and be content. You tell me to get up a nice dinner here among ourselves. Such was our intention but Government has not seen fit to pay us off yet and consequently I must content myself with bean soup and boiled pork and "hard tack" today. Good substantial food but a turkey would be much more to my palate, I must confess. I hope, dear Mother, you have changed your mind and will go to Grandmother's for dinner. If I were there I should make you go or rather persuade you.
+
+You ask me if there is anything I need. There is nothing now that I can think
+
+[page break]
+
+of. We are just now in great need of money, but are hoping that Government will pay us off soon. We shall know definitely in a few days. I will then write. If we are not paid off money will be indispensable and Mother, if you can send me a little — and only a little — money, it would be a great comfort to me, and when you write if you will see and then put it in a stamp it will enable me to answer your letters much more readily for it is very difficult to get them here.
+
+Love to all. Your aff. son,
+
+Alexander
+
+========== INDEX 125 ==========
+id: LTR-1862-11-28-001 | date: 1862-11-28 | author: charles (Charles) -> Frances/Fannie Hubbell (Sister)
+location: Camp near Alexandria, VA
+flags: ill True wound False death True battle False
+sigSummary: Charles writes his sister Frances from Camp near Alexandria, sketching the soldiers' cemetery where the dead lie "as close as possible in straight rows," each grave marked by a white headboard of "durable wood furnished by Government." A Frenchman from his tent has just been buried there, his company unable to raise the dollar apiece to send him home. Charles spends Thanksgiving guarding a bridge and clings to news of Henry he fears is "too good news to be true."
+health(prior): None
+--- TRANSCRIPTION ---
+Nov. 28, 1862
+Camp near Alexandria, Va.
+
+Dear Frances:
+
+I received your & Mothers letter dated Nov. 20th enclosing Luthers. Glad to hear about Henry but am afraid it is too good news to be true. I should think McDonald would have written how he heard about Henry. I hope his information is correct.
+
+You wish to know how I like soldiering. Well, I like it well enough so far, but you must remember I have seen only a small part of a soldiers life. I am afraid of becoming lousy. Several have found them on their clothes in our tent, but I have to keep them off by using unguentum & having clean clothes.
+
+Our regiment is guarding in different places. Sometimes we go to one place & sometimes to another. A certain number of men each day are detailed from each company to guard the city, also to guard the convalescent camp or loose hill as the men have all it. The camp is so called from its being on a hill & the number of them there. We have been guarding the parole camp also, but do not now. The men in the parole camp have no arms at all, but have a guard from another reg. We have had no pay yet & I dont know as we will, have before the 15th of January. The men all say that they have no money & are getting impatient for some. A Frenchman from our tent died not long since. He was a sickly man at home and his come no duty here. His brother in law, wanted to send him home, so the men agreed to give $1 each if the officers would advance the money as the men were out of money, & take it out of their pay. The officers did not do it so he was buried in the soldiers cemetery. In this cemetery they are buried as close as possible in straight rows. Each soldier has a board painted white on which is his name Co. & regiment. The head boards are of durable wood furnished by Government.
+
+I have seen F. Borron, Charles Dodds & several other acquaintances from C. The rest were Frenchmen. C. Dodds looks the same as ever, also looks very healthy. F. Borron looks well, would not go home for anything, as he likes the cavalry service. They all came to our camp to see us. C. Dodds is orderly for an officer in Washington, received $1 a day out of which he pays his board.
+
+Yesterday was Thanksgiving which I spent on guard. We are out of 12 men pleased to guard the bridge over to Johnson (one end of the bridge.) There is a shanty there dug out the side of a hill. We had a good fire obtained by asking for a few sticks from each wagon that passed. I hope you and Mother went to Grandmothers as I think you would have had a good time.
+
+How does Mr. Simons school come on? I hope you will give me all the news that you can. Tell us all about yourself, how you come on teaching, all your trials & troubles, bothers, etc. I don't know where we will stay this winter. We may stay here all winter. I think we will. One regt. besides ours guards the city, together with a remnant of another regiment. We keep the city straight. I like guard duty, all except night guarding. Do you think there will be a draft? We think here that there will be none.
+
+..... 30 .....
+
+========== INDEX 126 ==========
+id: LTR-1862-12-04-001 | date: 1862-12-04 | author: charles (Charles) -> Alexander Hubbell
+location: Camp near Alexandria, VA
+flags: ill True wound True death False battle False
+sigSummary: Charles writes brother Alek from Camp near Alexandria, Va., still awaiting word that Henry, taken prisoner, will be exchanged and sent home. He itemizes his $67 bounty — $60 state, $28 county, $10 town, $2 enlistment fee — with pay three months overdue. Then the grim detail: four men have shot off their own fingers, thumb, or arm "accidentally," while Charles, who "did not enlist with the expectation of sleeping on a feather bed," guards Alexandria and waits for the war to close.
+health(prior): None
+--- TRANSCRIPTION ---
+Dec. 4, 1862
+Camp near Alexandria, Va.
+
+Dear Alek:
+
+I intended to have written you before & have not much excuse for not doing so, but I did not know as your address was the same & was waiting to hear from home if it was. I did not hear from home till some time after I had been here. The fault was in the mail, but it now comes twice a day. It is over a week since I heard from home. In that letter Mother also that she was afraid you was sick as she had not heard from you for some time. But I hope you are well. She also had heard that Henry was a prisoner & would soon be exchanged & perhaps come home. I have this is good news is true & am very anxious to hear from home to find if it is so.
+
+How do you like being sergeant? Was there not some jealousy among the men on account of your promotion? Capt. Rich is now one of Gen Slough's staff & will be probably till we leave here. Gen. Slough is military governor of Alexandria. We are sorry to have Rich leave us as he understands his duty so well. He commences his new duties today. I think we will stay here this winter. Hope we will. When we leave Capt. Rich returns to us.
+
+Some have the Sibley tents, or large round tents. We have bought floors for them. Some we get out of wood, then we go & chop it & back it to the camp. Our stoves
+
+[page break]
+
+are tunnel shaped & keep us warm so far. The men here are very impatient to see the paymaster as they are out of money. There are three months pay due us. I read in the Herald that the troops are now going to be paid. How long since you have had pay. I received $67 bounty, $60 from the state, $28 from the county, $10 from the town & $2 enlistment fee which makes the $67. I was to receive one fourth of the $10 U.S. bounty & one months pay in advance, but did not. They told us when we enlisted that we would receive it, but afterwards said that we enlisted too late for this bounty. The men at Plattsburgh said they would not leave there till they had all that was promised them. But they did. It was the same at Fonda, but they left there also without it. There are men in our reg. from Fonda that received $200 town bounty besides $4 a month for a year & state bounty besides.
+
+Dec. 8th: I stood up yesterday afternoon to attend battalion drill & then went on guard last night so that I could not finish this till now. I received a letter from home this morning which stated that you had been sick, but are now quite well. Glad to hear that you are well. My health is good & has been since I enlisted with the exception of a cold. There are a good many sick in this Reg. & there has been been several deaths. A good many enlisted for the bounty that were not sound, expecting to be discharged. Two men in our Co. have shot their fingers off accidentally — one shot off his middle finger & the other his fore finger. Another man in the reg. shot his two front fingers off & thumb, another was shot through the arm. He have had one case of small pox here. The whole regiment has been vaccinated. Mine did not work & others did not have it work on them.
+
+We are going to exchange our Austrian rifle muskets for new guns. We have a band taken from the ranks with instruments bought by the men. Also a lot of fifes & drummers. The men here are very anxious for the war to be closed. A good many are home sick. I like soldiering as well as I expected. Did not enlist with the expectation of sleeping on a feather bed. I have talked with soldiers that have been in the service some time & they all said that they would like to go home, that they had had enough of soldiering.
+
+Mother had not heard from McDonald when she wrote, about Henry. McDonald will write to his wife how he obtained his information about Henry. I do hope Henry is safe. Now, Alek, I wish you would write me soon & tell me how your health is & when you think the war will be over. We are guarding the city of Alexandria. We come on guard often. I dont like being on guard nights.
+
+Your Aff. Brother,
+
+C.F.H.
+
+========== INDEX 127 ==========
+id: LTR-1862-12-08-001 | date: 1862-12-08 | author: charles (Charles) -> Mrs. Hubbell (Mother)
+location: Camp near Alexandria, VA
+flags: ill True wound True death True battle False
+sigSummary: McDonald's story about Henry could not be confirmed: Charles methodically traces the rumor back through Champlain, soldiers' letters, and paroled prisoners, concluding nobody can verify his brother is alive — "he may be a prisoner in some rebel hospital." Writing off guard from Camp near Alexandria, he records frozen creeks, a grave-yard fence burned for warmth, six months' pay owed, and a plea for woolen yarn and darning needles.
+health(prior): None
+--- TRANSCRIPTION ---
+Dec. 8, 1862
+Camp near
+Alexandria, Va.
+
+Dear Mother:
+
+As I am off guard today I will write to you. Guard duty at the city these cold nights is no fun. We are not allowed any guard fires now. The reason is, I suppose, that the soldiers steal all the wood they can get hold of. Have been burning the grave yard fence. There are three fires, one at each end of the pickets & one in the middle, but we are going to have guard tents put up with stoves in them so that the guard can warm themselves, I hear. There are 2 or 3 men put on in a place so that they can relieve each other. When we go on guard nights we put on our over coats & our blankets. I dont know as I can say put on our overcoats for we have them on nearly all the time. When three men are on a post two can put their blankets together & lay down, but I dont think any one will try it this cold weather.
+
+There is snow on the ground a slight covering & plenty of ice. A creek near us thot running into the Potomac is frozen over solid that we might have good skating if we had any skates. But it will not last long, I think. Food is scarce here. We got out of wood so we went to a fine piece of ashwoods, young trees about as large as my leg, & carried it to camp. It was a pretty large piece of woods, but they came from the convalescent camp in a steady stream all day to hack it & to their camp which is some ways off. Our men & theirs have cut this woods all down. There are 10 or 12 thousand men in the convalescent camp sick, convalescent, & well. The camp is about to be broken up, the well men to return to their regiments, some to return to the hospitals & some to be discharged. This camp we call loose hill.
+
+Capt. Rich is now Aid De Camp to Gen Slough who is military governor of Alexandria. I suppose Rich's employment is till we leave here, but I think from the looks of things we will stay here this winter. The officers are fixing up their tents to well to leave soon.
+
+You wished to know if I was detailed as funeral escort. I was detailed one day, but did not act as there was no death. 26 men were detailed daily as funeral escorts, but there are more detailed now. They went to the provost marshals office where they were told if there were any deaths. The escorts that was to butt of the provost M. office all day if they had nothing else to do, for a funeral might take place any time.
+
+I am glad you have found that memorandum book. When us boys get our pay you will have some figures to put down. I signed an allotment roll at Fonda allotting $10 a month to you. Have it the men signed it. I wrote Jake a few days ago. Received your letter of Dec. 1st, also the Observer. The Observer is like an old friend. I have just seen Ben Bouron & Freeman Houron. Ben is going to Yorktown
+
+[page break]
+
+if he can get a pass, to see his brother Lyman. Ben says it cost him $16 to come here. Will you send me a little woolen yarn & a couple of darning needles if you send me anything. Mrs. Doolittle says he does not have enough to eat. Says he eats when he can cook for himself. Says the men are lazy. Says that each man cooks for himself.
+
+We went down to the city & went through it, but not a thing could we buy as neither of us had a cent of money. There is nearly 6 months pay due Alek & nearly 4 months due me. I dont know when we will be paid. Uncle has poor I guess. The men in our reg. are being trusted by the sutler. I shall not trade with him as he sells to dear. He has good butter, but it is 40 cts. a pound. Some of the men in our tent buy it. Alek says he owes the sutler $11.00 — had to buy as they could not get enough to eat.
+
+We have just received our rubber blankets. I am very glad for they are just what we need. I have been very lucky about getting wet — have not been wet yet. I mean the time very well when not on duty. Riley from Corbeaus has papers sent to him which I read. With a good fire in the stove & a canoe to read I make out first rate. When we are on guard at night we are excused from any duty the next forenoon when we stretch out on the floor, feet to the stove, & try to take a nap, but we are pretty sure to get woke up by the mates. They say that one of the Fonda companies, the Captain I mean, cheated the Government by taking some men of another Co. & putting them with his to fill out his Co. till they had been inspected & drawing the bounty for three men who did not belong in his Co.
+
+I have not been home sick since I have been here. Am glad that I am not a family man as they are the ones who are homesick. I bet Staats says if he ever gets home they will not catch him again — he will not be such a fool as to enlist. The soldiers here all seem to hate the niger. They say it makes them mad to think they are fighting to free the niger. We have a small brass band & a lot of drummers so that we have music mough. Hear it every day at dress parade & guard mounting. I guess you forgot that Alexandria is a large city. I can see and can buy almost anything here. I should not feel anxious about James if he does not succeed at West Point. He will in something else. I wish you would write all about home matters.
+
+[page break — Dec 13 continuation]
+
+Dec. 13, 1862
+Camp near Alexandria
+
+Dear Mother:
+
+I received your welcome letter last evening. They always come in the evening. Are brought to each man by some one of the Co.
+
+I was very sorry to learn that McDonalds story about Henry was not true. I was afraid when you first wrote of his story that there was some mistake. I still think he may be in or prisoner in some rebel hospital. Probably he was badly wounded. Savagham heard from Mathews that his brother was most likely in a hospital. Bethune belongs to Capt. Rich's old Co. He was not in the battle as he was in the hospital at the time. I saw him in Washington when our reg. was coming here. Also saw him not long since here. He had cut from a newspaper a list of the killed & wounded in his Co. at the battle instances[?]. He showed me the list of killed & wounded. Came here to see Capt. Rich. A stayed here with him a day or two. I did not see him long either time. Both meetings were accidental & he introduced himself. Savagham heard from Mathews, not since if we had heard from Henry. McDonald's report might have started at Champlain. Somebody might have wrote to their friends in the army about him. Mr. Cook might have written Albert & he some one else in Co. B.
+
+[page break]
+
+About horse beef; we do not have any. We have salt beef which I like when the salt is all out. That is, when it is well cooked. Some call it salt horse.
+
+We are not going to North Carolina. I don't think anyone believed we were. The regiment will stay here all winter. We have just had guard tents put up around the city for the guard. There is a fire in each tent & the guard relieve each other. We have also our rubber blankets so that we will be quite comfortable. The guard stays at the city 24 hours. We have boiled fresh beef about four times a week. Each man has a loaf of bread a day which he puts in his haversack. The bread sells in the city for 5 cts. We have boiled rice quite often which I like. It is sweetened a little. A good many of the men dont like it. We have two good cooks now.
+
+I think we will not get our pay till next month. Wish you could send me one dollar. I have sold two dollars for repairing my watch. If that box comes will you send me two pairs of wool socks & two cheap handkerchiefs. They will be plenty. I have 3 prs. of socks but they will wear out before spring. A good many of the men have drawn socks. Some of them were thick & good — others not so. If not convenient dont send them as I can get socks etc. here.
+
+I have not heard from sick yet. I do not like to write letters so Uncle John need not write often. I mean letters to strangers. Has Pollard married Mary Ann Brinkerhoff — you know who I mean. "I. Staats heard so from home. Have you engaged any one to draw those down saw logs. They ought to be drawn the first snow. Neshan will draw them or know of some one.
+
+About James: I hope he will succeed, but if he does not it need be no disgrace. All are not calculated for military men & besides a good many smart men have not succeeded there.
+
+I have seen some paroled prisoners (there is a camp of them not far off), but it would be useless to ask them about Henry as if they saw him they would not notice him as he was not in their Co. We have a good Chaplain. He has only preached to us two short sermons so far. & his sermons ought to be short as the men are drawn up in hollow square & stand. I mean 3 sides of a squad. The Chaplain stands in the 4 side & the officers also. He prays without kneeling. Some of the soldiers sing out of the soldiers hymn book. The Chaplain is quite sick now, caught cold at a soldiers funeral. The Catholics in our Co. attend church every Sunday in the city under the charge of the 1st Lieut. who is a Catholic. I dont know as there is a service anywhere else in the city.
+
+I hope you will write often. You & Frances must make yourselves as comfortable as possible. We do not suffer from the cold as we have good fires. Our tent is a good tight one.
+
+Your aff. Son,
+
+C. F. Hubbell
+
+..... 30 .....
+
+========== INDEX 128 ==========
+id: LTR-1862-12-09-001 | date: 1862-12-09 | author: mother (Mother) -> Alexander Hubbell
+location: Champlain, NY
+flags: ill False wound True death False battle False
+sigSummary: Henry is missing, and his mother conducts an investigation from her Champlain kitchen — "tell me who of 'the boys' saw him after he was wounded." She rejects McDonald's account as rumor, weighs Scott's report that Henry was seen on one knee two rods off, and fears he was buried by strangers like Dennis Hayes. By December 9, 1862, she pleads no longer for the war's end but for her son's life: "Can you get a discharge and come home. I cant live alone."
+health(prior): None
+--- TRANSCRIPTION ---
+Dec. 9th, 1862
+Champlain, N.Y.
+
+My darling precious pet:
+
+I could have cried when I found no letter in the office from you this morning. You must remember my loneliness and write often. My heart is breaking for Henry. I fear I cannot long bear up under the crushing sorrow. My hope of ever hearing from him is expiring and I am consumed with grief.
+
+Now, Alex, tell me who of "the boys" saw him after he was wounded. I often hear that he was seen, but have never heard who saw him. You have seen the company and know. McDonald didn't see him. I am afraid that the reports are not reliable. He may he was mortally wounded. Scott is here. He says they tell him that he was seen & two rods from him on[?] one knee. He might have been wounded in a vital area and fall in that way. Write me all they said — what they said — and who. It turns out that McDonald has heard false rumor. With regards to his being alive.
+
+The prisoners are nearly or quite all released before this and there is no Henry
+
+[page break]
+
+among them. Scott told me today that the missing were probably mortally wounded. Dennis Hayes was buried by strangers before the Company returned to the pit — and Henry may have been. Oh — Alex — can you get a discharge and come home. I cant live alone — I must have one of you. In my old age it is hard to be left alone. How much I think of you this cold, cold weather. I never retire at night to my worn room and set without thinking of you, my darling boy, and pray God to protect you. You must have suffered during these cold days. Have you good flannel shirts & drawers. The Carter boys are having good heavy shirts made[?] here to be sent on next week. They are made of two or three widths[?] since. You must be nearly clad. Your health is precious — take care of it. Charley must feel the cold as he has not yet become (?).
+
+Tomorrow I intend to get pony shod. The price for shoeing now is $1.50. I must get a whit (?). Fastened in the sleigh as some one has stolen the one on it. Examples of this kind that I intend to, bring Henry painfully to mind. These are things that he always saw to. Monsieur Cushas days are numbered, and I have all this to do and no to. I found Joe amusing himself this morning whipping pony while he was tied up in the stable. He got a lecture this he will remember awhile.
+
+Alek Douglas writes that it is thought they are going to North Carolina. I have not. I should be very sorry to have Charles go so far away. Do you hear from Charley. I want you to tell me more about yourself — what your new duties are and all about yourself. I wish the South would be wise ant accept the proposition for "gradual emancipation and end this terrible war. I want you home. I must have you. Has Luther returned? Remember me kindly to him. How soon do you expect this war will be over. In his years? Less than thirty. I have no opinion in the mat [?]. Pollard is going to be married this week to Mary Jane — a Mrs. Brinkerhoff old girl. Do you attend church & prayer meeting? I hope you will avail yourself of the priviledge whenever you can. "To avail all the means of grace we can get. You are surrounded by temptation & and have a great deal to Mrs. buffet and need grace in no small degree and you must go daily to the fountain for a supply.
+
+This is the last month of the year 1862. You know what Henry wrote you on New Year day. He says, "who knows Alex, whether you and I will be here at the close of this year." O, how my heart bleeds. It was almost a prophecy. I cannot endure to look at his letters or pictures — it is too much for my poor shattered nerves. Don't forget to answer my questions relative to him.
+
+God bless & protect you, my precious boy, is the daily prayer of
+
+Your aff
+
+Mother
+
+========== INDEX 129 ==========
+id: LTR-1862-12-09-002 | date: 1862-12-09 | author: mcdonald (R.W. McDonald) -> Mrs. Hubbell (Mother)
+location: Camp near Falmouth, VA
+flags: ill False wound True death False battle True
+sigSummary: McDonald, an orderly sergeant of Co. D, 34th Regt. N.Y., answers a mother's plea to know whether her son Henry is dead or alive: word from Albert Cook at Annapolis, relayed by Henry's brother Charles of the 60th Regt., that Henry was taken prisoner with only a slight leg wound. He insists Henry could not have hidden after Antietam, for the woods stood clear of brush, the great trees set far enough apart to see a quarter to half a mile.
+health(prior): None
+--- TRANSCRIPTION ---
+Dec. 9th, 1862
+In camp near
+Falmouth, V.A.
+
+Dear Madam:
+
+I received your letter of the 2d inst making enquiry as to your Son, Henry, asking me whether he is dead or alive and how I came by the knowledge of his being in Richmond a prisoner with others of a minor nature, and his answer my first that the day I left Harpers Ferry last, I seen and talked with his Brother Charles of the 60th Regt. and he told me there and then that he had got word from Annapolis from Albert Cook who stated that he had seen and talked with Henry, and that his wound was very slight & in the leg. This is all the information I ever got of his that I placed any reliance on since the memorable field of Antietam. I therefore believe him alive & a prisoner with a great many more. As to the men all being exchanged, it is a mistake and as to Henry being able to write to you, it is not wonderful at
+
+[page break]
+
+all, as the bushes that he could creep into and hide himself, it was utterly impossible for him to do so. The woods in which the enemy as well as ourselves were in was clear from brush or any other speciem of vegetation that would hide a man from view. The large trees were far enough apart that on a level you could see from 1/4 to 1/2 mile without interruption.
+
+Hoping that I have candidly answered you all your questions, will close with the wish and hope that you still hear of your son more definitely. "Will close and say that should I hear of anything in relation to him it will be communicated to you.
+
+Sympathizing and obedient servant
+
+R. McDonald
+Orderly Sergt. Co. D, 34 Regt. N.Y.
+
+========== INDEX 130 ==========
+id: LTR-1862-12-21-001 | date: 1862-12-21 | author: alexander (Alexander) -> Mrs. Hubbell (Mother) & Fannie (Sister)
+location: Camp near Fairfax Station
+flags: ill False wound True death False battle False
+sigSummary: Alexander, marching with cold-numbed fingers in a camp near Fairfax Station, sends his mother the eyewitness account she has waited for: "the boys said they saw Henry grasp his leg, take a step or two, and threw himself down." He clings to hope his brother lies in a rebel hospital. Six months unpaid and out of patience, he confesses he would sooner fight the abolitionists than the Southerners.
+health(prior): None
+--- TRANSCRIPTION ---
+Dec. 21st, 1862
+Camp near
+Fairfax Station
+
+My Dear Dear Mother & Sister:
+
+I must "hurry up" and write or my fingers will soon be so numb that it will be wholly impossible. How I long to see you and when that will be God only knows. I wrote you a few lines the day before we left the Ferry. Since then we have done no small amount of marching. We went up Loudon Valley to Hillsborough, from there to Leesburg, thim to Fairfax Courthouse, from there to Dumfries, five miles from Aquila Creek and twenty-four from Fredericksburg. The orders were countermanded, I am one, and we marched back to this place, leaving a detachment of the Regts. there and another small force at Bolts ford over Bull Run Creek. We reached here day before yesterday and will probably leave soon.
+
+Please thank Mrs. Hoyle surely for me for her kindness in sending those papers. Tell her that they were the sources of the greatest enjoyment to myself and comrades. The Plattsburgh paper was especially welcome. Say for me that we had the abolitionists quite as badly as does the editor of that sheet, and that we would much prefer fighting them to the Southerners.
+
+You ask me, Mother, about my new duties: I could hardly tell you on paper, that you would understand, only that my responsibilities are much greater. Mother, did you ever receive the letter of two sheets I sent from London Heights telling you of my visit to the Camp of the 34th and all I learned there concerning Henry? I presume you did. I do not remember who they were that said they saw Henry. The boys (a number of them) said they saw Henry grasp his leg, take a step or two, and threw him self down. I think there is a strong probability of his being yet in a rebel hospital.
+
+The first of January there is six months pay due me and I do not see much prospect of my getting it very soon as the treasury department does not seem to be in very good order. I am sorry for I should like to send you some money to get winter necessities. Mother, if you can without inconveniencing and denying yourself send me a little — and only a little — money, it would be a great comfort to me, and when you write if you will see and then put it in a stamp it will enable me to answer your letters much more readily for it is very difficult to get them here.
+
+Love to all. I will try and write again soon. I am enjoying excellent health.
+
+Your affectionate son,
+
+Alex. F. Hubbell
+
+========== INDEX 131 ==========
+id: LTR-1862-12-26-001 | date: 1862-12-26 | author: charles (Charles) -> Mrs. Hubbell (Mother)
+location: Camp near Alexandria, VA
+flags: ill True wound False death False battle False
+sigSummary: Alexander rode the cars free from Fairfax Station to reach Charles's camp near Alexandria on Christmas Day, arriving at 4 p.m. and gone by 11 the next morning — long enough to split butter, currants, and ginger snaps between them. Charles notes his brother looks well but thin on rations, then turns to the tent's quiet truth: of twelve men only three can write, so he pens the others' letters, "what you have a mind to," since they tell him nothing to say.
+health(prior): None
+--- TRANSCRIPTION ---
+Dec. 26, 1862
+Camp near Alexandria
+
+Dear Mother:
+
+I was surprised yesterday to receive a visit from Alek. Day before yesterday Capt. J. B. Ransom visited our Co. He told me then Alek stood in his first place. I asked him if he could let Alek come & see me. He said he couldn't if they did not leave, but said I must come up & see him. I told him I would if I could. His reg. is at Fairfax station, 15 miles from here. The whole army corps is there. I did not think of the railroad as a means of going there & thought of but two ways of my going there on foot — or hire a horse. But I had no money to hire a horse & would have to get a furlough of two days to walk there, so I was afraid I would not see Alek, but he came here on the cars free of expense. He arrived here at 4 p.m. yesterday & left at 11 a.m. today. He looks well, though the eruption he had on his face has not entirely cleared out & also a little whiskers. He is also rather fat. I intend to get a pass & take a railroad ride to see Alek if I can. I gave him half of the butter & currants, some of the g. snaps, a little
+
+[page break]
+
+yarn & a d. needle with the two fingered mittens & a towel as he had nothing to wipe his face with, also a testament. While at Fonda I bought a matt of kid gloves so I have both mittens & gloves. Alek says he does not have enough to eat always. Says he each man cooks for himself. Says he lives on fat pork & hard crackers, though if they have a tin like they fry it on the plate. Also says that he is in a log barracks coffee drinker though they do not get much sugar to put in it. They now have dried apples. He says they live in the open sir as their tents are only large enough to sleep in. Two sleep in a tent.
+
+We went down to the city & went through it, but not a thing could we buy as neither of us had a cent of money. There is nearly 6 months pay due Alek & nearly 4 months due me. I dont know when we will be paid. Uncle has poor I guess. The men in our reg. are being trusted by the sutler. I shall not trade with him as he sells to dear. He has good butter, but it is 40 cts. a pound. Some of the men in our tent buy it. Alek says he owes the sutler $11.00 — had to buy as they could not get enough to eat.
+
+He received the box Dec. 22nd. Alek & I are much obliged. The currants & butter will go well & the snaps have & will go well for a short time. Quite a number of boxes have been received in our Co. & a great many in the reg. One box in our Co. staid 3 or 4 weeks in Washington & some of the eatables are spoiled. Did you pay my charges on the box ? if so how much. Snakes stuff filled up about half of the box. I have sent quite a number of acquaintances since I have been here. Albert Cook has been here. He M.& N.M. there are at the parole camp at Georgetown. Albert looks well, was going to try to get a 20 days furlough to go home. He rode a horse which was one of forty he & Bright took care of, as he told it. I was on guard & did not see much of him. J. Douglas & Albert went into the city. Cyrus Kellogg has been out of the hospital only a short time & is not at the convalescent camp. He has been here several times to see his uncle Norman. The convalescent camp has been moved to about 3 miles from here. There is a shanty there dug out the side of a hill. We had a good fire obtained by asking for a few sticks from each wagon that passed. I hope you and Mother went to Grandmothers as I think you would have had a good time.
+
+Col McMartin said to us the other day that he thought we had no more months here among 800 men that[?] there could be at home among the same number of men. Said we a great deal better off here than we would be at the front in smaller tents. Thought we would stay here this winter. Alek said it made him feel bad to see how comfortable we were & then think of their own camp. Lieut. Burdick came with Capt. Ransom into our Co. I see Burdick quite often. He is a pleasant man. Frances old friend S. Tombe is going to be discharged. He was to be drummer, but has not drummed any. I suppose she remembers what a handsome man he was. Well, he looks the same as ever. Made some particular enquiries about Frances said she went to school when he did & did him a favor when boys were reciting to Mr. Dixon in the teacher class. Tombe became confused & could not answer his question when Frances went on with the lesson as if he had answered right. He told me he was invited to Mrs. Nodiah Moores to a party when C. Walkerton boarded there. Mrs. Vanberton[?] urged him to come & see Charles as he was very polite. He & his brother are both married.
+
+Where does Mrs. Brinkerhoff stay this winter. Has she said you the rent? Mount Vernon is about 8 miles from here. Some of the men have been there. I dont know as I care enough about it to walk there. We had no drill Christmas, nothing but dress parade which we have every day unless it rains. Some of the men went to the Catholic & some to the Episcopal churches on that day. Our 1st Lieut. McGuire is a Catholic & takes a squad of men every Sunday to the Catholic church.
+
+[page break]
+
+At dress parade we have to have shoes blacked, clothes brushed & look as nice as we can. I staid in camp Christmas & at 4 p.m. Alek came. We have 3 men standing on a barrel (each on a barrel) to punish them for having to much of a Christmas. The slave men in Alexandria is a terror to our men. The worst ones are showered. One of our men was on city guard & put down his gun for a few minutes to get a drink when an officer came along & took it his gun. He was shut up in the slave pen & showered.
+
+Washington is about 8 miles from here. It is difficult to get a pass to go there. I think we can get none unless it is on business. How do you & Frances get along? You know I suppose your ears are not jarred by the noise in the stone castle unless it is by the mice. You had better keep money going. It still do you good to take sleigh rides. How does Frances like going to the post office? I wish she would write & tell how the examination went off & all the rest of the news. I hope you still feel well.
+
+Savagham did not write that letter that you read. It was written by Tromby. There are 12 men in our tent & only three can write. Sergeant Welky, Jim Lucas & myself. Those men that cannot write send more letters then I do & receive letters very often. I have written some letters for them. They think as I do that I am not a very rapid letter writer. Some of them all give you a letter to read & tell you to answer it. They dont tell you anything to write so you write what you have a mind to. The majority of the ignorant men are in our tent. I think that the other tents have not so many ignorant men in each tent as there is in ours.
+
+Please write soon & all the news.
+
+Your Aff. Son,
+
+C. F. Hubbell.
+
+..... 30 .....
+
+========== INDEX 132 ==========
+id: LTR-1863-01-02-001 | date: 1863-01-02 | author: charles (Charles) -> Mrs. Hubbell (Mother)
+location: Alexandria, VA
+flags: ill False wound False death False battle False
+sigSummary: Charles writes from Alexandria, his company detached for straggler duty, ferrying soldiers back to their regiments by steamboat. The heart is his visit to brother Alek at Fairfax Station, where he found the 60th NY hard up: water drawn from ditches and mudholes, the unit nicknamed "the thieving reg't," Alek six months unpaid and $11 in debt to the sutler. Then he gently corrects his mother, who'd heard Henry was urged not to go into that fight: "every man was obliged to go."
+health(prior): None
+--- TRANSCRIPTION ---
+Alexandria, Va.
+Jan. 2, 1863
+
+Dear Mother:
+
+You see this letter is dated different from my other letters and the reason is our Co. has been detached from the regiment and is stationed in the city near the Potomac. Our duties, I think, will be to take soldiers back near their reg'ts. Two squads from our Co. have taken two different lots of soldiers to Aquia Creek. I expect to go tomorrow as I have not been yet. The men like to go as they go and come on a steamboat. We take one or two days rations with us. One of our Lieuts. goes with the men. We moved day before yesterday, brought our tents and stoves with us. We all like our new quarters better than the old and I think we will stay here some time if the men behave themselves.
+
+Last night there was a heavy wind with rain and it blew down four of our tents leaving the tent I am in and another one standing. The men whose tents were down went into the large d tent which is close to us and staid till morning when they put up their tents. I went to Fairfax Station Jan. 14th to see Alek. Their camp is about one mile from Y. Station in the woods. I staid every night with A. I intended to take the cars at 7 A.M. Alex went with me to the depot, but the cars were gone, so I had to wait till afternoon. I was gone four hours over my time, but nothing was said about it. Alex was well and surprised to see me. His face is scarred with the eruption he had, but it is not bad. Capt. Ransom read me his letter to you. They had just had orders to be ready to march at 12 hours notice with 8 days cooked rations in their haversacks and 8 days rations in the wagons. The men were getting fixed for the winter and hated to leave. Some of the men told me that they had had hard times. They said that the 60th reg't. was called the thieving reg't. That the reg't. left no money behind them, but took all they came across. Alex told me that they did not have enough to eat on a march, but were compelled to buy of the sutler. Told me he had had no pay for six months and he owed the sutler $11.00. They get their water out of a kind of a ditch. The water was riley, but they did not seem to mind it. Said they had often drank out of mudholes in the road on a march. The 60th reg't. forms a part of Gen. Slocum's 12 army corps which is encamped in the woods where I was. The 60th Reg't. is in the 2nd Brigade and 2nd Division. James Luther sends his respects to you and Frances. He looks fat and healthy. The 11th and 12th army corps from the Reserve Grand Division of the army of the Potomac commanded by Gen. Sigel.
+
+I received those two handkerchiefs and say much obliged. Have received the Observer quite often lately. Alex told me he had no postage stamps; said it was the reason he had not written. I have some other. Wish you would send me some. Have borrowed quite a number. I tried to buy some with that dollar Frances sent me, but they wanted U.S. money.
+
+[page break]
+
+You say that Henry was urged not to go into that fight. Perhaps it is not so. When we were called out the roll was called and every man was obliged to go. Mr. Rye says he will pay over and above the appraisal what the land is worth. Does he mean that if they appraise the land below its value, he will make up the balance? If so, what does he call it worth? Mr. Savage has sold several lots at $500 an acre, just over Mrs. Turners. I suppose we had better sell a strip of the garden, but they ought to pay what it is worth. About the sugar bush, if his claim is good he ought to have that strip, but if there is any doubt about it, he can not have it. I don't know how he can come at it.
+
+Have you got fodder enough for this winter? How does Joe get along? Does he do his chores well? I hope Frances will not overwork herself and that you both will try to enjoy yourselves as well as you can. Please write often and I will do so.
+
+Affectionate son,
+
+C. F. Hubbell
+
+I suppose we ought to pay the church tax. But this tax is not for beautifying the church. I paid that tax at the time. This tax has run some time. Has the collector called on you? Have you paid Mr. Copeland anything?
+
+..... 30 .....
+
+========== INDEX 133 ==========
+id: LTR-1863-01-13-001 | date: 1863-01-13 | author: alexander (Alexander) -> Mother and Sister
+location: Camp near Fairfax Station
+flags: ill False wound False death False battle False
+sigSummary: Orders arrive at evening, and the letter pivots: "We have just received orders to be ready to march in twelve hours and are probably going east to reinforce Rosecrans." Hours earlier Alexander was all bravado, teasing his sister Fannie that nothing beats "a good hunk of raw pork with my hard tack" and shrugging off his destitution: "I have not had a shirt to my back or a blanket to cover myself with at night." Then, gentler: "Do not be troubled, Mother. We are all in God's hands."
+health(prior): None
+--- TRANSCRIPTION ---
+Jan. 13th, 1863
+Camp near Fairfax Station
+
+My dear Mother and Sister:
+
+I received your most welcome and long expected letter yesterday and was quite amused with one portion of it. So you think I had better roast my pork before eating, eh? Well, that will do very well when I am in camp, but when I am on the march, what tastes better than a good hunk of raw pork with my hard tack. You will have to be a soldier to appreciate it as it ought to be. It is really excellent my, Miss Fannie. You are quite shocked that I am in such destitute circumstances. Well, I suppose I am destitute, but then it hardly seems so to me when I compare my present circumstances with those that I have been in. Why, Frances, I have seen the time when I have not had a shirt to my back or a blanket to cover myself with at night.
+
+Evening: We have just received orders to be ready to march in twelve hours and are probably going east to reinforce Rosecrans. Do not be troubled, Mother. We are all in God's hands. He will take care of us. I commend you all to him and know and feel that He will take care of you and me.
+
+Your aff. Son and Brother,
+
+Alex F. Hubbell
+
+========== INDEX 134 ==========
+id: LTR-1863-01-14-001 | date: 1863-01-14 | author: james (James) -> Mrs. F. M. Hubbell
+location: Camp near Fairfax Station, VA
+flags: ill False wound False death False battle False
+sigSummary: Captain James H. Ransom writes Mrs. Hubbell directly to ease a mother's "trying anxiety," reassuring her that Alexander "never looked so finely and well." He'd applied to send him home on recruiting service, then planned a furlough — until orders came to march at twelve hours' notice with eleven days' rations, destination unknown. A postscript catches the moment Charles arrives in camp to visit, "well and looks finely," before riding out at 7 the next morning.
+health(prior): None
+--- TRANSCRIPTION ---
+Jan. 14, 1863
+12th Army Corps, 2nd Division
+2nd Brigade, In camp near
+Fairfax Station, Va.
+
+Mrs. F. M. Hubbell:
+
+My Dear Friend:
+
+Your letter to hand making inquiry concerning Alexander's going home. I immediately applied to the commanding officer of the Regiment to have him sent home on recruiting service if any sergeant went from the regiment. The matter was favorably considered by him after reading your letter and an explanation by myself. I thought the request was good for him to go home on duty and thus save expense to himself. If that failed, I was determined to apply for a furlough for him, as our circumstances daily looked more and more like "going into winter quarters" here, I though soon to effect one or the other efforts for him to go home. But yesterday we were ordered to be ready to march at 12 hours notice and with eleven days rations. We do not know where we are to go, of course, some think to join Rosecrans, others think towards Fredericksburg, and others still think we will go back to Harper's Ferry. No one knows exactly; it may be the generals and I don't very much that they know. So you see matters of furlough or recruiting service is all done away with for the present least, by orders to march.
+
+I feel confident that I realize in a certain measure your trying anxiety of mind about your sons, and sympathize most sincerely with you and would be glad to do something to aid in relieving your anxiety. But can at present only assure you that Alexander is very well indeed and never looked so finely and well as at the present time. On Friday last I was down to the 153d Reg't. and say your son Charles, who looked well, too, and is in good health, he says, except a cold. Having many things to attend to in order to be fully ready to march when positively ordered, I write in haste. Please excuse. With much love to yourself and Frances, I am
+
+Your friend,
+
+James H. Ransom
+
+P.S. Since writing the above, Charles arrived in camp to visit us. Is well and looks finely. Will return tomorrow at 7:00 A.M.
+
+========== INDEX 135 ==========
+id: LTR-1863-01-31-001 | date: 1863-01-31 | author: charles (Charles) -> Mrs. Hubbell (Mother)
+location: Alexandria, VA
+flags: ill False wound False death False battle False
+sigSummary: Charles writes his mother from Alexandria the very night the company is paid for two months, with three months still owed — and warns, dryly, that liberty in the city means "we will have some drunken men in our Co. for a few days." He encloses a $20 allotment check, then pleads against worry: "When I am not well I will let you know." A postscript finds him in a stone Episcopal church, the graves around it weather-worn and dated to the 1700s.
+health(prior): None
+--- TRANSCRIPTION ---
+Jan. 31, 1863
+Alexandria, Va.
+
+Dear Mother:
+
+I received your letter today and was surprised to learn that you thought I was sick. My health is very good; have got over my cough and hoarseness. Have not missed duty once on account of sickness since I enlisted.
+
+We have just received our pay for two months. Three months pay is now due us. Nearly the whole Co. this evening as soon as paid, which was about 7:00 A.M., went into the city. I guess there will be no roll call tonight as it is pay night, but the men will have a little liberty. I think we will have some drunken men in our Co. for a few days.
+
+Enclosed I send you a $20.00 allotment check. I suppose it will pass as well as money. Tomorrow morning the whole Co. is ordered to fall out with their guns. Nearly the whole Co. will be on duty tomorrow. I will go to Aquia Creek to guard some soldiers from here and some to the convalescent camp to bring them here. I do not go tomorrow to Aquia Creek, but may go to the same. We have a good time here; have straw ticks to sleep on, and eat much to do. Once in a while we have to guard soldiers to Aquia Creek. Can go into the city when we want to, but must look clean, and be here to roll call which we have three times a day, 6:30 A.M., 5 P.M., and 8:30 P.M. At 8 P.M. we have roll call and dress parade. A boy in our Co. about 16 years old, a hard boy, was absent at roll call several nights running. He was sent to the slave pen and showered. He will behave himself now, I guess.
+
+I wish you would not worry about me, Mother. When I am not well I will let you know. I will keep you posted about myself. You will be much happier if you look on the bright side and expect to see Alex and I safe and sound at home some day, than if you fancy we are sick, etc.
+
+I am glad to hear that you and Frances are well again. How you will take the world easy and try to enjoy yourself. I must close as I have no more time. I wish Frances would write. Has she had a letter from C. Fullerton? The newspaper wrapper on the Observer yesterday was written on the outside. Frances had commenced a letter to her cousin on the wrapper. I don't know who the cousin on the wrapper. I don't know who the cousin is, but she received an unexpected letter from the cousin.
+
+Aff. Son
+
+C. F. Hubbell
+
+..... 30 .....
+
+P.S. Feb. 1/63 Today is Sunday and we had no inspection this morning because so many men were on duty. I am not on duty today and I am glad of it because the mud is deep, I have not been to Aquia Creek yet. I received an Observer yesterday and one today. It much obliged. Then I saw Alex he had not received any paper for two or three weeks. Perhaps he does now. Letters and papers for us all come just as well without addressing them to care of any one. Last Sunday I attended church twice. It was the Episcopal church where quite a number of shoulder straps and privates were in attendance. I went in the morning and evening and intend to go this evening. The church is a very old one of stone. In the church yard around it are buried persons who died in 1700s. The grave stones are weather worn. Our men kept coming in all last night, some drunk, of course, but they were quiet. There is a theatre and circus here. How do you get along with Mr. Rye about the land? Please write me all about business matters.
+
+Give my respects to all inquiring friends, as the boys tell me to say when I write for them. As this is written in a hurry, please excuse misspelling, which I wish you would correct.
+
+Aff. Son
+
+C. F. Hubbell
+
+========== INDEX 136 ==========
+id: LTR-1863-02-06-001 | date: 1863-02-06 | author: alexander (Alexander) -> Mother and Sister
+location: Camp near Stafford House
+flags: ill False wound False death False battle False
+sigSummary: Capt. Ransom has gone home on furlough — "much to my sorrow and the company's" — and Alexander had hoped to go with him, but Gen. Sigel refused to sign his application and sent it on to the War Department, where it may sit forever. Writing from a camp near Stafford House with no fire on a raw February day, he imagines what ten days' leave would bring: "I shall not know whether I am on my head or heals for the space of ten minutes." Rain floods the Virginia roads, and the army can only lie still.
+health(prior): None
+--- TRANSCRIPTION ---
+Feb. 6, 1863
+Camp near Stafford House
+
+My dearest Mother and Sister:
+
+Wonder if it is raining up there today as hard as it is here. It began snowing quite furiously early yesterday morning — settled down into a steady rain — rained hard a good part of yesterday, all last night and is raining hard still. I expect the whole State of Virginia will float away pretty soon. One thing is quite evident — the army will have to lay still quite a little while longer. Capt. Ransom has gone — much to my sorrow and the company's. I had hoped to have gone with him, but Gen Siegel would not sign the furlough and it has gone to the War Department, and it will be some little time before I get it, if I ever do. I went down to the cane with the Capt. If I get this furlough what a time I shall have. I shall not know whether I am on my head or heals for the space of ten minutes. I cannot spare more time than that, for I shall have ten days furlough and shall want all the time possible to see you. You must excuse this short letter for I have no fire and the day is raw and chilly. Luther sends regards. He is well and I am very well. Love to all. Remember me to Mr. and Mrs. Copeland and all they boys.
+
+Your affectionate son
+
+Alexander F. Hubbell
+
+========== INDEX 137 ==========
+id: LTR-1863-02-13-001 | date: 1863-02-13 | author: charles (Charles) -> Frances (Sister)
+location: Alexandria, VA
+flags: ill True wound False death False battle False
+sigSummary: Charles writes his sister Frances from Alexandria that "Gen. Hooker's army is broken up," noting the Pennsylvania reserves went out 15,000 strong but have only about 2,300 left. He recounts guarding 200 stragglers to Aquia Creek, sleeping four to a steamboat floor with him in the middle for warmth, supping on hard tack and bean soup. Hoping to glimpse brother Alex with the 60th N.Y. nearby, he jokes about his beard and teases that Mother's been "converted into a Greclate."
+health(prior): None
+--- TRANSCRIPTION ---
+Feb. 13, 1863
+Alexandria
+
+Dear Frances:
+
+I received your letter of Feb. 1st. Was glad to hear from you and also glad to read a letter so full of news. I received a letter from D. V. Savage this morning. Will answer it soon. Also one from James yesterday. Have not heard from Alex since I saw him.
+
+Gen. Hooker's army is broken up. It is going south, or a part of it is. The Pennsylvania reserves (which went out 15,000 strong, has only about 2,300 left) come on here and staid a day or two and are now going on down to Washington. The 8th army corps, I hear, has gone to Fortress Monroe. I may see a part of Hooker's army will be retained for the defense of Washington. Last Tuesday I went to Aquia Creek. Left at noon and some stuck Monday afternoon. About eighteen of us — set as guard and took down about 200 stragglers. They call us $200 and a seer. The water was riley, but they did not seem to mind it. Said they had often drunk out of mudholes in the road on a march. There is a Rhode Island Reg't. near us (nine months men who received $500 bounty). Have been here five months, only 4 more to stay. The old soldiers are down at the battery now. The trip down the road was a pleasant one. We could go all over the boat. The stragglers were quiet. Said they did not see what there was a guard on the boat for. There were a great many vessels of all kinds at A. Creek. I heard today that the 60th N.Y. Reg't. is only about 3 miles from there. I may get a chance to see Alex if he stays there long enough. After landing at A. Creek we went to the soldier's Rest and had our supper. It consisted of hard tack, cold fat pork, and bean soup. The soup was very good.
+
+We slept on the floor of the steamboat. I had my rubber blanket and woolen, and four of us slept together, I in the middle, so that I slept warm. The rest of the men had no blankets except rubber. In the morning we set out to the mail steamer and came back to Alexandria. The boat was crowded with officers and privates going home on a ten days furlough. I believe that only Hooker's army have furloughs. One or two men out of a hundred. I saw only one lady on board the boat and she was talking with a soldier that had his communion who was sitting by the stove. I suppose she was some relation.
+
+I was out with the Co. drilling this afternoon. We were ordered to halt as we were marching through a street and Lieut. Knapp stopped and shook hands with Mrs. Burdick. He called for Hubbell and Staats. We stepped out and shook hands with Mrs. B. She leaves for home in three or four days. Invited us to go on and see her. Perhaps we will tonight. A. Douglas and Gokey have been
+
+[page break]
+
+to see and seen her. A. Douglas says they are strong secesh particularly a young lady there. Lieut. Col. Armstrong, Lieut. Knapp, and Douglas were there the other night. I think the people here are secesh but they do not show it.
+
+It is true that I am a bearded fellow. I guess you would not know me if I did not speak. I wonder what Mrs. Burdick thought of my looks. I don't shave for two or three reasons. The main on is, it is a good deal of trouble to shave.
+
+James says he has written me several letters, but directed them all wrong. How is your health? You must take care of yourself, as I try to do of myself. My health is good. Mother must not worry about me if she don't hear just so often. If I am sick at any time I will let her know it. But I hope that I will escape being sick as I have so far. One of our Co. is at Washington sick with the small pox. There are only two besides him that are sick, though not with the small pox. I hope you will write me soon again.
+
+How is your friend Mr. Simonds? You and Mother must take the world easy and enjoy yourselves. So Mother is converted into a Greclate. You must be careful or you will be, too. Ask Mother if she will send me the Tribune once in a while to read, and not for a bed quilt as we have blankets enough. Savagham and I sleep together. He is a short, chunky, Frenchman and we keep each other warm.
+
+Aff. Brother,
+
+C. F. Hubbell
+
+========== INDEX 138 ==========
+id: LTR-1863-02-21-001 | date: 1863-02-21 | author: alexander (Alexander) -> Mother and Sister
+location: Camp near Aquia Creek Landing
+flags: ill False wound False death False battle False
+sigSummary: Alexander reached camp near Aquia Creek Landing safe and sound, six hours before his furlough expired, the journey from Rouse's Point to Washington costing $17.75 and forty-eight hours each way. Now the men are building fortifications. He urges his mother to keep a stout heart: "I believe this war cannot last much longer and trust I shall be home again soon."
+health(prior): None
+--- TRANSCRIPTION ---
+Camp near Aquia Creek Landing
+Feb. 21, 1863
+
+My dear Mother and Sister:
+
+I arrived here safe and sound at about six P.M. yesterday. You pressed me then, that I was but fortyeight hours coming and was here six hours prior to the expiration of my furlough. Found everything here about as I had left it. We are building fortifications. Now as you know how matters and things are going on here, I presume you would like to know something concerning my journey. I went to New York by the N.Y., New Haven railroad. Reached White River Junction that night about two A.M. and remained there until six. Reached New York that day, passing through Springfield, Herts., and Hartford and New Haven, Conn. Crossed the Jersey Ferry and took the first train for Washington which I reached about seven A.M. Friday morning. Left there at twelve M. and reached here as stated. My fare from Rouse's Point to Washington was $17.75. I hope, Mother, you keep up a stout heart. I believe this war cannot last much longer and trust I shall be home again soon.
+
+Love to all, and tell the Capt. I shall write him soon. Luther is well and much pleased with his present.
+
+Your affectionate son,
+
+Alexander
+
+========== INDEX 139 ==========
+id: LTR-1863-02-22-001 | date: 1863-02-22 | author: charles (Charles) -> Mrs. Hubbell (Mother)
+location: Alexandria, VA
+flags: ill False wound False death True battle False
+sigSummary: Lieut. Col. Armstrong, after falling out with the regiment's Colonel — now under arrest, Charles hears — has resigned, and came down to bid the company goodbye, promising to carry word home that Charles was all right. A man was buried yesterday, the fourth death here, though Charles assures his mother nearly all are well now. Between snow, mud, and his plea for two dollars toward knee-high boots, he keeps circling back to reaching Aquia Creek to see Alex.
+health(prior): None
+--- TRANSCRIPTION ---
+Alexandria, Va.
+Feb. 22, 1863.
+
+Dear Mother:
+
+I received your welcome letter of Feb. 9th and also the Tribune and the Observer. I found the Tribune interesting. I'm sorry that you think I did not receive your letters. I assure you your letters are very welcome. Today is Sunday and we are blockaded by the snow storm. There is about six inches of snow on the ground and it is snowing hard and blowing. I am glad that our men have not to go off today. This snow will all go off at once and make lots of mud which we will have to wade through to go to the distributing camp for the stragglers. A few days since we had a hard snow storm. The snow quickly went off and left us some awful roads to travel. I found then that shoes were not the thing. I wish you would send me two dollars as I want to buy a pair of boots. You can get that $20.00 check cashed and use as much as you are a mind to. I would prefer greenbacks as Uncle Sam's money passes the best here. I bought a pair of boots some time since but after wearing them two or three days sold them as they hurt my feet and will wait until pay day for my pay. We expect to be paid next month. Boots that reach up to the knees or above are all the fashion here among officers and men. The mud dries up very quickly here, but is bad while it lasts. We do not have any as cold weather here as at the North.
+
+I went down to Aquia Creek a few days since and came near going to see Alex. I intend to see him before long if possible. We came back on the mail steamer, which we went on in the evening, and slept there on the floor of the cabin around the store till morning. We started at 9:00 A.M. and arrived here at 1:00 P.M. We do not always get as good a place at that to sleep in. The boat was filled with officers and men going home on a ten days furlough. There were also two sick boys and one man and some more ladies taking care of them. Their mothers, I am sure. A. Douglas has gone to Fortress Monroe with some of our men as a guard, also Lieut. Knapp. They took four days rations with them and we expect them back today. Two or three hundred men have left here nearly every day
+
+[page break]
+
+some time back from the convalescent camp and other camps for their regiments.
+
+Lieut. Col. Armstrong has had some difficulty with our Col. and has resigned. The Col. was restoring under arrest, I hear. Armstrong was down here and bid the Co. goodbye. I told him to tell you I was all right if he saw you. He said he would make it a point to see you. I hear that Capt. Rich will be Major.
+
+Yesterday a man was buried who belonged to this Co. Four have died in this Co., but nearly all the men are well now. How do you and Frances get along? You must both try to enjoy yourselves. I hope Frances will not work too hard teaching French. Would not you both like to make a visit to Charlotte? You wanted to make a visit there last winter with me. I have just overheard that the Adjutant is to be Major, so Capt. Rich will remain as he is. Who is the newest? How did Silas' lecture go off? I have not been to church for some time on account of the weather and being away. Our 1st Lieut. goes to High Mass at the Catholic church, but I think it does not do him much good as he swears hard sometimes. Does Sydney work any this winter or his sister or has he a boy? Has she got along with his officer? I must write slips and send some tomorrow.
+
+I saw one soldier going home on a furlough who said that his Co. drew lots to see who should go. I have not heard from Alex. Do you think he will get a furlough. We have potatoes quite often. We have no dried apples.
+
+Your aff. Son,
+
+C. F. Hubbell

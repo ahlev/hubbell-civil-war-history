@@ -1,0 +1,142 @@
+[
+ {
+  "id": "LTR-1863-02-28-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Alexander says the smell of the daily whiskey ration 'sickens me,' but this is an expression of aversion (and his temperance vow), not an illness. He reports no ailment of his own; 'Luther is well' refers to a comrade."
+ },
+ {
+  "id": "LTR-1863-03-02-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1863-03-08-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1863-03-12-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Charles reports his brother Alex as 'hearty as a buck' and 'well,' and speculates someone may be 'sick or dead over at Charlotte,' but says nothing of his own physical health."
+ },
+ {
+  "id": "LTR-1863-03-16-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Alexander relays Charles's worry that their mother might be sick ('all was not right up there'), and reports the death of an acquaintance (Dana Lyman), but says nothing of his own health."
+ },
+ {
+  "id": "LTR-1863-03-19-001",
+  "severity": "well",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Charles plainly affirms his own good health ('My health is very good at present') and adds in the March 20 continuation that he has rarely had wet feet, wearing shoes for comfort. A comrade's headache (Alex Douglas) is noted but is not the author's complaint."
+ },
+ {
+  "id": "LTR-1863-03-22-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1863-03-29-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Alexander writes 'I love my life as dearly as any one could love it' in the context of refusing a safe post, not of any bodily ailment; he reports no illness of his own."
+ },
+ {
+  "id": "LTR-1863-03-29-002",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1863-04-11-001",
+  "severity": "well",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Charles affirms his own good health ('My health is very good'). His remark that he has not 'got sick of soldiering yet' is weariness/anticipation of hard service, not illness; references to brother Henry having gone to the hospital 'when he was sick' concern another person."
+ },
+ {
+  "id": "LTR-1863-04-13-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Cousin Mary McNeil describes a 'sickly' season at Atlas, Michigan, with a high 'bill of mortality' and two children buried in one coffin amid open winter and changeable weather, but reports no ailment of her own (her 'sharp set for dinner' is appetite, not illness). The community mortality reflects the era's seasonal epidemic disease."
+ },
+ {
+  "id": "LTR-1863-04-16-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Alexander, under marching orders, fears for missing brother Henry but reports nothing about his own physical health."
+ },
+ {
+  "id": "LTR-1863-04-23-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1863-04-24-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Alexander relays a comrade's recollection that Henry 'got some hard knocks,' but this concerns Henry, not the author; Alexander reports no ailment of his own."
+ },
+ {
+  "id": "LTR-1863-04-27-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Charles notes that mud made him realize 'shoes were not the thing' (a clothing preference, not a bodily complaint) and discusses sick/hospitalized soldiers of the 34th and a hope that Alex is 'uninjured' — all concerning others. He says nothing of his own health here."
+ },
+ {
+  "id": "LTR-1863-04-30-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Frances Hubbell writes seeking word of her missing son Henry, who was 'in very feeble health' and 'very much reduced in health' before Antietam; these descriptions are of Henry, not the author. She reports nothing of her own physical health."
+ },
+ {
+  "id": "LTR-1863-05-04-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Frances is overwhelmed by grief for Henry ('I have wept until I am almost blind'; 'My heart is breaking'; 'almost deranged') — profound psychological distress rather than a physical ailment of her own, and outside the physical-condition vocabulary. She also asks after Luther's health and notes smallpox is 'quite prevalent' locally; those concern others."
+ },
+ {
+  "id": "LTR-1863-05-11-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "This Chancellorsville letter reports the regiment's casualties (nine killed, including Lester Bond shot through the forehead) and that the writer missed the battle on train-guard duty, but states nothing about the author's own physical health."
+ },
+ {
+  "id": "LTR-1863-05-13-001",
+  "severity": "well",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Charles affirms his own good health ('My health is good') and mentions two swims in the Potomac that week. His hope that brother Alex 'is uninjured' concerns another person."
+ },
+ {
+  "id": "LTR-1863-05-16-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Writing after Chancellorsville, Alexander reassures Charley of his survival: 'I think I have great reason to thank God for my safe preservation.' He came through the action unharmed (comrade Luther also 'uninjured'); no ailment of his own is reported."
+ }
+]

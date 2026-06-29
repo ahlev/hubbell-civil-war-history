@@ -1,0 +1,144 @@
+[
+  {
+    "id": "LTR-1862-01-24-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "No personal ailment is reported; Alexander mentions only temperance (no malt or spirituous liquor since enlisting) and his tent-mate urging early hours as health-preserving habits."
+  },
+  {
+    "id": "LTR-1862-01-24-002",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Henry affirms fair health and notes the barracks were torn down and burned for firewood because they were judged unhealthy to live in, sending the men into tents for the rest of winter — a period sanitation judgment that fouled, crowded barracks bred camp disease."
+  },
+  {
+    "id": "LTR-1862-01-25-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Alexander narrowly escaped being struck by a passenger train (\"I gave one jump\") but was unhurt; he reports that a comrade, Edwin Porter, was killed by the cars — another man's death, not the author's health."
+  },
+  {
+    "id": "LTR-1862-01-28-001",
+    "severity": "minor",
+    "tone": "reassuring",
+    "conditions": [
+      { "tag": "cough-cold", "quote": "down sick with a cold" }
+    ],
+    "healthContext": "Alexander caught a head cold while on guard duty and worsened it with wet feet from snow filling his shoes, but downplays it (\"I feel much better\") and affirms \"My health is good.\" He also reports a red-measles outbreak thinning the regiment — one hospitalized man so low he was rolled over to see if he was dead — but these are other men, and he faults the hospital's poor care of the sick."
+  },
+  {
+    "id": "LTR-1862-02-04-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Henry reports no ailment; his only health-related remark is reserving an occasional glass of cider \"for my health,\" a preventive rather than a complaint."
+  },
+  {
+    "id": "LTR-1862-02-05-001",
+    "severity": "minor",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Henry describes a hard 20-mile forced march with knapsack and a sleepless first night under only blankets in bitter cold, leaving him tired, but frames himself as hardened (\"not be the worst for it the next day\"). The fatigue and cold exposure are mild and transient with no taggable disease."
+  },
+  {
+    "id": "LTR-1862-02-05-002",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "No personal ailment is reported. Henry notes the men are quartered 17 to a bell tent — crowding a medical historian would flag as a disease risk — but he records no illness of his own."
+  },
+  {
+    "id": "LTR-1862-02-05-003",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1862-02-07-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1862-02-11-001",
+    "severity": "well",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Alexander states plainly \"My health is good\" while describing kitchen and fatigue duty (washing dishes, sweeping, cooking)."
+  },
+  {
+    "id": "LTR-1862-02-11-002",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Henry reports no ailment of his own; he describes unsanitary mess conditions — eating \"dog fashion\" without tin plates and joking about swallowing \"a pound or two of dirt\" — which a historian notes as a foodborne risk, though no illness follows here."
+  },
+  {
+    "id": "LTR-1862-02-12-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1862-02-12-002",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Henry affirms \"My health is pretty good now. Have a good appetite.\" He calls guard duty the hardest part of soldiering, being up nearly all night, but says he has grown used to it — fatigue without illness."
+  },
+  {
+    "id": "LTR-1862-02-17-001",
+    "severity": "well",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Alexander reports no ailment and says he sleeps soundly, though only in three- or four-hour stretches — a fragmented-sleep habit he attributes to frequent guard duty. His mention of a \"fever in the army\" is hypothetical, and the poisoned picket (sickened by a stranger's cake, frothing and vomiting green, treated with castor oil and turpentine as an emetic) is another soldier, not the author."
+  },
+  {
+    "id": "LTR-1862-02-23-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Health content is incidental: in a postscript Alexander notes \"I am enjoying excellent health\" and that Luther says he is \"getting fat,\" a passing affirmation of good condition with no ailment."
+  },
+  {
+    "id": "LTR-1862-02-24-001",
+    "severity": "well",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "On the eve of marching, Henry closes by reassuring his mother: \"Do not worry about me, I have good health now.\""
+  },
+  {
+    "id": "LTR-1862-02-28-001",
+    "severity": "minor",
+    "tone": "reassuring",
+    "conditions": [],
+    "healthContext": "Henry reports a 20-mile march with knapsack that left him \"rather tired,\" and admits that even hardened he \"get[s] very tired\" — mild transient marching fatigue, no disease, with reassurance to his mother not to feel anxious."
+  },
+  {
+    "id": "LTR-1862-03-01-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": ""
+  },
+  {
+    "id": "LTR-1862-03-03-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Alexander reports no ailment of his own; the health references concern others — he warns his sister not to ruin her health overworking at French (\"It will not pay to learn French at the expense of health\"), and recounts comrades nearly swamped duck-hunting, all reaching shore unharmed."
+  },
+  {
+    "id": "LTR-1862-03-06-001",
+    "severity": "nodata",
+    "tone": "neutral",
+    "conditions": [],
+    "healthContext": "Alexander gives no account of his own health; a postscript reports a Co. C picket struck by a locomotive, breaking his leg and inflicting terrible head wounds — a grave injury to another soldier, not the author."
+  }
+]

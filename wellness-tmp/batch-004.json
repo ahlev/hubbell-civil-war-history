@@ -1,0 +1,148 @@
+[
+ {
+  "id": "LTR-1862-05-01-003",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1862-05-06-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Henry describes an exhausting all-night march in hard rain and deep mud — \"the hardest night I have seen since I have been a soldier\" — but reports no personal ailment or injury. The men \"hurt\" by the buried Confederate shells were comrades, not the author."
+ },
+ {
+  "id": "LTR-1862-05-09-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1862-05-09-002",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1862-05-10-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1862-05-12-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1862-05-27-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "On the eve of an expected battle at Harpers Ferry, Alexander affirms he is \"in excellent health and spirits\" — a genuine wellness report rather than a merely formulaic line, consistent with his evident vigor."
+ },
+ {
+  "id": "LTR-1862-05-31-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Despite nightly alarms, sleeping on his arms in the open under rain behind a battery, Alexander reports \"I am enjoying excellent health and spirits.\" His robust framing matches his demonstrated physical stamina."
+ },
+ {
+  "id": "LTR-1862-06-06-001",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Henry writes that he has \"stood the march since I have been sick better than I thought I would,\" wishes for a furlough, and gently declines his mother's offer to come nurse him — signs of a genuine, sustained illness that he downplays. The specific disease is unnamed in this fragment (page 1 of the scan is blank); the endemic camp sickness of the Peninsula Campaign (dysentery, fevers) is the likely backdrop."
+ },
+ {
+  "id": "LTR-1862-06-08-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "After a roughly forty-mile forced march through knee-deep mud and constant rain, Alexander reports he \"stood it 'first rate'\" while a number of men, including Luther, fell out unable to keep up — a clear affirmation of his own endurance."
+ },
+ {
+  "id": "LTR-1862-06-13-001",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Henry reports three days unable to keep food down (\"could not take anything but what I would throw up\"), treated by the surgeon with quinine and pills, and \"better this morning.\" A genuine gastrointestinal/febrile illness of the Chickahominy swamps, which he downplays (\"do not worry about me\"). The disease is not named in this letter, though it is consistent with the dysentery and fevers endemic to the Peninsula camps."
+ },
+ {
+  "id": "LTR-1862-06-13-002",
+  "severity": "serious",
+  "tone": "neutral",
+  "conditions": [
+   { "tag": "dysentery", "quote": "I have the disentery very bad" }
+  ],
+  "healthContext": "Henry breaks off his Fair Oaks battle narrative because \"I do not feel well\" — he has \"the disentery very bad,\" the bloody flux that ravaged the swampy Chickahominy camps and killed far more men than combat. He states it matter-of-factly to his brother and notes \"I do not feel much like writing.\""
+ },
+ {
+  "id": "LTR-1862-06-16-001",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Henry has been unwell for a week and \"under the Dr.'s care,\" though \"better now\" and not yet hospitalized — a continuation of his ongoing illness, framed reassuringly to his aunt. He notes the regiment is down to fewer than 500 fit for duty, reflecting the heavy disease attrition of the Peninsula. The ailment is unnamed in this letter."
+ },
+ {
+  "id": "LTR-1862-06-17-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": "Alexander makes no explicit statement about his health, but the letter shows him vigorously foraging — climbing cherry trees and eating \"until we could eat no more,\" marching eighteen miles — with no sign of ailment."
+ },
+ {
+  "id": "LTR-1862-06-22-001",
+  "severity": "serious",
+  "tone": "reassuring",
+  "conditions": [
+   { "tag": "dysentery", "quote": "I have had the disentery very bad" }
+  ],
+  "healthContext": "Henry has had \"the disentery very bad,\" unable to do duty for over a week, reporting to the surgeon each morning for quinine and pills as sickness spreads through the regiment; he cannot stomach the rations (hard bread, salt junk, fresh meat). He reassures his mother he is \"better than I was.\" A textbook case of the camp dysentery that crippled the Army of the Potomac on the Peninsula."
+ },
+ {
+  "id": "LTR-1862-06-22-002",
+  "severity": "minor",
+  "tone": "worried",
+  "conditions": [
+   { "tag": "homesickness", "quote": "I feel so lonesome" }
+  ],
+  "healthContext": "Physically Henry seems recovered enough to write at length and reports no illness in this letter, but he confesses acute morale distress — lonesome, lying around his tent, \"almost tempted to desert sometimes\" — what the period medicalized as nostalgia (homesickness). His body is not ill here; the affliction is psychological."
+ },
+ {
+  "id": "LTR-1862-06-30-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "Alexander affirms \"I am enjoying excellent health\" while excitedly relaying the (false) report of Richmond's capture — a genuine wellness statement."
+ },
+ {
+  "id": "LTR-1862-07-04-001",
+  "severity": "nodata",
+  "tone": "neutral",
+  "conditions": [],
+  "healthContext": ""
+ },
+ {
+  "id": "LTR-1862-07-08-001",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "\"Here I am safe and sound\" — Alexander affirms his wellbeing on arrival at Front Royal after the overnight march from Camp Goodrich."
+ },
+ {
+  "id": "LTR-1862-07-08-002",
+  "severity": "well",
+  "tone": "reassuring",
+  "conditions": [],
+  "healthContext": "After the Seven Days retreat — an all-night march in mud and rain, his knapsack thrown away on the double-quick — Henry affirms \"thank God I have my health yet,\" suggesting recovery from his earlier dysentery. The grievous wound he describes (the regiment's Major losing both feet to a solid shot) was a comrade's, not the author's."
+ }
+]
