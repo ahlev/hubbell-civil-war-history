@@ -932,11 +932,17 @@ window.HubbellReader = (function () {
           mapLink + '</div>' +
       '</div>' +
       contextStrip +
-      summaryHtml +
-      healthContextHtml +
-      healthHtml +
-      ppl + plc +
-      '<div class="reader-body">' + bodyText + '</div>';
+      // Desktop: header + timeline stay locked at top; everything below the
+      // timeline (summary, health context, condition note, tags, and the letter)
+      // scrolls together inside .reader-scroll — more reading real estate on
+      // small monitors. Mobile ignores the wrapper and scrolls the whole panel.
+      '<div class="reader-scroll">' +
+        summaryHtml +
+        healthContextHtml +
+        healthHtml +
+        ppl + plc +
+        '<div class="reader-body">' + bodyText + '</div>' +
+      '</div>';
 
     // Inject the share button into the reader panel. It's absolute-positioned
     // (anchored to .reader-panel) so it sits inline at the top-right beside the

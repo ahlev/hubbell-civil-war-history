@@ -1351,7 +1351,7 @@
 <!-- v2 "lamplight" era theme — its unscoped .reader-* CONTENT rules style the
      embedded Parallel-Lives reader once --era-* tokens exist on #detail-panel
      (defined in the main <style>); loaded AFTER _overlay.css?v=10 so it wins. -->
-<link rel="stylesheet" href="_reader-era.css?v=16">
+<link rel="stylesheet" href="_reader-era.css?v=17">
 <link rel="stylesheet" href="_scrollrail.css?v=11">
 <style>:root{ --rail-accent:#3E86C4; }</style>
 <script src="_scrollrail.js?v=11"></script>
@@ -2452,7 +2452,7 @@
 
     var _detailWasOpen = false; // track if navigating within open panel
     // ── Letter Context Strip (Parallel Lives reader) ──────────────────────
-    // Dashboard-local twin of the shared _reader.js?v=20 strip. Same markup/CSS
+    // Dashboard-local twin of the shared _reader.js?v=21 strip. Same markup/CSS
     // (.reader-context-strip, served from _design.css?v=7), but reads this file's
     // own LETTERS shape (author/date/recipient) and navigates via openDetail.
     // A density band of every letter on one corpus timeline, current letter
@@ -2595,7 +2595,7 @@
     }
 
     // Flag-category body highlighting for the Parallel Lives reader — mirrors the
-    // shared reader (_reader.js?v=20). Wraps words signalling each active flag in
+    // shared reader (_reader.js?v=21). Wraps words signalling each active flag in
     // rhl-<flag> spans so the colored pills can toggle .hide-<flag> on .reader-body.
     const DASH_FLAG_PATTERNS = {
         battle: /\b(battle|battles|fight\w*|fought|engaged|engagement|skirmish\w*|charge[ds]?|charging|attack\w*|advance[ds]?|advancing|firing|fired|musket\w*|rifles?|cannon\w*|shell\w*|shelling|cannonad\w+|bullets?|balls?|pickets?|enemy|rebels?|reb[s]?|regiments?|brigade[s]?|company|companies)\b/gi,
