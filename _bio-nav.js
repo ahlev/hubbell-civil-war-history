@@ -1,16 +1,21 @@
 /* _bio-nav.js — Left navigation sidebar for bio pages
    Dynamically builds a sticky sidebar from .chapter / .silence elements.
-   Requires: _bio.css sidebar styles loaded. */
+   Requires: _bio.css sidebar styles loaded.
+
+   Exposes window.HubbellBioNav.build(narrativeEl) so the SAME builder can run on a
+   narrative injected after load (e.g. the "Who They Were" inline full-bio view) —
+   not just the document's own narrative on page load. Idempotent per narrative. */
 
 (function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function () {
-    var narrative = document.querySelector('.narrative');
+  function buildBioNav(narrative) {
     if (!narrative) return;
+    if (narrative.dataset.bioNavBuilt === '1') return;   // build once per narrative
 
     var sections = narrative.querySelectorAll('.chapter, .silence');
     if (!sections.length) return;
+    narrative.dataset.bioNavBuilt = '1';
 
     // --- Assign IDs to each section ---
     var chIdx = 0, silIdx = 0;
@@ -25,14 +30,12 @@
     // --- Build sidebar data: extract title + year ---
     var items = [];
     var lastYear = null;
-
     sections.forEach(function (el) {
       var title, year;
       var h2 = el.querySelector('h2');
       title = h2 ? h2.textContent.trim() : '';
-
       if (el.classList.contains('silence')) {
-        year = lastYear; // assign to preceding year
+        year = lastYear;
       } else {
         var dateEl = el.querySelector('.ch-date');
         if (dateEl) {
@@ -43,14 +46,7 @@
         }
       }
       if (year) lastYear = year;
-
-      items.push({
-        id: el.id,
-        title: title,
-        year: year || '—',
-        isSilence: el.classList.contains('silence'),
-        el: el
-      });
+      items.push({ id: el.id, title: title, year: year || '—', isSilence: el.classList.contains('silence'), el: el });
     });
 
     // --- Create sidebar DOM ---
@@ -59,41 +55,49 @@
     sidebar.setAttribute('aria-label', 'Chapter navigation');
 
     var currentYear = null;
-    var yearEls = {}; // year -> year heading element
+    var isClickScrolling = false;
+
+    function setActive(targetId) {
+      var activeLink = null;
+      var allLinks = sidebar.querySelectorAll('.bio-sidebar-link');
+      var allYearHeadings = sidebar.querySelectorAll('.bio-sidebar-year');
+      allLinks.forEach(function (l) {
+        var isActive = l.dataset.target === targetId;
+        l.classList.toggle('active', isActive);
+        if (isActive) activeLink = l;
+      });
+      var activeYear = activeLink ? activeLink.dataset.year : null;
+      allYearHeadings.forEach(function (y) { y.classList.toggle('active', y.textContent === activeYear); });
+      if (activeLink && !isClickScrolling && !document.documentElement.classList.contains('hub-dragging')) {
+        activeLink.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    }
 
     items.forEach(function (item) {
-      // Year heading
       if (item.year !== currentYear) {
         currentYear = item.year;
         var yearDiv = document.createElement('div');
         yearDiv.className = 'bio-sidebar-year';
         yearDiv.textContent = currentYear;
         sidebar.appendChild(yearDiv);
-        yearEls[currentYear] = yearDiv;
       }
-
-      // Chapter/silence link
       var link = document.createElement('a');
-      link.className = 'bio-sidebar-link';
-      if (item.isSilence) link.className += ' silence-link';
+      link.className = 'bio-sidebar-link' + (item.isSilence ? ' silence-link' : '');
       link.textContent = item.title;
       link.title = item.title;
       link.href = '#' + item.id;
       link.dataset.target = item.id;
       link.dataset.year = item.year;
-
       link.addEventListener('click', function (e) {
         e.preventDefault();
-        var target = document.getElementById(item.id);
+        var target = narrative.querySelector('#' + item.id) || document.getElementById(item.id);
         if (target) {
           isClickScrolling = true;
           setActive(item.id);
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.replaceState(null, '', '#' + item.id);
           setTimeout(function () { isClickScrolling = false; }, 600);
         }
       });
-
       sidebar.appendChild(link);
     });
 
@@ -105,44 +109,15 @@
     wrapper.appendChild(narrative);
 
     // --- Scroll tracking via IntersectionObserver ---
-    var isClickScrolling = false;
-    var allLinks = sidebar.querySelectorAll('.bio-sidebar-link');
-    var allYearHeadings = sidebar.querySelectorAll('.bio-sidebar-year');
-
-    function setActive(targetId) {
-      var activeLink = null;
-      allLinks.forEach(function (l) {
-        var isActive = l.dataset.target === targetId;
-        l.classList.toggle('active', isActive);
-        if (isActive) activeLink = l;
-      });
-      // Highlight parent year
-      var activeYear = activeLink ? activeLink.dataset.year : null;
-      allYearHeadings.forEach(function (y) {
-        y.classList.toggle('active', y.textContent === activeYear);
-      });
-      // Keep active link visible in sidebar (skip during click-scroll, and while the user
-      // is dragging the scroll-rail — its scroll would otherwise trip this scrollIntoView,
-      // which scrolls the document and fights the drag, snapping toward section edges)
-      if (activeLink && !isClickScrolling && !document.documentElement.classList.contains('hub-dragging')) {
-        activeLink.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-      }
-    }
-
-    // Observer: trigger when section enters upper 30% of viewport
     var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          setActive(entry.target.id);
-        }
-      });
-    }, {
-      rootMargin: '-10% 0px -70% 0px',
-      threshold: 0
-    });
+      entries.forEach(function (entry) { if (entry.isIntersecting) setActive(entry.target.id); });
+    }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+    sections.forEach(function (el) { observer.observe(el); });
+  }
 
-    sections.forEach(function (el) {
-      observer.observe(el);
-    });
+  document.addEventListener('DOMContentLoaded', function () {
+    buildBioNav(document.querySelector('.narrative'));
   });
+
+  window.HubbellBioNav = { build: buildBioNav };
 })();

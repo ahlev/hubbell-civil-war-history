@@ -9,397 +9,179 @@
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
 <link rel="stylesheet" href="_design.css">
 <link rel="stylesheet" href="_overlay.css">
+<link rel="stylesheet" href="_bio.css">
+<link rel="stylesheet" href="_hero.css">
 <link rel="stylesheet" href="_reader-era.css?v=13">
 <style>
 :root{
   --henry-soft:#E8F0F8;--alexander-soft:#FDF5E0;--james-soft:#E8F3EC;
-  --charles-soft:#F8ECEC;--mother-soft:#F0EBF6;
-  --fannie:#C17B5F;--fannie-soft:#F8F0EC;
+  --charles-soft:#F8ECEC;--mother-soft:#F0EBF6;--fannie:#C17B5F;--fannie-soft:#F8F0EC;
+  --wtw-ease:cubic-bezier(.22,.61,.36,1);
 }
+html{ scroll-behavior:smooth; }
 
-/* ===== HERO ===== */
-.wtw-hero {
-  padding: 32px 32px 26px;
-  text-align: center;
-  border-bottom: 1px solid var(--rule);
-}
-.wtw-hero .hero-rule {
-  width: 48px;
-  height: 1px;
-  background: var(--accent);
-  margin: 12px auto 16px;
-}
-.wtw-hero .hero-sub {
-  font-family: var(--font-serif);
-  font-size: 1.12rem;
-  color: var(--ink-2);
-  font-style: italic;
-  line-height: 1.6;
-  max-width: 660px;
-  margin: 0 auto;
-}
+/* ============================================================
+   STATE MACHINE — .wtw[data-view="family"|"individual"]
+   ============================================================ */
+.wtw-family, .wtw-stage{ transition: opacity .5s var(--wtw-ease), transform .5s var(--wtw-ease); }
+.wtw[data-view="family"] .wtw-stage{ display:none; }
+.wtw[data-view="individual"] .wtw-family{ display:none; }
+.wtw-family.is-enter{ opacity:0; transform:scale(.985); }
+.wtw-stage.is-enter{ opacity:0; transform:translateY(10px); }
 
-/* Quick person nav — color-coded jump buttons under the subtext */
-.wtw-people-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  max-width: 1040px;
-  margin: 24px auto 2px;
-}
-.wtw-person-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-  text-decoration: none;
-  padding: 9px 15px;
-  min-width: 126px;
-  text-align: left;
-  border: 1px solid var(--rule);
-  border-left: 3px solid var(--person, var(--accent));
-  border-radius: 7px;
-  background: var(--bg-elev);
-  transition: transform .16s var(--ease, ease), box-shadow .16s var(--ease, ease), background .16s var(--ease, ease), border-color .16s var(--ease, ease);
-}
-.wtw-person-btn .wpn-name {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 1.12rem;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-  color: var(--person, var(--ink));
-}
-.wtw-person-btn .wpn-sub {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--ink-3);
-}
-.wtw-person-btn:hover {
-  transform: translateY(-2px);
-  border-color: var(--person, var(--accent));
-  background: color-mix(in srgb, var(--person, var(--accent)) 8%, var(--bg-elev));
-  box-shadow: 0 5px 16px color-mix(in srgb, var(--person, var(--accent)) 22%, transparent);
-}
-.wtw-person-btn:hover .wpn-sub { color: var(--ink-2); }
-.person-section { scroll-margin-top: 84px; }
-html { scroll-behavior: smooth; }
+/* ============================================================
+   FAMILY VIEW — intro + 5-portrait montage menu
+   ============================================================ */
+.wtw-intro{ max-width:780px; margin:0 auto; padding:46px 32px 8px; text-align:center; }
+.wtw-intro .page-title{ margin:0 0 14px; }
+.wtw-intro .intro-rule{ width:44px; height:1px; background:var(--accent); margin:0 auto 20px; opacity:.7; }
+.wtw-intro .intro-lede{ font-family:var(--font-serif); font-size:clamp(17px,1.55vw,20px); font-weight:500; line-height:1.6; letter-spacing:-.005em; color:var(--ink); margin:0 auto 14px; max-width:46ch; }
+.wtw-intro .intro-body{ font-family:var(--font-serif); font-size:1.02rem; line-height:1.74; color:var(--ink-2); max-width:60ch; margin:0 auto; }
+.wtw-intro .intro-body em{ color:var(--ink); font-style:italic; }
+.wtw-stats{ display:flex; justify-content:center; flex-wrap:wrap; gap:14px 40px; max-width:720px; margin:30px auto 6px; padding-top:24px; border-top:1px solid var(--rule); }
+.wtw-stats div{ text-align:center; }
+.wtw-stats .st-val{ font-family:var(--font-display); font-size:1.9rem; font-weight:300; letter-spacing:-.02em; color:var(--ink); display:block; }
+.wtw-stats .st-lbl{ font-family:var(--font-mono); font-size:9.5px; text-transform:uppercase; letter-spacing:.12em; color:var(--ink-3); margin-top:3px; }
 
-/* ===== FAMILY LEDE ===== */
-.family-lede {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 26px 32px 32px;
-  border-bottom: 1px solid var(--rule);
-}
-/* Emphasized lede — echoes the Home page "modern data science" sub-header:
-   serif, medium-bold, tight leading, accent color. Broader column + tighter
-   line-spacing shortens the section while drawing the eye. */
-.family-lede p {
-  font-family: var(--font-serif);
-  font-size: clamp(17px, 1.4vw, 19px);
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: -0.005em;
-  color: var(--accent);
-}
-.family-lede p + p { margin-top: 0.7em; }
-.family-lede .lede-stat {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 36px;
-  padding-top: 28px;
-  border-top: 1px solid var(--rule);
-}
-.lede-stat div { text-align: center; }
-.lede-stat .ls-val {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  display: block;
-}
-.lede-stat .ls-lbl {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--ink-3);
-  margin-top: 2px;
-}
+.wtw-montage-head{ text-align:center; margin:34px auto 16px; }
+.wtw-montage-head .mh-eyebrow{ font-family:var(--font-mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); }
+.wtw-montage-head .mh-hint{ display:block; font-family:var(--font-serif); font-style:italic; font-size:.92rem; color:var(--ink-3); margin-top:6px; }
 
-/* ===== PERSON SECTION ===== */
-.person-section {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 56px 40px 48px;
-  border-bottom: 1px solid var(--rule);
-}
-.person-section:last-of-type { border-bottom: none; }
+.wtw-montage{ display:grid; grid-template-columns:repeat(5, 1fr); gap:14px; max-width:1280px; margin:0 auto; padding:4px 28px 8px; }
+.fam-tile{ position:relative; display:block; padding:0; border:0; background:transparent; cursor:pointer; text-align:left; border-radius:10px; overflow:hidden; box-shadow:0 10px 30px -18px rgba(0,0,0,.55); transition:transform .28s var(--wtw-ease), box-shadow .28s var(--wtw-ease); -webkit-tap-highlight-color:transparent; }
+.fam-tile:hover, .fam-tile:focus-visible{ transform:translateY(-6px); box-shadow:0 22px 44px -20px color-mix(in srgb, var(--person) 55%, rgba(0,0,0,.6)); outline:none; }
+.fam-tile .hero-loop{ --hero-ar:3/4; --hero-radius:10px; --hero-scrim:64%; }
+.fam-tile-cap{ position:absolute; left:0; right:0; bottom:0; z-index:5; padding:16px 16px 14px; pointer-events:none; }
+.ft-eyebrow{ display:block; font-family:var(--font-mono); font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:color-mix(in srgb, var(--person) 60%, #f3e9d2); margin-bottom:4px; }
+.ft-name{ display:block; font-family:var(--font-display); font-weight:600; font-size:1.32rem; line-height:1.05; color:#fff; text-shadow:0 1px 12px rgba(0,0,0,.6); }
+.ft-epithet{ display:block; font-family:var(--font-serif); font-style:italic; font-size:.78rem; color:rgba(244,236,220,.9); margin-top:3px; line-height:1.3; }
+.ft-cta{ display:inline-flex; align-items:center; gap:6px; margin-top:11px; pointer-events:none; font-family:var(--font-sans); font-size:.72rem; font-weight:600; letter-spacing:.01em; color:#1a1407; background:color-mix(in srgb, var(--person) 82%, #f0d9a8); padding:6px 12px; border-radius:999px; box-shadow:0 2px 8px rgba(0,0,0,.3); }
+.fam-tile:hover .ft-cta{ background:color-mix(in srgb, var(--person) 92%, #fff); }
+.fam-tile::after{ content:''; position:absolute; top:0; left:0; right:0; height:3px; z-index:6; background:var(--person); opacity:.92; }
 
-/* Top header: name left, story button right */
-.ps-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 8px;
-}
-.ps-top-left { flex: 1; min-width: 0; }
+.fam-tile.is-placeholder .hero-loop{ background:linear-gradient(160deg,#241c2e,#16111d); display:flex; align-items:center; justify-content:center; }
+.fam-tile.is-placeholder .ph-note{ position:relative; z-index:4; padding:0 18px 64px; text-align:center; font-family:var(--font-serif); font-style:italic; font-size:.82rem; line-height:1.5; color:rgba(236,227,210,.74); }
+.fam-tile.is-placeholder .ph-badge{ position:absolute; top:12px; left:50%; transform:translateX(-50%); z-index:6; font-family:var(--font-mono); font-size:8px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.7); background:rgba(8,7,6,.5); border:1px solid rgba(255,255,255,.2); padding:3px 7px; border-radius:3px; }
 
-/* Color accent bar */
-.ps-accent {
-  width: 36px;
-  height: 3px;
-  border-radius: 2px;
-  margin-bottom: 14px;
-}
+.wtw-carousel-ui{ display:none; }
 
-/* Name — distinct, bold, display treatment */
-.ps-name {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 4.5vw, 2.8rem);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.15;
-  margin: 0 0 6px;
-}
-.ps-epithet {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.05rem;
-  color: var(--ink-2);
-  margin-bottom: 4px;
-}
-.ps-lifespan {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--ink-3);
-  letter-spacing: 0.04em;
-  margin-bottom: 24px;
-}
+.wtw-fannie{ max-width:760px; margin:30px auto 0; padding:18px 22px; display:flex; align-items:center; gap:16px; border:1px solid var(--rule); border-left:3px solid var(--fannie); border-radius:9px; background:var(--bg-elev); }
+.wtw-fannie .wf-text{ flex:1; }
+.wtw-fannie .wf-eyebrow{ font-family:var(--font-mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); }
+.wtw-fannie .wf-name{ font-family:var(--font-serif); font-weight:600; font-size:1.1rem; color:var(--fannie); margin:2px 0 3px; }
+.wtw-fannie .wf-desc{ font-family:var(--font-serif); font-size:.9rem; line-height:1.55; color:var(--ink-2); }
+.wtw-fannie .wf-btn{ flex-shrink:0; font-family:var(--font-sans); font-size:.76rem; font-weight:600; color:#fff; background:var(--fannie); border:0; border-radius:6px; padding:9px 15px; cursor:pointer; white-space:nowrap; transition:filter .15s, transform .15s; }
+.wtw-fannie .wf-btn:hover{ filter:brightness(1.08); transform:translateY(-1px); }
 
-/* Full Story link — prominent button beside name */
-.ps-story-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  padding: 14px 22px;
-  border-radius: 6px;
-  background: var(--person, var(--ink));
-  color: #fff;
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  margin-top: 14px;
-}
-.ps-story-link:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-  filter: brightness(1.1);
-}
-.ps-story-link svg {
-  flex-shrink: 0;
-  transition: transform 0.2s;
-}
-.ps-story-link:hover svg { transform: translateX(3px); }
+/* ============================================================
+   INDIVIDUAL STAGE — bio-style hero + body
+   ============================================================ */
+.wtw-stage{ max-width:1180px; margin:0 auto; padding:14px 0 0; }
+.stage-back{ display:inline-flex; align-items:center; gap:8px; margin:8px 0 4px 28px; font-family:var(--font-sans); font-size:.82rem; font-weight:600; color:var(--ink-2); background:var(--bg-elev); border:1px solid var(--rule); border-radius:999px; padding:9px 16px 9px 12px; cursor:pointer; transition:transform .16s var(--wtw-ease), border-color .16s, color .16s, box-shadow .16s; }
+.stage-back:hover{ transform:translateX(-3px); color:var(--ink); border-color:var(--person,var(--accent)); box-shadow:0 4px 14px -6px color-mix(in srgb,var(--person,var(--accent)) 50%, transparent); }
+.stage-back svg{ transition:transform .16s; }
+.stage-back:hover svg{ transform:translateX(-2px); }
 
-/* Service record — clean inline stat chips */
-.service-record {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 24px;
-}
-.sr-field {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 5px;
-  padding: 5px 12px;
-  background: var(--bg-sunken);
-  border-radius: 4px;
-  border: 1px solid var(--rule);
-}
-.sr-label {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-3);
-}
-.sr-value {
-  font-family: var(--font-sans);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--ink);
-}
+.pd-hero{ display:grid; grid-template-columns:minmax(0,40%) 1fr; gap:34px; align-items:center; padding:18px 32px 30px; border-bottom:1px solid var(--rule); }
+.pd-portrait{ position:relative; }
+.pd-portrait .hero-loop{ --hero-ar:3/4; --hero-radius:12px; --hero-scrim:40%; box-shadow:0 30px 60px -28px rgba(0,0,0,.6); }
+.pd-portrait .hl-eyebrow{ color:color-mix(in srgb,var(--person) 62%,#f0d9a8); }
+.pd-headline .pd-eyebrow{ font-family:var(--font-mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--person); margin-bottom:10px; }
+.pd-name{ font-family:var(--font-display); font-weight:600; font-size:clamp(2.1rem,4vw,3.1rem); line-height:1.05; letter-spacing:-.025em; margin:0 0 8px; color:var(--ink); }
+.pd-epithet{ font-family:var(--font-serif); font-style:italic; font-size:1.08rem; color:var(--ink-2); margin-bottom:6px; }
+.pd-lifespan{ font-family:var(--font-mono); font-size:11px; letter-spacing:.04em; color:var(--ink-3); margin-bottom:20px; }
 
-/* Bio prose — single column, wider reading */
-.ps-bio {
-  margin-bottom: 24px;
-  max-width: 860px;
-}
-.ps-bio p {
-  font-family: var(--font-serif);
-  font-size: 0.98rem;
-  line-height: 1.9;
-  color: var(--ink-2);
-  margin-bottom: 14px;
-}
-.ps-bio p:last-child { margin-bottom: 0; }
+.pd-service{ display:grid; grid-template-columns:1fr 1fr; gap:0 30px; max-width:440px; }
+.pd-service .srv{ display:flex; flex-direction:column; padding:11px 0; border-bottom:1px solid var(--rule); }
+.pd-service .srv-val{ font-family:var(--font-serif); font-size:1.06rem; font-weight:600; color:var(--ink); line-height:1.2; }
+.pd-service .srv-lbl{ font-family:var(--font-mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-top:3px; }
 
-/* Quotes — side-by-side when space allows */
-.ps-quotes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  margin: 24px 0;
-}
-.ps-quote {
-  padding: 20px 22px;
-  border-radius: 6px;
-  background: var(--quote-bg);
-  border: none;
-  position: relative;
-}
-.ps-quote::before {
-  content: '\201C';
-  font-family: var(--font-serif);
-  font-size: 3rem;
-  line-height: 1;
-  position: absolute;
-  top: 10px;
-  left: 14px;
-  opacity: 0.15;
-}
-.ps-quote blockquote {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--ink);
-  margin: 0 0 10px;
-  padding-left: 6px;
-}
-.ps-quote cite {
-  display: block;
-  font-style: normal;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--ink-3);
-  letter-spacing: 0.04em;
-  padding-left: 6px;
-}
-.quote-src {
-  color: var(--ink-2);
-  text-decoration: underline;
-  text-decoration-color: var(--rule);
-  text-underline-offset: 2px;
-  cursor: pointer;
-  transition: color 0.15s, text-decoration-color 0.15s;
-}
-.quote-src:hover {
-  color: var(--ink);
-  text-decoration-color: var(--ink-2);
-}
+.pd-body{ display:grid; grid-template-columns:172px 1fr; gap:40px; padding:34px 32px 20px; align-items:start; }
+.pd-nav{ position:sticky; top:78px; }
+.pd-nav .pn-label{ font-family:var(--font-mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px; }
+.pd-nav a{ display:block; font-family:var(--font-serif); font-size:.95rem; color:var(--ink-3); text-decoration:none; padding:7px 0 7px 14px; border-left:2px solid var(--rule); transition:color .15s, border-color .15s; }
+.pd-nav a:hover, .pd-nav a.active{ color:var(--person,var(--ink)); border-left-color:var(--person,var(--accent)); }
 
-/* Fate strip */
-.ps-fate {
-  font-family: var(--font-serif);
-  font-size: 0.88rem;
-  line-height: 1.7;
-  padding: 14px 18px;
-  border-radius: 4px;
-  margin-bottom: 16px;
-}
-.ps-fate.kia { background: #FFF0F0; border-left: 3px solid #C44E52; color: var(--ink); }
-.ps-fate.died { background: #FFF8F0; border-left: 3px solid #C8860B; color: var(--ink); }
-.ps-fate.survived { background: #F0F8F0; border-left: 3px solid #4A7C59; color: var(--ink); }
-.ps-fate.civilian { background: #F5F0FF; border-left: 3px solid #7B5EA7; color: var(--ink); }
+.pd-content{ max-width:760px; min-width:0; }
+.pd-section{ scroll-margin-top:78px; margin-bottom:30px; }
+.pd-section > h3{ font-family:var(--font-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin:0 0 12px; }
+.pd-bio p{ font-family:var(--font-serif); font-size:1rem; line-height:1.9; color:var(--ink-2); margin:0 0 14px; }
+.pd-bio p:last-child{ margin-bottom:0; }
+/* injected full narrative (from the dedicated bio page) — _bio.css styles it natively */
+.pd-loading{ font-family:var(--font-serif); font-style:italic; color:var(--ink-3); padding:18px 0; }
+.pd-body--bio{ display:block; padding:30px 32px 24px; }
+.pd-body--bio .pd-content{ max-width:none; }
+.pd-body--bio #sec-letters{ max-width:760px; }
 
-/* Letters drawer toggle — prominent */
-.letters-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  padding: 12px 16px;
-  border: 2px solid var(--person, var(--rule));
-  border-radius: 6px;
-  background: var(--bg);
-  cursor: pointer;
-  font-family: var(--font-sans);
-  font-size: 0.84rem;
-  font-weight: 600;
-  color: var(--ink);
-  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
-}
-.letters-toggle:hover {
-  background: var(--bg-sunken);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-.letters-toggle .lt-icon { font-size: 0.9rem; transition: transform 0.2s; }
-.letters-toggle.open .lt-icon { transform: rotate(90deg); }
-.letters-toggle .lt-count { margin-left: auto; font-size: 0.72rem; color: var(--ink-2); font-weight: 500; }
+.pd-quotes{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+.pd-quote{ position:relative; padding:18px 20px; border-radius:8px; background:var(--quote-bg, var(--bg-sunken)); border-left:3px solid color-mix(in srgb,var(--person) 55%, transparent); }
+.pd-quote blockquote{ font-family:var(--font-serif); font-style:italic; font-size:1rem; line-height:1.65; color:var(--ink); margin:0 0 9px; }
+.pd-quote cite{ display:block; font-style:normal; font-family:var(--font-mono); font-size:9.5px; letter-spacing:.04em; color:var(--ink-3); }
+.pd-quote .quote-src{ color:var(--ink-2); text-decoration:underline; text-decoration-color:var(--rule); text-underline-offset:2px; cursor:pointer; }
+.pd-quote .quote-src:hover{ color:var(--person,var(--ink)); }
 
-.letters-drawer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-.letters-drawer.open { max-height: 400px; overflow-y: auto; }
-.letters-list { padding: 8px 0 4px; }
-.letter-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 14px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background 0.1s;
-  font-size: 0.78rem;
-}
-.letter-row:hover { background: var(--rule-2); }
-.lr-date { font-weight: 500; color: var(--ink); min-width: 82px; flex-shrink: 0; }
-.lr-to { color: var(--ink-2); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.lr-loc { color: var(--ink-3); font-size: 0.72rem; flex-shrink: 0; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.lr-flags { display: flex; gap: 3px; flex-shrink: 0; }
-.lr-flag { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-.lr-flag.battle { background: #C44E52; }
-.lr-flag.illness { background: #E58A00; }
-.lr-flag.death { background: #5D4037; }
-.lr-flag.wound { background: #7B1FA2; }
+.pd-fate{ font-family:var(--font-serif); font-size:.92rem; line-height:1.7; padding:14px 18px; border-radius:6px; }
+.pd-fate.kia{ background:#FFF0F0; border-left:3px solid #C44E52; }
+.pd-fate.died{ background:#FFF8F0; border-left:3px solid #C8860B; }
+.pd-fate.survived{ background:#F0F8F0; border-left:3px solid #4A7C59; }
+.pd-fate.civilian{ background:#F5F0FF; border-left:3px solid #7B5EA7; }
 
-/* ===== PROVENANCE ===== */
-.viz-provenance { background: var(--bg); border-top: 1px solid var(--rule); padding: 16px 24px; font-family: var(--font-sans); font-size: 0.72rem; color: var(--ink-3); text-align: center; line-height: 1.5; }
+.pd-story-link{ display:inline-flex; align-items:center; gap:10px; text-decoration:none; margin-top:4px; padding:13px 22px; border-radius:6px; background:var(--person,var(--ink)); color:#fff; font-family:var(--font-sans); font-size:.85rem; font-weight:600; box-shadow:0 2px 10px rgba(0,0,0,.14); transition:transform .18s, box-shadow .18s, filter .18s; }
+.pd-story-link:hover{ transform:translateY(-1px); filter:brightness(1.08); box-shadow:0 6px 18px rgba(0,0,0,.2); }
+.pd-story-link svg{ transition:transform .18s; }
+.pd-story-link:hover svg{ transform:translateX(3px); }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 700px) {
-  .wtw-hero { padding: 48px 20px 32px; }
-  .family-lede { padding: 36px 20px 40px; }
-  .lede-stat { flex-wrap: wrap; gap: 24px; }
-  .person-section { padding: 40px 20px 36px; }
-  .ps-top { flex-direction: column; gap: 12px; }
-  .ps-story-link { align-self: flex-start; margin-top: 0; }
-  .ps-quotes { grid-template-columns: 1fr; }
+.letters-toggle{ display:flex; align-items:center; gap:8px; width:100%; padding:12px 16px; border:2px solid var(--person,var(--rule)); border-radius:6px; background:var(--bg); cursor:pointer; font-family:var(--font-sans); font-size:.84rem; font-weight:600; color:var(--ink); transition:background .15s, box-shadow .15s; }
+.letters-toggle:hover{ background:var(--bg-sunken); box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.letters-toggle .lt-icon{ transition:transform .2s; }
+.letters-toggle.open .lt-icon{ transform:rotate(90deg); }
+.letters-toggle .lt-count{ margin-left:auto; font-size:.72rem; color:var(--ink-2); font-weight:500; }
+.letters-drawer{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+.letters-drawer.open{ max-height:420px; overflow-y:auto; }
+.letters-list{ padding:8px 0 4px; }
+.letter-row{ display:flex; align-items:center; gap:10px; padding:7px 14px; cursor:pointer; border-radius:4px; transition:background .1s; font-size:.78rem; }
+.letter-row:hover{ background:var(--rule-2); }
+.lr-date{ font-weight:500; color:var(--ink); min-width:82px; flex-shrink:0; }
+.lr-to{ color:var(--ink-2); flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.lr-loc{ color:var(--ink-3); font-size:.72rem; flex-shrink:0; max-width:140px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.lr-flags{ display:flex; gap:3px; flex-shrink:0; }
+.lr-flag{ width:6px; height:6px; border-radius:50%; }
+.lr-flag.battle{ background:#C44E52; } .lr-flag.illness{ background:#E58A00; } .lr-flag.death{ background:#5D4037; } .lr-flag.wound{ background:#7B1FA2; }
+
+.pd-return-wrap{ text-align:center; padding:26px 0 44px; border-top:1px solid var(--rule); margin-top:20px; }
+.pd-return{ display:inline-flex; align-items:center; gap:9px; cursor:pointer; font-family:var(--font-sans); font-size:.86rem; font-weight:600; color:var(--ink-2); background:var(--bg-elev); border:1px solid var(--rule); border-radius:999px; padding:12px 24px; transition:transform .16s, border-color .16s, color .16s; }
+.pd-return:hover{ transform:translateY(-2px); color:var(--ink); border-color:var(--accent); }
+
+.viz-provenance{ background:var(--bg); border-top:1px solid var(--rule); padding:16px 24px; font-family:var(--font-sans); font-size:.72rem; color:var(--ink-3); text-align:center; line-height:1.5; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:860px){
+  .pd-hero{ grid-template-columns:1fr; gap:18px; padding:16px 20px 24px; }
+  .pd-portrait .hero-loop{ --hero-ar:4/5; max-width:340px; margin:0 auto; }
+  .pd-service{ max-width:none; }
+  .pd-body{ grid-template-columns:1fr; gap:18px; padding:24px 20px 16px; }
+  .pd-nav{ position:static; display:flex; flex-wrap:wrap; gap:6px; }
+  .pd-nav .pn-label{ width:100%; margin-bottom:4px; }
+  .pd-nav a{ border-left:0; border:1px solid var(--rule); border-radius:999px; padding:6px 12px; font-size:.82rem; }
+  .pd-nav a.active{ border-color:var(--person); }
 }
-@media (max-width: 480px) {
-  .person-section { padding: 36px 16px; }
-  .ps-name { font-size: clamp(1.6rem, 4vw, 2.2rem); }
-  .ps-top { gap: 10px; }
-  .ps-quotes { grid-template-columns: 1fr; }
-  .ps-quote { font-size: 0.9rem; padding: 14px 16px; }
-  .family-lede .lede-stat { gap: 16px; }
-  .letter-row { padding: 8px 10px; }
-  .lr-loc { display: none; }
+@media (max-width:680px){
+  .wtw-intro{ padding:34px 20px 6px; }
+  .wtw-montage-head{ margin-top:26px; }
+  .wtw-montage{ display:flex; grid-template-columns:none; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding:6px 20px 12px; scrollbar-width:none; }
+  .wtw-montage::-webkit-scrollbar{ display:none; }
+  .fam-tile{ flex:0 0 78%; scroll-snap-align:center; }
+  .wtw-carousel-ui{ display:flex; flex-direction:column; align-items:center; gap:14px; padding:4px 20px 0; }
+  .wtw-dots{ display:flex; gap:7px; }
+  .wtw-dots button{ width:7px; height:7px; border-radius:50%; border:0; padding:0; background:var(--rule-2); cursor:pointer; transition:background .2s, transform .2s; }
+  .wtw-dots button.active{ background:var(--person, var(--accent)); transform:scale(1.35); }
+  .wtw-select{ font-family:var(--font-sans); font-size:.9rem; font-weight:600; color:var(--ink); background:var(--bg-elev); border:1px solid var(--rule); border-radius:8px; padding:11px 16px; min-width:230px; text-align:center; }
+  .stage-back{ margin-left:20px; }
+  .wtw-stats{ gap:12px 24px; }
 }
+@media (prefers-reduced-motion: reduce){ .wtw-family, .wtw-stage, .fam-tile{ transition:none !important; } }
 </style>
 <link rel="stylesheet" href="_scrollrail.css?v=11">
 <style>:root{ --rail-accent:#6FB0A6; }</style>
@@ -409,336 +191,47 @@ html { scroll-behavior: smooth; }
 
 <div id="site-nav"></div>
 
-<main>
-<!-- ===== HERO ===== -->
-<div class="wtw-hero">
-  <h1 class="page-title">Who They Were</h1>
-  <div class="hero-rule"></div>
-  <p class="hero-sub">A widowed mother. Four soldier sons. A sister who kept the home together.<br>These are the people behind the 273 letters.</p>
-  <nav class="wtw-people-nav" aria-label="Jump to a family member">
-    <a class="wtw-person-btn" href="#mother" style="--person: var(--mother);"><span class="wpn-name">Frances</span><span class="wpn-sub">Mother &middot; Home front</span></a>
-    <a class="wtw-person-btn" href="#henry" style="--person: var(--henry);"><span class="wpn-name">Henry</span><span class="wpn-sub">Eldest son &middot; 34th NY</span></a>
-    <a class="wtw-person-btn" href="#alexander" style="--person: var(--alexander);"><span class="wpn-name">Alexander</span><span class="wpn-sub">Sergeant &middot; 60th NY</span></a>
-    <a class="wtw-person-btn" href="#charles" style="--person: var(--charles);"><span class="wpn-name">Charles</span><span class="wpn-sub">Private &middot; 153rd NY</span></a>
-    <a class="wtw-person-btn" href="#james" style="--person: var(--james);"><span class="wpn-name">James</span><span class="wpn-sub">Youngest son &middot; 153rd NY</span></a>
-    <a class="wtw-person-btn" href="#fannie" style="--person: var(--fannie);"><span class="wpn-name">Fannie</span><span class="wpn-sub">Sister &middot; Champlain</span></a>
-  </nav>
-</div>
+<main class="wtw" data-view="family">
 
-<!-- ===== FAMILY LEDE ===== -->
-<div class="family-lede">
-  <p>The Hubbell family lived in Champlain, Clinton County, New York &mdash; a small farming town on the Canadian border near Lake Champlain. Frederick Augustus Hubbell died in 1853, leaving his wife Frances to raise five children alone. When the Civil War began eight years later, she sent every son she had.</p>
-  <p>What survives is not a family history written after the fact. It is 273 letters written during the war itself &mdash; by four brothers from camps, hospitals, marches, and battlefields, and by a mother who scanned the published casualty lists with trembling hands. They did not know how the story would end. Neither, reading them now, do we &mdash; until the letters stop.</p>
-  <div class="lede-stat">
-    <div><span class="ls-val">273</span><span class="ls-lbl">Letters</span></div>
-    <div><span class="ls-val">4</span><span class="ls-lbl">Brothers</span></div>
-    <div><span class="ls-val">1861&ndash;65</span><span class="ls-lbl">Years</span></div>
-    <div><span class="ls-val">3</span><span class="ls-lbl">Did not survive</span></div>
-  </div>
-</div>
+  <!-- ===================== FAMILY VIEW ===================== -->
+  <section class="wtw-family">
+    <header class="wtw-intro">
+      <h1 class="page-title">Who They Were</h1>
+      <div class="intro-rule"></div>
+      <p class="intro-lede">A widowed mother sent every son she had to the war. Four went. These are the people behind the 273 letters.</p>
+      <p class="intro-body">The Hubbells farmed in Champlain, on New York's Canadian border. Frederick Hubbell died in 1853, leaving Frances to raise five children alone &mdash; and when the war came eight years later, she let all four of her sons enlist. What survives isn't a history written afterward. It's letters written <em>during</em> the war: from camps, hospitals, marches, and battlefields &mdash; and from a mother who read the casualty lists each morning with trembling hands.</p>
+      <div class="wtw-stats">
+        <div><span class="st-val">273</span><span class="st-lbl">Letters</span></div>
+        <div><span class="st-val">4</span><span class="st-lbl">Brothers</span></div>
+        <div><span class="st-val">1861&ndash;65</span><span class="st-lbl">Years</span></div>
+        <div><span class="st-val">3</span><span class="st-lbl">Did not survive</span></div>
+      </div>
+    </header>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!-- ALEXANDER — 120 letters, backbone of collection -->
-<!-- ═══════════════════════════════════════════════ -->
-<section class="person-section" id="alexander">
-  <div class="ps-top">
-    <div class="ps-top-left">
-      <div class="ps-accent" style="background: var(--alexander);"></div>
-      <h2 class="ps-name" style="color: var(--alexander);">Alexander F. Hubbell</h2>
-      <div class="ps-epithet">120 Letters Through Nearly Four Years of War</div>
-      <div class="ps-lifespan">b. Mar 28, 1844, Champlain, NY &bull; d. Dec 7, 1894, Fonda, Iowa (age 50)</div>
+    <div class="wtw-montage-head">
+      <span class="mh-eyebrow">The family</span>
+      <span class="mh-hint">Choose a portrait to read their story.</span>
     </div>
-    <a class="ps-story-link" href="brother-alexander.html" style="--person: var(--alexander);">
-      Read His Full Story
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </a>
-  </div>
 
-  <div class="service-record">
-    <div class="sr-field"><span class="sr-label">Regiment</span><span class="sr-value">Co. H, 60th NY</span></div>
-    <div class="sr-field"><span class="sr-label">Enlisted</span><span class="sr-value">Sep 1861</span></div>
-    <div class="sr-field"><span class="sr-label">Service</span><span class="sr-value">~3.5 years</span></div>
-    <div class="sr-field"><span class="sr-label">Rank</span><span class="sr-value">Cpl &rarr; Sgt</span></div>
-    <div class="sr-field"><span class="sr-label">Letters</span><span class="sr-value">120</span></div>
-    <div class="sr-field"><span class="sr-label">Wounds</span><span class="sr-value">Lookout Mtn</span></div>
-  </div>
+    <div class="wtw-montage" id="montage" role="list" aria-label="The Hubbell family"></div>
 
-  <div class="ps-bio">
-    <p>Alexander was seventeen years old when he enlisted in September 1861, two weeks after Henry wrote home advising him to stay and go to college instead. He did not take the advice. Over the next three years and ten months he would serve in both the Eastern and Western theaters, fight at Antietam, Gettysburg, and Lookout Mountain, march through Sherman&rsquo;s grinding Atlanta Campaign, and write 120 letters home &mdash; more than his three brothers combined. They form the backbone of this collection.</p>
-    <p>His first letter, from the barracks at Ogdensburg, described a boy dropped into chaos: straw berths, armed sentinels, a half-drunk fifer. By July 1862 he was calling himself one of the hardiest men in his company. At Antietam, on the bloodiest day of the war, he came through with only a bruise below the right knee from a nearly spent ball &mdash; then learned that Henry was missing. At Gettysburg, his regiment held Culp&rsquo;s Hill through two days of assault; on the Fourth of July, 1863, he wrote home while burying the dead. A week later, camped seven miles from the Antietam battlefield, he resolved to visit it and find what remained of his brother.</p>
-    <p>In November 1863, transferred west with the Army of the Cumberland, he was wounded by a rifle ball in the side during the bayonet charge at Lookout Mountain. He recovered. The following summer, during the Atlanta Campaign, the army went weeks without fresh vegetables, and Alexander developed scurvy at twenty. From a hospital bed he underwent a political transformation &mdash; the young soldier who in 1862 had written that he hated abolitionists as much as rebels was, by 1864, ready to cast his first vote for Lincoln. Sick, exhausted, and uncertain he would survive the summer, he wrote: &ldquo;How little the people at the North realize how much our country has cost us. It ought to be prized beyond rubies.&rdquo;</p>
-    <p>His final wartime letter, written the night the muster-out order arrived, is the finest passage in the collection &mdash; a valedictory for the entire war, composed by a twenty-one-year-old sergeant who had served since he was seventeen. After the war, he settled on a farm in Fonda, Iowa, married Lois Wood, and lived quietly for nearly thirty years &mdash; the only Hubbell brother to reach old age. He died at fifty. His daughter-in-law Gladys would one day open a trunk in a basement, find his letters, and spend two and a half years transcribing them by typewriter.</p>
-  </div>
-
-  <div class="ps-quotes">
-    <div class="ps-quote">
-      <blockquote>God has again in his great kindness preserved my life through another most terrific battle. I have not received a scratch.</blockquote>
-      <cite><a class="quote-src" data-letter="LTR-1863-07-04-001" data-hl="God has again in his great kindness">Alexander, July 4, 1863 &mdash; Gettysburg</a></cite>
+    <div class="wtw-carousel-ui" id="carouselUI">
+      <div class="wtw-dots" id="carouselDots"></div>
+      <select class="wtw-select" id="famSelect" aria-label="Select a family member"></select>
     </div>
-    <div class="ps-quote">
-      <blockquote>I felt when in the battle, as tho I had a Mother upon her knees praying for me, and I took great comfort in the thought.</blockquote>
-      <cite><a class="quote-src" data-letter="LTR-1862-11-25-001" data-hl="Mother upon her knees praying for me">Alexander, November 25, 1862</a></cite>
+
+    <div class="wtw-fannie">
+      <div class="wf-text">
+        <div class="wf-eyebrow">And their sister</div>
+        <div class="wf-name">Frances &ldquo;Fannie&rdquo; Hubbell</div>
+        <div class="wf-desc">The eldest child and only daughter &mdash; a teacher who rose to preceptress of Champlain Academy. None of her own letters survive, but the brothers craved hers; she received at least 38, addressed &ldquo;dear sister.&rdquo;</div>
+      </div>
+      <button class="wf-btn" id="fannieBtn">Letters written to her</button>
     </div>
-  </div>
+  </section>
 
-  <div class="ps-fate survived">Survived the war. Settled in Iowa, married Lois Wood in 1887. Died Dec 7, 1894 at age 50. His descendants preserved the letters for five generations.</div>
-
-  <button class="letters-toggle" style="--person: var(--alexander);" data-author="alexander" onclick="toggleLetters(this)">
-    <span class="lt-icon">&#9654;</span> Read His Letters <span class="lt-count"></span>
-  </button>
-  <div class="letters-drawer"><div class="letters-list"></div></div>
-</section>
-
-<!-- ═══════════════════════════════════════════════ -->
-<!-- CHARLES — 69 letters -->
-<!-- ═══════════════════════════════════════════════ -->
-<section class="person-section" id="charles">
-  <div class="ps-top">
-    <div class="ps-top-left">
-      <div class="ps-accent" style="background: var(--charles);"></div>
-      <h2 class="ps-name" style="color: var(--charles);">Charles F. Hubbell</h2>
-      <div class="ps-epithet">Clear-Eyed and Steady Under Fire</div>
-      <div class="ps-lifespan">b. Apr 1840, Champlain, NY &bull; d. Mar 21, 1875, Iowa (age ~34)</div>
-    </div>
-    <a class="ps-story-link" href="brother-charles.html" style="--person: var(--charles);">
-      Read His Full Story
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </a>
-  </div>
-
-  <div class="service-record">
-    <div class="sr-field"><span class="sr-label">Regiment</span><span class="sr-value">Co. I, 153rd NY</span></div>
-    <div class="sr-field"><span class="sr-label">Enlisted</span><span class="sr-value">Sep 1862</span></div>
-    <div class="sr-field"><span class="sr-label">Service</span><span class="sr-value">~3 years</span></div>
-    <div class="sr-field"><span class="sr-label">Rank</span><span class="sr-value">Private</span></div>
-    <div class="sr-field"><span class="sr-label">Letters</span><span class="sr-value">69</span></div>
-    <div class="sr-field"><span class="sr-label">Theater</span><span class="sr-value">Shenandoah</span></div>
-  </div>
-
-  <div class="ps-bio">
-    <p>Charles was the third brother to enlist and the most clear-eyed of them all. At the Plattsburgh recruiting station, Dr. Foote nearly rejected him for near-sightedness, but Charles had two brothers already in the Army and one at West Point, and the doctor relented. A family acquaintance told him afterward that he was &ldquo;too honest.&rdquo; It was as accurate a summary of his character as anyone would ever write.</p>
-    <p>He fought at Chancellorsville in May 1863, where his regiment lost seventy-three men in a single engagement and Lester Bond was shot through the forehead during a bayonet charge. He spent seven months investigating Henry&rsquo;s fate through conflicting rumors and secondhand reports before a soldier named Abram Fry told him he had seen Henry&rsquo;s name on a headboard at Antietam &mdash; a grave marker. Charles reported it with the bluntest statement in the collection: &ldquo;I think there is not the least doubt that Henry was killed.&rdquo;</p>
-    <p>His mother, working through the wife of Lieutenant Colonel Strain, arranged for Charles to be detached as a clerk at General Banks&rsquo;s headquarters in New Orleans &mdash; a safer posting. He went without shame. But he did not stay safe. He carried dispatches on a steamer up the Red River under guerrilla fire, and by autumn 1864 was back in the field for Sheridan&rsquo;s Shenandoah Valley Campaign. At Cedar Creek, on October 19, he and James came under surprise attack before dawn. James was wounded. Charles came through without a scratch. Two weeks later, he counted what was left of Company H: twenty-two men out of forty-five. In the presidential election, he cast one of only two votes for Lincoln in the entire company.</p>
-    <p>Charles survived the war and followed Alexander to Iowa. He died on March 21, 1875, at about thirty-four, from disease contracted during service. The war claimed him a decade after Appomattox.</p>
-  </div>
-
-  <div class="ps-quotes">
-    <div class="ps-quote">
-      <blockquote>Did not enlist with the expectation of sleeping on a feather bed.</blockquote>
-      <cite><a class="quote-src" data-letter="LTR-1862-12-04-001" data-hl="Did not enlist with the expectation of sleeping on a feather bed">Charles, December 4, 1862</a></cite>
-    </div>
-    <div class="ps-quote">
-      <blockquote>I think there is not the least doubt that Henry was killed.</blockquote>
-      <cite><a class="quote-src" data-letter="LTR-1863-04-27-001" data-hl="not the least doubt that Henry was killed">Charles, April 27, 1863</a></cite>
-    </div>
-  </div>
-
-  <div class="ps-fate died">Died March 21, 1875 at age ~34 from disease contracted during service. The war claimed him a decade after Appomattox.</div>
-
-  <button class="letters-toggle" style="--person: var(--charles);" data-author="charles" onclick="toggleLetters(this)">
-    <span class="lt-icon">&#9654;</span> Read His Letters <span class="lt-count"></span>
-  </button>
-  <div class="letters-drawer"><div class="letters-list"></div></div>
-</section>
-
-<!-- ═══════════════════════════════════════════════ -->
-<!-- HENRY — 59 letters, KIA Antietam -->
-<!-- ═══════════════════════════════════════════════ -->
-<section class="person-section" id="henry">
-  <div class="ps-top">
-    <div class="ps-top-left">
-      <div class="ps-accent" style="background: var(--henry);"></div>
-      <h2 class="ps-name" style="color: var(--henry);">Henry Hubbell</h2>
-      <div class="ps-epithet">First to Enlist, First to Fall</div>
-      <div class="ps-lifespan">b. Nov 1839, Champlain, NY &bull; d. Sept 17, 1862, Antietam, MD (age ~22)</div>
-    </div>
-    <a class="ps-story-link" href="brother-henry.html" style="--person: var(--henry);">
-      Read His Full Story
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </a>
-  </div>
-
-  <div class="service-record">
-    <div class="sr-field"><span class="sr-label">Regiment</span><span class="sr-value">Co. D, 34th NY</span></div>
-    <div class="sr-field"><span class="sr-label">Enlisted</span><span class="sr-value">Jun 1861</span></div>
-    <div class="sr-field"><span class="sr-label">Service</span><span class="sr-value">15 months</span></div>
-    <div class="sr-field"><span class="sr-label">Rank</span><span class="sr-value">Private</span></div>
-    <div class="sr-field"><span class="sr-label">Letters</span><span class="sr-value">59</span></div>
-    <div class="sr-field"><span class="sr-label">Fate</span><span class="sr-value">KIA, Antietam</span></div>
-  </div>
-
-  <div class="ps-bio">
-    <p>Henry was the eldest brother and the first to enlist, joining the 34th New York in June 1861, two months after Fort Sumter. He was twenty-one, a farmer&rsquo;s son whose father had been dead for eight years. His mother was managing the farm in Champlain alone. He passed through Baltimore &mdash; where Massachusetts soldiers had been attacked by a secessionist mob weeks earlier &mdash; and noted bullet holes in the depot roof but reported that no one molested them.</p>
-    <p>His letters are the quietest in the collection. He tracked every dollar sent home with meticulous care, apologized for his spelling, and described his entire military life as dreamlike. On July 21, 1861, he sat in camp at Washington and wrote to his mother while listening to the cannons at Bull Run, twenty-eight miles away. That evening the Union army routed, and his regiment was ordered to prepare to move. The whiplash between ordinary life and catastrophe &mdash; shirt laundry in one paragraph, mobilization in the next &mdash; would define his correspondence. He served through the Peninsula Campaign and the Seven Days battles, where his regiment charged into the woods on the double quick and Henry lost his cap. He was chronically ill with diarrhea and refused to go to the hospital when the sick were ordered away.</p>
-    <p>His last letter, dated July 28, 1862, is the most relaxed he ever wrote &mdash; teasing his sister about French lessons, fantasizing about coming home in time for sugar season and spring farming. He closed with an instruction: &ldquo;Burn this scribble &mdash; hope to do better next time.&rdquo; They did not burn it. Fifty-one days later, on September 17, he was killed at the Battle of Antietam &mdash; the bloodiest single day of the war. His body was never recovered. The family spent seven months piecing together the truth from casualty lists, conflicting rumors, and a soldier&rsquo;s account of seeing his name on a headboard in a field.</p>
-  </div>
-
-  <div class="ps-quotes">
-    <div class="ps-quote">
-      <blockquote>It is all like a dream, my being here, but if I ever go home I can say that I have seen a good deal of the world, by hard marching.</blockquote>
-      <cite><a class="quote-src" data-letter="LTR-1862-04-06-002" data-hl="all like a dream, my being here">Henry, April 6, 1862</a></cite>
-    </div>
-    <div class="ps-quote">
-      <blockquote>My diarrhea is very bad. Sherman, who was head doctor, is now in Congress.</blockquote>
-      <cite><a class="quote-src" data-letter="LTR-1862-07-12-001" data-hl="diarrhea is very bad">Henry, July 12, 1862</a></cite>
-    </div>
-  </div>
-
-  <div class="ps-fate kia">Killed in action at Antietam, September 17, 1862. He was approximately 22. His body was never recovered.</div>
-
-  <button class="letters-toggle" style="--person: var(--henry);" data-author="henry" onclick="toggleLetters(this)">
-    <span class="lt-icon">&#9654;</span> Read His Letters <span class="lt-count"></span>
-  </button>
-  <div class="letters-drawer"><div class="letters-list"></div></div>
-</section>
-
-<!-- ═══════════════════════════════════════════════ -->
-<!-- MOTHER FRANCES — 17 letters -->
-<!-- ═══════════════════════════════════════════════ -->
-<section class="person-section" id="mother">
-  <div class="ps-top">
-    <div class="ps-top-left">
-      <div class="ps-accent" style="background: var(--mother);"></div>
-      <h2 class="ps-name" style="color: var(--mother);">Frances L. (McNeil) Hubbell</h2>
-      <div class="ps-epithet">&ldquo;My hair almost rises&rdquo;</div>
-      <div class="ps-lifespan">b. ~1808, Charlotte, Vermont &bull; d. May 29, 1890, Fonda, Iowa</div>
-    </div>
-    <a class="ps-story-link" href="mother-frances.html" style="--person: var(--mother);">
-      Read Her Full Story
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </a>
-  </div>
-
-  <div class="service-record">
-    <div class="sr-field"><span class="sr-label">Descent</span><span class="sr-value">Scottish</span></div>
-    <div class="sr-field"><span class="sr-label">Married</span><span class="sr-value">1833</span></div>
-    <div class="sr-field"><span class="sr-label">Children</span><span class="sr-value">6</span></div>
-    <div class="sr-field"><span class="sr-label">Widowed</span><span class="sr-value">1853</span></div>
-    <div class="sr-field"><span class="sr-label">Letters</span><span class="sr-value">17</span></div>
-    <div class="sr-field"><span class="sr-label">Role</span><span class="sr-value">Home front</span></div>
-  </div>
-
-  <div class="ps-bio">
-    <p>Frances McNeil was born in Charlotte, Vermont, to a family of Scottish descent, and married Frederick Augustus Hubbell in 1833. They settled in Champlain, on the Canadian border, and raised six children. When Frederick died in 1853, she was left alone with the farm and five surviving children, the eldest barely sixteen. She managed for eight years. Then the war came, and she sent every son she had.</p>
-    <p>Her seventeen surviving letters are the emotional center of the collection &mdash; not because she wrote the most, but because she occupied the position no one else could: the woman who waited. She scanned the published casualty lists &ldquo;with trembling,&rdquo; searching for her sons&rsquo; names. She wrote to Henry four days after Antietam, not yet knowing he was dead, asking him to describe the battle &ldquo;in the most minute detail.&rdquo; When his name appeared on the wounded list, she wrote to Alexander in anguish: &ldquo;My heart is aching to bursting, and I can write no more.&rdquo; Only the want of money prevented her from traveling to the hospitals herself.</p>
-    <p>She was not passive. She shipped boxes of supplies, sent money she could not spare, and quietly worked the network of officers&rsquo; wives and family connections to secure safer assignments for her surviving sons &mdash; corresponding with Mrs. Strain, wife of Lieutenant Colonel Strain, to arrange Charles&rsquo;s transfer to a clerk position in New Orleans. She was the person every son wrote to first, the address on nearly every envelope, the audience for every confession of homesickness and fear and faith.</p>
-    <p>After the war, Frances followed her surviving sons west to Fonda, Iowa, around 1872. She outlived three of her four soldier sons. She died in 1890, at approximately eighty-two, having buried a husband and three children and carried the rest to safety through the worst years of the republic.</p>
-  </div>
-
-  <div class="ps-quotes">
-    <div class="ps-quote">
-      <blockquote>If I was a man I am sure I should enlist. In reading the descriptions of the battle fields &mdash; my hair almost rises.</blockquote>
-      <cite><a class="quote-src" data-letter="LTR-1862-09-21-002" data-hl="If I was a man I am sure I should enlist">Frances, September 21, 1862</a></cite>
-    </div>
-    <div class="ps-quote">
-      <blockquote>I have wept until I am almost blind. I can see his sweet face and hear his sweet voice.</blockquote>
-      <cite><a class="quote-src" data-letter="LTR-1863-05-04-001" data-hl="wept until I am almost blind">Frances, May 4, 1863</a></cite>
-    </div>
-  </div>
-
-  <div class="ps-fate civilian">Survived the war but lost three of her four sons. She outlived them all, dying in Iowa in 1890.</div>
-
-  <button class="letters-toggle" style="--person: var(--mother);" data-author="mother" onclick="toggleLetters(this)">
-    <span class="lt-icon">&#9654;</span> Read Her Letters <span class="lt-count"></span>
-  </button>
-  <div class="letters-drawer"><div class="letters-list"></div></div>
-</section>
-
-<!-- ═══════════════════════════════════════════════ -->
-<!-- JAMES — 9 letters, died one year after wounding -->
-<!-- ═══════════════════════════════════════════════ -->
-<section class="person-section" id="james">
-  <div class="ps-top">
-    <div class="ps-top-left">
-      <div class="ps-accent" style="background: var(--james);"></div>
-      <h2 class="ps-name" style="color: var(--james);">James Hubbell</h2>
-      <div class="ps-epithet">Wounded at Cedar Creek, Lost on the Way Home</div>
-      <div class="ps-lifespan">b. Jan 1843, Champlain, NY &bull; d. Oct 19, 1865, Albany, NY (age ~22)</div>
-    </div>
-    <a class="ps-story-link" href="brother-james.html" style="--person: var(--james);">
-      Read His Full Story
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </a>
-  </div>
-
-  <div class="service-record">
-    <div class="sr-field"><span class="sr-label">Regiment</span><span class="sr-value">Co. I, 153rd NY</span></div>
-    <div class="sr-field"><span class="sr-label">Enlisted</span><span class="sr-value">Sep 1862</span></div>
-    <div class="sr-field"><span class="sr-label">Service</span><span class="sr-value">~3 years</span></div>
-    <div class="sr-field"><span class="sr-label">Rank</span><span class="sr-value">Private</span></div>
-    <div class="sr-field"><span class="sr-label">Letters</span><span class="sr-value">9</span></div>
-    <div class="sr-field"><span class="sr-label">Wounded</span><span class="sr-value">Cedar Creek</span></div>
-  </div>
-
-  <div class="ps-bio">
-    <p>James was the youngest of the four brothers and the most scholarly, entering West Point while Henry fought on the Peninsula and Alexander drilled in Virginia. His early letters describe cadet life with a boy&rsquo;s precision: lockers five feet long, one foot high, shared among three; older cadets dragging new arrivals around the grounds at night, trying to steal their guns. James held his. On September 21, 1862 &mdash; four days after Henry was killed at Antietam &mdash; James sat at his desk on the Hudson and wrote to his mother asking, &ldquo;Have you heard from Henry and Alex yet?&rdquo; He did not know.</p>
-    <p>He left the academy and joined the 153rd New York alongside Charles, entering the field in Louisiana in 1864. His nine surviving letters are the fewest of any brother, but they are vivid and particular. He defined hardtack for posterity &mdash; &ldquo;Bake a flour and water cake with no salt or saleratus on a griddle till it is hard &mdash; throw it on a shelf for three or four days&rdquo; &mdash; and described Southern children calling out, &ldquo;Ma, there is a Yankee down cellar taking all our preserves and bacon.&rdquo; He made rings on the march from Louisiana to Washington, whittling them while walking. Most broke in his pocket book. One survived, and he mailed it home in a letter.</p>
-    <p>At Cedar Creek, on October 19, 1864, he was wounded in the thigh during the Confederate surprise attack at dawn. He walked five miles to the field hospital, fashioning a bandage from his own underclothes, because the alternative was a Confederate prison. From a hospital bed in Baltimore, he cast his vote for Lincoln. By December, at Chestnut Hill Hospital in Philadelphia, the wound was nearly healed. He described the Thanksgiving dinner the hospital served &mdash; turkey and ice cream, all cold, piled on a plate, served at four in the afternoon because his ward was among the last.</p>
-    <p>James died on October 19, 1865 &mdash; exactly one year to the day after the bullet struck him at Cedar Creek. The war had been over for six months. He never made it home. The ring arrived before he did.</p>
-  </div>
-
-  <div class="ps-quotes">
-    <div class="ps-quote">
-      <blockquote>There is a little oil on the corner of my paper; you must excuse it as it is the best I have &mdash; my hair oil got upset.</blockquote>
-      <cite><a class="quote-src" data-letter="LTR-1861-08-06-001" data-hl="hair oil got upset">James, August 6, 1861</a></cite>
-    </div>
-    <div class="ps-quote">
-      <blockquote>Do you know what hardtack is! Bake a flour and water cake with no salt or saleratus on a griddle till it is hard &mdash; throw it on a shelf for three or four days and see what kind of a meal it will make.</blockquote>
-      <cite><a class="quote-src" data-letter="LTR-1864-08-15-001" data-hl="Bake a flour and water cake">James, August 15, 1864</a></cite>
-    </div>
-  </div>
-
-  <div class="ps-fate kia">Wounded at Cedar Creek, Oct 19, 1864. Died exactly one year later at Albany Hospital. The war had been over for six months.</div>
-
-  <button class="letters-toggle" style="--person: var(--james);" data-author="james" onclick="toggleLetters(this)">
-    <span class="lt-icon">&#9654;</span> Read His Letters <span class="lt-count"></span>
-  </button>
-  <div class="letters-drawer"><div class="letters-list"></div></div>
-</section>
-
-<!-- ═══════════════════════════════════════════════ -->
-<!-- FANNIE — no surviving letters of her own -->
-<!-- ═══════════════════════════════════════════════ -->
-<section class="person-section" id="fannie">
-  <div class="ps-top">
-    <div class="ps-top-left">
-      <div class="ps-accent" style="background: var(--fannie);"></div>
-      <h2 class="ps-name" style="color: var(--fannie);">Frances &ldquo;Fannie&rdquo; Hubbell</h2>
-      <div class="ps-epithet">The Sister They All Wrote To</div>
-      <div class="ps-lifespan">b. Apr 1837, Champlain, NY &bull; d. after 1872, Iowa</div>
-    </div>
-  </div>
-
-  <div class="service-record">
-    <div class="sr-field"><span class="sr-label">Role</span><span class="sr-value">Eldest child</span></div>
-    <div class="sr-field"><span class="sr-label">Occupation</span><span class="sr-value">Teacher</span></div>
-    <div class="sr-field"><span class="sr-label">Letters to Her</span><span class="sr-value">38+</span></div>
-    <div class="sr-field"><span class="sr-label">Home</span><span class="sr-value">Champlain &rarr; Iowa</span></div>
-  </div>
-
-  <div class="ps-bio">
-    <p>Fannie was the eldest child and only daughter, four years older than Henry and seven years older than Alexander. In early 1862 she took a teaching position in Canada &mdash; Henry noted &ldquo;Frances teaching in Montreal&rdquo; <small>(LTR-1862-01-09)</small>, and Alexander addressed a letter to her at &ldquo;Longale, Canada,&rdquo; encouraging her to &ldquo;perfect yourself in the French language&rdquo; <small>(LTR-1862-01-25)</small>.</p>
-    <p>By spring 1864 she had returned home and risen to preceptress of Champlain Academy, prompting Charles to write, &ldquo;Frances is preceptress of the Academy. She is rising in the world, but I am afraid it is too hard work for her&rdquo; <small>(LTR-1864-04-23)</small>.</p>
-    <p>Though none of Fannie&rsquo;s own letters survive, the brothers craved hers. She received at least 38 letters across the war years &mdash; addressed as &ldquo;dear sister,&rdquo; often sharing a more informal tone than letters to their mother. She never married. Around 1872 she followed the family west to Iowa; the details of her later life are sparse.</p>
-  </div>
-
-  <div class="ps-quotes">
-    <div class="ps-quote">
-      <blockquote>&ldquo;I have had nothing from her but a little scribble on a little scrap of paper for a long time. I shall have to pull her ears when I return.&rdquo;</blockquote>
-      <cite>Alexander to Mother, July 8, 1862 <small>(LTR-1862-07-08)</small></cite>
-    </div>
-  </div>
-
-
-  <div class="ps-fate civilian">Taught in Montreal and at Champlain Academy during the war. Moved to Iowa around 1872 with the surviving family.</div>
-
-  <button class="letters-toggle" style="--person: var(--fannie);" data-recipient="fannie" onclick="toggleLetters(this)">
-    <span class="lt-icon">&#9654;</span> Letters Written to Her <span class="lt-count"></span>
-  </button>
-  <div class="letters-drawer"><div class="letters-list"></div></div>
-</section>
-
-<!-- ===== LETTER READER ===== -->
+  <!-- ===================== INDIVIDUAL STAGE ===================== -->
+  <section class="wtw-stage" id="stage" aria-hidden="true"></section>
 
 </main>
 
@@ -751,98 +244,369 @@ html { scroll-behavior: smooth; }
 <script src="_design-ui.js"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
-<script src="_reader.js?v=13"></script>
+<script src="_reader.js?v=14"></script>
+<script src="_hero.js"></script>
+<script src="_bio-nav.js?v=2"></script>
 <script>
 var AUTHOR_COLORS = {henry:'#2D5F8A',alexander:'#B8860B',james:'#4A7C59',charles:'#8B3A3A',mother:'#7B5EA7'};
 var AUTHOR_NAMES = {henry:'Henry Hubbell',alexander:'Alexander F. Hubbell',james:'James Hubbell',charles:'Charles F. Hubbell',mother:'Frances Hubbell (Mother)'};
+function esc(s){ var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+/* Safe HTML insertion helper: clear then insertAdjacentHTML. All interpolated
+   dynamic values are escaped via esc(); the only un-escaped strings are trusted,
+   author-written static prose constants below (no user input on this page). */
+function setHTML(el, html){ el.textContent=''; el.insertAdjacentHTML('beforeend', html); }
 
-function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+/* ===================== PEOPLE — single data model ===================== */
+var PEOPLE = [
+  { id:'henry', color:'var(--henry)', eyebrow:'The Eldest', poss:'his',
+    name:'Henry Hubbell', short:'Henry', epithet:'First to Enlist, First to Fall',
+    lifespan:'b. Nov 1839, Champlain, NY · d. Sept 17, 1862, Antietam, MD (age ~22)',
+    poster:'/experience-v2/assets/brothers/web/window-henry-v1.webp', loop:'/experience-v2/assets/brothers/loops/loop-henry',
+    story:'brother-henry.html', author:'henry',
+    service:[['Co. D, 34th NY','Regiment'],['Jun 1861','Enlisted'],['15 months','Service'],['Private','Rank'],['59','Letters'],['KIA, Antietam','Fate']],
+    bio:[
+      "Henry was the eldest brother and the first to enlist, joining the 34th New York in June 1861, two months after Fort Sumter. He was twenty-one, a farmer’s son whose father had been dead for eight years. His mother was managing the farm in Champlain alone. He passed through Baltimore — where Massachusetts soldiers had been attacked by a secessionist mob weeks earlier — and noted bullet holes in the depot roof but reported that no one molested them.",
+      "His letters are the quietest in the collection. He tracked every dollar sent home with meticulous care, apologized for his spelling, and described his entire military life as dreamlike. On July 21, 1861, he sat in camp at Washington and wrote to his mother while listening to the cannons at Bull Run, twenty-eight miles away. The whiplash between ordinary life and catastrophe — shirt laundry in one paragraph, mobilization in the next — would define his correspondence. He served through the Peninsula Campaign and was chronically ill, refusing the hospital when the sick were ordered away.",
+      "His last letter, dated July 28, 1862, is the most relaxed he ever wrote — teasing his sister about French lessons, dreaming of home in time for sugar season. He closed: “Burn this scribble — hope to do better next time.” They did not burn it. Fifty-one days later he was killed at Antietam, the bloodiest single day of the war. His body was never recovered. The family spent seven months piecing together the truth from casualty lists and a soldier’s account of his name on a headboard in a field."
+    ],
+    quotes:[
+      {t:"It is all like a dream, my being here, but if I ever go home I can say that I have seen a good deal of the world, by hard marching.", id:'LTR-1862-04-06-002', hl:'all like a dream, my being here', cite:'Henry, April 6, 1862'},
+      {t:"My diarrhea is very bad. Sherman, who was head doctor, is now in Congress.", id:'LTR-1862-07-12-001', hl:'diarrhea is very bad', cite:'Henry, July 12, 1862'}
+    ],
+    fate:{cls:'kia', text:'Killed in action at Antietam, September 17, 1862. He was approximately 22. His body was never recovered.'} },
 
-/* ===== LETTER DRAWER ===== */
-function getLettersForCard(btn) {
-  var author = btn.getAttribute('data-author');
-  var recipient = btn.getAttribute('data-recipient');
-  if (author) {
-    return LETTERS.filter(function(l) { return l.a === author; });
+  { id:'alexander', color:'var(--alexander)', eyebrow:'The Survivor', poss:'his',
+    name:'Alexander F. Hubbell', short:'Alexander', epithet:'120 Letters Through Nearly Four Years of War',
+    lifespan:'b. Mar 28, 1844, Champlain, NY · d. Dec 7, 1894, Fonda, Iowa (age 50)',
+    poster:'/experience-v2/assets/brothers/web/window-alexander-v1.webp', loop:'/experience-v2/assets/brothers/loops/loop-alexander',
+    story:'brother-alexander.html', author:'alexander',
+    service:[['Co. H, 60th NY','Regiment'],['Sep 1861','Enlisted'],['~3.5 years','Service'],['Cpl → Sgt','Rank'],['120','Letters'],['Lookout Mtn','Wounds']],
+    bio:[
+      "Alexander was seventeen when he enlisted in September 1861, two weeks after Henry wrote home advising him to stay and go to college instead. He did not take the advice. Over three years and ten months he served in both theaters, fought at Antietam, Gettysburg, and Lookout Mountain, marched through Sherman’s Atlanta Campaign, and wrote 120 letters home — more than his three brothers combined. They form the backbone of this collection.",
+      "At Antietam, on the bloodiest day of the war, he came through with only a bruise below the knee from a nearly spent ball — then learned that Henry was missing. At Gettysburg his regiment held Culp’s Hill through two days of assault; on the Fourth of July, 1863, he wrote home while burying the dead. In November, transferred west, he was wounded by a rifle ball in the side during the bayonet charge at Lookout Mountain. He recovered.",
+      "The following summer, during the Atlanta Campaign, the army went weeks without fresh vegetables and Alexander developed scurvy at twenty. From a hospital bed he underwent a political transformation — the soldier who in 1862 hated abolitionists as much as rebels was, by 1864, ready to cast his first vote for Lincoln. His final wartime letter, written the night the muster-out order arrived, is the finest passage in the collection. He settled on a farm in Iowa and lived nearly thirty more years — the only brother to reach old age."
+    ],
+    quotes:[
+      {t:"God has again in his great kindness preserved my life through another most terrific battle. I have not received a scratch.", id:'LTR-1863-07-04-001', hl:'God has again in his great kindness', cite:'Alexander, July 4, 1863 — Gettysburg'},
+      {t:"I felt when in the battle, as tho I had a Mother upon her knees praying for me, and I took great comfort in the thought.", id:'LTR-1862-11-25-001', hl:'Mother upon her knees praying for me', cite:'Alexander, November 25, 1862'}
+    ],
+    fate:{cls:'survived', text:'Survived the war. Settled in Iowa, married Lois Wood in 1887. Died Dec 7, 1894 at age 50. His descendants preserved the letters for five generations.'} },
+
+  { id:'charles', color:'var(--charles)', eyebrow:'The Clear-Eyed', poss:'his',
+    name:'Charles F. Hubbell', short:'Charles', epithet:'Clear-Eyed and Steady Under Fire',
+    lifespan:'b. Apr 1840, Champlain, NY · d. Mar 21, 1875, Iowa (age ~34)',
+    poster:'/experience-v2/assets/brothers/web/window-charles-v1.webp', loop:'/experience-v2/assets/brothers/loops/loop-charles',
+    story:'brother-charles.html', author:'charles',
+    service:[['Co. I, 153rd NY','Regiment'],['Sep 1862','Enlisted'],['~3 years','Service'],['Private','Rank'],['69','Letters'],['Shenandoah','Theater']],
+    bio:[
+      "Charles was the third brother to enlist and the most clear-eyed of them all. At the recruiting station, Dr. Foote nearly rejected him for near-sightedness, but Charles had two brothers already in the Army and one at West Point, and the doctor relented. A family acquaintance told him afterward that he was “too honest.” It was as accurate a summary of his character as anyone would ever write.",
+      "He fought at Chancellorsville, where his regiment lost seventy-three men in a single engagement. He spent seven months investigating Henry’s fate through conflicting rumors before a soldier told him he had seen Henry’s name on a headboard at Antietam — a grave marker. Charles reported it with the bluntest statement in the collection: “I think there is not the least doubt that Henry was killed.”",
+      "His mother arranged for Charles to be detached as a clerk at General Banks’s headquarters in New Orleans — a safer posting. He went without shame, but did not stay safe: he carried dispatches up the Red River under guerrilla fire, and by autumn 1864 was back in the field for Sheridan’s Shenandoah Campaign. At Cedar Creek he and James came under surprise attack before dawn; James was wounded, Charles came through without a scratch. He survived the war, followed Alexander to Iowa, and died in 1875 of disease contracted in service — a decade after Appomattox."
+    ],
+    quotes:[
+      {t:"Did not enlist with the expectation of sleeping on a feather bed.", id:'LTR-1862-12-04-001', hl:'Did not enlist with the expectation of sleeping on a feather bed', cite:'Charles, December 4, 1862'},
+      {t:"I think there is not the least doubt that Henry was killed.", id:'LTR-1863-04-27-001', hl:'not the least doubt that Henry was killed', cite:'Charles, April 27, 1863'}
+    ],
+    fate:{cls:'died', text:'Died March 21, 1875 at age ~34 from disease contracted during service. The war claimed him a decade after Appomattox.'} },
+
+  { id:'james', color:'var(--james)', eyebrow:'The Youngest', poss:'his',
+    name:'James Hubbell', short:'James', epithet:'Wounded at Cedar Creek, Lost on the Way Home',
+    lifespan:'b. Jan 1843, Champlain, NY · d. Oct 19, 1865, Albany, NY (age ~22)',
+    poster:'/experience-v2/assets/brothers/web/window-james-v1.webp', loop:'/experience-v2/assets/brothers/loops/loop-james',
+    story:'brother-james.html', author:'james',
+    service:[['Co. I, 153rd NY','Regiment'],['Sep 1862','Enlisted'],['~3 years','Service'],['Private','Rank'],['9','Letters'],['Cedar Creek','Wounded']],
+    bio:[
+      "James was the youngest brother and the most scholarly, entering West Point while Henry fought on the Peninsula. His early letters describe cadet life with a boy’s precision: lockers five feet long shared among three; older cadets dragging new arrivals around the grounds at night, trying to steal their guns. James held his. On September 21, 1862 — four days after Henry was killed at Antietam — James sat at his desk on the Hudson and wrote to his mother asking, “Have you heard from Henry and Alex yet?” He did not know.",
+      "He left the academy and joined the 153rd New York alongside Charles, entering the field in Louisiana in 1864. His nine surviving letters are the fewest of any brother, but vivid and particular. He defined hardtack for posterity and described Southern children calling out, “Ma, there is a Yankee down cellar taking all our preserves.” He made rings on the march, whittling them while walking; most broke in his pocket book, but one survived and he mailed it home.",
+      "At Cedar Creek, on October 19, 1864, he was wounded in the thigh during the Confederate surprise attack at dawn. He walked five miles to the field hospital, fashioning a bandage from his own underclothes, because the alternative was a Confederate prison. From a hospital bed he cast his vote for Lincoln. James died on October 19, 1865 — exactly one year to the day after the bullet struck him. The war had been over for six months. He never made it home. The ring arrived before he did."
+    ],
+    quotes:[
+      {t:"There is a little oil on the corner of my paper; you must excuse it as it is the best I have — my hair oil got upset.", id:'LTR-1861-08-06-001', hl:'hair oil got upset', cite:'James, August 6, 1861'},
+      {t:"Do you know what hardtack is! Bake a flour and water cake with no salt or saleratus on a griddle till it is hard — throw it on a shelf for three or four days.", id:'LTR-1864-08-15-001', hl:'Bake a flour and water cake', cite:'James, August 15, 1864'}
+    ],
+    fate:{cls:'kia', text:'Wounded at Cedar Creek, Oct 19, 1864. Died exactly one year later at Albany Hospital. The war had been over for six months.'} },
+
+  { id:'mother', color:'var(--mother)', eyebrow:'The Mother', poss:'her', placeholder:true,
+    name:'Frances L. (McNeil) Hubbell', short:'Frances', epithet:'“My hair almost rises”',
+    lifespan:'b. ~1808, Charlotte, Vermont · d. May 29, 1890, Fonda, Iowa',
+    phNote:'The widow who sent four sons to war and read the casualty lists each dawn. A portrait of Frances is in preparation — no photograph of her is known to survive.',
+    story:'mother-frances.html', author:'mother',
+    service:[['Scottish','Descent'],['1833','Married'],['6','Children'],['1853','Widowed'],['17','Letters'],['Home front','Role']],
+    bio:[
+      "Frances McNeil was born in Charlotte, Vermont, to a family of Scottish descent, and married Frederick Augustus Hubbell in 1833. They settled in Champlain and raised six children. When Frederick died in 1853, she was left alone with the farm and five surviving children, the eldest barely sixteen. She managed for eight years. Then the war came, and she sent every son she had.",
+      "Her seventeen surviving letters are the emotional center of the collection — not because she wrote the most, but because she occupied the position no one else could: the woman who waited. She scanned the casualty lists “with trembling.” She wrote to Henry four days after Antietam, not yet knowing he was dead, asking him to describe the battle “in the most minute detail.” When his name appeared on the wounded list, she wrote to Alexander: “My heart is aching to bursting, and I can write no more.”",
+      "She was not passive. She shipped boxes of supplies, sent money she could not spare, and quietly worked the network of officers’ wives to secure safer assignments for her surviving sons. She was the person every son wrote to first, the address on nearly every envelope. After the war she followed her sons west to Iowa. She outlived three of her four soldier sons, dying in 1890 at about eighty-two — having buried a husband and three children and carried the rest to safety through the worst years of the republic."
+    ],
+    quotes:[
+      {t:"If I was a man I am sure I should enlist. In reading the descriptions of the battle fields — my hair almost rises.", id:'LTR-1862-09-21-002', hl:'If I was a man I am sure I should enlist', cite:'Frances, September 21, 1862'},
+      {t:"I have wept until I am almost blind. I can see his sweet face and hear his sweet voice.", id:'LTR-1863-05-04-001', hl:'wept until I am almost blind', cite:'Frances, May 4, 1863'}
+    ],
+    fate:{cls:'civilian', text:'Survived the war but lost three of her four sons. She outlived them all, dying in Iowa in 1890.'} }
+];
+var PMAP = {}; PEOPLE.forEach(function(p){ PMAP[p.id]=p; });
+
+function heroLoopHTML(p, scrim, eyebrow){
+  if (p.placeholder){
+    return '<figure class="hero-loop" data-placeholder="true" style="--hero-scrim:'+(scrim||'46%')+'">' +
+             '<span class="ph-badge">portrait in preparation</span>' +
+             '<div class="ph-note">'+esc(p.phNote)+'</div></figure>';
   }
-  if (recipient === 'fannie') {
-    return LETTERS.filter(function(l) {
-      var r = (l.r || '').toLowerCase();
-      return r.indexOf('sister') !== -1 || r.indexOf('fannie') !== -1 || r.indexOf('fanny') !== -1 ||
-             (r.indexOf('frances') !== -1 && r.indexOf('mother') === -1 && r.indexOf('mrs') === -1);
+  return '<figure class="hero-loop" data-hero-loop>' +
+    '<img class="hero-loop__poster" src="'+p.poster+'" alt="Interpretive portrait of '+esc(p.name)+'" decoding="async">' +
+    '<video class="hero-loop__video" autoplay muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">' +
+      '<source data-src="'+p.loop+'.webm" type="video/webm"><source data-src="'+p.loop+'.mp4" type="video/mp4"></video>' +
+    '<div class="hero-loop__scrim" aria-hidden="true"></div>' +
+    (eyebrow ? '<figcaption class="hero-loop__caption"><span class="hl-eyebrow">'+esc(eyebrow)+'</span></figcaption>' : '') +
+  '</figure>';
+}
+
+/* ---- build the montage ---- */
+(function buildMontage(){
+  var m = document.getElementById('montage');
+  var sel = document.getElementById('famSelect');
+  PEOPLE.forEach(function(p){
+    var tile = document.createElement('button');
+    tile.className = 'fam-tile' + (p.placeholder ? ' is-placeholder' : '');
+    tile.setAttribute('role','listitem');
+    tile.style.setProperty('--person', p.color);
+    tile.setAttribute('data-person', p.id);
+    tile.setAttribute('aria-label', 'Read ' + p.short + '’s story');
+    setHTML(tile,
+      heroLoopHTML(p) +
+      '<div class="fam-tile-cap">' +
+        '<span class="ft-eyebrow">'+esc(p.eyebrow)+'</span>' +
+        '<span class="ft-name">'+esc(p.short)+'</span>' +
+        '<span class="ft-epithet">'+esc(p.epithet)+'</span>' +
+        '<span class="ft-cta">Read '+p.poss+' story</span>' +
+      '</div>');
+    tile.addEventListener('click', function(){ selectPerson(p.id); });
+    m.appendChild(tile);
+
+    var opt = document.createElement('option');
+    opt.value = p.id; opt.textContent = p.short + ' · ' + (p.placeholder ? 'Mother' : p.epithet.split(',')[0]);
+    sel.appendChild(opt);
+  });
+  if (window.HubbellHero && HubbellHero.scan) HubbellHero.scan();
+  buildDots();
+})();
+
+function buildDots(){
+  var dotsWrap = document.getElementById('carouselDots');
+  var montage = document.getElementById('montage');
+  dotsWrap.textContent='';
+  PEOPLE.forEach(function(p, i){
+    var b = document.createElement('button');
+    b.setAttribute('aria-label', 'Go to ' + p.short);
+    b.style.setProperty('--person', p.color);
+    if (i===0) b.className = 'active';
+    b.addEventListener('click', function(){
+      var tile = montage.children[i];
+      if (tile) tile.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+    });
+    dotsWrap.appendChild(b);
+  });
+  var dots = dotsWrap.children;
+  montage.addEventListener('scroll', function(){
+    var center = montage.scrollLeft + montage.clientWidth/2, best=0, bestD=1e9;
+    for (var i=0;i<montage.children.length;i++){
+      var t=montage.children[i], c=t.offsetLeft + t.offsetWidth/2, d=Math.abs(c-center);
+      if(d<bestD){bestD=d;best=i;}
+    }
+    for (var j=0;j<dots.length;j++) dots[j].className = (j===best?'active':'');
+    var sel=document.getElementById('famSelect'); if(sel) sel.value = PEOPLE[best].id;
+  }, {passive:true});
+}
+document.getElementById('famSelect').addEventListener('change', function(){ selectPerson(this.value); });
+document.getElementById('fannieBtn').addEventListener('click', function(){ selectFannie(); });
+
+/* ===================== SELECTION / STAGE RENDER ===================== */
+var main = document.querySelector('.wtw');
+var stage = document.getElementById('stage');
+var family = document.querySelector('.wtw-family');
+
+function serviceHTML(p){
+  return '<div class="pd-service">' + p.service.map(function(s){
+    return '<div class="srv"><span class="srv-val">'+esc(s[0])+'</span><span class="srv-lbl">'+esc(s[1])+'</span></div>';
+  }).join('') + '</div>';
+}
+function quotesHTML(p){
+  return '<div class="pd-quotes">' + p.quotes.map(function(q){
+    return '<div class="pd-quote"><blockquote>'+esc(q.t)+'</blockquote>' +
+      '<cite><a class="quote-src" data-letter="'+esc(q.id)+'" data-hl="'+esc(q.hl)+'">'+esc(q.cite)+'</a></cite></div>';
+  }).join('') + '</div>';
+}
+function bioHTML(p){ return '<div class="pd-bio">' + p.bio.map(function(t){ return '<p>'+t+'</p>'; }).join('') + '</div>'; }
+function backSVG(){ return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>'; }
+function fwdSVG(){ return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'; }
+
+/* inline-reader for the injected narrative's .ref / .lq-link onclick="openLetter(...)" */
+function openLetter(id, excerpt){ if (window.HubbellReader) HubbellReader.open(id, { excerpt:excerpt, contextStrip:true }); }
+window.openLetter = openLetter;
+
+/* fetch each person's REAL full chaptered bio (.narrative) from their dedicated
+   page once, cache it, and inject it — no duplicated content, always in sync. */
+var _bioCache = {};
+function fetchNarrative(p, cb){
+  if (_bioCache[p.id] != null){ cb(_bioCache[p.id]); return; }
+  fetch(p.story).then(function(r){ return r.text(); }).then(function(html){
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    var nar = doc.querySelector('.narrative');
+    _bioCache[p.id] = nar ? nar.outerHTML : '';
+    cb(_bioCache[p.id]);
+  }).catch(function(){ cb(''); });
+}
+function hydrateNarrative(root, p, html){
+  var content = root.querySelector('#pdNarrative');
+  if (!content) return;
+  if (!html){ setHTML(content, '<p class="pd-loading">The full story is on <a href="'+esc(p.story)+'">'+esc(p.name)+'’s page</a>.</p>'); return; }
+  setHTML(content, html);
+  // reuse the published bio chapter-nav builder on the injected narrative (no duplicated logic)
+  var narrative = content.querySelector('.narrative');
+  if (narrative && window.HubbellBioNav && HubbellBioNav.build){ try{ HubbellBioNav.build(narrative); }catch(e){} }
+  // wire the narrative's pull-quotes / inline refs to the reader (same as the bio pages)
+  try{ if (window.HubbellReader && HubbellReader.bindQuoteHooks) HubbellReader.bindQuoteHooks(); }catch(e){}
+}
+
+function renderPerson(p){
+  var Poss = p.poss.charAt(0).toUpperCase()+p.poss.slice(1);
+  stage.style.setProperty('--person', p.color);
+  setHTML(stage,
+    '<button class="stage-back" id="stageBack" style="--person:'+p.color+'">'+backSVG()+'The family</button>' +
+    '<div class="pd-hero">' +
+      '<div class="pd-portrait">' + heroLoopHTML(p, '40%', p.eyebrow) + '</div>' +
+      '<div class="pd-headline">' +
+        '<div class="pd-eyebrow">'+esc(p.eyebrow)+'</div>' +
+        '<h2 class="pd-name">'+esc(p.name)+'</h2>' +
+        '<div class="pd-epithet">'+esc(p.epithet)+'</div>' +
+        '<div class="pd-lifespan">'+esc(p.lifespan)+'</div>' +
+        serviceHTML(p) +
+      '</div>' +
+    '</div>' +
+    '<div class="pd-body pd-body--bio">' +
+      '<div class="pd-content">' +
+        '<div class="pd-narrative" id="pdNarrative"><p class="pd-loading">Loading the full story…</p></div>' +
+        '<section class="pd-section" id="sec-letters" style="margin-top:34px; padding-top:24px; border-top:1px solid var(--rule)"><h3>'+Poss+' Letters</h3>' +
+          '<button class="letters-toggle" style="--person:'+p.color+'" data-author="'+esc(p.author)+'"><span class="lt-icon">▶</span> Browse all '+p.poss+' letters <span class="lt-count"></span></button>' +
+          '<div class="letters-drawer"><div class="letters-list"></div></div>' +
+          '<div style="margin-top:16px"><a class="pd-story-link" href="'+esc(p.story)+'" style="--person:'+p.color+'">Open '+p.poss+' dedicated page — map &amp; portrait'+fwdSVG()+'</a></div>' +
+        '</section>' +
+      '</div>' +
+    '</div>' +
+    '<div class="pd-return-wrap"><button class="pd-return" id="stageReturn">'+backSVG()+'Back to the family</button></div>');
+
+  document.getElementById('stageBack').addEventListener('click', showFamily);
+  document.getElementById('stageReturn').addEventListener('click', showFamily);
+  wireLetters(stage);
+  if (window.HubbellHero && HubbellHero.scan) HubbellHero.scan();
+  fetchNarrative(p, function(html){ hydrateNarrative(stage, p, html); });
+}
+
+function selectPerson(id){ var p=PMAP[id]; if(!p) return; renderPerson(p); goToView('individual'); history.replaceState(null,'','#'+id); }
+function selectFannie(){ renderFannie(); goToView('individual'); history.replaceState(null,'','#fannie'); }
+
+function renderFannie(){
+  stage.style.setProperty('--person','var(--fannie)');
+  setHTML(stage,
+    '<button class="stage-back" id="stageBack" style="--person:var(--fannie)">'+backSVG()+'The family</button>' +
+    '<div class="pd-hero" style="grid-template-columns:1fr; text-align:center; max-width:760px; margin:0 auto;">' +
+      '<div class="pd-headline">' +
+        '<div class="pd-eyebrow" style="color:var(--fannie)">The Sister</div>' +
+        '<h2 class="pd-name">Frances “Fannie” Hubbell</h2>' +
+        '<div class="pd-epithet">The Sister They All Wrote To</div>' +
+        '<div class="pd-lifespan">b. Apr 1837, Champlain, NY · d. after 1872, Iowa</div>' +
+      '</div></div>' +
+    '<div class="pd-body" style="grid-template-columns:1fr; max-width:760px; margin:0 auto;">' +
+      '<div class="pd-content" style="max-width:none">' +
+        '<section class="pd-section"><h3>The Story</h3><div class="pd-bio">' +
+          '<p>Fannie was the eldest child and only daughter, four years older than Henry. In early 1862 she took a teaching position in Canada; by spring 1864 she had risen to preceptress of Champlain Academy, prompting Charles to write, “Frances is rising in the world, but I am afraid it is too hard work for her.”</p>' +
+          '<p>Though none of Fannie’s own letters survive, the brothers craved hers. She received at least 38 letters across the war — addressed “dear sister,” often warmer than the letters home to their mother. She never married, and around 1872 followed the family west to Iowa.</p>' +
+        '</div></section>' +
+        '<section class="pd-section"><h3>Letters Written to Her</h3>' +
+          '<button class="letters-toggle" style="--person:var(--fannie)" data-recipient="fannie"><span class="lt-icon">▶</span> Letters written to her <span class="lt-count"></span></button>' +
+          '<div class="letters-drawer"><div class="letters-list"></div></div>' +
+        '</section>' +
+      '</div></div>' +
+    '<div class="pd-return-wrap"><button class="pd-return" id="stageReturn">'+backSVG()+'Back to the family</button></div>');
+  document.getElementById('stageBack').addEventListener('click', showFamily);
+  document.getElementById('stageReturn').addEventListener('click', showFamily);
+  wireLetters(stage);
+}
+
+function goToView(view){
+  var enterEl = view==='individual' ? stage : family;
+  main.setAttribute('data-view', view);
+  enterEl.classList.add('is-enter');
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ enterEl.classList.remove('is-enter'); }); });
+  window.scrollTo({top:0, behavior:'auto'});
+  stage.setAttribute('aria-hidden', view==='individual' ? 'false':'true');
+}
+function showFamily(){ goToView('family'); history.replaceState(null,'',location.pathname); if (window.HubbellHero && HubbellHero.scan) HubbellHero.scan(); }
+
+/* ===================== LETTERS / QUOTES / SECTION-NAV ===================== */
+function getLettersForCard(btn){
+  var author = btn.getAttribute('data-author'), recipient = btn.getAttribute('data-recipient');
+  if (author){ return LETTERS.filter(function(l){ return l.a===author; }); }
+  if (recipient==='fannie'){
+    return LETTERS.filter(function(l){
+      var r=(l.r||'').toLowerCase();
+      return r.indexOf('sister')!==-1 || r.indexOf('fannie')!==-1 || r.indexOf('fanny')!==-1 ||
+             (r.indexOf('frances')!==-1 && r.indexOf('mother')===-1 && r.indexOf('mrs')===-1);
     });
   }
   return [];
 }
-
-function toggleLetters(btn) {
-  var drawer = btn.nextElementSibling;
-  var list = drawer.querySelector('.letters-list');
-  var isOpen = drawer.classList.contains('open');
-
-  if (isOpen) {
-    drawer.classList.remove('open');
-    btn.classList.remove('open');
-    return;
-  }
-
-  if (!list.children.length) {
+function wireLetters(root){
+  root.querySelectorAll('.letters-toggle').forEach(function(btn){
     var letters = getLettersForCard(btn);
-    letters.forEach(function(l) {
-      var row = document.createElement('div');
-      row.className = 'letter-row';
-      row.setAttribute('data-letter-id', l.id);
-      var flags = '';
-      if (l.bat) flags += '<span class="lr-flag battle" title="Battle"></span>';
-      if (l.ill) flags += '<span class="lr-flag illness" title="Illness"></span>';
-      if (l.dth) flags += '<span class="lr-flag death" title="Death"></span>';
-      if (l.wnd) flags += '<span class="lr-flag wound" title="Wound"></span>';
-      row.innerHTML =
-        '<span class="lr-date">' + esc(l.d) + '</span>' +
-        '<span class="lr-to">to ' + esc(l.r) + '</span>' +
-        '<span class="lr-loc">' + esc(l.loc) + '</span>' +
-        '<span class="lr-flags">' + flags + '</span>';
-      row.addEventListener('click', function() { openReader(l); });
-      list.appendChild(row);
+    btn.querySelector('.lt-count').textContent = letters.length + ' letter' + (letters.length!==1?'s':'');
+    btn.addEventListener('click', function(){
+      var drawer = btn.nextElementSibling, list = drawer.querySelector('.letters-list');
+      if (drawer.classList.contains('open')){ drawer.classList.remove('open'); btn.classList.remove('open'); return; }
+      if (!list.children.length){
+        getLettersForCard(btn).forEach(function(l){
+          var row=document.createElement('div'); row.className='letter-row'; row.setAttribute('data-letter-id', l.id);
+          var flags=''; if(l.bat)flags+='<span class="lr-flag battle"></span>'; if(l.ill)flags+='<span class="lr-flag illness"></span>'; if(l.dth)flags+='<span class="lr-flag death"></span>'; if(l.wnd)flags+='<span class="lr-flag wound"></span>';
+          setHTML(row, '<span class="lr-date">'+esc(l.d)+'</span><span class="lr-to">to '+esc(l.r)+'</span><span class="lr-loc">'+esc(l.loc)+'</span><span class="lr-flags">'+flags+'</span>');
+          row.addEventListener('click', function(){ HubbellReader.open(l.id); });
+          list.appendChild(row);
+        });
+      }
+      drawer.classList.add('open'); btn.classList.add('open');
     });
-  }
-
-  drawer.classList.add('open');
-  btn.classList.add('open');
-}
-
-document.querySelectorAll('.letters-toggle').forEach(function(btn) {
-  var letters = getLettersForCard(btn);
-  var countEl = btn.querySelector('.lt-count');
-  countEl.textContent = letters.length + ' letter' + (letters.length !== 1 ? 's' : '');
-});
-
-/* ===== LETTER READER ===== */
-function openReader(letter) {
-  HubbellReader.open(letter.id);
-}
-
-function closeReader() {
-  HubbellReader.close();
-}
-
-/* ===== QUOTE CITATION LINKS ===== */
-document.querySelectorAll('.quote-src').forEach(function(link) {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    var letterId = this.getAttribute('data-letter');
-    var hl = this.getAttribute('data-hl');
-    if (letterId && window.HubbellReader) {
-      HubbellReader.open(letterId, { excerpt: hl || '' });
-    }
   });
-});
+}
+function wireQuotes(root){
+  root.querySelectorAll('.quote-src').forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      var id=this.getAttribute('data-letter'), hl=this.getAttribute('data-hl');
+      if (id && window.HubbellReader) HubbellReader.open(id, { excerpt: hl||'' });
+    });
+  });
+}
+function wireSectionNav(root){
+  var links = root.querySelectorAll('.pd-nav a'), secs = root.querySelectorAll('.pd-section');
+  links.forEach(function(a){ a.addEventListener('click', function(e){
+    e.preventDefault(); var t=root.querySelector(this.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth', block:'start'});
+  }); });
+  if ('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(ents){
+      ents.forEach(function(en){ if(en.isIntersecting){ var id=en.target.id; links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+id); }); }});
+    }, {rootMargin:'-40% 0px -55% 0px'});
+    secs.forEach(function(s){ obs.observe(s); });
+  }
+}
+
+/* deep-link on load (#henry etc.) */
+(function initFromHash(){
+  var h = (location.hash||'').replace('#','');
+  if (h==='fannie'){ selectFannie(); } else if (PMAP[h]){ selectPerson(h); }
+})();
 </script>
 
 <script src="_deeplink.js"></script>
-<script src="_overlay-data.js"></script>
-<script src="_overlay.js"></script>
-<script>if (window.HubbellOverlay) HubbellOverlay.bindPage({ tags: true, prose: '.ps-bio' });</script>
+<script src="_overlay-data.js?v=15"></script>
+<script src="_overlay.js?v=16"></script>
 <script>if (window.HubbellDeepLink) HubbellDeepLink.injectShareButton();</script>
 </body>
 </html>
