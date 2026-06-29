@@ -1084,15 +1084,16 @@ footer p {
     <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#4A7C59" stroke="#fff" stroke-width="2"/></svg> Healthy</div>
     <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#D4860B" stroke="#fff" stroke-width="2"/></svg> Sick</div>
     <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#C44E52" stroke="#fff" stroke-width="2"/></svg> Injured</div>
-    <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#7B4FA0" stroke="#fff" stroke-width="2"/></svg> Hospitalized</div>
-    <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#D0D0D0" stroke="#fff" stroke-width="1.5"/><text x="7" y="10.5" text-anchor="middle" font-size="9" fill="#888" font-family="Inter,sans-serif">?</text></svg> No health data</div>
+    <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="3" fill="#D0D0D0" stroke="#fff" stroke-width="1" opacity="0.55"/></svg> No data</div>
+    <div class="legend-item"><svg width="16" height="16"><circle cx="8" cy="8" r="5.5" fill="#C44E52" stroke="#fff" stroke-width="1.5"/><line x1="4.7" y1="8" x2="11.3" y2="8" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/><line x1="8" y1="4.7" x2="8" y2="11.3" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg> &#10010; In hospital (added to type)</div>
     <div class="legend-item"><div class="legend-line battle"></div> Battle / Event</div>
   </div>
   <div class="legend" style="margin-top:-16px;gap:20px">
     <span class="legend-label">Severity:</span>
-    <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="#777" stroke="#fff" stroke-width="2"/></svg> Minor</div>
-    <div class="legend-item"><svg width="22" height="22"><circle cx="11" cy="11" r="9.5" fill="none" stroke="#777" stroke-width="1.5" opacity="0.85"/><circle cx="11" cy="11" r="6.5" fill="#777" stroke="#fff" stroke-width="2"/></svg> Serious (ring)</div>
-    <div class="legend-item"><svg width="26" height="26"><circle cx="13" cy="13" r="12.5" fill="none" stroke="#777" stroke-width="2.5" opacity="0.85"/><circle cx="13" cy="13" r="8" fill="#777" stroke="#fff" stroke-width="2"/></svg> Grave (bold ring)</div>
+    <div class="legend-item"><svg width="10" height="14"><circle cx="5" cy="7" r="3" fill="#D0D0D0" stroke="#fff" stroke-width="1" opacity="0.45"/></svg> No data</div>
+    <div class="legend-item"><svg width="16" height="16"><circle cx="8" cy="8" r="5.5" fill="#777" stroke="#fff" stroke-width="2"/></svg> Minor</div>
+    <div class="legend-item"><svg width="24" height="24"><circle cx="12" cy="12" r="10" fill="none" stroke="#777" stroke-width="1.5" opacity="0.85"/><circle cx="12" cy="12" r="7" fill="#777" stroke="#fff" stroke-width="2"/></svg> Serious (ring)</div>
+    <div class="legend-item"><svg width="30" height="30"><circle cx="15" cy="15" r="13.5" fill="none" stroke="#777" stroke-width="2.5" opacity="0.85"/><circle cx="15" cy="15" r="9" fill="#777" stroke="#fff" stroke-width="2"/></svg> Grave (bold ring)</div>
   </div>
   <div class="legend" style="margin-top:-16px;gap:20px">
     <span class="legend-label">Evidence:</span>
@@ -1386,6 +1387,8 @@ let conditionFilter = null; // null = no condition filter; else a condition tag 
 
 // Wellness filter categories
 const POSITIVE_STATUSES = ['healthy'];
+// Live dot types are only sick / injured now (hospital is an additive overlay, not a status).
+// Legacy 'hospitalized' / 'wounded' kept harmless in case any older path emits them.
 const NEGATIVE_STATUSES = ['sick', 'injured', 'hospitalized', 'wounded'];
 const DECLINING_STATUSES = ['declining'];
 
@@ -1427,39 +1430,54 @@ let brushStartX = null;
 let brushRect = null;
 
 const BROTHER_COLORS = { henry: '#2D5F8A', alexander: '#B8860B', james: '#4A7C59', charles: '#8B3A3A' };
-// Dot TYPE → color. healthy=green, sick=orange, injured=red, hospitalized=purple (NEW, distinct
-// from injured), nodata=grey. Legacy keys (declining/wounded) kept so other code paths referencing
-// them never throw, but live dots now use the four-type scheme below.
+// Dot TYPE → color (ailment NATURE only). healthy=green, sick=orange, injured=red, nodata=grey.
+// "In hospital" is NO LONGER a type/color — it is an additive white ✚ overlay drawn on the dot.
+// Legacy keys (declining / hospitalized / wounded) are kept so any stray code path referencing
+// them never throws, but live dots use only the four-type scheme: healthy / sick / injured / nodata.
 const STATUS_COLORS = { healthy: '#4A7C59', declining: '#C49B2C', sick: '#D4860B', injured: '#C44E52', hospitalized: '#7B4FA0', wounded: '#C44E52', nodata: '#D0D0D0' };
 
 // ── Wellness v2: curated severity is AUTHORITATIVE for the timeline dot ──────
-// TWO dimensions are encoded: TYPE → dot color (here), SEVERITY → dot size + ring (draw loop).
-// `severity` (clinical, tone-independent) decides whether an ailment is present; when one is,
-// `conditions` + the hospital signal decide the TYPE (injured vs hospitalized vs sick).
+// THREE channels are encoded, kept strictly independent:
+//   TYPE  → dot COLOR (ailment NATURE only: healthy / sick / injured / nodata).
+//   SEVERITY → dot SIZE + ring (draw loop).
+//   HOSPITAL → an ADDITIVE white ✚ overlay (never changes the type color).
+//   CONFIDENCE → dot FILL STYLE (solid/open/dashed/faint). The curated layer OVERRIDES the
+//     stale miner confidence so a grounded ailment never renders as "no evidence."
 function applyWellnessV2(letters) {
   const W = window.WELLNESS_V2 || {};
   return letters.map(l => {
     const w = W[l.id];
-    if (!w) return l;
+    // Hospital is ADDITIVE — computed for EVERY letter, independent of the curated severity layer.
+    const hc = (w && w.healthContext) || l.healthContext || '';
+    const hospitalized = (l.hospitalSentences || []).length > 0 || /hospital/i.test(hc);
+    if (!w) return Object.assign({}, l, { hospitalized });
     const sev = w.severity;
-    let status;
+    const conditions = w.conditions || [];
+    let status, confidence;
     if (sev === 'nodata' || !sev) {
       status = 'nodata';
+      confidence = 'nodata';
     } else if (sev === 'well') {
       status = 'healthy';
+      // Affirmed health IS evidence — floor to at least 'formulaic' so an "I am well"
+      // letter reads as a GREEN dot, never a grey "no-data" one. (A richer miner grade
+      // like 'direct' is kept when present; only the stale 'nodata' is overridden.)
+      confidence = (l.confidence && l.confidence !== 'nodata') ? l.confidence : 'formulaic';
     } else {
-      // An ailment is present (minor / serious / grave) → choose TYPE.
-      const conditions = w.conditions || [];
+      // An ailment is present (minor / serious / grave). TYPE encodes its NATURE ONLY —
+      // injured if a wound/other-injury condition is tagged, otherwise sick. (Hospital is
+      // layered on top as a separate overlay, so an injured-in-hospital letter stays 'injured'.)
       const hasInjury = conditions.some(c => c.tag === 'wound' || c.tag === 'other-injury');
-      const isHospitalized = (l.hospitalSentences || []).length > 0;
-      if (hasInjury) status = 'injured';
-      else if (isHospitalized) status = 'hospitalized';
-      else status = 'sick';
+      status = hasInjury ? 'injured' : 'sick';
+      // A described ailment IS direct evidence — override the stale miner value.
+      confidence = 'direct';
     }
+    // A grounded condition quote is itself direct evidence, regardless of severity bucket.
+    if (conditions.length > 0) confidence = 'direct';
     return Object.assign({}, l, {
       severity: sev, tone: w.tone,
-      conditions: w.conditions || [], healthContext: w.healthContext || '',
-      status
+      conditions, healthContext: w.healthContext || '',
+      hospitalized, status, confidence
     });
   });
 }
@@ -1706,10 +1724,10 @@ function drawTimeline() {
       // When conditionFilter === null, condMatch is always true → dot behavior unchanged.
       const condMatch = conditionFilter === null || (letter.conditions || []).some(c => c.tag === conditionFilter);
       const dotMatch = (!isFiltered || statusPassesFilter(letter.status)) && condMatch;
-      // SEVERITY → dot radius (grave biggest → nodata smallest). The clinical severity, not the
-      // binary health-relevance, now sets the size so severe events read large at a glance.
-      const SEVERITY_RADIUS = { grave: 8, serious: 6.5, minor: 5, well: 4, nodata: 4 };
-      const r = SEVERITY_RADIUS[letter.severity] || 4;
+      // SEVERITY → dot radius (grave biggest → nodata smallest). Gap widened so no-data (tiny,
+      // faint) and minor (clearly larger, solid) are unmistakable. Clinical severity sets size.
+      const SEVERITY_RADIUS = { grave: 9, serious: 7, minor: 5.5, well: 4.5, nodata: 3 };
+      const r = SEVERITY_RADIUS[letter.severity] || 4.5;
       const conf = letter.confidence || 'nodata';
 
       // SEVERITY → outline ring: serious/grave get an extra concentric circle so the most severe
@@ -1769,10 +1787,12 @@ function drawTimeline() {
         dot.setAttribute('stroke-width', 2);
         dot.setAttribute('stroke-dasharray', '3,2');
       } else {
-        // nodata — light fill
+        // nodata — tiny, faint, thin grey: minimal visual presence so it can't be mistaken
+        // for a (larger, solid, colored) minor ailment.
         dot.setAttribute('fill', STATUS_COLORS.nodata);
         dot.setAttribute('stroke', '#FFFFFF');
-        dot.setAttribute('stroke-width', 1.5);
+        dot.setAttribute('stroke-width', 1);
+        dot.setAttribute('opacity', '0.45');
       }
 
       // Hover + click (always interactive, even when dimmed)
@@ -1782,19 +1802,21 @@ function drawTimeline() {
 
       svg.appendChild(dot);
 
-      // "?" mark for nodata confidence (only when not filtered or matching)
-      if (conf === 'nodata' && letter.status === 'nodata' && dotMatch) {
-        const qMark = document.createElementNS(ns, 'text');
-        qMark.setAttribute('x', cx);
-        qMark.setAttribute('y', yCenter + 3.5);
-        qMark.setAttribute('text-anchor', 'middle');
-        qMark.setAttribute('font-family', 'Inter, sans-serif');
-        qMark.setAttribute('font-size', '8');
-        qMark.setAttribute('font-weight', '600');
-        qMark.setAttribute('fill', '#9B9B9B');
-        qMark.setAttribute('pointer-events', 'none');
-        qMark.textContent = '?';
-        svg.appendChild(qMark);
+      // ADDITIVE "in hospital" overlay — a small white medical "+" centered on the dot.
+      // Drawn AFTER the dot so it sits on top; it NEVER changes the type color, so
+      // injured+hospital = red dot + white cross, sick+hospital = orange dot + white cross.
+      if (letter.hospitalized && dotMatch) {
+        const arm = Math.max(r * 0.6, 2.5);
+        [[cx - arm, yCenter, cx + arm, yCenter], [cx, yCenter - arm, cx, yCenter + arm]].forEach(seg => {
+          const line = document.createElementNS(ns, 'line');
+          line.setAttribute('x1', seg[0]); line.setAttribute('y1', seg[1]);
+          line.setAttribute('x2', seg[2]); line.setAttribute('y2', seg[3]);
+          line.setAttribute('stroke', '#FFFFFF');
+          line.setAttribute('stroke-width', 1.4);
+          line.setAttribute('stroke-linecap', 'round');
+          line.setAttribute('pointer-events', 'none');
+          svg.appendChild(line);
+        });
       }
     });
 
@@ -2429,8 +2451,9 @@ function buildWellnessSummary() {
       `<strong>${dateRange}</strong>`,
       illCount > 0 ? `<strong>${illCount}</strong> illness` : null,
       batCount > 0 ? `<strong>${batCount}</strong> battle` : null,
-      (statusCounts.hospitalized || 0) + (statusCounts.wounded || 0) > 0
-        ? `<strong>${(statusCounts.hospitalized || 0) + (statusCounts.wounded || 0)}</strong> hosp/wound` : null
+      // Hospital is now an additive overlay, not a status — count the boolean directly.
+      letters.filter(l => l.hospitalized).length > 0
+        ? `<strong>${letters.filter(l => l.hospitalized).length}</strong> hospital` : null
     ].filter(Boolean);
 
     // Arc events with clickable refs
