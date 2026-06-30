@@ -74,20 +74,37 @@
 }
 /* scroll region: everything between header and footer */
 .reader-panel{ }
-.reader-close{
-  position:absolute; top:12px; right:14px; z-index:6;
-  color: var(--era-on-frame-2) !important; background: transparent !important;
-}
-.reader-close:hover{ color: var(--era-lantern) !important; }
-/* Share — was injected position:absolute and overlapped the title/nav. Reseat as a compact
-   icon clustered just LEFT of the close, so the two form a tidy top-right action group. */
+/* Top-right action cluster: share + close, PERFECTLY ALIGNED (identical size + top), and on
+   mobile rendered as solid lantern-ringed pills so they never wash out over the cream paper. */
+.reader-close,
 .reader-overlay .dl-modal-share{
-  position:absolute !important; top:14px !important; right:50px !important; left:auto !important; bottom:auto !important; z-index:6 !important;
-  font-size:0 !important; padding:6px !important; margin:0 !important;
-  background:transparent !important; border:0 !important; color: var(--era-on-frame-2) !important;
+  position:absolute !important; top:12px !important; z-index:7 !important;
+  width:32px !important; height:32px !important; padding:0 !important; margin:0 !important;
+  display:flex !important; align-items:center !important; justify-content:center !important;
+  box-sizing:border-box !important; border-radius:999px !important;
+  background:transparent !important; border:0 !important; line-height:1 !important;
+  color: var(--era-on-frame-2) !important;
 }
+.reader-close{ right:12px !important; font-size:21px !important; }
+.reader-overlay .dl-modal-share{ right:50px !important; left:auto !important; bottom:auto !important; font-size:0 !important; }
 .reader-overlay .dl-modal-share svg{ width:16px !important; height:16px !important; }
-.reader-overlay .dl-modal-share:hover{ color: var(--era-lantern) !important; }
+.reader-close:hover,
+.reader-overlay .dl-modal-share:hover{ color: var(--era-lantern) !important; background: color-mix(in srgb, var(--era-lantern) 14%, transparent) !important; }
+
+/* MOBILE only: solid, designed pills (complementing the bottom letter-nav toolbar) that stay
+   cleanly visible against the paper texture as the letter scrolls. */
+@media (max-width:760px){
+  .reader-close,
+  .reader-overlay .dl-modal-share{
+    background: rgba(30,23,15,.93) !important;
+    border:1px solid color-mix(in srgb, var(--era-lantern) 48%, transparent) !important;
+    color: var(--era-lantern) !important;
+    box-shadow:0 2px 10px rgba(0,0,0,.42) !important;
+    -webkit-backdrop-filter:blur(2px) !important; backdrop-filter:blur(2px) !important;
+  }
+  .reader-close:active,
+  .reader-overlay .dl-modal-share:active{ background: var(--era-lantern) !important; color:#1a1408 !important; border-color: var(--era-lantern) !important; }
+}
 /* SCROLL FIX: the content region must shrink below its content height to scroll inside the flex panel */
 #hubbellReaderContent{ min-height:0 !important; overflow-y:auto !important; padding: 0 24px 24px !important; }
 
@@ -97,7 +114,7 @@
 .reader-header{
   background: transparent !important; border:0 !important;
   border-bottom:1px solid var(--era-rule) !important; border-radius:0 !important;
-  padding: 14px 58px 12px 2px !important;   /* right reserve clears the close+share cluster; tighter top/bottom */
+  padding: 14px 86px 12px 2px !important;   /* right reserve clears the aligned close+share pill cluster; tighter top/bottom */
   margin: 0 !important; position:relative; z-index:1;
 }
 .reader-correspondence{ display:flex; align-items:baseline; gap:5px 8px; flex-wrap:wrap; margin-bottom:6px !important; }
