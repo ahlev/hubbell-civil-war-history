@@ -20,7 +20,8 @@
   --status-healthy: #4A7C59;
   --status-declining: #C49B2C;
   --status-sick: #D4860B;
-  --status-hospitalized: #C44E52;
+  --status-injured: #C44E52;
+  --status-hospitalized: #7B4FA0;
   --status-wounded: #C44E52;
   --status-nodata: #D0D0D0;
 }
@@ -318,6 +319,112 @@ header .epigraph .attribution {
   color: var(--text-secondary);
 }
 
+/* ===== Explore by Condition (Task D) ===== */
+.condition-explorer { margin-bottom: 40px; }
+.condition-explorer h2, .ce-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+  text-align: left;
+}
+.ce-intro {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 72ch;
+  margin: 0 0 16px;
+  text-align: left;
+}
+.ce-empty {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  text-align: center;
+  padding: 8px 0 4px;
+}
+.ce-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.cond-chip {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+  background: var(--card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+.cond-chip:hover { border-color: #6BA6B5; color: var(--text-primary); }
+.cond-chip.active { background: #6BA6B5; border-color: transparent; color: #fff; }
+.cond-chip .cc-count { font-weight: 700; opacity: 0.7; margin-left: 3px; }
+.cond-chip.active .cc-count { opacity: 0.9; }
+.ce-list { width: 100%; margin: 0; border-top: 1px solid var(--border-light); }
+.ce-list-head {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 14px 0 8px;
+  text-align: left;
+}
+.ce-list-head strong { color: var(--text-secondary); }
+.ce-item {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 6px 18px;
+  align-items: baseline;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.12s, box-shadow 0.12s;
+  border-bottom: 1px solid var(--border-light);
+}
+.ce-item:last-child { border-bottom: 0; }
+.ce-meta { display: flex; flex-direction: column; gap: 1px; line-height: 1.2; }
+.ce-au { font-family: var(--font-display); font-weight: 700; font-size: 0.84rem; }
+.ce-dt { font-family: var(--font-sans); font-size: 0.7rem; color: var(--text-tertiary); }
+.ce-q {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+/* Hovering / opening a condition letter marks the row and rings its dot on the
+   timeline above, so the reader can see exactly which plot the entry refers to. */
+.ce-item:hover, .ce-item.is-active {
+  background: var(--border-light);
+  box-shadow: inset 3px 0 0 #B8860B;
+}
+.ce-dot-highlight { animation: ce-dot-pulse 1.1s ease-in-out infinite; }
+@keyframes ce-dot-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+@media (prefers-reduced-motion: reduce) { .ce-dot-highlight { animation: none; } }
+@media (max-width: 640px) {
+  .ce-item { grid-template-columns: 1fr; gap: 2px; }
+  /* Compact the "Click a brother" selectors so they stop dominating the space
+     above the chart: drop the wrapping regiment line, shrink the sparkline and
+     padding. The brother's name + trend + counts stay; the long unit text goes. */
+  .brother-cta { font-size: 0.82rem; margin-bottom: 12px; }
+  .brother-selectors { gap: 8px; margin-bottom: 18px; }
+  .brother-sel { padding: 9px 11px; }
+  .brother-sel .bs-name { font-size: 0.9rem; }
+  .brother-sel .bs-unit { display: none; }
+  .brother-sel .bs-sparkline { height: 22px; margin-top: 4px; }
+  .brother-sel .bs-stat-row { font-size: 0.62rem; margin-top: 4px; }
+}
+
 @media (max-width: 1200px) {
   .ws-grid.ws-all { grid-template-columns: repeat(2, 1fr); }
 }
@@ -372,6 +479,50 @@ header .epigraph .attribution {
 .legend-line.battle {
   background: none;
   border-top: 2px dashed #C44E52;
+}
+
+/* Condensed key — three labeled groups in one tight, aligned block */
+.legend-key {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 8px 0;
+  max-width: 1000px;
+  margin: 6px auto 26px;
+  padding: 9px 6px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--card);
+}
+.legend-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px 13px;
+  padding: 0 18px;
+}
+.legend-group + .legend-group { border-left: 1px solid var(--border-light); }
+.legend-group .legend-label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  margin-right: 1px;
+}
+.legend-key .legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.legend-key .legend-line.battle { width: 16px; }
+@media (max-width: 720px) {
+  .legend-group { padding: 0 10px; }
+  .legend-group + .legend-group { border-left: 0; }
 }
 
 /* Zoom controls */
@@ -447,6 +598,32 @@ header .epigraph .attribution {
   vertical-align: middle;
   position: relative;
   top: -0.5px;
+}
+
+/* Two-group filter bar above the chart: Health + Ailment type */
+.filter-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0 18px;
+}
+.filter-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.filter-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-right: 6px;
+  min-width: 76px;
+}
+@media (max-width: 720px) {
+  .filter-label { min-width: 0; width: 100%; margin-bottom: -2px; }
 }
 
 .tl-hint {
@@ -628,6 +805,24 @@ header .epigraph .attribution {
 }
 
 .detail-panel .close-btn:hover { background: var(--border-light); color: var(--text-primary); }
+
+/* Brother wellness summary rendered inside the drawer — flatten the card chrome
+   (the drawer already provides the frame) and add a small eyebrow label. */
+.detail-panel .dp-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin: 0 0 14px;
+}
+.detail-panel .ws-brother {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  animation: none;
+}
 
 .detail-panel h3 {
   font-family: var(--font-display);
@@ -886,7 +1081,7 @@ footer p {
   line-height: 1.5;
 }
 </style>
-<link rel="stylesheet" href="_overlay.css?v=9">
+<link rel="stylesheet" href="_overlay.css?v=10">
 <link rel="stylesheet" href="_reader-era.css?v=17">
 <link rel="stylesheet" href="_scrollrail.css?v=11">
 <style>:root{ --rail-accent:#CB5C5C; }</style>
@@ -913,28 +1108,43 @@ footer p {
   </div>
   <div class="brother-selectors" id="brother-selectors"></div>
 
-  <div class="legend">
-    <span class="legend-label">Status:</span>
-    <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#4A7C59" stroke="#fff" stroke-width="2"/></svg> Healthy</div>
-    <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#C49B2C" stroke="#fff" stroke-width="2"/></svg> Declining</div>
-    <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#D4860B" stroke="#fff" stroke-width="2"/></svg> Sick</div>
-    <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#C44E52" stroke="#fff" stroke-width="2"/></svg> Hospitalized / Wounded</div>
-    <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#D0D0D0" stroke="#fff" stroke-width="1.5"/><text x="7" y="10.5" text-anchor="middle" font-size="9" fill="#888" font-family="Inter,sans-serif">?</text></svg> No health data</div>
-    <div class="legend-item"><div class="legend-line battle"></div> Battle / Event</div>
-  </div>
-  <div class="legend" style="margin-top:-16px;gap:20px">
-    <span class="legend-label">Evidence:</span>
-    <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="var(--text-primary)" stroke="#fff" stroke-width="2"/></svg> Direct statement</div>
-    <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="#fff" stroke="var(--text-primary)" stroke-width="2.5"/></svg> Formulaic opener</div>
-    <div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="var(--text-primary)" stroke="var(--text-primary)" stroke-width="2" stroke-dasharray="3,2" opacity="0.5"/></svg> Indirect/inferred</div>
+  <div class="legend-key">
+    <div class="legend-group">
+      <span class="legend-label">Type</span>
+      <span class="legend-item"><svg width="13" height="13"><circle cx="6.5" cy="6.5" r="5" fill="#4A7C59" stroke="#fff" stroke-width="1.8"/></svg>Healthy</span>
+      <span class="legend-item"><svg width="13" height="13"><circle cx="6.5" cy="6.5" r="5" fill="#D4860B" stroke="#fff" stroke-width="1.8"/></svg>Sick</span>
+      <span class="legend-item"><svg width="13" height="13"><circle cx="6.5" cy="6.5" r="5" fill="#C44E52" stroke="#fff" stroke-width="1.8"/></svg>Injured</span>
+      <span class="legend-item"><svg width="11" height="13"><circle cx="5.5" cy="6.5" r="2.8" fill="#D0D0D0" stroke="#fff" stroke-width="1" opacity="0.55"/></svg>No data</span>
+      <span class="legend-item"><svg width="15" height="15"><circle cx="7.5" cy="7.5" r="5.2" fill="#C44E52" stroke="#fff" stroke-width="1.4"/><line x1="4.4" y1="7.5" x2="10.6" y2="7.5" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/><line x1="7.5" y1="4.4" x2="7.5" y2="10.6" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/></svg>In hospital</span>
+      <span class="legend-item"><span class="legend-line battle"></span>Battle / Event</span>
+    </div>
+    <div class="legend-group">
+      <span class="legend-label">Severity</span>
+      <span class="legend-item"><svg width="11" height="13"><circle cx="5.5" cy="6.5" r="2.8" fill="#D0D0D0" stroke="#fff" stroke-width="1" opacity="0.45"/></svg>No data</span>
+      <span class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="#777" stroke="#fff" stroke-width="1.8"/></svg>Minor</span>
+      <span class="legend-item"><svg width="18" height="18"><circle cx="9" cy="9" r="7.4" fill="none" stroke="#777" stroke-width="1.3" opacity="0.85"/><circle cx="9" cy="9" r="5" fill="#777" stroke="#fff" stroke-width="1.8"/></svg>Serious</span>
+      <span class="legend-item"><svg width="20" height="20"><circle cx="10" cy="10" r="8.6" fill="none" stroke="#777" stroke-width="2" opacity="0.85"/><circle cx="10" cy="10" r="5.6" fill="#777" stroke="#fff" stroke-width="1.8"/></svg>Grave</span>
+    </div>
+    <div class="legend-group">
+      <span class="legend-label">Evidence</span>
+      <span class="legend-item"><svg width="13" height="13"><circle cx="6.5" cy="6.5" r="5" fill="var(--text-primary)" stroke="#fff" stroke-width="1.8"/></svg>Direct</span>
+      <span class="legend-item"><svg width="13" height="13"><circle cx="6.5" cy="6.5" r="5" fill="#fff" stroke="var(--text-primary)" stroke-width="2.2"/></svg>Formulaic</span>
+      <span class="legend-item"><svg width="13" height="13"><circle cx="6.5" cy="6.5" r="5" fill="var(--text-primary)" stroke="var(--text-primary)" stroke-width="1.8" stroke-dasharray="3,2" opacity="0.5"/></svg>Indirect</span>
+    </div>
   </div>
 
-  <div class="wellness-filters" id="wellnessFilters">
-    <span class="wellness-filters-label">Show:</span>
-    <button class="wf-pill active" data-filter="all" onclick="setWellnessFilter('all')">All</button>
-    <button class="wf-pill" data-filter="positive" onclick="setWellnessFilter('positive')"><span class="wf-dot" style="background:var(--status-healthy)"></span>Positive</button>
-    <button class="wf-pill" data-filter="negative" onclick="setWellnessFilter('negative')"><span class="wf-dot" style="background:var(--status-sick)"></span>Negative</button>
-    <button class="wf-pill" data-filter="declining" onclick="setWellnessFilter('declining')"><span class="wf-dot" style="background:var(--status-declining)"></span>Declining</button>
+  <div class="filter-bar">
+    <div class="filter-group" id="wellnessFilters">
+      <span class="filter-label">Health</span>
+      <button class="wf-pill active" data-filter="all" onclick="setWellnessFilter('all')">All</button>
+      <button class="wf-pill" data-filter="positive" onclick="setWellnessFilter('positive')"><span class="wf-dot" style="background:var(--status-healthy)"></span>Positive</button>
+      <button class="wf-pill" data-filter="negative" onclick="setWellnessFilter('negative')"><span class="wf-dot" style="background:var(--status-sick)"></span>Negative</button>
+      <button class="wf-pill" data-filter="declining" onclick="setWellnessFilter('declining')"><span class="wf-dot" style="background:var(--status-declining)"></span>Declining</button>
+    </div>
+    <div class="filter-group" id="ailmentFilters">
+      <span class="filter-label">Ailment type</span>
+      <!-- condition chips injected by buildAilmentFilters() -->
+    </div>
   </div>
 
   <div class="timeline-section">
@@ -956,7 +1166,7 @@ footer p {
     </div>
   </div>
 
-  <div class="wellness-summary" id="wellness-summary"></div>
+  <section class="condition-explorer" id="condition-explorer"></section>
 
   <footer>
     <p>Data drawn from 273 Hubbell family letters with identified authors, 1861-1865. Wellness status determined by illness/wound flags and text mining of transcriptions.</p>
@@ -973,6 +1183,8 @@ footer p {
 <script src="_design-data.js"></script>
 <script src="_design-ui.js?v=5"></script>
 <script src="_search-data.js"></script>
+<!-- Wellness Ledger v2: curated, authoritative two-axis health layer (severity x tone). -->
+<script src="03-data/wellness-v2.js?v=2"></script>
 <script src="_letter-nav.js"></script>
 <script src="_reader.js?v=21"></script>
 <script>
@@ -1205,10 +1417,13 @@ function mineHealth(letters) {
 let DATA;
 let activeBrother = 'all';
 let wellnessFilter = 'all'; // 'all' | 'positive' | 'negative' | 'declining'
+let conditionFilter = null; // null = no condition filter; else a condition tag (Task D)
 
 // Wellness filter categories
 const POSITIVE_STATUSES = ['healthy'];
-const NEGATIVE_STATUSES = ['sick', 'hospitalized', 'wounded'];
+// Live dot types are only sick / injured now (hospital is an additive overlay, not a status).
+// Legacy 'hospitalized' / 'wounded' kept harmless in case any older path emits them.
+const NEGATIVE_STATUSES = ['sick', 'injured', 'hospitalized', 'wounded'];
 const DECLINING_STATUSES = ['declining'];
 
 function statusPassesFilter(status) {
@@ -1227,6 +1442,14 @@ function setWellnessFilter(filter) {
   });
   drawTimeline();
 }
+
+// Task D: toggle a condition filter; highlights the timeline + drives the matching summary
+function setConditionFilter(tag) {
+  conditionFilter = (conditionFilter === tag) ? null : tag;
+  buildAilmentFilters();
+  drawTimeline();
+  buildConditionExplorer();
+}
 const tooltip = document.getElementById('tooltip');
 const detailPanel = document.getElementById('detail-panel');
 const detailContent = document.getElementById('detail-content');
@@ -1242,8 +1465,59 @@ let brushStartX = null;
 let brushRect = null;
 
 const BROTHER_COLORS = { henry: '#2D5F8A', alexander: '#B8860B', james: '#4A7C59', charles: '#8B3A3A' };
-const STATUS_COLORS = { healthy: '#4A7C59', declining: '#C49B2C', sick: '#D4860B', hospitalized: '#C44E52', wounded: '#C44E52', nodata: '#D0D0D0' };
-const STATUS_LABELS = { healthy: 'Healthy', declining: 'Declining', sick: 'Sick', hospitalized: 'Hospitalized', wounded: 'Wounded', nodata: 'No Data' };
+// Dot TYPE → color (ailment NATURE only). healthy=green, sick=orange, injured=red, nodata=grey.
+// "In hospital" is NO LONGER a type/color — it is an additive white ✚ overlay drawn on the dot.
+// Legacy keys (declining / hospitalized / wounded) are kept so any stray code path referencing
+// them never throws, but live dots use only the four-type scheme: healthy / sick / injured / nodata.
+const STATUS_COLORS = { healthy: '#4A7C59', declining: '#C49B2C', sick: '#D4860B', injured: '#C44E52', hospitalized: '#7B4FA0', wounded: '#C44E52', nodata: '#D0D0D0' };
+
+// ── Wellness v2: curated severity is AUTHORITATIVE for the timeline dot ──────
+// THREE channels are encoded, kept strictly independent:
+//   TYPE  → dot COLOR (ailment NATURE only: healthy / sick / injured / nodata).
+//   SEVERITY → dot SIZE + ring (draw loop).
+//   HOSPITAL → an ADDITIVE white ✚ overlay (never changes the type color).
+//   CONFIDENCE → dot FILL STYLE (solid/open/dashed/faint). The curated layer OVERRIDES the
+//     stale miner confidence so a grounded ailment never renders as "no evidence."
+function applyWellnessV2(letters) {
+  const W = window.WELLNESS_V2 || {};
+  return letters.map(l => {
+    const w = W[l.id];
+    // Hospital is ADDITIVE and CURATED: true only when the AUTHOR was actually a
+    // hospital patient (substance-reviewed per letter, grounded), NOT merely when
+    // the word "hospital" appears (which often refers to others / places).
+    const hospitalized = !!(w && w.hospitalized);
+    if (!w) return Object.assign({}, l, { hospitalized });
+    const sev = w.severity;
+    const conditions = w.conditions || [];
+    let status, confidence;
+    if (sev === 'nodata' || !sev) {
+      status = 'nodata';
+      confidence = 'nodata';
+    } else if (sev === 'well') {
+      status = 'healthy';
+      // Affirmed health IS evidence — floor to at least 'formulaic' so an "I am well"
+      // letter reads as a GREEN dot, never a grey "no-data" one. (A richer miner grade
+      // like 'direct' is kept when present; only the stale 'nodata' is overridden.)
+      confidence = (l.confidence && l.confidence !== 'nodata') ? l.confidence : 'formulaic';
+    } else {
+      // An ailment is present (minor / serious / grave). TYPE encodes its NATURE ONLY —
+      // injured if a wound/other-injury condition is tagged, otherwise sick. (Hospital is
+      // layered on top as a separate overlay, so an injured-in-hospital letter stays 'injured'.)
+      const hasInjury = conditions.some(c => c.tag === 'wound' || c.tag === 'other-injury');
+      status = hasInjury ? 'injured' : 'sick';
+      // A described ailment IS direct evidence — override the stale miner value.
+      confidence = 'direct';
+    }
+    // A grounded condition quote is itself direct evidence, regardless of severity bucket.
+    if (conditions.length > 0) confidence = 'direct';
+    return Object.assign({}, l, {
+      severity: sev, tone: w.tone,
+      conditions, healthContext: w.healthContext || '',
+      hospitalized, status, confidence
+    });
+  });
+}
+const STATUS_LABELS = { healthy: 'Healthy', declining: 'Declining', sick: 'Sick', injured: 'Injured', hospitalized: 'Hospitalized', wounded: 'Wounded', nodata: 'No Data' };
 const BROTHER_NAMES = { henry: 'Henry Hubbell', alexander: 'Alexander F. Hubbell', james: 'James Hubbell', charles: 'Charles F. Hubbell' };
 const BROTHER_UNITS = { henry: '34th New York Infantry', alexander: '60th New York Infantry', james: 'West Point Cadet', charles: '16th New York Infantry (late enlistment)' };
 const BROTHERS_ORDER = ['henry', 'alexander', 'james', 'charles'];
@@ -1482,9 +1756,30 @@ function drawTimeline() {
     broLetters.forEach(letter => {
       const cx = x(letter.d);
       const isHealthRelevant = letter.status !== 'nodata';
-      const dotMatch = !isFiltered || statusPassesFilter(letter.status);
-      const r = isHealthRelevant ? 6 : 4;
+      // Task D: when a condition filter is active, dim letters lacking that condition.
+      // When conditionFilter === null, condMatch is always true → dot behavior unchanged.
+      const condMatch = conditionFilter === null || (letter.conditions || []).some(c => c.tag === conditionFilter);
+      const dotMatch = (!isFiltered || statusPassesFilter(letter.status)) && condMatch;
+      // SEVERITY → dot radius (grave biggest → nodata smallest). Gap widened so no-data (tiny,
+      // faint) and minor (clearly larger, solid) are unmistakable. Clinical severity sets size.
+      const SEVERITY_RADIUS = { grave: 9, serious: 7, minor: 5.5, well: 4.5, nodata: 3 };
+      const r = SEVERITY_RADIUS[letter.severity] || 4.5;
       const conf = letter.confidence || 'nodata';
+
+      // SEVERITY → outline ring: serious/grave get an extra concentric circle so the most severe
+      // events are visibly "ringed." Drawn BEFORE the main dot so the dot sits on top.
+      if (dotMatch && (letter.severity === 'serious' || letter.severity === 'grave')) {
+        const ring = document.createElementNS(ns, 'circle');
+        ring.setAttribute('cx', cx);
+        ring.setAttribute('cy', yCenter);
+        ring.setAttribute('r', letter.severity === 'grave' ? r + 4.5 : r + 3);
+        ring.setAttribute('fill', 'none');
+        ring.setAttribute('stroke', STATUS_COLORS[letter.status]);
+        ring.setAttribute('stroke-width', letter.severity === 'grave' ? 2.5 : 1.5);
+        ring.setAttribute('opacity', '0.85');
+        ring.setAttribute('pointer-events', 'none');
+        svg.appendChild(ring);
+      }
 
       // Outer glow for health-relevant (only when matching filter)
       if (isHealthRelevant && letter.status !== 'healthy' && dotMatch) {
@@ -1528,10 +1823,12 @@ function drawTimeline() {
         dot.setAttribute('stroke-width', 2);
         dot.setAttribute('stroke-dasharray', '3,2');
       } else {
-        // nodata — light fill
+        // nodata — tiny, faint, thin grey: minimal visual presence so it can't be mistaken
+        // for a (larger, solid, colored) minor ailment.
         dot.setAttribute('fill', STATUS_COLORS.nodata);
         dot.setAttribute('stroke', '#FFFFFF');
-        dot.setAttribute('stroke-width', 1.5);
+        dot.setAttribute('stroke-width', 1);
+        dot.setAttribute('opacity', '0.45');
       }
 
       // Hover + click (always interactive, even when dimmed)
@@ -1541,19 +1838,21 @@ function drawTimeline() {
 
       svg.appendChild(dot);
 
-      // "?" mark for nodata confidence (only when not filtered or matching)
-      if (conf === 'nodata' && letter.status === 'nodata' && dotMatch) {
-        const qMark = document.createElementNS(ns, 'text');
-        qMark.setAttribute('x', cx);
-        qMark.setAttribute('y', yCenter + 3.5);
-        qMark.setAttribute('text-anchor', 'middle');
-        qMark.setAttribute('font-family', 'Inter, sans-serif');
-        qMark.setAttribute('font-size', '8');
-        qMark.setAttribute('font-weight', '600');
-        qMark.setAttribute('fill', '#9B9B9B');
-        qMark.setAttribute('pointer-events', 'none');
-        qMark.textContent = '?';
-        svg.appendChild(qMark);
+      // ADDITIVE "in hospital" overlay — a small white medical "+" centered on the dot.
+      // Drawn AFTER the dot so it sits on top; it NEVER changes the type color, so
+      // injured+hospital = red dot + white cross, sick+hospital = orange dot + white cross.
+      if (letter.hospitalized && dotMatch) {
+        const arm = Math.max(r * 0.6, 2.5);
+        [[cx - arm, yCenter, cx + arm, yCenter], [cx, yCenter - arm, cx, yCenter + arm]].forEach(seg => {
+          const line = document.createElementNS(ns, 'line');
+          line.setAttribute('x1', seg[0]); line.setAttribute('y1', seg[1]);
+          line.setAttribute('x2', seg[2]); line.setAttribute('y2', seg[3]);
+          line.setAttribute('stroke', '#FFFFFF');
+          line.setAttribute('stroke-width', 1.4);
+          line.setAttribute('stroke-linecap', 'round');
+          line.setAttribute('pointer-events', 'none');
+          svg.appendChild(line);
+        });
       }
     });
 
@@ -1857,6 +2156,16 @@ function showTooltip(e, letter) {
     <span class="tt-confidence" style="color:${confColor};border:1px solid ${confColor};font-size:0.7rem;padding:1px 8px;border-radius:8px;margin-left:6px">[${confLabel}]</span>
     <div class="tt-location">To ${letter.r} from ${letter.loc}</div>
   `;
+  // v2: surface the SECOND dimension (severity) + condition tags alongside the type/status.
+  const SEVERITY_TT = { minor: 'Minor', serious: 'Serious', grave: 'Grave' };
+  const sevLabel = SEVERITY_TT[letter.severity];
+  const condTags = (letter.conditions || []).map(c => c.tag).filter(Boolean);
+  if (sevLabel || condTags.length) {
+    const bits = [];
+    if (sevLabel) bits.push(`<strong>${sevLabel}</strong> severity`);
+    if (condTags.length) bits.push(condTags.join(', '));
+    html += `<div class="tt-location" style="opacity:0.8">${bits.join(' · ')}</div>`;
+  }
   if (letter.q) {
     html += `<div class="tt-quote">"${letter.q}"</div>`;
   }
@@ -1913,7 +2222,9 @@ function openHealthOverlay(letter) {
       confColor: CONFIDENCE_COLORS[conf],
       confExplanation: confExplanations[conf],
       symptoms: activeTags,
-      sentences: sentences
+      sentences: sentences,
+      // v2: the curated medical-historian commentary → the reader's "Health context:" line.
+      healthContext: letter.healthContext || ''
     }
   });
 }
@@ -2056,7 +2367,6 @@ document.addEventListener('click', (e) => {
   if (detailPanel.classList.contains('open') &&
       !detailPanel.contains(e.target) &&
       !e.target.closest('#timeline-svg') &&
-      !e.target.closest('#wellness-summary') &&
       !e.target.closest('.brother-sel')) {
     closeDetail();
   }
@@ -2148,18 +2458,12 @@ const WELLNESS_PROSE = {
   ]
 };
 
-function buildWellnessSummary() {
-  const container = document.getElementById('wellness-summary');
-  const isAll = activeBrother === 'all';
-  const brothers = isAll ? BROTHERS_ORDER : [activeBrother];
-
-  let html = '<h2>Wellness Summary</h2>';
-  html += `<div class="ws-grid ${isAll ? 'ws-all' : 'ws-single'}">`;
-
-  brothers.forEach(bro => {
+// Returns the inner HTML for ONE brother's wellness summary (overview + key
+// medical events + quotes). Rendered into the slide-in drawer.
+function brotherSummaryHTML(bro) {
     const prose = WELLNESS_PROSE[bro];
     const narr = BROTHER_NARRATIVES[bro];
-    if (!prose) return;
+    if (!prose) return '';
 
     // Compute dynamic stats
     const letters = DATA.letters.filter(l => l.a === bro);
@@ -2176,8 +2480,9 @@ function buildWellnessSummary() {
       `<strong>${dateRange}</strong>`,
       illCount > 0 ? `<strong>${illCount}</strong> illness` : null,
       batCount > 0 ? `<strong>${batCount}</strong> battle` : null,
-      (statusCounts.hospitalized || 0) + (statusCounts.wounded || 0) > 0
-        ? `<strong>${(statusCounts.hospitalized || 0) + (statusCounts.wounded || 0)}</strong> hosp/wound` : null
+      // Hospital is now an additive overlay, not a status — count the boolean directly.
+      letters.filter(l => l.hospitalized).length > 0
+        ? `<strong>${letters.filter(l => l.hospitalized).length}</strong> hospital` : null
     ].filter(Boolean);
 
     // Arc events with clickable refs
@@ -2205,7 +2510,7 @@ function buildWellnessSummary() {
       }).join('');
     }
 
-    html += `
+    return `
       <div class="ws-brother">
         <div class="ws-info">
           <div>
@@ -2221,10 +2526,177 @@ function buildWellnessSummary() {
         ${quotesHtml}
       </div>
     `;
-  });
+}
 
+// Per-brother summary opens in the slide-in drawer (reusing the letter detail
+// panel) so the page never jumps. Clicking the same brother again closes it.
+function openBrotherPanel(bro) {
+  const inner = brotherSummaryHTML(bro);
+  if (!inner) { closeDetail(); return; }
+  renderInto(detailContent, `<div class="dp-eyebrow">Wellness Summary</div>` + inner);
+  detailPanel.classList.add('open');
+  if (window.HubbellOverlay) HubbellOverlay.bindDynamic(detailContent);
+}
+
+// ========== CONDITION HELPERS ==========
+const TAG_LABELS = {
+  'debility': 'Debility',
+  'cough-cold': 'Cough/Cold',
+  'scurvy': 'Scurvy',
+  'wound': 'Wound',
+  'homesickness': 'Homesickness',
+  'other-injury': 'Other injury',
+  'dysentery': 'Dysentery',
+  'diarrhea': 'Diarrhea',
+  'rheumatism': 'Rheumatism',
+  'jaundice': 'Jaundice',
+  'typho-malarial-fever': 'Typho-malarial fever'
+};
+function condLabel(tag) {
+  return TAG_LABELS[tag] || tag.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+// Render trusted markup (all interpolated free text passes through escapeHtml).
+function renderInto(el, markup) {
+  if (!el) return;
+  el.textContent = '';
+  el.insertAdjacentHTML('beforeend', markup);
+}
+
+// ========== EXPLORE BY CONDITION (Task D) ==========
+// Ring the timeline dot(s) for a given letter so hovering/opening a condition
+// entry shows exactly which plot it refers to. The ring is an ephemeral overlay
+// circle appended to the SVG — cleared on every call, and naturally discarded
+// whenever the timeline is redrawn (zoom/filter). Also flags the source row.
+function highlightLetterDot(id, on) {
+  const svg = document.getElementById('timeline-svg');
+  if (!svg) return;
+  svg.querySelectorAll('.ce-dot-highlight').forEach(el => el.remove());
+  document.querySelectorAll('.ce-item.is-active').forEach(el => el.classList.remove('is-active'));
+  if (!on) return;
+  document.querySelectorAll(`.ce-item[data-letter-id="${id}"]`).forEach(el => el.classList.add('is-active'));
+  const ns = 'http://www.w3.org/2000/svg';
+  svg.querySelectorAll(`circle[data-id="${id}"]`).forEach(dot => {
+    const r = parseFloat(dot.getAttribute('r')) || 5;
+    const ring = document.createElementNS(ns, 'circle');
+    ring.setAttribute('class', 'ce-dot-highlight');
+    ring.setAttribute('cx', dot.getAttribute('cx'));
+    ring.setAttribute('cy', dot.getAttribute('cy'));
+    ring.setAttribute('r', r + 6);
+    ring.setAttribute('fill', 'none');
+    ring.setAttribute('stroke', '#B8860B');
+    ring.setAttribute('stroke-width', '2.5');
+    ring.setAttribute('pointer-events', 'none');
+    svg.appendChild(ring);
+  });
+}
+
+// Editorial introductions to each ailment type — grounded in the actual tagged
+// letters (their verbatim quotes/dates/authors). DRAFT prose for founder review,
+// held to the same provenance bar as the bios.
+const CONDITION_INTROS = {
+  'debility': "Debility was the army's catch-all for a body worn down — the fatigue, weakness, and “used up” feeling that followed hard marching, broken sleep, and recurring sickness. All four brothers reach for it at one time or another, from Henry too spent to drill in his first weeks of service to the exhaustion that trailed Alexander's longer illnesses. It is rarely dramatic, but it is the steadiest thread in their health: the slow tax of soldiering on young men's stamina.",
+  'cough-cold': "Coughs and colds were the constant companions of camp life, where men slept on wet ground and crowded into smoky tents. Alexander and Charles record most of these — a “severe cough and cold” that lingered for weeks, a face broken out, a cold that finally turned the corner. Minor on their own, they were the everyday respiratory wear of exposure that could deepen into something worse.",
+  'scurvy': "Scurvy is Alexander's ordeal of late 1864 — the vitamin-deficiency disease of armies living on salt rations without fresh vegetables. From August into October he writes again and again of trying to “get this scurvy out of my blood,” even quarreling with the surgeon's name for it. It is the collection's clearest case of a nutritional disease tracked, week by week, in a soldier's own words.",
+  'wound': "These are the battle wounds — the moments the war marked the brothers' bodies directly. Alexander's are the gravest and best-documented: a spent ball below the right knee in the fall of 1862, then a minié ball in his left side in late 1863 that cost him the fights at Missionary Ridge and Ringgold. More than any disease, combat injury is what abruptly reshaped a soldier's service.",
+  'homesickness': "Homesickness belongs to the first year of the war, when soldiering was still new. Henry and Alexander both admit to it in 1861 and early 1862 — being “a little homesick,” “very lonesome now and then,” the ache of how “lonely” camp could feel. They almost always pair the confession with reassurance that they have gotten over it: a small window into how young men managed morale by letter.",
+  'other-injury': "Not every injury came from battle. These are the marching injuries — Alexander's feet “used up” by new boots in the 1864 campaign, bad enough to put him in an ambulance, and James's blistered foot that same summer. They are reminders that the infantry's hardest daily enemy was often the road itself.",
+  'dysentery': "Dysentery was among the deadliest camp diseases of the war. Henry records it “very bad” through the summer of 1862, his repeated mentions tracing an illness that lingered and weakened him — the kind of bowel disease that killed far more soldiers than bullets did.",
+  'diarrhea': "Chronic diarrhea was endemic in the armies, and the brothers were not spared. Henry calls his “very bad” in mid-1862; Alexander's, the same autumn, was the “exhausting diarrhea” that, with the “severest military duty,” had “brought me pretty low” — written from a hospital at Harpers Ferry. It is the quiet, grinding illness behind much of their recorded debility.",
+  'rheumatism': "Henry records rheumatism just once, in September 1861 — “very bad,” though he adds that he is “over it now.” Joint pain from cold, damp ground was common in the ranks; his single mention is a brief, early glimpse of it.",
+  'jaundice': "Jaundice appears once, in Alexander's account of a November 1862 illness that “took a permanent form in the shape of Jaundice” — a sign of the liver trouble that often followed the fevers and digestive diseases of camp.",
+  'typho-malarial-fever': "A wartime catch-all diagnosis blurring typhoid and malarial fevers, which surgeons struggled to tell apart. It surfaces here only in passing."
+};
+
+// Build a longer, contextualized excerpt by extending the mined quote outward to
+// sentence boundaries WITHIN the verbatim transcription (letter.t) — so the longer
+// excerpt is still real source text, never fabricated. Ellipsis marks an excerpt
+// taken from mid-letter.
+function expandExcerpt(letter, quote) {
+  const full = ((letter && letter.t) || '').replace(/\s+/g, ' ').trim();
+  const q = (quote || '').replace(/\s+/g, ' ').trim();
+  if (!full || !q) return q;
+  const i = full.toLowerCase().indexOf(q.toLowerCase());
+  if (i === -1) return q; // mined quote not found verbatim → fall back to it
+  const isEnd = ch => ch === '.' || ch === '!' || ch === '?';
+  let start = i;
+  while (start > 0 && !isEnd(full[start - 1])) start--;
+  while (start < i && full[start] === ' ') start++;
+  let end = i + q.length;
+  while (end < full.length && !isEnd(full[end])) end++;
+  if (end < full.length) end++;
+  let out = full.slice(start, end).trim();
+  // fold in the next sentence if the first is short (aim for 1–2 sentences)
+  if (out.length < 90 && end < full.length) {
+    let e2 = end;
+    while (e2 < full.length && full[e2] === ' ') e2++;
+    const s2 = e2;
+    while (e2 < full.length && !isEnd(full[e2])) e2++;
+    if (e2 < full.length) e2++;
+    const second = full.slice(s2, e2).trim();
+    if (second) out += ' ' + second;
+  }
+  if (out.length > 340) out = out.slice(0, 337).replace(/\s+\S*$/, '') + '…';
+  return (start > 0 ? '…' : '') + out;
+}
+
+// Ailment-type chips live in the filter bar above the chart; rebuild them
+// (preserving the "Ailment type" label) and reflect the active selection.
+function buildAilmentFilters() {
+  const container = document.getElementById('ailmentFilters');
+  if (!container) return;
+  const tagMap = {};
+  DATA.letters.forEach(l => {
+    const seen = new Set();
+    (l.conditions || []).forEach(c => {
+      if (seen.has(c.tag)) return;
+      seen.add(c.tag);
+      (tagMap[c.tag] = tagMap[c.tag] || []).push(l);
+    });
+  });
+  const tags = Object.keys(tagMap).sort((a, b) => tagMap[b].length - tagMap[a].length || condLabel(a).localeCompare(condLabel(b)));
+  container.querySelectorAll('.cond-chip').forEach(el => el.remove());
+  let html = '';
+  tags.forEach(t => {
+    const active = conditionFilter === t;
+    html += `<button class="cond-chip${active ? ' active' : ''}" onclick="setConditionFilter('${t}')">${escapeHtml(condLabel(t))}<span class="cc-count">${tagMap[t].length}</span></button>`;
+  });
+  container.insertAdjacentHTML('beforeend', html);
+}
+
+// Dynamic condition summary: editorial intro + full-width list of mentions with
+// longer, contextualized excerpts. Driven by the ailment-type filter above.
+function buildConditionExplorer() {
+  const container = document.getElementById('condition-explorer');
+  if (!container) return;
+
+  if (!conditionFilter) {
+    renderInto(container, '<p class="ce-empty">Select an <strong>ailment type</strong> above to read its story and every mention of it across the letters.</p>');
+    return;
+  }
+
+  const list = DATA.letters
+    .filter(l => (l.conditions || []).some(c => c.tag === conditionFilter))
+    .sort((a, b) => a.d < b.d ? -1 : (a.d > b.d ? 1 : 0));
+  const label = condLabel(conditionFilter);
+  const intro = CONDITION_INTROS[conditionFilter] || '';
+
+  let html = `<h2 class="ce-title">${escapeHtml(label)}</h2>`;
+  if (intro) html += `<p class="ce-intro">${intro}</p>`;
+  html += `<div class="ce-list-head">${list.length} letter${list.length !== 1 ? 's' : ''} mentioning <strong>${escapeHtml(label)}</strong></div>`;
+  html += '<div class="ce-list">';
+  list.forEach(l => {
+    const cond = (l.conditions || []).find(c => c.tag === conditionFilter);
+    const excerpt = expandExcerpt(l, cond && cond.quote);
+    html += `<div class="ce-item" data-letter-id="${l.id}" onmouseenter="highlightLetterDot('${l.id}', true)" onmouseleave="highlightLetterDot('${l.id}', false)" onclick="highlightLetterDot('${l.id}', true); openLetterById('${l.id}')">
+        <span class="ce-meta"><span class="ce-au" style="color:${BROTHER_COLORS[l.a] || 'var(--text-primary)'}">${escapeHtml(l.an)}</span><span class="ce-dt">${formatDate(l.d)}</span></span>
+        <span class="ce-q">${excerpt ? '“' + escapeHtml(excerpt) + '”' : ''}</span>
+      </div>`;
+  });
   html += '</div>';
-  container.innerHTML = html;
+  renderInto(container, html);
 }
 
 // ========== SEASONAL CHART ==========
@@ -2247,7 +2719,7 @@ function drawSeasonalChart() {
     for (let m = mStart; m <= mEnd; m++) {
       const key = `${y}-${String(m).padStart(2,'0')}`;
       const monthLetters = DATA.letters.filter(l => l.d.startsWith(key));
-      const sickCount = monthLetters.filter(l => ['sick','hospitalized','wounded','declining'].includes(l.status)).length;
+      const sickCount = monthLetters.filter(l => ['sick','injured','hospitalized','wounded','declining'].includes(l.status)).length;
       const healthyCount = monthLetters.filter(l => l.status === 'healthy').length;
       const totalCount = monthLetters.length;
       // Show year under January (or first bar for 1861)
@@ -2414,15 +2886,16 @@ const BROTHER_NARRATIVES = {
     arc: [
       { css: 'arc-healthy', period: 'Fall 1861', text: 'Alexander joined the 60th New York Infantry and shipped to Baltimore, beginning the longest documented service of any Hubbell brother\u2009\u2014\u2009119 letters across nearly four years.' },
       { css: 'arc-sick', period: 'Dec 1861\u2013Jan 1862', text: 'Fell sick with a cold in Baltimore. Captain Ransom was "very, very, very, very kind" during his illness. He pushed through duty despite not being fully recovered.', ref: 'LTR-1861-12-16-001', refLabel: 'Dec 16 letter', refHighlight: 'very kind to me when I was sick' },
-      { css: 'arc-hospital', period: 'Sep\u2013Nov 1862', text: 'After Antietam, where he took a bruise below the right knee from a spent ball, Alexander was hospitalized at Harpers Ferry with exhausting diarrhea that "brought me pretty low." His eyes also suffered badly\u2009\u2014\u2009he feared losing them entirely.', ref: 'LTR-1862-09-19-001', refLabel: 'Antietam battlefield letter', refHighlight: 'bruise a little below the right knee' },
+      { css: 'arc-hospital', period: 'Sep\u2013Nov 1862', text: 'After Antietam, where he took a bruise below the right knee from a spent ball, Alexander was hospitalized at Harpers Ferry with exhausting diarrhea that "brought me pretty low." His eyes also suffered badly\u2009\u2014\u2009he feared losing them entirely. By November he was battling jaundice and a stubborn cough as well.', ref: 'LTR-1862-09-19-001', refLabel: 'Antietam battlefield letter', refHighlight: 'bruise a little below the right knee' },
       { css: 'arc-wound', period: 'Nov 1863', text: 'Wounded by a mini\u00e9 ball in the left side at the storming of Lookout Mountain. Hospitalized at Tullahoma, he told his surgeon he was ready to return to the regiment before fully healing.', ref: 'LTR-1863-12-01-001', refLabel: 'Dec 1 letter from hospital', refHighlight: 'wounded in my left side by a minie ball' },
-      { css: 'arc-hospital', period: 'Aug\u2013Oct 1864', text: 'Survived Resaca, Dallas, Kennesaw, and Peachtree Creek, then developed scurvy. Evacuated through three hospitals\u2009\u2014\u2009near Atlanta, Chattanooga, and Nashville.', ref: 'LTR-1864-08-22-001', refLabel: 'Aug 22 letter', refHighlight: 'genuine scurvy' },
+      { css: 'arc-hospital', period: 'Aug\u2013Oct 1864', text: 'Survived Resaca, Dallas, Kennesaw, and Peachtree Creek, then developed scurvy severe enough to leave him night-blind ("as blind as a bat" the moment darkness fell). Evacuated through three hospitals\u2009\u2014\u2009near Atlanta, Chattanooga, and Nashville. Through it all he kept reassuring his mother that he was doing well.', ref: 'LTR-1864-08-22-001', refLabel: 'Aug 22 letter', refHighlight: 'genuine scurvy' },
       { css: 'arc-healthy', period: 'Oct 1864\u2013Jul 1865', text: 'Recovered at Nashville Hospital No.\u20093, reporting he was "getting along famously." Mustered out mid-1865 after nearly four continuous years of service.', ref: 'LTR-1864-10-10-001', refLabel: 'Oct 10 letter from Nashville', refHighlight: 'getting along famously' }
     ],
     quotes: [
       { text: 'I have had an exhausting diarrhea for several weeks past, which with the severest military duty has brought me pretty low.', date: 'September 27, 1862', loc: 'Hospital at Harpers Ferry', ref: 'LTR-1862-09-27-001' },
-      { text: 'I was wounded at the storming of Lookout Mountain. I am wounded in my left side by a minie ball.', date: 'December 1, 1863', loc: 'General Hospital, Tullahoma', ref: 'LTR-1863-12-01-001' },
+      { text: 'I was wounded at the storming of Lookout Mountain. I am not seriously hurt. I am wounded in my left side by a minie ball.', date: 'December 1, 1863', loc: 'General Hospital, Tullahoma', ref: 'LTR-1863-12-01-001' },
       { text: 'I am not wounded but am afflicted with what the surgeon calls genuine scurvy.', date: 'August 22, 1864', loc: 'Near Atlanta', ref: 'LTR-1864-08-22-001' },
+      { text: 'I still continue to be blind at night.', date: 'September 25, 1864', loc: 'Field Hospital No. 2, Chattanooga', ref: 'LTR-1864-09-25-001' },
       { text: 'Please excuse me, Mother, but I did have a hearty laugh when I took in the idea of your three hopeful sons being in the hospital at the one and same time.', date: 'August 30, 1864', loc: 'Hospital, Chattanooga', ref: 'LTR-1864-08-30-001' }
     ]
   },
@@ -2483,26 +2956,21 @@ function selectBrother(bro) {
   activeBrother = (activeBrother === bro && bro !== 'all') ? 'all' : bro;
   drawTimeline();
   updateSelectorStates();
-  buildWellnessSummary();
-  if (activeBrother !== 'all') {
-    setTimeout(() => {
-      const el = document.getElementById('wellness-summary');
-      const navH = document.getElementById('site-nav')?.offsetHeight || 48;
-      const y = el.getBoundingClientRect().top + window.scrollY - navH - 24;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }, 50);
-  }
+  // Summary opens in the slide-in drawer (no page jump); deselect closes it.
+  if (activeBrother !== 'all') openBrotherPanel(activeBrother);
+  else closeDetail();
 }
 
 // ========== INIT ==========
 function init() {
   DATA = {
-    letters: mineHealth(RAW_DATA.letters).filter(l => BROTHERS_ORDER.includes(l.a)),
+    letters: applyWellnessV2(mineHealth(RAW_DATA.letters)).filter(l => BROTHERS_ORDER.includes(l.a)),
     events: RAW_DATA.events
   };
   buildBrotherSelectors();
   drawTimeline();
-  buildWellnessSummary();
+  buildAilmentFilters();
+  buildConditionExplorer();
 }
 
 window.addEventListener('resize', () => {
@@ -2516,7 +2984,7 @@ init();
 </footer>
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=15"></script>
-<script src="_overlay.js?v=22"></script>
+<script src="_overlay.js?v=23"></script>
 <script>HubbellOverlay.bindPage({ tags: true, locations: true });</script>
 <script>
 HubbellDeepLink.injectShareButton();
@@ -2531,7 +2999,7 @@ HubbellDeepLink.registerStateApplier(function(p) {
     activeBrother = p.brother;
     drawTimeline();
     if (typeof updateSelectorStates === 'function') updateSelectorStates();
-    if (typeof buildWellnessSummary === 'function') buildWellnessSummary();
+    if (typeof openBrotherPanel === 'function') openBrotherPanel(activeBrother);
   }
   if (p.zoom) {
     var parts = p.zoom.split(',');
