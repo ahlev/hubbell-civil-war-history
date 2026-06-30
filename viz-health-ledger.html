@@ -330,11 +330,11 @@ header .epigraph .attribution {
 }
 .ce-intro {
   font-family: var(--font-serif);
-  font-size: 0.95rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.6;
   color: var(--text-secondary);
-  max-width: 72ch;
-  margin: 0 0 16px;
+  max-width: none;       /* span the full panel width, matching the chart + the examples list */
+  margin: 0 0 14px;
   text-align: left;
 }
 .ce-empty {
@@ -809,12 +809,31 @@ header .epigraph .attribution {
 /* Brother wellness summary rendered inside the drawer — flatten the card chrome
    (the drawer already provides the frame) and add a small eyebrow label. */
 .detail-panel .dp-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: #6BA6B5;                 /* ledger teal — signals wellness-ledger context, not a bio */
+  margin: 0 0 12px;
+}
+.detail-panel .dp-eyebrow-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #6BA6B5;
+}
+/* Scope line under the name: makes clear this is a health/wellness profile of the
+   individual (unique to the Wellness Ledger), not a general biography. */
+.detail-panel .ws-scope {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.82rem;
+  line-height: 1.5;
   color: var(--text-tertiary);
-  margin: 0 0 14px;
+  margin: 2px 0 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-light);
 }
 .detail-panel .ws-brother {
   background: none;
@@ -2519,6 +2538,7 @@ function brotherSummaryHTML(bro) {
           </div>
           <div class="ws-stats">${statsItems.map(s => `<span>${s}</span>`).join('')}</div>
         </div>
+        <div class="ws-scope">A health &amp; wellness profile — illness, injury, and recovery across the war, drawn from these letters.</div>
         <div class="ws-prose">
           ${prose.map(p => `<p>${p}</p>`).join('')}
         </div>
@@ -2533,7 +2553,7 @@ function brotherSummaryHTML(bro) {
 function openBrotherPanel(bro) {
   const inner = brotherSummaryHTML(bro);
   if (!inner) { closeDetail(); return; }
-  renderInto(detailContent, `<div class="dp-eyebrow">Wellness Summary</div>` + inner);
+  renderInto(detailContent, `<div class="dp-eyebrow"><span class="dp-eyebrow-dot"></span>Wellness Ledger · Health Profile</div>` + inner);
   detailPanel.classList.add('open');
   if (window.HubbellOverlay) HubbellOverlay.bindDynamic(detailContent);
 }
