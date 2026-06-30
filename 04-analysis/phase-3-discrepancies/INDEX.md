@@ -21,7 +21,8 @@ Cumulative log of discrepancies between Hubbell family letters and the external 
 | [DSC-2026-06-06-002](DSC-2026-06-06-002.md) | 2026-06-06 | alexander | — | Death date conflict in the family's own records (Dec 7 1899 vs 1894); external IAGenWeb record + GAR star favor **Dec 7, 1894** (confirmation handoff: stone + widow-pension filing date) | resolved |
 | [DSC-2026-06-06-003](DSC-2026-06-06-003.md) | 2026-06-06 | charles | — | Birth year: roster age 25 (Aug 1862) → **b. c. 1837** vs family genealogy **April 1840**; Glenwood gravestone "AE. 37" at d. Mar 21 1875 → b. ~1838 **corroborates the roster**; resolvable via census/pension | open |
 | [DSC-2026-06-06-004](DSC-2026-06-06-004.md) | 2026-06-06 | james | — | Death date: gravestone **Oct 12 1865** (Albany) vs family intro **Oct 19 1865**; the Oct 19 = James's Cedar Creek wounding anniversary (1864), a likely conflation. Stone governs | resolved |
-| [DSC-2026-06-06-005](DSC-2026-06-06-005.md) | 2026-06-06 | james | — | Birth year: roster age 22 (1864) → **b. ~1842** vs gravestone "AE. 27" (1865) → **b. ~1838**; third soft age-field across the brothers — pattern finding | open |
+| [DSC-2026-06-06-005](DSC-2026-06-06-005.md) | 2026-06-06 | james | — | Birth year: roster age 22 (1864) → **b. ~1842** (agrees w/ genealogy G08 "Jan 1842") vs gravestone "AE. 27" (1865) → ~1838 (soft outlier). **Resolved → ~Jan 1842**; applied to bio 2026-06-30 | resolved |
+| [DSC-2026-06-30-001](DSC-2026-06-30-001.md) | 2026-06-30 | henry | — | Birth year: genealogy "Nov 1839" vs roster "age 23" + gravestone "AE 24" → **b. ~Nov 1837**; genealogy's 1839 also biologically impossible vs brother Charles (Apr 1840). Applied to bio | resolved |
 
 ## Minor Discrepancies (tabulated, no dedicated file)
 

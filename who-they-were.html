@@ -32,11 +32,13 @@ html{ scroll-behavior:smooth; }
 /* ============================================================
    FAMILY VIEW — intro + 5-portrait montage menu
    ============================================================ */
-.wtw-intro{ max-width:920px; margin:0 auto; padding:46px 32px 8px; text-align:center; }
+.wtw-intro{ max-width:1060px; margin:0 auto; padding:46px 32px 8px; text-align:center; }
 .wtw-intro .page-title{ margin:0 0 14px; }
 .wtw-intro .intro-rule{ width:44px; height:1px; background:var(--accent); margin:0 auto 20px; opacity:.7; }
-.wtw-intro .intro-lede{ font-family:var(--font-serif); font-size:clamp(17px,1.55vw,20px); font-weight:500; line-height:1.6; letter-spacing:-.005em; color:var(--ink); margin:0 auto 14px; max-width:56ch; }
-.wtw-intro .intro-body{ font-family:var(--font-serif); font-size:1.02rem; line-height:1.74; color:var(--ink-2); max-width:72ch; margin:0 auto; }
+/* lede = a larger standfirst/deck: centred, short, sits above the body */
+.wtw-intro .intro-lede{ font-family:var(--font-serif); font-size:clamp(19px,2vw,24px); font-weight:500; line-height:1.42; letter-spacing:-.01em; color:var(--ink); margin:0 auto 20px; max-width:62ch; }
+/* body = flush-left editorial measure: wider column, fewer wraps, less height */
+.wtw-intro .intro-body{ font-family:var(--font-serif); font-size:1.06rem; line-height:1.7; color:var(--ink-2); max-width:84ch; margin:0 auto; text-align:left; }
 .wtw-intro .intro-body em{ color:var(--ink); font-style:italic; }
 .wtw-stats{ display:flex; justify-content:center; flex-wrap:wrap; gap:14px 40px; max-width:720px; margin:30px auto 6px; padding-top:24px; border-top:1px solid var(--rule); }
 .wtw-stats div{ text-align:center; }
@@ -195,17 +197,9 @@ html{ scroll-behavior:smooth; }
 
   <!-- ===================== FAMILY VIEW ===================== -->
   <section class="wtw-family">
-    <header class="wtw-intro">
+    <header class="wtw-intro wtw-intro--title">
       <h1 class="page-title">Who They Were</h1>
       <div class="intro-rule"></div>
-      <p class="intro-lede">A widowed mother sent every son she had to the war. Four went. These are the people behind the 273 letters.</p>
-      <p class="intro-body">The Hubbells farmed in Champlain, on New York's Canadian border. Frederick Hubbell died in 1853, leaving Frances to raise five children alone &mdash; and when the war came eight years later, she let all four of her sons enlist. What survives isn't a history written afterward. It's letters written <em>during</em> the war: from camps, hospitals, marches, and battlefields &mdash; and from a mother who read the casualty lists each morning with trembling hands.</p>
-      <div class="wtw-stats">
-        <div><span class="st-val">273</span><span class="st-lbl">Letters</span></div>
-        <div><span class="st-val">4</span><span class="st-lbl">Brothers</span></div>
-        <div><span class="st-val">1861&ndash;65</span><span class="st-lbl">Years</span></div>
-        <div><span class="st-val">3</span><span class="st-lbl">Did not survive</span></div>
-      </div>
     </header>
 
     <div class="wtw-montage-head">
@@ -218,6 +212,17 @@ html{ scroll-behavior:smooth; }
     <div class="wtw-carousel-ui" id="carouselUI">
       <div class="wtw-dots" id="carouselDots"></div>
       <select class="wtw-select" id="famSelect" aria-label="Select a family member"></select>
+    </div>
+
+    <div class="wtw-intro wtw-intro--text">
+      <p class="intro-lede">A widowed mother sent every son she had to the war. Four went. These are the people behind the 273 letters.</p>
+      <p class="intro-body">The Hubbells farmed in Champlain, on New York's Canadian border. Frederick Hubbell died in 1853, leaving Frances to raise five children alone &mdash; and when the war came eight years later, she let all four of her sons enlist. What survives isn't a history written afterward. It's letters written <em>during</em> the war: from camps, hospitals, marches, and battlefields &mdash; and from a mother who read the casualty lists each morning with trembling hands.</p>
+      <div class="wtw-stats">
+        <div><span class="st-val">273</span><span class="st-lbl">Letters</span></div>
+        <div><span class="st-val">4</span><span class="st-lbl">Brothers</span></div>
+        <div><span class="st-val">1861&ndash;65</span><span class="st-lbl">Years</span></div>
+        <div><span class="st-val">3</span><span class="st-lbl">Did not survive</span></div>
+      </div>
     </div>
 
     <div class="wtw-fannie">
@@ -300,7 +305,7 @@ var PEOPLE = [
     service:[['Co. I, 153rd NY','Regiment'],['Sep 1862','Enlisted'],['~3 years','Service'],['Private','Rank'],['69','Letters'],['Shenandoah','Theater']],
     bio:[
       "Charles was the third brother to enlist and the most clear-eyed of them all. At the recruiting station, Dr. Foote nearly rejected him for near-sightedness, but Charles had two brothers already in the Army and one at West Point, and the doctor relented. A family acquaintance told him afterward that he was “too honest.” It was as accurate a summary of his character as anyone would ever write.",
-      "He fought at Chancellorsville, where his regiment lost seventy-three men in a single engagement. He spent seven months investigating Henry’s fate through conflicting rumors before a soldier told him he had seen Henry’s name on a headboard at Antietam — a grave marker. Charles reported it with the bluntest statement in the collection: “I think there is not the least doubt that Henry was killed.”",
+      "He spent the better part of a year investigating Henry’s fate through conflicting rumors before a soldier told him he had seen Henry’s name on a headboard at Antietam — a grave marker. Charles reported it with the bluntest statement in the collection: “I think there is not the least doubt that Henry was killed.”",
       "His mother arranged for Charles to be detached as a clerk at General Banks’s headquarters in New Orleans — a safer posting. He went without shame, but did not stay safe: he carried dispatches up the Red River under guerrilla fire, and by autumn 1864 was back in the field for Sheridan’s Shenandoah Campaign. At Cedar Creek he and James came under surprise attack before dawn; James was wounded, Charles came through without a scratch. He survived the war, followed Alexander to Iowa, and died in 1875 of disease contracted in service — a decade after Appomattox."
     ],
     quotes:[
@@ -318,16 +323,16 @@ var PEOPLE = [
     bio:[
       "James was the youngest brother and the most scholarly, entering West Point while Henry fought on the Peninsula. His early letters describe cadet life with a boy’s precision: lockers five feet long shared among three; older cadets dragging new arrivals around the grounds at night, trying to steal their guns. James held his. On September 21, 1862 — four days after Henry was killed at Antietam — James sat at his desk on the Hudson and wrote to his mother asking, “Have you heard from Henry and Alex yet?” He did not know.",
       "He left the academy and joined the 153rd New York alongside Charles, entering the field in Louisiana in 1864. His nine surviving letters are the fewest of any brother, but vivid and particular. He defined hardtack for posterity and described Southern children calling out, “Ma, there is a Yankee down cellar taking all our preserves.” He made rings on the march, whittling them while walking; most broke in his pocket book, but one survived and he mailed it home.",
-      "At Cedar Creek, on October 19, 1864, he was wounded in the thigh during the Confederate surprise attack at dawn. He walked five miles to the field hospital, fashioning a bandage from his own underclothes, because the alternative was a Confederate prison. From a hospital bed he cast his vote for Lincoln. James died on October 19, 1865 — exactly one year to the day after the bullet struck him. The war had been over for six months. He never made it home. The ring arrived before he did."
+      "At Cedar Creek, on October 19, 1864, he was wounded in the thigh during the Confederate surprise attack at dawn. He walked five miles to the field hospital, fashioning a bandage from his own underclothes, because the alternative was a Confederate prison. From a hospital bed he cast his vote for Lincoln. James died on October 12, 1865, at Albany, on the road home — ten days after mustering out at Savannah, the war six months over. He never made it home. The ring arrived before he did."
     ],
     quotes:[
       {t:"There is a little oil on the corner of my paper; you must excuse it as it is the best I have — my hair oil got upset.", id:'LTR-1861-08-06-001', hl:'hair oil got upset', cite:'James, August 6, 1861'},
       {t:"Do you know what hardtack is! Bake a flour and water cake with no salt or saleratus on a griddle till it is hard — throw it on a shelf for three or four days.", id:'LTR-1864-08-15-001', hl:'Bake a flour and water cake', cite:'James, August 15, 1864'}
     ],
-    fate:{cls:'kia', text:'Wounded at Cedar Creek, Oct 19, 1864. Died exactly one year later at Albany Hospital. The war had been over for six months.'} },
+    fate:{cls:'kia', text:'Wounded at Cedar Creek, Oct 19, 1864. Died Oct 12, 1865 at Albany, on the road home. The war had been over for six months.'} },
 
-  { id:'mother', color:'var(--mother)', eyebrow:'The Mother', poss:'her', placeholder:true,
-    name:'Frances L. (McNeil) Hubbell', short:'Frances', epithet:'“My hair almost rises”',
+  { id:'mother', color:'var(--mother)', eyebrow:'The Mother', poss:'her', poster:'/experience-v2/assets/brothers/web/window-frances.webp',
+    name:'Frances McNeil Hubbell', short:'Frances', epithet:'“My hair almost rises”',
     lifespan:'b. ~1808, Charlotte, Vermont · d. May 29, 1890, Fonda, Iowa',
     phNote:'The widow who sent four sons to war and read the casualty lists each dawn. A portrait of Frances is in preparation — no photograph of her is known to survive.',
     story:'mother-frances.html', author:'mother',
@@ -351,10 +356,11 @@ function heroLoopHTML(p, scrim, eyebrow){
              '<span class="ph-badge">portrait in preparation</span>' +
              '<div class="ph-note">'+esc(p.phNote)+'</div></figure>';
   }
+  var video = p.loop ? ('<video class="hero-loop__video" autoplay muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">' +
+      '<source data-src="'+p.loop+'.webm" type="video/webm"><source data-src="'+p.loop+'.mp4" type="video/mp4"></video>') : '';
   return '<figure class="hero-loop" data-hero-loop>' +
     '<img class="hero-loop__poster" src="'+p.poster+'" alt="Interpretive portrait of '+esc(p.name)+'" decoding="async">' +
-    '<video class="hero-loop__video" autoplay muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">' +
-      '<source data-src="'+p.loop+'.webm" type="video/webm"><source data-src="'+p.loop+'.mp4" type="video/mp4"></video>' +
+    video +
     '<div class="hero-loop__scrim" aria-hidden="true"></div>' +
     (eyebrow ? '<figcaption class="hero-loop__caption"><span class="hl-eyebrow">'+esc(eyebrow)+'</span></figcaption>' : '') +
   '</figure>';
@@ -513,12 +519,12 @@ function renderFannie(){
         '<div class="pd-eyebrow" style="color:var(--fannie)">The Sister</div>' +
         '<h2 class="pd-name">Frances “Fannie” Hubbell</h2>' +
         '<div class="pd-epithet">The Sister They All Wrote To</div>' +
-        '<div class="pd-lifespan">b. Apr 1837, Champlain, NY · d. after 1872, Iowa</div>' +
+        '<div class="pd-lifespan">b. Nov 1835, Champlain, NY · d. after 1872, Iowa</div>' +
       '</div></div>' +
     '<div class="pd-body" style="grid-template-columns:1fr; max-width:760px; margin:0 auto;">' +
       '<div class="pd-content" style="max-width:none">' +
         '<section class="pd-section"><h3>The Story</h3><div class="pd-bio">' +
-          '<p>Fannie was the eldest child and only daughter, four years older than Henry. In early 1862 she took a teaching position in Canada; by spring 1864 she had risen to preceptress of Champlain Academy, prompting Charles to write, “Frances is rising in the world, but I am afraid it is too hard work for her.”</p>' +
+          '<p>Fannie was the eldest child and only daughter, two years older than Henry. In early 1862 she took a teaching position in Canada; by spring 1864 she had risen to preceptress of Champlain Academy, prompting Charles to write, “Frances is rising in the world, but I am afraid it is too hard work for her.”</p>' +
           '<p>Though none of Fannie’s own letters survive, the brothers craved hers. She received at least 38 letters across the war — addressed “dear sister,” often warmer than the letters home to their mother. She never married, and around 1872 followed the family west to Iowa.</p>' +
           '<p>One unexpected detail survives only in her brothers’ letters. In the autumn of 1862 — Henry still missing, the family reading the casualty lists each morning — Fannie, the household’s French teacher, had taken up an odd new occupation: writing love letters in French for a neighbor’s servant girl, and relayed it to Charles with plain delight:</p>' +
           '<div class="letter-quote">I have got quite into the business of writing love letters. Mr. Averill’s servant girl has quite an extensive correspondence&hellip; she comes to me as no one else can write French for her. I enjoy it finely&hellip;<cite><a class="lq-link" onclick="openLetter(\'LTR-1862-11-10-001\')">November 10, 1862 &mdash; Fannie to Charles</a></cite></div>' +

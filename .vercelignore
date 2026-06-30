@@ -30,6 +30,14 @@
 !/experience-v2/landing.html
 !/experience-v2/assets
 
+# --- Chapter scenes: deploy ONLY the final .webp deliverables ---
+#     Source PNGs + v1/v2/RW variants, contact/QC/picks sheets, anchor sets,
+#     _appearance candidates, and build scripts stay private (reachable in git, never by URL).
+/experience-v2/assets/brothers/scenes/*/*.png
+/experience-v2/assets/brothers/scenes/*/*.py
+/experience-v2/assets/brothers/scenes/*/_anchors
+/experience-v2/assets/brothers/scenes/*/_appearance
+
 # --- Runtime data the dashboards/vizzes fetch (top-level json/js only; dossier subdirs stay private) ---
 !/03-data
 /03-data/*
