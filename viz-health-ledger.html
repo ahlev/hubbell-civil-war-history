@@ -772,10 +772,12 @@ header .epigraph .attribution {
 /* Detail panel */
 .detail-panel {
   position: fixed;
-  top: 0;
+  /* Sit below the sticky site navbar so the close (×) and the header label aren't
+     hidden under it (--nav-h is measured in JS; falls back to 0). */
+  top: var(--nav-h, 0px);
   right: -480px;
   width: 460px;
-  height: 100vh;
+  height: calc(100% - var(--nav-h, 0px));
   background: linear-gradient(180deg, var(--bg-elev) 0%, var(--bg) 100%);
   border-left: 2px solid var(--border);
   box-shadow: -8px 0 32px rgba(0,0,0,0.10), -2px 0 8px rgba(0,0,0,0.04);
@@ -2386,6 +2388,7 @@ document.addEventListener('click', (e) => {
   if (detailPanel.classList.contains('open') &&
       !detailPanel.contains(e.target) &&
       !e.target.closest('#timeline-svg') &&
+      !e.target.closest('.reader-overlay') &&   /* don't close the drawer when interacting with / dismissing the letter reader opened from it */
       !e.target.closest('.brother-sel')) {
     closeDetail();
   }
@@ -2993,11 +2996,22 @@ function init() {
   buildConditionExplorer();
 }
 
+// Measure the sticky navbar so the slide-in drawer can sit just below it
+// (keeps the close button + header label clear of the nav on every viewport).
+function setNavOffset() {
+  const nav = document.querySelector('.site-nav') || document.getElementById('site-nav');
+  const h = nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
+  document.documentElement.style.setProperty('--nav-h', h + 'px');
+}
+
 window.addEventListener('resize', () => {
   drawTimeline();
+  setNavOffset();
 });
+window.addEventListener('load', setNavOffset);
 
 init();
+setNavOffset();
 </script>
 <footer class="viz-provenance">
   Based on 273 transcribed letters from the Hubbell family collection, 1861–1865. Health, emotion, and significance assessments are editorial judgments by the researcher.
