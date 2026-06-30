@@ -319,93 +319,6 @@ header .epigraph .attribution {
   color: var(--text-secondary);
 }
 
-/* ===== The Reassurance Gap (Task C) ===== */
-.reassurance-gap { margin-bottom: 40px; }
-.reassurance-gap h2 {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-  text-align: center;
-}
-.rg-intro {
-  font-family: var(--font-serif);
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
-  max-width: 730px;
-  margin: 0 auto 24px;
-  text-align: center;
-}
-.rg-intro strong { color: var(--text-primary); font-weight: 700; }
-.rg-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 14px;
-}
-.rg-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-left: 3px solid #C44E52;
-  border-radius: 4px;
-  padding: 14px 16px 16px;
-  cursor: pointer;
-  transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
-}
-.rg-card:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-  transform: translateY(-1px);
-  border-left-color: #A93B40;
-}
-.rg-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-.rg-au { font-family: var(--font-display); font-weight: 700; font-size: 0.92rem; }
-.rg-dt { font-family: var(--font-sans); font-size: 0.72rem; color: var(--text-tertiary); white-space: nowrap; }
-.rg-frame {
-  font-family: var(--font-sans);
-  font-size: 0.67rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 9px;
-}
-.rg-tone { color: #6BA6B5; font-weight: 600; }
-.rg-sep { color: var(--text-tertiary); margin: 0 3px; }
-.rg-sev { font-weight: 700; }
-.rg-sev-serious { color: #D4860B; }
-.rg-sev-grave { color: #C44E52; }
-.rg-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 9px; }
-.rg-tag {
-  font-family: var(--font-sans);
-  font-size: 0.66rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  background: var(--border-light);
-  border-radius: 10px;
-  padding: 2px 9px;
-}
-.rg-quote {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 0.84rem;
-  line-height: 1.55;
-  color: var(--text-secondary);
-  border-left: 2px solid var(--border);
-  padding-left: 10px;
-  margin-top: 4px;
-}
-.rg-context {
-  font-family: var(--font-serif);
-  font-size: 0.8rem;
-  line-height: 1.55;
-  color: var(--text-tertiary);
-  margin-top: 4px;
-}
-
 /* ===== Explore by Condition (Task D) ===== */
 .condition-explorer { margin-bottom: 40px; }
 .condition-explorer h2 {
@@ -479,9 +392,27 @@ header .epigraph .attribution {
   color: var(--text-secondary);
   line-height: 1.5;
 }
+/* Hovering / opening a condition letter marks the row and rings its dot on the
+   timeline above, so the reader can see exactly which plot the entry refers to. */
+.ce-item:hover, .ce-item.is-active {
+  background: var(--border-light);
+  box-shadow: inset 3px 0 0 #B8860B;
+}
+.ce-dot-highlight { animation: ce-dot-pulse 1.1s ease-in-out infinite; }
+@keyframes ce-dot-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+@media (prefers-reduced-motion: reduce) { .ce-dot-highlight { animation: none; } }
 @media (max-width: 640px) {
-  .rg-grid { grid-template-columns: 1fr; }
   .ce-item { grid-template-columns: 1fr; gap: 2px; }
+  /* Compact the "Click a brother" selectors so they stop dominating the space
+     above the chart: drop the wrapping regiment line, shrink the sparkline and
+     padding. The brother's name + trend + counts stay; the long unit text goes. */
+  .brother-cta { font-size: 0.82rem; margin-bottom: 12px; }
+  .brother-selectors { gap: 8px; margin-bottom: 18px; }
+  .brother-sel { padding: 9px 11px; }
+  .brother-sel .bs-name { font-size: 0.9rem; }
+  .brother-sel .bs-unit { display: none; }
+  .brother-sel .bs-sparkline { height: 22px; margin-top: 4px; }
+  .brother-sel .bs-stat-row { font-size: 0.62rem; margin-top: 4px; }
 }
 
 @media (max-width: 1200px) {
@@ -1129,7 +1060,6 @@ footer p {
     </div>
   </div>
 
-  <section class="reassurance-gap" id="reassurance-gap"></section>
   <section class="condition-explorer" id="condition-explorer"></section>
 
   <div class="wellness-summary" id="wellness-summary"></div>
@@ -2504,7 +2434,7 @@ function buildWellnessSummary() {
   container.innerHTML = html;
 }
 
-// ========== CONDITION / REASSURANCE HELPERS ==========
+// ========== CONDITION HELPERS ==========
 const TAG_LABELS = {
   'debility': 'Debility',
   'cough-cold': 'Cough/Cold',
@@ -2531,48 +2461,34 @@ function renderInto(el, markup) {
   el.insertAdjacentHTML('beforeend', markup);
 }
 
-// ========== THE REASSURANCE GAP (Task C) ==========
-// Letters where the author wrote REASSURINGLY about a clinically SERIOUS/GRAVE reality.
-function buildReassuranceGap() {
-  const container = document.getElementById('reassurance-gap');
-  if (!container) return;
-  const gap = DATA.letters
-    .filter(l => l.tone === 'reassuring' && (l.severity === 'serious' || l.severity === 'grave'))
-    .sort((a, b) => a.d < b.d ? -1 : (a.d > b.d ? 1 : 0));
-
-  let html = '<h2>The Reassurance Gap</h2>';
-  html += '<p class="rg-intro">A soldier’s letter almost always opens the same way — <em>“I am well, hoping this finds you the same.”</em> These are the letters where that formula sits atop a body in real trouble: the writer kept a <span style="color:#6BA6B5;font-weight:600">reassuring</span> tone while the clinical reality was <span style="color:#C44E52;font-weight:600">serious or grave</span>. <strong>' + gap.length + '</strong> letters carry that gap — each one a small act of protecting the people back home.</p>';
-
-  html += '<div class="rg-grid">';
-  gap.forEach(l => {
-    const sev = l.severity === 'grave' ? 'grave' : 'serious';
-    const sevLabel = sev === 'grave' ? 'clinically grave' : 'clinically serious';
-    const tags = (l.conditions || []).map(c => c.tag);
-    const tagPills = tags.length
-      ? '<div class="rg-tags">' + tags.map(t => `<span class="rg-tag">${escapeHtml(condLabel(t))}</span>`).join('') + '</div>'
-      : '';
-    let grounding = '';
-    if (l.conditions && l.conditions[0] && l.conditions[0].quote) {
-      grounding = `<div class="rg-quote">“${escapeHtml(l.conditions[0].quote)}”</div>`;
-    } else if (l.healthContext) {
-      const hc = l.healthContext.length > 150 ? l.healthContext.slice(0, 147).replace(/\s+\S*$/, '') + '…' : l.healthContext;
-      grounding = `<div class="rg-context">${escapeHtml(hc)}</div>`;
-    }
-    html += `<div class="rg-card" onclick="openLetterById('${l.id}')">
-      <div class="rg-head">
-        <span class="rg-au" style="color:${BROTHER_COLORS[l.a] || 'var(--text-primary)'}">${escapeHtml(l.an)}</span>
-        <span class="rg-dt">${formatDate(l.d)}</span>
-      </div>
-      <div class="rg-frame"><span class="rg-tone">Wrote reassuringly</span><span class="rg-sep">·</span><span class="rg-sev rg-sev-${sev}">${sevLabel}</span></div>
-      ${tagPills}
-      ${grounding}
-    </div>`;
+// ========== EXPLORE BY CONDITION (Task D) ==========
+// Ring the timeline dot(s) for a given letter so hovering/opening a condition
+// entry shows exactly which plot it refers to. The ring is an ephemeral overlay
+// circle appended to the SVG — cleared on every call, and naturally discarded
+// whenever the timeline is redrawn (zoom/filter). Also flags the source row.
+function highlightLetterDot(id, on) {
+  const svg = document.getElementById('timeline-svg');
+  if (!svg) return;
+  svg.querySelectorAll('.ce-dot-highlight').forEach(el => el.remove());
+  document.querySelectorAll('.ce-item.is-active').forEach(el => el.classList.remove('is-active'));
+  if (!on) return;
+  document.querySelectorAll(`.ce-item[data-letter-id="${id}"]`).forEach(el => el.classList.add('is-active'));
+  const ns = 'http://www.w3.org/2000/svg';
+  svg.querySelectorAll(`circle[data-id="${id}"]`).forEach(dot => {
+    const r = parseFloat(dot.getAttribute('r')) || 5;
+    const ring = document.createElementNS(ns, 'circle');
+    ring.setAttribute('class', 'ce-dot-highlight');
+    ring.setAttribute('cx', dot.getAttribute('cx'));
+    ring.setAttribute('cy', dot.getAttribute('cy'));
+    ring.setAttribute('r', r + 6);
+    ring.setAttribute('fill', 'none');
+    ring.setAttribute('stroke', '#B8860B');
+    ring.setAttribute('stroke-width', '2.5');
+    ring.setAttribute('pointer-events', 'none');
+    svg.appendChild(ring);
   });
-  html += '</div>';
-  renderInto(container, html);
 }
 
-// ========== EXPLORE BY CONDITION (Task D) ==========
 function buildConditionExplorer() {
   const container = document.getElementById('condition-explorer');
   if (!container) return;
@@ -2606,7 +2522,7 @@ function buildConditionExplorer() {
     list.forEach(l => {
       const cond = (l.conditions || []).find(c => c.tag === conditionFilter);
       const q = (cond && cond.quote) ? `<span class="ce-q">“${escapeHtml(cond.quote)}”</span>` : '<span class="ce-q"></span>';
-      html += `<div class="ce-item" onclick="openLetterById('${l.id}')">
+      html += `<div class="ce-item" data-letter-id="${l.id}" onmouseenter="highlightLetterDot('${l.id}', true)" onmouseleave="highlightLetterDot('${l.id}', false)" onclick="highlightLetterDot('${l.id}', true); openLetterById('${l.id}')">
         <span class="ce-au" style="color:${BROTHER_COLORS[l.a] || 'var(--text-primary)'}">${escapeHtml(l.an)}</span>
         <span class="ce-dt">${formatDate(l.d)}</span>
         ${q}
@@ -2893,7 +2809,6 @@ function init() {
   };
   buildBrotherSelectors();
   drawTimeline();
-  buildReassuranceGap();
   buildConditionExplorer();
   buildWellnessSummary();
 }
