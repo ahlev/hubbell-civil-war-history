@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,12 +7,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="_design.css?v=8">
+<link rel="stylesheet" href="_design.css?v=9">
 <link rel="stylesheet" href="_bio.css?v=1">
+<link rel="stylesheet" href="_family-strip.css?v=1">
 <link rel="stylesheet" href="_overlay.css?v=11">
 <link rel="stylesheet" href="_reader-era.css?v=18">
 <link rel="stylesheet" href="_hero.css?v=2">
 <script src="_hero.js?v=2" defer></script>
+<script src="_family-strip.js?v=1" defer></script>
 <style>
 :root { --person: var(--mother); --person-soft: #F0EAF7; --person-bg: #F8F5FC; }
 </style>
@@ -24,11 +26,11 @@
 
 <div id="site-nav"></div>
 
-<!-- ===== FRONTISPIECE — portrait in preparation (PLACEHOLDER) =====
-     TODO (asset): generate Frances Hubbell's interpretive portrait + 5–6s loop
+<!-- ===== FRONTISPIECE â€” portrait in preparation (PLACEHOLDER) =====
+     TODO (asset): generate Frances Hubbell's interpretive portrait + 5â€“6s loop
      to match the four brothers (see tasks/site-v2-graphic-revamp-PLAN.md). No
      reference still exists for her, so this needs a from-scratch still first
-     (higgsfield generate_image → image-to-video loop → poster). Drop the pair in
+     (higgsfield generate_image â†’ image-to-video loop â†’ poster). Drop the pair in
      at /experience-v2/assets/brothers/loops/loop-mother.{webm,mp4} + poster,
      then swap this placeholder block for the brothers' figure markup. -->
 <div class="bio-frontis">
@@ -412,9 +414,18 @@
   </div>
 </div>
 
+<!-- ===== READ ANOTHER LIFE — kin strip ===== -->
+<nav class="bio-kin" data-active="mother" aria-label="Read another family member">
+  <div class="bio-kin-head">
+    <span class="bk-eyebrow">Keep reading</span>
+    <h2>The rest of the family</h2>
+  </div>
+  <div class="bio-kin-row"></div>
+</nav>
+
 <!-- ===== DATA + SCRIPTS ===== -->
 <script src="_design-data.js"></script>
-<script src="_design-ui.js?v=5"></script>
+<script src="_design-ui.js?v=7"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
 <script src="_reader.js?v=21"></script>

@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="_design.css?v=8">
+<link rel="stylesheet" href="_design.css?v=9">
 <link rel="stylesheet" href="_overlay.css?v=11">
 <link rel="stylesheet" href="_bio.css?v=1">
 <link rel="stylesheet" href="_hero.css">
@@ -128,10 +128,6 @@ html{ scroll-behavior:smooth; }
 .pd-fate.survived{ background:#F0F8F0; border-left:3px solid #4A7C59; }
 .pd-fate.civilian{ background:#F5F0FF; border-left:3px solid #7B5EA7; }
 
-.pd-story-link{ display:inline-flex; align-items:center; gap:10px; text-decoration:none; margin-top:4px; padding:13px 22px; border-radius:6px; background:var(--person,var(--ink)); color:#fff; font-family:var(--font-sans); font-size:.85rem; font-weight:600; box-shadow:0 2px 10px rgba(0,0,0,.14); transition:transform .18s, box-shadow .18s, filter .18s; }
-.pd-story-link:hover{ transform:translateY(-1px); filter:brightness(1.08); box-shadow:0 6px 18px rgba(0,0,0,.2); }
-.pd-story-link svg{ transition:transform .18s; }
-.pd-story-link:hover svg{ transform:translateX(3px); }
 
 .letters-toggle{ display:flex; align-items:center; gap:8px; width:100%; padding:12px 16px; border:2px solid var(--person,var(--rule)); border-radius:6px; background:var(--bg); cursor:pointer; font-family:var(--font-sans); font-size:.84rem; font-weight:600; color:var(--ink); transition:background .15s, box-shadow .15s; }
 .letters-toggle:hover{ background:var(--bg-sunken); box-shadow:0 2px 8px rgba(0,0,0,.06); }
@@ -246,7 +242,7 @@ html{ scroll-behavior:smooth; }
 </div>
 
 <script src="_design-data.js"></script>
-<script src="_design-ui.js?v=5"></script>
+<script src="_design-ui.js?v=7"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
 <script src="_reader.js?v=21"></script>
@@ -492,9 +488,8 @@ function renderPerson(p){
       '<div class="pd-content">' +
         '<div class="pd-narrative" id="pdNarrative"><p class="pd-loading">Loading the full story…</p></div>' +
         '<section class="pd-section" id="sec-letters" style="margin-top:34px; padding-top:24px; border-top:1px solid var(--rule)"><h3>'+Poss+' Letters</h3>' +
-          '<button class="letters-toggle" style="--person:'+p.color+'" data-author="'+esc(p.author)+'"><span class="lt-icon">▶</span> Browse all '+p.poss+' letters <span class="lt-count"></span></button>' +
+          '<button class="letters-toggle" style="--person:'+p.color+'" data-author="'+esc(p.author)+'"><span class="lt-icon">â–¶</span> Browse all '+p.poss+' letters <span class="lt-count"></span></button>' +
           '<div class="letters-drawer"><div class="letters-list"></div></div>' +
-          '<div style="margin-top:16px"><a class="pd-story-link" href="'+esc(p.story)+'" style="--person:'+p.color+'">Open '+p.poss+' dedicated page — map &amp; portrait'+fwdSVG()+'</a></div>' +
         '</section>' +
       '</div>' +
     '</div>' +
@@ -530,7 +525,7 @@ function renderFannie(){
           '<div class="letter-quote">I have got quite into the business of writing love letters. Mr. Averill’s servant girl has quite an extensive correspondence&hellip; she comes to me as no one else can write French for her. I enjoy it finely&hellip;<cite><a class="lq-link" onclick="openLetter(\'LTR-1862-11-10-001\')">November 10, 1862 &mdash; Fannie to Charles</a></cite></div>' +
         '</div></section>' +
         '<section class="pd-section"><h3>Letters Written to Her</h3>' +
-          '<button class="letters-toggle" style="--person:var(--fannie)" data-recipient="fannie"><span class="lt-icon">▶</span> Letters written to her <span class="lt-count"></span></button>' +
+          '<button class="letters-toggle" style="--person:var(--fannie)" data-recipient="fannie"><span class="lt-icon">â–¶</span> Letters written to her <span class="lt-count"></span></button>' +
           '<div class="letters-drawer"><div class="letters-list"></div></div>' +
         '</section>' +
       '</div></div>' +

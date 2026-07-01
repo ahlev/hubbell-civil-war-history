@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="_design.css?v=8">
+<link rel="stylesheet" href="_design.css?v=9">
 <style>
 :root{
   --card:var(--bg-elev);
@@ -16,7 +16,7 @@
 }
 
 .hero{text-align:center;padding:72px 32px 48px;max-width:900px;margin:0 auto}
-.hero h1{/* uses shared .page-title from _design.css?v=8 */}
+.hero h1{/* uses shared .page-title from _design.css?v=9 */}
 .hero .subtitle{font-size:1.02rem;color:var(--text-mid);max-width:660px;margin:0 auto 20px;font-weight:300}
 .hero .stat-row{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:16px}
 .hero .stat{text-align:center}
@@ -241,7 +241,7 @@ table.ref-table tr{cursor:pointer}
 </div>
 
 <script src="_design-data.js"></script>
-<script src="_design-ui.js?v=5"></script>
+<script src="_design-ui.js?v=7"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
 <script src="_reader.js?v=21"></script>
@@ -504,7 +504,7 @@ function renderLegend() {
 function renderCards() {
   var grid = document.getElementById('cardsGrid');
   var names = {henry:'Henry Hubbell',alexander:'Alexander F. Hubbell',james:'James Hubbell',charles:'Charles Hubbell',mother:'Frances Hubbell'};
-  var units = {henry:'Co. D, 34th NY Infantry',alexander:'Co. H, 60th NY Infantry',james:'West Point / 153rd NY',charles:'Co. I, 153rd NY Volunteers',mother:'Home Front — Delhi, NY'};
+  var units = {henry:'Co. D, 34th NY Infantry',alexander:'Co. H, 60th NY Infantry',james:'West Point / 153rd NY',charles:'Co. I, 153rd NY Volunteers',mother:'Home Front â€” Delhi, NY'};
   var filt = filtered();
   var html = '';
   ['henry','alexander','james','charles','mother'].forEach(function(b) {
@@ -539,7 +539,7 @@ function renderCards() {
   });
   grid.innerHTML = html;
 
-  // Clickable category stat lines → open first matching ref in detail
+  // Clickable category stat lines â†’ open first matching ref in detail
   grid.querySelectorAll('.stat-line.clickable').forEach(function(line) {
     line.addEventListener('click', function() {
       var author = this.dataset.author;
@@ -602,7 +602,7 @@ function renderHighlights() {
   });
   el.innerHTML = html;
 
-  // Make highlight cards clickable → open source letter
+  // Make highlight cards clickable â†’ open source letter
   el.querySelectorAll('.highlight-card').forEach(function(card) {
     card.addEventListener('click', function() {
       var h = HIGHLIGHTS[parseInt(this.dataset.hidx)];
@@ -696,7 +696,7 @@ function tlPanRight() {
 function _tlSyncUrl(opts) {
   if (!window.HubbellDeepLink) return;
   HubbellDeepLink.copyShareUrl; // ensure styles loaded
-  // State reader captures zoom — just trigger a URL update via buildShareUrl pattern
+  // State reader captures zoom â€” just trigger a URL update via buildShareUrl pattern
   var p = HubbellDeepLink.read();
   // Update zoom in current params
   if (tlZoomMin || tlZoomMax) {
@@ -750,7 +750,7 @@ function renderTimeline() {
 
   var svgHtml = '';
 
-  // Grid lines for months — adaptive density based on zoom level
+  // Grid lines for months â€” adaptive density based on zoom level
   var rangeYears = (maxD - minD) / (365.25 * 86400000);
   var showAllMonths = rangeYears < 6;
   var startY = minD.getFullYear(), endY = maxD.getFullYear();
@@ -781,7 +781,7 @@ function renderTimeline() {
     svgHtml += '<line x1="' + PL + '" y1="' + catY[c] + '" x2="' + (W - PR) + '" y2="' + catY[c] + '" stroke="var(--border-light)" stroke-width="0.5" stroke-dasharray="2,4"/>';
   });
 
-  // Nodes — filter to visible range, then collision-avoid
+  // Nodes â€” filter to visible range, then collision-avoid
   var visibleRefs = [];
   var visibleIndices = [];
   refs.forEach(function(r, i) {
@@ -835,7 +835,7 @@ function renderTimeline() {
     node.addEventListener('click', function() { showDetail(currentVisRefs[+this.dataset.idx]); });
   });
 
-  // Brush-to-zoom — attached to SVG, only activates on empty-space drags
+  // Brush-to-zoom â€” attached to SVG, only activates on empty-space drags
   // Remove old document-level handlers
   if (_tlBrushHandlers.move) document.removeEventListener('mousemove', _tlBrushHandlers.move);
   if (_tlBrushHandlers.up) document.removeEventListener('mouseup', _tlBrushHandlers.up);
@@ -1059,7 +1059,7 @@ function openLetterDetail(letterId, highlightText) {
     ref = allRefs.find(function(r) { return r.letterId.indexOf(letterId) === 0; });
   }
   if (!ref) {
-    // No financial ref — build a minimal ref from RAW_LETTERS
+    // No financial ref â€” build a minimal ref from RAW_LETTERS
     var letter = RAW_LETTERS.find(function(l) { return l.id === letterId || l.id.indexOf(letterId) === 0; });
     if (!letter) return;
     ref = {
@@ -1140,7 +1140,7 @@ document.getElementById('tlPanLeftBtn').addEventListener('click', tlPanLeft);
 document.getElementById('tlPanRightBtn').addEventListener('click', tlPanRight);
 </script>
 <footer class="viz-provenance">
-  Based on 273 transcribed letters from the Hubbell family collection, 1861–1870. Financial figures are extracted from letter text via pattern matching. Modern dollar equivalents use BLS CPI data.
+  Based on 273 transcribed letters from the Hubbell family collection, 1861â€“1870. Financial figures are extracted from letter text via pattern matching. Modern dollar equivalents use BLS CPI data.
 </footer>
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=15"></script>

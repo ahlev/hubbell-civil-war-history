@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="_design.css?v=8">
+<link rel="stylesheet" href="_design.css?v=9">
 <link rel="stylesheet" href="_overlay.css?v=11">
 <link rel="stylesheet" href="_reader-era.css?v=18">
 <style>
@@ -210,7 +210,7 @@
 
 <!-- ===== DATA + ENGINE ===== -->
 <script src="_design-data.js"></script>
-<script src="_design-ui.js?v=5"></script>
+<script src="_design-ui.js?v=7"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
 <script src="_reader.js?v=21"></script>
@@ -346,13 +346,13 @@ function renderDropdown(query) {
     html += '</div>';
   });
 
-  // Footer link — press Enter or click to run full-page search
+  // Footer link â€” press Enter or click to run full-page search
   html += '<a href="#" class="dd-view-all" style="display:block;padding:10px 16px;font-size:0.78rem;color:#2D5F8A;text-align:center;text-decoration:none;border-top:1px solid var(--rule-2);font-weight:500">View all ' + ddResults.length + ' results &rarr;</a>';
 
   searchDropdown.innerHTML = html;
   searchDropdown.classList.add('open');
 
-  // Wire up result clicks + hover → open reader
+  // Wire up result clicks + hover â†’ open reader
   searchDropdown.querySelectorAll('.search-result').forEach(function(el) {
     el.addEventListener('mouseenter', function(e) { showSearchTooltip(e, this.dataset.lid); });
     el.addEventListener('mousemove', function(e) { moveSearchTooltip(e); });
@@ -381,7 +381,7 @@ function renderDropdown(query) {
     });
   });
 
-  // Wire up "View all" footer → run full-page search
+  // Wire up "View all" footer â†’ run full-page search
   var viewAll = searchDropdown.querySelector('.dd-view-all');
   if (viewAll) {
     viewAll.addEventListener('click', function(e) {
@@ -541,6 +541,10 @@ var _searchIsTouch = false;
 window.addEventListener('touchstart', function() { _searchIsTouch = true; }, { once: true });
 
 function showSearchTooltip(e, lid) {
+  // Disabled: the shared dark hover preview (.hubbell-letter-tip, fired by
+  // wireLetterTooltips() in _design-ui.js on any [data-lid] element) is now the
+  // single canonical hover panel. This light .search-tooltip was stacking on top.
+  return;
   if (_searchIsTouch) return;
   var letter = LETTERS.find(function(l) { return l.id === lid; });
   if (!letter || !letter.ss) return;
@@ -733,7 +737,7 @@ HubbellDeepLink.registerStateApplier(function(p) {
 
 HubbellDeepLink.enableHistory();
 
-// Override existing init — remove old ?q= handler since deep-link handles it
+// Override existing init â€” remove old ?q= handler since deep-link handles it
 // The IIFE at line 243 already ran, so we just need applier for filters
 var dlParams = HubbellDeepLink.read();
 if (dlParams.author || dlParams.flag || dlParams.sig || dlParams.sort || dlParams.letter) {

@@ -58,6 +58,29 @@
       { href: 'viz-people-web.html',              label: 'People Web',     acc: '#9A78C7' },
       { href: 'who-they-were.html',               label: 'Who They Were',  acc: '#6FB0A6' }
     ];
+    // Family members surfaced as a hover dropdown under "Who They Were" — each
+    // color-dotted (brother/mother hue), linking straight to their dedicated
+    // bio page. Ordered by letters written (most → fewest) with the mother last,
+    // and using character (not age) roles — consistent with the bio kin strip
+    // and neutral on the open birth-order question (see DSC-2026-06-30-002).
+    var FAMILY = [
+      { href: 'brother-alexander.html', label: 'Alexander', dot: '#B8860B', note: 'The survivor' },
+      { href: 'brother-charles.html',   label: 'Charles',   dot: '#8B3A3A', note: 'The clear-eyed' },
+      { href: 'brother-henry.html',     label: 'Henry',     dot: '#2D5F8A', note: 'First to enlist' },
+      { href: 'brother-james.html',     label: 'James',     dot: '#4A7C59', note: 'The scholar' },
+      { href: 'mother-frances.html',    label: 'Frances',   dot: '#7B5EA7', note: 'The mother' }
+    ];
+    function familyDD(cls, withNote) {
+      return '<div class="' + cls + '" role="menu">' +
+        FAMILY.map(function (f) {
+          return '<a class="nav-dd-item" role="menuitem" style="--acc:' + f.dot + '" href="' + f.href + '">' +
+            '<span class="nav-dd-dot" style="background:' + f.dot + '"></span>' +
+            '<span class="nav-dd-name">' + f.label + '</span>' +
+            (withNote ? '<span class="nav-dd-note">' + f.note + '</span>' : '') +
+          '</a>';
+        }).join('') +
+      '</div>';
+    }
     var navHTML =
       '<nav class="site-nav" aria-label="Primary">' +
         '<div class="site-nav-inner">' +
@@ -85,7 +108,10 @@
           '<div class="nav-links" role="menubar">' +
             links.map(function (l) {
               var active = (l.href.toLowerCase() === here) || (here === '' && l.href === 'index.html');
-              return '<a role="menuitem" class="nav-link ' + (active ? 'active' : '') + '" style="--acc:' + l.acc + '" href="' + l.href + '">' + l.label + '</a>';
+              var isFamily = (l.href === 'who-they-were.html');
+              var a = '<a role="menuitem" class="nav-link ' + (active ? 'active' : '') + '" style="--acc:' + l.acc + '" href="' + l.href + '"' + (isFamily ? ' aria-haspopup="true"' : '') + '>' + l.label + '</a>';
+              if (!isFamily) return a;
+              return '<div class="nav-item nav-has-dd">' + a + familyDD('nav-dd', true) + '</div>';
             }).join('') +
           '</div>' +
           '<button class="nav-menu-btn" id="menuBtn" aria-label="Menu">' +
@@ -102,7 +128,9 @@
           '</div>' +
           links.map(function (l) {
             var active = (l.href.toLowerCase() === here);
-            return '<a class="nav-link ' + (active ? 'active' : '') + '" style="--acc:' + l.acc + '" href="' + l.href + '">' + l.label + '</a>';
+            var a = '<a class="nav-link ' + (active ? 'active' : '') + '" style="--acc:' + l.acc + '" href="' + l.href + '">' + l.label + '</a>';
+            if (l.href !== 'who-they-were.html') return a;
+            return a + familyDD('nav-sublinks', false);
           }).join('') +
         '</div>' +
       '</nav>';
@@ -277,6 +305,10 @@
     document.body.appendChild(_navTip);
   }
   function _showNavTooltip(e, lid) {
+    // Disabled: the shared dark hover preview (.hubbell-letter-tip via
+    // wireLetterTooltips) is now the single canonical hover panel. This light
+    // _navTip was stacking a second, differently-sized panel on top.
+    return;
     if (_navIsTouch) return;
     if (typeof LETTERS === 'undefined') return;
     var letter = LETTERS.find(function (l) { return l.id === lid; });

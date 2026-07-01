@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="_design.css?v=8">
+<link rel="stylesheet" href="_design.css?v=9">
 <style>
 body {
   overflow: hidden;
@@ -1007,11 +1007,11 @@ canvas.grabbing {
     margin-bottom: 0;
   }
   #temporal-filter .filter-label::after {
-    content: ' ▸';
+    content: ' â–¸';
     font-size: 9px;
   }
   #temporal-filter.tf-open .filter-label::after {
-    content: ' ▾';
+    content: ' â–¾';
   }
   #temporal-filter.tf-open .filter-label {
     margin-bottom: 6px;
@@ -3964,9 +3964,9 @@ function buildSidebar() {
 function buildLegend() {
   const legend = document.getElementById('legend');
   const brothers = [
-    { label: 'Henry', color: BROTHER_COLORS.henry, shape: '◆' },
-    { label: 'Alexander', color: BROTHER_COLORS.alexander, shape: '■' },
-    { label: 'James', color: BROTHER_COLORS.james, shape: '▲' },
+    { label: 'Henry', color: BROTHER_COLORS.henry, shape: 'â—†' },
+    { label: 'Alexander', color: BROTHER_COLORS.alexander, shape: 'â– ' },
+    { label: 'James', color: BROTHER_COLORS.james, shape: 'â–²' },
     { label: 'Charles', color: BROTHER_COLORS.charles, shape: '⬡' },
     { label: 'Frances (Mother)', color: '#7B5EA7', shape: '●' },
   ];
@@ -4097,7 +4097,7 @@ function _pwSyncUrl() {
 })();
 </script>
 <script src="_design-data.js"></script>
-<script src="_design-ui.js?v=5"></script>
+<script src="_design-ui.js?v=7"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
 <script src="_reader.js?v=21"></script>

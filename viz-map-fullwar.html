@@ -1,16 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Map That Moves â€” Full War, 1861â€“1865</title>
+<title>The Map That Moves — Full War, 1861–1865</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="03-data/map-movements.js?v=2"></script>
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="_design.css?v=8">
+<link rel="stylesheet" href="_design.css?v=9">
 <link rel="stylesheet" href="_viz-era.css?v=1">
 <style>
 
@@ -25,10 +25,10 @@ body {
 }
 
 
-/* â”€â”€ Status Bar â”€â”€ */
+/* ── Status Bar ── */
 .status-bar {
   display: flex;
-  background: #ffffff;   /* clean white â€” reads crisp against the warm aged map (was a cool near-white that looked blue-tinted) */
+  background: #ffffff;   /* clean white — reads crisp against the warm aged map (was a cool near-white that looked blue-tinted) */
   border-bottom: 1px solid var(--rule);
   flex-shrink: 0;
 }
@@ -80,7 +80,7 @@ body {
   gap: 6px;
   margin-bottom: 1px;
 }
-/* Inline state icon â€” desktop uses the text badge instead, so hide it here */
+/* Inline state icon — desktop uses the text badge instead, so hide it here */
 .status-state-icon { display: none; }
 .status-location {
   font-size: 0.75rem;
@@ -170,7 +170,7 @@ body {
   color: var(--ink);
 }
 
-/* â”€â”€ Main Layout â”€â”€ */
+/* ── Main Layout ── */
 .main-container {
   display: flex;
   flex: 1;
@@ -186,10 +186,10 @@ body {
   height: 100%;
 }
 
-/* â”€â”€ Info Panel (right side) â”€â”€ */
+/* ── Info Panel (right side) ── */
 .info-panel {
   width: 360px;
-  /* Near-white with only a WHISPER of warm marigold â€” barely noticeable, so the
+  /* Near-white with only a WHISPER of warm marigold — barely noticeable, so the
      panel reads as a clean light surface against the map, not a yellow card. The
      thin gold left-border (tied to the active place-label gold #B8860B) carries
      the marigold identity instead of the fill. Dark (--ink) content keeps full
@@ -207,7 +207,7 @@ body {
   border: none;
   overflow: hidden;
 }
-/* "Wide" preset (desktop only â€” mobile uses a taller sheet, see the <=900 block).
+/* "Wide" preset (desktop only — mobile uses a taller sheet, see the <=900 block).
    :not(.collapsed) so collapse always wins. */
 @media (min-width: 901px) {
   .info-panel:not(.collapsed).size-wide { width: min(540px, 46vw); }
@@ -260,7 +260,7 @@ body {
   flex: 1;
   min-width: 0;
 }
-/* â”€â”€ Place mini timeline â”€â”€ */
+/* ── Place mini timeline ── */
 .place-mini-tl {
   width: 100%;
   height: 36px;
@@ -397,7 +397,7 @@ body {
 }
 .info-recent-item .date { font-weight: 600; color: var(--ink); }
 
-/* â”€â”€ Legend (on map) â”€â”€ */
+/* ── Legend (on map) ── */
 .map-legend {
   position: absolute;
   bottom: 20px;
@@ -455,7 +455,7 @@ body {
   flex-shrink: 0;
 }
 
-/* â”€â”€ Narrative Caption â”€â”€
+/* ── Narrative Caption ──
    Positioned below the centered Search bar (top: 10px, ~30px tall) so the
    two don't stack at top-center. */
 .narrative-caption {
@@ -479,7 +479,7 @@ body {
 }
 .narrative-caption.visible { opacity: 1; }
 
-/* â”€â”€ Controls Bar â”€â”€ */
+/* ── Controls Bar ── */
 .controls {
   background: var(--bg-elev);
   border-top: 1px solid var(--rule);
@@ -689,7 +689,7 @@ body {
   z-index: 1;
 }
 
-/* â”€â”€ Leaflet Overrides â”€â”€ */
+/* ── Leaflet Overrides ── */
 .leaflet-control-attribution { font-size: 0.6rem !important; }
 .leaflet-popup-content-wrapper {
   border-radius: 6px;
@@ -698,7 +698,7 @@ body {
 }
 .leaflet-popup-content { margin: 10px 12px; line-height: 1.5; }
 
-/* â”€â”€ Map Node Markers â”€â”€ */
+/* ── Map Node Markers ── */
 .node-current {
   display: flex;
   flex-direction: column;
@@ -743,7 +743,7 @@ body {
   margin-left: 3px;
 }
 
-/* Trail markers â€” visible, connected, clickable */
+/* Trail markers — visible, connected, clickable */
 .node-trail {
   border-radius: 50%;
   border: 2px solid rgba(255,255,255,0.85);
@@ -765,7 +765,7 @@ body {
   pointer-events: none;
 }
 
-/* Memorial marker â€” permanent */
+/* Memorial marker — permanent */
 .node-memorial {
   display: flex;
   flex-direction: column;
@@ -789,7 +789,7 @@ body {
   white-space: nowrap;
 }
 
-/* â”€â”€ Recenter Button â”€â”€ */
+/* ── Recenter Button ── */
 .recenter-btn {
   position: absolute;
   top: 10px;
@@ -828,7 +828,7 @@ body {
 .places-btn.hidden-state { color: var(--ink-3); border-color: var(--rule); }
 .places-btn.hidden-state:hover { color: var(--ink-2); }
 
-/* â”€â”€ 3-state place-label control: Off / As it unfolds / All â”€â”€ */
+/* ── 3-state place-label control: Off / As it unfolds / All ── */
 .places-mode {
   position: absolute;
   top: 10px;
@@ -881,7 +881,7 @@ body {
 .place-label-pill.tl-future { opacity: 0 !important; transform: scale(0.82); pointer-events: none; }
 .place-label-pill.tl-future.active { opacity: 1 !important; transform: none; pointer-events: auto; }
 
-/* â”€â”€ Place Search â”€â”€ */
+/* ── Place Search ── */
 .place-search {
   position: absolute;
   top: 10px;
@@ -1006,7 +1006,7 @@ body {
   margin-left: 6px;
 }
 
-/* â”€â”€ Lock-on â”€â”€ */
+/* ── Lock-on ── */
 .status-panel.locked {
   background: #F0F4F8;
   border-bottom: 3px solid;
@@ -1042,7 +1042,7 @@ body {
   display: flex;
   align-items: center;
 }
-/* â”€â”€ Days since letter (in status panel â€” inline with location) â”€â”€ */
+/* ── Days since letter (in status panel — inline with location) ── */
 .days-since {
   font-size: 0.58rem;
   color: var(--ink-3);
@@ -1051,7 +1051,7 @@ body {
   flex-shrink: 0;
 }
 
-/* â”€â”€ New Letter Badge (map overlay) â”€â”€ */
+/* ── New Letter Badge (map overlay) ── */
 .new-letter-badge {
   background: #B8860B;
   color: var(--bg-elev);
@@ -1128,7 +1128,7 @@ body.letter-reader-open .narrative-caption {
 .letter-summary-tip.leaflet-tooltip-left:before   { border-left-color:   #2d2a23; }
 .letter-summary-tip.leaflet-tooltip-right:before  { border-right-color:  #2d2a23; }
 
-/* â”€â”€ Letter Detail Overlay â”€â”€ */
+/* ── Letter Detail Overlay ── */
 .letter-overlay {
   position: fixed;
   inset: 0;
@@ -1197,7 +1197,7 @@ body.letter-reader-open .narrative-caption {
 /* Keep the summary font in step with the bumped body on the map. */
 .reader-panel .reader-exec-summary { font-size: 14px; }
 
-/* â”€â”€ Recent Letters in info panel â”€â”€ */
+/* ── Recent Letters in info panel ── */
 .recent-letter-card {
   padding: 5px 10px;
   margin-bottom: 3px;
@@ -1232,7 +1232,7 @@ body.letter-reader-open .narrative-caption {
   padding-left: 6px;
 }
 
-/* â”€â”€ Place Pin Marker (from ?place= navigation) â”€â”€ */
+/* ── Place Pin Marker (from ?place= navigation) ── */
 .place-pin-icon {
   display: flex;
   flex-direction: column;
@@ -1413,17 +1413,17 @@ body.letter-reader-open .narrative-caption {
   border-top: 1px solid #F0ECE7;
 }
 
-/* â”€â”€ Place Labels Layer â”€â”€ */
+/* ── Place Labels Layer ── */
 .place-label-icon {
   pointer-events: auto;
 }
-/* Resting "Places" labels â€” a faint slate blue-grey fill with a darker slate
+/* Resting "Places" labels — a faint slate blue-grey fill with a darker slate
    dot + label. Deliberately NOT golden/white so places read as a distinct
    layer, separate from the golden brother panels and the pale map beneath.
    The golden glow is reserved for the actively-selected place (.active). */
 .place-label-pill {
   display: inline-block;
-  background: rgba(255, 255, 255, 0.95);   /* clean white â€” bright & legible on the warm map (was a blue-grey slate that read cold) */
+  background: rgba(255, 255, 255, 0.95);   /* clean white — bright & legible on the warm map (was a blue-grey slate that read cold) */
   padding: 1px 7px;
   border-radius: 10px;
   font-family: var(--font-sans);
@@ -1503,7 +1503,7 @@ body.letter-reader-open .narrative-caption {
   cursor: pointer;
 }
 
-/* â”€â”€ Responsive â”€â”€ */
+/* ── Responsive ── */
 @media (max-width: 900px) {
   /* Info panel becomes a bottom sheet docked over the lower map, above the slider */
   .info-toggle { display: none; }
@@ -1552,7 +1552,7 @@ body.letter-reader-open .narrative-caption {
   .map-legend { font-size: 0.6rem; padding: 6px 10px; }
 }
 @media (max-width: 600px) {
-  /* â”€â”€ Status bar: 2Ã—2 grid instead of overflow scroll â”€â”€ */
+  /* ── Status bar: 2×2 grid instead of overflow scroll ── */
   .status-bar {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1605,7 +1605,7 @@ body.letter-reader-open .narrative-caption {
   .state-letter { color: #2D6B2D; background: #E8F5E8; border: 1px solid #C8E6C8; }
   .state-estimated { color: var(--ink-2); background: #F0ECE7; }
   .state-kia { color: #8B3A3A; background: #F0E0D8; }
-  /* â”€â”€ Top map controls: keep search clear of Places / Re-center â”€â”€ */
+  /* ── Top map controls: keep search clear of Places / Re-center ── */
   .place-search {
     left: 8px;
     transform: none;
@@ -1614,7 +1614,7 @@ body.letter-reader-open .narrative-caption {
   }
   .places-btn { right: 78px; padding: 4px 7px; font-size: 0.6rem; }
   .recenter-btn { right: 8px; padding: 4px 6px; font-size: 0.55rem; }
-  /* 3-state places control: compact for the phone top bar â€” drop the "PLACES"
+  /* 3-state places control: compact for the phone top bar — drop the "PLACES"
      label, use the short "Unfolds" wording, tighten padding so search + control +
      re-center all sit cleanly on one row. */
   .places-mode { right: 74px; height: 27px; }
@@ -1622,7 +1622,7 @@ body.letter-reader-open .narrative-caption {
   .places-mode .pm-lg { display: none; }
   .places-mode .pm-sm { display: inline; }
   .places-mode .pm-opt { padding: 0 7px; font-size: 0.6rem; }
-  /* â”€â”€ Controls â”€â”€ */
+  /* ── Controls ── */
   .controls { padding: 6px 8px; }
   .controls-cta { font-size: 0.74rem; }
   .step-btn { width: 44px; height: 44px; }
@@ -1630,9 +1630,9 @@ body.letter-reader-open .narrative-caption {
   .date-display { font-size: 0.9rem; }
   .range-slider input[type="range"] { height: 28px; }
   .range-slider input[type="range"]::-webkit-slider-thumb { width: 24px; height: 24px; margin-top: -10px; }
-  /* â”€â”€ Legend: hide on phone (brother colors shown in status bar) â”€â”€ */
+  /* ── Legend: hide on phone (brother colors shown in status bar) ── */
   .map-legend { display: none; }
-  /* â”€â”€ Narrative caption: smaller on phone, sit below search bar â”€â”€ */
+  /* ── Narrative caption: smaller on phone, sit below search bar ── */
   .narrative-caption {
     top: 52px;
     font-size: 0.75rem;
@@ -1640,25 +1640,25 @@ body.letter-reader-open .narrative-caption {
     max-width: 90vw;
     border-radius: 4px;
   }
-  /* â”€â”€ Leaflet zoom: push below search bar so + isn't hidden behind it â”€â”€ */
+  /* ── Leaflet zoom: push below search bar so + isn't hidden behind it ── */
   .leaflet-top.leaflet-left { top: 52px; }
-  /* â”€â”€ Node labels: smaller on phone â”€â”€ */
+  /* ── Node labels: smaller on phone ── */
   .node-label { font-size: 0.8rem; padding: 2px 6px; }
   .node-pin { width: 14px !important; height: 14px !important; }
-  /* â”€â”€ Place popups: constrain width â”€â”€ */
+  /* ── Place popups: constrain width ── */
   .leaflet-popup-content-wrapper { max-width: calc(100vw - 40px); }
   .leaflet-popup-content { margin: 8px 10px; font-size: 0.75rem; }
   .place-pin-popup { padding: 10px 12px; }
   .place-pin-title { font-size: 0.9rem; }
   .place-pin-stats { font-size: 0.65rem; gap: 6px; }
-  /* â”€â”€ Search/controls bar â”€â”€ */
+  /* ── Search/controls bar ── */
   .map-search-bar { font-size: 0.75rem; padding: 6px 10px; }
   .map-controls-row button { min-height: 36px; font-size: 0.7rem; padding: 4px 8px; }
 }
 /* Push share button above controls bar */
 .dl-share-btn { bottom: 110px !important; }
 
-/* â”€â”€ Onboarding Overlay â”€â”€ */
+/* ── Onboarding Overlay ── */
 .onboard-overlay {
   position: fixed; inset: 0; z-index: 9999;
   background: rgba(20, 18, 15, 0.7);
@@ -1753,19 +1753,19 @@ body.letter-reader-open .narrative-caption {
     <h1 class="onboard-title">The Map That Moves</h1>
     <ul class="onboard-items">
       <li>
-        <span class="onboard-icon map">ðŸ—ºï¸</span>
+        <span class="onboard-icon map">🗺️</span>
         <span>This is an <b>interactive map</b>. Pan, zoom, and explore the eastern United States as the war unfolds day by day.</span>
       </li>
       <li>
-        <span class="onboard-icon timeline">ðŸ“…</span>
+        <span class="onboard-icon timeline">📅</span>
         <span>Use the <b>timeline slider</b> at the bottom to scrub through the war. Arrow keys step one day at a time.</span>
       </li>
       <li>
-        <span class="onboard-icon places">ðŸ“</span>
+        <span class="onboard-icon places">📍</span>
         <span><b>Click place names</b> on the map to see what happened there &mdash; battles, camps, hospitals &mdash; and which letters mention them.</span>
       </li>
       <li>
-        <span class="onboard-icon search">ðŸ”</span>
+        <span class="onboard-icon search">🔍</span>
         <span>Use the <b>search bar</b> at the top to find any place by name and fly directly to it.</span>
       </li>
       <li>
@@ -1903,8 +1903,8 @@ let placeLabelsLayer = null;
 let placeLabelMode = 'unfolds';
 var _placeGateDate = '1861-06-15';   // latest date the timeline has reached (for the gate)
 // What makes a place "relevant" enough to reveal in 'unfolds' mode:
-//   'mentions' (rule #2) â€” a brother is there / writes from it OR a letter mentions it
-//   'presence' (rule #1) â€” only when a brother is there / writes from it
+//   'mentions' (rule #2) — a brother is there / writes from it OR a letter mentions it
+//   'presence' (rule #1) — only when a brother is there / writes from it
 var PLACE_REVEAL_RULE = 'mentions';
 let primaryLabelLookup = {}; // core name -> marker
 
@@ -1950,7 +1950,7 @@ function _mapSyncUrl(opts) {
 }
 
 // ============================================================
-// SOURCE URLS â€” hyperlinked citations
+// SOURCE URLS — hyperlinked citations
 // ============================================================
 const SOURCE_URLS = {
   "Dyer's Compendium": "https://www.civilwararchive.com/unionny.htm",
@@ -2030,7 +2030,7 @@ async function init() {
     toggleLock(paramBrother);
   }
 
-  // ?home=1 â€” arriving from one of Frances's letters: frame her home at
+  // ?home=1 — arriving from one of Frances's letters: frame her home at
   // Champlain alongside the war theater (so the reader sees where the sons
   // were while she wrote) and open her info panel.
   if (params.get('home')) {
@@ -2085,7 +2085,7 @@ async function init() {
 
   document.addEventListener('keydown', handleKeyboard);
 
-  // Intercept "View on Map" links when already on the map page â€”
+  // Intercept "View on Map" links when already on the map page —
   // navigate in-place instead of reloading the whole page
   document.addEventListener('click', function(e) {
     var link = e.target.closest('a[href*="viz-map-fullwar"]');
@@ -2251,10 +2251,10 @@ function seasonIcon(d) {
   if (!d || isNaN(d.getTime())) return '';
   const m = d.getMonth(); // 0-11
   // Spring: Mar-May, Summer: Jun-Aug, Autumn: Sep-Nov, Winter: Dec-Feb
-  if (m >= 2 && m <= 4) return 'ðŸŒ¿';
-  if (m >= 5 && m <= 7) return 'â˜€ï¸';
-  if (m >= 8 && m <= 10) return 'ðŸ‚';
-  return 'â„ï¸';
+  if (m >= 2 && m <= 4) return '🌿';
+  if (m >= 5 && m <= 7) return '☀️';
+  if (m >= 8 && m <= 10) return '🍂';
+  return '❄️';
 }
 
 function formatDateStr(s) {
@@ -2270,14 +2270,14 @@ function formatDateStr(s) {
   return formatDate(new Date(s + 'T12:00:00'));
 }
 
-// â”€â”€ Viewport smoothing: prevent jittery camera on small/frequent moves â”€â”€
+// ── Viewport smoothing: prevent jittery camera on small/frequent moves ──
 let _lastViewCenter = null;   // [lat, lon] of last camera target
 let _lastViewZoom = null;
 let _viewportTimer = null;    // debounce timer
 let _viewportBusy = false;    // true while a flyTo is in-flight
 let _viewportSuppressed = false; // true when place navigation owns the camera
-const VIEW_DEAD_ZONE = 0.005; // ~0.5 km â€” skip camera moves smaller than this (degrees)
-const VIEW_DEAD_ZONE_CINE = 0.04; // ~4 km â€” wider dead-zone during cinematic play for smoother pans
+const VIEW_DEAD_ZONE = 0.005; // ~0.5 km — skip camera moves smaller than this (degrees)
+const VIEW_DEAD_ZONE_CINE = 0.04; // ~4 km — wider dead-zone during cinematic play for smoother pans
 
 function _boundsCenter(activeBounds) {
   if (activeBounds.length === 0) return null;
@@ -2307,7 +2307,7 @@ function _smoothViewport(activeBounds, isCinematic, isLocked, lockedPos) {
   // During cinematic waypoint flyTo, don't interfere
   if (window.CinematicPlayer && CinematicPlayer.isFlyingToWaypoint()) return;
 
-  // If a previous flyTo is still animating during cinematic, skip â€” don't fight it
+  // If a previous flyTo is still animating during cinematic, skip — don't fight it
   if (isCinematic && _viewportBusy) return;
 
   let targetCenter, targetZoom, useFitBounds = false, fitBoundsObj = null;
@@ -2344,14 +2344,14 @@ function _smoothViewport(activeBounds, isCinematic, isLocked, lockedPos) {
   const delay = isCinematic ? 150 : 30;
   _viewportTimer = setTimeout(function() {
     _viewportTimer = null;
-    // Recheck â€” movement may have been superseded
+    // Recheck — movement may have been superseded
     if (!_viewportMoved(targetCenter, targetZoom, isCinematic)) return;
 
     _lastViewCenter = targetCenter;
     _lastViewZoom = targetZoom;
 
     if (isCinematic) {
-      // Use flyTo for cinematic â€” smooth eased pan, no abrupt stop()
+      // Use flyTo for cinematic — smooth eased pan, no abrupt stop()
       _viewportBusy = true;
       var dur = 1.6;
       if (useFitBounds && fitBoundsObj) {
@@ -2372,7 +2372,7 @@ function _smoothViewport(activeBounds, isCinematic, isLocked, lockedPos) {
   }, delay);
 }
 
-// Inline status callout (mobile) â€” verified/estimated label beside the place name
+// Inline status callout (mobile) — verified/estimated label beside the place name
 function setStateIcon(el, kind) {
   if (!el) return;
   const MAP = {
@@ -2480,7 +2480,7 @@ function updateToDate(day) {
       badgeEl.className = 'status-badge badge-estimated';
       setStateIcon(stateEl, 'estimated');
       ctxEl.textContent = '';
-      daysEl.textContent = 'âœ‰ No letters yet';
+      daysEl.textContent = '✉ No letters yet';
       continue;
     }
 
@@ -2502,24 +2502,24 @@ function updateToDate(day) {
       .sort((a, b) => b.date.localeCompare(a.date))[0];
     const daysSince = lastLetter ? daysBetween(lastLetter.date, currentDateStr) : -1;
 
-    // Simplified panel state â€” no redundant indicators
+    // Simplified panel state — no redundant indicators
     if (isVerified && current.letterId) {
       if (daysSince <= 2) {
-        // Letter is fresh (today / 1 day ago / 2 days ago) â€” clickable pill,
+        // Letter is fresh (today / 1 day ago / 2 days ago) — clickable pill,
         // fades by age. Mirrors the .new-letter-badge fade on the map.
         const recip = formatRecipientShort(current.recipient);
         const ageLabel = daysSince === 0 ? 'today'
                        : daysSince === 1 ? '1 day ago'
                        : '2 days ago';
         const ageClass = daysSince === 0 ? '' : (daysSince === 1 ? ' age-1' : ' age-2');
-        badgeEl.textContent = `âœ‰ Read new letter to ${recip} (${ageLabel})`;
+        badgeEl.textContent = `✉ Read new letter to ${recip} (${ageLabel})`;
         badgeEl.className = 'status-badge badge-letter badge-clickable' + ageClass;
         badgeEl.onclick = function(e) { e.stopPropagation(); openLetterOverlay(current.letterId, brotherId); };
         setStateIcon(stateEl, daysSince === 0 ? 'letter' : 'verified');
         ctxEl.textContent = contextText;
         daysEl.textContent = '';
       } else {
-        badgeEl.textContent = 'â˜… Verified';
+        badgeEl.textContent = '★ Verified';
         badgeEl.className = 'status-badge badge-letter';
         badgeEl.onclick = null;
         setStateIcon(stateEl, 'verified');
@@ -2559,12 +2559,12 @@ function updateToDate(day) {
       }
     }
 
-    // Draw current position node (labeled) â€” offset if co-located with another brother
+    // Draw current position node (labeled) — offset if co-located with another brother
     const pxOffset = getCoLocationPixelOffset(brotherId, current, currentDateStr);
     addCurrentNode(current, brotherId, pxOffset);
     activeBounds.push([current.lat, current.lon]);
 
-    // "New Letter!" badge â€” stays for 3 days, fading after day 1 and day 2
+    // "New Letter!" badge — stays for 3 days, fading after day 1 and day 2
     // so a fresh letter isn't missed but reads as progressively stale.
     const todaysLetters = DATA.movements.filter(m =>
       m.brother === brotherId && m.source === 'letter' &&
@@ -2597,10 +2597,10 @@ function updateToDate(day) {
       // Hover tooltip with letter summary, capped for readability
       const rawSummary = letter.sigSummary || letter.significance || '';
       const summary = rawSummary.length > 160
-        ? rawSummary.slice(0, 157).replace(/\s+\S*$/, '') + 'â€¦'
+        ? rawSummary.slice(0, 157).replace(/\s+\S*$/, '') + '…'
         : rawSummary;
       // Bind on any device with a precise pointer available (mouse, trackpad,
-      // stylus) â€” i.e. every desktop including touch-screen laptops, never
+      // stylus) — i.e. every desktop including touch-screen laptops, never
       // phones/tablets. L.Browser.touch was too broad: it returns true on
       // Windows Chrome even on plain desktops because of the touch-emulation
       // layer, so it suppressed the desktop hover preview.
@@ -2622,7 +2622,7 @@ function updateToDate(day) {
     }
   }
 
-  // Memorial stays on map but does NOT pull camera â€” only living brothers drive viewport
+  // Memorial stays on map but does NOT pull camera — only living brothers drive viewport
   // (Users can still click the memorial marker to fly to it)
 
   // Update narrative
@@ -2694,7 +2694,7 @@ function addCurrentNode(movement, brotherId, pixelOffsetX) {
   const name = NAMES[brotherId];
   const isVerified = movement.source === 'letter';
   const verifiedClass = isVerified ? ' verified' : '';
-  const starHtml = isVerified ? '<span class="verified-star">â˜…</span>' : '';
+  const starHtml = isVerified ? '<span class="verified-star">★</span>' : '';
 
   const icon = L.divIcon({
     html: `<div class="node-current" data-brother="${brotherId}">
@@ -2713,7 +2713,7 @@ function addCurrentNode(movement, brotherId, pixelOffsetX) {
 
 function addTrailNode(movement, brotherId, opacity, age, rangeSpan) {
   const color = COLORS[brotherId];
-  // Size diminishes with age: 12px (recent) â†’ 5px (oldest in window)
+  // Size diminishes with age: 12px (recent) → 5px (oldest in window)
   const ageFrac = Math.min(age / Math.max(rangeSpan, 1), 1);
   const size = Math.round(12 - ageFrac * 7);
 
@@ -2735,7 +2735,7 @@ function addMemorialMarker() {
   const icon = L.divIcon({
     html: `<div class="node-memorial">
       <div class="memorial-icon">&#10013;</div>
-      <div class="memorial-label">Henry Hubbell â€” KIA</div>
+      <div class="memorial-label">Henry Hubbell — KIA</div>
     </div>`,
     className: '',
     iconSize: [120, 45],
@@ -2754,17 +2754,17 @@ function addMemorialMarker() {
 // ============================================================
 function formatRecipientShort(r) {
   if (!r) return 'Unknown';
-  // Mrs. Hubbell / Mrs. F. A. Hubbell / Mrs. F. M. Hubbell â†’ "Mother"
+  // Mrs. Hubbell / Mrs. F. A. Hubbell / Mrs. F. M. Hubbell → "Mother"
   if (/^Mrs\.?\s/i.test(r)) return 'Mother';
-  // "Mother" anywhere â†’ "Mother"
+  // "Mother" anywhere → "Mother"
   if (/^Mother/i.test(r)) return 'Mother';
-  // "Family" â†’ "Family"
+  // "Family" → "Family"
   if (/^Family/i.test(r)) return 'Family';
-  // Known family: Frances/Fannie â†’ "Fannie (sister)"
+  // Known family: Frances/Fannie → "Fannie (sister)"
   if (/Frances|Fannie/i.test(r)) return 'Fannie (sister)';
   // Generic "Brother" without clear name
   if (/^Brother\s*\(unnamed/i.test(r)) return 'brother';
-  // Brothers: Alexander, Charles, James Hubbell â†’ "FirstName (brother)"
+  // Brothers: Alexander, Charles, James Hubbell → "FirstName (brother)"
   if (/Alexander.*Hubbell|Brother.*Alexander/i.test(r)) return 'Alexander (brother)';
   if (/Charles.*Hubbell|Brother.*Charles|"Dear Charley"/i.test(r)) return 'Charles (brother)';
   if (/James.*Hubbell|Brother.*James/i.test(r)) return 'James (brother)';
@@ -2814,7 +2814,7 @@ function daysBetween(dateStr1, dateStr2) {
 }
 
 // ============================================================
-// INFO PANEL â€” AUTO-REFRESH ON DATE CHANGE
+// INFO PANEL — AUTO-REFRESH ON DATE CHANGE
 // ============================================================
 function refreshInfoPanel(currentDateStr) {
   if (!infoPanelBrother || !DATA) return;
@@ -2825,13 +2825,13 @@ function refreshInfoPanel(currentDateStr) {
   const brotherInfo = DATA.brothers[brotherId];
   if (!brotherInfo) return;
 
-  // Henry KIA â€” show memorial panel
+  // Henry KIA — show memorial panel
   if (brotherId === 'henry' && currentDateStr >= '1862-09-17') {
     showMemorialPanel();
     return;
   }
 
-  // Not yet enlisted â€” show waiting state
+  // Not yet enlisted — show waiting state
   if (currentDateStr < brotherInfo.serviceStart) {
     const title = document.getElementById('infoPanelTitle');
     const body = document.getElementById('infoPanelBody');
@@ -2848,7 +2848,7 @@ function refreshInfoPanel(currentDateStr) {
   if (currentDateStr > brotherInfo.serviceEnd) {
     const title = document.getElementById('infoPanelTitle');
     const body = document.getElementById('infoPanelBody');
-    title.textContent = `${brotherInfo.name} â€” Mustered Out`;
+    title.textContent = `${brotherInfo.name} — Mustered Out`;
     title.style.color = COLORS[brotherId];
     body.innerHTML = `<div class="info-meta">
       <strong>Status:</strong> Mustered out<br>
@@ -2858,14 +2858,14 @@ function refreshInfoPanel(currentDateStr) {
     return;
   }
 
-  // Active â€” find current movement for this date
+  // Active — find current movement for this date
   const allMovements = DATA.movements.filter(m => m.brother === brotherId && m.date <= currentDateStr);
   if (allMovements.length === 0) {
     const title = document.getElementById('infoPanelTitle');
     const body = document.getElementById('infoPanelBody');
     title.textContent = `${brotherInfo.name}`;
     title.style.color = COLORS[brotherId];
-    body.innerHTML = `<div class="info-empty">En route â€” no movement data yet</div>`;
+    body.innerHTML = `<div class="info-empty">En route — no movement data yet</div>`;
     return;
   }
 
@@ -2948,7 +2948,7 @@ function extractCandidates(raw) {
     var part = parts[i].trim();
     // Skip if it looks like a state, unit number, or generic qualifier
     if (resolveState(part) || /^\d|^no\b|^camp\b|hospital|barracks|regiment|corps|div\b|hq\b|hdqrs/i.test(part)) continue;
-    // Strip "camp [name]" â†’ try the name without "camp" prefix too
+    // Strip "camp [name]" → try the name without "camp" prefix too
     var cleaned = part.replace(/^camp\s+/i, '');
     candidates.push({ core: part, state: stateAbbr });
     if (cleaned !== part) candidates.push({ core: cleaned, state: stateAbbr });
@@ -2967,7 +2967,7 @@ function extractCandidates(raw) {
     candidates.push({ core: remainder[0], state: rState });
   }
 
-  // Strategy 4: "near X" mid-string â€” extract X
+  // Strategy 4: "near X" mid-string — extract X
   var nearMatch = s.match(/(?:,\s*)?near\s+([^,]+)/i);
   if (nearMatch) {
     candidates.push({ core: nearMatch[1].trim(), state: stateAbbr });
@@ -3059,7 +3059,7 @@ function clearActivePlaceLabel() {
       var pill = el.querySelector('.place-label-pill');
       if (pill) {
         pill.classList.remove('active');
-        // Secondary labels stay visible in grey â€” only gold active state is removed
+        // Secondary labels stay visible in grey — only gold active state is removed
       }
     }
     activePlaceLabelMarker = null;
@@ -3067,7 +3067,7 @@ function clearActivePlaceLabel() {
 }
 
 function showPlacePin(placeName, movement, existingMarker) {
-  // Clean up previous pin â€” standalone markers stay visible in grey (like secondary labels)
+  // Clean up previous pin — standalone markers stay visible in grey (like secondary labels)
   if (placePinMarker) {
     if (!placePinIsReused) {
       // Standalone marker: deactivate but keep on map as grey secondary label
@@ -3082,7 +3082,7 @@ function showPlacePin(placeName, movement, existingMarker) {
   }
   clearActivePlaceLabel();
 
-  // Find or create a label marker â€” no popup, info goes in right panel only
+  // Find or create a label marker — no popup, info goes in right panel only
   // Check primary labels first, then secondary, then create standalone
   var nameForLookup = movement.placeName || placeName;
   var lookupCore = extractCandidates(nameForLookup)[0].core;
@@ -3144,7 +3144,7 @@ function buildPlaceMiniTimeline(fromHereLetters, aboutHereLetters) {
     dots += '<circle cx="' + x.toFixed(1) + '" cy="14" r="3.5" fill="' + color +
       '" opacity="0.8" class="place-mini-tl-dot" data-lid="' + (lt.id || '') +
       '" data-bro="' + (lt.brother || '') +
-      '" data-tip="' + escHtml(formatDateStr(lt.date) + ' â€” ' + bName) + '"/>';
+      '" data-tip="' + escHtml(formatDateStr(lt.date) + ' — ' + bName) + '"/>';
   });
 
   return '<div class="place-mini-tl">' +
@@ -3158,10 +3158,10 @@ function buildPlaceMiniTimeline(fromHereLetters, aboutHereLetters) {
 
 function showPlaceInfoPanel(placeName, movement) {
   // Note: pin/label cleanup is handled by showPlacePin() which is called before this.
-  // Do NOT clear placePinMarker or activePlaceLabelMarker here â€” it would destroy
+  // Do NOT clear placePinMarker or activePlaceLabelMarker here — it would destroy
   // the pin and label that showPlacePin just set up.
 
-  infoPanelBrother = null; // Place panel â€” don't auto-refresh as brother
+  infoPanelBrother = null; // Place panel — don't auto-refresh as brother
 
   const title = document.getElementById('infoPanelTitle');
   const body = document.getElementById('infoPanelBody');
@@ -3190,7 +3190,7 @@ function showPlaceInfoPanel(placeName, movement) {
   // Summary stats
   const brotherSet = new Set(fromHere.map(function(m) { return m.brother; }));
   const dateRange = fromHere.length > 0
-    ? formatDateStr(fromHere[0].date) + ' â€“ ' + formatDateStr(fromHere[fromHere.length - 1].date)
+    ? formatDateStr(fromHere[0].date) + ' – ' + formatDateStr(fromHere[fromHere.length - 1].date)
     : '';
 
   html += '<div class="info-meta">';
@@ -3222,7 +3222,7 @@ function showPlaceInfoPanel(placeName, movement) {
     fromHereLetters.forEach(function(m, idx) {
       const bName = DATA.brothers[m.brother] ? DATA.brothers[m.brother].name.split(' ')[0] : m.brother;
       const bColor = COLORS[m.brother] || '#666';
-      const excerpt = m.letterExcerpt ? m.letterExcerpt.slice(0, 70) + (m.letterExcerpt.length > 70 ? 'â€¦' : '') : '';
+      const excerpt = m.letterExcerpt ? m.letterExcerpt.slice(0, 70) + (m.letterExcerpt.length > 70 ? '…' : '') : '';
       if (idx === INITIAL) html += '<div class="place-overflow" style="display:none">';
       html += '<div class="recent-letter-card place-pin-letter" data-lid="' + escHtml(m.letterId) + '" data-bro="' + escHtml(m.brother) + '">';
       html += '<div><span class="letter-date">' + formatDateStr(m.date) + '</span> <span class="place-pin-author" style="color:' + bColor + '">' + escHtml(bName) + '</span></div>';
@@ -3286,13 +3286,13 @@ function showPlaceInfoPanel(placeName, movement) {
   }
   // Only register hover handlers when a precise pointer (mouse/trackpad/stylus)
   // is available. On phones, hover is meaningless and iOS Safari has shipped
-  // regressions where pointerType arrives as '' for touch â€” skipping
+  // regressions where pointerType arrives as '' for touch — skipping
   // registration entirely is the safest defense.
   var _hasFinePointer = window.matchMedia && window.matchMedia('(any-pointer: fine)').matches;
   body.querySelectorAll('.place-mini-tl-dot').forEach(function(dot) {
     if (_hasFinePointer) {
       dot.addEventListener('pointerenter', function(e) {
-        // Stricter than e.pointerType === 'touch' â€” only mouse triggers hover
+        // Stricter than e.pointerType === 'touch' — only mouse triggers hover
         if (e.pointerType !== 'mouse') return;
         tip.textContent = dot.getAttribute('data-tip') || '';
         tip.classList.add('visible');
@@ -3390,7 +3390,7 @@ function buildPlaceLabels() {
   placeLabelsLayer = L.layerGroup();
   primaryLabelLookup = {};
 
-  // Deduplicate places by normalized core name â†’ pick best representative
+  // Deduplicate places by normalized core name → pick best representative
   var placeMap = {};
   DATA.movements.forEach(function(m) {
     if (!m.placeName || m.lat == null || m.lon == null) return;
@@ -3520,7 +3520,7 @@ function applyPlaceLabelTimeGate(dateStr) {
   var pills = document.querySelectorAll('.place-label-pill[data-fs]');
   for (var i = 0; i < pills.length; i++) {
     var fs = pills[i].getAttribute('data-fs');
-    var future = !fs || fs > dateStr;   // no known date, or not yet reached â†’ hidden
+    var future = !fs || fs > dateStr;   // no known date, or not yet reached → hidden
     pills[i].classList.toggle('tl-future', future);
   }
 }
@@ -3749,11 +3749,11 @@ function initPlaceSearch() {
   });
 }
 
-// Frances (the mother) â€” a fixed reference dot at Champlain, NY. She wrote
+// Frances (the mother) — a fixed reference dot at Champlain, NY. She wrote
 // from home throughout the war and never moved, so unlike the four brothers
 // she's a single static marker (added once, directly to the map, so the
 // per-frame marker refresh in updateToDate never clears her). She's smaller
-// (16px vs 24px) and below the brothers (zIndexOffset 300) â€” context, not a
+// (16px vs 24px) and below the brothers (zIndexOffset 300) — context, not a
 // moving subject. She is absent from DATA.brothers, so the namecard grid
 // naturally excludes her.
 const FRANCES_LATLON = [44.99117, -73.44539];
@@ -3775,12 +3775,12 @@ function addFrancesMarker() {
     .addTo(map);
 }
 
-// Built with DOM methods (not innerHTML) â€” all content is static/trusted.
+// Built with DOM methods (not innerHTML) — all content is static/trusted.
 function showFrancesInfoPanel() {
-  infoPanelBrother = null; // static figure â€” don't auto-refresh on date change
+  infoPanelBrother = null; // static figure — don't auto-refresh on date change
   const title = document.getElementById('infoPanelTitle');
   const body = document.getElementById('infoPanelBody');
-  title.textContent = 'Frances Hubbell (Mother) â€” Champlain, NY';
+  title.textContent = 'Frances Hubbell (Mother) — Champlain, NY';
   title.style.color = COLORS.mother;
 
   const meta = document.createElement('div');
@@ -3789,19 +3789,19 @@ function showFrancesInfoPanel() {
   strong.textContent = 'Mother of the four Hubbell brothers';
   meta.appendChild(strong);
   meta.appendChild(document.createElement('br'));
-  meta.appendChild(document.createTextNode('The home front â€” Champlain, New York'));
+  meta.appendChild(document.createTextNode('The home front — Champlain, New York'));
   meta.appendChild(document.createElement('br'));
-  meta.appendChild(document.createTextNode('Received 173 of the collectionâ€™s letters'));
+  meta.appendChild(document.createTextNode('Received 173 of the collection’s letters'));
 
   const exc = document.createElement('div');
   exc.className = 'info-excerpt';
-  exc.textContent = 'Frances wrote from home throughout the war and received the familyâ€™s letters here â€” the still point her sons wrote home to.';
+  exc.textContent = 'Frances wrote from home throughout the war and received the family’s letters here — the still point her sons wrote home to.';
 
   const linkWrap = document.createElement('div');
   linkWrap.style.marginTop = '10px';
   const a = document.createElement('a');
   a.href = 'mother-frances.html';
-  a.textContent = 'Read her full story â†’';
+  a.textContent = 'Read her full story →';
   a.style.cssText = 'font-size:0.8rem;color:' + COLORS.mother + ';font-weight:600;text-decoration:none';
   linkWrap.appendChild(a);
 
@@ -3817,7 +3817,7 @@ function showInfoPanel(movement, brotherId) {
   const title = document.getElementById('infoPanelTitle');
   const body = document.getElementById('infoPanelBody');
 
-  title.textContent = `${brotherInfo.name} â€” ${movement.placeName}`;
+  title.textContent = `${brotherInfo.name} — ${movement.placeName}`;
   title.style.color = COLORS[brotherId];
 
   let html = '';
@@ -3829,11 +3829,11 @@ function showInfoPanel(movement, brotherId) {
 
   // Core metadata
   const sourceLabel = movement.source === 'letter'
-    ? '<strong style="color:#2D6B2D">â˜… Letter verified</strong>'
+    ? '<strong style="color:#2D6B2D">★ Letter verified</strong>'
     : 'Unit history (estimated)';
 
   html += `<div class="info-meta">
-    <strong>Date:</strong> ${formatDateStr(movement.date)}${movement.endDate ? ' â€“ ' + formatDateStr(movement.endDate) : ''}<br>
+    <strong>Date:</strong> ${formatDateStr(movement.date)}${movement.endDate ? ' – ' + formatDateStr(movement.endDate) : ''}<br>
     <strong>Location:</strong> ${movement.placeName}<br>
     <strong>Status:</strong> ${(movement.status || 'active').replace(/_/g, ' ')}<br>
     <strong>Source:</strong> ${sourceLabel}
@@ -3844,7 +3844,7 @@ function showInfoPanel(movement, brotherId) {
     html += `<div class="info-excerpt">"${movement.letterExcerpt}"</div>`;
   }
 
-  // Significance summary â€” use .info-excerpt class so it matches the place
+  // Significance summary — use .info-excerpt class so it matches the place
   // panel's smaller/italic/tight summary styling for cross-panel consistency.
   if (movement.sigSummary) {
     html += `<div class="info-excerpt">${movement.sigSummary}</div>`;
@@ -3919,7 +3919,7 @@ function showMemorialPanel() {
   const title = document.getElementById('infoPanelTitle');
   const body = document.getElementById('infoPanelBody');
 
-  title.textContent = 'Henry Hubbell â€” Memorial';
+  title.textContent = 'Henry Hubbell — Memorial';
   title.style.color = '#2D5F8A';
 
   body.innerHTML = `
@@ -3928,18 +3928,18 @@ function showMemorialPanel() {
       Battle of Antietam, September 17, 1862<br>
       Sharpsburg, Maryland
     </div>
-    <div class="info-excerpt">"The 34th New York suffered 150 casualties out of 311 engaged â€” a 48.2% loss rate, among the highest of any Union regiment that day."</div>
+    <div class="info-excerpt">"The 34th New York suffered 150 casualties out of 311 engaged — a 48.2% loss rate, among the highest of any Union regiment that day."</div>
     <div class="info-source">
-      ${linkifyCitation("Dyer's Compendium, 34th NY Infantry")} Â·
+      ${linkifyCitation("Dyer's Compendium, 34th NY Infantry")} ·
       ${linkifyCitation("NPS: Antietam National Battlefield")}
     </div>
     <div class="info-section">
       <h4>Henry's Service</h4>
       <div class="info-recent-item"><span class="date">1861-06-15</span> Mustered in at Albany, NY</div>
-      <div class="info-recent-item"><span class="date">1861-07</span> Seneca Mills, MD â€” picketing the Potomac</div>
-      <div class="info-recent-item"><span class="date">1862-04</span> Peninsula Campaign â€” Yorktown to Fair Oaks</div>
-      <div class="info-recent-item"><span class="date">1862-06</span> Seven Days Battles â€” retreat to Harrison's Landing</div>
-      <div class="info-recent-item"><span class="date">1862-09-14</span> Crampton's Gap â€” storming South Mountain</div>
+      <div class="info-recent-item"><span class="date">1861-07</span> Seneca Mills, MD — picketing the Potomac</div>
+      <div class="info-recent-item"><span class="date">1862-04</span> Peninsula Campaign — Yorktown to Fair Oaks</div>
+      <div class="info-recent-item"><span class="date">1862-06</span> Seven Days Battles — retreat to Harrison's Landing</div>
+      <div class="info-recent-item"><span class="date">1862-09-14</span> Crampton's Gap — storming South Mountain</div>
       <div class="info-recent-item"><span class="date">1862-09-17</span> <strong style="color:#8B3A3A">Killed at Antietam</strong></div>
     </div>
   `;
@@ -3970,37 +3970,37 @@ function linkifyCitation(text) {
 // NARRATIVE CAPTIONS
 // ============================================================
 const NARRATIVES = [
-  { start: '1861-06-15', end: '1861-07-10', text: 'Henry musters into the 34th New York â€” the first Hubbell to go' },
+  { start: '1861-06-15', end: '1861-07-10', text: 'Henry musters into the 34th New York — the first Hubbell to go' },
   { start: '1861-07-21', end: '1861-07-25', text: 'Henry hears the guns of Bull Run from Washington' },
-  { start: '1861-07-28', end: '1861-08-05', text: 'The 34th NY moves to Seneca Mills â€” picketing 17 miles of the Potomac' },
+  { start: '1861-07-28', end: '1861-08-05', text: 'The 34th NY moves to Seneca Mills — picketing 17 miles of the Potomac' },
   { start: '1861-09-15', end: '1861-10-01', text: 'Alexander enlists in the 60th New York at Ogdensburg' },
-  { start: '1862-02-05', end: '1862-02-15', text: 'Henry moves to Harpers Ferry â€” the war draws closer' },
+  { start: '1862-02-05', end: '1862-02-15', text: 'Henry moves to Harpers Ferry — the war draws closer' },
   { start: '1862-04-05', end: '1862-04-25', text: 'The Peninsula Campaign: Henry besieges Yorktown' },
-  { start: '1862-05-31', end: '1862-06-05', text: 'Battle of Fair Oaks â€” Henry in the thick of it' },
+  { start: '1862-05-31', end: '1862-06-05', text: 'Battle of Fair Oaks — Henry in the thick of it' },
   { start: '1862-06-25', end: '1862-07-02', text: 'The Seven Days: fighting and retreating toward the James River' },
-  { start: '1862-08-15', end: '1862-08-25', text: 'Henry marches north â€” the Peninsula is abandoned. Antietam awaits.' },
+  { start: '1862-08-15', end: '1862-08-25', text: 'Henry marches north — the Peninsula is abandoned. Antietam awaits.' },
   { start: '1862-09-01', end: '1862-09-12', text: 'Charles enlists in the 153rd New York' },
-  { start: '1862-09-14', end: '1862-09-14', text: 'Crampton\'s Gap â€” the 34th NY storms South Mountain' },
-  { start: '1862-09-15', end: '1862-09-20', text: 'Antietam â€” the bloodiest single day. Henry is killed. 48% of the 34th NY falls.' },
-  { start: '1862-12-13', end: '1862-12-16', text: 'Fredericksburg â€” a disastrous assault across the Rappahannock' },
-  { start: '1863-01-20', end: '1863-01-24', text: 'The Mud March â€” Burnside\'s army mired in Virginia clay' },
+  { start: '1862-09-14', end: '1862-09-14', text: 'Crampton\'s Gap — the 34th NY storms South Mountain' },
+  { start: '1862-09-15', end: '1862-09-20', text: 'Antietam — the bloodiest single day. Henry is killed. 48% of the 34th NY falls.' },
+  { start: '1862-12-13', end: '1862-12-16', text: 'Fredericksburg — a disastrous assault across the Rappahannock' },
+  { start: '1863-01-20', end: '1863-01-24', text: 'The Mud March — Burnside\'s army mired in Virginia clay' },
   { start: '1863-05-01', end: '1863-05-06', text: 'Chancellorsville. Alexander\'s 60th NY sees heavy fighting.' },
   { start: '1863-07-01', end: '1863-07-05', text: 'Gettysburg. Alexander is there. The tide turns.' },
-  { start: '1863-10-01', end: '1863-10-15', text: 'Alexander heads west by rail â€” to Tennessee, a different war entirely' },
-  { start: '1863-10-28', end: '1863-10-30', text: 'Night battle at Wauhatchie â€” the 60th NY secures the Cracker Line' },
-  { start: '1863-11-23', end: '1863-11-30', text: 'Lookout Mountain and Missionary Ridge â€” Alexander fights above the clouds' },
+  { start: '1863-10-01', end: '1863-10-15', text: 'Alexander heads west by rail — to Tennessee, a different war entirely' },
+  { start: '1863-10-28', end: '1863-10-30', text: 'Night battle at Wauhatchie — the 60th NY secures the Cracker Line' },
+  { start: '1863-11-23', end: '1863-11-30', text: 'Lookout Mountain and Missionary Ridge — Alexander fights above the clouds' },
   { start: '1864-03-01', end: '1864-03-10', text: 'Charles reaches Louisiana. Alexander in Alabama. A thousand miles apart.' },
-  { start: '1864-04-08', end: '1864-04-10', text: 'Sabine Cross Roads and Pleasant Hill â€” the 153rd NY bloodied in Louisiana' },
-  { start: '1864-05-06', end: '1864-05-12', text: 'Sherman begins the March â€” Alexander advances into Georgia' },
+  { start: '1864-04-08', end: '1864-04-10', text: 'Sabine Cross Roads and Pleasant Hill — the 153rd NY bloodied in Louisiana' },
+  { start: '1864-05-06', end: '1864-05-12', text: 'Sherman begins the March — Alexander advances into Georgia' },
   { start: '1864-07-12', end: '1864-07-14', text: 'Early raids Washington! The 153rd NY arrives from Louisiana just in time.' },
   { start: '1864-07-20', end: '1864-07-25', text: 'The gates of Atlanta. Alexander in the trenches.' },
-  { start: '1864-09-19', end: '1864-09-22', text: 'Winchester and Fisher\'s Hill â€” Sheridan routs Early in the Shenandoah' },
-  { start: '1864-10-19', end: '1864-10-25', text: 'Cedar Creek â€” surprise attack, then Sheridan\'s famous counterattack. The 153rd loses 81 men.' },
+  { start: '1864-09-19', end: '1864-09-22', text: 'Winchester and Fisher\'s Hill — Sheridan routs Early in the Shenandoah' },
+  { start: '1864-10-19', end: '1864-10-25', text: 'Cedar Creek — surprise attack, then Sheridan\'s famous counterattack. The 153rd loses 81 men.' },
   { start: '1864-12-15', end: '1864-12-20', text: 'Nashville. Alexander\'s last major battle.' },
   { start: '1865-04-09', end: '1865-04-12', text: 'Lee surrenders at Appomattox. After four years, it is over.' },
-  { start: '1865-05-23', end: '1865-05-25', text: 'The Grand Review â€” the armies march through Washington one last time' },
+  { start: '1865-05-23', end: '1865-05-25', text: 'The Grand Review — the armies march through Washington one last time' },
   { start: '1865-06-15', end: '1865-07-01', text: 'The brothers begin the long journey home.' },
-  { start: '1865-07-27', end: '1865-08-01', text: 'Alexander musters out at Ogdensburg â€” where it all began.' },
+  { start: '1865-07-27', end: '1865-08-01', text: 'Alexander musters out at Ogdensburg — where it all began.' },
 ];
 
 function updateNarrative(currentDateStr) {
@@ -4080,7 +4080,7 @@ function toggleLock(brotherId) {
       b.style.background = on ? (COLORS[b.dataset.brother] || '') : '';
       b.style.borderColor = on ? (COLORS[b.dataset.brother] || '') : '';
       b.setAttribute('aria-pressed', on ? 'true' : 'false');
-      b.title = on ? ('Following ' + _broName(b.dataset.brother) + ' â€” click to unlock')
+      b.title = on ? ('Following ' + _broName(b.dataset.brother) + ' — click to unlock')
                    : ('Lock the camera to follow ' + _broName(b.dataset.brother));
     });
     // Apply locked panel border color
@@ -4112,7 +4112,7 @@ function openLetterOverlay(letterId, brotherId, highlight, excerpt) {
   document.body.classList.add('letter-reader-open');
   // Aggressive JS-level cleanup of any dark hover preview that might be in
   // the DOM regardless of CSS state (iOS Safari has been observed serving
-  // stale CSS while serving fresh HTML/JS â€” inline styles beat cached rules).
+  // stale CSS while serving fresh HTML/JS — inline styles beat cached rules).
   ['hubbell-overlay-dot-tip', 'letter-summary-tip', 'place-mini-tl-tip'].forEach(function(cls) {
     document.querySelectorAll('.' + cls).forEach(function(el) {
       el.style.display = 'none';
@@ -4131,7 +4131,7 @@ function openLetterOverlay(letterId, brotherId, highlight, excerpt) {
     }
   };
   if (highlight) opts.highlight = Array.isArray(highlight) ? highlight : [highlight];
-  if (excerpt) opts.excerpt = excerpt;   // teased passage â†’ soft-grey anchor (gold highlight stays for place names)
+  if (excerpt) opts.excerpt = excerpt;   // teased passage → soft-grey anchor (gold highlight stays for place names)
   HubbellReader.open(letterId, opts);
 }
 
@@ -4153,7 +4153,7 @@ function toggleInfoPanel() {
   if (panel.classList.contains('collapsed')) infoPanelBrother = null;
 }
 
-// â”€â”€ Info-panel size: 2-preset cycle (Default <-> Wide). Desktop cycles the panel
+// ── Info-panel size: 2-preset cycle (Default <-> Wide). Desktop cycles the panel
 // width; mobile cycles the bottom-sheet height. Persisted; the map is reflowed
 // after the CSS transition so Leaflet tiles/positions stay correct.
 var _panelSize = (function () {
@@ -4338,12 +4338,12 @@ document.getElementById('stepForward').addEventListener('click', () => stepDay(1
 document.getElementById('rangeEnd').addEventListener('input', fadeCta);
 
 // ============================================================
-// STATUS PANEL CLICK â†’ FLY TO BROTHER
+// STATUS PANEL CLICK → FLY TO BROTHER
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
   init();
 
-  // Onboarding overlay â€” show on first visit
+  // Onboarding overlay — show on first visit
   (function() {
     var key = 'hubbell_map_onboarded';
     if (!localStorage.getItem(key)) {
@@ -4372,7 +4372,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!el || (!el.classList.contains('place-pin-letter') && !el.classList.contains('map-letter-link'))) return;
     e.preventDefault();
     var hl = [], excerpt = null;
-    if (el.dataset.excerpt) excerpt = el.dataset.excerpt;   // teased passage â†’ grey anchor
+    if (el.dataset.excerpt) excerpt = el.dataset.excerpt;   // teased passage → grey anchor
     if (el.dataset.hl) {
       var placeName = el.dataset.hl;
       hl.push(placeName);
@@ -4391,13 +4391,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Status panel click â†’ fly to brother + show info
+  // Status panel click → fly to brother + show info
   document.querySelectorAll('.status-panel').forEach(panel => {
     panel.addEventListener('click', () => {
       const brotherId = panel.dataset.brother;
       const currentDateStr = dateStr(dayToDate(currentDay));
 
-      // Henry after KIA â†’ fly to memorial
+      // Henry after KIA → fly to memorial
       if (brotherId === 'henry' && currentDateStr >= '1862-09-17') {
         map.flyTo([39.4747, -77.7447], 10, { duration: 0.6 });
         showMemorialPanel();
@@ -4416,7 +4416,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script src="_design-data.js"></script>
-<script src="_design-ui.js?v=6"></script>
+<script src="_design-ui.js?v=7"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
 <script src="_reader.js?v=21"></script>

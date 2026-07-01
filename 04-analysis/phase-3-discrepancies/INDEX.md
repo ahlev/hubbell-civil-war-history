@@ -23,6 +23,7 @@ Cumulative log of discrepancies between Hubbell family letters and the external 
 | [DSC-2026-06-06-004](DSC-2026-06-06-004.md) | 2026-06-06 | james | — | Death date: gravestone **Oct 12 1865** (Albany) vs family intro **Oct 19 1865**; the Oct 19 = James's Cedar Creek wounding anniversary (1864), a likely conflation. Stone governs | resolved |
 | [DSC-2026-06-06-005](DSC-2026-06-06-005.md) | 2026-06-06 | james | — | Birth year: roster age 22 (1864) → **b. ~1842** (agrees w/ genealogy G08 "Jan 1842") vs gravestone "AE. 27" (1865) → ~1838 (soft outlier). **Resolved → ~Jan 1842**; applied to bio 2026-06-30 | resolved |
 | [DSC-2026-06-30-001](DSC-2026-06-30-001.md) | 2026-06-30 | henry | — | Birth year: genealogy "Nov 1839" vs roster "age 23" + gravestone "AE 24" → **b. ~Nov 1837**; genealogy's 1839 also biologically impossible vs brother Charles (Apr 1840). Applied to bio | resolved |
+| [DSC-2026-06-30-002](DSC-2026-06-30-002.md) | 2026-06-30 | james + alexander | — | Birth order: site narrative labels **James "The Youngest"** but the resolved chronology (DSC-…-001) makes **Alexander (Mar 1844) the youngest**; site also calls Alexander "youngest" (correct). Site-wide narrative reconciliation pending; new kin-strip sidesteps via letters-not-age ordering | open |
 
 ## Minor Discrepancies (tabulated, no dedicated file)
 

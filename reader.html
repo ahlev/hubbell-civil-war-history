@@ -1,18 +1,18 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Letter — The Hubbell Brothers</title>
+<title>Letter â€” The Hubbell Brothers</title>
 <link rel="icon" href="/logo.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <!-- The dashboard reader styles live ONLY in this document. Because reader.html is loaded inside an
      iframe on the landing, none of these global rules can reach the immersive landing page. -->
-<link rel="stylesheet" href="/_design.css?v=8"/>
+<link rel="stylesheet" href="/_design.css?v=9"/>
 <link rel="stylesheet" href="/_overlay.css?v=11"/>
-<!-- era theme — loaded LAST so it retones/overrides the dashboard reader styling, scoped to this iframe only -->
+<!-- era theme â€” loaded LAST so it retones/overrides the dashboard reader styling, scoped to this iframe only -->
 <link rel="stylesheet" href="/_reader-era.css?v=18"/>
 <style>
   /* transparent so the landing shows (dimmed by the reader's own backdrop) behind the panel */
@@ -21,7 +21,7 @@
 </head>
 <body>
 <script src="/_design-data.js"></script>
-<script src="/_design-ui.js?v=5"></script>
+<script src="/_design-ui.js?v=7"></script>
 <script src="/_deeplink.js"></script>
 <script src="/_overlay-data.js?v=15"></script>
 <!-- full LETTERS array (transcriptions + flags + people/places) so the FULL reader (HubbellReader.open)
@@ -30,7 +30,7 @@
 <script src="/_letter-nav.js"></script>
 <script src="/_overlay.js?v=23"></script>
 <!-- ?v bumped with _reader-era.css so a fresh reader.html (rv-busted) also pulls the matching
-     _reader.js?v=21 — keeps the inline --pc seal-dot hook in sync with the era CSS that reads it -->
+     _reader.js?v=21 â€” keeps the inline --pc seal-dot hook in sync with the era CSS that reads it -->
 <script src="/_reader.js?v=21"></script>
 <script>
 (function(){
@@ -39,10 +39,10 @@
   function notifyClose(){ if(closed) return; closed=true; try{ parent.postMessage('hubbell-reader-close','*'); }catch(e){} }
   function start(){
     var id=getId();
-    // Use the FULL reader (HubbellReader.open) — same as the Preservation page — so the landing reader
+    // Use the FULL reader (HubbellReader.open) â€” same as the Preservation page â€” so the landing reader
     // carries the key-event toggle pills, the synopsis, and the people/places apparatus.
     if(!id || !window.HubbellReader || typeof HubbellReader.open!=='function'){ notifyClose(); return; }
-    // wrap close so the ✕ / programmatic close notify the parent instantly
+    // wrap close so the âœ• / programmatic close notify the parent instantly
     if(typeof HubbellReader.close==='function'){
       var orig=HubbellReader.close;
       HubbellReader.close=function(){ try{ orig.apply(this,arguments); }catch(e){} notifyClose(); };
@@ -58,10 +58,10 @@
       else if(wasOpen || closed){ clearInterval(poll); notifyClose(); }
     },200);
   }
-  // ── Mobile scroll rail: a visible, draggable scrollbar for the letter region.
+  // â”€â”€ Mobile scroll rail: a visible, draggable scrollbar for the letter region.
   //    Scoped to this landing iframe only (not the shared reader). Sized to the
-  //    #hubbellReaderContent scroll viewport so it spans exactly the letter — clearing
-  //    the header above and the footer/advance buttons below. CSS hides it ≥641px.
+  //    #hubbellReaderContent scroll viewport so it spans exactly the letter â€” clearing
+  //    the header above and the footer/advance buttons below. CSS hides it â‰¥641px.
   function mountScrollRail(){
     var panel = document.querySelector('.reader-panel');
     var content = document.getElementById('hubbellReaderContent');
