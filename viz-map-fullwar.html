@@ -4094,7 +4094,7 @@ function toggleLock(brotherId) {
 // ============================================================
 // LETTER OVERLAY
 // ============================================================
-function openLetterOverlay(letterId, brotherId, highlight, excerpt) {
+function openLetterOverlay(letterId, brotherId, highlight, excerpt, extraOpts) {
   // Close any sticky Leaflet tooltips on map markers.
   // closeTooltip() is null-safe; isTooltipOpen() is NOT (throws when no tooltip is bound).
   newLetterMarkers.forEach(function(m) { m.closeTooltip(); });
@@ -4132,6 +4132,9 @@ function openLetterOverlay(letterId, brotherId, highlight, excerpt) {
   };
   if (highlight) opts.highlight = Array.isArray(highlight) ? highlight : [highlight];
   if (excerpt) opts.excerpt = excerpt;   // teased passage → soft-grey anchor (gold highlight stays for place names)
+  // Extra reader opts (e.g. personHighlight/placeHighlight/health) forwarded from
+  // an overlay hand-off; merged last so they win over the positional params.
+  if (extraOpts) { for (var _k in extraOpts) { if (extraOpts[_k] != null) opts[_k] = extraOpts[_k]; } }
   HubbellReader.open(letterId, opts);
 }
 
@@ -4422,8 +4425,28 @@ document.addEventListener('DOMContentLoaded', () => {
 <script src="_reader.js?v=21"></script>
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=15"></script>
-<script src="_overlay.js?v=23"></script>
-<script>HubbellOverlay.bindPage({ tags: true, locations: true });</script>
+<script src="_overlay.js?v=25"></script>
+<script>
+HubbellOverlay.bindPage({ tags: true, locations: true });
+// Route letters opened from within a person/place overlay into the shared lamplit
+// reader (HubbellReader) instead of the overlay's own dark sub-reader, so every
+// letter on the map opens in the same up-to-date reader — with the originating
+// person/place name greyed as its reference anchor.
+if (window.HubbellOverlay && HubbellOverlay.setLetterOpener) {
+  HubbellOverlay.setLetterOpener(function (letterId, ctx) {
+    var extra = {};
+    if (ctx) {
+      if (ctx.excerpt) extra.excerpt = ctx.excerpt;
+      if (ctx.health) extra.health = ctx.health;
+      if (ctx.referenceName) {
+        if (ctx.referenceType === 'place') extra.placeHighlight = ctx.referenceName;
+        else extra.personHighlight = ctx.referenceName;
+      }
+    }
+    openLetterOverlay(letterId, null, null, null, extra);
+  });
+}
+</script>
 <script>
 HubbellDeepLink.injectShareButton();
 HubbellDeepLink.registerStateReader(function() {
