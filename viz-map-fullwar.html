@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="03-data/map-movements.js"></script>
+<script src="03-data/map-movements.js?v=2"></script>
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
 <link rel="stylesheet" href="_design.css?v=8">
 <link rel="stylesheet" href="_viz-era.css?v=1">
@@ -28,7 +28,7 @@ body {
 /* ── Status Bar ── */
 .status-bar {
   display: flex;
-  background: var(--bg-elev);
+  background: #ffffff;   /* clean white — reads crisp against the warm aged map (was a cool near-white that looked blue-tinted) */
   border-bottom: 1px solid var(--rule);
   flex-shrink: 0;
 }
@@ -504,25 +504,36 @@ body {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  border: 1px solid var(--rule);
-  background: #FAFAFA;
-  color: var(--ink);
+  /* Match the landing's lantern-gold scrubber controls (same gradient + warm glow),
+     keeping the existing circular layout. */
+  border: 1px solid rgba(140, 100, 40, 0.45);
+  background: linear-gradient(180deg, #f2d49b, #e0b070 52%, #c4924e);
+  color: #3a2c14;
   font-size: 1.1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.16), 0 0 10px rgba(224,176,112,0.35), inset 0 1px 0 rgba(255,255,255,0.5);
+  transition: filter 0.15s, box-shadow 0.15s, transform 0.1s;
   user-select: none;
 }
 .step-btn:hover {
-  background: #F0ECE7;
-  border-color: #CCC;
+  filter: brightness(1.06);
+  box-shadow: 0 3px 14px rgba(0,0,0,0.2), 0 0 18px rgba(224,176,112,0.6), inset 0 1px 0 rgba(255,255,255,0.55);
 }
 .step-btn:active {
   transform: scale(0.92);
-  background: var(--rule);
+  filter: brightness(0.97);
+}
+/* Cinematic play/pause button styles itself via an injected .cine-play-btn rule;
+   this higher-specificity override keeps it matched to the landing lantern-gold. */
+.cine-play-btn.step-btn {
+  background: linear-gradient(180deg, #f2d49b, #e0b070 52%, #c4924e) !important;
+  color: #3a2c14 !important;
+  border: 1px solid rgba(140, 100, 40, 0.45) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.16), 0 0 10px rgba(224,176,112,0.35), inset 0 1px 0 rgba(255,255,255,0.5) !important;
 }
 .step-btn:focus-visible {
   outline: 2px solid #2D5F8A;
@@ -807,7 +818,7 @@ body {
 .place-search-input {
   width: 100%;
   box-sizing: border-box;
-  background: var(--bg-elev);
+  background: #ffffff;
   border: 1px solid var(--rule);
   border-radius: 4px;
   padding: 6px 10px 6px 28px;
@@ -1341,25 +1352,25 @@ body.letter-reader-open .narrative-caption {
    The golden glow is reserved for the actively-selected place (.active). */
 .place-label-pill {
   display: inline-block;
-  background: rgba(214, 224, 235, 0.9);
+  background: rgba(255, 255, 255, 0.95);   /* clean white — bright & legible on the warm map (was a blue-grey slate that read cold) */
   padding: 1px 7px;
   border-radius: 10px;
   font-family: var(--font-sans);
   font-size: 0.62rem;
   font-weight: 600;
-  color: #33414F;
+  color: #3A352E;
   white-space: nowrap;
-  border: 1px solid rgba(74, 104, 138, 0.34);
-  box-shadow: 0 1px 3px rgba(40, 60, 85, 0.16);
+  border: 1px solid rgba(70, 58, 40, 0.20);
+  box-shadow: 0 1px 3px rgba(50, 40, 25, 0.18);
   cursor: pointer;
   transition: background 0.15s, color 0.15s, border-color 0.15s;
   letter-spacing: 0.01em;
 }
 .place-label-pill:hover {
-  background: rgba(198, 212, 227, 0.98);
-  color: #1F2A36;
-  border-color: rgba(74, 104, 138, 0.6);
-  box-shadow: 0 1px 6px rgba(40, 60, 85, 0.28);
+  background: #ffffff;
+  color: #1F1B15;
+  border-color: rgba(184, 134, 11, 0.5);
+  box-shadow: 0 1px 6px rgba(50, 40, 25, 0.26);
 }
 .place-label-pill.active {
   background: rgba(251, 241, 210, 0.95);
@@ -1871,7 +1882,7 @@ async function init() {
     DATA = window.__MAP_MOVEMENTS__;
   } else {
     try {
-      const resp = await fetch('03-data/map-movements.json');
+      const resp = await fetch('03-data/map-movements.json?v=2');
       DATA = await resp.json();
     } catch (e) {
       document.getElementById('map').innerHTML = '<div style="padding:40px;text-align:center;color:#C44E52">Error loading data: ' + e.message + '</div>';
