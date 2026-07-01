@@ -1401,9 +1401,13 @@ a.reader-tag:hover { filter: brightness(0.88); }
    (.reader-panel is position:relative, so the button anchors to the panel.) */
 .reader-panel .dl-modal-share {
   left: auto !important;
-  right: 56px !important;
-  top: 13px !important;
+  right: 54px !important;
+  top: 14px !important;
   transform: none !important;
+  width: 36px !important; height: 36px !important; min-width: 36px !important;
+  padding: 0 !important; font-size: 0 !important;       /* icon-only — drop the legacy "Share" text label so it aligns cleanly with the close */
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  border-radius: 999px !important;
   background: #B8860B !important;
   border-color: #B8860B !important;
   color: #FBF6EB !important;
@@ -1579,12 +1583,16 @@ button, a, [onclick], [role="button"] {
     border-radius: 10px;
     max-width: 100%;
   }
-  #hubbellReaderContent { padding: 0 16px 20px; }
-  /* Push nav bar down so prev/next don't collide with close/share at top-right */
-  .reader-nav-bar { padding: 52px 16px 10px; gap: 6px; }
+  #hubbellReaderContent { padding: 0 16px calc(22px + env(safe-area-inset-bottom)); }
+  /* a little breathing room under the highlight / people / place tag rows so the
+     pills never touch the panel edge */
+  .reader-people, .reader-places { margin-bottom: 8px; }
+  .reader-scroll { padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
+  /* prev/next sit below the aligned close+share cluster at top-right */
+  .reader-nav-bar { padding: 14px 16px 10px; gap: 6px; }
   .reader-nav-arrow { width: 36px; height: 36px; font-size: 18px; border-radius: 8px; }
   .reader-nav-mode-btn { font-size: 10px; padding: 4px 10px; }
-  .reader-close { top: 6px; right: 8px; min-width: 40px; min-height: 40px; font-size: 1.4rem; }
+  .reader-close { top: 10px; right: 10px; min-width: 36px; min-height: 36px; font-size: 1.4rem; }
   /* Share stays centered above the toggle on mobile too — slightly tighter
      padding / smaller text so it doesn't crowd the 52px nav-bar top band. */
   .dl-modal-share {
@@ -1593,22 +1601,23 @@ button, a, [onclick], [role="button"] {
     font-size: 11px !important;
   }
   .dl-modal-share svg { width: 12px !important; height: 12px !important; }
-  /* On phones the centred nav group fills the width, so the desktop inline
-     top-right share would collide with the next arrow. Revert the shared
-     reader's share to a centred banner (the 52px nav-bar top band already
-     reserves room); keep the bolder golden fill. */
+  /* Share sits as an aligned icon-pill just LEFT of the close at top-right (matches
+     the lamplit reader's tidy action cluster) — no more centred "Share" banner. */
   .reader-panel .dl-modal-share {
-    left: 50% !important;
-    right: auto !important;
+    left: auto !important;
+    right: 54px !important;
     top: 10px !important;
-    transform: translateX(-50%) !important;
+    transform: none !important;
   }
   .reader-panel .dl-modal-share:hover {
-    transform: translateX(-50%) translateY(-1px) !important;
+    transform: translateY(-1px) !important;
   }
-  /* ~30% smaller From/To value pills so the correspondence row is more
-     likely to fit on one line; tighter row gap + label help too. */
-  .reader-correspondence { gap: 5px; }
+  /* From / To each on their OWN line (label + value), via a 2-col grid */
+  .reader-correspondence {
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 4px 8px; align-items: center;
+  }
+  .reader-correspondence .reader-flags-inline { grid-column: 1 / -1; }
   .reader-pill-label { min-width: 22px; font-size: 9px; }
   .reader-pill { font-size: 0.48rem; padding: 2px 7px; gap: 3px; }
   .reader-meta { font-size: 11px; }

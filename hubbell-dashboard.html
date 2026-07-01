@@ -7,7 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-    <link rel="stylesheet" href="_design.css?v=7">
+    <link rel="stylesheet" href="_design.css?v=8">
+    <link rel="stylesheet" href="_viz-era.css?v=1">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
@@ -49,7 +50,7 @@
             margin-bottom: 0;
         }
 
-        .header h1 { /* uses shared .page-title from _design.css?v=7 */
+        .header h1 { /* uses shared .page-title from _design.css?v=8 */
             color: var(--bg-header);
         }
 
@@ -1351,7 +1352,7 @@
 <!-- v2 "lamplight" era theme — its unscoped .reader-* CONTENT rules style the
      embedded Parallel-Lives reader once --era-* tokens exist on #detail-panel
      (defined in the main <style>); loaded AFTER _overlay.css?v=11 so it wins. -->
-<link rel="stylesheet" href="_reader-era.css?v=17">
+<link rel="stylesheet" href="_reader-era.css?v=18">
 <link rel="stylesheet" href="_scrollrail.css?v=11">
 <style>:root{ --rail-accent:#3E86C4; }</style>
 <script src="_scrollrail.js?v=11"></script>
@@ -1368,7 +1369,7 @@
 
         <section class="kpi-row" id="kpi-row"></section>
 
-        <section class="timeline-section" id="timeline-section">
+        <section class="timeline-section viz-era viz-card" id="timeline-section">
             <h2>Parallel Lives</h2>
             <div class="section-subtitle" style="line-height:1.5;margin-bottom:2px;">Each dot on the timeline below is a letter written by one of the Hubbell family during the Civil War.</div>
             <div class="parallel-lives-instructions">
@@ -1402,6 +1403,14 @@
                 <div class="tl-scroll-thumb" id="tl-scroll-thumb"></div>
               </div>
               <button class="tl-scroll-arrow" onclick="panRight()">▶</button>
+            </div>
+            <div class="viz-prov">
+              <span class="viz-eyebrow">The Archive</span>
+              <span>Drawn from 273 Hubbell family letters</span>
+              <span class="viz-prov-sep">·</span>
+              <span>1861–1870</span>
+              <span class="viz-prov-sep">·</span>
+              <span>Author, recipient &amp; date are transcription-sourced; significance &amp; emotion are editorial judgments.</span>
             </div>
         </section>
 
@@ -1876,26 +1885,26 @@
                 const isQuarter = (m % 3 === 1);
                 const isJan = (m === 1);
                 if (showAllMonths || isQuarter) {
-                    s += `<line x1="${x}" y1="${margin.top-20}" x2="${x}" y2="${height-margin.bottom}" stroke="#E8E4DF" stroke-width="${isJan ? '1.5' : '1'}"/>`;
-                    s += `<text x="${x+4}" y="${margin.top-28}" font-size="10" fill="#9B9B9B" font-weight="500">${fm[m-1]}</text>`;
+                    s += `<line class="${isJan ? 'vz-grid-strong' : 'vz-grid'}" x1="${x}" y1="${margin.top-20}" x2="${x}" y2="${height-margin.bottom}" stroke="#E8E4DF" stroke-width="${isJan ? '1.5' : '1'}"/>`;
+                    s += `<text class="vz-month" x="${x+4}" y="${margin.top-28}" font-size="10" fill="#9B9B9B" font-weight="500">${fm[m-1]}</text>`;
                 }
                 if (isJan || (y === startYear && m <= minDate.getMonth()+1)) {
-                    if (isJan) s += `<text x="${x+4}" y="${margin.top-42}" font-size="12" fill="#6B6B6B" font-weight="600">${y}</text>`;
+                    if (isJan) s += `<text class="vz-year" x="${x+4}" y="${margin.top-42}" font-size="12" fill="#6B6B6B" font-weight="600">${y}</text>`;
                 }
             }
         }
         if (minDate.getMonth() > 0) {
             const firstX = xPos(`${startYear}-${String(minDate.getMonth()+1).padStart(2,'0')}-01`);
-            s += `<text x="${firstX+4}" y="${margin.top-42}" font-size="12" fill="#6B6B6B" font-weight="600">${startYear}</text>`;
+            s += `<text class="vz-year" x="${firstX+4}" y="${margin.top-42}" font-size="12" fill="#6B6B6B" font-weight="600">${startYear}</text>`;
         }
 
         // Lanes
         brothers.forEach((b, i) => {
             const y = margin.top + i * laneHeight;
-            if (i % 2 === 0) s += `<rect x="${margin.left}" y="${y}" width="${width-margin.left-margin.right}" height="${laneHeight}" fill="#FAF8F5" rx="4"/>`;
+            if (i % 2 === 0) s += `<rect class="vz-zebra" x="${margin.left}" y="${y}" width="${width-margin.left-margin.right}" height="${laneHeight}" fill="#FAF8F5" rx="4"/>`;
             s += `<line x1="${margin.left}" y1="${y+laneHeight}" x2="${width-margin.right}" y2="${y+laneHeight}" stroke="var(--border-light)" stroke-width="1"/>`;
             s += `<text x="${margin.left-16}" y="${y+laneHeight/2+1}" font-size="14" fill="${COLORS[b]}" font-weight="600" text-anchor="end" dominant-baseline="middle" font-family="'Playfair Display',serif">${NAMES[b].split(' ')[0]}</text>`;
-            s += `<text x="${margin.left-16}" y="${y+laneHeight/2+16}" font-size="9" fill="#9B9B9B" text-anchor="end" dominant-baseline="middle">${UNITS[b].split(',')[0]}</text>`;
+            s += `<text class="vz-unit" x="${margin.left-16}" y="${y+laneHeight/2+16}" font-size="9" fill="#9B9B9B" text-anchor="end" dominant-baseline="middle">${UNITS[b].split(',')[0]}</text>`;
         });
 
         // Events — two-pass collision-avoidance labels
@@ -2453,7 +2462,7 @@
     var _detailWasOpen = false; // track if navigating within open panel
     // ── Letter Context Strip (Parallel Lives reader) ──────────────────────
     // Dashboard-local twin of the shared _reader.js?v=21 strip. Same markup/CSS
-    // (.reader-context-strip, served from _design.css?v=7), but reads this file's
+    // (.reader-context-strip, served from _design.css?v=8), but reads this file's
     // own LETTERS shape (author/date/recipient) and navigates via openDetail.
     // A density band of every letter on one corpus timeline, current letter
     // pinned, tap anywhere to jump to the nearest letter.

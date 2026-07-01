@@ -1,0 +1,164 @@
+/* ============================================================================
+   _viz-era.css — "the archivist's desk": warm, period theming for the DATA layer
+   ----------------------------------------------------------------------------
+   Companion to _reader-era.css. That file warms the letter READER; this one
+   carries the same lamplit / parchment vocabulary onto the CHART layer, which
+   the v1 site left cold (near-white fields, gray mono labels, dashed #E8E4DF
+   gridlines, white dot-halos).
+
+   KEY IDEA (per the data-viz recommendations, §1): this is HARMONIZATION, not a
+   redesign — every value below is drawn from the warm palette already used by
+   _reader-era.css / .featured-letter (parchment #f1e7d1, gold #B8860B, rust
+   accent, mourning-slate death #6f7783, feTurbulence grain).
+
+   OPT-IN: everything is scoped to a `.viz-era` ancestor, so linking this file
+   changes nothing until a chart container opts in by adding class="viz-era".
+   Light ("daylight paper") + dark ("lamplight") both supported via [data-theme].
+
+   GUARDRAILS honored: AA contrast (labels warmed DARKER, not lighter-gray);
+   texture kept <=6%; prefers-reduced-motion respected; no faked source artifacts
+   (this is theme only — it never invents a document or a scan).
+   ============================================================================ */
+
+/* ---- Period chart tokens (light / daylight paper) ---- */
+.viz-era {
+  --viz-paper:    #f3ead4;
+  --viz-paper-hi: #f8f1de;
+  --viz-paper-lo: #ebdec1;
+  --viz-edge:     #d8c8a6;
+  --viz-grid:        rgba(120, 92, 40, 0.20);  /* warm sepia hairline (replaces cold #E8E4DF dashes) */
+  --viz-grid-strong: rgba(120, 92, 40, 0.34);  /* year / axis baselines */
+  --viz-ink:      #463722;   /* primary axis numerals — dark enough for AA on paper */
+  --viz-ink-soft: #6d5a39;   /* secondary labels (months, units) */
+  --viz-halo:     #f3ead4;   /* dot / node halo = paper, not white */
+  --viz-accent:   #9c7209;   /* gold, deepened for AA */
+  --viz-grain:    0.045;     /* paper grain opacity (<=6%) */
+  /* shared, dignified semantic encodings (consistent across every view) */
+  --viz-battle:  #b06a52;
+  --viz-illness: #c79a4e;
+  --viz-wound:   #a85c4e;
+  --viz-death:   #6f7783;    /* mourning slate — not a UI grey */
+}
+
+/* ---- Lamplight (dark) ---- */
+[data-theme="dark"] .viz-era {
+  --viz-paper:    #1b1710;
+  --viz-paper-hi: #221c12;
+  --viz-paper-lo: #14110a;
+  --viz-edge:     rgba(226, 181, 116, 0.20);
+  --viz-grid:        rgba(226, 181, 116, 0.16);
+  --viz-grid-strong: rgba(226, 181, 116, 0.30);
+  --viz-ink:      #d6c79f;
+  --viz-ink-soft: #a2946f;
+  --viz-halo:     #14110a;
+  --viz-accent:   #e2b574;
+  --viz-grain:    0.06;
+}
+
+/* ============================================================
+   CHART CARD — warm parchment field + faint grain
+   Applies to a chart "card"/section that carries .viz-era. Pages also set this
+   on their own card class via the shared selector list below.
+   ============================================================ */
+.viz-era.viz-card,
+.viz-era .viz-card {
+  background:
+    linear-gradient(180deg, var(--viz-paper-hi) 0%, var(--viz-paper) 58%, var(--viz-paper-lo) 100%) !important;
+  border-color: var(--viz-edge) !important;
+  position: relative;
+}
+.viz-card::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='150'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: var(--viz-grain);
+  mix-blend-mode: multiply;
+}
+[data-theme="dark"] .viz-card::before { mix-blend-mode: overlay; }
+.viz-card > * { position: relative; z-index: 1; }
+
+/* ============================================================
+   SVG CHART CHROME — sepia hairlines, warm serif numerals
+   Targets the shared primitives plus per-chart utility classes that pages add
+   to their JS-built SVG (so we never depend on var() inside SVG attributes,
+   which isn't reliable).
+   ============================================================ */
+/* axis/grid primitives (shared _design.css convention) */
+.viz-era .grid line { stroke: var(--viz-grid) !important; stroke-dasharray: none !important; }
+.viz-era .axis line,
+.viz-era .axis path { stroke: var(--viz-grid-strong) !important; }
+.viz-era .axis text { fill: var(--viz-ink-soft) !important; }
+
+/* dashboard "Parallel Lives" timeline utility classes (added in markup) */
+.viz-era .vz-grid        { stroke: var(--viz-grid) !important; }
+.viz-era .vz-grid-strong { stroke: var(--viz-grid-strong) !important; }
+.viz-era .vz-zebra       { fill: color-mix(in srgb, var(--viz-ink-soft) 7%, transparent) !important; }
+.viz-era .vz-month,
+.viz-era .vz-unit        { fill: var(--viz-ink-soft) !important; }
+.viz-era .vz-year        { fill: var(--viz-ink) !important; }
+/* warm, oldstyle numerals on axis labels — the strongest single "period" cue,
+   per the UX seat. Lane NAMES keep their display face + brother color. */
+.viz-era .vz-month,
+.viz-era .vz-year,
+.viz-era .axis text {
+  font-family: 'Source Serif 4', Georgia, serif !important;
+  font-feature-settings: "onum" 1, "tnum" 1 !important;
+  letter-spacing: 0 !important;
+}
+
+/* Dots / nodes: paper-tone halo instead of #FFFFFF (the big "modern app" tell).
+   Pages add .vz-dot to their circles; we only retone the STROKE so fills (which
+   carry the data encoding) are untouched. */
+.viz-era .vz-dot[stroke="#FFFFFF"],
+.viz-era .vz-dot[stroke="#fff"],
+.viz-era .vz-halo { stroke: var(--viz-halo) !important; }
+
+/* ============================================================
+   AGED-MAP TILES (A7) — sepia/desaturate wash over Leaflet basemap tiles, so the
+   stock near-white CartoDB layer reads as an aged map. Tile pane only; markers,
+   routes, and chrome stay crisp on top.
+   ============================================================ */
+.viz-era .leaflet-tile-pane {
+  filter: sepia(0.34) saturate(0.78) brightness(1.02) contrast(0.94) hue-rotate(-8deg);
+}
+[data-theme="dark"] .viz-era .leaflet-tile-pane {
+  filter: sepia(0.45) saturate(0.7) brightness(0.7) contrast(1.05) hue-rotate(-6deg);
+}
+/* hand-drawn inline-SVG maps: warm the land fills toward parchment */
+.viz-era .vz-land   { fill: var(--viz-paper-lo) !important; }
+.viz-era .vz-land-2 { fill: color-mix(in srgb, var(--viz-paper-lo) 88%, var(--viz-edge)) !important; }
+.viz-era .vz-coast  { stroke: var(--viz-edge) !important; }
+
+/* ============================================================
+   SHARED VIZ FRAME (A8) — eyebrow + hairline + quiet provenance line, so every
+   chart reads as one authored exhibit and carries its credibility signal.
+   ============================================================ */
+.viz-eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--viz-accent, #9c7209);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.viz-eyebrow::before {
+  content: ''; width: 16px; height: 1px;
+  background: var(--viz-accent, #9c7209); opacity: 0.6;
+}
+.viz-prov {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--viz-ink-soft, #6d5a39);
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--viz-grid, rgba(120,92,40,0.2));
+  display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline;
+}
+.viz-prov a { color: var(--viz-accent, #9c7209); text-decoration: none; border-bottom: 1px solid currentColor; }
+.viz-prov .viz-prov-sep { opacity: 0.5; }
+
+@media (prefers-reduced-motion: reduce) {
+  .viz-card::before { /* static grain only; nothing animates here, kept for intent */ }
+}
