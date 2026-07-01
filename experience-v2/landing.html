@@ -633,10 +633,14 @@ if(reduced){
 
   /* ---- mobile: snap to a checkpoint when a swipe ends, so swipe distance maps to discrete scenes ---- */
   /* (set snapOnSwipe=false to disable; free-scroll + the readiness thumb still work) */
-  let snapOnSwipe=true, touchStartY=0, touchMoved=0, snapTimer=null;
-  addEventListener('touchstart',e=>{ if(e.touches&&e.touches[0]){touchStartY=e.touches[0].clientY;} touchMoved=0; },{passive:true});
+  let snapOnSwipe=true, touchStartY=0, touchMoved=0, snapTimer=null, swipeIgnore=false;
+  addEventListener('touchstart',e=>{ if(e.touches&&e.touches[0]){touchStartY=e.touches[0].clientY;} touchMoved=0;
+    /* A tap that begins on the menu, a link/button, the reader, or the progress rail is an
+       interaction — not a scene swipe. Flag it so the snap-settle below doesn't fire and
+       steal the tap's click (which was making menu items unresponsive on mobile). */
+    swipeIgnore = !!(e.target && e.target.closest && e.target.closest('.nav, a, button, [role="button"], .reader-overlay, #prail, #pthumb')); },{passive:true});
   addEventListener('touchmove',e=>{ if(e.touches&&e.touches[0]){touchMoved=e.touches[0].clientY-touchStartY;} },{passive:true});
-  addEventListener('touchend',()=>{ if(!isMobile||!snapOnSwipe||pdragging)return;
+  addEventListener('touchend',()=>{ if(!isMobile||!snapOnSwipe||pdragging||swipeIgnore)return;
     if(snapTimer)clearInterval(snapTimer);
     const dir = touchMoved<0?1:(touchMoved>0?-1:0);   // swipe up (finger up, dy<0) → advance · swipe down → back
     let lastY=scrollY, stable=0;
