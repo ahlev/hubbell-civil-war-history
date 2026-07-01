@@ -1,0 +1,185 @@
+/* ============================================================
+   _section-head.css  —  Cinematic section masthead (v2 / Phase 5c)
+
+   A full-bleed dark "chapter-card" header that flows out of the dark
+   site-nav: a period oil-painting scene behind a layered legibility
+   scrim, with a cream display title + gold kicker. Replaces the old
+   boxed paper-fade masthead (which left bare white gutters past the
+   content column).
+
+   ── Reusable template ──────────────────────────────────────
+   Adopt on any section page by (1) linking this file after _design.css,
+   and (2) using this markup as the page's <header>:
+
+     <header class="section-head" style="--sh-accent:#E8CB77">
+       <img class="sh-bg" src="experience-v2/assets/section-heroes/NAME.webp" alt="">
+       <div class="sh-scrim"></div>
+       <div class="sh-inner">
+         <div class="sh-kicker">{svg-glyph} KICKER TEXT</div>
+         <h1 class="sh-title">Section Title</h1>
+         <div class="sh-sub">One-line description.</div>
+         <div class="sh-rule">{svg-glyph}</div>   <!-- optional -->
+       </div>
+     </header>
+
+   Per-section theming: set --sh-accent (kicker/rule/glow tint) inline,
+   swap the .sh-bg image, and (optionally) --sh-min for band height and
+   --sh-img-pos for the focal crop. Add class "no-image" to drop the
+   photo and fall back to a plain dark cinematic ground.
+
+   NOTE: full-bleed relies on `margin-left:-50vw` — it is written into
+   the four-value `margin` shorthand on purpose so no later shorthand
+   can silently reset it.
+   ============================================================ */
+
+.section-head {
+  --sh-accent: #E8CB77;
+  --sh-min: 340px;
+  --sh-img-pos: center 44%;
+  --sh-ground: #14120f;
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  margin: 0 0 40px -50vw;      /* top right bottom left(-50vw) — full-bleed */
+  padding: 0;
+  min-height: var(--sh-min);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: var(--sh-ground);
+  border-bottom: 1px solid color-mix(in srgb, var(--sh-accent) 42%, transparent);
+}
+
+/* Scene image (decorative — real text sits above it for a11y/SEO) */
+.section-head .sh-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--sh-img-pos);
+  filter: saturate(0.94) contrast(1.02) brightness(0.92);
+}
+
+/* Layered legibility scrim: bottom-weighted darken + edge vignette.
+   Keeps cream text crisp over the painting's varying luminance. */
+.section-head .sh-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg,
+      rgba(12,11,9,0.58) 0%,
+      rgba(12,11,9,0.24) 38%,
+      rgba(12,11,9,0.55) 78%,
+      rgba(12,11,9,0.86) 100%),
+    radial-gradient(115% 130% at 50% 42%,
+      rgba(12,11,9,0) 32%,
+      rgba(12,11,9,0.55) 100%);
+}
+
+/* No-image fallback — plain dark cinematic ground + accent glow */
+.section-head.no-image { background: var(--sh-ground); }
+.section-head.no-image .sh-scrim {
+  background:
+    radial-gradient(120% 130% at 50% -10%,
+      color-mix(in srgb, var(--sh-accent) 16%, transparent), transparent 55%),
+    radial-gradient(150% 120% at 50% 130%, rgba(0,0,0,0.55), transparent 62%);
+}
+
+.section-head .sh-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 52px 28px 48px;
+}
+
+.section-head .sh-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--sh-accent);
+  margin-bottom: 16px;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.7);
+}
+.section-head .sh-kicker svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 7px color-mix(in srgb, var(--sh-accent) 60%, transparent));
+}
+
+.section-head .sh-title {
+  font-family: var(--font-display, 'Source Serif 4', serif);
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+  color: #f8f2e4;
+  margin: 0;
+  text-shadow: 0 2px 22px rgba(0,0,0,0.72), 0 1px 3px rgba(0,0,0,0.6);
+}
+
+.section-head .sh-sub {
+  font-family: var(--font-serif, 'Source Serif 4', serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #e7dcc6;
+  margin: 12px auto 0;
+  max-width: 600px;
+  line-height: 1.55;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.7);
+}
+
+.section-head .sh-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  max-width: 270px;
+  margin: 20px auto 0;
+  color: var(--sh-accent);
+}
+.section-head .sh-rule::before,
+.section-head .sh-rule::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+}
+.section-head .sh-rule::before { background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--sh-accent) 75%, transparent)); }
+.section-head .sh-rule::after  { background: linear-gradient(90deg, color-mix(in srgb, var(--sh-accent) 75%, transparent), transparent); }
+.section-head .sh-rule svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--sh-accent) 50%, transparent));
+}
+
+@media (max-width: 720px) {
+  .section-head { --sh-min: 250px; }
+  .section-head .sh-inner { padding: 38px 22px 34px; }
+  .section-head .sh-title { font-size: 2.1rem; }
+  .section-head .sh-sub { font-size: 0.98rem; }
+  .section-head .sh-scrim {
+    /* small band → less room to place text on a dark patch: firmer scrim */
+    background:
+      linear-gradient(180deg,
+        rgba(12,11,9,0.62) 0%,
+        rgba(12,11,9,0.34) 40%,
+        rgba(12,11,9,0.60) 78%,
+        rgba(12,11,9,0.88) 100%),
+      radial-gradient(120% 130% at 50% 44%,
+        rgba(12,11,9,0) 28%,
+        rgba(12,11,9,0.6) 100%);
+  }
+}
