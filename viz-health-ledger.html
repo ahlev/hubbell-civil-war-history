@@ -32,13 +32,32 @@
   padding: 0 32px;
 }
 
-/* Header */
+/* Header — warm "archivist's desk" masthead */
 header {
-  padding: 72px 32px 48px;
+  padding: 58px 28px 46px;
   text-align: center;
+  position: relative;
+  background:
+    radial-gradient(135% 105% at 50% -8%, #f4ebd5 0%, rgba(244,235,213,0) 60%),
+    linear-gradient(180deg, #f7efdc 0%, var(--bg) 72%);
   border-bottom: 1px solid var(--border);
   margin-bottom: 40px;
 }
+
+/* thematic eyebrow — medical cross + record label, in the ledger teal */
+.wl-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #5E97A6;
+  margin-bottom: 16px;
+}
+.wl-eyebrow-cross { width: 13px; height: 13px; color: #5E97A6; flex-shrink: 0; }
 
 header h1 { /* uses shared .page-title from _design.css?v=8 */ }
 
@@ -47,25 +66,46 @@ header .subtitle {
   font-style: italic;
   font-size: 1.1rem;
   color: var(--text-secondary);
-  margin-bottom: 16px;
+  margin: 10px auto 0;
+  max-width: 620px;
 }
+
+/* decorative gold rule with a centered medical cross */
+.wl-crossrule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  max-width: 300px;
+  margin: 22px auto;
+  color: #B8860B;
+}
+.wl-crossrule::before,
+.wl-crossrule::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+}
+.wl-crossrule::before { background: linear-gradient(90deg, transparent, #CBA94D); }
+.wl-crossrule::after  { background: linear-gradient(90deg, #CBA94D, transparent); }
+.wl-crossrule svg { width: 15px; height: 15px; opacity: 0.9; flex-shrink: 0; }
 
 header .epigraph {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   color: var(--text-secondary);
-  max-width: 640px;
-  margin: 16px auto 0;
-  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.75;
 }
 
 header .epigraph .attribution {
   display: block;
   font-style: normal;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-tertiary);
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 /* Narrative intro */
@@ -821,9 +861,11 @@ header .epigraph .attribution {
   color: #6BA6B5;                 /* ledger teal — signals wellness-ledger context, not a bio */
   margin: 0 0 12px;
 }
-.detail-panel .dp-eyebrow-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: #6BA6B5;
+.detail-panel .dp-eyebrow-cross {
+  width: 13px; height: 13px;
+  flex-shrink: 0;
+  color: #6BA6B5;                 /* medical cross → signals a health/wellness profile at a glance */
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.04));
 }
 /* Scope line under the name: makes clear this is a health/wellness profile of the
    individual (unique to the Wellness Ledger), not a general biography. */
@@ -1075,9 +1117,17 @@ footer p {
 
 @media (max-width: 768px) {
   .container { padding: 0 16px; }
-  header h1 { }
+  header { padding: 40px 20px 34px; }
+  .wl-eyebrow { font-size: 0.6rem; letter-spacing: 0.15em; }
+  .wl-crossrule { max-width: 220px; margin: 16px auto 18px; }
+  header .epigraph { font-size: 0.95rem; }
   .timeline-section { padding: 16px; }
-  .tl-controls { top: 16px; right: 16px; }
+  /* Controls were absolutely positioned over the "Wellness Timeline" heading on
+     mobile (buttons + drag hint clashed with the title). Drop them into normal
+     flow below the title, and hide the desktop-only drag-to-zoom hint. */
+  .timeline-section h2 { margin-bottom: 10px; }
+  .tl-controls { position: static; top: auto; right: auto; margin: 0 0 14px; flex-wrap: wrap; }
+  .tl-hint { display: none; }
   .detail-panel { width: 100%; right: -100%; }
   .brother-selectors { grid-template-columns: 1fr 1fr; }
 }
@@ -1113,8 +1163,10 @@ footer p {
 
 <div class="container">
   <header>
+    <div class="wl-eyebrow"><svg class="wl-eyebrow-cross" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 2h5a1 1 0 0 1 1 1v4.5H20a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-4.5V19a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-4.5H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1h4.5V3a1 1 0 0 1 1-1z" fill="currentColor"/></svg>A Medical Record · 1861–1865</div>
     <h1 class="page-title">The Wellness Ledger</h1>
     <div class="subtitle">Physical Well-Being, Wounds, Illness & Survival Among the Hubbell Brothers, 1861-1865</div>
+    <div class="wl-crossrule"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 2h5a1 1 0 0 1 1 1v4.5H20a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-4.5V19a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-4.5H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1h4.5V3a1 1 0 0 1 1-1z" fill="currentColor"/></svg></div>
     <div class="epigraph">
       "The severest military duty has brought me pretty low."
       <span class="attribution">-- Alexander Hubbell, Hospital at Harpers Ferry, September 27, 1862</span>
@@ -2556,7 +2608,7 @@ function brotherSummaryHTML(bro) {
 function openBrotherPanel(bro) {
   const inner = brotherSummaryHTML(bro);
   if (!inner) { closeDetail(); return; }
-  renderInto(detailContent, `<div class="dp-eyebrow"><span class="dp-eyebrow-dot"></span>Wellness Ledger · Health Profile</div>` + inner);
+  renderInto(detailContent, `<div class="dp-eyebrow"><svg class="dp-eyebrow-cross" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 2h5a1 1 0 0 1 1 1v4.5H20a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-4.5V19a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-4.5H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1h4.5V3a1 1 0 0 1 1-1z" fill="currentColor"/></svg>Wellness Ledger · Health Profile</div>` + inner);
   detailPanel.classList.add('open');
   if (window.HubbellOverlay) HubbellOverlay.bindDynamic(detailContent);
 }
