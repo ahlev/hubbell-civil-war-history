@@ -20,11 +20,6 @@
   let overlayStack = [];
   let cachedLetters = null; // lazy-loaded transcriptions
   let fetchingLetters = false;
-  // Optional external letter reader. When a host page registers one via
-  // HubbellOverlay.setLetterOpener(fn), letters drilled into from a person/place
-  // overlay hand off to fn instead of rendering the overlay's own sub-reader —
-  // letting the map route every letter into the shared lamplit HubbellReader.
-  let _externalLetterOpener = null;
 
   /* ── Helpers ── */
   function lookupPerson(name) {
@@ -513,60 +508,17 @@
   // frame still on the overlay stack. Used to grey that name in the letter body
   // so a reference preview lands the eye on its mention even when no quote/excerpt
   // was passed. Returns null when the reader was opened standalone.
-  function _currentReference() {
+  function _currentReferenceName() {
     for (var i = overlayStack.length - 1; i >= 0; i--) {
       var e = overlayStack[i];
-      if (e && (e.type === 'person' || e.type === 'place')) return { name: e.key, type: e.type };
+      if (e && (e.type === 'person' || e.type === 'place')) return e.key;
     }
     return null;
-  }
-  function _currentReferenceName() {
-    var r = _currentReference();
-    return r ? r.name : null;
   }
 
   function showLetterReader(letterId, opts) {
     var meta = letterMeta(letterId);
     if (!meta) return;
-
-    // Hand off to the host page's reader when one is registered (e.g. the map's
-    // lamplit HubbellReader). The overlay panel is dismissed first so the richer
-    // reader takes the stage — exactly like clicking a letter card in the map's
-    // docked info-panel. The originating person/place (still on top of the stack,
-    // since we return before pushStack) rides along so its name can be greyed.
-    if (_externalLetterOpener && !(opts && opts.forceInternal)) {
-      var ref = _currentReference();
-      var handoff = {
-        excerpt: opts && opts.excerpt,
-        health: opts && opts.health,
-        referenceName: ref ? ref.name : null,
-        referenceType: ref ? ref.type : null
-      };
-      closeOverlay();
-      _externalLetterOpener(letterId, handoff);
-      return;
-    }
-
-    // Built-in default: with no custom opener, prefer the shared lamplit reader
-    // (HubbellReader) whenever the host page loads it AND has this letter's data —
-    // so person/place drilling opens the same up-to-date reader site-wide without
-    // per-page wiring. Two carve-outs stay on the built-in sub-reader below:
-    //   • the Wellness Ledger's medical view (opts.health) — a purpose-built flow;
-    //   • pages without HubbellReader / without the letter loaded (no regression).
-    if (!(opts && opts.forceInternal) && !(opts && opts.health) &&
-        window.HubbellReader && window.HubbellReader.open && fullLetter(letterId)) {
-      var ref2 = _currentReference();
-      var ropts = { letter: fullLetter(letterId) };
-      if (opts && opts.excerpt) ropts.excerpt = opts.excerpt;
-      if (ref2) {
-        if (ref2.type === 'place') ropts.placeHighlight = ref2.name;
-        else ropts.personHighlight = ref2.name;
-      }
-      closeOverlay();
-      window.HubbellReader.open(letterId, ropts);
-      return;
-    }
-
     pushStack('letter', letterId);
     currentLetterOpts = opts || null;
     currentOverlayLetterId = letterId;
@@ -1273,12 +1225,6 @@
     showLetter: showLetterReader,
     showHealthLetter: function (id, healthCtx) { showLetterReader(id, { health: healthCtx }); },
     close: closeOverlay,
-
-    // Register an external letter reader. Pass a fn(letterId, ctx) to route
-    // letters (opened from a person/place overlay) to it instead of the overlay's
-    // built-in sub-reader; ctx = {excerpt, health, referenceName, referenceType}.
-    // Pass null to restore the built-in reader.
-    setLetterOpener: function (fn) { _externalLetterOpener = (typeof fn === 'function') ? fn : null; },
 
     bindPage: function (options) {
       options = options || {};
