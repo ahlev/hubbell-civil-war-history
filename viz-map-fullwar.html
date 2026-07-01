@@ -806,6 +806,59 @@ body {
 .places-btn.hidden-state { color: var(--ink-3); border-color: var(--rule); }
 .places-btn.hidden-state:hover { color: var(--ink-2); }
 
+/* ── 3-state place-label control: Off / As it unfolds / All ── */
+.places-mode {
+  position: absolute;
+  top: 10px;
+  right: 90px;               /* Re-center sits at right:10 */
+  z-index: 1000;
+  display: inline-flex;
+  align-items: stretch;
+  background: #ffffff;
+  border: 1px solid #B8860B44;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  overflow: hidden;
+  font-family: var(--font-sans);
+  height: 30px;
+}
+.places-mode .pm-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 9px;
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: #FBF6EA;
+  border-right: 1px solid #EADFC4;
+}
+.pm-opt {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0 10px;
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  border-right: 1px solid var(--rule);
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.pm-opt:last-child { border-right: none; }
+.pm-opt:hover { background: #FDF6E3; color: var(--ink); }
+.pm-opt.active { background: #B8860B; color: #fff; }
+.pm-sm { display: none; }
+
+/* Reveal animation for "as it unfolds": future labels fade out (kept in layout so the
+   active/searched place can override the gate). !important beats the .secondary.revealed
+   zoom rule so the time gate always wins. */
+.place-label-pill { transition: background 0.15s, color 0.15s, border-color 0.15s, opacity 0.45s ease, transform 0.45s ease; }
+.place-label-pill.tl-future { opacity: 0 !important; transform: scale(0.82); pointer-events: none; }
+.place-label-pill.tl-future.active { opacity: 1 !important; transform: none; pointer-events: auto; }
+
 /* ── Place Search ── */
 .place-search {
   position: absolute;
@@ -1535,11 +1588,19 @@ body.letter-reader-open .narrative-caption {
   .place-search {
     left: 8px;
     transform: none;
-    width: calc(100vw - 176px);
-    max-width: 230px;
+    width: calc(100vw - 205px);
+    max-width: 180px;
   }
   .places-btn { right: 78px; padding: 4px 7px; font-size: 0.6rem; }
-  .recenter-btn { right: 8px; padding: 4px 7px; font-size: 0.6rem; }
+  .recenter-btn { right: 8px; padding: 4px 6px; font-size: 0.55rem; }
+  /* 3-state places control: compact for the phone top bar — drop the "PLACES"
+     label, use the short "Unfolds" wording, tighten padding so search + control +
+     re-center all sit cleanly on one row. */
+  .places-mode { right: 74px; height: 27px; }
+  .places-mode .pm-label { display: none; }
+  .places-mode .pm-lg { display: none; }
+  .places-mode .pm-sm { display: inline; }
+  .places-mode .pm-opt { padding: 0 7px; font-size: 0.6rem; }
   /* ── Controls ── */
   .controls { padding: 6px 8px; }
   .controls-cta { font-size: 0.74rem; }
@@ -1762,7 +1823,12 @@ body.letter-reader-open .narrative-caption {
     </div>
 
     <!-- Map top buttons -->
-    <button class="places-btn" id="placesBtn" onclick="togglePlacesBtn()">&#9673; Places</button>
+    <div class="places-mode" id="placesMode" role="group" aria-label="Place labels">
+      <span class="pm-label">Places</span>
+      <button class="pm-opt" data-mode="off" onclick="setPlaceLabelMode('off')" title="Hide all place labels">Off</button>
+      <button class="pm-opt active" data-mode="unfolds" onclick="setPlaceLabelMode('unfolds')" title="Reveal places as the timeline reaches them"><span class="pm-lg">As it unfolds</span><span class="pm-sm">Unfolds</span></button>
+      <button class="pm-opt" data-mode="all" onclick="setPlaceLabelMode('all')" title="Show every place label">All</button>
+    </div>
     <button class="recenter-btn" id="recenterBtn" onclick="recenterMap()">Re-center</button>
 
     <!-- Info panel toggle -->
@@ -1808,7 +1874,14 @@ body.letter-reader-open .narrative-caption {
 let DATA = null;
 let map, trailLayers = {}, markerLayers = {}, memorialMarker = null;
 let placeLabelsLayer = null;
-let placeLabelsVisible = true;
+// Place-label reveal mode: 'off' | 'unfolds' (labels appear as the timeline reaches
+// each place) | 'all' (every label always shown).
+let placeLabelMode = 'unfolds';
+var _placeGateDate = '1861-06-15';   // latest date the timeline has reached (for the gate)
+// What makes a place "relevant" enough to reveal in 'unfolds' mode:
+//   'mentions' (rule #2) — a brother is there / writes from it OR a letter mentions it
+//   'presence' (rule #1) — only when a brother is there / writes from it
+var PLACE_REVEAL_RULE = 'mentions';
 let primaryLabelLookup = {}; // core name -> marker
 
 const COLORS = {
@@ -1924,6 +1997,7 @@ async function init() {
   }
   rangeEndDay = startDay;
   updateToDate(startDay);
+  setPlaceLabelMode('unfolds');   // default: reveal places as the timeline advances
 
   // Only lock-follow real combatants. 'mother' is in NAMES but has no movements
   // / namecard, so guard against toggleLock('mother') touching missing elements.
@@ -2537,6 +2611,10 @@ function updateToDate(day) {
 
   // Auto-refresh info panel if showing a brother
   refreshInfoPanel(currentDateStr);
+
+  // Reveal place labels up to the current date ("as it unfolds" mode)
+  _placeGateDate = currentDateStr;
+  if (placeLabelMode === 'unfolds') applyPlaceLabelTimeGate(currentDateStr);
 }
 
 function getLockedBrotherPosition(currentDateStr) {
@@ -3255,6 +3333,33 @@ function escHtml(s) {
 }
 
 // ========== PLACE LABELS LAYER ==========
+// Earliest date embedded in a list of letter ids (LTR-YYYY-MM-DD-###).
+function earliestLetterDate(ltrs) {
+  if (!ltrs || !ltrs.length) return null;
+  var min = null;
+  ltrs.forEach(function (id) {
+    var mm = String(id).match(/(\d{4}-\d{2}-\d{2})/);
+    if (mm && (!min || mm[1] < min)) min = mm[1];
+  });
+  return min;
+}
+
+// The date a place first becomes "relevant" for the reveal gate. Rule #2 ('mentions')
+// takes the earliest of the place's movement date and the earliest letter that mentions
+// it; rule #1 ('presence') uses only the movement date.
+function placeFirstSeen(name, movementMinDate) {
+  var dates = [];
+  if (movementMinDate) dates.push(movementMinDate);
+  if (PLACE_REVEAL_RULE === 'mentions') {
+    var op = findOverlayPlace(name);
+    var mention = op ? earliestLetterDate(op.ltrs) : null;
+    if (mention) dates.push(mention);
+  }
+  if (!dates.length) return '';
+  dates.sort();
+  return dates[0];
+}
+
 function buildPlaceLabels() {
   if (placeLabelsLayer) { map.removeLayer(placeLabelsLayer); }
   placeLabelsLayer = L.layerGroup();
@@ -3266,10 +3371,11 @@ function buildPlaceLabels() {
     if (!m.placeName || m.lat == null || m.lon == null) return;
     var core = extractCandidates(m.placeName)[0].core;
     if (!placeMap[core]) {
-      placeMap[core] = { name: m.placeName, lat: m.lat, lon: m.lon, count: 0, letterCount: 0 };
+      placeMap[core] = { name: m.placeName, lat: m.lat, lon: m.lon, count: 0, letterCount: 0, minDate: null };
     }
     placeMap[core].count++;
     if (m.source === 'letter') placeMap[core].letterCount++;
+    if (m.date && (!placeMap[core].minDate || m.date < placeMap[core].minDate)) placeMap[core].minDate = m.date;
   });
 
   // Compute total relevance (letters from + overlay mentions) per place
@@ -3293,7 +3399,7 @@ function buildPlaceLabels() {
   places.forEach(function(p) {
     var icon = L.divIcon({
       className: 'place-label-icon',
-      html: '<span class="place-label-pill">' + escHtml(p.name) + '</span>',
+      html: '<span class="place-label-pill" data-fs="' + placeFirstSeen(p.name, p.minDate) + '">' + escHtml(p.name) + '</span>',
       iconSize: [0, 0],
       iconAnchor: [0, 6]
     });
@@ -3316,7 +3422,7 @@ function buildPlaceLabels() {
     primaryLabelLookup[extractCandidates(p.name)[0].core] = marker;
   });
 
-  if (placeLabelsVisible) {
+  if (placeLabelMode !== 'off') {
     placeLabelsLayer.addTo(map);
   }
 
@@ -3343,7 +3449,7 @@ function buildSecondaryPlaceLabels(primaryCores) {
     var core = extractCandidates(m.placeName)[0].core;
     if (primaryCores[core] || seen[core]) return;
     seen[core] = true;
-    addSecondaryMarker(m.placeName, m.lat, m.lon, core);
+    addSecondaryMarker(m.placeName, m.lat, m.lon, core, placeFirstSeen(m.placeName, m.date));
   });
 
   // Add gazetteer places not covered by movements at all
@@ -3353,17 +3459,17 @@ function buildSecondaryPlaceLabels(primaryCores) {
       var core = extractCandidates(p.n)[0].core;
       if (primaryCores[core] || seen[core]) return;
       seen[core] = true;
-      addSecondaryMarker(p.n, p.co.lat, p.co.lon, core);
+      addSecondaryMarker(p.n, p.co.lat, p.co.lon, core, placeFirstSeen(p.n, null));
     });
   }
 
   secondaryLabelsLayer.addTo(map);
 }
 
-function addSecondaryMarker(name, lat, lon, core) {
+function addSecondaryMarker(name, lat, lon, core, fs) {
   var icon = L.divIcon({
     className: 'place-label-icon',
-    html: '<span class="place-label-pill secondary">' + escHtml(name) + '</span>',
+    html: '<span class="place-label-pill secondary" data-fs="' + (fs || '') + '">' + escHtml(name) + '</span>',
     iconSize: [0, 0],
     iconAnchor: [0, 6]
   });
@@ -3384,21 +3490,36 @@ function findSecondaryMarker(placeName) {
   return secondaryLabelLookup[core] || null;
 }
 
-function togglePlaceLabels(show) {
-  placeLabelsVisible = show;
-  if (!placeLabelsLayer) return;
-  if (show) {
-    placeLabelsLayer.addTo(map);
-  } else {
-    map.removeLayer(placeLabelsLayer);
+// 'unfolds' mode: hide any label whose first-relevant date is still in the future.
+function applyPlaceLabelTimeGate(dateStr) {
+  var pills = document.querySelectorAll('.place-label-pill[data-fs]');
+  for (var i = 0; i < pills.length; i++) {
+    var fs = pills[i].getAttribute('data-fs');
+    var future = !fs || fs > dateStr;   // no known date, or not yet reached → hidden
+    pills[i].classList.toggle('tl-future', future);
   }
-  // Sync button state
-  var btn = document.getElementById('placesBtn');
-  if (btn) btn.classList.toggle('hidden-state', !show);
 }
 
-function togglePlacesBtn() {
-  togglePlaceLabels(!placeLabelsVisible);
+// 3-state control: 'off' | 'unfolds' | 'all'.
+function setPlaceLabelMode(mode) {
+  placeLabelMode = mode;
+  var opts = document.querySelectorAll('#placesMode .pm-opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].classList.toggle('active', opts[i].getAttribute('data-mode') === mode);
+  }
+  if (mode === 'off') {
+    if (placeLabelsLayer && map.hasLayer(placeLabelsLayer)) map.removeLayer(placeLabelsLayer);
+    if (secondaryLabelsLayer && map.hasLayer(secondaryLabelsLayer)) map.removeLayer(secondaryLabelsLayer);
+    return;
+  }
+  if (placeLabelsLayer && !map.hasLayer(placeLabelsLayer)) placeLabelsLayer.addTo(map);
+  if (secondaryLabelsLayer && !map.hasLayer(secondaryLabelsLayer)) secondaryLabelsLayer.addTo(map);
+  if (mode === 'all') {
+    var hidden = document.querySelectorAll('.place-label-pill.tl-future');
+    for (var j = 0; j < hidden.length; j++) hidden[j].classList.remove('tl-future');
+  } else { // unfolds
+    applyPlaceLabelTimeGate(_placeGateDate);
+  }
 }
 
 // ========== PLACE SEARCH ==========
@@ -3525,7 +3646,7 @@ function selectSearchResult(place) {
   var lon = movement.lon || place.lon;
 
   // Ensure place labels are visible
-  if (!placeLabelsVisible) togglePlaceLabels(true);
+  if (placeLabelMode === 'off') setPlaceLabelMode('all');
 
   _viewportSuppressed = true;
   if (_viewportTimer) { clearTimeout(_viewportTimer); _viewportTimer = null; }
