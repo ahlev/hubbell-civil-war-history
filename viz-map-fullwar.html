@@ -990,35 +990,31 @@ body {
   border-bottom: 3px solid;
 }
 .status-panel.locked .status-name { font-weight: 700; }
+/* Lock-to-follow: a small padlock ICON toggle on each brother panel (visible on
+   desktop AND mobile). Muted outline when unlocked; bold + brother-accent fill when
+   locked (the fill color is set inline by toggleLock). */
 .lock-btn {
-  font-size: 0.65rem;
-  cursor: pointer;
   margin-left: auto;
-  padding: 3px 10px;
-  border-radius: 4px;
-  border: 1.5px solid #B8B2AA;
-  background: #F0ECE7;
-  color: var(--ink-2);
-  font-family: var(--font-sans);
-  font-weight: 600;
-  transition: all 0.15s;
-  white-space: nowrap;
-  letter-spacing: 0.3px;
+  flex-shrink: 0;
+  width: 26px;
+  height: 22px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1.5px solid #C7C0B6;
+  background: #F4F0EA;
+  color: var(--ink-3);
+  transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
 }
-.lock-btn:hover {
-  background: #E0DCD7;
-  color: var(--ink);
-  border-color: var(--ink-3);
-}
+.lock-btn .lock-ico { width: 13px; height: 13px; fill: currentColor; display: block; }
+.lock-btn:hover { background: #E8E2DA; color: var(--ink); border-color: var(--ink-3); }
 .status-panel.locked .lock-btn {
-  background: #2D5F8A;
-  color: var(--bg-elev);
-  border-color: #2D5F8A;
-  box-shadow: 0 1px 4px rgba(45, 95, 138, 0.3);
-}
-.status-panel.locked .lock-btn:hover {
-  background: #1A3D5C;
-  border-color: #1A3D5C;
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.22);
 }
 .status-name {
   display: flex;
@@ -1521,7 +1517,7 @@ body.letter-reader-open .narrative-caption {
   .info-recent-item { font-size: 0.7rem; padding: 3px 0; }
   .status-bar { overflow-x: auto; }
   .status-panel { min-width: 132px; padding: 6px 10px; height: 64px; }
-  .lock-btn { display: none; }
+  .lock-btn { display: inline-flex; width: 24px; height: 20px; }
   .status-regiment { display: none; }
   .status-context { -webkit-line-clamp: 1; }
   .controls { padding: 6px 12px; }
@@ -1549,7 +1545,7 @@ body.letter-reader-open .narrative-caption {
   .status-panel:nth-child(2n) { border-right: none; }
   .status-panel:nth-child(n+3) { border-bottom: none; }
   /* Lock-to-follow is a desktop power feature; panel tap still flies to brother */
-  .lock-btn { display: none; }
+  .lock-btn { display: inline-flex; width: 24px; height: 20px; }
   .status-name { font-size: 0.8rem; margin-bottom: 0; line-height: 1.2; }
   .status-regiment { display: none; }
   .status-context { display: none; }
@@ -1760,28 +1756,28 @@ body.letter-reader-open .narrative-caption {
 <!-- Status Bar: 4 brother panels -->
 <div class="status-bar" id="statusBar">
   <div class="status-panel" id="status-henry" data-brother="henry">
-    <div class="status-name"><span class="status-dot" style="background:#2D5F8A"></span> Henry <span class="lock-btn" data-brother="henry">Lock to follow</span></div>
+    <div class="status-name"><span class="status-dot" style="background:#2D5F8A"></span> Henry <span class="lock-btn" data-brother="henry" title="Lock the camera to follow" aria-pressed="false"><svg class="lock-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 0 1 6 0v3H9z"/></svg></span></div>
     <div class="status-regiment">34th NY Infantry</div>
     <div class="status-loc-row"><span class="status-state-icon" id="state-henry"></span><span class="status-location" id="loc-henry">Not yet enlisted</span><span class="days-since" id="days-henry"></span></div>
     <div><span class="status-badge badge-not-enlisted" id="badge-henry">Not enlisted</span></div>
     <div class="status-context" id="ctx-henry"></div>
   </div>
   <div class="status-panel" id="status-alexander" data-brother="alexander">
-    <div class="status-name"><span class="status-dot" style="background:#B8860B"></span> Alexander <span class="lock-btn" data-brother="alexander">Lock to follow</span></div>
+    <div class="status-name"><span class="status-dot" style="background:#B8860B"></span> Alexander <span class="lock-btn" data-brother="alexander" title="Lock the camera to follow" aria-pressed="false"><svg class="lock-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 0 1 6 0v3H9z"/></svg></span></div>
     <div class="status-regiment">60th NY Infantry</div>
     <div class="status-loc-row"><span class="status-state-icon" id="state-alexander"></span><span class="status-location" id="loc-alexander">Not yet enlisted</span><span class="days-since" id="days-alexander"></span></div>
     <div><span class="status-badge badge-not-enlisted" id="badge-alexander">Not enlisted</span></div>
     <div class="status-context" id="ctx-alexander"></div>
   </div>
   <div class="status-panel" id="status-charles" data-brother="charles">
-    <div class="status-name"><span class="status-dot" style="background:#8B3A3A"></span> Charles <span class="lock-btn" data-brother="charles">Lock to follow</span></div>
+    <div class="status-name"><span class="status-dot" style="background:#8B3A3A"></span> Charles <span class="lock-btn" data-brother="charles" title="Lock the camera to follow" aria-pressed="false"><svg class="lock-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 0 1 6 0v3H9z"/></svg></span></div>
     <div class="status-regiment">153rd NY Infantry</div>
     <div class="status-loc-row"><span class="status-state-icon" id="state-charles"></span><span class="status-location" id="loc-charles">Not yet enlisted</span><span class="days-since" id="days-charles"></span></div>
     <div><span class="status-badge badge-not-enlisted" id="badge-charles">Not enlisted</span></div>
     <div class="status-context" id="ctx-charles"></div>
   </div>
   <div class="status-panel" id="status-james" data-brother="james">
-    <div class="status-name"><span class="status-dot" style="background:#4A7C59"></span> James <span class="lock-btn" data-brother="james">Lock to follow</span></div>
+    <div class="status-name"><span class="status-dot" style="background:#4A7C59"></span> James <span class="lock-btn" data-brother="james" title="Lock the camera to follow" aria-pressed="false"><svg class="lock-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 0 1 6 0v3H9z"/></svg></span></div>
     <div class="status-regiment">West Point / 153rd NY</div>
     <div class="status-loc-row"><span class="status-state-icon" id="state-james"></span><span class="status-location" id="loc-james">Not yet enlisted</span><span class="days-since" id="days-james"></span></div>
     <div><span class="status-badge badge-not-enlisted" id="badge-james">Not enlisted</span></div>
@@ -4034,11 +4030,16 @@ function recenterMap() {
 // ============================================================
 function toggleLock(brotherId) {
   _homeMode = false; // locking onto a brother exits Frances's home-framing mode
+  var _broName = b => (NAMES[b] ? NAMES[b].split(' ')[0] : 'this brother');
   if (lockedBrother === brotherId) {
     // Unlock
     lockedBrother = null;
     document.querySelectorAll('.status-panel').forEach(p => p.classList.remove('locked'));
-    document.querySelectorAll('.lock-btn').forEach(b => { b.textContent = 'Lock to follow'; });
+    document.querySelectorAll('.lock-btn').forEach(b => {
+      b.style.background = ''; b.style.borderColor = '';
+      b.setAttribute('aria-pressed', 'false');
+      b.title = 'Lock the camera to follow ' + _broName(b.dataset.brother);
+    });
   } else {
     // Lock onto this brother
     lockedBrother = brotherId;
@@ -4046,7 +4047,12 @@ function toggleLock(brotherId) {
       p.classList.toggle('locked', p.dataset.brother === brotherId);
     });
     document.querySelectorAll('.lock-btn').forEach(b => {
-      b.textContent = b.dataset.brother === brotherId ? 'Following ✓' : 'Lock to follow';
+      var on = b.dataset.brother === brotherId;
+      b.style.background = on ? (COLORS[b.dataset.brother] || '') : '';
+      b.style.borderColor = on ? (COLORS[b.dataset.brother] || '') : '';
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.title = on ? ('Following ' + _broName(b.dataset.brother) + ' — click to unlock')
+                   : ('Lock the camera to follow ' + _broName(b.dataset.brother));
     });
     // Apply locked panel border color
     const panel = document.getElementById(`status-${brotherId}`);
