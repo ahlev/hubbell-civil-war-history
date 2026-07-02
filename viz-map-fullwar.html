@@ -950,42 +950,48 @@ body {
     max-width: calc(100vw - 48px);
   }
 }
-.search-result {
+/* NOTE: all rules are scoped under .place-search-results because _design.css's
+   site-nav search ALSO styles a global `.search-result { display:flex; gap:10px }`
+   — unscoped, that rule rows-up name+snippet and crushes the place name into a
+   narrow column. display:block here restores the stacked two-row layout. */
+.place-search-results .search-result {
+  display: block;
   padding: 7px 12px 8px 10px;   /* extra right padding keeps text off the panel edge */
   cursor: pointer;
   border-bottom: 1px solid #F0ECE7;
   transition: background 0.1s;
 }
-.search-result:last-child { border-bottom: none; }
-.search-result:hover, .search-result.active { background: #FDF6E3; }
-/* Row 1: place name (left, wraps freely) + letter count (right, pinned) */
-.search-result-top {
+.place-search-results .search-result:last-child { border-bottom: none; }
+.place-search-results .search-result:hover,
+.place-search-results .search-result.active { background: #FDF6E3; }
+/* Row 1: place name (left, full remaining width) + letter count (right, pinned) */
+.place-search-results .search-result-top {
   display: flex;
   align-items: baseline;
   gap: 8px;
 }
-.search-result-name {
+.place-search-results .search-result-name {
   flex: 1;
   min-width: 0;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--ink);
   line-height: 1.3;
 }
-.search-result-name mark {
+.place-search-results .search-result-name mark {
   background: #FFEEBB;
   color: inherit;
   border-radius: 1px;
   padding: 0 1px;
 }
-.search-result-letters {
+.place-search-results .search-result-letters {
   font-size: 0.62rem;
   font-weight: 500;
   color: var(--ink-2);
   white-space: nowrap;
 }
 /* Row 2: snippet spans the full row and clamps to two lines */
-.search-result-snippet {
+.place-search-results .search-result-snippet {
   font-size: 0.64rem;
   color: var(--ink-3);
   margin-top: 2px;
@@ -1782,9 +1788,9 @@ body.letter-reader-open .narrative-caption {
 </style>
 <link rel="stylesheet" href="_overlay.css?v=11">
 <link rel="stylesheet" href="_reader-era.css?v=18">
-<link rel="stylesheet" href="_scrollrail.css?v=11">
+<link rel="stylesheet" href="_scrollrail.css?v=12">
 <style>:root{ --rail-accent:#52A86E; }</style>
-<script src="_scrollrail.js?v=11"></script>
+<script src="_scrollrail.js?v=12"></script>
 </head>
 <body>
 

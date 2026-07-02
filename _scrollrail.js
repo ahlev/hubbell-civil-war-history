@@ -72,10 +72,18 @@
     }
 
     // The thumb is a position INDICATOR, kept in sync with the real scroll position.
+    var mobileMQ = window.matchMedia('(max-width: 640px)');
     function update(){
       var m = metrics();
-      if (m.overflow <= 8){ rail.style.display = 'none'; return; }   // nothing to scroll → hide
+      if (m.overflow <= 8){
+        rail.style.display = 'none';
+        if (docMode) document.documentElement.classList.remove('hub-rail-live');
+        return;   // nothing to scroll → hide
+      }
       rail.style.display = 'block';
+      // While the custom rail is live on a phone, hide the NATIVE scrollbar —
+      // otherwise the page shows two right-edge scrollbars slightly out of step.
+      if (docMode) document.documentElement.classList.toggle('hub-rail-live', mobileMQ.matches);
       rail.style.top = m.inset + 'px';     // start below the navbar
       rail.style.height = m.railH + 'px';
       var top = m.overflow > 0 ? (getScrollTop() / m.overflow) * m.maxTop : 0;
@@ -89,30 +97,54 @@
     window.addEventListener('orientationchange', remeasure);
     if (window.ResizeObserver){ try{ new ResizeObserver(update).observe(docMode ? document.body : scroller); }catch(e){} }
 
-    // ── PRESS-TO-JUMP (robust on iOS) ──────────────────────────────────────────
-    // Continuous thumb-drag is unwinnable on iOS document scroll: it reports the held
-    // pointer in DOCUMENT space (drifts by the scroll) AND runs its own momentum scroll,
-    // so any drag forms a feedback loop. Instead: press anywhere on the rail to JUMP the
-    // page to that spot. The pointer is read EXACTLY ONCE, before any scrolling happens,
-    // so there is no loop to build — bulletproof on every device. (See tasks/lessons.md.)
-    function jumpToClientY(clientY){
+    // ── PRESS-TO-JUMP + HELD DRAG (frozen metrics) ─────────────────────────────
+    // History: naive thumb-drag jittered on iOS because every pointermove re-read
+    // getBoundingClientRect on elements that were themselves moving with the scroll,
+    // and iOS momentum scrolling fed back into the loop (see tasks/lessons.md — the
+    // interim fix was press-to-jump only). The reliable drag recipe:
+    //   1. touch-action:none on the rail (CSS) — the browser never scrolls natively
+    //      from this gesture, so there is no momentum to fight;
+    //   2. read rail position + metrics EXACTLY ONCE at pointerdown (frozen for the
+    //      whole drag — nothing mid-drag ever re-measures layout);
+    //   3. move by pointer DELTA from the press point (clientY is viewport-relative
+    //      and stable), mapping thumb-travel → scrollTop instantly (smooth suspended).
+    // A simple press (no movement) still jumps the page to that spot, as before.
+    var dragging = false, dragStartY = 0, dragStartThumbTop = 0, dragM = null;
+    rail.addEventListener('pointerdown', function(e){
       var m = metrics();
       if (m.overflow <= 8) return;
-      var railTop = rail.getBoundingClientRect().top;
-      var thumbTop = Math.max(0, Math.min(m.maxTop, clientY - railTop - m.thumbH / 2));  // center thumb under finger
-      var target = (thumbTop / m.maxTop) * m.overflow;
-      thumb.classList.add('is-dragging');                       // brief press feedback
-      try { window.scrollTo({ top: target, left: 0, behavior: 'smooth' }); }
-      catch (e) { setScrollTop(target); }
-    }
-    rail.addEventListener('pointerdown', function(e){
-      jumpToClientY(e.clientY);
+      var railTop = rail.getBoundingClientRect().top;    // read ONCE, before any scrolling
+      var curThumbTop = Math.max(0, Math.min(m.maxTop, (getScrollTop() / m.overflow) * m.maxTop));
+      var y = e.clientY - railTop;
+      var onThumb = y >= curThumbTop - 6 && y <= curThumbTop + m.thumbH + 6;
+      dragging = true; dragM = m; dragStartY = e.clientY;
+      suspendSmooth();
+      thumb.classList.add('is-dragging');
+      if (onThumb){
+        dragStartThumbTop = curThumbTop;                 // grab in place — no jump
+      } else {
+        // press elsewhere on the rail: jump the thumb under the finger, then drag from there
+        dragStartThumbTop = Math.max(0, Math.min(m.maxTop, y - m.thumbH / 2));
+        setScrollTop((dragStartThumbTop / m.maxTop) * m.overflow);
+      }
+      try { rail.setPointerCapture(e.pointerId); } catch (err) {}
       e.preventDefault(); e.stopPropagation();
     });
-    function clearPress(){ thumb.classList.remove('is-dragging'); }
-    rail.addEventListener('pointerup', clearPress);
-    rail.addEventListener('pointercancel', clearPress);
-    rail.addEventListener('pointerleave', clearPress);
+    rail.addEventListener('pointermove', function(e){
+      if (!dragging || !dragM) return;
+      var t = Math.max(0, Math.min(dragM.maxTop, dragStartThumbTop + (e.clientY - dragStartY)));
+      setScrollTop((t / dragM.maxTop) * dragM.overflow);   // frozen metrics, delta math only
+      e.preventDefault();
+    });
+    function endDrag(){
+      if (!dragging) return;
+      dragging = false; dragM = null;
+      restoreSmooth();
+      thumb.classList.remove('is-dragging');
+    }
+    rail.addEventListener('pointerup', endDrag);
+    rail.addEventListener('pointercancel', endDrag);
+    rail.addEventListener('lostpointercapture', endDrag);
 
     measureInset();
     update();

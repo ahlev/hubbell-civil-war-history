@@ -47,5 +47,12 @@
    fights the programmatic scroll (steady page flow + steady pill slide) */
 html.hub-dragging, html.hub-dragging body{ scroll-behavior:auto !important; scroll-snap-type:none !important; }
 
+/* While the custom rail is live (mobile, page overflows), hide the NATIVE
+   scrollbar so there aren't two right-edge scrollbars slightly out of step.
+   The class is toggled by _scrollrail.js and never applies on desktop. */
+html.hub-rail-live{ scrollbar-width:none; }
+html.hub-rail-live::-webkit-scrollbar,
+html.hub-rail-live body::-webkit-scrollbar{ width:0; height:0; display:none; }
+
 @media (min-width:641px){ .hub-scrollrail{ display:none !important; } }   /* mobile only */
 @media (prefers-reduced-motion: reduce){ .hub-scrollthumb::before{ transition:none; } }

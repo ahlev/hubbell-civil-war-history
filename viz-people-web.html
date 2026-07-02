@@ -483,10 +483,15 @@ body {
   color: #6B6560;
   margin-top: 1px;
 }
-/* one person selected — beckon the second pick */
+/* faint glow pulse invites the click whenever the toggle is off */
+#link-explore-btn.visible:not(.active) { animation: link-btn-pulse 2.6s ease-in-out infinite; }
+@keyframes link-btn-pulse {
+  0%, 100% { box-shadow: 0 2px 10px rgba(184,134,11,0.10); }
+  50%      { box-shadow: 0 3px 18px rgba(184,134,11,0.30), 0 0 0 4px rgba(184,134,11,0.07); }
+}
+/* one person selected — beckon the toggle */
 #link-explore-btn.ready {
   border-color: #B8860B;
-  box-shadow: 0 3px 16px rgba(184,134,11,0.26);
 }
 #link-explore-btn.ready .link-btn-icon { animation: link-btn-bob 1.6s ease-in-out infinite; }
 /* armed — the next node click completes the link */
@@ -504,6 +509,7 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   #link-explore-btn.ready .link-btn-icon { animation: none; }
+  #link-explore-btn.visible:not(.active) { animation: none; }
 }
 
 /* Link panel header with clickable names */
@@ -1496,9 +1502,9 @@ canvas.grabbing {
 </style>
 <link rel="stylesheet" href="_overlay.css?v=11">
 <link rel="stylesheet" href="_reader-era.css?v=18">
-<link rel="stylesheet" href="_scrollrail.css?v=11">
+<link rel="stylesheet" href="_scrollrail.css?v=12">
 <style>:root{ --rail-accent:#9A78C7; }</style>
-<script src="_scrollrail.js?v=11"></script>
+<script src="_scrollrail.js?v=12"></script>
 </head>
 <body>
 
@@ -1572,7 +1578,7 @@ canvas.grabbing {
       <svg class="link-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="12" r="3.5"/><circle cx="17" cy="12" r="3.5"/><line x1="10.5" y1="12" x2="13.5" y2="12"/></svg>
       <div>
         <div class="link-btn-label">Link &amp; Explore</div>
-        <div class="link-btn-sub">Select two connected people</div>
+        <div class="link-btn-sub">Pick any person to begin</div>
       </div>
     </button>
     <div id="temporal-filter">
@@ -3453,15 +3459,15 @@ function updateLinkButton() {
     const src = nodes[linkSourceNode];
     btn.classList.add('active');
     btn.classList.remove('ready');
-    sub.textContent = 'Now click a second person to link with ' + (src ? src.id.split(' ')[0] : 'them');
+    sub.textContent = 'Linking ON — click a second person to connect ' + (src ? src.id.split(' ')[0] : 'them');
   } else if (selectedNode !== null) {
     const n = nodes[selectedNode];
     btn.classList.add('ready');
     btn.classList.remove('active');
-    sub.textContent = (n ? n.id.split(' ')[0] : 'One') + ' selected — click to link a second person';
+    sub.textContent = (n ? n.id.split(' ')[0] : 'One') + ' selected — turn this on, then click a second person';
   } else {
     btn.classList.remove('active', 'ready');
-    sub.textContent = 'Select two connected people';
+    sub.textContent = 'Pick any person to begin';
   }
 }
 

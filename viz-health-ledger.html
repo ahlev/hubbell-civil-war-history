@@ -47,15 +47,15 @@
 .brother-selectors {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 32px;
+  gap: 12px;
+  margin-bottom: 22px;
 }
 
 .brother-sel {
   background: var(--card);
   border: 2px solid var(--border);
   border-radius: 4px;
-  padding: 16px 18px 12px;
+  padding: 10px 13px 8px;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
@@ -72,29 +72,29 @@
 
 .brother-sel .bs-name {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 0.94rem;
   font-weight: 600;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 
 .brother-sel .bs-unit {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   color: var(--text-tertiary);
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .brother-sel .bs-sparkline {
   display: block;
   width: 100%;
-  height: 32px;
+  height: 26px;
 }
 
 .brother-sel .bs-stat-row {
   display: flex;
   justify-content: space-between;
-  font-size: 0.7rem;
+  font-size: 0.66rem;
   color: var(--text-tertiary);
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .brother-sel .bs-stat-row strong {
@@ -323,9 +323,9 @@
 }
 .cond-chip {
   font-family: var(--font-sans);
-  font-size: 0.74rem;
+  font-size: 0.72rem;   /* matches .wf-pill so the two filter rows sit at one height */
   font-weight: 500;
-  padding: 5px 12px;
+  padding: 3px 12px;
   border-radius: 14px;
   border: 1.5px solid var(--border);
   background: var(--card);
@@ -385,13 +385,14 @@
   /* Compact the "Click a brother" selectors so they stop dominating the space
      above the chart: drop the wrapping regiment line, shrink the sparkline and
      padding. The brother's name + trend + counts stay; the long unit text goes. */
-  .brother-cta { font-size: 0.82rem; margin-bottom: 12px; }
-  .brother-selectors { gap: 8px; margin-bottom: 18px; }
-  .brother-sel { padding: 9px 11px; }
-  .brother-sel .bs-name { font-size: 0.9rem; }
+  .brother-cta { font-size: 0.76rem; padding: 5px 12px; gap: 7px; margin-bottom: 10px; }
+  .brother-cta-cursor { width: 14px; height: 14px; }
+  .brother-selectors { gap: 7px; margin-bottom: 14px; }
+  .brother-sel { padding: 7px 9px 6px; }
+  .brother-sel .bs-name { font-size: 0.86rem; }
   .brother-sel .bs-unit { display: none; }
-  .brother-sel .bs-sparkline { height: 22px; margin-top: 4px; }
-  .brother-sel .bs-stat-row { font-size: 0.62rem; margin-top: 4px; }
+  .brother-sel .bs-sparkline { height: 18px; margin-top: 3px; }
+  .brother-sel .bs-stat-row { font-size: 0.6rem; margin-top: 3px; }
 }
 
 @media (max-width: 1200px) {
@@ -490,8 +491,14 @@
 }
 .legend-key .legend-line.battle { width: 16px; }
 @media (max-width: 720px) {
-  .legend-group { padding: 0 10px; }
-  .legend-group + .legend-group { border-left: 0; }
+  /* Phones: one themed row per group — label on its own line, items beneath,
+     hairline rules between groups (instead of the desktop vertical dividers).
+     Without this the three groups reflowed into one undifferentiated jumble. */
+  .legend-key { flex-direction: column; align-items: stretch; gap: 8px; padding: 10px 14px; }
+  .legend-group { width: 100%; padding: 0; gap: 4px 12px; }
+  .legend-group + .legend-group { border-left: 0; border-top: 1px solid var(--border-light); padding-top: 8px; }
+  .legend-group .legend-label { width: 100%; margin: 0 0 1px; }
+  .legend-key .legend-item { font-size: 0.68rem; }
 }
 
 /* Zoom controls */
@@ -981,22 +988,23 @@
 /* Brother selector CTA — bolder than a plain italic line, with a gently
    animated cursor icon to draw the eye to the interactive selectors. */
 .brother-cta {
-  display: inline-flex;
+  display: flex;                /* was inline-flex — margin:auto never centered it */
+  width: fit-content;
   align-items: center;
-  gap: 12px;
-  margin: 4px auto 18px;
-  padding: 12px 22px;
+  gap: 9px;
+  margin: 2px auto 14px;
+  padding: 6px 15px;
   background: linear-gradient(180deg, #FBF6EB 0%, #F5EEDD 100%);
   border: 1px solid #E8DCBE;
   border-radius: 999px;
   font-family: var(--font-serif);
-  font-size: 1.05rem;
+  font-size: 0.88rem;
   color: #4A4640;
-  box-shadow: 0 2px 10px rgba(184,134,11,0.08);
+  box-shadow: 0 2px 8px rgba(184,134,11,0.08);
 }
 .brother-cta strong { color: #B8860B; font-weight: 700; }
 .brother-cta-cursor {
-  width: 26px; height: 26px;
+  width: 18px; height: 18px;
   color: #B8860B;
   flex-shrink: 0;
   animation: brother-cta-cursor-bob 1.6s ease-in-out infinite;
@@ -1064,7 +1072,9 @@ footer p {
   .chart-container { padding: 16px 12px; }
   .legend { font-size: 0.6rem; gap: 8px; }
   .detail-panel { width: 100%; right: -100%; }
-  .wf-pill { min-height: 44px; padding: 10px 14px; font-size: 0.78rem; }
+  /* Both filter rows share ONE compact pill height on phones (the old
+     44px min-height applied only to .wf-pill, towering over the ailment chips) */
+  .wf-pill, .cond-chip { min-height: 32px; padding: 5px 12px; font-size: 0.72rem; }
   .tl-ctrl-btn { min-height: 44px; padding: 10px 14px; }
 }
 .viz-provenance {
@@ -1080,9 +1090,9 @@ footer p {
 </style>
 <link rel="stylesheet" href="_overlay.css?v=11">
 <link rel="stylesheet" href="_reader-era.css?v=18">
-<link rel="stylesheet" href="_scrollrail.css?v=11">
+<link rel="stylesheet" href="_scrollrail.css?v=12">
 <style>:root{ --rail-accent:#CB5C5C; }</style>
-<script src="_scrollrail.js?v=11"></script>
+<script src="_scrollrail.js?v=12"></script>
 </head>
 <body>
 <div id="site-nav"></div>
