@@ -106,14 +106,14 @@
 .section-head .sh-inner::before {
   content: '';
   position: absolute;
-  inset: -14px -90px;
+  inset: -18px -100px;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(ellipse 62% 78% at 50% 48%,
-    rgba(10,9,7,0.62) 0%,
-    rgba(10,9,7,0.42) 52%,
-    rgba(10,9,7,0.16) 74%,
-    transparent 92%);
+  background: radial-gradient(ellipse 64% 80% at 50% 48%,
+    rgba(10,9,7,0.74) 0%,
+    rgba(10,9,7,0.54) 52%,
+    rgba(10,9,7,0.24) 76%,
+    transparent 93%);
 }
 
 .section-head .sh-kicker {
@@ -201,11 +201,11 @@
         rgba(12,11,9,0.42) 100%);
   }
   .section-head .sh-inner::before {
-    inset: -10px -46px;
-    background: radial-gradient(ellipse 68% 84% at 50% 48%,
-      rgba(10,9,7,0.68) 0%,
-      rgba(10,9,7,0.46) 54%,
-      rgba(10,9,7,0.18) 76%,
-      transparent 92%);
+    inset: -12px -50px;
+    background: radial-gradient(ellipse 70% 86% at 50% 48%,
+      rgba(10,9,7,0.80) 0%,
+      rgba(10,9,7,0.58) 54%,
+      rgba(10,9,7,0.26) 78%,
+      transparent 93%);
   }
 }
