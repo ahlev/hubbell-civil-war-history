@@ -52,7 +52,9 @@
   border-bottom: 1px solid color-mix(in srgb, var(--sh-accent) 42%, transparent);
 }
 
-/* Scene image (decorative — real text sits above it for a11y/SEO) */
+/* Scene image (decorative — real text sits above it for a11y/SEO).
+   v2: let the painting read richer — legibility now comes from the
+   text-local shade on .sh-inner::before, not a heavy global wash. */
 .section-head .sh-bg {
   position: absolute;
   inset: 0;
@@ -61,11 +63,11 @@
   height: 100%;
   object-fit: cover;
   object-position: var(--sh-img-pos);
-  filter: saturate(0.94) contrast(1.02) brightness(0.92);
+  filter: saturate(1.04) contrast(1.06) brightness(0.99);
 }
 
-/* Layered legibility scrim: bottom-weighted darken + edge vignette.
-   Keeps cream text crisp over the painting's varying luminance. */
+/* Light global scrim: just enough to seat the band against the dark nav
+   and ground the bottom edge — the painting stays vivid. */
 .section-head .sh-scrim {
   position: absolute;
   inset: 0;
@@ -73,13 +75,13 @@
   pointer-events: none;
   background:
     linear-gradient(180deg,
-      rgba(12,11,9,0.58) 0%,
-      rgba(12,11,9,0.24) 38%,
-      rgba(12,11,9,0.55) 78%,
-      rgba(12,11,9,0.86) 100%),
+      rgba(12,11,9,0.38) 0%,
+      rgba(12,11,9,0.10) 38%,
+      rgba(12,11,9,0.30) 78%,
+      rgba(12,11,9,0.72) 100%),
     radial-gradient(115% 130% at 50% 42%,
-      rgba(12,11,9,0) 32%,
-      rgba(12,11,9,0.55) 100%);
+      rgba(12,11,9,0) 45%,
+      rgba(12,11,9,0.38) 100%);
 }
 
 /* No-image fallback — plain dark cinematic ground + accent glow */
@@ -97,6 +99,21 @@
   max-width: 820px;
   margin: 0 auto;
   padding: 52px 28px 48px;
+}
+
+/* Text-local shade: a soft dark ellipse pooled directly behind the kicker/
+   title/sub so they stay crisp while the surrounding painting stays rich. */
+.section-head .sh-inner::before {
+  content: '';
+  position: absolute;
+  inset: -14px -90px;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 62% 78% at 50% 48%,
+    rgba(10,9,7,0.62) 0%,
+    rgba(10,9,7,0.42) 52%,
+    rgba(10,9,7,0.16) 74%,
+    transparent 92%);
 }
 
 .section-head .sh-kicker {
@@ -171,15 +188,24 @@
   .section-head .sh-title { font-size: 2.1rem; }
   .section-head .sh-sub { font-size: 0.98rem; }
   .section-head .sh-scrim {
-    /* small band → less room to place text on a dark patch: firmer scrim */
+    /* small band → text covers more of the image: keep the global wash
+       light and lean on a slightly stronger text-local shade instead */
     background:
       linear-gradient(180deg,
-        rgba(12,11,9,0.62) 0%,
-        rgba(12,11,9,0.34) 40%,
-        rgba(12,11,9,0.60) 78%,
-        rgba(12,11,9,0.88) 100%),
+        rgba(12,11,9,0.42) 0%,
+        rgba(12,11,9,0.16) 40%,
+        rgba(12,11,9,0.36) 78%,
+        rgba(12,11,9,0.76) 100%),
       radial-gradient(120% 130% at 50% 44%,
-        rgba(12,11,9,0) 28%,
-        rgba(12,11,9,0.6) 100%);
+        rgba(12,11,9,0) 40%,
+        rgba(12,11,9,0.42) 100%);
+  }
+  .section-head .sh-inner::before {
+    inset: -10px -46px;
+    background: radial-gradient(ellipse 68% 84% at 50% 48%,
+      rgba(10,9,7,0.68) 0%,
+      rgba(10,9,7,0.46) 54%,
+      rgba(10,9,7,0.18) 76%,
+      transparent 92%);
   }
 }
