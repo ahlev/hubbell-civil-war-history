@@ -26,6 +26,7 @@ body {
 
 /* ---- Sidebar ---- */
 #sidebar {
+  position: relative;   /* anchors the mobile info toggle */
   width: 33vw;
   min-width: 320px;
   max-width: 520px;
@@ -430,25 +431,31 @@ body {
   border-radius: 2px;
 }
 
-/* ---- Link & Explore ---- */
+/* ---- Link & Explore ----
+   Gold "interactive" pill (same family as the site's play/CTA pills).
+   Three states: default = invite picking two people · .ready = one person
+   selected, invite the second · .active = armed, next node click links. */
 #link-explore-btn {
   position: absolute;
   top: 48px;
   left: 16px;
   z-index: 50;
-  background: rgba(255,255,255,0.95);
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  padding: 10px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(180deg, #FBF6EB 0%, #F5EEDD 100%);
+  border: 1px solid #E8DCBE;
+  border-radius: 999px;
+  padding: 8px 16px;
   cursor: pointer;
   font-family: var(--font-sans);
   text-align: left;
   backdrop-filter: blur(6px);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 10px rgba(184,134,11,0.10);
   opacity: 0;
   pointer-events: none;
   transform: translateY(-4px);
-  transition: opacity 0.25s, transform 0.25s, background 0.15s, border-color 0.15s;
+  transition: opacity 0.25s, transform 0.25s, background 0.15s, border-color 0.15s, box-shadow 0.15s;
 }
 #link-explore-btn.visible {
   opacity: 1;
@@ -456,26 +463,48 @@ body {
   transform: translateY(0);
 }
 #link-explore-btn:hover {
-  background: var(--bg-elev);
-  border-color: #2D5F8A;
+  border-color: #B8860B;
+  box-shadow: 0 3px 14px rgba(184,134,11,0.20);
+}
+#link-explore-btn .link-btn-icon {
+  width: 18px;
+  height: 18px;
+  color: #B8860B;
+  flex-shrink: 0;
 }
 #link-explore-btn .link-btn-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #2D5F8A;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #B8860B;
+  letter-spacing: 0.01em;
 }
 #link-explore-btn .link-btn-sub {
   font-size: 10px;
-  color: var(--ink-3);
-  margin-top: 2px;
+  color: #6B6560;
+  margin-top: 1px;
 }
+/* one person selected — beckon the second pick */
+#link-explore-btn.ready {
+  border-color: #B8860B;
+  box-shadow: 0 3px 16px rgba(184,134,11,0.26);
+}
+#link-explore-btn.ready .link-btn-icon { animation: link-btn-bob 1.6s ease-in-out infinite; }
+/* armed — the next node click completes the link */
 #link-explore-btn.active {
-  background: #2D5F8A;
-  border-color: #2D5F8A;
+  background: #B8860B;
+  border-color: #B8860B;
 }
 #link-explore-btn.active .link-btn-label { color: #FFFFFF; }
-#link-explore-btn.active .link-btn-sub { color: rgba(255,255,255,0.7); }
-#link-explore-btn.active:hover { background: #3A7AB5; }
+#link-explore-btn.active .link-btn-sub { color: rgba(255,255,255,0.82); }
+#link-explore-btn.active .link-btn-icon { color: #FFFFFF; animation: none; }
+#link-explore-btn.active:hover { background: #C9971E; }
+@keyframes link-btn-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #link-explore-btn.ready .link-btn-icon { animation: none; }
+}
 
 /* Link panel header with clickable names */
 .link-header-names {
@@ -1007,11 +1036,11 @@ canvas.grabbing {
     margin-bottom: 0;
   }
   #temporal-filter .filter-label::after {
-    content: ' â–¸';
+    content: ' ▸';
     font-size: 9px;
   }
   #temporal-filter.tf-open .filter-label::after {
-    content: ' â–¾';
+    content: ' ▾';
   }
   #temporal-filter.tf-open .filter-label {
     margin-bottom: 6px;
@@ -1196,7 +1225,7 @@ canvas.grabbing {
 /* Temporal filter — positioned top-right of canvas */
 #temporal-filter {
   position: absolute;
-  top: 14px;
+  top: 52px;   /* below the "how this works" info toggle at top:14 */
   right: 14px;
   z-index: 12;
   background: rgba(255,255,255,0.94);
@@ -1211,13 +1240,19 @@ canvas.grabbing {
   background: rgba(30,30,30,0.94);
 }
 
+#temporal-filter .tf-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
 #temporal-filter .filter-label {
   font-size: 10px;
   font-weight: 600;
   color: var(--ink-2);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 6px;
 }
 
 .temporal-range-wrap {
@@ -1296,12 +1331,15 @@ canvas.grabbing {
   padding-top: 4px;
 }
 
+/* dynamic range readout — sits centered BETWEEN the axis-end labels */
 .temporal-current {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--ink);
+  flex: 1;
+  font-size: 9px;
+  font-weight: 600;
+  color: #2D5F8A;
   text-align: center;
-  margin-top: 2px;
+  line-height: 1.2;
+  margin: 0 4px;
 }
 
 .temporal-reset-btn {
@@ -1311,8 +1349,8 @@ canvas.grabbing {
   font-size: 9px;
   color: var(--ink-2);
   cursor: pointer;
-  padding: 2px 8px;
-  margin-top: 4px;
+  padding: 1px 7px;
+  margin: 0;
 }
 
 .temporal-reset-btn:hover {
@@ -1353,8 +1391,43 @@ canvas.grabbing {
   padding: 36px 40px 32px;
   max-width: 500px;
   width: 90vw;
+  /* never taller than the viewport — scroll internally instead of clipping the CTA */
+  max-height: min(88vh, 88dvh);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   box-shadow: 0 24px 80px rgba(0,0,0,0.35);
   cursor: default;
+}
+@media (max-width: 600px) {
+  .onboard-card { padding: 22px 20px 20px; }
+}
+/* "How this page works" — small round reopen toggle for the onboarding panel */
+.page-info-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 60;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid #B8860B66;
+  color: #8a6d1f;
+  font-family: var(--font-display, 'Source Serif 4'), serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+.page-info-btn:hover { background: #FDF6E3; border-color: #B8860B; }
+#pw-info-mobile { display: none; }
+@media (max-width: 768px) {
+  #pw-info-mobile { display: flex; top: 12px; right: 12px; }
 }
 .onboard-title {
   font-family: 'Source Serif 4', Georgia, serif;
@@ -1469,6 +1542,7 @@ canvas.grabbing {
       <h1>The People Web</h1>
       <div class="subtitle">Hubbell Civil War Letter Collection</div>
     </div>
+    <button class="page-info-btn" id="pw-info-mobile" aria-label="How the People Web works" title="How the People Web works">i</button>
     <div id="search-box">
       <input type="text" id="search-input" placeholder="Search people by name...">
     </div>
@@ -1493,12 +1567,19 @@ canvas.grabbing {
   </div>
   <div id="canvas-wrap">
     <button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar">&#9776;</button>
-    <button id="link-explore-btn" onclick="toggleLinkMode()">
-      <div class="link-btn-label">Link &amp; Explore</div>
-      <div class="link-btn-sub">Select a second node</div>
+    <button class="page-info-btn" id="pw-info-desktop" aria-label="How the People Web works" title="How the People Web works">i</button>
+    <button id="link-explore-btn" class="visible" onclick="toggleLinkMode()">
+      <svg class="link-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="12" r="3.5"/><circle cx="17" cy="12" r="3.5"/><line x1="10.5" y1="12" x2="13.5" y2="12"/></svg>
+      <div>
+        <div class="link-btn-label">Link &amp; Explore</div>
+        <div class="link-btn-sub">Select two connected people</div>
+      </div>
     </button>
     <div id="temporal-filter">
-      <div class="filter-label" onclick="this.parentElement.classList.toggle('tf-open')">Date Range</div>
+      <div class="tf-head">
+        <div class="filter-label" onclick="this.closest('#temporal-filter').classList.toggle('tf-open')">Date Range</div>
+        <button class="temporal-reset-btn" onclick="resetTemporalFilter()">Reset</button>
+      </div>
       <div class="temporal-range-wrap">
         <div class="temporal-range-track"></div>
         <div class="temporal-range-fill" id="temporal-fill"></div>
@@ -1506,10 +1587,9 @@ canvas.grabbing {
         <input type="range" id="temporal-end" min="0" max="100" value="100" oninput="updateTemporalFilter()">
         <div class="temporal-labels">
           <span>Jun 1861</span>
+          <span class="temporal-current" id="temporal-label">All dates</span>
           <span>Jul 1865</span>
         </div>
-        <div class="temporal-current" id="temporal-label">All dates</div>
-        <button class="temporal-reset-btn" onclick="resetTemporalFilter()">Reset</button>
       </div>
     </div>
     <canvas id="graph" role="img" aria-label="Network visualization showing relationships between people mentioned in the letters"></canvas>
@@ -2318,7 +2398,9 @@ function updateTemporalFilter() {
 
   const label = document.getElementById('temporal-label');
   if (temporalActive) {
-    label.textContent = formatDate(temporalStart) + ' \u2013 ' + formatDate(temporalEnd);
+    // compact DD/MM/YY so the readout fits between the axis-end labels
+    const dmy = (iso) => { const p = iso.split('-'); return p[2] + '/' + p[1] + '/' + p[0].slice(2); };
+    label.textContent = dmy(temporalStart) + '\u2013' + dmy(temporalEnd);
   } else {
     label.textContent = 'All dates';
   }
@@ -3219,7 +3301,7 @@ function showBrotherDetail(node) {
   if (_prevPill) _prevPill.remove();
   const _storyPill = document.createElement('a');
   _storyPill.className = 'pw-story-link';
-  _storyPill.href = _isMother ? 'mother-frances.html' : ('brother-' + key + '.html');
+  _storyPill.href = 'who-they-were.html#' + (_isMother ? 'mother' : key);
   _storyPill.textContent = _isMother ? 'Read her full story' : 'Read his full story';
   _nameEl.appendChild(_storyPill);
 
@@ -3364,15 +3446,22 @@ document.addEventListener('click', (e) => {
 // ============================================================
 function updateLinkButton() {
   const btn = document.getElementById('link-explore-btn');
+  const sub = btn.querySelector('.link-btn-sub');
+  if (linkedPair) { btn.classList.remove('visible', 'active', 'ready'); return; }
+  btn.classList.add('visible');
   if (linkMode) {
-    btn.classList.add('visible', 'active');
-    btn.querySelector('.link-btn-sub').textContent = 'Click a node to link...';
-  } else if (selectedNode !== null && !linkedPair) {
-    btn.classList.add('visible');
+    const src = nodes[linkSourceNode];
+    btn.classList.add('active');
+    btn.classList.remove('ready');
+    sub.textContent = 'Now click a second person to link with ' + (src ? src.id.split(' ')[0] : 'them');
+  } else if (selectedNode !== null) {
+    const n = nodes[selectedNode];
+    btn.classList.add('ready');
     btn.classList.remove('active');
-    btn.querySelector('.link-btn-sub').textContent = 'Select a second node';
+    sub.textContent = (n ? n.id.split(' ')[0] : 'One') + ' selected — click to link a second person';
   } else {
-    btn.classList.remove('visible', 'active');
+    btn.classList.remove('active', 'ready');
+    sub.textContent = 'Select two connected people';
   }
 }
 
@@ -3402,7 +3491,7 @@ function completeLinkMode(targetIdx) {
   linkedPair = { a: linkSourceNode, b: targetIdx };
   selectedNode = null;
   canvas.style.cursor = 'grab';
-  document.getElementById('link-explore-btn').classList.remove('visible', 'active');
+  updateLinkButton();
   showLinkedPairDetail(linkedPair.a, linkedPair.b);
   _pwSyncUrl();
 }
@@ -3964,9 +4053,9 @@ function buildSidebar() {
 function buildLegend() {
   const legend = document.getElementById('legend');
   const brothers = [
-    { label: 'Henry', color: BROTHER_COLORS.henry, shape: 'â—†' },
-    { label: 'Alexander', color: BROTHER_COLORS.alexander, shape: 'â– ' },
-    { label: 'James', color: BROTHER_COLORS.james, shape: 'â–²' },
+    { label: 'Henry', color: BROTHER_COLORS.henry, shape: '◆' },
+    { label: 'Alexander', color: BROTHER_COLORS.alexander, shape: '■' },
+    { label: 'James', color: BROTHER_COLORS.james, shape: '▲' },
     { label: 'Charles', color: BROTHER_COLORS.charles, shape: '⬡' },
     { label: 'Frances (Mother)', color: '#7B5EA7', shape: '●' },
   ];
@@ -4097,10 +4186,10 @@ function _pwSyncUrl() {
 })();
 </script>
 <script src="_design-data.js"></script>
-<script src="_design-ui.js?v=7"></script>
+<script src="_design-ui.js?v=8"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
-<script src="_reader.js?v=21"></script>
+<script src="_reader.js?v=22"></script>
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=15"></script>
 <script src="_overlay.js?v=26"></script>
@@ -4127,26 +4216,28 @@ HubbellDeepLink.registerStateApplier(function(p) {
 HubbellDeepLink.enableHistory();
 </script>
 <script>
-// Onboarding overlay — show on first visit
+// Onboarding overlay — auto-show on first visit; reopenable anytime via the
+// top-right "i" toggles (desktop canvas + mobile sidebar variants).
 (function() {
   var key = 'hubbell_pw_onboarded';
-  if (localStorage.getItem(key)) return;
   var overlay = document.getElementById('pwOnboard');
-  overlay.style.display = '';
   function dismiss() {
     overlay.style.display = 'none';
     localStorage.setItem(key, '1');
   }
+  function show() { overlay.style.display = ''; }
   document.getElementById('pwOnboardDismiss').addEventListener('click', dismiss);
   overlay.addEventListener('click', function(e) {
     if (e.target === overlay) dismiss();
   });
-  document.addEventListener('keydown', function handler(e) {
-    if (e.key === 'Escape' && overlay.style.display !== 'none') {
-      dismiss();
-      document.removeEventListener('keydown', handler);
-    }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.style.display !== 'none') dismiss();
   });
+  ['pw-info-desktop', 'pw-info-mobile'].forEach(function(id) {
+    var b = document.getElementById(id);
+    if (b) b.addEventListener('click', show);
+  });
+  if (!localStorage.getItem(key)) show();
 })();
 </script>
 </body>

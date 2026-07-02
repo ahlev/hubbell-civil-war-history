@@ -951,15 +951,23 @@ body {
   }
 }
 .search-result {
-  padding: 7px 10px;
+  padding: 7px 12px 8px 10px;   /* extra right padding keeps text off the panel edge */
   cursor: pointer;
   border-bottom: 1px solid #F0ECE7;
   transition: background 0.1s;
 }
 .search-result:last-child { border-bottom: none; }
 .search-result:hover, .search-result.active { background: #FDF6E3; }
+/* Row 1: place name (left, wraps freely) + letter count (right, pinned) */
+.search-result-top {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
 .search-result-name {
-  font-size: 0.78rem;
+  flex: 1;
+  min-width: 0;
+  font-size: 0.72rem;
   font-weight: 600;
   color: var(--ink);
   line-height: 1.3;
@@ -970,25 +978,22 @@ body {
   border-radius: 1px;
   padding: 0 1px;
 }
-.search-result-meta {
-  font-size: 0.62rem;
-  color: var(--ink-3);
-  margin-top: 1px;
-  line-height: 1.3;
-  display: flex;
-  gap: 6px;
-}
 .search-result-letters {
+  font-size: 0.62rem;
   font-weight: 500;
   color: var(--ink-2);
   white-space: nowrap;
 }
+/* Row 2: snippet spans the full row and clamps to two lines */
 .search-result-snippet {
-  flex: 1;
-  min-width: 0;
+  font-size: 0.64rem;
+  color: var(--ink-3);
+  margin-top: 2px;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .search-no-results {
   padding: 12px 10px;
@@ -1612,8 +1617,15 @@ body.letter-reader-open .narrative-caption {
     width: calc(100vw - 205px);
     max-width: 180px;
   }
+  /* Results panel breaks out of the narrow input column: span nearly the
+     full viewport so names + two-line snippets have room to breathe. */
+  .place-search-results {
+    right: auto;
+    width: calc(100vw - 16px);
+  }
   .places-btn { right: 78px; padding: 4px 7px; font-size: 0.6rem; }
   .recenter-btn { right: 8px; padding: 4px 6px; font-size: 0.55rem; }
+  .page-info-btn { right: 8px; top: 44px; width: 26px; height: 26px; font-size: 14px; }
   /* 3-state places control: compact for the phone top bar — drop the "PLACES"
      label, use the short "Unfolds" wording, tighten padding so search + control +
      re-center all sit cleanly on one row. */
@@ -1673,10 +1685,41 @@ body.letter-reader-open .narrative-caption {
   padding: 36px 40px 32px;
   max-width: 480px;
   width: 90vw;
+  /* never taller than the viewport — scroll internally instead of clipping the CTA */
+  max-height: min(88vh, 88dvh);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   box-shadow: 0 24px 80px rgba(0,0,0,0.35);
   cursor: default;
   position: relative;
 }
+@media (max-width: 600px) {
+  .onboard-card { padding: 22px 20px 20px; }
+}
+/* "How this map works" — small round reopen toggle, below Re-center (top:10 right:10) */
+.page-info-btn {
+  position: absolute;
+  top: 46px;
+  right: 10px;
+  z-index: 1000;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-elev);
+  border: 1px solid #B8860B66;
+  color: #8a6d1f;
+  font-family: var(--font-serif, 'Source Serif 4'), serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+.page-info-btn:hover { background: #FDF6E3; border-color: #B8860B; }
 .onboard-title {
   font-family: 'Source Serif 4', Georgia, serif;
   font-size: 1.4rem;
@@ -1769,7 +1812,7 @@ body.letter-reader-open .narrative-caption {
         <span>Use the <b>search bar</b> at the top to find any place by name and fly directly to it.</span>
       </li>
       <li>
-        <span class="onboard-icon play">â–¶</span>
+        <span class="onboard-icon play">▶</span>
         <span>Press the <b>play button</b> for a guided cinematic experience &mdash; narrated waypoints walk you through the key moments of the war.</span>
       </li>
     </ul>
@@ -1851,6 +1894,7 @@ body.letter-reader-open .narrative-caption {
       <button class="pm-opt" data-mode="all" onclick="setPlaceLabelMode('all')" title="Show every place label">All</button>
     </div>
     <button class="recenter-btn" id="recenterBtn" onclick="recenterMap()">Re-center</button>
+    <button class="page-info-btn" id="mapInfoBtn" aria-label="How this map works" title="How this map works">i</button>
 
     <!-- Info panel toggle -->
     <button class="info-toggle" id="infoToggle" onclick="toggleInfoPanel()">&#9654; Info</button>
@@ -3640,13 +3684,14 @@ function renderSearchResults(results, query) {
   }
   var html = '';
   results.forEach(function(r, i) {
-    var snippet = r.s ? r.s.slice(0, 80) + (r.s.length > 80 ? '...' : '') : '';
+    // generous slice — CSS clamps the snippet to two lines with an ellipsis
+    var snippet = r.s ? r.s.slice(0, 160) + (r.s.length > 160 ? '…' : '') : '';
     html += '<div class="search-result" data-idx="' + i + '">';
-    html += '<div class="search-result-name">' + highlightMatch(r.n, query) + '</div>';
-    html += '<div class="search-result-meta">';
+    html += '<div class="search-result-top"><span class="search-result-name">' + highlightMatch(r.n, query) + '</span>';
     if (r.lc > 0) html += '<span class="search-result-letters">' + r.lc + ' letter' + (r.lc !== 1 ? 's' : '') + '</span>';
-    if (snippet) html += '<span class="search-result-snippet">' + escHtml(snippet) + '</span>';
-    html += '</div></div>';
+    html += '</div>';
+    if (snippet) html += '<div class="search-result-snippet">' + escHtml(snippet) + '</div>';
+    html += '</div>';
   });
   container.innerHTML = html;
   container.classList.add('open');
@@ -3800,7 +3845,7 @@ function showFrancesInfoPanel() {
   const linkWrap = document.createElement('div');
   linkWrap.style.marginTop = '10px';
   const a = document.createElement('a');
-  a.href = 'mother-frances.html';
+  a.href = 'who-they-were.html#mother';
   a.textContent = 'Read her full story →';
   a.style.cssText = 'font-size:0.8rem;color:' + COLORS.mother + ';font-weight:600;text-decoration:none';
   linkWrap.appendChild(a);
@@ -4343,27 +4388,26 @@ document.getElementById('rangeEnd').addEventListener('input', fadeCta);
 document.addEventListener('DOMContentLoaded', () => {
   init();
 
-  // Onboarding overlay — show on first visit
+  // Onboarding overlay — auto-show on first visit; reopenable anytime via the
+  // top-right "i" toggle (below Re-center).
   (function() {
     var key = 'hubbell_map_onboarded';
-    if (!localStorage.getItem(key)) {
-      var overlay = document.getElementById('mapOnboard');
-      overlay.style.display = '';
-      function dismiss() {
-        overlay.style.display = 'none';
-        localStorage.setItem(key, '1');
-      }
-      document.getElementById('mapOnboardDismiss').addEventListener('click', dismiss);
-      overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) dismiss();
-      });
-      document.addEventListener('keydown', function handler(e) {
-        if (e.key === 'Escape' && overlay.style.display !== 'none') {
-          dismiss();
-          document.removeEventListener('keydown', handler);
-        }
-      });
+    var overlay = document.getElementById('mapOnboard');
+    function dismiss() {
+      overlay.style.display = 'none';
+      localStorage.setItem(key, '1');
     }
+    function show() { overlay.style.display = ''; }
+    document.getElementById('mapOnboardDismiss').addEventListener('click', dismiss);
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) dismiss();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.style.display !== 'none') dismiss();
+    });
+    var infoBtn = document.getElementById('mapInfoBtn');
+    if (infoBtn) infoBtn.addEventListener('click', show);
+    if (!localStorage.getItem(key)) show();
   })();
 
   // Delegate clicks on map letter links (popups and info panel are dynamic)
@@ -4416,10 +4460,10 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script src="_design-data.js"></script>
-<script src="_design-ui.js?v=7"></script>
+<script src="_design-ui.js?v=8"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
-<script src="_reader.js?v=21"></script>
+<script src="_reader.js?v=22"></script>
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=15"></script>
 <script src="_overlay.js?v=26"></script>
