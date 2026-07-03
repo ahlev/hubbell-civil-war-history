@@ -1161,7 +1161,9 @@ svg.chart { display: block; }
 }
 
 .reader-correspondence {
-  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  /* row-gap tightened to 4px: when the flag tags wrap to their own line in a
+     narrow panel they shouldn't push the date line down a full extra gap */
+  display: flex; align-items: center; gap: 4px 8px; flex-wrap: wrap;
   margin-bottom: 6px;
 }
 .reader-pill-label {
@@ -1188,6 +1190,7 @@ svg.chart { display: block; }
   font-family: var(--font-sans, Inter, system-ui, sans-serif);
   font-size: 8px; padding: 2px 8px; border-radius: 999px;
   font-weight: 600; letter-spacing: 0.01em;
+  line-height: 1.2;   /* default ~1.5 line-box made the tag row taller than the pill looks */
   border: 1.5px solid transparent;
 }
 .rf-battle  { background: #FDE8E8; color: #9B2C2C; border-color: #FEB2B2; }
@@ -1297,11 +1300,14 @@ a.reader-tag:hover { filter: brightness(0.88); }
    to the right via margin-left: auto when there's space; wraps below the
    recipient pill on narrow viewports. */
 .reader-flags-inline {
+  /* rides the meta (date) line, tucked right — floated so it borrows that
+     line's slack instead of adding a wrapped row under the From/To pills */
+  float: right;
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 5px;
-  margin-left: auto;
+  margin-left: 8px;
 }
 .reader-flags-inline .reader-flag { margin: 0; }
 /* Inline flag pills (next to FROM/TO row) — clickable toggles */

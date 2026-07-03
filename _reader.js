@@ -21,9 +21,9 @@ window.HubbellReader = (function () {
   };
 
   var BIO_PAGES = {
-    henry: 'brother-henry.html', alexander: 'brother-alexander.html',
-    james: 'brother-james.html', charles: 'brother-charles.html',
-    mother: 'mother-frances.html'
+    henry: 'who-they-were.html#henry', alexander: 'who-they-were.html#alexander',
+    james: 'who-they-were.html#james', charles: 'who-they-were.html#charles',
+    mother: 'who-they-were.html#mother'
   };
 
   function getColor(author) {
@@ -873,9 +873,14 @@ window.HubbellReader = (function () {
     // Person / place reference previews: grey the named mention (the same soft
     // anchor as a teased quote) so opening a letter FROM a name lands on it.
     // personHighlight was formerly a gold search hit; it is a reference, so grey.
+    // Either option accepts a single name or an ARRAY of names/aliases (the
+    // People Web passes its curated alias set — letters rarely use canonical
+    // names verbatim, so canonical-only matching found nothing to anchor).
     var anchorNames = [];
-    if (opts.personHighlight) anchorNames.push(opts.personHighlight);
-    if (opts.placeHighlight) anchorNames.push(opts.placeHighlight);
+    if (opts.personHighlight) anchorNames = anchorNames.concat(opts.personHighlight);
+    if (opts.placeHighlight) anchorNames = anchorNames.concat(opts.placeHighlight);
+    // longest first so an alias inside a longer matched name doesn't nest marks
+    anchorNames.sort(function (a, b) { return String(b).length - String(a).length; });
     if (anchorNames.length) bodyText = wrapTermAnchors(bodyText, anchorNames);
 
     // Build sender pill
@@ -924,9 +929,12 @@ window.HubbellReader = (function () {
         '<div class="reader-correspondence">' +
           '<span class="reader-pill-label">From</span>' + senderPill +
           '<span class="reader-pill-label" style="min-width:auto">To</span>' + recipientPill +
-          (flags ? '<span class="reader-flags-inline">' + flags + '</span>' : '') +
         '</div>' +
+        // Flag tags live on the META line (right-aligned float): that row always
+        // has horizontal slack, so their presence never pushes the date down the
+        // way a wrapped second line under the From/To pills did.
         '<div class="reader-meta">' +
+          (flags ? '<span class="reader-flags-inline">' + flags + '</span>' : '') +
           '<span class="rm-date">' + d + '</span>' +
           ' <span class="rm-loc">from ' + esc(letter.loc || 'Unknown location') + '</span>' +
           mapLink + '</div>' +

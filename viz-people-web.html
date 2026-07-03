@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="_design.css?v=9">
+<link rel="stylesheet" href="_design.css?v=10">
 <style>
 body {
   overflow: hidden;
@@ -2838,8 +2838,9 @@ function showConnectionDetail(edgeIdx) {
 
   document.getElementById('detail-mentions').innerHTML = html;
   panel.classList.add('visible');
-  const highlightPerson = !nodeA.isBrother ? nameA : (!nodeB.isBrother ? nameB : nameA);
-  attachLetterClickHandlers(panel, highlightPerson);
+  // Anchor BOTH linked people's references in the opened letter (the reader
+  // accepts an array of names/aliases).
+  attachLetterClickHandlers(panel, [nameA, nameB]);
 }
 
 function getNodeAtPos(mx, my) {
@@ -3844,8 +3845,25 @@ function formatTranscription(raw) {
   return paragraphs.map(p => '<p>' + escapeHtml(p.replace(/\n/g, ' ').trim()) + '</p>').join('');
 }
 
-function openLetterOverlay(letterId, personName) {
-  HubbellReader.open(letterId, { personHighlight: personName });
+function openLetterOverlay(letterId, personNames) {
+  // The reader's reference-anchor match is LITERAL, and 1860s letters rarely
+  // write the canonical node name verbatim ('Alex', 'Capt. Rich', 'Fannie') —
+  // so canonical-only matching highlighted nothing. Pass the CURATED alias set
+  // (REVERSE_MERGE_MAP only — never the word-split derivatives, which anchor
+  // generic words like a bare 'President' on unrelated text). Accepts one name
+  // or an array (the linked-pair view anchors BOTH people).
+  const TITLE_ONLY = new Set(['capt', 'capt.', 'captain', 'lieut', 'lieut.', 'lieutenant', 'lt.', 'gen', 'gen.', 'general', 'col', 'col.', 'colonel', 'mrs', 'mrs.', 'mr', 'mr.', 'miss']);
+  const list = Array.isArray(personNames) ? personNames : [personNames];
+  let names = [];
+  list.forEach(function (pn) {
+    if (!pn) return;
+    names.push(pn);
+    try {
+      const rev = (typeof REVERSE_MERGE_MAP !== 'undefined') ? REVERSE_MERGE_MAP[pn] : null;
+      if (rev) names = names.concat([...rev].filter(a => a && a.length >= 3 && !TITLE_ONLY.has(a.toLowerCase())));
+    } catch (e) {}
+  });
+  HubbellReader.open(letterId, { personHighlight: names });
 }
 
 function closeLetterOverlay() {
@@ -4192,10 +4210,10 @@ function _pwSyncUrl() {
 })();
 </script>
 <script src="_design-data.js"></script>
-<script src="_design-ui.js?v=8"></script>
+<script src="_design-ui.js?v=9"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
-<script src="_reader.js?v=22"></script>
+<script src="_reader.js?v=23"></script>
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=15"></script>
 <script src="_overlay.js?v=26"></script>
