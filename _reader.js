@@ -491,6 +491,10 @@ window.HubbellReader = (function () {
           '<button class="reader-nav-arrow" id="readerNext">\u2192</button>' +
         '</div>' +
         '<div id="hubbellReaderContent"></div>' +
+        // Context-strip dock — the corpus timeline now rides the panel FOOTER,
+        // fused to the nav bar below it (era CSS orders: content 0 → dock 89 →
+        // nav-bar 90), instead of pushing the letter down from the top.
+        '<div class="reader-ctx-dock" id="readerCtxDock"></div>' +
       '</div>';
     document.body.appendChild(overlay);
     contentEl = document.getElementById('hubbellReaderContent');
@@ -735,8 +739,8 @@ window.HubbellReader = (function () {
   // Rebuild the strip in place (e.g. after a nav-mode toggle) without re-opening
   // the whole reader. insertAdjacentHTML (not innerHTML) keeps the rest intact.
   function refreshContextStrip() {
-    if (!contentEl || !currentLetterId) return;
-    var existing = contentEl.querySelector('.reader-context-strip');
+    if (!overlay || !currentLetterId) return;
+    var existing = overlay.querySelector('.reader-context-strip');
     if (!existing) return;
     existing.insertAdjacentHTML('beforebegin', buildLetterContextStrip(currentLetterId));
     existing.remove();
@@ -747,7 +751,7 @@ window.HubbellReader = (function () {
   // HubbellReader.open). Pass (stripEl, onPick) to reuse the same strip inside
   // another surface (e.g. the infopanel reader), routing taps to onPick(id).
   function bindContextStrip(stripEl, onPick) {
-    var strip = stripEl || (contentEl && contentEl.querySelector('.reader-context-strip'));
+    var strip = stripEl || (overlay && overlay.querySelector('.reader-context-strip'));
     if (!strip || !_ctxStrip) return;
     var pick = onPick || function (id) { open(id, currentOpts); };
     var tip = strip.querySelector('.rcs-tip');
@@ -998,11 +1002,11 @@ window.HubbellReader = (function () {
           ' <span class="rm-loc">from ' + esc(letter.loc || 'Unknown location') + '</span>' +
           mapLink + '</div>' +
       '</div>' +
-      contextStrip +
-      // Desktop: header + timeline stay locked at top; everything below the
-      // timeline (summary, health context, condition note, tags, and the letter)
-      // scrolls together inside .reader-scroll — more reading real estate on
-      // small monitors. Mobile ignores the wrapper and scrolls the whole panel.
+      // Desktop: header stays locked at top; everything below it (summary,
+      // health context, condition note, tags, and the letter) scrolls together
+      // inside .reader-scroll. The corpus timeline no longer sits here — it is
+      // docked at the panel FOOTER (#readerCtxDock), locked just above the
+      // letter-nav / author-toggle rail.
       '<div class="reader-scroll">' +
         summaryHtml +
         healthContextHtml +
@@ -1010,6 +1014,14 @@ window.HubbellReader = (function () {
         ppl + plc +
         '<div class="reader-body">' + bodyText + '</div>' +
       '</div>';
+
+    // Corpus timeline → footer dock (locked above the nav rail; empty dock
+    // collapses via CSS when a document view or opts.contextStrip:false skips it).
+    var ctxDock = document.getElementById('readerCtxDock');
+    if (ctxDock) {
+      ctxDock.textContent = '';
+      if (contextStrip) ctxDock.insertAdjacentHTML('afterbegin', contextStrip);
+    }
 
     // Inject the share button into the reader panel. It's absolute-positioned
     // (anchored to .reader-panel) so it sits inline at the top-right beside the

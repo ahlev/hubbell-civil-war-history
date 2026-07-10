@@ -329,6 +329,19 @@ a.reader-tag:hover{ border-color: var(--era-lantern) !important; color: var(--er
   border-top:1px solid var(--era-rule) !important; border-bottom:0 !important;
   padding: 11px 24px 13px !important;
 }
+/* Context-strip dock — the corpus timeline rides the footer, fused to the
+   nav rail below it (order 89 < nav-bar's 90). It takes over the footer's
+   top border so strip + rail read as ONE bottom panel. */
+.reader-ctx-dock{
+  order: 89; flex-shrink: 0;
+  padding: 8px 24px 0;
+  border-top: 1px solid var(--era-rule);
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,.20));
+}
+.reader-ctx-dock:empty{ display: none; }
+.reader-ctx-dock + .reader-nav-bar,
+.reader-ctx-dock:not(:empty) ~ .reader-nav-bar{ border-top: 0 !important; }
+.reader-ctx-dock .reader-context-strip{ margin: 2px 0 4px !important; }
 .reader-nav-arrow{
   background:#2a2316 !important; border:1px solid var(--era-rule) !important;
   color: var(--era-lantern) !important; box-shadow:none !important; border-radius:9px !important;

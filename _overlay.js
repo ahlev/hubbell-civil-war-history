@@ -636,6 +636,9 @@
       '<div class="hubbell-overlay-footer" id="overlayFooter">' +
         '<div class="hubbell-overlay-footer-flags" id="overlayFooterFlags"></div>' +
         '<div class="hubbell-overlay-footer-meta" id="overlayFooterMeta"></div>' +
+        // Corpus timeline docks HERE — locked directly above the prev/next +
+        // author-toggle rail it shares the frozen footer with.
+        '<div class="hubbell-overlay-footer-ctx" id="overlayFooterCtx"></div>' +
         navBarHtml +
       '</div>'
     );
@@ -808,14 +811,16 @@
       }
 
       // Corpus "you are here" strip — the same timeline the modal reader shows,
-      // now in every reader. Sits at the top of the body (below the header's
-      // date/location, above the editor's summary). Taps jump WITHIN the
-      // infopanel via showLetterReader, not the modal reader.
+      // now docked in the FROZEN FOOTER, locked directly above the letter-nav /
+      // author-toggle rail (was: top of the body, where it pushed the letter
+      // down). Taps jump WITHIN the infopanel via showLetterReader.
       if (window.HubbellReader && HubbellReader.buildContextStrip) {
         var stripHtml = HubbellReader.buildContextStrip(letterId);
-        if (stripHtml) {
-          body.insertAdjacentHTML('afterbegin', stripHtml);
-          var stripEl = body.querySelector('.reader-context-strip');
+        var ctxSlot = panel.querySelector('#overlayFooterCtx');
+        if (stripHtml && ctxSlot) {
+          ctxSlot.textContent = '';
+          ctxSlot.insertAdjacentHTML('afterbegin', stripHtml);
+          var stripEl = ctxSlot.querySelector('.reader-context-strip');
           if (stripEl && HubbellReader.bindContextStrip) {
             HubbellReader.bindContextStrip(stripEl, function (id) { showLetterReader(id); });
           }

@@ -1269,7 +1269,7 @@
 
 /* ============================================================
    PARALLEL LIVES — embedded letter reader in the v2 "lamplight" theme.
-   _reader-era.css (loaded after _overlay.css?v=12) carries the unscoped .reader-*
+   _reader-era.css (loaded after _overlay.css?v=13) carries the unscoped .reader-*
    CONTENT rules (parchment body, wax-seal pills, dateline, .rhl-* + anchor
    washes); they resolve once the --era-* palette is defined on #detail-panel
    below. Here we add only the embedded-specific FRAME, editorial sidebar, nav
@@ -1353,11 +1353,11 @@
   }
 }
     </style>
-<link rel="stylesheet" href="_overlay.css?v=12">
+<link rel="stylesheet" href="_overlay.css?v=13">
 <!-- v2 "lamplight" era theme — its unscoped .reader-* CONTENT rules style the
      embedded Parallel-Lives reader once --era-* tokens exist on #detail-panel
-     (defined in the main <style>); loaded AFTER _overlay.css?v=12 so it wins. -->
-<link rel="stylesheet" href="_reader-era.css?v=18">
+     (defined in the main <style>); loaded AFTER _overlay.css?v=13 so it wins. -->
+<link rel="stylesheet" href="_reader-era.css?v=19">
 <link rel="stylesheet" href="_scrollrail.css?v=12">
 <style>:root{ --rail-accent:#3E86C4; }</style>
 <script src="_scrollrail.js?v=12"></script>
@@ -2597,7 +2597,7 @@
 
     var _detailWasOpen = false; // track if navigating within open panel
     // ── Letter Context Strip (Parallel Lives reader) ──────────────────────
-    // Dashboard-local twin of the shared _reader.js?v=24 strip. Same markup/CSS
+    // Dashboard-local twin of the shared _reader.js?v=25 strip. Same markup/CSS
     // (.reader-context-strip, served from _design.css?v=10), but reads this file's
     // own LETTERS shape (author/date/recipient) and navigates via openDetail.
     // A density band of every letter on one corpus timeline, current letter
@@ -2740,7 +2740,7 @@
     }
 
     // Flag-category body highlighting for the Parallel Lives reader — mirrors the
-    // shared reader (_reader.js?v=24). Wraps words signalling each active flag in
+    // shared reader (_reader.js?v=25). Wraps words signalling each active flag in
     // rhl-<flag> spans so the colored pills can toggle .hide-<flag> on .reader-body.
     const DASH_FLAG_PATTERNS = {
         battle: /\b(battle|battles|fight\w*|fought|engaged|engagement|skirmish\w*|charge[ds]?|charging|attack\w*|advance[ds]?|advancing|firing|fired|musket\w*|rifles?|cannon\w*|shell\w*|shelling|cannonad\w+|bullets?|balls?|pickets?|enemy|rebels?|reb[s]?|regiments?|brigade[s]?|company|companies)\b/gi,
@@ -3082,7 +3082,7 @@
 </footer>
 <script src="_overlay-data.js?v=15"></script>
 <script src="_letter-nav.js"></script>
-<script src="_overlay.js?v=27"></script>
+<script src="_overlay.js?v=28"></script>
 <script>HubbellOverlay.bindPage({ tags: true, locations: true });</script>
 <script>HubbellDeepLink.injectShareButton();</script>
 </body>

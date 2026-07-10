@@ -11,9 +11,9 @@
 <!-- The dashboard reader styles live ONLY in this document. Because reader.html is loaded inside an
      iframe on the landing, none of these global rules can reach the immersive landing page. -->
 <link rel="stylesheet" href="/_design.css?v=10"/>
-<link rel="stylesheet" href="/_overlay.css?v=12"/>
+<link rel="stylesheet" href="/_overlay.css?v=13"/>
 <!-- era theme â€” loaded LAST so it retones/overrides the dashboard reader styling, scoped to this iframe only -->
-<link rel="stylesheet" href="/_reader-era.css?v=18"/>
+<link rel="stylesheet" href="/_reader-era.css?v=19"/>
 <style>
   /* transparent so the landing shows (dimmed by the reader's own backdrop) behind the panel */
   html,body{margin:0;background:transparent}
@@ -28,10 +28,10 @@
      renders the key-event toggles, synopsis, and people/places apparatus -->
 <script src="/_search-data.js"></script>
 <script src="/_letter-nav.js"></script>
-<script src="/_overlay.js?v=27"></script>
+<script src="/_overlay.js?v=28"></script>
 <!-- ?v bumped with _reader-era.css so a fresh reader.html (rv-busted) also pulls the matching
-     _reader.js?v=24 â€” keeps the inline --pc seal-dot hook in sync with the era CSS that reads it -->
-<script src="/_reader.js?v=24"></script>
+     _reader.js?v=25 â€” keeps the inline --pc seal-dot hook in sync with the era CSS that reads it -->
+<script src="/_reader.js?v=25"></script>
 <script>
 (function(){
   var closed=false;

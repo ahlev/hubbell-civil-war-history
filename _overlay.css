@@ -1087,3 +1087,10 @@ body.letter-reader-open .hubbell-overlay-dot-tip {
 .rc-b > .hubbell-overlay-exec::before{ display: none !important; }
 .rc-b > .reader-exec-summary,
 .rc-b > .hubbell-overlay-exec{ margin-top: 2px !important; }
+
+/* Context-strip dock in the lamplit reader's frozen footer — the corpus
+   timeline sits locked directly above the prev/next + author-toggle rail
+   (moved from the top of the letter body, where it pushed the parchment down). */
+.hubbell-overlay-footer-ctx{ padding: 2px 0 0; }
+.hubbell-overlay-footer-ctx:empty{ display: none; }
+.hubbell-overlay-footer-ctx .reader-context-strip{ margin: 4px 0 2px !important; }
