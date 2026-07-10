@@ -74,6 +74,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 .quote.long{width:min(94vw,760px)}                                        /* contemplative multi-paragraph passage */
 .quote.long p{font-weight:500;font-size:clamp(15px,1.95vw,23px);line-height:1.55}
 .quote.long p+p{margin-top:.75em}
+.beat.quote{text-align:left}                                              /* letter excerpts read as prose paragraphs, not centered display type (cite follows) */
 .cite{margin-top:22px;font-family:"JetBrains Mono",monospace;font-style:normal;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#dfe5ea;font-weight:500;line-height:1.7}
 .cite .who{display:block;margin-bottom:3px}
 .cite b{color:var(--lantern);font-weight:700;font-size:17px;letter-spacing:.04em}
@@ -89,7 +90,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 #cascade{position:absolute;inset:0;z-index:13;pointer-events:none}
 #cascade .ex{position:absolute;top:5.5%;width:21%;opacity:0;transform:translateY(-12px);transition:opacity .8s ease,transform .8s ease;
   background:linear-gradient(180deg,rgba(5,6,9,.9),rgba(5,6,9,.7));border:1px solid rgba(236,227,210,.14);border-radius:10px;
-  padding:14px 13px 12px;text-align:center;backdrop-filter:blur(2px);box-shadow:0 14px 34px rgba(0,0,0,.5)}
+  padding:14px 13px 12px;text-align:left;backdrop-filter:blur(2px);box-shadow:0 14px 34px rgba(0,0,0,.5)}
 #cascade .ex p{font-style:italic;font-weight:600;font-size:clamp(12px,1.05vw,15px);line-height:1.5;color:#f3ecdd}
 #cascade .ex .c{margin-top:10px;padding-top:9px;border-top:1px solid rgba(236,227,210,.16);font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#cdd3d9;line-height:1.6}
 #cascade .ex .c .who{display:block;margin-bottom:3px}
@@ -264,7 +265,26 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 .prail-thumb .grip{width:9px;height:12px;background:repeating-linear-gradient(180deg,rgba(22,19,13,.6) 0 1.6px,transparent 1.6px 4px)}
 .progressrail:hover .prail-thumb,.prail-thumb.drag{width:23px;filter:brightness(1.08);box-shadow:0 3px 15px rgba(0,0,0,.55),0 0 20px rgba(224,176,112,.7),inset 0 1px 0 rgba(255,255,255,.55)}
 .prail-thumb.drag{cursor:grabbing}
+/* beat checkpoints ON the desktop scrubber rail — click to glide there; each
+   lights gold once the flow passes it, so the thumb visibly "completes" the
+   journey checkpoint by checkpoint. */
+.prail-beat{position:absolute;left:50%;transform:translate(-50%,-50%);z-index:2;width:18px;height:18px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+.prail-beat::before{content:'';width:7px;height:7px;border-radius:50%;background:rgba(240,228,204,.30);border:1px solid rgba(224,176,112,.45);transition:background .3s,border-color .3s,box-shadow .3s,transform .3s}
+.prail-beat:hover::before{transform:scale(1.35);background:rgba(240,228,204,.6)}
+.prail-beat.done::before{background:#E0B070;border-color:#E0B070}
+.prail-beat.cur::before{transform:scale(1.5);background:#E0B070;border-color:#E0B070;box-shadow:0 0 10px rgba(224,176,112,.8)}
 @media(max-width:760px),(pointer:coarse){.progressrail{display:none}}
+
+/* ===== mobile beat rail — tappable right-edge checkpoints, one per scene =====
+   Replaces the (hidden-on-phones) draggable scrubber with something legible at
+   a glance: a dot per major beat, the current one lit gold. Tap a dot to glide
+   to that scene. */
+.beatrail{position:fixed;right:5px;top:50%;transform:translateY(-50%);z-index:29;display:none;flex-direction:column;align-items:center;gap:2px;padding:10px 3px;border-radius:999px;background:rgba(10,9,8,.34);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.beatrail::before{content:'';position:absolute;top:18px;bottom:18px;left:50%;width:1px;background:rgba(224,176,112,.22);transform:translateX(-50%)}
+.beatdot{position:relative;z-index:1;width:26px;height:26px;padding:0;border:0;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.beatdot::before{content:'';width:7px;height:7px;border-radius:50%;background:rgba(240,228,204,.42);box-shadow:0 1px 3px rgba(0,0,0,.5);transition:transform .25s,background .25s,box-shadow .25s}
+.beatdot.on::before{background:#E0B070;transform:scale(1.6);box-shadow:0 0 10px rgba(224,176,112,.85),0 1px 3px rgba(0,0,0,.5)}
+@media(max-width:760px),(pointer:coarse){.beatrail{display:flex}}
 
 /* ===== in-page letter reader (isolated iframe overlay) ===== */
 .rdrwrap{position:fixed;inset:0;z-index:100;opacity:0;pointer-events:none;transition:opacity .26s ease}
@@ -283,7 +303,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 @media(max-width:760px){
   *{-webkit-tap-highlight-color:transparent}
   html,body{overscroll-behavior-y:none}
-  .track{height:1800vh}                                   /* shorter scroll on a phone */
+  .track{height:1200vh}                                   /* much shorter scroll on a phone — fewer swipes per scene, faster flow */
 
   /* nav → hamburger dropdown */
   .nav{padding:11px 16px}
@@ -384,7 +404,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
   </a>
   <div class="spacer"></div>
   <div class="links">
-    <a href="/the-collection.html">The Collection</a>
+    <a href="/the-collection.html">The Archive</a>
     <a href="/hubbell-dashboard.html">Parallel Lives</a>
     <a href="/viz-map-fullwar.html">Map That Moves</a>
     <a href="/viz-health-ledger.html">Wellness Ledger</a>
@@ -398,7 +418,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
   <div class="stage" id="stage">
 
     <!-- SCENES -->
-    <div class="scene" id="s-tent"><video data-src="/experience-v2/assets/loop-field-warm.webm" muted loop playsinline preload="none" poster="/experience-v2/assets/hero-poster.jpg"></video></div>
+    <div class="scene" id="s-tent"><video data-src="/experience-v2/assets/loop-field-warm-v2.webm" muted loop playsinline preload="none" poster="/experience-v2/assets/hero-poster-v2.jpg"></video></div>
     <div class="scene" id="s-valley"><video data-src="/experience-v2/assets/loops/loop-summer-valley.webm" muted loop playsinline preload="none" poster="/experience-v2/assets/seasons/summer/web/layer-valley-v2.webp"></video></div>
     <div class="scene" id="s-battle"><video data-src="/experience-v2/assets/loops/loop-skirmish-v2.webm" muted loop playsinline preload="none" poster="/experience-v2/assets/scenes/web/scene-skirmish-v2.webp"></video></div>
     <div class="scene" id="s-brothers">
@@ -456,10 +476,10 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 
       <!-- brothers cascade (column-locked) -->
       <div id="cascade">
-        <div class="ex alex"><p>&ldquo;Here I am safe and sound in the barracks. How strange it does seem. Ah! what a bedlam!&rdquo;</p><div class="c"><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span>Ogdensburgh, NY · Sept 20, 1861</div><a class="bio-btn" href="/brother-alexander.html">Read his story →</a></div>
-        <div class="ex henry"><p>&ldquo;How I long to have one good meal at home, even if it wasn&rsquo;t anything but potatoes and salt…&rdquo;</p><div class="c"><span class="who"><b>Henry Hubbell</b> · <span class="unit">Co. D, 34th N.Y.</span></span>Near Richmond, VA · June 22, 1862</div><a class="bio-btn" href="/brother-henry.html">Read his story →</a></div>
-        <div class="ex james"><p>&ldquo;It is nothing but a flesh wound and is doing well. I walked several miles after being hit in order not to fall into the Johnnies&rsquo; hands.&rdquo;</p><div class="c"><span class="who"><b>James Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>Baltimore, MD · Oct 29, 1864</div><a class="bio-btn" href="/brother-james.html">Read his story →</a></div>
-        <div class="ex charles"><p>&ldquo;A pleasant place here, a good deal better than being in the field… when night comes I spread my blankets on the floor and sleep soundly.&rdquo;</p><div class="c"><span class="who"><b>Charles Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>New Orleans, LA · March 6, 1864</div><a class="bio-btn" href="/brother-charles.html">Read his story →</a></div>
+        <div class="ex alex"><p>&ldquo;Here I am safe and sound in the barracks. How strange it does seem. Ah! what a bedlam!&rdquo;</p><div class="c"><span class="who"><b>Alexander Hubbell</b> · <span class="unit">Co. H, 60th N.Y.</span></span>Ogdensburgh, NY · Sept 20, 1861</div><a class="bio-btn" href="/who-they-were.html#alexander">Read his story →</a></div>
+        <div class="ex henry"><p>&ldquo;How I long to have one good meal at home, even if it wasn&rsquo;t anything but potatoes and salt…&rdquo;</p><div class="c"><span class="who"><b>Henry Hubbell</b> · <span class="unit">Co. D, 34th N.Y.</span></span>Near Richmond, VA · June 22, 1862</div><a class="bio-btn" href="/who-they-were.html#henry">Read his story →</a></div>
+        <div class="ex james"><p>&ldquo;It is nothing but a flesh wound and is doing well. I walked several miles after being hit in order not to fall into the Johnnies&rsquo; hands.&rdquo;</p><div class="c"><span class="who"><b>James Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>Baltimore, MD · Oct 29, 1864</div><a class="bio-btn" href="/who-they-were.html#james">Read his story →</a></div>
+        <div class="ex charles"><p>&ldquo;A pleasant place here, a good deal better than being in the field… when night comes I spread my blankets on the floor and sleep soundly.&rdquo;</p><div class="c"><span class="who"><b>Charles Hubbell</b> · <span class="unit">Co. H, 153rd N.Y.</span></span>New Orleans, LA · March 6, 1864</div><a class="bio-btn" href="/who-they-were.html#charles">Read his story →</a></div>
       </div>
 
       <div class="explore" id="b-explore">
@@ -501,7 +521,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
       <div class="prosebeat" id="b-preserve">
         <div class="eyb">The Preservation</div>
         <h2>A trunk in a basement. Five generations of care.</h2>
-        <p>Bundled away after the war, water-stained and nearly lost — then transcribed, introduced, digitized, and finally analyzed, each by a different descendant, each in a different decade.</p>
+        <p>Bundled away after the war, water-stained and nearly lost — then transcribed, introduced, digitized, and finally analyzed, each by a different descendant, each in a different decade. The last of them was named at Gettysburg — his parents chose the family name on the field where the first Alexander fought.</p>
         <a class="cta" href="/the-collection.html">The full story of the collection →</a>
       </div>
     </div>
@@ -524,6 +544,9 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 
 <!-- custom progress rail (draggable scrubber; reflects position in the flow) -->
 <div class="progressrail" id="prail" aria-hidden="true"><div class="prail-thumb" id="pthumb"><span class="grip"></span></div></div>
+
+<!-- mobile beat rail (tappable checkpoint per scene; built by JS) -->
+<div class="beatrail" id="beatrail" role="navigation" aria-label="Sections"></div>
 
 <!-- in-page letter reader — an ISOLATED iframe (reader.html owns its own CSS, so it can't touch the landing).
      Opened atop the landing by the "Read letter" pills; the reader's own close/backdrop posts back to dismiss. -->
@@ -587,7 +610,7 @@ if(reduced){
   const startT=performance.now();
   let p=0,target=0,mx=0,my=0,tmx=0,tmy=0,t=0;
   addEventListener('scroll',()=>{const m=document.body.scrollHeight-innerHeight;target=m>0?clamp(scrollY/m,0,1):0;},{passive:true});
-  addEventListener('mousemove',e=>{tmx=e.clientX/innerWidth-.5;tmy=e.clientY/innerHeight-.5;},{passive:true});
+  /* cursor parallax removed — the bg shift read as jitter, not depth; scenes move on scroll only (tmx/tmy stay 0) */
 
   /* ---- snap-advance: click a chevron / press a direction key to glide to the next held beat.
          Velocity model: gentle base pace, and it SLOWS HARD inside transition zones so the
@@ -614,8 +637,8 @@ if(reduced){
     const dist=Math.abs(advTo-target);
     if(dist<0.0016){target=advTo; advActive=false; glideV=0;}
     else{
-      let tv=0.00007;                         // base ≈ 0.07 p/s, time-based (per-ms) → identical dwell at any framerate
-      if(inTrans(p)) tv*=0.20;                // ~3–4s dwell inside a transition so the cannon-smoke / rain-wash clips play
+      let tv=isMobile?0.000115:0.00007;       // base ≈ 0.07 p/s desktop (original) · ~0.115 p/s mobile
+      if(inTrans(p)) tv*=isMobile?0.38:0.26;  // transition dwell: desktop trimmed ~30% from the original 0.20 (was ~3–4s), phones shorter still
       tv*=clamp(dist/0.05,0.16,1);            // decelerate into the stop
       glideV+=(tv-glideV)*0.12;               // smooth accel/decel
       target+=advDir*Math.min(glideV*dt,dist);
@@ -639,7 +662,7 @@ if(reduced){
     /* A tap that begins on the menu, a link/button, the reader, or the progress rail is an
        interaction — not a scene swipe. Flag it so the snap-settle below doesn't fire and
        steal the tap's click (which was making menu items unresponsive on mobile). */
-    swipeIgnore = !!(e.target && e.target.closest && e.target.closest('.nav, a, button, [role="button"], .reader-overlay, #prail, #pthumb')); },{passive:true});
+    swipeIgnore = !!(e.target && e.target.closest && e.target.closest('.nav, a, button, [role="button"], .reader-overlay, #prail, #pthumb, .beatrail')); },{passive:true});
   addEventListener('touchmove',e=>{ if(e.touches&&e.touches[0]){touchMoved=e.touches[0].clientY-touchStartY;} },{passive:true});
   addEventListener('touchend',()=>{ if(!isMobile||!snapOnSwipe||pdragging||swipeIgnore)return;
     if(snapTimer)clearInterval(snapTimer);
@@ -668,6 +691,45 @@ if(reduced){
   addEventListener('pointerup',()=>{if(pdragging){pdragging=false;pthumb.classList.remove('drag');}});
   prail.addEventListener('pointerdown',e=>{ if(e.target===pthumb||pthumb.contains(e.target))return;   // click the track → jump there
     const u=railUsable(); const nt=clamp(e.clientY-prail.getBoundingClientRect().top-pthumb.offsetHeight/2,0,u); window.scrollTo(0,(u>0?nt/u:0)*maxPx()); cancelAdv();});
+
+  /* ---- mobile beat rail: one tappable checkpoint per major scene; the current
+         beat glows gold. Tap → glide to the anchor nearest that beat's start. ---- */
+  const BEAT_NAMES=['Opening','The Valley','The War','The Brothers','Explore','The Letters','Preserve'];
+  function glideToBeat(i){
+    const bs=BEATS[i]+0.001; let best=0,bd=9;
+    ANCHORS.forEach((a,ai)=>{const d=Math.abs(a-bs); if(d<bd){bd=d;best=ai;}});
+    goTo(best);
+  }
+  const brailEl=S('beatrail'); const beatDots=[];
+  if(brailEl){
+    for(let i=0;i<BEATS.length-1;i++){
+      const b=document.createElement('button');
+      b.type='button'; b.className='beatdot';
+      b.setAttribute('aria-label', BEAT_NAMES[i]||('Section '+(i+1)));
+      b.addEventListener('click',()=>glideToBeat(i));
+      brailEl.appendChild(b); beatDots.push(b);
+    }
+  }
+  /* the same checkpoints on the DESKTOP scrubber rail, inset along its length */
+  const prailBeats=[];
+  if(prail){
+    for(let i=0;i<BEATS.length-1;i++){
+      const m=document.createElement('button');
+      m.type='button'; m.className='prail-beat';
+      m.style.top=(2+BEATS[i]*96)+'%';
+      m.setAttribute('aria-label','Go to '+(BEAT_NAMES[i]||('section '+(i+1))));
+      m.addEventListener('pointerdown',e=>{e.stopPropagation();});   // don't trigger the track's jump
+      m.addEventListener('click',e=>{e.stopPropagation();glideToBeat(i);});
+      prail.appendChild(m); prailBeats.push(m);
+    }
+  }
+  let _lastBeat=-1;
+  function updateBeatRail(){
+    let cur=0; for(let i=0;i<BEATS.length-1;i++){ if(p>=BEATS[i]-0.002) cur=i; }
+    if(cur===_lastBeat)return; _lastBeat=cur;
+    beatDots.forEach((d,i)=>d.classList.toggle('on',i===cur));
+    prailBeats.forEach((m,i)=>{ m.classList.toggle('done', cur>i); m.classList.toggle('cur', i===cur); });
+  }
 
   function lazy(){
     for(const id in scenes){const [a,b]=scenes[id];const near=p>a-0.10&&p<b+0.10;
@@ -863,7 +925,7 @@ if(reduced){
   let lastFrameT=performance.now();
   function frame(){const now=performance.now(); const dt=Math.min(now-lastFrameT,50); lastFrameT=now;
     stepAdvance(dt);   // paced glide (drives target, slows through transitions); scroll listener keeps target in sync
-    t+=0.016;p+=(target-p)*0.085;mx+=(tmx-mx)*0.06;my+=(tmy-my)*0.06;lazy();apply(now);drawEmbers();requestAnimationFrame(frame);}
+    t+=0.016;p+=(target-p)*(isMobile?0.12:0.085);mx+=(tmx-mx)*0.06;my+=(tmy-my)*0.06;lazy();apply(now);drawEmbers();updateBeatRail();requestAnimationFrame(frame);}
   lazy();apply(performance.now());requestAnimationFrame(frame);
 }
 </script>

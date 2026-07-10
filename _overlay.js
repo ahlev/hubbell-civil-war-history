@@ -38,6 +38,50 @@
     return window.LETTER_INDEX ? LETTER_INDEX[id] : null;
   }
 
+  /* ── Collapsible reader sections (.rc) ──────────────────────────────
+     Same contract as _reader.js + the Parallel Lives inline readers:
+     one sticky site-wide preference per section in localStorage
+     'hubReaderCollapse'; styles in _overlay.css. In THIS reader only the
+     editor's note collapses (people/places already live in the compact
+     frozen footer BELOW the letter). Default: editor's note COLLAPSED. */
+  var RC_KEY = 'hubReaderCollapse';
+  var RC_DEFAULTS = { editorial: 1, people: 0, places: 0 };
+  function rcCollapsed(sec) {
+    try {
+      var p = JSON.parse(localStorage.getItem(RC_KEY)) || {};
+      return (sec in p) ? !!p[sec] : !!RC_DEFAULTS[sec];
+    } catch (e) { return !!RC_DEFAULTS[sec]; }
+  }
+  function rcWrap(sec, label, inner, count) {
+    if (!inner) return '';
+    var c = rcCollapsed(sec);
+    var cta = sec === 'editorial' ? 'click to read' : 'show';
+    return '<div class="rc' + (c ? ' rc-collapsed' : '') + '" data-rc="' + sec + '">' +
+      '<button class="rc-h" type="button" aria-expanded="' + (!c) + '">' +
+        '<svg class="rc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>' +
+        '<span class="rc-t">' + label + '</span>' +
+        (count ? '<span class="rc-n">' + count + '</span>' : '') +
+        '<span class="rc-cta">' + cta + '</span>' +
+      '</button>' +
+      '<div class="rc-b">' + inner + '</div></div>';
+  }
+  if (!window.__hubRcWired) {
+    window.__hubRcWired = true;
+    document.addEventListener('click', function (e) {
+      var h = e.target && e.target.closest ? e.target.closest('.rc-h') : null;
+      if (!h) return;
+      e.preventDefault(); e.stopPropagation();
+      var rc = h.parentNode, sec = rc.getAttribute('data-rc');
+      var col = rc.classList.toggle('rc-collapsed');
+      h.setAttribute('aria-expanded', String(!col));
+      try {
+        var p = JSON.parse(localStorage.getItem(RC_KEY)) || {};
+        p[sec] = col ? 1 : 0;
+        localStorage.setItem(RC_KEY, JSON.stringify(p));
+      } catch (err) {}
+    }, true);
+  }
+
   // Full letter record (executive summary, people, places, event flags, full
   // transcription) from the shared LETTERS array. LETTER_INDEX only carries the
   // light {d,a,an,r,l,ss-teaser} fields, so the reader pulls the rest here.
@@ -688,8 +732,11 @@
       var lf = fullLetter(letterId);
       if (lf && rb) {
         if (lf.ss) {
+          // Collapsible + collapsed by default (sticky site-wide preference) —
+          // keeps the parchment, not the annotation, first in the panel.
           rb.insertAdjacentHTML('beforebegin',
-            '<div class="hubbell-overlay-exec">' + esc(lf.ss) + '</div>');
+            rcWrap('editorial', "Editor's Note",
+              '<div class="hubbell-overlay-exec">' + esc(lf.ss) + '</div>'));
         }
         // "Health context:" — the medical-historian clinical read (Wellness Ledger
         // only; present when the caller passes opts.health.healthContext). Distinct

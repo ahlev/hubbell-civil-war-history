@@ -51,7 +51,7 @@
     // the whole site. Home is reachable via the brand logo; Money Story lives in
     // the body nav, not this bar. The search field is retained for findability.
     var links = [
-      { href: 'the-collection.html',              label: 'The Collection', acc: '#CE8A46' },
+      { href: 'the-collection.html',              label: 'The Archive',    acc: '#CE8A46' },
       { href: 'hubbell-dashboard.html',           label: 'Parallel Lives', acc: '#3E86C4' },
       { href: 'viz-map-fullwar.html',             label: 'Map That Moves', acc: '#52A86E' },
       { href: 'viz-health-ledger.html',           label: 'Wellness Ledger',acc: '#CB5C5C' },
@@ -59,16 +59,18 @@
       { href: 'who-they-were.html',               label: 'Who They Were',  acc: '#6FB0A6' }
     ];
     // Family members surfaced as a hover dropdown under "Who They Were" — each
-    // color-dotted (brother/mother hue), linking straight to their dedicated
-    // bio page. Ordered by letters written (most → fewest) with the mother last,
-    // and using character (not age) roles — consistent with the bio kin strip
-    // and neutral on the open birth-order question (see DSC-2026-06-30-002).
+    // color-dotted (brother/mother hue), linking to the ONE canonical bio view:
+    // the who-they-were.html portrait-left stage (#<person> deep link; the old
+    // dedicated pages are now redirect stubs). Ordered by letters written
+    // (most → fewest) with the mother last, and using character (not age)
+    // roles — consistent with the bio kin strip and neutral on the open
+    // birth-order question (see DSC-2026-06-30-002).
     var FAMILY = [
-      { href: 'brother-alexander.html', label: 'Alexander', dot: '#B8860B', note: 'The survivor' },
-      { href: 'brother-charles.html',   label: 'Charles',   dot: '#8B3A3A', note: 'The clear-eyed' },
-      { href: 'brother-henry.html',     label: 'Henry',     dot: '#2D5F8A', note: 'First to enlist' },
-      { href: 'brother-james.html',     label: 'James',     dot: '#4A7C59', note: 'The scholar' },
-      { href: 'mother-frances.html',    label: 'Frances',   dot: '#7B5EA7', note: 'The mother' }
+      { href: 'who-they-were.html#alexander', label: 'Alexander', dot: '#B8860B', note: 'The survivor' },
+      { href: 'who-they-were.html#charles',   label: 'Charles',   dot: '#8B3A3A', note: 'The clear-eyed' },
+      { href: 'who-they-were.html#henry',     label: 'Henry',     dot: '#2D5F8A', note: 'First to enlist' },
+      { href: 'who-they-were.html#james',     label: 'James',     dot: '#4A7C59', note: 'The scholar' },
+      { href: 'who-they-were.html#mother',    label: 'Frances',   dot: '#7B5EA7', note: 'The mother' }
     ];
     function familyDD(cls, withNote) {
       return '<div class="' + cls + '" role="menu">' +
@@ -535,9 +537,37 @@
     });
   }
 
+  /* ─── Sitewide ownership row: appended to every .site-footer so the
+     project's creator + About/Press pages are findable from any page
+     without touching each page's static footer markup. ─── */
+  function renderOwnership() {
+    var footer = document.querySelector('.site-footer');
+    if (!footer || footer.querySelector('.site-owner-row')) return;
+    var row = document.createElement('div');
+    row.className = 'site-owner-row';
+    row.style.cssText = 'max-width:var(--col-max,1200px);margin:0 auto;padding:14px 32px 0;border-top:1px solid rgba(128,120,104,0.18);display:flex;flex-wrap:wrap;gap:6px 22px;align-items:baseline;font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;color:var(--ink-3);';
+    var credit = document.createElement('span');
+    credit.textContent = 'Created by Alexander Hubbell Levitt';
+    row.appendChild(credit);
+    [
+      { href: 'about.html', label: 'About the Project' },
+      { href: 'press.html', label: 'Press & Media' },
+      /* TODO: swap mailto for the new project email once created */
+      { href: 'mailto:theaihubops@gmail.com', label: 'Contact' }
+    ].forEach(function (l) {
+      var a = document.createElement('a');
+      a.href = l.href;
+      a.textContent = l.label;
+      a.style.cssText = 'color:var(--ink-2);text-decoration:none;';
+      row.appendChild(a);
+    });
+    footer.appendChild(row);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     applyPrefs();
     renderNav();
+    renderOwnership();
     wireToggles();
     wireSearch();
     wireReveals();

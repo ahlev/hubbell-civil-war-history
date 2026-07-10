@@ -1,0 +1,157 @@
+/* ============================================================
+   _sibling.css — "What They Wrote to Each Other"
+   Only TWO net-new components: .diptych and .voiceprint.
+   Everything else on the page reuses _design.css tokens and the
+   bio shell (_bio.css). Scoped under .tul-page to stay contained.
+   ============================================================ */
+.tul-page { --tul-accent: #8C6D3F; }               /* archival sepia for essay chrome */
+
+/* essay lede under the hero */
+.tul-lede {
+  max-width: 68ch; margin: 8px auto 6px; padding: 0 28px;
+  font-family: var(--font-serif); font-size: clamp(18px, 1.9vw, 22px);
+  line-height: 1.5; color: var(--ink); text-align: center; font-weight: 500;
+}
+.tul-eyebrow {
+  text-align: center; font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--tul-accent); margin: 0 0 8px;
+}
+
+/* ---------------------------------------------------------------
+   DIPTYCH  ⚑ new — 2 or 3 channel-colored letter panels
+   --------------------------------------------------------------- */
+.diptych { max-width: 1080px; margin: 40px auto; }
+.diptych-cap {
+  text-align: center; font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px;
+}
+.diptych-cap b { color: var(--ink-2); font-weight: 600; }
+.dip-grid {
+  display: flex; align-items: stretch;
+  border: 1px solid var(--rule); border-radius: 12px; overflow: hidden;
+  background: var(--bg-elev); box-shadow: 0 10px 34px -22px rgba(30,20,10,.5);
+}
+.dip-side {
+  flex: 1 1 0; min-width: 0; padding: 22px 24px 20px;
+  display: flex; flex-direction: column; gap: 12px; position: relative;
+}
+.dip-side + .dip-side { border-left: 1px solid var(--rule); }
+.dip-side::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--chan, var(--ink-3)); opacity: .92;
+}
+.dip-head { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+.dip-dot {
+  width: 10px; height: 10px; border-radius: 50%; background: var(--chan); flex-shrink: 0;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--chan) 18%, transparent);
+}
+.dip-to {
+  font-family: var(--font-sans); font-size: .72rem; font-weight: 700;
+  letter-spacing: .03em; text-transform: uppercase; color: var(--chan);
+}
+.dip-date { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); margin-left: auto; }
+.dip-quote {
+  font-family: var(--font-serif); font-size: 1.05rem; line-height: 1.62;
+  color: var(--ink); font-style: italic;
+}
+.dip-quote .q { color: var(--chan); font-style: normal; font-weight: 600; }
+.dip-flags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: auto; padding-top: 4px; }
+.dip-flag {
+  font-family: var(--font-sans); font-size: .58rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .04em; padding: 2px 7px; border-radius: 999px; background: #EFEBE6; color: #6b5d49;
+}
+.dip-flag.battle { background: #FCE4EC; color: #C62828; }
+.dip-flag.wound  { background: #F3E5F5; color: #7B1FA2; }
+.dip-flag.death  { background: #EFEBE9; color: #4E342E; }
+.dip-flag.political { background: #FFF3E0; color: #E65100; }
+.dip-flag.receipt   { background: #E8F5E9; color: #2E7D32; }
+.dip-open {
+  align-self: flex-start; font-family: var(--font-sans); font-size: .72rem; font-weight: 600;
+  color: var(--chan); background: none; border: 0; padding: 0; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.dip-open:hover { text-decoration: underline; }
+.dip-open svg { width: 13px; height: 13px; }
+
+/* darken low-luminance channel colors for AA contrast on interactive/quote text
+   (--alexander #B8860B and --fannie #C17B5F fail 4.5:1 as small text otherwise) */
+.dip-to, .dip-open { color: color-mix(in srgb, var(--chan) 72%, #1a1508); }
+.dip-quote .q      { color: color-mix(in srgb, var(--chan) 80%, #1a1508); }
+
+@media (max-width: 720px) {
+  .dip-grid { flex-direction: column; }
+  .dip-side + .dip-side { border-left: 0; border-top: 1px solid var(--rule); }
+  .dip-date { margin-left: 0; }
+}
+/* the 3-column triptych needs to stack earlier than the 2-col diptychs */
+@media (max-width: 920px) {
+  .dip-grid--trio { flex-direction: column; }
+  .dip-grid--trio .dip-side + .dip-side { border-left: 0; border-top: 1px solid var(--rule); }
+  .dip-grid--trio .dip-date { margin-left: 0; }
+}
+
+/* ---------------------------------------------------------------
+   VOICEPRINT  ⚑ new — CSS mini-bars, numbers injected from the
+   script-generated constant (never hand-typed into markup)
+   --------------------------------------------------------------- */
+.voiceprint {
+  max-width: 680px; margin: 30px auto 10px; padding: 22px 24px 18px;
+  border: 1px solid var(--rule); border-radius: 12px; background: var(--bg-elev);
+}
+.vp-title {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-3); text-align: center;
+}
+.vp-sub {
+  font-family: var(--font-serif); font-style: italic; font-size: .88rem; color: var(--ink-3);
+  text-align: center; margin: 4px 0 18px;
+}
+.vp-metric { margin: 14px 0; }
+.vp-mlabel { font-family: var(--font-sans); font-size: .74rem; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
+.vp-bar { display: flex; align-items: center; gap: 9px; margin: 4px 0; }
+.vp-chan { width: 58px; font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); text-transform: capitalize; }
+.vp-track { flex: 1; height: 9px; border-radius: 999px; background: color-mix(in srgb, var(--ink-3) 13%, transparent); overflow: hidden; }
+.vp-fill { height: 100%; border-radius: 999px; background: var(--chan, var(--ink-3)); width: 0; transition: width .9s cubic-bezier(.22,.61,.36,1); }
+.vp-val { width: 66px; text-align: right; font-family: var(--font-mono); font-size: 11px; color: var(--ink-2); }
+.vp-foot { font-family: var(--font-sans); font-size: .68rem; color: var(--ink-3); text-align: center; margin-top: 14px; line-height: 1.5; }
+.vp-foot a { color: var(--tul-accent); text-decoration: none; border-bottom: 1px dotted; }
+
+/* ---------------------------------------------------------------
+   Headline data-viz (Chart.js radar) + stylized excerpts + asides
+   --------------------------------------------------------------- */
+.tul-figure { max-width: 640px; margin: 36px auto 30px; }
+.tul-chart-wrap {
+  height: 452px; display: flex; flex-direction: column; padding: 12px 12px 10px;
+  border: 1px solid var(--rule); border-radius: 14px; background: var(--bg-elev);
+  box-shadow: 0 10px 34px -22px rgba(30,20,10,.5);
+}
+.tul-chart-head {
+  text-align: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--ink-3); padding: 6px 0 4px;
+}
+.tul-chart-canvas { position: relative; flex: 1 1 auto; min-height: 0; }
+.tul-figcap {
+  text-align: center; font-family: var(--font-serif); font-style: italic; font-size: .9rem;
+  line-height: 1.55; color: var(--ink-3); margin-top: 14px; max-width: 60ch; margin-left: auto; margin-right: auto;
+}
+.tul-figcap b { font-style: normal; color: var(--ink-2); font-weight: 600; }
+.tul-figcap code { font-style: normal; font-family: var(--font-mono); font-size: .82em; color: var(--tul-accent); }
+@media (max-width: 600px) { .tul-chart-wrap { height: 388px; } }
+
+.tul-pullquote { max-width: 820px; margin: 38px auto; padding: 4px 30px; text-align: center; }
+.tul-pullquote::before { content: ''; display: block; width: 40px; height: 2px; background: var(--chan, var(--tul-accent)); margin: 0 auto 20px; opacity: .6; }
+.tul-pullquote blockquote {
+  margin: 0; font-family: var(--font-display, var(--font-serif));
+  font-size: clamp(23px, 3.4vw, 33px); line-height: 1.3; color: var(--ink); font-weight: 500; letter-spacing: -.01em;
+}
+.tul-pullquote .pq-mark { color: var(--chan, var(--tul-accent)); }
+.tul-pullquote cite {
+  display: block; margin-top: 16px; font-family: var(--font-sans); font-style: normal;
+  font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--chan, var(--tul-accent));
+}
+
+/* method close callout */
+.tul-method { max-width: 760px; margin: 20px auto; padding: 22px 26px; border: 1px solid var(--rule); border-left: 3px solid var(--tul-accent); border-radius: 10px; background: var(--bg-elev); }
+.tul-method h3 { font-family: var(--font-display); color: var(--ink); margin: 0 0 8px; }
+.tul-method p { font-family: var(--font-serif); font-size: .98rem; line-height: 1.68; color: var(--ink-2); margin: 0 0 10px; }
+.tul-method code { font-family: var(--font-mono); font-size: .82em; background: color-mix(in srgb, var(--tul-accent) 12%, transparent); padding: 1px 5px; border-radius: 4px; color: var(--ink); }

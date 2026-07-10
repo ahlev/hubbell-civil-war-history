@@ -1049,3 +1049,41 @@ body.letter-reader-open .hubbell-overlay-dot-tip {
 .hubbell-overlay-panel .reader-context-strip .rcs-yr,
 .hubbell-overlay-panel .reader-context-strip .rcs-caption{ color: var(--era-on-frame-3); }
 .hubbell-overlay-panel .reader-context-strip .rcs-tip{ background: #231d12; color: var(--era-lantern); }
+
+/* ============================================================
+   COLLAPSIBLE READER SECTIONS (.rc) — shared by ALL reader
+   surfaces: the modal reader (_reader.js), the right-panel
+   lamplit reader (_overlay.js), and the Parallel Lives lower
+   reader + letter overlay (hubbell-dashboard.html inline).
+   The open/closed choice PER SECTION persists site-wide via
+   localStorage 'hubReaderCollapse' — toggle it once, it follows
+   the user across letters and readers until toggled again.
+   Defaults: editor's note COLLAPSED; people/places open.
+   Markup + wiring share one contract in the three JS homes.
+   ============================================================ */
+.rc{ margin: 7px 0; }
+.rc-h{
+  display: flex; align-items: center; gap: 7px; width: 100%;
+  background: transparent; border: 0; padding: 5px 2px; margin: 0;
+  font: 600 8.5px/1 var(--font-mono, ui-monospace, monospace);
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--era-on-frame-3, #97917f); cursor: pointer; text-align: left;
+}
+.rc-h:hover{ color: var(--era-on-frame, #d8d2c2); }
+.rc-h:focus-visible{ outline: 1px dotted currentColor; outline-offset: 2px; }
+.rc-chev{ width: 11px; height: 11px; flex: none; transition: transform .16s ease; }
+.rc:not(.rc-collapsed) > .rc-h .rc-chev{ transform: rotate(90deg); }
+.rc-n{ opacity: .75; letter-spacing: .06em; }
+.rc-cta{
+  margin-left: 3px;
+  font: italic 400 10px/1 'Source Serif 4', Georgia, serif;
+  text-transform: none; letter-spacing: .02em; opacity: .7;
+}
+.rc-cta::before{ content: "— "; }
+.rc:not(.rc-collapsed) > .rc-h .rc-cta{ display: none; }
+.rc-collapsed > .rc-b{ display: none; }
+/* the .rc header carries the label — hide the wrapped sections' own eyebrows */
+.rc-b > .reader-exec-summary::before,
+.rc-b > .hubbell-overlay-exec::before{ display: none !important; }
+.rc-b > .reader-exec-summary,
+.rc-b > .hubbell-overlay-exec{ margin-top: 2px !important; }

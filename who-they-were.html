@@ -7,9 +7,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="_design.css?v=9">
-<link rel="stylesheet" href="_overlay.css?v=11">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="_design.css?v=10">
+<link rel="stylesheet" href="_overlay.css?v=12">
 <link rel="stylesheet" href="_bio.css?v=1">
+<link rel="stylesheet" href="_family-strip.css?v=2">
 <link rel="stylesheet" href="_hero.css">
 <link rel="stylesheet" href="_reader-era.css?v=18">
 <style>
@@ -89,11 +91,17 @@ html{ scroll-behavior:smooth; }
 .pd-portrait .hero-loop{ --hero-ar:3/4; --hero-radius:12px; --hero-scrim:40%; box-shadow:0 30px 60px -28px rgba(0,0,0,.6); }
 .pd-portrait .hl-eyebrow{ color:color-mix(in srgb,var(--person) 62%,#f0d9a8); }
 .pd-headline .pd-eyebrow{ font-family:var(--font-mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--person); margin-bottom:10px; }
-.pd-name{ font-family:var(--font-display); font-weight:600; font-size:clamp(2.1rem,4vw,3.1rem); line-height:1.05; letter-spacing:-.025em; margin:0 0 8px; color:var(--ink); }
+.pd-name{ font-family:var(--font-display); font-weight:700; font-size:clamp(2.1rem,4vw,3.1rem); line-height:1.05; letter-spacing:-.025em; margin:0 0 8px; color:var(--person); }
 .pd-epithet{ font-family:var(--font-serif); font-style:italic; font-size:1.08rem; color:var(--ink-2); margin-bottom:6px; }
 .pd-lifespan{ font-family:var(--font-mono); font-size:11px; letter-spacing:.04em; color:var(--ink-3); margin-bottom:20px; }
 
 .pd-service{ display:grid; grid-template-columns:1fr 1fr; gap:0 30px; max-width:440px; }
+/* Wartime Footprint — compact 4:3 panel inside the headline column, directly
+   under the service table (was a full-width row below the hero). The map
+   builds after this layout settles, so Leaflet's fitBounds recenters the
+   locations within the narrower panel automatically. */
+.pd-headline .bio-map-section{ max-width:440px; margin:16px 0 0; padding:0; }
+.pd-headline .bio-map{ height:auto; aspect-ratio:4/3; }
 .pd-service .srv{ display:flex; flex-direction:column; padding:11px 0; border-bottom:1px solid var(--rule); }
 .pd-service .srv-val{ font-family:var(--font-serif); font-size:1.06rem; font-weight:600; color:var(--ink); line-height:1.2; }
 .pd-service .srv-lbl{ font-family:var(--font-mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-top:3px; }
@@ -159,6 +167,8 @@ html{ scroll-behavior:smooth; }
   .pd-hero{ grid-template-columns:1fr; gap:18px; padding:16px 20px 24px; }
   .pd-portrait .hero-loop{ --hero-ar:4/5; max-width:340px; margin:0 auto; }
   .pd-service{ max-width:none; }
+  .pd-headline .bio-map-section{ max-width:none; }
+  .pd-headline .bio-map{ aspect-ratio:auto; height:200px; }
   .pd-body{ grid-template-columns:1fr; gap:18px; padding:24px 20px 16px; }
   .pd-nav{ position:static; display:flex; flex-wrap:wrap; gap:6px; }
   .pd-nav .pn-label{ width:100%; margin-bottom:4px; }
@@ -179,11 +189,16 @@ html{ scroll-behavior:smooth; }
   .stage-back{ margin-left:20px; }
   .wtw-stats{ gap:12px 24px; }
 }
+/* People Web pill inside the stage headline — .hero-explore-pill styling comes
+   from _bio.css; only the person-tinted background var needs a local value. */
+.pd-headline .hero-explore{ margin:0 0 18px; }
+.pd-headline .hero-explore-pill{ --person-bg: color-mix(in srgb, var(--person) 9%, transparent); }
+
 @media (prefers-reduced-motion: reduce){ .wtw-family, .wtw-stage, .fam-tile{ transition:none !important; } }
 </style>
-<link rel="stylesheet" href="_scrollrail.css?v=11">
+<link rel="stylesheet" href="_scrollrail.css?v=12">
 <style>:root{ --rail-accent:#6FB0A6; }</style>
-<script src="_scrollrail.js?v=11"></script>
+<script src="_scrollrail.js?v=12"></script>
 </head>
 <body>
 
@@ -229,6 +244,15 @@ html{ scroll-behavior:smooth; }
       </div>
       <button class="wf-btn" id="fannieBtn">Letters written to her</button>
     </div>
+
+    <a class="wtw-fannie" href="the-unguarded-letter.html" style="--fannie:#8C6D3F; text-decoration:none; margin-top:14px">
+      <div class="wf-text">
+        <div class="wf-eyebrow">An essay from the letters</div>
+        <div class="wf-name" style="color:#8C6D3F">What They Wrote to Each Other</div>
+        <div class="wf-desc">The brothers wrote a different, unguarded self to one another than they wrote home &mdash; longer, blunter, and eight times more likely to carry raw feeling. A curated reading of paired letters, with the method that measured the difference.</div>
+      </div>
+      <span class="wf-btn" style="background:#8C6D3F">Read the essay &rarr;</span>
+    </a>
   </section>
 
   <!-- ===================== INDIVIDUAL STAGE ===================== -->
@@ -241,11 +265,15 @@ html{ scroll-behavior:smooth; }
   <a href="hubbell-dashboard.html" style="color:inherit;text-decoration:underline">Explore the full collection &rarr;</a>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="03-data/map-movements.js"></script>
+<script src="_bio-map.js?v=1"></script>
+<script src="_family-strip.js?v=2"></script>
 <script src="_design-data.js"></script>
-<script src="_design-ui.js?v=7"></script>
+<script src="_design-ui.js?v=10"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
-<script src="_reader.js?v=21"></script>
+<script src="_reader.js?v=24"></script>
 <script src="_hero.js"></script>
 <script src="_bio-nav.js?v=2"></script>
 <script>
@@ -263,7 +291,7 @@ var PEOPLE = [
     name:'Henry Hubbell', short:'Henry', epithet:'First to Enlist, First to Fall',
     lifespan:'b. Nov 1839, Champlain, NY · d. Sept 17, 1862, Antietam, MD (age ~22)',
     poster:'/experience-v2/assets/brothers/web/window-henry-v1.webp', loop:'/experience-v2/assets/brothers/loops/loop-henry',
-    story:'brother-henry.html', author:'henry',
+    story:'brother-henry.html', author:'henry', web:'viz-people-web?person=Henry%20Hubbell',
     service:[['Co. D, 34th NY','Regiment'],['Jun 1861','Enlisted'],['15 months','Service'],['Private','Rank'],['59','Letters'],['KIA, Antietam','Fate']],
     bio:[
       "Henry was the eldest brother and the first to enlist, joining the 34th New York in June 1861, two months after Fort Sumter. He was twenty-one, a farmer’s son whose father had been dead for eight years. His mother was managing the farm in Champlain alone. He passed through Baltimore — where Massachusetts soldiers had been attacked by a secessionist mob weeks earlier — and noted bullet holes in the depot roof but reported that no one molested them.",
@@ -280,7 +308,7 @@ var PEOPLE = [
     name:'Alexander F. Hubbell', short:'Alexander', epithet:'120 Letters Through Nearly Four Years of War',
     lifespan:'b. Mar 28, 1844, Champlain, NY · d. Dec 7, 1894, Fonda, Iowa (age 50)',
     poster:'/experience-v2/assets/brothers/web/window-alexander-fav.webp', loop:'/experience-v2/assets/brothers/loops/loop-alexander-fav',
-    story:'brother-alexander.html', author:'alexander',
+    story:'brother-alexander.html', author:'alexander', web:'viz-people-web?person=Alexander%20Hubbell',
     service:[['Co. H, 60th NY','Regiment'],['Sep 1861','Enlisted'],['~3.5 years','Service'],['Cpl → Sgt','Rank'],['120','Letters'],['Lookout Mtn','Wounds']],
     bio:[
       "Alexander was seventeen when he enlisted in September 1861, two weeks after Henry wrote home advising him to stay and go to college instead. He did not take the advice. Over three years and ten months he served in both theaters, fought at Antietam, Gettysburg, and Lookout Mountain, marched through Sherman’s Atlanta Campaign, and wrote 120 letters home — more than his three brothers combined. They form the backbone of this collection.",
@@ -297,7 +325,7 @@ var PEOPLE = [
     name:'Charles F. Hubbell', short:'Charles', epithet:'Clear-Eyed and Steady Under Fire',
     lifespan:'b. Apr 1840, Champlain, NY · d. Mar 21, 1875, Iowa (age ~34)',
     poster:'/experience-v2/assets/brothers/web/window-charles-v1.webp', loop:'/experience-v2/assets/brothers/loops/loop-charles',
-    story:'brother-charles.html', author:'charles',
+    story:'brother-charles.html', author:'charles', web:'viz-people-web?person=Charles%20Hubbell',
     service:[['Co. I, 153rd NY','Regiment'],['Sep 1862','Enlisted'],['~3 years','Service'],['Private','Rank'],['69','Letters'],['Shenandoah','Theater']],
     bio:[
       "Charles was the third brother to enlist and the most clear-eyed of them all. At the recruiting station, Dr. Foote nearly rejected him for near-sightedness, but Charles had two brothers already in the Army and one at West Point, and the doctor relented. A family acquaintance told him afterward that he was “too honest.” It was as accurate a summary of his character as anyone would ever write.",
@@ -314,7 +342,7 @@ var PEOPLE = [
     name:'James Hubbell', short:'James', epithet:'Wounded at Cedar Creek, Lost on the Way Home',
     lifespan:'b. Jan 1843, Champlain, NY · d. Oct 19, 1865, Albany, NY (age ~22)',
     poster:'/experience-v2/assets/brothers/web/window-james-v2-wide.webp', loop:'/experience-v2/assets/brothers/loops/loop-james-wide',
-    story:'brother-james.html', author:'james',
+    story:'brother-james.html', author:'james', web:'viz-people-web?person=James%20Hubbell',
     service:[['Co. I, 153rd NY','Regiment'],['Sep 1862','Enlisted'],['~3 years','Service'],['Private','Rank'],['9','Letters'],['Cedar Creek','Wounded']],
     bio:[
       "James was the youngest brother and the most scholarly, entering West Point while Henry fought on the Peninsula. His early letters describe cadet life with a boy’s precision: lockers five feet long shared among three; older cadets dragging new arrivals around the grounds at night, trying to steal their guns. James held his. On September 21, 1862 — four days after Henry was killed at Antietam — James sat at his desk on the Hudson and wrote to his mother asking, “Have you heard from Henry and Alex yet?” He did not know.",
@@ -331,7 +359,7 @@ var PEOPLE = [
     name:'Frances McNeil Hubbell', short:'Frances', epithet:'“My hair almost rises”',
     lifespan:'b. ~1808, Charlotte, Vermont · d. May 29, 1890, Fonda, Iowa',
     phNote:'The widow who sent four sons to war and read the casualty lists each dawn. A portrait of Frances is in preparation — no photograph of her is known to survive.',
-    story:'mother-frances.html', author:'mother',
+    story:'mother-frances.html', author:'mother', web:'viz-people-web?person=Mother',
     service:[['Scottish','Descent'],['1833','Married'],['6','Children'],['1853','Widowed'],['17','Letters'],['Home front','Role']],
     bio:[
       "Frances McNeil was born in Charlotte, Vermont, to a family of Scottish descent, and married Frederick Augustus Hubbell in 1833. They settled in Champlain and raised six children. When Frederick died in 1853, she was left alone with the farm and five surviving children, the eldest barely sixteen. She managed for eight years. Then the war came, and she sent every son she had.",
@@ -388,7 +416,7 @@ function heroLoopHTML(p, scrim, eyebrow){
     opt.value = p.id; opt.textContent = p.short + ' · ' + (p.placeholder ? 'Mother' : p.epithet.split(',')[0]);
     sel.appendChild(opt);
   });
-  if (window.HubbellHero && HubbellHero.scan) HubbellHero.scan();
+  if (window.HubbellHero && HubbellHero.init) HubbellHero.init();  /* _hero.js exports init(), not scan() — the old guard silently no-op'd and portraits froze on posters */
   buildDots();
 })();
 
@@ -439,6 +467,22 @@ function quotesHTML(p){
 }
 function bioHTML(p){ return '<div class="pd-bio">' + p.bio.map(function(t){ return '<p>'+t+'</p>'; }).join('') + '</div>'; }
 function backSVG(){ return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>'; }
+function webSVG(){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>'; }
+function kinStripHTML(activeId){
+  return '<nav class="bio-kin" data-active="'+esc(activeId)+'" aria-label="Read another family member">' +
+    '<div class="bio-kin-head"><span class="bk-eyebrow">Keep reading</span><h2>The rest of the family</h2></div>' +
+    '<div class="bio-kin-row"></div></nav>';
+}
+/* Kin-strip cards link to who-they-were.html#<id> (works from anywhere); when
+   we're already on this page, swap in place instead of reloading. */
+function wireKinStrip(root){
+  root.querySelectorAll('.bio-kin .kin-card').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = (a.getAttribute('href')||'').split('#')[1];
+      if (id && PMAP[id]){ e.preventDefault(); selectPerson(id); }
+    });
+  });
+}
 function fwdSVG(){ return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'; }
 
 /* inline-reader for the injected narrative's .ref / .lq-link onclick="openLetter(...)" */
@@ -460,7 +504,7 @@ function fetchNarrative(p, cb){
 function hydrateNarrative(root, p, html){
   var content = root.querySelector('#pdNarrative');
   if (!content) return;
-  if (!html){ setHTML(content, '<p class="pd-loading">The full story is on <a href="'+esc(p.story)+'">'+esc(p.name)+'’s page</a>.</p>'); return; }
+  if (!html){ setHTML(content, '<p class="pd-loading">'+esc(p.name)+'’s full story could not be loaded — please try again.</p>'); return; }
   setHTML(content, html);
   // reuse the published bio chapter-nav builder on the injected narrative (no duplicated logic)
   var narrative = content.querySelector('.narrative');
@@ -481,24 +525,51 @@ function renderPerson(p){
         '<h2 class="pd-name">'+esc(p.name)+'</h2>' +
         '<div class="pd-epithet">'+esc(p.epithet)+'</div>' +
         '<div class="pd-lifespan">'+esc(p.lifespan)+'</div>' +
+        (p.web ? '<div class="hero-explore"><a class="hero-explore-pill" href="'+esc(p.web)+'">'+webSVG()+'View '+esc(p.poss)+' connections on the People Web</a></div>' : '') +
         serviceHTML(p) +
+        '<div class="bio-map-section" id="stageMapSection">' +
+          '<div class="bio-map-wrap">' +
+            '<div class="bio-map-label">Wartime Footprint</div>' +
+            '<div class="bio-map" id="bioMap" role="img" aria-label="Map showing '+esc(p.name)+'&rsquo;s wartime locations"></div>' +
+          '</div>' +
+        '</div>' +
       '</div>' +
     '</div>' +
     '<div class="pd-body pd-body--bio">' +
       '<div class="pd-content">' +
         '<div class="pd-narrative" id="pdNarrative"><p class="pd-loading">Loading the full story…</p></div>' +
         '<section class="pd-section" id="sec-letters" style="margin-top:34px; padding-top:24px; border-top:1px solid var(--rule)"><h3>'+Poss+' Letters</h3>' +
-          '<button class="letters-toggle" style="--person:'+p.color+'" data-author="'+esc(p.author)+'"><span class="lt-icon">â–¶</span> Browse all '+p.poss+' letters <span class="lt-count"></span></button>' +
+          '<button class="letters-toggle" style="--person:'+p.color+'" data-author="'+esc(p.author)+'"><span class="lt-icon">&#x25B6;</span> Browse all '+p.poss+' letters <span class="lt-count"></span></button>' +
           '<div class="letters-drawer"><div class="letters-list"></div></div>' +
         '</section>' +
       '</div>' +
     '</div>' +
-    '<div class="pd-return-wrap"><button class="pd-return" id="stageReturn">'+backSVG()+'Back to the family</button></div>');
+    '<div class="pd-return-wrap"><button class="pd-return" id="stageReturn">'+backSVG()+'Back to the family</button></div>' +
+    kinStripHTML(p.id));
 
   document.getElementById('stageBack').addEventListener('click', showFamily);
   document.getElementById('stageReturn').addEventListener('click', showFamily);
   wireLetters(stage);
-  if (window.HubbellHero && HubbellHero.scan) HubbellHero.scan();
+  // Wartime Footprint — shared builder (_bio-map.js); the mother has no
+  // movement rows, so her section is removed rather than shown empty.
+  // Deferred one tick: renderPerson runs while the stage is still
+  // display:none (goToView flips it right after), and Leaflet must measure
+  // a laid-out container or it renders a single mis-fitted tile.
+  var mapSec = document.getElementById('stageMapSection');
+  if (mapSec){
+    setTimeout(function(){
+      var mapBuilt = false;
+      try{
+        mapBuilt = !!(window.HubbellBioMap && HubbellBioMap.build(mapSec.querySelector('.bio-map'), p.author, AUTHOR_COLORS[p.author] || '#666'));
+      }catch(e){}
+      if (!mapBuilt) mapSec.remove();
+    }, 0);
+  }
+  // The rest of the family — portraits in the described order (most letters →
+  // fewest, mother pinned last, current person omitted) via _family-strip.js.
+  if (window.HubbellFamilyStrip) HubbellFamilyStrip.build();
+  wireKinStrip(stage);
+  if (window.HubbellHero && HubbellHero.init) HubbellHero.init();  /* _hero.js exports init(), not scan() — the old guard silently no-op'd and portraits froze on posters */
   fetchNarrative(p, function(html){ hydrateNarrative(stage, p, html); });
 }
 
@@ -525,14 +596,17 @@ function renderFannie(){
           '<div class="letter-quote">I have got quite into the business of writing love letters. Mr. Averill’s servant girl has quite an extensive correspondence&hellip; she comes to me as no one else can write French for her. I enjoy it finely&hellip;<cite><a class="lq-link" onclick="openLetter(\'LTR-1862-11-10-001\')">November 10, 1862 &mdash; Fannie to Charles</a></cite></div>' +
         '</div></section>' +
         '<section class="pd-section"><h3>Letters Written to Her</h3>' +
-          '<button class="letters-toggle" style="--person:var(--fannie)" data-recipient="fannie"><span class="lt-icon">â–¶</span> Letters written to her <span class="lt-count"></span></button>' +
+          '<button class="letters-toggle" style="--person:var(--fannie)" data-recipient="fannie"><span class="lt-icon">&#x25B6;</span> Letters written to her <span class="lt-count"></span></button>' +
           '<div class="letters-drawer"><div class="letters-list"></div></div>' +
         '</section>' +
       '</div></div>' +
-    '<div class="pd-return-wrap"><button class="pd-return" id="stageReturn">'+backSVG()+'Back to the family</button></div>');
+    '<div class="pd-return-wrap"><button class="pd-return" id="stageReturn">'+backSVG()+'Back to the family</button></div>' +
+    kinStripHTML('fannie'));
   document.getElementById('stageBack').addEventListener('click', showFamily);
   document.getElementById('stageReturn').addEventListener('click', showFamily);
   wireLetters(stage);
+  if (window.HubbellFamilyStrip) HubbellFamilyStrip.build();
+  wireKinStrip(stage);
 }
 
 function goToView(view){
@@ -543,7 +617,7 @@ function goToView(view){
   window.scrollTo({top:0, behavior:'auto'});
   stage.setAttribute('aria-hidden', view==='individual' ? 'false':'true');
 }
-function showFamily(){ goToView('family'); history.replaceState(null,'',location.pathname); if (window.HubbellHero && HubbellHero.scan) HubbellHero.scan(); }
+function showFamily(){ goToView('family'); history.replaceState(null,'',location.pathname); if (window.HubbellHero && HubbellHero.init) HubbellHero.init();  /* _hero.js exports init(), not scan() — the old guard silently no-op'd and portraits froze on posters */ }
 
 /* ===================== LETTERS / QUOTES / SECTION-NAV ===================== */
 function getLettersForCard(btn){
@@ -605,11 +679,22 @@ function wireSectionNav(root){
   var h = (location.hash||'').replace('#','');
   if (h==='fannie'){ selectFannie(); } else if (PMAP[h]){ selectPerson(h); }
 })();
+
+/* in-page hash navigation — the site-nav "Who They Were" dropdown and any
+   who-they-were.html#<id> link must also work while ALREADY on this page.
+   (selectPerson/showFamily use history.replaceState, which does not fire
+   hashchange, so this cannot loop.) */
+window.addEventListener('hashchange', function(){
+  var h = (location.hash||'').replace('#','');
+  if (h==='fannie'){ selectFannie(); }
+  else if (PMAP[h]){ selectPerson(h); }
+  else if (!h){ showFamily(); }
+});
 </script>
 
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=15"></script>
-<script src="_overlay.js?v=26"></script>
+<script src="_overlay.js?v=27"></script>
 <script>if (window.HubbellDeepLink) HubbellDeepLink.injectShareButton();</script>
 </body>
 </html>

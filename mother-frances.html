@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- CANONICAL BIO LIVES ON who-they-were.html — this page is kept only as the
+     narrative fetch-source (.narrative) for that view. Direct visits redirect;
+     DOMParser fetches ignore scripts, so the content below stays reachable. -->
+<script>location.replace('who-they-were.html#mother');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Frances M. Hubbell &mdash; Mother</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="_design.css?v=9">
+<link rel="stylesheet" href="_design.css?v=10">
 <link rel="stylesheet" href="_bio.css?v=1">
 <link rel="stylesheet" href="_family-strip.css?v=1">
-<link rel="stylesheet" href="_overlay.css?v=11">
+<link rel="stylesheet" href="_overlay.css?v=12">
 <link rel="stylesheet" href="_reader-era.css?v=18">
 <link rel="stylesheet" href="_hero.css?v=2">
 <script src="_hero.js?v=2" defer></script>
@@ -18,9 +22,9 @@
 <style>
 :root { --person: var(--mother); --person-soft: #F0EAF7; --person-bg: #F8F5FC; }
 </style>
-<link rel="stylesheet" href="_scrollrail.css?v=11">
+<link rel="stylesheet" href="_scrollrail.css?v=12">
 <style>:root{ --rail-accent: var(--mother); }</style>
-<script src="_scrollrail.js?v=11"></script>
+<script src="_scrollrail.js?v=12"></script>
 </head>
 <body>
 
@@ -425,10 +429,10 @@
 
 <!-- ===== DATA + SCRIPTS ===== -->
 <script src="_design-data.js"></script>
-<script src="_design-ui.js?v=7"></script>
+<script src="_design-ui.js?v=10"></script>
 <script src="_search-data.js"></script>
 <script src="_letter-nav.js"></script>
-<script src="_reader.js?v=21"></script>
+<script src="_reader.js?v=24"></script>
 <script>
 var AUTHOR_COLORS = { henry:'#2D5F8A', alexander:'#B8860B', james:'#4A7C59', charles:'#8B3A3A', mother:'#7B5EA7' };
 var AUTHOR_NAMES = { henry:'Henry Hubbell', alexander:'Alexander F. Hubbell', james:'James Hubbell', charles:'Charles F. Hubbell', mother:'Frances Hubbell' };
@@ -483,7 +487,7 @@ function closeReader() {
 }
 
 // Wire pull-quotes (.lq-link) + inline refs (a.ref) so the reader opens with
-// the teased passage softly greyed (centralized in _reader.js?v=21).
+// the teased passage softly greyed (centralized in _reader.js?v=24).
 document.addEventListener('DOMContentLoaded', function() {
   HubbellReader.bindQuoteHooks();
 });

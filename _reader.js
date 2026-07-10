@@ -26,6 +26,55 @@ window.HubbellReader = (function () {
     mother: 'who-they-were.html#mother'
   };
 
+  /* ── Collapsible reader sections (.rc) ──────────────────────────────
+     Editor's note / People Mentioned / Places Mentioned collapse behind
+     a compact mono header. ONE sticky preference per section, site-wide
+     (localStorage 'hubReaderCollapse'): toggle it in any reader and the
+     choice follows the user across letters and reader surfaces until
+     toggled again. The identical contract lives in _overlay.js and the
+     Parallel Lives dashboard's inline readers; styles in _overlay.css.
+     Defaults: editor's note starts COLLAPSED; people/places start open. */
+  var RC_KEY = 'hubReaderCollapse';
+  var RC_DEFAULTS = { editorial: 1, people: 0, places: 0 };
+  function rcCollapsed(sec) {
+    try {
+      var p = JSON.parse(localStorage.getItem(RC_KEY)) || {};
+      return (sec in p) ? !!p[sec] : !!RC_DEFAULTS[sec];
+    } catch (e) { return !!RC_DEFAULTS[sec]; }
+  }
+  function rcWrap(sec, label, inner, count) {
+    if (!inner) return '';
+    var c = rcCollapsed(sec);
+    var cta = sec === 'editorial' ? 'click to read' : 'show';
+    return '<div class="rc' + (c ? ' rc-collapsed' : '') + '" data-rc="' + sec + '">' +
+      '<button class="rc-h" type="button" aria-expanded="' + (!c) + '">' +
+        '<svg class="rc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>' +
+        '<span class="rc-t">' + label + '</span>' +
+        (count ? '<span class="rc-n">' + count + '</span>' : '') +
+        '<span class="rc-cta">' + cta + '</span>' +
+      '</button>' +
+      '<div class="rc-b">' + inner + '</div></div>';
+  }
+  // One document-level toggle handler serves every .rc on the page,
+  // wired by whichever reader script parses first (capture phase so it
+  // runs ahead of overlay/backdrop click handlers).
+  if (!window.__hubRcWired) {
+    window.__hubRcWired = true;
+    document.addEventListener('click', function (e) {
+      var h = e.target && e.target.closest ? e.target.closest('.rc-h') : null;
+      if (!h) return;
+      e.preventDefault(); e.stopPropagation();
+      var rc = h.parentNode, sec = rc.getAttribute('data-rc');
+      var col = rc.classList.toggle('rc-collapsed');
+      h.setAttribute('aria-expanded', String(!col));
+      try {
+        var p = JSON.parse(localStorage.getItem(RC_KEY)) || {};
+        p[sec] = col ? 1 : 0;
+        localStorage.setItem(RC_KEY, JSON.stringify(p));
+      } catch (err) {}
+    }, true);
+  }
+
   function getColor(author) {
     if (window.AUTHOR_COLORS) return window.AUTHOR_COLORS[author] || '#666';
     return COLORS[author] || '#666';
@@ -810,26 +859,31 @@ window.HubbellReader = (function () {
     if (letter.dth) { flags += '<span class="reader-flag rf-death" data-flag="death" title="Click to toggle death highlighting">Death</span>'; activeFlags.push('death'); }
     if (letter.wnd) { flags += '<span class="reader-flag rf-wound" data-flag="wound" title="Click to toggle wound highlighting">Wound</span>'; activeFlags.push('wound'); }
 
-    // People tags — clickable links to People Web
+    // People tags — clickable links to People Web. Collapsible (.rc, sticky
+    // site-wide preference); the .rc header replaces the old inline <h4>.
     var ppl = '';
     if (letter.ppl && letter.ppl.length) {
-      ppl = '<div class="reader-people"><h4>People Mentioned</h4><div class="reader-tags">' +
+      ppl = rcWrap('people', 'People Mentioned',
+        '<div class="reader-people"><div class="reader-tags">' +
         letter.ppl.map(function (p) {
           return '<a href="viz-people-web?person=' + encodeURIComponent(p) +
             '" class="reader-tag person" onclick="event.stopPropagation()">' + esc(p) + '</a>';
-        }).join('') + '</div></div>';
+        }).join('') + '</div></div>',
+        '(' + letter.ppl.length + ')');
     }
 
-    // Place tags — clickable links to Map, centered on location
+    // Place tags — clickable links to Map, centered on location. Collapsible.
     var plc = '';
     if (letter.plc && letter.plc.length) {
-      plc = '<div class="reader-places"><h4>Places Mentioned</h4><div class="reader-tags">' +
+      plc = rcWrap('places', 'Places Mentioned',
+        '<div class="reader-places"><div class="reader-tags">' +
         letter.plc.map(function (p) {
           return '<a href="viz-map-fullwar?date=' + encodeURIComponent(letter.d) +
             '&brother=' + encodeURIComponent(letter.a) +
             '&place=' + encodeURIComponent(p) +
             '" class="reader-tag place" onclick="event.stopPropagation()">' + esc(p) + '</a>';
-        }).join('') + '</div></div>';
+        }).join('') + '</div></div>',
+        '(' + letter.plc.length + ')');
     }
 
     // Health context section
@@ -906,8 +960,13 @@ window.HubbellReader = (function () {
     // Executive summary — the one-line editorial "what this letter is" the user
     // values. Shown in every reader (above people/places/tags), color-coded to
     // the author, whenever the letter has a summary.
+    // Collapsible (.rc) and COLLAPSED BY DEFAULT — it was crowding the letter
+    // itself down the panel; one click reopens it, and that choice sticks
+    // across letters and readers until toggled again.
     var summaryHtml = letter.ss
-      ? '<div class="reader-exec-summary" style="--exec-c:' + color + '">' + esc(letter.ss) + '</div>' : '';
+      ? rcWrap('editorial', "Editor's Note",
+          '<div class="reader-exec-summary" style="--exec-c:' + color + '">' + esc(letter.ss) + '</div>')
+      : '';
 
     // "Health context:" — a medical-historian's read of the letter's health
     // content, shown ONLY when the caller supplies it (the Wellness Ledger). A

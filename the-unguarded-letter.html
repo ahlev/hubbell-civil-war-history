@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What They Wrote to Each Other &mdash; The Hubbell Brothers</title>
+<meta name="description" content="The Hubbell brothers wrote a different self to each other than they wrote home. A curated essay of paired letters — and the method that measured the difference.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="logo.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="_design.css?v=10">
+<link rel="stylesheet" href="_bio.css?v=1">
+<link rel="stylesheet" href="_family-strip.css?v=1">
+<link rel="stylesheet" href="_overlay.css?v=12">
+<link rel="stylesheet" href="_reader-era.css?v=18">
+<link rel="stylesheet" href="_hero.css?v=2">
+<link rel="stylesheet" href="_sibling.css?v=1">
+<link rel="stylesheet" href="_scrollrail.css?v=12">
+<script src="_hero.js?v=2" defer></script>
+<script src="_family-strip.js?v=1" defer></script>
+<style>
+  :root {
+    --henry:#2D5F8A; --alexander:#B8860B; --james:#4A7C59; --charles:#8B3A3A;
+    --mother:#7B5EA7; --fannie:#C17B5F;
+    --person: #8C6D3F; --person-soft:#F3ECDF; --person-bg:#FAF6EE;
+  }
+</style>
+<script src="_scrollrail.js?v=12"></script>
+</head>
+<body class="tul-page">
+
+<div id="site-nav"></div>
+
+<!-- ===== FRONTISPIECE — animated portrait (⚑ PLACEHOLDER hero: reusing Henry's
+     letter-writing frontispiece; a bespoke "two letters, one hand" composite is a
+     flagged follow-up asset) ===== -->
+<div class="bio-frontis">
+  <figure class="hero-loop" data-hero-loop>
+    <img class="hero-loop__poster"
+         src="/experience-v2/assets/brothers/web/window-henry-v1.webp"
+         alt="An interpretive oil painting of a Union soldier writing a letter home by lantern light inside his tent, the camp dissolving into dusk behind him."
+         decoding="async" width="1536" height="2057">
+    <div class="hero-loop__scrim" aria-hidden="true"></div>
+    <figcaption class="hero-loop__caption">
+      <span class="hl-eyebrow">The Family &middot; Their Correspondence</span>
+      <span class="hl-title">What They Wrote to Each Other</span>
+    </figcaption>
+  </figure>
+</div>
+
+<!-- ===== HERO TEXT ===== -->
+<div class="bio-hero">
+  <h1>What They Wrote to Each Other</h1>
+  <div class="hero-rule"></div>
+  <div class="hero-epithet">The unguarded letter &mdash; and how we know it was different</div>
+</div>
+
+<p class="tul-eyebrow">A reading in three faces</p>
+<p class="tul-lede">A soldier wears a different face for each reader. The Hubbell brothers left enough letters &mdash; to their mother, to their sister, and to one another &mdash; that we can watch each face change, name by name, and prove the change is real.</p>
+
+<!-- ===== NARRATIVE ===== -->
+<div class="narrative">
+
+<!-- CH 1 — the thesis, softly -->
+<div class="chapter">
+  <h2>One Man, Three Letters</h2>
+  <div class="ch-date">April 1862 &mdash; the Virginia Peninsula</div>
+  <p>Consider a single week in April of 1862. Henry Hubbell, the eldest brother, is somewhere on the Virginia Peninsula with the 34th New York, the siege of Yorktown grinding on a few miles off. That month he writes eight letters that still survive &mdash; four to his mother in Champlain, four to his brothers already in uniform. They leave his hand within days of one another. They cross the same picket lines, ride the same mail. And they do not say the same things.</p>
+  <p>To his mother he is careful. He is well; he has taken no cold; here is money; please do not worry. To his brothers he is another man &mdash; longer-winded, blunter about the fighting, freer with the fear and freer with the swagger. The war is the same war in every letter. The voice is not the same voice.</p>
+  <p>This is an old and human fact &mdash; that we speak differently to the people we are trying to protect than to the people standing beside us. What is unusual is that the Hubbell letters let us watch it happen, and that the collection has been instrumented finely enough to <em>measure</em> it. Every letter carries small structured markers &mdash; whether it speaks of battle, of a wound, of death; the temperature of its feeling. Sort the letters by who was meant to read them, and the difference stops being an impression. It becomes a number.</p>
+</div>
+
+<!-- HEADLINE DATA-VIZ — the fingerprint radar (Chart.js) -->
+<figure class="tul-figure">
+  <div class="tul-chart-wrap">
+    <div class="tul-chart-head">The shape of a voice</div>
+    <div class="tul-chart-canvas"><canvas id="voiceRadar" aria-label="Radar chart comparing letter traits by recipient" role="img"></canvas></div>
+  </div>
+  <figcaption class="tul-figcap">Every letter, sorted by who received it, across all 273. <b>To a brother</b> the voice swells on length, danger, and raw feeling; the one axis where home wins is politics &mdash; the honest counter-current. Source: <code>_sibling_voice_analysis.py</code>.</figcaption>
+</figure>
+
+<!-- one-off insight, styled like the bio historical notes -->
+<div class="context-box" style="max-width:760px;margin:24px auto">
+  <div class="cb-label">A note on the eight-fold gap</div>
+  <p>Of every letter the brothers sent one another, nearly a quarter carry the rawest emotional register our reading recognizes. Of the letters they sent their mother, three in a hundred do. That is not a subtle lean &mdash; it is roughly eight to one in where a soldier put his unguarded feeling. The counts per writer are small, a caution we keep in view; but the direction holds for all four brothers independently, and that is where the confidence lives.</p>
+</div>
+
+<!-- CH 2 — Diptych 1: Henry, appetite for battle -->
+<div class="chapter">
+  <h2>The Appetite for Battle</h2>
+  <div class="ch-date">April 1862 &mdash; Henry, before Yorktown</div>
+  <p>In the same days of that April, Henry wrote to his mother and to his brother Charles. To his mother he made himself small and safe, and let the homesickness show. To Charles he let the other thing show &mdash; the strange exhilaration a young man feels near the guns, the appetite he could not admit to the woman who had already lost her husband and was about to lose him.</p>
+
+  <figure class="diptych">
+    <div class="diptych-cap">Same week &mdash; <b>April 1862</b>, near Yorktown</div>
+    <div class="dip-grid">
+      <div class="dip-side" style="--chan:var(--mother)">
+        <div class="dip-head"><span class="dip-dot"></span><span class="dip-to">To their Mother</span><span class="dip-date">Apr 21, 1862</span></div>
+        <div class="dip-quote">&ldquo;I hope you will not worry about me for I am well and have been since I have been in Virginia and have not taken any cold. &hellip; <span class="q">When I think of the good times I have had at home it seems like a dream.</span>&rdquo;</div>
+        <div class="dip-flags"><span class="dip-flag battle">Battle</span><span class="dip-flag receipt">Money</span></div>
+        <button class="dip-open" onclick="openLetter('LTR-1862-04-21-002')">Read the whole letter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="dip-side" style="--chan:var(--charles)">
+        <div class="dip-head"><span class="dip-dot"></span><span class="dip-to">To his brother Charles</span><span class="dip-date">Apr 18, 1862</span></div>
+        <div class="dip-quote">&ldquo;<span class="q">Nothing livens me up more than to hear the firing cannon and musketry. The rebels will ketch it before the war is over.</span> &hellip; I almost wish you were a soldier.&rdquo;</div>
+        <div class="dip-flags"><span class="dip-flag battle">Battle</span><span class="dip-flag wound">Wound</span></div>
+        <button class="dip-open" onclick="openLetter('LTR-1862-04-18-001')">Read the whole letter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </figure>
+  <p>To his mother, the guns are absent and the farm is near. To his brother, the guns are a tonic &mdash; and he half-wishes Charles were in it with him. Neither letter is a lie. They are the same week, told to two people he loved differently.</p>
+</div>
+
+<!-- CH 3 — Diptych 2: Alexander, what he wouldn't tell his mother -->
+<div class="chapter">
+  <h2>What He Would Not Tell His Mother</h2>
+  <div class="ch-date">December 1861 &mdash; Alexander, near Baltimore</div>
+  <p>Alexander was seventeen, a corporal near Baltimore, and had just been paid for the first time. To his mother he sent almost all of it, and the tenderest letter he would ever write. To his brother Charles, three weeks later, he sent something he could not have put in his mother's envelope: a young man's dark arithmetic about whether he would come home at all &mdash; and, in the same breath, a summons for his brothers to follow him into the army.</p>
+
+  <figure class="diptych">
+    <div class="diptych-cap">Same month &mdash; <b>December 1861</b>, Camp Jackson &amp; Baltimore</div>
+    <div class="dip-grid">
+      <div class="dip-side" style="--chan:var(--mother)">
+        <div class="dip-head"><span class="dip-dot"></span><span class="dip-to">To his Mother</span><span class="dip-date">Dec 8, 1861</span></div>
+        <div class="dip-quote">&ldquo;<span class="q">Now, my dear Mother, I give it all to you.</span> This is the first time that I have been able to make my Mother a present and I want you to take it. &hellip; &lsquo;God is our refuge and strength, a very present help in trouble.&rsquo;&rdquo;</div>
+        <div class="dip-flags"><span class="dip-flag wound">Wound</span><span class="dip-flag receipt">Money</span></div>
+        <button class="dip-open" onclick="openLetter('LTR-1861-12-08-001')">Read the whole letter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="dip-side" style="--chan:var(--charles)">
+        <div class="dip-head"><span class="dip-dot"></span><span class="dip-to">To his brother Charles</span><span class="dip-date">Dec 29, 1861</span></div>
+        <div class="dip-quote">&ldquo;In case of Englands interference <span class="q">I hardly ever expect to see home.</span> I shall never lay down my arms until peace is restored. I hope you and James will show your &lsquo;pluck&rsquo; by joining the army&hellip;&rdquo;</div>
+        <div class="dip-flags"><span class="dip-flag political">Political</span><span class="dip-flag receipt">Money</span></div>
+        <button class="dip-open" onclick="openLetter('LTR-1861-12-29-001')">Read the whole letter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </figure>
+  <p>The letter to his mother is the shortest kind of brave &mdash; a boy making his mother a gift and hiding his fear inside a psalm. The letter to his brother is the other kind &mdash; the fear said plainly, and turned outward into a challenge. It is more than twice as long. He could afford the length, and the darkness, because Charles was a soldier too.</p>
+</div>
+
+<div class="tul-pullquote" style="--chan:var(--charles)">
+  <blockquote><span class="pq-mark">&ldquo;</span>I hardly ever expect to see home.<span class="pq-mark">&rdquo;</span></blockquote>
+  <cite>Alexander, to his brother &mdash; December 29, 1861</cite>
+</div>
+
+<!-- CH 4 — Diptych 3: Charles, same day, Henry's fate -->
+<div class="chapter">
+  <h2>The Same Day, Two Letters</h2>
+  <div class="ch-date">September 30, 1862 &mdash; Charles, Plattsburgh Barracks</div>
+  <p>The clearest proof is a single day. On September 30, 1862 &mdash; not yet three weeks a soldier, still at the Plattsburgh barracks &mdash; Charles learned that his brother Henry had been wounded at Antietam. He sat down and wrote two letters. One to his mother. One to his brother Alexander. They are dated the same day, about the same news. They are not the same letter.</p>
+
+  <figure class="diptych">
+    <div class="diptych-cap">The same day &mdash; <b>September 30, 1862</b>, on the news of Henry</div>
+    <div class="dip-grid">
+      <div class="dip-side" style="--chan:var(--mother)">
+        <div class="dip-head"><span class="dip-dot"></span><span class="dip-to">To his Mother</span><span class="dip-date">Sep 30, 1862</span></div>
+        <div class="dip-quote">&ldquo;I was sorry to hear about Henry. <span class="q">But then it may be all for the best.</span> If he is a prisoner at Richmond as I think he is, he is safer than in our army.&rdquo;</div>
+        <div class="dip-flags"><span class="dip-flag wound">Wound</span><span class="dip-flag receipt">Money</span></div>
+        <button class="dip-open" onclick="openLetter('LTR-1862-09-30-001')">Read the whole letter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="dip-side" style="--chan:var(--alexander)">
+        <div class="dip-head"><span class="dip-dot"></span><span class="dip-to">To his brother Alexander</span><span class="dip-date">Sep 30, 1862</span></div>
+        <div class="dip-quote">&ldquo;I was very much concerned last night to hear that Henry was wounded&hellip; <span class="q">I hope that you &amp; I will come out of the war all right. But we must take our chances.</span> &hellip; I wish you could make some enquiries in Henrys Co.&rdquo;</div>
+        <div class="dip-flags"><span class="dip-flag wound">Wound</span><span class="dip-flag">Capture</span></div>
+        <button class="dip-open" onclick="openLetter('LTR-1862-09-30-002')">Read the whole letter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </figure>
+  <p>To his mother, Charles reaches for comfort &mdash; a prisoner is safer than a soldier; it may be all for the best. To his brother he drops the consolation and says the true thing: <em>we must take our chances</em> &mdash; and turns at once to the practical work only a brother could be asked to do, to go and make enquiries in Henry's company. The dread and the errand went to Alexander. Only the reassurance went home.</p>
+</div>
+
+<!-- CH 5 — Triptych: Henry, three faces at once -->
+<div class="chapter">
+  <h2>Three Faces at Once</h2>
+  <div class="ch-date">February 1862 &mdash; Henry, at Camp McClellan</div>
+  <p>Once, the record is complete enough to see all three faces in a single stretch of days. In February 1862 Henry wrote to his mother, to his sister Fannie, and to his brother Charles within a week. Read together, they are almost a demonstration &mdash; the good son, the cheerful correspondent, and the blunt soldier, all the same man.</p>
+
+  <figure class="diptych">
+    <div class="diptych-cap">The same week &mdash; <b>February 1862</b>, Camp McClellan</div>
+    <div class="dip-grid dip-grid--trio">
+      <div class="dip-side" style="--chan:var(--mother)">
+        <div class="dip-head"><span class="dip-dot"></span><span class="dip-to">To his Mother</span><span class="dip-date">Feb 4, 1862</span></div>
+        <div class="dip-quote">&ldquo;There is a good deal of gambling going on in this Regt. &hellip; but I keep away from it. &hellip; There is also lottery going on in our Co. for watches, <span class="q">but I keep away from them all.</span>&rdquo;</div>
+        <div class="dip-flags"><span class="dip-flag">Desertion</span><span class="dip-flag receipt">Money</span></div>
+        <button class="dip-open" onclick="openLetter('LTR-1862-02-04-001')">Read the whole letter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="dip-side" style="--chan:var(--fannie)">
+        <div class="dip-head"><span class="dip-dot"></span><span class="dip-to">To his sister Fannie</span><span class="dip-date">Feb 12, 1862</span></div>
+        <div class="dip-quote">&ldquo;<span class="q">News came into our Camp last night of the glorious victory in South Carolina.</span> There was great cheering in our Camp when the news came in.&rdquo;</div>
+        <div class="dip-flags"><span class="dip-flag political">Political</span></div>
+        <button class="dip-open" onclick="openLetter('LTR-1862-02-12-001')">Read the whole letter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="dip-side" style="--chan:var(--charles)">
+        <div class="dip-head"><span class="dip-dot"></span><span class="dip-to">To his brother Charles</span><span class="dip-date">Feb 11, 1862</span></div>
+        <div class="dip-quote">&ldquo;We do not have tin plates, but <span class="q">eat dog fashion.</span> &hellip; We do not mind now and then to eat a pound or two of dirt. Good enough for soldiers, don&rsquo;t you think so.&rdquo;</div>
+        <div class="dip-flags"><span class="dip-flag receipt">Money</span></div>
+        <button class="dip-open" onclick="openLetter('LTR-1862-02-11-002')">Read the whole letter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </figure>
+  <p>To his mother, a boy proving his virtue &mdash; he keeps away from the cards, the drink, the lottery. To his sister, a cheerful bearer of good war news. To his brother, the unglamorous truth of how the men actually lived: eating <em>dog fashion</em>, a pound of dirt with every meal, good enough for soldiers. Three readers, three Henrys, one week.</p>
+</div>
+
+<!-- precise figures behind the shape -->
+<div class="voiceprint" id="voiceprint">
+  <div class="vp-title">The voice, measured</div>
+  <div class="vp-sub">The exact figures behind the shape &mdash; all 273 letters, sorted by who received them.</div>
+  <div class="vp-body" id="vpBody"><!-- injected from the script-generated constant --></div>
+  <div class="vp-foot">Length is average words per letter; danger is the share mentioning battle, a wound, or death; raw feeling is the share our reading flagged as its most extreme emotional register. Figures generated by <a href="#how">the same script</a> you can rerun.</div>
+</div>
+
+<!-- CH 6 — method close -->
+<div class="chapter" id="how">
+  <h2>How We Know</h2>
+  <p>None of this required a hunch. It required an archive that had been turned into something a question could be asked of.</p>
+  <div class="tul-method">
+    <h3>A preserved collection, instrumented</h3>
+    <p>These 273 letters were read closely and encoded &mdash; each one tagged with who wrote it, who received it, when, and whether it spoke of battle, a wound, a death, of money, of politics, and with a reading of its emotional weather. Nothing was invented; the letters were simply recorded in a form a machine can also read.</p>
+    <p>Which turns a question that would take weeks by hand &mdash; <em>did these brothers write differently to each other than home?</em> &mdash; into a few seconds of counting. A short script, <code>_sibling_voice_analysis.py</code>, sorts every letter by its reader and tallies the difference. It found what the diptychs above show: to a brother, the letters run longer, name danger far more often, and carry the rawest feeling by a factor of eight.</p>
+    <p>And it found the honest complication &mdash; that the brothers did <em>not</em> simply get &ldquo;the truth&rdquo; while their mother got a softened version. The careful, for-the-record reporting often went <em>home</em>. What went sideways, brother to brother, was length, danger, and raw feeling. The right way to say it is not candor versus concealment. It is an <strong>asymmetry of register</strong> &mdash; the same war, carried in a different voice, calibrated to who was reading. The data corrected the easy story into a truer one.</p>
+    <p>That is the point of instrumenting an archive: it lets a small, faithfully preserved collection answer questions no single reading could, and answer them in a way anyone can check. Every number on this page regenerates from one script over open data. This is not <em>trust the historian&rsquo;s ear.</em> It is interpretation you can audit.</p>
+  </div>
+</div>
+
+</div><!-- /narrative -->
+
+<!-- ===== FAMILY STRIP ===== -->
+<nav class="bio-kin" data-active="" aria-label="Read a family member's full story">
+  <div class="bio-kin-head">
+    <span class="bk-eyebrow">Keep reading</span>
+    <h2>Meet the letter-writers</h2>
+  </div>
+  <div class="bio-kin-row"></div>
+</nav>
+
+<!-- ===== FOOTER ===== -->
+<footer class="bio-footer">
+  <div class="bio-footer-inner">
+    <a href="who-they-were.html">Back to Who They Were</a>
+    <div class="bf-sep"></div>
+    <a class="bf-home" href="/">The Hubbell Brothers</a>
+    <div class="bf-sep"></div>
+    <a href="/">273 Civil War letters, transcribed and visualized</a>
+  </div>
+</footer>
+
+<!-- ===== DATA + SCRIPTS ===== -->
+<script src="_design-data.js"></script>
+<script src="_design-ui.js?v=10"></script>
+<script src="_search-data.js"></script>
+<script src="_letter-nav.js"></script>
+<script src="_reader.js?v=24"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+var AUTHOR_COLORS = {henry:'#2D5F8A',alexander:'#B8860B',james:'#4A7C59',charles:'#8B3A3A',mother:'#7B5EA7'};
+var AUTHOR_NAMES = {henry:'Henry Hubbell',alexander:'Alexander F. Hubbell',james:'James Hubbell',charles:'Charles F. Hubbell',mother:'Frances Hubbell (Mother)'};
+
+/* open a letter in the shared lamplit reader (same API the bios use) */
+function openLetter(id, excerpt){
+  if (window.HubbellReader) HubbellReader.open(id, { excerpt: excerpt, contextStrip: true });
+}
+
+/* ---- voiceprint: numbers generated by scripts/_sibling_voice_analysis.py ---- */
+var VOICEPRINT = {
+  brother: { n: 41,  words: 604, danger: 54, raw: 24, color: '#3E6E8E' },
+  mother:  { n: 193, words: 485, danger: 36, raw: 3,  color: '#7B5EA7' },
+  sister:  { n: 31,  words: 428, danger: 26, raw: 3,  color: '#C17B5F' }
+};
+(function(){
+  var order = ['brother','mother','sister'];
+  var label = { brother:'To a brother', mother:'To Mother', sister:'To Fannie' };
+  var metrics = [
+    { key:'words',  name:'Length of letter', max:700, fmt:function(v){return v+' words';} },
+    { key:'danger', name:'Speaks of battle, wound, or death', max:100, fmt:function(v){return v+'%';} },
+    { key:'raw',    name:'Rawest emotional register', max:100, fmt:function(v){return v+'%';} }
+  ];
+  var host = document.getElementById('vpBody');
+  if (!host) return;
+  var html = '';
+  metrics.forEach(function(m){
+    html += '<div class="vp-metric"><div class="vp-mlabel">' + m.name + '</div>';
+    order.forEach(function(k){
+      var d = VOICEPRINT[k];
+      var pct = Math.max(2, Math.round(100 * d[m.key] / m.max));
+      html += '<div class="vp-bar" style="--chan:' + d.color + '">' +
+                '<span class="vp-chan">' + label[k] + '</span>' +
+                '<span class="vp-track"><span class="vp-fill" data-w="' + pct + '"></span></span>' +
+                '<span class="vp-val">' + m.fmt(d[m.key]) + '</span>' +
+              '</div>';
+    });
+    html += '</div>';
+  });
+  host.insertAdjacentHTML('beforeend', html);
+  // animate fills once the instrument scrolls into view
+  var fills = host.querySelectorAll('.vp-fill');
+  function grow(){ fills.forEach(function(f){ f.style.width = f.getAttribute('data-w') + '%'; }); }
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ grow(); io.disconnect(); } });
+    }, { threshold: 0.3 });
+    io.observe(document.getElementById('voiceprint'));
+  } else { grow(); }
+})();
+
+/* ---- headline radar: "the shape of a voice" (Chart.js) ---- */
+(function(){
+  var el = document.getElementById('voiceRadar');
+  if (!el || typeof Chart === 'undefined') return;
+  Chart.defaults.font.family = 'Inter, system-ui, sans-serif';
+  var grid = 'rgba(120,105,80,.16)';
+  new Chart(el, {
+    type: 'radar',
+    data: {
+      labels: ['Length', 'Danger', 'Raw feeling', 'Politics', 'Money'],
+      datasets: [
+        { label: 'To a brother', data: [86,54,24,20,61], borderColor:'#3E6E8E', backgroundColor:'rgba(62,110,142,.15)', pointBackgroundColor:'#3E6E8E', pointRadius:3, borderWidth:2 },
+        { label: 'To Mother',    data: [69,36,3,24,54],  borderColor:'#7B5EA7', backgroundColor:'rgba(123,94,167,.13)', pointBackgroundColor:'#7B5EA7', pointRadius:3, borderWidth:2 },
+        { label: 'To Fannie',    data: [61,26,3,23,58],  borderColor:'#C17B5F', backgroundColor:'rgba(193,123,95,.11)', pointBackgroundColor:'#C17B5F', pointRadius:3, borderWidth:2 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: { duration: 900 },
+      scales: { r: { min:0, max:100, ticks:{ display:false, stepSize:20 }, grid:{ color:grid }, angleLines:{ color:grid }, pointLabels:{ font:{ size:12, family:'Inter' }, color:'#6b6250' } } },
+      plugins: {
+        legend: { position:'bottom', labels:{ usePointStyle:true, pointStyle:'circle', boxHeight:7, padding:16, font:{ size:12 }, color:'#5b5346' } },
+        tooltip: { callbacks: { label: function(c){ return c.dataset.label + ': ' + (c.label==='Length' ? c.raw+' (relative)' : c.raw+'% of letters'); } } }
+      },
+      elements: { line:{ tension:0.04 } }
+    }
+  });
+})();
+</script>
+</body>
+</html>

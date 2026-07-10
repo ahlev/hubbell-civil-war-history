@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <!-- The dashboard reader styles live ONLY in this document. Because reader.html is loaded inside an
      iframe on the landing, none of these global rules can reach the immersive landing page. -->
-<link rel="stylesheet" href="/_design.css?v=9"/>
-<link rel="stylesheet" href="/_overlay.css?v=11"/>
+<link rel="stylesheet" href="/_design.css?v=10"/>
+<link rel="stylesheet" href="/_overlay.css?v=12"/>
 <!-- era theme â€” loaded LAST so it retones/overrides the dashboard reader styling, scoped to this iframe only -->
 <link rel="stylesheet" href="/_reader-era.css?v=18"/>
 <style>
@@ -21,17 +21,17 @@
 </head>
 <body>
 <script src="/_design-data.js"></script>
-<script src="/_design-ui.js?v=7"></script>
+<script src="/_design-ui.js?v=10"></script>
 <script src="/_deeplink.js"></script>
 <script src="/_overlay-data.js?v=15"></script>
 <!-- full LETTERS array (transcriptions + flags + people/places) so the FULL reader (HubbellReader.open)
      renders the key-event toggles, synopsis, and people/places apparatus -->
 <script src="/_search-data.js"></script>
 <script src="/_letter-nav.js"></script>
-<script src="/_overlay.js?v=26"></script>
+<script src="/_overlay.js?v=27"></script>
 <!-- ?v bumped with _reader-era.css so a fresh reader.html (rv-busted) also pulls the matching
-     _reader.js?v=21 â€” keeps the inline --pc seal-dot hook in sync with the era CSS that reads it -->
-<script src="/_reader.js?v=21"></script>
+     _reader.js?v=24 â€” keeps the inline --pc seal-dot hook in sync with the era CSS that reads it -->
+<script src="/_reader.js?v=24"></script>
 <script>
 (function(){
   var closed=false;

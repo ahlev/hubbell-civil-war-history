@@ -21,11 +21,11 @@
    ============================================================ */
 (function () {
   var KIN = [
-    { id: 'alexander', name: 'Alexander', role: 'The survivor',    letters: 120, poster: 'window-alexander-fav.webp', href: 'brother-alexander.html' },
-    { id: 'charles',   name: 'Charles',   role: 'The clear-eyed',  letters: 69,  poster: 'window-charles-v1.webp',   href: 'brother-charles.html' },
-    { id: 'henry',     name: 'Henry',     role: 'First to enlist', letters: 59,  poster: 'window-henry-v1.webp',     href: 'brother-henry.html' },
-    { id: 'james',     name: 'James',     role: 'The scholar',     letters: 9,   poster: 'window-james-v2-wide.webp', href: 'brother-james.html' },
-    { id: 'mother',    name: 'Frances',   role: 'The mother',      letters: 17,  poster: 'window-frances.webp',       href: 'mother-frances.html', isMother: true }
+    { id: 'alexander', name: 'Alexander', role: 'The survivor',    letters: 120, poster: 'window-alexander-fav.webp', href: 'who-they-were.html#alexander' },
+    { id: 'charles',   name: 'Charles',   role: 'The clear-eyed',  letters: 69,  poster: 'window-charles-v1.webp',   href: 'who-they-were.html#charles' },
+    { id: 'henry',     name: 'Henry',     role: 'First to enlist', letters: 59,  poster: 'window-henry-v1.webp',     href: 'who-they-were.html#henry' },
+    { id: 'james',     name: 'James',     role: 'The scholar',     letters: 9,   poster: 'window-james-v2-wide.webp', href: 'who-they-were.html#james' },
+    { id: 'mother',    name: 'Frances',   role: 'The mother',      letters: 17,  poster: 'window-frances.webp',       href: 'who-they-were.html#mother', isMother: true }
   ];
   var BASE = '/experience-v2/assets/brothers/web/';
 
@@ -69,4 +69,8 @@
   } else {
     build();
   }
+
+  // Exposed so the canonical bio view (who-they-were.html stage) can rebuild
+  // the strip each time it re-renders a person.
+  window.HubbellFamilyStrip = { build: build };
 })();

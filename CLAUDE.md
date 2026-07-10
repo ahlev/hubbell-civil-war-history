@@ -17,7 +17,9 @@ Phase 3 scaffolding in place (no data yet): `03-data/external-sources/{README.md
 
 Prior phases (transcription, knowledge graph, visualizations, novel, web platform) are complete or descoped. See `tasks/todo.md` for legacy phase tracking.
 
-**Parallel active track — V2 Visual Revamp (`v2-ui` branch, Phase 5c):** the cinematic oil-painting aesthetic of the v2 landing (`experience-v2/landing.html`) is being carried across the site. LIVE: the landing, `the-collection.html`'s preservation masthead, and the four `brother-*.html` bios now open with animated frontispiece portrait heroes via the shared `.hero-loop` component (`_hero.css` / `_hero.js`). Plan + status: `tasks/site-v2-graphic-revamp-PLAN.md` (Execution Log) and `tasks/PROJECT-PHASES.md` §5c. One open P1 asset: a portrait + loop for Mrs. Hubbell (`mother-frances.html` currently shows a placeholder frame).
+**Parallel active track — V2 Visual Revamp (`v2-ui` branch, Phase 5c):** the cinematic oil-painting aesthetic of the v2 landing (`experience-v2/landing.html`) is being carried across the site. LIVE: the landing, `the-collection.html`'s preservation masthead, and animated portrait heroes via the shared `.hero-loop` component (`_hero.css` / `_hero.js`). Plan + status: `tasks/site-v2-graphic-revamp-PLAN.md` (Execution Log) and `tasks/PROJECT-PHASES.md` §5c.
+
+**One canonical bio per person (2026-07-02):** the `who-they-were.html` individual "stage" view (portrait left + inline service table + footprint map + People Web pill + kin strip) is the ONLY user-facing bio. The dedicated `brother-*.html` / `mother-frances.html` pages are **redirect stubs** — an instant `location.replace('who-they-were.html#<id>')` in `<head>` — kept ONLY because the stage view fetches its `.narrative` prose from them (DOMParser ignores the redirect script). Do NOT link to those pages; all bio links use `who-they-were.html#<henry|alexander|charles|james|mother>`. Editing narrative chapters still happens in the stub files.
 
 ## Architecture
 - **Single file**: `hubbell-dashboard.html` contains all CSS, HTML, SVG rendering, and JavaScript

@@ -67,7 +67,7 @@ const PAGE_TITLES = {
   '/viz-people-web': 'The People Web — Connections Across 273 Letters',
   '/viz-what-they-didnt-know': 'What They Didn\'t Know — Dramatic Irony',
   '/viz-what-they-wrote-about': 'What They Wrote About — Topic Landscape',
-  '/the-collection': 'The Collection — Five Generations of Stewardship',
+  '/the-collection': 'The Archive — Five Generations of Stewardship',
   '/index': 'Hubbell Civil War Letters',
 };
 

@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Collection &mdash; Five Generations of Stewardship</title>
+<title>The Archive &mdash; Five Generations of Stewardship</title>
 <meta name="description" content="How 273 Civil War letters survived 160 years — from a trunk in a basement to a structured digital archive. The chain of care that kept one family's story alive."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="logo.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="_design.css?v=9">
-<link rel="stylesheet" href="_overlay.css?v=11">
+<link rel="stylesheet" href="_design.css?v=10">
+<link rel="stylesheet" href="_overlay.css?v=12">
 <link rel="stylesheet" href="_reader-era.css?v=18">
 <link rel="stylesheet" href="_hero.css?v=2">
 <link rel="stylesheet" href="_reveal.css">
-<link rel="stylesheet" href="_scrollrail.css?v=11">
+<link rel="stylesheet" href="_scrollrail.css?v=12">
 <style>:root{ --rail-accent:#CE8A46; }</style>   <!-- Collection section accent (nav menu-hover color) -->
-<script src="_scrollrail.js?v=11"></script>
+<script src="_scrollrail.js?v=12"></script>
 <script>document.documentElement.classList.add('reveal-on');</script>
 <style>
 /* ===== MASTHEAD (cinematic preservation header) ===== */
@@ -85,11 +85,25 @@
 
 /* ===== INTRODUCTION (tightened, character) ===== */
 .coll-intro {
-  max-width: 680px;
+  max-width: 900px;   /* wider editorial measure — was 680px, cramped mid-viewport */
   margin: 0 auto;
   padding: 52px 32px 46px;
   border-bottom: 1px solid var(--rule);
 }
+/* the 273-letter count is the archive's headline number — link it HARD to the
+   Parallel Lives timeline where every one of them is plotted */
+.arch-letters-link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 0 3px;
+  border-bottom: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  transition: background .15s, border-color .15s;
+}
+.arch-letters-link::after { content: ' \2197'; font-size: .78em; }
+.arch-letters-link:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); border-bottom-color: var(--accent); }
 .coll-intro p {
   font-family: var(--font-serif);
   font-size: 1.13rem;
@@ -107,7 +121,59 @@
   line-height: 1.45;
 }
 
-/* ===== MEET THE FAMILY CTA ===== */
+/* ===== THE FAMILY — small animated-portrait row (desktop) / swipe carousel (mobile) ===== */
+.arch-family { margin-top: 34px; }
+.arch-family-row { display: flex; justify-content: center; gap: 14px; }
+.af-tile {
+  position: relative;
+  flex: 0 0 148px;
+  text-decoration: none;
+  text-align: center;
+  transition: transform .25s ease;
+}
+.af-tile .hero-loop {
+  --hero-ar: 3/4;
+  --hero-radius: 9px;
+  --hero-scrim: 50%;
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: 0 12px 26px -16px rgba(0,0,0,.55);
+}
+.af-tile::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 9px 9px 0 0; background: var(--person); opacity: .9; z-index: 4; }
+.af-tile:hover { transform: translateY(-5px); }
+.af-name { display: block; margin-top: 9px; font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; color: var(--person); }
+.af-read { display: inline-block; margin-top: 2px; font-family: var(--font-mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
+.af-tile:hover .af-read { color: var(--person); border-bottom-color: var(--person); }
+.arch-swipe-hint { display: none; }
+@media (max-width: 720px) {
+  /* center-snap carousel: one full portrait centered, two edge portraits peeking */
+  .arch-family-row {
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 12px;
+    padding: 4px 18vw 8px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .arch-family-row::-webkit-scrollbar { display: none; }
+  .af-tile { flex: 0 0 58vw; scroll-snap-align: center; }
+  .arch-swipe-hint {
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    margin-top: 10px;
+    font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+  .arch-swipe-hint svg { width: 28px; height: 12px; }
+  .arch-swipe-hint .sw-ch { animation: arch-swipe 1.8s ease-in-out infinite; }
+}
+@keyframes arch-swipe {
+  0%, 100% { transform: translateX(0); opacity: .5; }
+  50%      { transform: translateX(6px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .arch-swipe-hint .sw-ch { animation: none; } }
+
+/* ===== MEET THE FAMILY CTA (legacy buttons — replaced by .arch-family above) ===== */
 .family-cta {
   margin-top: 32px;
   display: flex;
@@ -518,7 +584,7 @@
   <div class="coll-masthead__scrim" aria-hidden="true"></div>
   <div class="coll-masthead__inner" data-reveal-stagger>
     <div class="mh-eyebrow">Five Generations of Stewardship</div>
-    <h1 class="page-title">The Collection</h1>
+    <h1 class="page-title">The Archive</h1>
     <p class="mh-sub">A family heirloom &mdash; carried forward through five generations, from a trunk of fading letters to the archive you see here.</p>
   </div>
 </header>
@@ -527,7 +593,8 @@
 <section class="coll-intro">
   <p>
     <span class="lead-sentence">What you are reading is a family heirloom &mdash; brought to life
-    with new technology &mdash;</span> 273 letters kept close and passed down
+    with new technology &mdash;</span> <a class="arch-letters-link" href="hubbell-dashboard.html"
+    title="Every letter, plotted in time — the Parallel Lives view">273 letters</a> kept close and passed down
     through five generations, surviving 160 years because at each critical moment someone in
     the family decided they mattered enough to preserve.
   </p>
@@ -544,13 +611,65 @@
     each in a different decade &mdash; is the second. This page tells the story of that chain
     of care.
   </p>
-  <div class="family-cta" style="flex-direction:row; flex-wrap:wrap; justify-content:center;">
-    <a href="who-they-were.html" class="family-btn-sub" style="--bc: var(--ink); font-weight:600;">Meet the family &rarr;</a>
-    <a href="brother-henry.html" class="family-btn-sub" style="--bc: #2D5F8A;">Henry</a>
-    <a href="brother-alexander.html" class="family-btn-sub" style="--bc: #B8860B;">Alexander</a>
-    <a href="brother-james.html" class="family-btn-sub" style="--bc: #4A7C59;">James</a>
-    <a href="brother-charles.html" class="family-btn-sub" style="--bc: #8B3A3A;">Charles</a>
-    <a href="mother-frances.html" class="family-btn-sub" style="--bc: #7B5EA7;">Frances</a>
+  <!-- The family — small animated portrait row (desktop) / center-snap swipe carousel (mobile) -->
+  <div class="arch-family" aria-label="The family">
+    <div class="arch-family-row">
+      <a class="af-tile" href="who-they-were.html#henry" style="--person:#2D5F8A">
+        <figure class="hero-loop" data-hero-loop>
+          <img class="hero-loop__poster" src="/experience-v2/assets/brothers/web/window-henry-v1.webp" alt="Interpretive portrait of Henry Hubbell" decoding="async" loading="lazy">
+          <video class="hero-loop__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+            <source data-src="/experience-v2/assets/brothers/loops/loop-henry.webm" type="video/webm">
+            <source data-src="/experience-v2/assets/brothers/loops/loop-henry.mp4" type="video/mp4">
+          </video>
+        </figure>
+        <span class="af-name">Henry</span>
+        <span class="af-read">Read his story &rarr;</span>
+      </a>
+      <a class="af-tile" href="who-they-were.html#alexander" style="--person:#B8860B">
+        <figure class="hero-loop" data-hero-loop>
+          <img class="hero-loop__poster" src="/experience-v2/assets/brothers/web/window-alexander-fav.webp" alt="Interpretive portrait of Alexander Hubbell" decoding="async" loading="lazy">
+          <video class="hero-loop__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+            <source data-src="/experience-v2/assets/brothers/loops/loop-alexander-fav.webm" type="video/webm">
+            <source data-src="/experience-v2/assets/brothers/loops/loop-alexander-fav.mp4" type="video/mp4">
+          </video>
+        </figure>
+        <span class="af-name">Alexander</span>
+        <span class="af-read">Read his story &rarr;</span>
+      </a>
+      <a class="af-tile" href="who-they-were.html#charles" style="--person:#8B3A3A">
+        <figure class="hero-loop" data-hero-loop>
+          <img class="hero-loop__poster" src="/experience-v2/assets/brothers/web/window-charles-v1.webp" alt="Interpretive portrait of Charles Hubbell" decoding="async" loading="lazy">
+          <video class="hero-loop__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+            <source data-src="/experience-v2/assets/brothers/loops/loop-charles.webm" type="video/webm">
+            <source data-src="/experience-v2/assets/brothers/loops/loop-charles.mp4" type="video/mp4">
+          </video>
+        </figure>
+        <span class="af-name">Charles</span>
+        <span class="af-read">Read his story &rarr;</span>
+      </a>
+      <a class="af-tile" href="who-they-were.html#james" style="--person:#4A7C59">
+        <figure class="hero-loop" data-hero-loop>
+          <img class="hero-loop__poster" src="/experience-v2/assets/brothers/web/window-james-v2-wide.webp" alt="Interpretive portrait of James Hubbell" decoding="async" loading="lazy">
+          <video class="hero-loop__video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+            <source data-src="/experience-v2/assets/brothers/loops/loop-james-wide.webm" type="video/webm">
+            <source data-src="/experience-v2/assets/brothers/loops/loop-james-wide.mp4" type="video/mp4">
+          </video>
+        </figure>
+        <span class="af-name">James</span>
+        <span class="af-read">Read his story &rarr;</span>
+      </a>
+      <a class="af-tile" href="who-they-were.html#mother" style="--person:#7B5EA7">
+        <figure class="hero-loop" data-hero-loop>
+          <img class="hero-loop__poster" src="/experience-v2/assets/brothers/web/window-frances.webp" alt="Interpretive portrait of Frances Hubbell" decoding="async" loading="lazy">
+        </figure>
+        <span class="af-name">Frances</span>
+        <span class="af-read">Read her story &rarr;</span>
+      </a>
+    </div>
+    <div class="arch-swipe-hint" aria-hidden="true">
+      <svg viewBox="0 0 34 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path class="sw-ch" d="M2 6h24M22 2l6 4-6 4"/></svg>
+      <span>Swipe through the family</span>
+    </div>
   </div>
 </section>
 
@@ -720,8 +839,10 @@
       </figure>
       <h3 data-reveal="rise">The Descendants Analyze</h3>
       <p>
-        Alexander Hubbell Levitt &mdash; Alexander&rsquo;s great-great-grandson and namesake &mdash;
-        visits Gettysburg to trace ancestral footsteps, then turns to modern technology. Every letter
+        Alexander Hubbell Levitt &mdash; Alexander&rsquo;s great-great-grandson &mdash; carries the
+        name by way of the battlefield itself: his parents, Emily Hubbell and Bruce Levitt, chose it
+        while visiting Gettysburg, standing on the ground where the first Alexander&rsquo;s regiment
+        held Culp&rsquo;s Hill. The namesake retraces those footsteps, then turns to modern technology. Every letter
         is transcribed into structured data: dates, locations, people mentioned, emotional tone,
         health reports, financial references. The collection is text-mined for the patterns,
         connections, and emotional arcs that emerge only when the full correspondence is read
@@ -833,12 +954,12 @@
 </footer>
 
 <script src="_design-data.js"></script>
-<script src="_design-ui.js?v=7"></script>
+<script src="_design-ui.js?v=10"></script>
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=15"></script>
 <script src="_letter-nav.js"></script>
-<script src="_overlay.js?v=26"></script>
-<script src="_reader.js?v=21"></script>
+<script src="_overlay.js?v=27"></script>
+<script src="_reader.js?v=24"></script>
 <script>
 /* ── Keystone provenance document ─────────────────────────────────────────
    Fred Alexander Hubbell, Jr.'s October 28, 1996 family introduction
