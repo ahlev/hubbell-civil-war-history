@@ -765,6 +765,25 @@
 
 .detail-panel.open { right: 0; }
 
+/* ── Push mode (brother health profile) ──────────────────────────────
+   When a brother's write-up opens, the drawer PUSHES the page instead of
+   covering it: on wide viewports the content column compresses into the
+   remaining width (timeline stays fully visible beside the prose) and the
+   non-timeline sections dim softly. The letter-detail use of the same
+   drawer keeps the classic overlay behavior. */
+@media (min-width: 1100px) {
+  .container { transition: margin-right 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+  body.wl-push .container { margin-right: 492px; }
+  body.wl-push .section-head,
+  body.wl-push .brother-cta,
+  body.wl-push .legend-key,
+  body.wl-push .filter-bar,
+  body.wl-push #condition-explorer {
+    opacity: 0.55;
+    transition: opacity 0.35s;
+  }
+}
+
 .detail-panel .close-btn {
   position: absolute;
   top: 16px;
@@ -2369,6 +2388,10 @@ function showDetail(letter) {
 
 function closeDetail() {
   detailPanel.classList.remove('open');
+  if (document.body.classList.contains('wl-push')) {
+    document.body.classList.remove('wl-push');
+    setTimeout(drawTimeline, 400); // redraw at the restored full width
+  }
 }
 
 document.getElementById('close-detail').addEventListener('click', closeDetail);
@@ -2533,10 +2556,34 @@ function brotherSummaryHTML(bro) {
         <div class="ws-prose">
           ${prose.map(p => `<p>${p}</p>`).join('')}
         </div>
-        ${eventsHtml ? `<div class="ws-events-heading">Key Events</div><ul class="ws-events">${eventsHtml}</ul>` : ''}
-        ${quotesHtml}
+        ${wlRcWrap('wl-events', 'Key Events', eventsHtml ? `<ul class="ws-events">${eventsHtml}</ul>` : '', narr && narr.arc ? narr.arc.length : 0)}
+        ${wlRcWrap('wl-quotes', 'In Their Words', quotesHtml, narr && narr.quotes ? narr.quotes.length : 0)}
       </div>
     `;
+}
+
+// Collapsible sections in the drawer — same .rc contract as the letter
+// readers (_overlay.js/_reader.js): markup classes + the shared document-
+// level toggle handler + one sticky site-wide pref per section in
+// localStorage 'hubReaderCollapse'. Both sections default COLLAPSED here
+// so the drawer opens at a glanceable height; prose stays always-open.
+function wlRcCollapsed(sec) {
+  try {
+    const p = JSON.parse(localStorage.getItem('hubReaderCollapse')) || {};
+    return (sec in p) ? !!p[sec] : true;
+  } catch (e) { return true; }
+}
+function wlRcWrap(sec, label, inner, count) {
+  if (!inner) return '';
+  const c = wlRcCollapsed(sec);
+  return `<div class="rc${c ? ' rc-collapsed' : ''}" data-rc="${sec}">` +
+    `<button class="rc-h" type="button" aria-expanded="${!c}">` +
+      `<svg class="rc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>` +
+      `<span class="rc-t">${label}</span>` +
+      (count ? `<span class="rc-n">${count}</span>` : '') +
+      `<span class="rc-cta">show</span>` +
+    `</button>` +
+    `<div class="rc-b">${inner}</div></div>`;
 }
 
 // Per-brother summary opens in the slide-in drawer (reusing the letter detail
@@ -2545,7 +2592,20 @@ function openBrotherPanel(bro) {
   const inner = brotherSummaryHTML(bro);
   if (!inner) { closeDetail(); return; }
   renderInto(detailContent, `<div class="dp-eyebrow"><svg class="dp-eyebrow-cross" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 2h5a1 1 0 0 1 1 1v4.5H20a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-4.5V19a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-4.5H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1h4.5V3a1 1 0 0 1 1-1z" fill="currentColor"/></svg>Wellness Ledger · Health Profile</div>` + inner);
+  // Push mode: compress the page beside the drawer (wide viewports) so the
+  // brother's timeline lane stays fully visible while reading; redraw the
+  // SVG once the 0.35s layout transition settles into the narrower width.
+  const wasPushed = document.body.classList.contains('wl-push');
+  document.body.classList.add('wl-push');
   detailPanel.classList.add('open');
+  if (!wasPushed) setTimeout(drawTimeline, 400);
+  // Hovering a dated reference in the write-up rings its dot on the timeline
+  detailContent.querySelectorAll('.ws-ref, .evt-link').forEach(el => {
+    const m = (el.getAttribute('onclick') || '').match(/openLetterById\('([^']+)'/);
+    if (!m) return;
+    el.addEventListener('mouseenter', () => highlightLetterDot(m[1], true));
+    el.addEventListener('mouseleave', () => highlightLetterDot(m[1], false));
+  });
   if (window.HubbellOverlay) HubbellOverlay.bindDynamic(detailContent);
 }
 
@@ -2963,8 +3023,31 @@ function updateSelectorStates() {
 }
 
 // ========== CONTROLS ==========
+let _brotherZoomApplied = false;
+
+// Gently zoom the timeline's date window to the brother's active span
+// (padded ±4 weeks) so his lane fills the view beside the write-up.
+function zoomToBrotherSpan(bro) {
+  const ls = DATA.letters.filter(l => l.a === bro);
+  if (!ls.length) return;
+  const pad = 28 * 86400000;
+  const min = new Date(new Date(ls[0].d).getTime() - pad);
+  const max = new Date(new Date(ls[ls.length - 1].d).getTime() + pad);
+  pushZoomState();
+  zoomDateMin = min.toISOString().slice(0, 10);
+  zoomDateMax = max.toISOString().slice(0, 10);
+  _brotherZoomApplied = true;
+  updateZoomUI();
+}
+
 function selectBrother(bro) {
   activeBrother = (activeBrother === bro && bro !== 'all') ? 'all' : bro;
+  if (activeBrother !== 'all') {
+    zoomToBrotherSpan(activeBrother);
+  } else if (_brotherZoomApplied) {
+    _brotherZoomApplied = false;
+    resetZoom(); // only undo the zoom WE applied — manual zooms are untouched
+  }
   drawTimeline();
   updateSelectorStates();
   // Summary opens in the slide-in drawer (no page jump); deselect closes it.
