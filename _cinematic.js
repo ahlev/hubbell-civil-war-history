@@ -387,19 +387,17 @@ window.CinematicPlayer = (function () {
   ];
 
   /* ── State ── */
+  // Hard-stop model: narrative cards halt playback until the user continues.
+  // There is no auto-resume countdown, so the play button is strictly binary:
+  // playing = days ticking; while a card is up, pressing play = Continue.
   let _playing = false;
-  let _paused = false;        // paused at waypoint (card showing)
-  let _cardFrozen = false;    // card timer frozen by user (Space/pause button)
-  let _letterOpen = false;    // letter overlay is open — freeze timer
+  let _paused = false;        // halted at a waypoint card (hard stop)
   let _speed = DEFAULT_SPEED;
   let _interval = null;
   let _wpIndex = 0;           // next waypoint to check
-  let _resumeTimer = null;    // auto-resume timeout
-  let _resumeStart = 0;       // timestamp when resume timer started
-  let _resumeRemaining = 0;   // ms remaining when paused for letter
   let _cardEl = null;         // narrative card DOM
   let _playBtnEl = null;      // play button injected into slider-row
-  let _speedBtnEl = null;     // speed label next to play button
+  let _speedCtlEl = null;     // segmented speed control next to play button
   let _flyingToWaypoint = false; // true during waypoint flyTo (suppress auto-viewport)
 
   /* ── CSS Injection ── */
@@ -425,20 +423,34 @@ window.CinematicPlayer = (function () {
 .cine-play-btn:hover { background: #F0ECE7; border-color: #CCC; }
 .cine-play-btn:active { transform: scale(0.92); }
 .cine-play-btn svg { width: 16px; height: 16px; fill: currentColor; stroke: none; }
-.cine-speed-label {
+.cine-speed-ctl {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--rule, #DDD);
+  border-radius: 999px;
+  overflow: hidden;
+  background: #FAFAFA;
+  flex-shrink: 0;
+  user-select: none;
+}
+.cine-speed-opt {
+  border: none;
+  background: none;
+  padding: 5px 10px;
   font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   color: var(--ink-3, #999);
   cursor: pointer;
-  user-select: none;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  flex-shrink: 0;
-  min-width: 28px;
-  text-align: center;
+  line-height: 1;
+  transition: background 0.15s, color 0.15s;
 }
-.cine-speed-label:hover { color: var(--ink, #222); }
+.cine-speed-opt + .cine-speed-opt { border-left: 1px solid var(--rule, #E5E0D8); }
+.cine-speed-opt:hover { color: var(--ink, #222); }
+.cine-speed-opt.active { background: #2E2A26; color: #F5F0E8; }
+.cine-speed-opt .sp-abbr { display: none; }
 
 /* ── Smooth marker transitions during cinematic play ── */
 .cine-smooth-markers .leaflet-marker-icon {
@@ -526,19 +538,6 @@ window.CinematicPlayer = (function () {
   line-height: 1;
 }
 .cine-card-close:hover { color: #F5F0E8; }
-.cine-resume-bar {
-  height: 3px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 2px;
-  overflow: hidden;
-  margin-bottom: 10px;
-}
-.cine-resume-fill {
-  height: 100%;
-  width: 100%;
-  background: rgba(184,134,11,0.7);
-  transform-origin: left;
-}
 .cine-card-actions {
   display: flex;
   gap: 8px;
@@ -556,6 +555,13 @@ window.CinematicPlayer = (function () {
   transition: background 0.15s;
 }
 .cine-btn:hover { background: rgba(255,255,255,0.15); }
+.cine-btn-continue {
+  background: rgba(184,134,11,0.18);
+  border-color: rgba(184,134,11,0.55);
+  color: #EDD9A3;
+  font-weight: 600;
+}
+.cine-btn-continue:hover { background: rgba(184,134,11,0.32); }
 .cine-btn-letter {
   border-color: rgba(184,134,11,0.4);
   color: #D4A843;
@@ -605,11 +611,14 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
   .cine-card-title { font-size: 1.05rem; }
   .cine-card-body { font-size: 0.8rem; }
   .cine-play-btn { width: 34px; height: 34px; }
-  .cine-speed-label { font-size: 0.55rem; }
+  .cine-speed-opt { padding: 5px 8px; font-size: 0.55rem; }
 }
 @media (max-width: 600px) {
   .cine-play-btn { width: 44px; height: 44px; }
-  .cine-speed-label { display: none; }
+  /* Speed control stays usable on phones: single-letter labels, ≥32px targets */
+  .cine-speed-opt .sp-full { display: none; }
+  .cine-speed-opt .sp-abbr { display: inline; }
+  .cine-speed-opt { padding: 0 10px; min-height: 32px; font-size: 0.62rem; }
   .cine-card {
     left: 8px; right: 8px; bottom: 8px;
     max-width: none; width: auto;
@@ -650,16 +659,33 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
     _playBtnEl.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19" fill="currentColor"/></svg>';
     sliderRow.insertBefore(_playBtnEl, sliderRow.firstChild);
 
-    // Speed label — insert after play button, cycles on click
-    _speedBtnEl = document.createElement('span');
-    _speedBtnEl.className = 'cine-speed-label';
-    _speedBtnEl.textContent = SPEEDS[_speed].label;
-    _speedBtnEl.title = 'Click to change speed';
-    _playBtnEl.after(_speedBtnEl);
+    // Speed control — segmented Slow/Normal/Fast, visible on all viewports
+    _speedCtlEl = document.createElement('div');
+    _speedCtlEl.className = 'cine-speed-ctl';
+    _speedCtlEl.setAttribute('role', 'group');
+    _speedCtlEl.setAttribute('aria-label', 'Playback speed');
+    SPEED_ORDER.forEach(function (key) {
+      var opt = document.createElement('button');
+      opt.type = 'button';
+      opt.className = 'cine-speed-opt' + (key === _speed ? ' active' : '');
+      opt.dataset.speed = key;
+      opt.title = SPEEDS[key].label + ' speed';
+      opt.setAttribute('aria-pressed', key === _speed ? 'true' : 'false');
+      var full = document.createElement('span');
+      full.className = 'sp-full';
+      full.textContent = SPEEDS[key].label;
+      var abbr = document.createElement('span');
+      abbr.className = 'sp-abbr';
+      abbr.textContent = SPEEDS[key].label.charAt(0);
+      opt.appendChild(full);
+      opt.appendChild(abbr);
+      opt.addEventListener('click', function () { _setSpeed(key); });
+      _speedCtlEl.appendChild(opt);
+    });
+    _playBtnEl.after(_speedCtlEl);
 
     // Event listeners
     _playBtnEl.addEventListener('click', toggle);
-    _speedBtnEl.addEventListener('click', _cycleSpeed);
   }
 
   /* ── UI: Narrative Card ── */
@@ -676,11 +702,9 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
       <div class="cine-card-body"></div>
       <div class="cine-card-quote" style="display:none"></div>
       <div class="cine-card-cite" style="display:none"></div>
-      <div class="cine-resume-bar"><div class="cine-resume-fill"></div></div>
       <div class="cine-card-actions">
-        <button class="cine-btn cine-btn-pause">Pause</button>
-        <button class="cine-btn cine-btn-continue">Continue</button>
-        <button class="cine-btn cine-btn-letter" style="display:none">Read the letter &rarr;</button>
+        <button class="cine-btn cine-btn-continue">Continue the story &rarr;</button>
+        <button class="cine-btn cine-btn-letter" style="display:none">Read the letter</button>
         <div class="cine-nav-arrows">
           <button class="cine-nav-arrow cine-nav-prev" title="Previous moment">&larr;</button>
           <button class="cine-nav-arrow cine-nav-next" title="Next moment">&rarr;</button>
@@ -689,34 +713,16 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
     `;
     mapContainer.appendChild(_cardEl);
 
-    // Close button — same as continue
+    // Close button — same as Continue (the card is a hard stop; dismissing it
+    // resumes the journey)
     _cardEl.querySelector('.cine-card-close').addEventListener('click', function () {
       _hideCard();
       _resumeAfterWaypoint();
     });
 
-    // Pause button — freezes auto-resume timer, toggles to Resume
-    _cardEl.querySelector('.cine-btn-pause').addEventListener('click', function () {
-      var btn = this;
-      if (btn.textContent === 'Pause') {
-        _cardFrozen = true;
-        _freezeResumeTimer();
-        btn.textContent = 'Resume';
-        _updatePlayBtn(false);
-      } else {
-        _cardFrozen = false;
-        _unfreezeResumeTimer();
-        btn.textContent = 'Pause';
-        _updatePlayBtn(true);
-      }
-    });
-
-    // Continue button — skip waypoint and advance
+    // Continue button — the single way forward from a narrative card
     _cardEl.querySelector('.cine-btn-continue').addEventListener('click', function () {
       _hideCard();
-      // Reset pause button text for next waypoint
-      var pauseBtn = _cardEl.querySelector('.cine-btn-pause');
-      if (pauseBtn) pauseBtn.textContent = 'Pause';
       _resumeAfterWaypoint();
     });
 
@@ -732,9 +738,6 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
   function _jumpToWaypoint(idx) {
     if (idx < 0 || idx >= WAYPOINTS.length) return;
     _hideCard();
-    _cardFrozen = false;
-    var pauseBtn = _cardEl ? _cardEl.querySelector('.cine-btn-pause') : null;
-    if (pauseBtn) pauseBtn.textContent = 'Pause';
     // Advance timeline to waypoint day
     var wp = WAYPOINTS[idx];
     _wpIndex = idx + 1;
@@ -752,28 +755,17 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
     if (next) next.disabled = (_wpIndex >= WAYPOINTS.length);
   }
 
-  /* ── Play / Pause / Stop ── */
+  /* ── Play / Pause ── */
+  // Strictly binary: not playing → play; halted at a card → continue;
+  // ticking → pause. No hidden third state.
   function toggle() {
     if (!_playing) {
-      // Not playing → start from current slider position
       play();
     } else if (_paused) {
-      // Waypoint card is showing → toggle its timer
-      if (_cardFrozen) {
-        _cardFrozen = false;
-        _unfreezeResumeTimer();
-        var pauseBtn = _cardEl ? _cardEl.querySelector('.cine-btn-pause') : null;
-        if (pauseBtn) pauseBtn.textContent = 'Pause';
-        _updatePlayBtn(true);
-      } else {
-        _cardFrozen = true;
-        _freezeResumeTimer();
-        var pauseBtn = _cardEl ? _cardEl.querySelector('.cine-btn-pause') : null;
-        if (pauseBtn) pauseBtn.textContent = 'Resume';
-        _updatePlayBtn(false);
-      }
+      // Card is up (hard stop) → pressing play means Continue
+      _hideCard();
+      _resumeAfterWaypoint();
     } else {
-      // Ticking (no card) → full stop
       stop();
     }
   }
@@ -795,7 +787,6 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
 
     _playing = true;
     _paused = false;
-    _letterOpen = false;
 
     // Find first waypoint at or after the current slider position
     _recalcWaypoints(startDay);
@@ -816,7 +807,6 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
   function stop() {
     _playing = false;
     _paused = false;
-    _letterOpen = false;
     _flyingToWaypoint = false;
     _clearTimers();
     _hideCard();
@@ -842,7 +832,6 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
 
   function _clearTimers() {
     if (_interval) { clearInterval(_interval); _interval = null; }
-    if (_resumeTimer) { clearTimeout(_resumeTimer); _resumeTimer = null; }
   }
 
   /* ── Tick ── */
@@ -953,7 +942,8 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
       citeEl.style.display = 'none';
     }
 
-    // Letter button — opening pauses the auto-resume timer
+    // Letter button — the card is already a hard stop, so the reader simply
+    // opens on top of it; the card is still there when the reader closes
     var letterBtn = _cardEl.querySelector('.cine-btn-letter');
     if (wp.letterId) {
       letterBtn.style.display = '';
@@ -965,84 +955,18 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
       letterBtn.onclick = null;
     }
 
-    // Auto-resume bar
-    var pauseDur = wp.pause || 8000;
-    _startResumeTimer(pauseDur);
-
-    // Show card
+    // Show card — a hard stop; play button flips to "continue" affordance
     _cardEl.classList.add('visible');
     // Flag on body so global UI (e.g. dl-share-btn) can hide while card is up
     document.body.classList.add('cinematic-card-visible');
     _updateNavArrows();
+    _updatePlayBtn(false);
 
     _syncUrl();
   }
 
-  /* ── Resume Timer Management ── */
-  function _startResumeTimer(duration) {
-    _resumeRemaining = duration;
-    _resumeStart = Date.now();
-
-    var resumeFill = _cardEl.querySelector('.cine-resume-fill');
-    resumeFill.style.transition = 'none';
-    resumeFill.style.width = '100%';
-    resumeFill.offsetWidth; // force reflow
-    resumeFill.style.transition = 'width ' + (duration / 1000) + 's linear';
-    resumeFill.style.width = '0%';
-
-    if (_resumeTimer) clearTimeout(_resumeTimer);
-    _resumeTimer = setTimeout(function () {
-      _resumeTimer = null;
-      _hideCard();
-      _resumeAfterWaypoint();
-    }, duration);
-  }
-
-  function _freezeResumeTimer() {
-    if (_resumeTimer) {
-      clearTimeout(_resumeTimer);
-      _resumeTimer = null;
-    }
-    var elapsed = Date.now() - _resumeStart;
-    _resumeRemaining = Math.max(0, _resumeRemaining - elapsed);
-
-    var resumeFill = _cardEl ? _cardEl.querySelector('.cine-resume-fill') : null;
-    if (resumeFill) {
-      var currentWidth = resumeFill.getBoundingClientRect().width;
-      var trackWidth = resumeFill.parentElement.getBoundingClientRect().width;
-      var pct = trackWidth > 0 ? (currentWidth / trackWidth * 100) : 0;
-      resumeFill.style.transition = 'none';
-      resumeFill.style.width = pct + '%';
-    }
-  }
-
-  function _unfreezeResumeTimer() {
-    if (_resumeRemaining <= 0) {
-      _hideCard();
-      _resumeAfterWaypoint();
-      return;
-    }
-    _resumeStart = Date.now();
-
-    var resumeFill = _cardEl ? _cardEl.querySelector('.cine-resume-fill') : null;
-    if (resumeFill) {
-      resumeFill.offsetWidth; // force reflow
-      resumeFill.style.transition = 'width ' + (_resumeRemaining / 1000) + 's linear';
-      resumeFill.style.width = '0%';
-    }
-
-    _resumeTimer = setTimeout(function () {
-      _resumeTimer = null;
-      _hideCard();
-      _resumeAfterWaypoint();
-    }, _resumeRemaining);
-  }
-
   /* ── Letter Overlay During Play ── */
   function _openLetterDuringPlay(letterId) {
-    _letterOpen = true;
-    _freezeResumeTimer();
-
     if (window.HubbellReader) {
       _mapCurrentLetterId = letterId;
       if (typeof _mapSyncUrl === 'function') _mapSyncUrl();
@@ -1051,25 +975,16 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
         onClose: function () {
           _mapCurrentLetterId = null;
           if (typeof _mapSyncUrl === 'function') _mapSyncUrl();
-          _letterOpen = false;
-          if (_playing && _paused) {
-            _unfreezeResumeTimer();
-          }
         }
       });
     }
   }
 
   function _hideCard() {
-    _cardFrozen = false;
     if (_cardEl) {
       _cardEl.classList.remove('visible');
       document.body.classList.remove('cinematic-card-visible');
-      // Reset pause button for next waypoint
-      var pauseBtn = _cardEl.querySelector('.cine-btn-pause');
-      if (pauseBtn) pauseBtn.textContent = 'Pause';
     }
-    if (_resumeTimer) { clearTimeout(_resumeTimer); _resumeTimer = null; }
     _flyingToWaypoint = false;
     _clearPulse();
   }
@@ -1151,15 +1066,21 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
       btn.title = 'Pause (Space)';
     } else {
       btn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19" fill="currentColor"/></svg>';
-      btn.title = _playing ? 'Resume (Space)' : 'Play cinematic mode (Space)';
+      btn.title = _paused ? 'Continue the story (Space)' : 'Play the story (Space)';
     }
   }
 
   var SPEED_ORDER = ['slow', 'normal', 'fast'];
-  function _cycleSpeed() {
-    var idx = SPEED_ORDER.indexOf(_speed);
-    _speed = SPEED_ORDER[(idx + 1) % SPEED_ORDER.length];
-    if (_speedBtnEl) _speedBtnEl.textContent = SPEEDS[_speed].label;
+  function _setSpeed(key) {
+    if (!SPEEDS[key] || key === _speed) return;
+    _speed = key;
+    if (_speedCtlEl) {
+      _speedCtlEl.querySelectorAll('.cine-speed-opt').forEach(function (opt) {
+        var active = opt.dataset.speed === key;
+        opt.classList.toggle('active', active);
+        opt.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+    }
     if (_playing && !_paused && _interval) {
       _startInterval();
     }
@@ -1273,7 +1194,9 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
     isPlaying: function () { return _playing; },
     isPaused: function () { return _paused; },
     isFlyingToWaypoint: function () { return _flyingToWaypoint; },
-    updateSeasonIcon: _updateSeasonIcon
+    updateSeasonIcon: _updateSeasonIcon,
+    // Introspection for tests/diagnostics — not used by page code
+    debugState: function () { return { wpIndex: _wpIndex, playing: _playing, paused: _paused, speed: _speed }; }
   };
 
 })();

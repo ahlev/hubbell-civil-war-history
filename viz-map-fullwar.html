@@ -2041,6 +2041,7 @@ async function init() {
   initTimeline();
   buildPlaceLabels();
   initPlaceSearch();
+  buildCameraTrack();   // precompute the cinematic camera path (day → view)
 
   // Register map-page hook so overlay place clicks navigate the map directly
   window._mapNavigateToPlace = function(place) {
@@ -2215,7 +2216,8 @@ function initMap() {
     attributionControl: true,
     zoomAnimation: true,
     markerZoomAnimation: true,
-    preferCanvas: false
+    preferCanvas: false,
+    zoomSnap: 0   // fractional zoom — camera glides instead of jumping whole levels
   });
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -2235,6 +2237,20 @@ function initMap() {
   }
 
   addFrancesMarker(); // static mother dot at Champlain (created once)
+
+  // Camera-track zoom targets depend on viewport size — rebuild on resize
+  let _ctResizeTimer = null;
+  map.on('resize', function () {
+    clearTimeout(_ctResizeTimer);
+    _ctResizeTimer = setTimeout(buildCameraTrack, 300);
+  });
+
+  // Let the visitor take the wheel: user pan/zoom suspends the cinematic
+  // follow camera for a few seconds instead of fighting it.
+  map.on('dragstart', function () { CameraFollow.holdOff(4000); });
+  map.getContainer().addEventListener('wheel', function () { CameraFollow.holdOff(4000); }, { passive: true });
+  const zc = document.querySelector('.leaflet-control-zoom');
+  if (zc) zc.addEventListener('click', function () { CameraFollow.holdOff(4000); });
 }
 
 function initTimeline() {
@@ -2422,6 +2438,163 @@ function _smoothViewport(activeBounds, isCinematic, isLocked, lockedPos) {
   }, delay);
 }
 
+// ============================================================
+// CINEMATIC CAMERA — precomputed day-by-day track + smooth follow
+// ============================================================
+// The old cinematic camera chased the brother dots reactively, re-fitting
+// bounds and firing fresh flyTo animations at a moving target on every tick —
+// the source of the jitter. Playback now has ONE camera authority: a per-day
+// track of {lat, lon, zoom} targets precomputed from the movement data
+// (smoothed with a moving average so segment boundaries have no corners),
+// plus an exponential-follow loop that eases the live camera toward the
+// current day's target at frame rate. Waypoint flights in _cinematic.js
+// temporarily own the camera; the follow loop suspends while a card is up
+// and reseeds from wherever the flight left the view. _smoothViewport above
+// remains for manual scrubbing only.
+
+// Position of a brother on a given date, interpolated between his dated
+// movements — the dots glide along their routes on the same day clock the
+// camera reads, instead of teleporting when a new letter's location takes
+// over. Display-layer only: movement data is never modified.
+function getBrotherPosAt(brotherId, cds) {
+  // Henry rests at the Antietam memorial after Sept 17, 1862
+  if (brotherId === 'henry' && cds >= '1862-09-17') {
+    return { lat: 39.4747, lon: -77.7447, moving: false, movement: null };
+  }
+  const moves = DATA.movements.filter(m => m.brother === brotherId && m.date <= cds);
+  if (moves.length === 0) return null;
+  let cur = moves[moves.length - 1];
+  for (let i = moves.length - 1; i >= 0; i--) {
+    if ((moves[i].endDate || moves[i].date) >= cds) { cur = moves[i]; break; }
+  }
+  const stayEnd = cur.endDate || cur.date;
+  if (stayEnd >= cds) {
+    return { lat: cur.lat, lon: cur.lon, moving: false, movement: cur };
+  }
+  // Departed the last known place — glide toward the next dated position
+  let next = null;
+  for (let j = 0; j < DATA.movements.length; j++) {
+    const m = DATA.movements[j];
+    if (m.brother === brotherId && m.date > cds) { next = m; break; }
+  }
+  if (!next) return { lat: cur.lat, lon: cur.lon, moving: false, movement: cur };
+  const t0 = new Date(stayEnd + 'T12:00:00').getTime();
+  const t1 = new Date(next.date + 'T12:00:00').getTime();
+  const tc = new Date(cds + 'T12:00:00').getTime();
+  let t = t1 > t0 ? (tc - t0) / (t1 - t0) : 1;
+  t = Math.max(0, Math.min(1, t));
+  return {
+    lat: cur.lat + (next.lat - cur.lat) * t,
+    lon: cur.lon + (next.lon - cur.lon) * t,
+    moving: t > 0 && t < 1,
+    movement: cur
+  };
+}
+
+let _cameraTrack = null;   // [{lat, lon, zoom}] indexed by day
+
+function buildCameraTrack() {
+  if (!DATA || !map) return;
+  const fallback = { lat: 38.5, lon: -78.5, zoom: 7 };
+  const raw = new Array(TOTAL_DAYS + 1);
+  for (let d = 0; d <= TOTAL_DAYS; d++) {
+    const cds = dateStr(dayToDate(d));
+    const pts = [];
+    for (const [bid, info] of Object.entries(DATA.brothers)) {
+      if (cds < info.serviceStart || cds > info.serviceEnd) continue;
+      if (bid === 'henry' && cds >= '1862-09-17') continue; // memorial doesn't pull camera
+      const p = getBrotherPosAt(bid, cds);
+      if (p) pts.push([p.lat, p.lon]);
+    }
+    if (pts.length === 0) {
+      raw[d] = d > 0 ? raw[d - 1] : fallback;
+    } else if (pts.length === 1) {
+      raw[d] = { lat: pts[0][0], lon: pts[0][1], zoom: 8 };
+    } else {
+      const b = L.latLngBounds(pts).pad(0.18);
+      const c = b.getCenter();
+      const z = map.getBoundsZoom(b, false, L.point(60, 60));
+      raw[d] = { lat: c.lat, lon: c.lng, zoom: Math.max(5, Math.min(9, z)) };
+    }
+  }
+  // Centered moving average (±10 days) — rounds off the kinks where a
+  // brother starts or stops traveling so the camera path has no corners.
+  const W = 10;
+  const smooth = new Array(raw.length);
+  for (let i = 0; i < raw.length; i++) {
+    let lat = 0, lon = 0, zoom = 0, n = 0;
+    for (let k = Math.max(0, i - W); k <= Math.min(raw.length - 1, i + W); k++) {
+      lat += raw[k].lat; lon += raw[k].lon; zoom += raw[k].zoom; n++;
+    }
+    smooth[i] = { lat: lat / n, lon: lon / n, zoom: zoom / n };
+  }
+  _cameraTrack = smooth;
+}
+
+const CameraFollow = {
+  _active: false,
+  _raf: null,
+  _cur: null,          // eased camera state {lat, lon, zoom}
+  _target: null,
+  _lastTs: 0,
+  _holdUntil: 0,
+  _lastZoomApply: 0,
+
+  follow(target) {
+    this._target = target;
+    if (this._active) return;
+    this._active = true;
+    this._cur = null;  // reseed from the live view on first frame
+    this._lastTs = performance.now();
+    const self = this;
+    function loop(now) {
+      if (!self._active) return;
+      self._raf = requestAnimationFrame(loop);
+      const dt = Math.min(0.1, (now - self._lastTs) / 1000);
+      self._lastTs = now;
+
+      // Playback over → stand down entirely
+      if (!window.CinematicPlayer || !CinematicPlayer.isPlaying()) { self.stop(); return; }
+      // Card up / waypoint flight in progress → the flight owns the camera;
+      // drop eased state so we reseed from wherever the flight ends
+      if (CinematicPlayer.isPaused() || CinematicPlayer.isFlyingToWaypoint()) { self._cur = null; return; }
+      // Visitor recently panned/zoomed → let them look around
+      if (now < self._holdUntil) { self._cur = null; return; }
+      if (!self._target) return;
+
+      if (!self._cur) {
+        const c = map.getCenter();
+        self._cur = { lat: c.lat, lon: c.lng, zoom: map.getZoom() };
+      }
+      const a  = 1 - Math.exp(-dt / 1.1);  // pan time-constant ~1.1s
+      const az = 1 - Math.exp(-dt / 1.7);  // zoom eases slightly slower
+      self._cur.lat  += (self._target.lat  - self._cur.lat)  * a;
+      self._cur.lon  += (self._target.lon  - self._cur.lon)  * a;
+      self._cur.zoom += (self._target.zoom - self._cur.zoom) * az;
+
+      // Zoom applications rebuild more of the view than raw pans, so pan
+      // every frame but re-apply zoom at ~8 Hz once it has drifted enough.
+      const zoomDrift = Math.abs(self._cur.zoom - map.getZoom());
+      if (zoomDrift > 0.005 && (now - self._lastZoomApply) > 120) {
+        self._lastZoomApply = now;
+        map.setView([self._cur.lat, self._cur.lon], self._cur.zoom, { animate: false });
+      } else {
+        map.panTo([self._cur.lat, self._cur.lon], { animate: false, noMoveStart: true });
+      }
+    }
+    this._raf = requestAnimationFrame(loop);
+  },
+
+  stop() {
+    this._active = false;
+    if (this._raf) { cancelAnimationFrame(this._raf); this._raf = null; }
+    this._cur = null;
+    this._target = null;
+  },
+
+  holdOff(ms) { this._holdUntil = performance.now() + ms; }
+};
+
 // Inline status callout (mobile) — verified/estimated label beside the place name
 function setStateIcon(el, kind) {
   if (!el) return;
@@ -2541,6 +2714,11 @@ function updateToDate(day) {
       if ((m.endDate || m.date) >= currentDateStr) { current = m; break; }
     }
 
+    // Interpolated draw position — the dot glides between dated movement
+    // coordinates on the same day clock as the camera instead of teleporting.
+    // `current` (the movement record) still drives all panel text/links.
+    const drawPos = getBrotherPosAt(brotherId, currentDateStr) || { lat: current.lat, lon: current.lon };
+
     // Update status panel
     locEl.textContent = current.placeName;
     const isVerified = current.source === 'letter';
@@ -2596,14 +2774,15 @@ function updateToDate(day) {
       addTrailNode(m, brotherId, opacity, age, rangeSpan);
     }
 
-    // Draw solid connecting lines from trail to current position
+    // Draw solid connecting lines from trail to current (interpolated) position
     if (recentTrail.length > 0) {
       const chain = [...recentTrail, current];
+      const coordOf = (m) => (m === current ? [drawPos.lat, drawPos.lon] : [m.lat, m.lon]);
       for (let i = 0; i < chain.length - 1; i++) {
         const age = (new Date(currentDateStr) - new Date(chain[i].date)) / 86400000;
         const opacity = Math.max(0.2, 0.6 * (1 - age / Math.max(rangeSpan, 1)));
         L.polyline(
-          [[chain[i].lat, chain[i].lon], [chain[i+1].lat, chain[i+1].lon]],
+          [coordOf(chain[i]), coordOf(chain[i+1])],
           { color: COLORS[brotherId], weight: 2.5, opacity }
         ).addTo(trailLayers[brotherId]);
       }
@@ -2611,8 +2790,8 @@ function updateToDate(day) {
 
     // Draw current position node (labeled) — offset if co-located with another brother
     const pxOffset = getCoLocationPixelOffset(brotherId, current, currentDateStr);
-    addCurrentNode(current, brotherId, pxOffset);
-    activeBounds.push([current.lat, current.lon]);
+    addCurrentNode(current, brotherId, pxOffset, [drawPos.lat, drawPos.lon]);
+    activeBounds.push([drawPos.lat, drawPos.lon]);
 
     // "New Letter!" badge — stays for 3 days, fading after day 1 and day 2
     // so a fresh letter isn't missed but reads as progressively stale.
@@ -2678,11 +2857,23 @@ function updateToDate(day) {
   // Update narrative
   updateNarrative(currentDateStr);
 
-  // Viewport: smoothed camera with dead-zone + debounce to prevent jitter
+  // Viewport — single camera authority per mode:
+  //  · cinematic playback → precomputed track + exponential follow (no reactive re-fitting)
+  //  · manual scrub / locked view → debounced smoothing (_smoothViewport)
   const isCinematic = window.CinematicPlayer && CinematicPlayer.isPlaying() && !CinematicPlayer.isPaused();
   const lockedPos = lockedBrother ? getLockedBrotherPosition(currentDateStr) : null;
   if (_homeMode) activeBounds.push(FRANCES_LATLON); // keep Frances's home framed
-  _smoothViewport(activeBounds, isCinematic, !!lockedBrother, lockedPos);
+  if (isCinematic && _cameraTrack) {
+    let camTarget = _cameraTrack[Math.max(0, Math.min(day, _cameraTrack.length - 1))];
+    if (lockedBrother && lockedPos) {
+      // Locked follow during playback: stay on the brother, hold a closer zoom
+      camTarget = { lat: lockedPos[0], lon: lockedPos[1], zoom: Math.max(7, camTarget.zoom) };
+    }
+    CameraFollow.follow(camTarget);
+  } else {
+    CameraFollow.stop();
+    _smoothViewport(activeBounds, isCinematic, !!lockedBrother, lockedPos);
+  }
 
   // Auto-refresh info panel if showing a brother
   refreshInfoPanel(currentDateStr);
@@ -2694,14 +2885,8 @@ function updateToDate(day) {
 
 function getLockedBrotherPosition(currentDateStr) {
   if (!lockedBrother) return null;
-  if (lockedBrother === 'henry' && currentDateStr >= '1862-09-17') return [39.4747, -77.7447];
-  const moves = DATA.movements.filter(m => m.brother === lockedBrother && m.date <= currentDateStr);
-  if (moves.length === 0) return null;
-  let cur = moves[moves.length - 1];
-  for (let i = moves.length - 1; i >= 0; i--) {
-    if ((moves[i].endDate || moves[i].date) >= currentDateStr) { cur = moves[i]; break; }
-  }
-  return [cur.lat, cur.lon];
+  const pos = getBrotherPosAt(lockedBrother, currentDateStr); // interpolated (handles Henry's memorial)
+  return pos ? [pos.lat, pos.lon] : null;
 }
 
 // ============================================================
@@ -2738,7 +2923,7 @@ function getCoLocationPixelOffset(brotherId, movement, currentDateStr) {
   return (myIdx - (coLocated.length - 1) / 2) * spread;
 }
 
-function addCurrentNode(movement, brotherId, pixelOffsetX) {
+function addCurrentNode(movement, brotherId, pixelOffsetX, drawLatLon) {
   pixelOffsetX = pixelOffsetX || 0;
   const color = COLORS[brotherId];
   const name = NAMES[brotherId];
@@ -2756,7 +2941,7 @@ function addCurrentNode(movement, brotherId, pixelOffsetX) {
     iconAnchor: [70 - pixelOffsetX, 14]
   });
 
-  L.marker([movement.lat, movement.lon], { icon, zIndexOffset: 1000 })
+  L.marker(drawLatLon || [movement.lat, movement.lon], { icon, zIndexOffset: 1000 })
     .on('click', () => showInfoPanel(movement, brotherId))
     .addTo(markerLayers[brotherId]);
 }
@@ -4272,6 +4457,14 @@ let _mapPlayTimer = null;
 let _mapPlaying = false;
 
 function toggleMapPlay() {
+  // CinematicPlayer owns playback; its toggle is strictly binary
+  // (play / continue-past-card / pause), so just delegate.
+  if (window.CinematicPlayer) {
+    CinematicPlayer.toggle();
+    _mapPlaying = CinematicPlayer.isPlaying() && !CinematicPlayer.isPaused();
+    updatePlayBtn();
+    return;
+  }
   if (_mapPlaying) {
     stopMapPlay();
   } else {
@@ -4279,22 +4472,8 @@ function toggleMapPlay() {
   }
 }
 
+// Legacy fallback path — only used if _cinematic.js failed to load
 function startMapPlay() {
-  // If CinematicPlayer is available and not playing, defer to it
-  if (window.CinematicPlayer && !CinematicPlayer.isPlaying()) {
-    CinematicPlayer.toggle();
-    _mapPlaying = true;
-    updatePlayBtn();
-    // Sync button state when cinematic ends
-    return;
-  }
-  if (window.CinematicPlayer && CinematicPlayer.isPlaying() && CinematicPlayer.isPaused()) {
-    CinematicPlayer.toggle(); // unpause
-    _mapPlaying = true;
-    updatePlayBtn();
-    return;
-  }
-  // Fallback: simple day-step auto-play
   _mapPlaying = true;
   updatePlayBtn();
   fadeCta();
@@ -4312,9 +4491,6 @@ function stopMapPlay() {
   if (_mapPlayTimer) {
     clearInterval(_mapPlayTimer);
     _mapPlayTimer = null;
-  }
-  if (window.CinematicPlayer && CinematicPlayer.isPlaying()) {
-    CinematicPlayer.toggle(); // pause cinematic
   }
   updatePlayBtn();
 }
@@ -4525,7 +4701,7 @@ HubbellDeepLink.registerStateApplier(function(p) {
 });
 HubbellDeepLink.enableHistory();
 </script>
-<script src="_cinematic.js"></script>
+<script src="_cinematic.js?v=2"></script>
 <script>if (window.CinematicPlayer) CinematicPlayer.init();</script>
 </main>
 </body>
