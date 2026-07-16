@@ -11,11 +11,13 @@ Shipping a cross-reference engine v1 + press kit + first-wave personalized outre
 Two coordinated plans drive the work:
 - **`tasks/outreach-plan.md`** — visibility / press kit / outreach execution playbook (positioning, outlet taxonomy, message frameworks, decision points).
 - **`tasks/phase-3-plan.md`** — cross-reference & discrepancy detection execution playbook (per-brother source pulls, LLM-mediated verification, discrepancy registry, methodology paper). Delivers the cross-reference engine v1 that outreach Phase 1A depends on.
-- **`PHASE-3-PLAN.md`** (project root) — the architectural / methodological spec behind `tasks/phase-3-plan.md`. File layout, disambiguation rubric integration, confidence model, definition of done. **The spec wins where the task plan diverges.**
+- **`docs/PHASE-3-PLAN.md`** — the architectural / methodological spec behind `tasks/phase-3-plan.md`. File layout, disambiguation rubric integration, confidence model, definition of done. **The spec wins where the task plan diverges.**
 
 Phase 3 scaffolding in place (no data yet): `03-data/external-sources/{README.md, methodology/disambiguation-rubric.md}`, `04-analysis/phase-3-discrepancies/INDEX.md`. Awaiting user input on rubric TODO-1 and NARA pension-order decision before pulls begin.
 
 Prior phases (transcription, knowledge graph, visualizations, novel, web platform) are complete or descoped. See `tasks/todo.md` for legacy phase tracking.
+
+**Parallel active track — Experience Refinement Sprint (`v2-ui` branch, Phase 5d, ACTIVE 2026-07-16):** pre-outreach UI sprint on the three interactive surfaces (Map That Moves playback/camera, Wellness Ledger push drawer, People Web d3-force rebuild + mobile). **Rails: `tasks/ui-refinement-sprint-PLAN.md`** — decisions in §1 are locked; work runs as three `/goal` sub-sprints (§6). Phase 6 outreach waits on this sprint.
 
 **Parallel active track — V2 Visual Revamp (`v2-ui` branch, Phase 5c):** the cinematic oil-painting aesthetic of the v2 landing (`experience-v2/landing.html`) is being carried across the site. LIVE: the landing, `the-collection.html`'s preservation masthead, and animated portrait heroes via the shared `.hero-loop` component (`_hero.css` / `_hero.js`). Plan + status: `tasks/site-v2-graphic-revamp-PLAN.md` (Execution Log) and `tasks/PROJECT-PHASES.md` §5c.
 
@@ -46,7 +48,10 @@ Prior phases (transcription, knowledge graph, visualizations, novel, web platfor
 - Dashboard: `hubbell-dashboard.html` (this directory)
 - Source data: `03-data/all-letters.json`
 - Letter files: `02-transcribed-markdown/LTR-YYYY-MM-DD-###.md`
-- Session logs: `SESSION-SUMMARY-*.md`
+- Internal docs (specs, plans, audits, session logs, goal-prompt archives): `docs/` and `docs/goals/` — root holds ONLY the live site surface (public HTML + `_*` assets), config, and this file
+- Session logs: `docs/SESSION-SUMMARY-*.md`
+- One-off data-pipeline scripts: `scripts/` (run from project root, e.g. `python scripts/validate_metadata.py`)
+- Dev screenshots: `screenshots/dev/` (untracked; don't save working screenshots to root)
 
 ## System
 - Platform: Windows/MSYS — use `python` not `python3`
