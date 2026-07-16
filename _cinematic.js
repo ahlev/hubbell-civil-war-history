@@ -452,11 +452,6 @@ window.CinematicPlayer = (function () {
 .cine-speed-opt.active { background: #2E2A26; color: #F5F0E8; }
 .cine-speed-opt .sp-abbr { display: none; }
 
-/* ── Smooth marker transitions during cinematic play ── */
-.cine-smooth-markers .leaflet-marker-icon {
-  transition: transform 0.3s ease-out;
-}
-
 /* ── Narrative Card — bottom-left, out of map center ── */
 .cine-card {
   position: absolute;
@@ -795,10 +790,6 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
     var caption = document.getElementById('narrativeCaption');
     if (caption) caption.classList.remove('visible');
 
-    // Enable smooth marker transitions
-    var mapContainer = document.getElementById('mapContainer');
-    if (mapContainer) mapContainer.classList.add('cine-smooth-markers');
-
     _updatePlayBtn(true);
     _fadeCta();
     _startInterval();
@@ -813,10 +804,6 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
     _updatePlayBtn(false);
     _syncUrl();
 
-    // Remove smooth marker transitions
-    var mapContainer = document.getElementById('mapContainer');
-    if (mapContainer) mapContainer.classList.remove('cine-smooth-markers');
-
     // Restore normal narrative caption
     if (typeof updateNarrative === 'function' && typeof currentDay !== 'undefined') {
       var d = typeof dayToDate === 'function' ? dayToDate(currentDay) : null;
@@ -827,11 +814,15 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
   function _startInterval() {
     _clearTimers();
     var s = SPEEDS[_speed];
+    // Publish tick timing so the page's frame loop can compute a fractional
+    // day between ticks — dots and camera sample the same continuous clock.
+    window.__cineTickInfo = { ts: performance.now(), ms: s.ms, step: s.step };
     _interval = setInterval(_tick, s.ms);
   }
 
   function _clearTimers() {
     if (_interval) { clearInterval(_interval); _interval = null; }
+    window.__cineTickInfo = null;
   }
 
   /* ── Tick ── */
@@ -840,6 +831,7 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
     var cd = (typeof currentDay !== 'undefined') ? currentDay : 0;
     var td = (typeof TOTAL_DAYS !== 'undefined') ? TOTAL_DAYS : 1508;
     var next = Math.min(cd + step, td);
+    window.__cineTickInfo = { ts: performance.now(), ms: SPEEDS[_speed].ms, step: step };
 
     // Advance timeline — sync slider and currentDay
     rangeEndDay = next;
