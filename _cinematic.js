@@ -1187,6 +1187,11 @@ body.cinematic-card-visible .dl-share-btn { display: none !important; }
     isPaused: function () { return _paused; },
     isFlyingToWaypoint: function () { return _flyingToWaypoint; },
     updateSeasonIcon: _updateSeasonIcon,
+    // Waypoint camera targets — used by the page's tile prefetcher to warm
+    // the browser cache for every story flight before it happens
+    getFlyTargets: function () {
+      return WAYPOINTS.map(function (w) { return w.fly; }).filter(Boolean);
+    },
     // Introspection for tests/diagnostics — not used by page code
     debugState: function () { return { wpIndex: _wpIndex, playing: _playing, paused: _paused, speed: _speed }; }
   };

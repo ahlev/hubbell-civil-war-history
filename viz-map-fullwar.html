@@ -2042,6 +2042,13 @@ async function init() {
   initPlaceSearch();
   buildCameraTrack();   // precompute the cinematic camera path (day → view)
 
+  // Warm the tile cache along the whole flight plan once the page settles.
+  // Desktop/fine-pointer only — phones wait until playback starts (the same
+  // kickoff runs from the play path) so we don't burn mobile data upfront.
+  if (window.matchMedia && window.matchMedia('(any-pointer: fine)').matches) {
+    setTimeout(function () { TilePrefetcher.kickoff(); }, 2500);
+  }
+
   // Register map-page hook so overlay place clicks navigate the map directly
   window._mapNavigateToPlace = function(place) {
     var movement = matchPlaceName(place.n) || { placeName: place.n, lat: place.co.lat, lon: place.co.lon };
@@ -2614,6 +2621,109 @@ const CameraFollow = {
   holdOff(ms) { this._holdUntil = performance.now() + ms; }
 };
 
+// ============================================================
+// TILE PREFETCHER — warm the cache along the known flight plan
+// ============================================================
+// The camera's whole route is precomputed (_cameraTrack) and every story
+// flight target is known (CinematicPlayer.getFlyTargets), so we can fetch
+// the exact tiles playback will need before it needs them. Prefetched via
+// Image() objects → they land in the browser's HTTP cache, and Leaflet's
+// own requests are then served locally instead of leaving blank squares
+// while panning/zooming. Gentle: 6 parallel requests, hard cap, deduped.
+const TilePrefetcher = {
+  _seen: new Set(),
+  _queue: [],
+  _inflight: 0,
+  _kicked: false,
+  _lastLive: 0,
+  MAX_INFLIGHT: 6,
+  CAP: 6000, // absolute ceiling on tiles we will ever request
+
+  _url(z, x, y) {
+    // MUST mirror Leaflet's deterministic subdomain pick ((x+y) % 4) — the
+    // subdomain is part of the browser's cache key, so a tile warmed from
+    // the "wrong" host is a cache MISS when Leaflet later requests it.
+    const s = 'abcd'[Math.abs(x + y) % 4];
+    const r = (L.Browser && L.Browser.retina) ? '@2x' : '';
+    return 'https://' + s + '.basemaps.cartocdn.com/light_all/' + z + '/' + x + '/' + y + r + '.png';
+  },
+
+  // Queue every tile a viewport at (lat, lon, zoom) would show, +ring margin
+  enqueueView(lat, lon, zoom, ring) {
+    if (!map || this._seen.size >= this.CAP) return;
+    const R = ring || 1;
+    const z = Math.max(3, Math.min(12, Math.round(zoom)));
+    const size = map.getSize();
+    const c = map.project(L.latLng(lat, lon), z);
+    const min = c.subtract(size.divideBy(2)).divideBy(256).floor();
+    const max = c.add(size.divideBy(2)).divideBy(256).floor();
+    const n = 1 << z;
+    for (let x = min.x - R; x <= max.x + R; x++) {
+      for (let y = Math.max(0, min.y - R); y <= Math.min(n - 1, max.y + R); y++) {
+        const xx = ((x % n) + n) % n;
+        const key = z + '/' + xx + '/' + y;
+        if (this._seen.has(key)) continue;
+        if (this._seen.size >= this.CAP) return;
+        this._seen.add(key);
+        this._queue.push([z, xx, y]);
+      }
+    }
+    this._pump();
+  },
+
+  _pump() {
+    while (this._inflight < this.MAX_INFLIGHT && this._queue.length) {
+      const t = this._queue.shift();
+      const img = new Image();
+      this._inflight++;
+      const done = () => { this._inflight--; this._pump(); };
+      img.onload = done;
+      img.onerror = done;
+      img.src = this._url(t[0], t[1], t[2]);
+    }
+  },
+
+  // One-time full-route warm: the camera track sampled every 15 days at its
+  // own zoom, plus every waypoint flight view. Heavy overlap along the route
+  // means the dedupe set does most of the work.
+  kickoff() {
+    if (this._kicked || !_cameraTrack) return;
+    this._kicked = true;
+    for (let d = 0; d < _cameraTrack.length; d += 15) {
+      const t = _cameraTrack[d];
+      this.enqueueView(t.lat, t.lon, Math.round(t.zoom * 2) / 2);
+    }
+    if (window.CinematicPlayer && CinematicPlayer.getFlyTargets) {
+      // Waypoint flights bounds-fit around the target + brother positions and
+      // pass through intermediate zooms, so warm each target one zoom level
+      // either side with a double-width ring. Low-zoom tiles overlap heavily
+      // across waypoints — the dedupe set keeps the real volume modest.
+      CinematicPlayer.getFlyTargets().forEach(f => {
+        const z = f.zoom || 9;
+        [z - 1, z, z + 1].forEach(zz => this.enqueueView(f.lat, f.lon, zz, 2));
+      });
+    }
+  },
+
+  // Cheap per-tick backstop during playback: make sure the view ~2 and ~4
+  // months ahead (and the pending quantized zoom for the current view) are
+  // warm — catches lock-follow zooms and anything the kickoff missed.
+  lookahead(day) {
+    const now = performance.now();
+    if (now - this._lastLive < 1000 || !_cameraTrack) return;
+    this._lastLive = now;
+    [60, 120].forEach(ahead => {
+      const t = _cameraTrack[Math.min(day + ahead, _cameraTrack.length - 1)];
+      this.enqueueView(t.lat, t.lon, Math.round(t.zoom * 2) / 2);
+    });
+    if (CameraFollow._target) {
+      const qz = Math.round(CameraFollow._target.zoom * 2) / 2;
+      const c = map.getCenter();
+      this.enqueueView(c.lat, c.lng, qz);
+    }
+  }
+};
+
 // Inline status callout (mobile) — verified/estimated label beside the place name
 function setStateIcon(el, kind) {
   if (!el) return;
@@ -2829,6 +2939,8 @@ function updateToDate(day) {
       camTarget = { lat: lockedPos[0], lon: lockedPos[1], zoom: Math.max(7, camTarget.zoom) };
     }
     CameraFollow.follow(camTarget);
+    TilePrefetcher.kickoff();      // no-op after the first call
+    TilePrefetcher.lookahead(day); // throttled to 1/s internally
   } else {
     CameraFollow.stop();
     _smoothViewport(activeBounds, isCinematic, !!lockedBrother, lockedPos);
@@ -4840,7 +4952,7 @@ HubbellDeepLink.registerStateApplier(function(p) {
 });
 HubbellDeepLink.enableHistory();
 </script>
-<script src="_cinematic.js?v=3"></script>
+<script src="_cinematic.js?v=4"></script>
 <script>if (window.CinematicPlayer) CinematicPlayer.init();</script>
 </main>
 </body>
