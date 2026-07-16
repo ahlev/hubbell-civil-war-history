@@ -1,7 +1,7 @@
 {
   "scan_date": "2026-03-31",
-  "total_letters": 273,
-  "letters_with_gaps": 264,
+  "total_letters": 272,
+  "letters_with_gaps": 263,
   "stats": {
     "letters_with_people_gaps": 228,
     "total_people_candidates": 709,
@@ -7716,26 +7716,6 @@
           {
             "match": "wounded",
             "context": "...w I was in one last fall but then I was wounded and was only a short time from the regt..."
-          }
-        ]
-      }
-    },
-    {
-      "doc_id": "LTR-1864-09-25-001",
-      "file": "LTR-1864-09-25-001.md",
-      "existing_people_count": 3,
-      "existing_places_count": 1,
-      "existing_flags_yes_count": 2,
-      "candidate_people": [],
-      "candidate_places": [
-        "August",
-        "Mother"
-      ],
-      "candidate_flags": {
-        "Receipt of package/letter": [
-          {
-            "match": "hear from",
-            "context": "...ated in August and I am very anxious to hear from you all, but I dare not have my mail se..."
           }
         ]
       }

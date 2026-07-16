@@ -18,7 +18,7 @@ All source files located at:
 | 4 | `Alexander Hubbell letters - 1863 JAN to JUNE.pdf` | 32 | **COMPLETE** | 31 | Most dense PDF: 31 letters in 32 pages. Includes Mother's only letter (Apr 30), Mother-to-Alexander (May 4-14), Capt. Ransom letter (Jan 14), Cousin Mary McNeil (Apr 13). Chancellorsville battle report. Henry's grave headboard (Abram Fry). |
 | 5 | `Alexander Hubbell letters - 1863 JULY to DEC.pdf` | 26 | **COMPLETE** | 30 | Gettysburg battle report (Jul 4). Two stands of colors captured. Antietam battlefield passed — couldn't stop for Henry. Draft riots referenced. Belle Boyd at Carroll Prison. Execution of deserters witnessed. Alexander to Tennessee (12th Corps reinforcing Rosecrans). Wauhatchie night battle — Greene wounded. **WOUNDED AT LOOKOUT MOUNTAIN** — minie ball left side. Mother's anguished letters. Co. H losses: Hays, Doten, Housedean killed; Lemage, Small (leg), Rider, Alexander wounded. |
 | 6 | `Alexander Hubbell letters - 1864 JAN to JUNE.pdf` | 34 | **COMPLETE** | 34 | Alex re-enlisted, left detachment "clandestinely." Col. Davis court-martialed. Trombly — 2nd Lieut. USCT. Charles clerk at Banks HQ (penmanship failed). **POINT LOOKOUT** prisoner camp. Free State Governor inaugurated (Louisiana). Charles to New Orleans/Algiers. Alexander at Stevenson — rebel deserters, Confederate morale collapse. **BASEBALL — "Union Base"** game. **20TH ARMY CORPS FORMED** (11th + 12th). McClellan devotion — "my heart still yearns." Gen. Thomas and Hooker visit troops. **JAMES ENLISTED.** Red River Campaign — terrible fighting, 153rd in it. Charles's guerrilla river battle. **ATLANTA CAMPAIGN BEGINS** — Buzzard's Roost, Resaca, Dallas ("b-e-a-u-t-i-f-u-l" bullet), near Marietta. Killed and wounded "piling up fearfully." **JAMES'S FIRST LETTER.** Mr. Bass shot. Old lady's ashes. Hooker's star men. |
-| 7 | `Alexander Hubbell letters - 1864 JULY to DEC.pdf` | 26 | **COMPLETE** | 31 | All three brothers write. Alexander: Atlanta siege ("Atlanta Express"), scurvy, hospitals (Atlanta→Chattanooga→Nashville), Hooker farewell, Battle of Nashville. Charles: Third Winchester (65 casualties in regt.), Cedar Creek surprise ("The Rebs are here!"), winter quarters Newtown. James: Early's Raid, hardtack defined, Cedar Creek wound, Patterson Park/Chestnut Hill hospitals. Political arc: McClellan→"war man"→Lincoln. All three vote/would vote Lincoln. Grandmother dies. Company reduced to 22 men. Colored soldiers "fight well." $1,202 bounty for one-year recruit. Pages 17-18 are duplicate typings of same Oct 22/24 letter. |
+| 7 | `Alexander Hubbell letters - 1864 JULY to DEC.pdf` | 26 | **COMPLETE** | 30 | All three brothers write. Alexander: Atlanta siege ("Atlanta Express"), scurvy, hospitals (Atlanta→Chattanooga→Nashville), Hooker farewell, Battle of Nashville. Charles: Third Winchester (65 casualties in regt.), Cedar Creek surprise ("The Rebs are here!"), winter quarters Newtown. James: Early's Raid, hardtack defined, Cedar Creek wound, Patterson Park/Chestnut Hill hospitals. Political arc: McClellan→"war man"→Lincoln. All three vote/would vote Lincoln. Grandmother dies. Company reduced to 22 men. Colored soldiers "fight well." $1,202 bounty for one-year recruit. Pages 17-18 are duplicate typings of same Oct 22/24 letter. |
 | 8 | `Alexander Hubbell letters - 1865 (not many).pdf` | 6 | **COMPLETE** | 7 | Mother's longest letter (Jan 11-16). Charles in Savannah occupation. Alexander's valedictory & mustering out. Homecoming at Ogdensburgh. 1870 post-war coda. |
 | 9 | `Letter to Mrs Hubbell.pdf` | 1 | **COMPLETE** | 1 | R.W. McDonald to Mrs. Hubbell, Oct 1 1862, re: Henry wounded at Antietam. Unique — not from a Hubbell brother. → `LTR-1862-10-01-001.md` |
 
@@ -292,22 +292,21 @@ All output files in: `/Hubbell Civil War Ancestry/02-transcribed-markdown/letter
 | 13 | `LTR-1864-09-10-001.md` | Sep 10, 1864 | Alexander | Mother | p10-11 | Hospital at Chattanooga. Scurvy treatment. |
 | 14 | `LTR-1864-09-21-001.md` | Sep 21, 1864 | Charles | Mother | p11 | Third Winchester — 65 casualties in regiment. |
 | 15 | `LTR-1864-09-21-002.md` | Sep 21, 1864 | Alexander | Mother | p11-12 | **THREE-YEAR ANNIVERSARY.** "Heart too full to speak." War man now. |
-| 16 | `LTR-1864-09-25-001.md` | Sep 25, 1864 | Alexander | Mother | p12-13 | Most extensive racial/political commentary. |
-| 17 | `LTR-1864-10-04-001.md` | Oct 4-12, 1864 | James | Alexander | p14-15 | James at Harrisonburg — Shenandoah. |
-| 18 | `LTR-1864-10-04-002.md` | Oct 4, 1864 | Charles | Alexander | p15 | Charles at Harrisonburg — same day as James. |
-| 19 | `LTR-1864-10-15-001.md` | Oct 15, 1864 | Alexander | Mother | p15-16 | Hospital at Nashville. Politics deepening. |
-| 20 | `LTR-1864-10-22-001.md` | Oct 22, 1864 | James | Mother | p17-18 | **CEDAR CREEK** — "The Rebs are here!" Wounded. Duplicate pages (22 vs 24 dating). |
-| 21 | `LTR-1864-10-26-001.md` | Oct 26, 1864 | Alexander | Mother | p18-19 | **"SQUARE AND FAIR FOR LINCOLN."** Political arc complete. |
-| 22 | `LTR-1864-10-28-001.md` | Oct 28, 1864 | Charles | Mother | p19 | Shenandoah — post-Cedar Creek. |
-| 23 | `LTR-1864-11-04-001.md` | Nov 4, 1864 | Alexander | Mother | p19-20 | Nashville hospital. Election eve. |
-| 24 | `LTR-1864-11-06-001.md` | Nov 6, 1864 | Charles | Mother | p20 | Winter quarters Newtown. St. Albans Raid. |
-| 25 | `LTR-1864-11-09-001.md` | Nov 9, 1864 | James | Mother | p20-21 | Cedar Creek wound — Patterson Park hospital. |
-| 26 | `LTR-1864-11-14-001.md` | Nov 14, 1864 | Alexander | Mother | p21-22 | Nashville — Thomas preparing for Hood. |
-| 27 | `LTR-1864-11-24-001.md` | Nov 24, 1864 | Charles | Mother | p22 | Thanksgiving. Company reduced to 22 men. |
-| 28 | `LTR-1864-12-09-001.md` | Dec 9, 1864 | James | Mother | p22-23 | Chestnut Hill hospital. Ring made of bone. |
-| 29 | `LTR-1864-12-12-001.md` | Dec 12, 1864 | Charles | Mother | p23-24 | Newtown winter quarters. |
-| 30 | `LTR-1864-12-12-002.md` | Dec 12, 1864 | Alexander | Mother | p24-25 | Colored soldiers "fight well." $1,202 bounty. |
-| 31 | `LTR-1864-12-27-001.md` | Dec 27, 1864 | Alexander | Mother | p25-26 | **BATTLE OF NASHVILLE.** Hood defeated. |
+| 16 | `LTR-1864-10-04-001.md` | Oct 4-12, 1864 | James | Alexander | p14-15 | James at Harrisonburg — Shenandoah. |
+| 17 | `LTR-1864-10-04-002.md` | Oct 4, 1864 | Charles | Alexander | p15 | Charles at Harrisonburg — same day as James. |
+| 18 | `LTR-1864-10-15-001.md` | Oct 15, 1864 | Alexander | Mother | p15-16 | Hospital at Nashville. Politics deepening. |
+| 19 | `LTR-1864-10-22-001.md` | Oct 22, 1864 | James | Mother | p17-18 | **CEDAR CREEK** — "The Rebs are here!" Wounded. Duplicate pages (22 vs 24 dating). |
+| 20 | `LTR-1864-10-26-001.md` | Oct 26, 1864 | Alexander | Mother | p18-19 | **"SQUARE AND FAIR FOR LINCOLN."** Political arc complete. |
+| 21 | `LTR-1864-10-28-001.md` | Oct 28, 1864 | Charles | Mother | p19 | Shenandoah — post-Cedar Creek. |
+| 22 | `LTR-1864-11-04-001.md` | Nov 4, 1864 | Alexander | Mother | p19-20 | Nashville hospital. Election eve. |
+| 23 | `LTR-1864-11-06-001.md` | Nov 6, 1864 | Charles | Mother | p20 | Winter quarters Newtown. St. Albans Raid. |
+| 24 | `LTR-1864-11-09-001.md` | Nov 9, 1864 | James | Mother | p20-21 | Cedar Creek wound — Patterson Park hospital. |
+| 25 | `LTR-1864-11-14-001.md` | Nov 14, 1864 | Alexander | Mother | p21-22 | Nashville — Thomas preparing for Hood. |
+| 26 | `LTR-1864-11-24-001.md` | Nov 24, 1864 | Charles | Mother | p22 | Thanksgiving. Company reduced to 22 men. |
+| 27 | `LTR-1864-12-09-001.md` | Dec 9, 1864 | James | Mother | p22-23 | Chestnut Hill hospital. Ring made of bone. |
+| 28 | `LTR-1864-12-12-001.md` | Dec 12, 1864 | Charles | Mother | p23-24 | Newtown winter quarters. |
+| 29 | `LTR-1864-12-12-002.md` | Dec 12, 1864 | Alexander | Mother | p24-25 | Colored soldiers "fight well." $1,202 bounty. |
+| 30 | `LTR-1864-12-27-001.md` | Dec 27, 1864 | Alexander | Mother | p25-26 | **BATTLE OF NASHVILLE.** Hood defeated. |
 
 ---
 
@@ -331,7 +330,7 @@ All output files in: `/Hubbell Civil War Ancestry/02-transcribed-markdown/letter
 - **Naming convention:** `LTR-YYYY-MM-DD-NNN.md` where NNN increments for same-date letters.
 - **QA protocol:** Day-of-week calendar check on every letter. All 34 from 1861 pass. All 54 from 1862 JAN-MAY checked.
 - **Known dating errors:** LTR-1861-06-06-001 is actually July 6; LTR-1861-08-06-001 is actually Aug 6, 1862 (misfiled in 1861 PDF). LTR-1862-03-06-001 has year error "1861" = 1862. LTR-1862-02-05-001/002/003 dating discrepancy RESOLVED (mailed from Bolivar Heights after Feb 26 march).
-- **Total letters transcribed: 265** (34 from 1861 + 54 from 1862 JAN-MAY + 43 from 1862 JUNE-DEC + 1 from McDonald letter + 31 from 1863 JAN-JUNE + 30 from 1863 JULY-DEC + 34 from 1864 JAN-JUNE + 31 from 1864 JULY-DEC + 7 from 1865)
+- **Total letters transcribed: 264** (34 from 1861 + 54 from 1862 JAN-MAY + 43 from 1862 JUNE-DEC + 1 from McDonald letter + 31 from 1863 JAN-JUNE + 30 from 1863 JULY-DEC + 34 from 1864 JAN-JUNE + 30 from 1864 JULY-DEC + 7 from 1865)
 - **ALL 9 PDFs COMPLETE.** 260 pages → 265 letters. Collection spans Sep 20, 1861 to Nov 28, 1870.
 
 ---

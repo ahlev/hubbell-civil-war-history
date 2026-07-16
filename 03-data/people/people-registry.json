@@ -966,7 +966,6 @@
       "\"Stands the marches like a little hero\"",
       "10 letters home, no answers — discouraged",
       "Arrived at regiment — drawn new gun",
-      "Arrived at regiment; drawn new gun, busy cleaning",
       "Coming to join — at Elmira",
       "Discharged — home with friends",
       "Not yet arrived with recruits",
@@ -975,7 +974,7 @@
       "Well — sharpshooting at rebs"
     ],
     "ranks": [],
-    "letterCount": 11,
+    "letterCount": 10,
     "letters": [
       "LTR-1864-03-20-001",
       "LTR-1864-04-07-001",
@@ -988,7 +987,7 @@
       "LTR-1864-08-08-001",
       "LTR-1865-06-27-001"
     ],
-    "firstAppearance": "1863-05-06",
+    "firstAppearance": "1864-03-20",
     "lastAppearance": "1865-06-27"
   },
   {
@@ -1005,7 +1004,6 @@
       "5 votes on train",
       "Commanding general; \"carrying a regular siege at Richmond\"",
       "Head of army; Henry seen him twice — \"young looking man\"",
-      "Many soldiers will vote for him",
       "Praises Army of Potomac",
       "Present at Harpers Ferry with staff — Henry hasn't seen him yet",
       "Rumor of return to Potomac command — Alexander yearns for him",
@@ -1014,7 +1012,7 @@
     "ranks": [
       "General"
     ],
-    "letterCount": 10,
+    "letterCount": 9,
     "letters": [
       "LTR-1862-02-28-001",
       "LTR-1862-03-03-001",
@@ -1024,7 +1022,6 @@
       "LTR-1862-06-22-001",
       "LTR-1864-04-22-001",
       "LTR-1864-07-00-001",
-      "LTR-1864-09-25-001",
       "LTR-1864-10-10-001"
     ],
     "firstAppearance": "1862-02-28",
@@ -2031,7 +2028,7 @@
   },
   {
     "id": "PER-strain",
-    "canonicalName": "Major Strain",
+    "canonicalName": "Capt. Strain",
     "variants": [
       "Capt. Strain",
       "Col. Strain",
@@ -2543,27 +2540,6 @@
     "lastAppearance": "1864-10-29"
   },
   {
-    "id": "PER-lafountain",
-    "canonicalName": "Lafountain",
-    "variants": [
-      "Lafountain"
-    ],
-    "category": "civilian",
-    "roles": [
-      "Bought Alexander's boots for $6.50",
-      "From Champlain — bought Alexander's boots for $8.50",
-      "Visiting — brother in Co. didn't re-enlist; 6th Cavalry"
-    ],
-    "ranks": [],
-    "letterCount": 3,
-    "letters": [
-      "LTR-1864-01-19-001",
-      "LTR-1864-05-06-001"
-    ],
-    "firstAppearance": "1863-05-06",
-    "lastAppearance": "1864-05-06"
-  },
-  {
     "id": "PER-amos-luther",
     "canonicalName": "Amos Luther",
     "variants": [
@@ -2916,7 +2892,7 @@
   },
   {
     "id": "PER-green",
-    "canonicalName": "Colonel Green",
+    "canonicalName": "General Green",
     "variants": [
       "Colonel Green",
       "General Green"
@@ -2940,7 +2916,7 @@
   },
   {
     "id": "PER-lablue",
-    "canonicalName": "LaBlue",
+    "canonicalName": "Lablue",
     "variants": [
       "LaBlue",
       "Lablue"
@@ -3939,6 +3915,26 @@
     ],
     "firstAppearance": "1864-01-19",
     "lastAppearance": "1864-02-17"
+  },
+  {
+    "id": "PER-lafountain",
+    "canonicalName": "Lafountain",
+    "variants": [
+      "Lafountain"
+    ],
+    "category": "civilian",
+    "roles": [
+      "Bought Alexander's boots for $6.50",
+      "Visiting — brother in Co. didn't re-enlist; 6th Cavalry"
+    ],
+    "ranks": [],
+    "letterCount": 2,
+    "letters": [
+      "LTR-1864-01-19-001",
+      "LTR-1864-05-06-001"
+    ],
+    "firstAppearance": "1864-01-19",
+    "lastAppearance": "1864-05-06"
   },
   {
     "id": "PER-chas--carte",
@@ -10098,7 +10094,7 @@
   },
   {
     "id": "PER-denys",
-    "canonicalName": "Miss Denys",
+    "canonicalName": "Mrs. Denys",
     "variants": [
       "Miss Denys",
       "Mrs. Denys"

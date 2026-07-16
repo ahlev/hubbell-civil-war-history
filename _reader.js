@@ -601,8 +601,8 @@ window.HubbellReader = (function () {
   // density ticks — tolerant of non-uniform horizontal scaling) and HTML
   // pins/labels (crisp at any width). Opt-in via opts.contextStrip.
   //
-  // Why ticks + tap-to-nearest instead of 273 tappable dots: at corpus density
-  // (~273 letters across ~600px) individual dots overlap and are far smaller
+  // Why ticks + tap-to-nearest instead of 272 tappable dots: at corpus density
+  // (~272 letters across ~600px) individual dots overlap and are far smaller
   // than a 44px touch target. A density band you tap *near* keeps the full-arc
   // overview while staying usable on mobile.
   var _ctxStrip = null;       // metadata for the binder

@@ -27856,68 +27856,6 @@
     }
   },
   {
-    "id": "LTR-1864-09-25-001",
-    "date": "1864-09-25",
-    "year": 1864,
-    "month": 9,
-    "day": 25,
-    "author": "alexander",
-    "authorName": "Alexander",
-    "recipient": "Frances (Fannie)",
-    "location": "U.S. Field Hospital No. 2, Chattanooga, Tennessee",
-    "significance": "major",
-    "emotion": "moderate",
-    "notes": "U.S. Field Hospital No. 2, Chattanooga, Tenn. Long political letter. Still in hospital — continues to be blind at night. **SOLDIERS WILL VOTE FOR McCLELLAN.** \"A majority of the border state men, I thin, will, and a large number of the 'Hibernians.'\" They don't like the \"nigger\" nor any man that favors them. **\"NIGGER EQUALITY\"** — border men get quite wrathy. \"They say they would rejoice to see the niggers free if they would be sent out of the country, lest to have the nection among them on an equality with the white man they never would agree to it.\" **ALEXANDER SYMPATHIZES WITH BORDER MEN** — \"I could never consent to see these black men mingled with our white and form a part of the people of the United States.\" \"I do not think it was ever the design of Providence that the two races should be mingled.\" \"It will do to talk about this 'equality' matter when the war is over.\" **VOTING AGE** — now over 21 by U.S. service laws. Sept 27 — weather chilly, rain. Would like ripe apples, steamed apple dumplings. Last letter received from home dated August — very anxious. May be with regt. soon.",
-    "hasBattle": false,
-    "hasIllness": true,
-    "hasDeath": false,
-    "hasWound": false,
-    "transcription": "Sept. 25, 1864\nU.S. Field Hospital No. 2\nChattanooga, Tenn.\n\nDear Fannie:\n\nNow for the long promised letter. You perceive I am still in the same place, but I am unable to say how long I may remain here. I am getting along very well, I think, and will doubtless be able to join the regt. before a very great while. I still continue to be blind at night. The Dr. thinks it will wear off in time. Others tell me I will never get over it, but then I think I shall.\n\nHow runs the political excitement in C? Pretty high I expect. It will be a very closely contested election, I think. A good many soldiers will vote for McClellan. A majority of the border state men, I think, will, and a large number of the \"Hibernians.\" They don't like the \"nigger\" nor any man that favors them. The border men get quite wrathy over the idea of \"nigger equality.\" They say they would rejoice to see the niggers free if they would be sent out of the country, lest to have the nection among them on an equality with the white man they never would agree to it. They say if they would be sent out of the country, they say they have talked with men from all the Northern states and none are willing to have them settle among them. They say the Northern states and none are willing to have them settle there, and are even more hostile to it than they are. \"And now,\" said one, \"what are you going to have packed on us what none of you are willing to receive! Never!!!\"\n\nI must confess, dear Fannie, that I sympathize strongly with these \"border men\" in this matter of what they call \"nigger equality.\" I could never consent to see these black men mingled with our white and form a part of the people of the United States. I do not think it was ever the design of Providence that the two races should be mingled and I doubt not the Government will make some wise provision in this case. We have got enough on hand now to put down this rebellion. It will do to talk about this \"equality\" matter when the war is over.\n\nHave you taken a realizing sense that I am now according to the laws of the United States twenty-one years of age and am privileged to vote at the coming elections. You know I have now been in the U. S. service a little over three years.\n\nSept. 27 — This morning the weather is quite chilly and threatens rain. It is very much like Sept. weather at home and makes me think of ripe apples and a thousand other good things. I should like tremendously to get hold of one of Mother's steamed apple dumplings. Perhaps before another year rolls round I shall be there to enjoy these good things.\n\nThe last letter I received from home was dated in August and I am very anxious to hear from you all, but I dare not have my mail sent here. I may be with the regt. soon. If not I believe I shall risk having it sent here. Continue to direct as before. Give my regards to Mrs. B. and all friends. Give much love to Mother.\n\nYour aff. Brother,\n\nAlex F. Hubbell",
-    "editorial": "This is the collection's most uncomfortable letter — and its most historically valuable political document. Alexander, writing to Frances from a hospital bed, lays out the racial politics of the Union army with unflinching candor. The border state soldiers and the Irish (\"Hibernians\") will vote for McClellan because they won't accept Black equality. \"And now, what are you going to have packed on us what none of you are willing to receive! Never!!!\"\n\nAnd Alexander agrees: \"I could never consent to see these black men mingled with our white.\" This is not a Confederate sympathizer — this is a man who has fought for three years to preserve the Union and destroy slavery. But his vision of freedom does not include equality. \"I do not think it was ever the design of Providence that the two races should be mingled.\" The war man and the racist are the same man. This was the majority position among white Union soldiers in 1864.\n\nThe letter's ending returns to the domestic — apple dumplings and September rain. The political philosopher becomes the homesick boy in a single paragraph.",
-    "sigSummary": "Border-state men and the \"Hibernians\" will vote McClellan, Alexander tells his sister Fannie from a Chattanooga hospital bed — they would free the slaves only to ship them out of the country, never accept equality. And from three years' service he agrees: \"I could never consent to see these black men mingled with our white.\" Then the soldier-philosopher turns homesick boy, longing for Mother's steamed apple dumplings in the September rain.",
-    "people": [
-      {
-        "name": "McClellan",
-        "role": "Many soldiers will vote for him",
-        "confidence": "stated · clear · definite",
-        "firstMention": false
-      }
-    ],
-    "places": [
-      {
-        "written": "U.S. Field Hospital No. 2, Chattanooga, Tennessee",
-        "modern": "U.S. Field Hospital No. 2, Chattanooga, Tennessee",
-        "confidence": "stated · clear · definite"
-      }
-    ],
-    "hasPromotion": false,
-    "hasCapture": false,
-    "hasDesertion": false,
-    "hasDischarge": false,
-    "hasHomeNews": false,
-    "hasPolitical": true,
-    "hasMoraleCrisis": false,
-    "hasSupplyRequest": false,
-    "hasReceipt": false,
-    "hasCampMovement": false,
-    "hasEyewitness": false,
-    "flagDetails": {
-      "hasIllness": "Night blindness continues — \"blind at night\"",
-      "hasPolitical": "Extensive — race, McClellan, border men, \"nigger equality\""
-    },
-    "direction": "front-to-home",
-    "temporal": {
-      "warYear": "4th",
-      "campaignPeriod": "Hospital at Chattanooga — election approaching",
-      "daysSinceLast": "4 (from LTR-1864-09-21-003)"
-    },
-    "confidence": {
-      "date_written": "stated · clear · definite",
-      "author": "stated · clear · definite",
-      "author_location": "stated · clear · definite"
-    }
-  },
-  {
     "id": "LTR-1864-10-04-001",
     "date": "1864-10-04",
     "year": 1864,
@@ -28153,7 +28091,7 @@
     "temporal": {
       "warYear": "4th",
       "campaignPeriod": "Hospital at Nashville — election season",
-      "daysSinceLast": "15 (from LTR-1864-09-25-001)"
+      "daysSinceLast": "19 (from LTR-1864-09-21-003)"
     },
     "confidence": {
       "date_written": "stated · clear · definite",

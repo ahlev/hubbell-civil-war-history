@@ -1,22 +1,22 @@
 # Metadata Quality Evaluation Report
 
-*Generated: 2026-03-31*
+*Generated: 2026-07-16*
 
 ## Executive Summary
 
 | Metric | Value |
 |--------|-------|
-| Total letters scanned | 274 |
+| Total letters scanned | 273 |
 | Letters with schema violations | 0 |
 | Total schema violations | 0 |
 | JSON value drifts | 0 |
-| JSON missing field categories | 90 |
+| JSON missing field categories | 88 |
 | Cross-ref chain issues | 0 |
 | Temporal calculation issues | 3 |
 | Unique people across corpus | 596 |
-| Unique places across corpus | 513 |
+| Unique places across corpus | 521 |
 | Name variant groups | 97 |
-| Place inconsistencies | 60 |
+| Place inconsistencies | 66 |
 
 ---
 
@@ -28,21 +28,27 @@
 
 ## Part 2: JSON Fidelity
 
+### Coverage Issues
+
+| Type | ID | Detail |
+|------|-----|--------|
+| MISSING_FROM_JSON | `LTR-1863-05-06-001` | Letter exists in markdown but not in JSON |
+
 ### Fields Present in Markdown but Missing from JSON
 
 *These are data categories that exist in the markdown source but have no representation in `all-letters.json`.*
 
 | Field Category | Letters Affected | % of Corpus |
 |---------------|-----------------|-------------|
-| Temporal Context | 274 | 100% |
-| Confidence Metadata | 274 | 100% |
-| Military References | 197 | 72% |
-| Place Coordinates | 135 | 49% |
+| Temporal Context | 272 | 100% |
+| Confidence Metadata | 272 | 100% |
+| Place Coordinates | 200 | 73% |
+| Military References | 196 | 72% |
 | Receipt of package/letter | 118 | 43% |
 | Camp movement/march | 84 | 31% |
 | Objects & Material Culture | 64 | 23% |
 | Request for supplies/money | 64 | 23% |
-| Political commentary | 62 | 23% |
+| Political commentary | 61 | 22% |
 | Domestic/Home Front | 54 | 20% |
 | Recipient Location | 45 | 16% |
 | Eyewitness to named event | 37 | 14% |
@@ -104,8 +110,6 @@
 | Shooting in Champlain | 1 | 0% |
 | Carter testimony | 1 | 0% |
 | McDonald vs McKee | 1 | 0% |
-| Active campaign | 1 | 0% |
-| Troop strength | 1 | 0% |
 | Search for Alexander | 1 | 0% |
 | Ambrotype | 1 | 0% |
 | Henry definitive | 1 | 0% |
@@ -240,64 +244,70 @@
 | As Written | Modern Identifications |
 |-----------|----------------------|
 | "the river" | hudson river / potomac river |
-| albany | `stated` / albany, new york / albany, ny / albany, ny — destination of deserters / albany, ny — reference to mustering experience |
-| alexandria | `stated` / alexandria / alexandria, louisiana / alexandria, louisiana — captured / alexandria, va / alexandria, va — camp 2 days; 8 miles from washington / alexandria, va — charles now stationed in city / alexandria, va — city under military occupation / alexandria, va — embarked by boat |
+| albany | albany, new york / albany, ny / albany, ny — destination of deserters / albany, ny — reference to mustering experience / — |
+| alexandria | alexandria / alexandria, louisiana / alexandria, louisiana — captured / alexandria, va / alexandria, va — camp 2 days; 8 miles from washington / alexandria, va — charles now stationed in city / alexandria, va — city under military occupation / alexandria, va — embarked by boat / — |
 | annapolis | annapolis, md / where albert cook was (paroled prisoner) |
-| antietam | `stated` / antietam battlefield, near sharpsburg, md / battle of antietam, sharpsburg, md |
+| antietam | antietam battlefield, near sharpsburg, md / battle of antietam, sharpsburg, md / — |
 | aquia creek | aquia creek, va — straggler transport / aquia creek, va — straggler transport destination |
-| atlanta | `stated` / atlanta, georgia — visible from ridge |
-| baltimore | `stated` / baltimore / baltimore, maryland / baltimore, md / baltimore, md (went to church) / baltimore, md — band serenaded there / baltimore, md — new location / baltimore, md — two photography galleries |
-| berryville | `stated` / berryville, va — 10 miles from winchester; rebel flag torn down |
+| atlanta | atlanta, georgia — visible from ridge / — |
+| baltimore | baltimore / baltimore, maryland / baltimore, md / baltimore, md (went to church) / baltimore, md — band serenaded there / baltimore, md — new location / baltimore, md — two photography galleries / — |
+| berryville | berryville, va — 10 miles from winchester; rebel flag torn down / — |
 | bolivar heights | bolivar heights, near harpers ferry, wv / bolivar heights, wv -- above harpers ferry; line of battle formed there / near harpers ferry, west virginia |
-| burlington | `stated` / burlington, vt / burlington, vt — where holcomb boarded |
+| burlington | `stated · clear · definite` / burlington, vt / burlington, vt — where holcomb boarded |
 | camden station | camden station, b&o railroad depot, baltimore / camden station, baltimore — 1st platoon location / camden station, baltimore, md -- railroad station where alexander was posted |
 | camp jackson | near baltimore, md / near baltimore, md — 3 miles / referenced as previous location for guard duty descriptions |
 | camp mcclellan | camp mcclellan / camp mcclellan, likely near poolesville/frederick, md / camp mcclellan, md (upper potomac) / likely near harpers ferry, wv area / near poolesville, md / near poolesville, md — departed feb 26 / previous camp, near poolesville, md / winter quarters near harpers ferry/washington area / winter quarters, washington/harpers ferry area |
 | camp near york town | camp near york town / siege lines, yorktown, va |
 | camp wheeler | camp wheeler, new york (training camp) / camp wheeler, ogdensburg / ogdensburg, ny — departed nov 1 |
 | camp within five miles of richmond | camp within five miles of richmond / near richmond, va / near richmond, va — peninsula campaign |
-| canada | `stated` / canada / frances going there / where frances had been teaching |
-| champlain | `inferred` / `stated` / champlain, clinton county, ny / champlain, clinton county, ny — to be occupied by u.s. troops / champlain, new york / champlain, ny — s.p. hubbell's law practice / family home, new york / home — chay river reference |
+| canada | canada / frances going there / where frances had been teaching / — |
+| cedar creek | `stated · clear · definite` / — |
+| champlain | champlain, clinton county, ny / champlain, clinton county, ny — to be occupied by u.s. troops / champlain, new york / champlain, ny — s.p. hubbell's law practice / family home, new york / home — chay river reference / — |
 | champlain, n.y. | champlain, clinton county, ny / champlain, n.y. |
-| charlotte | `stated` / charlotte, ny (clinton county) — suggested summer visit for mother / charlotte, ny (likely charlotte, vt or charlotte, nc — uncertain) / charlotte, ny (now part of rochester) / charlotte, ny -- mother's planned trip destination / likely charlotte, clinton county, ny (or charlotte, vt) |
-| chattanooga | `stated` / chattanooga, tn |
+| charlotte | charlotte, ny (clinton county) — suggested summer visit for mother / charlotte, ny (likely charlotte, vt or charlotte, nc — uncertain) / charlotte, ny (now part of rochester) / charlotte, ny -- mother's planned trip destination / likely charlotte, clinton county, ny (or charlotte, vt) / — |
+| chattanooga | `stated · clear · definite` / chattanooga, tn / — |
+| chicago | `stated · clear · definite` / — |
 | dixie | the confederacy / the south / confederacy (colloquial) |
 | fairfax station | fairfax station, va / fairfax station, va — alexander's camp / fairfax station, va — alexander's camp, 15 mi from alexandria |
-| fonda | `stated` / fonda, montgomery county, ny |
+| fonda | fonda, montgomery county, ny / — |
 | fort derussy | fort derussy, louisiana / fort derussy, louisiana — captured |
-| fortress monroe | `stated` / fort monroe — possible destination / fort monroe, va / fort monroe, va — 4 miles from camp / fort monroe, va — capt. ransom visited / fort monroe, va — rumored destination / fort monroe, va — troop destination |
-| frederick | `stated` / frederick, md — major hospital center after antietam |
-| georgetown | `stated` / georgetown, d.c. — parole camp where albert cook is / georgetown, washington, d.c. |
+| fortress monroe | fort monroe — possible destination / fort monroe, va / fort monroe, va — 4 miles from camp / fort monroe, va — capt. ransom visited / fort monroe, va — rumored destination / fort monroe, va — troop destination / — |
+| frederick | frederick, md — major hospital center after antietam / — |
+| georgetown | georgetown, d.c. — parole camp where albert cook is / georgetown, washington, d.c. / — |
 | hampton | hampton, va / hampton, va — buildings burnt / hampton, va — left apr 4 |
 | hampton, va. | hampton, va. / hampton, virginia — burnt by confederates aug 1861 |
-| harper's ferry | `stated` / two miles beyond — camped |
+| harper's ferry | two miles beyond — camped / — |
 | harpers ferry | harpers ferry / harpers ferry, wv / harpers ferry, wv — "perfect wreck" / harpers ferry, wv — 34th ny located there (p.s.) / harpers ferry, wv — arrived ~3 pm feb 26 or 27 / harpers ferry, wv — departed yesterday morning / harpers ferry, wv — rumored railroad guard assignment / harpers ferry, wv — worst rebel damage / harpers ferry, wv/va / harpers ferry, wv/va — departed last tuesday / where mcdonald talked to "charles of the 60th" |
 | james river | james river, va / james river, va — expects to cross |
+| louisiana | `stated · clear · definite` / — |
 | manassas | manassas, va — confederate evacuation / manassas, va — confederate evacuation mocked |
-| montreal | `stated` / frances's location — comparison to harpers ferry / where frances teaching this winter |
-| nashville | `stated` / nashville, tn |
+| mississippi | `stated · clear · definite` / — |
+| montreal | frances's location — comparison to harpers ferry / where frances teaching this winter / — |
+| nashville | `stated · clear · definite` / nashville, tn / — |
 | near washington, d.c. | near washington, d.c. / washington, d.c. area |
-| new orleans | `stated` / new orleans, la — 34th ny rumored there (false) / new orleans, la — captured by union / new orleans, la. / new orleans, la. — "crescent city" / new orleans, louisiana |
-| new york | `stated` / new york (city) / new york (state/city) / new york city / new york, ny |
+| new orleans | new orleans, la — 34th ny rumored there (false) / new orleans, la — captured by union / new orleans, la. / new orleans, la. — "crescent city" / new orleans, louisiana / — |
+| new york | new york (city) / new york (state/city) / new york city / new york, ny / — |
 | north carolina | destination of 153rd ny / north carolina (state) |
 | ogdensburgh | ogdensburg, ny / ogdensburg, st. lawrence county, ny |
-| plattsburgh | `stated` / plattsburgh, new york / plattsburgh, ny |
+| plattsburgh | plattsburgh, new york / plattsburgh, ny / — |
 | poolesville | poolesville, maryland / poolesville, md — passed through on march / poolesville, md — ~3 miles from camp |
 | poolsville | poolesville, md — excess clothes sent there / poolesville, montgomery county, maryland / poolesville, montgomery county, md |
 | red river | red river, louisiana / red river, louisiana — army amassed / red river, western louisiana |
 | relay house | relay, md (b&o railroad junction) / relay, md — b&o railroad junction / relay, md — railroad junction on b&o railroad |
-| richmond | `stated` / confederate capital — misner returned from / richmond, va / richmond, va (confederate capital / prison) / richmond, va -- (false) capture reported; also mentioned as destination of carriages story / richmond, va — b. misner held prisoner / richmond, va — expected movement toward / richmond, va — union target / richmond, va — where charles thinks henry is held / richmond, virginia (confederate capital) |
-| ringgold | `stated` / ringgold, ga |
+| richmond | confederate capital — misner returned from / richmond, va / richmond, va (confederate capital / prison) / richmond, va -- (false) capture reported; also mentioned as destination of carriages story / richmond, va — b. misner held prisoner / richmond, va — expected movement toward / richmond, va — union target / richmond, va — where charles thinks henry is held / richmond, virginia (confederate capital) / — |
+| ringgold | ringgold, ga / — |
 | shenandoah river | bridge repaired; cars running / shenandoah river -- onikers ferry is located on this river |
 | south carolina | state; site of burnside expedition / state; target of railroad brigade expedition |
-| stevenson | `stated` / stevenson, alabama (railroad junction) |
-| tennessee | `stated` / state; site of union victory mentioned |
-| virginia | `stated` / anticipated movement / virginia / virginia (across potomac) |
-| washington | `stated` / possible next posting / washington, d.c. / washington, d.c. — 8 miles, difficult to get pass / washington, d.c. — arrived by freight train / washington, d.c. — mother's assumed destination to find henry / where box of socks likely held up |
+| stevenson | stevenson, alabama (railroad junction) / — |
+| strasburg | `stated · clear · definite` / — |
+| tennessee | state; site of union victory mentioned / — |
+| texas | `stated · clear · definite` / — |
+| virginia | anticipated movement / virginia / virginia (across potomac) / — |
+| washington | `stated · clear · definite` / possible next posting / washington, d.c. / washington, d.c. — 8 miles, difficult to get pass / washington, d.c. — arrived by freight train / washington, d.c. — mother's assumed destination to find henry / where box of socks likely held up / — |
 | washington d.c. | defenses — rifle pits / washington, d.c. |
-| west point | `stated` / u.s. military academy — james's goal / u.s. military academy, west point, ny / united states military academy, west point, new york / united states military academy, west point, ny / west point, orange county, ny / west point, va — on york river; eltham's landing nearby |
+| west point | u.s. military academy — james's goal / u.s. military academy, west point, ny / united states military academy, west point, new york / united states military academy, west point, ny / west point, orange county, ny / west point, va — on york river; eltham's landing nearby / — |
 | whitehall | whitehall, ny (railroad junction) / whitehall, washington county, ny |
-| winchester | `stated` / winchester, va — 30 miles from harpers ferry / winchester, va — academy hospital / winchester, va — departed / winchester, va — henry's march described / winchester, va — road described, bridge repaired |
+| winchester | winchester, va — 30 miles from harpers ferry / winchester, va — academy hospital / winchester, va — departed / winchester, va — henry's march described / winchester, va — road described, bridge repaired / — |
 | york town | yorktown, va — 24 miles from hampton; next destination / yorktown, va — artillery fighting; fire/light visible / yorktown, va — departed by boat / yorktown, va — evacuated, left may 7 / yorktown, va — musketry heard / yorktown, va — rebels surrounded |
 
 ### Temporal Calculation Issues
@@ -361,7 +371,7 @@
 ### MEDIUM Priority
 
 3. **Build people registry** — 97 surname groups need canonical resolution
-4. **Build places gazetteer** — 60 place names have inconsistent identifications
+4. **Build places gazetteer** — 66 place names have inconsistent identifications
 5. **Add CI-style validation** — run this script before JSON regeneration
 
 ### LOW Priority

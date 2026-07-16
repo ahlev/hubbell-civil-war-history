@@ -1,7 +1,7 @@
 # Hubbell Civil War Ancestry — Project Instructions
 
 ## Overview
-Interactive data visualization dashboard for 273 transcribed Civil War letters from the Hubbell family (1861–1870). Single-file HTML dashboard (`hubbell-dashboard.html`) with multiple tabbed views.
+Interactive data visualization dashboard for 272 transcribed Civil War letters from the Hubbell family (1861–1870). Single-file HTML dashboard (`hubbell-dashboard.html`) with multiple tabbed views.
 
 ## Current Phase — Visibility, Cross-Reference & Outreach
 **Status: PENDING — planned 2026-05-18, scaffolded 2026-05-19. Awaiting "go" from user before execution begins.**

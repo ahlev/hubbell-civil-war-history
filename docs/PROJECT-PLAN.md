@@ -146,7 +146,7 @@ Hubbell Civil War Ancestry/
 - [x] Project folder structure created
 - [x] Markdown templates designed (letter, document, person)
 - [x] External source catalog compiled (50+ sources)
-- [x] **Phase 1: Document Ingestion** — 273 letters + 21 supporting documents transcribed
+- [x] **Phase 1: Document Ingestion** — 272 letters + 21 supporting documents transcribed
 - [x] **Phase 2: Entity Extraction** — 596 people, 513 places, 15 event flags, 0 schema violations
 - [~] **Phase 3: External Cross-Referencing** — Operational plan drafted 2026-05-19 (`docs/PHASE-3-PLAN.md` spec, `tasks/phase-3-plan.md` execution playbook, scaffolding under `03-data/external-sources/` and `04-analysis/phase-3-discrepancies/`). Phase 3a (four brothers, free public sources) ready to execute. Delivers the cross-reference engine v1 for the outreach phase.
 - [x] **Phase 4: Narrative Synthesis** — EXCEEDED: 18-chapter novel + epilogue (3,334 lines)

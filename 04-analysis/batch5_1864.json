@@ -1607,26 +1607,6 @@
     }
   },
   {
-    "doc_id": "LTR-1864-09-25-001",
-    "file": "LTR-1864-09-25-001.md",
-    "existing_people_count": 3,
-    "existing_places_count": 1,
-    "existing_flags_yes_count": 2,
-    "candidate_people": [],
-    "candidate_places": [
-      "August",
-      "Mother"
-    ],
-    "candidate_flags": {
-      "Receipt of package/letter": [
-        {
-          "match": "hear from",
-          "context": "...ated in August and I am very anxious to hear from you all, but I dare not have my mail se..."
-        }
-      ]
-    }
-  },
-  {
     "doc_id": "LTR-1864-10-04-001",
     "file": "LTR-1864-10-04-001.md",
     "existing_people_count": 5,

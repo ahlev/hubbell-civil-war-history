@@ -22,7 +22,7 @@ pills**, the editor's summary, and the people/places lists — is a *different* 
 in `_reader.js`). It needs the full letter dataset, which the landing's lightweight iframe wasn't loading.
 
 **The fix:** point the landing at the full reader and give it the data it needs.
-- `reader.html` (the isolated frame the landing opens) now loads **`_search-data.js`** (the full 273-letter
+- `reader.html` (the isolated frame the landing opens) now loads **`_search-data.js`** (the full 272-letter
   dataset) and calls **`HubbellReader.open(id)`** instead of the stripped overlay.
 - Result: the landing reader now has the **key-event toggles, the editor's summary, and the people/places
   apparatus** — the same as the Preservation page — all in one move. *(This is what your mid-run note about

@@ -36,7 +36,7 @@ window.__MAP_MOVEMENTS__ = {
   },
   "movements": [
     {
-      "id": "mov-257",
+      "id": "mov-256",
       "brother": "henry",
       "date": "1861-06-15",
       "endDate": "1861-06-30",
@@ -56,7 +56,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-368",
+      "id": "mov-367",
       "brother": "james",
       "date": "1861-07-01",
       "endDate": "1862-06-30",
@@ -76,7 +76,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-258",
+      "id": "mov-257",
       "brother": "henry",
       "date": "1861-07-03",
       "endDate": "1861-07-05",
@@ -96,7 +96,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-259",
+      "id": "mov-258",
       "brother": "henry",
       "date": "1861-07-05",
       "endDate": "1861-07-05",
@@ -185,7 +185,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-260",
+      "id": "mov-259",
       "brother": "henry",
       "date": "1861-07-25",
       "endDate": "1861-07-27",
@@ -205,7 +205,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-261",
+      "id": "mov-260",
       "brother": "henry",
       "date": "1861-07-28",
       "endDate": "1861-10-20",
@@ -294,7 +294,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-286",
+      "id": "mov-285",
       "brother": "alexander",
       "date": "1861-09-13",
       "endDate": "1861-10-10",
@@ -544,7 +544,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-287",
+      "id": "mov-286",
       "brother": "alexander",
       "date": "1861-10-11",
       "endDate": "1861-11-10",
@@ -610,7 +610,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-262",
+      "id": "mov-261",
       "brother": "henry",
       "date": "1861-10-21",
       "endDate": "1861-10-22",
@@ -630,7 +630,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-263",
+      "id": "mov-262",
       "brother": "henry",
       "date": "1861-10-23",
       "endDate": "1862-02-23",
@@ -650,7 +650,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-288",
+      "id": "mov-287",
       "brother": "alexander",
       "date": "1861-11-10",
       "endDate": "1862-05-15",
@@ -1544,7 +1544,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-264",
+      "id": "mov-263",
       "brother": "henry",
       "date": "1862-02-24",
       "endDate": "1862-03-06",
@@ -1656,7 +1656,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-265",
+      "id": "mov-264",
       "brother": "henry",
       "date": "1862-03-07",
       "endDate": "1862-03-15",
@@ -1860,7 +1860,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-266",
+      "id": "mov-265",
       "brother": "henry",
       "date": "1862-04-01",
       "endDate": "1862-04-04",
@@ -1949,7 +1949,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-267",
+      "id": "mov-266",
       "brother": "henry",
       "date": "1862-04-05",
       "endDate": "1862-05-04",
@@ -2199,7 +2199,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-268",
+      "id": "mov-267",
       "brother": "henry",
       "date": "1862-05-05",
       "endDate": "1862-05-05",
@@ -2242,7 +2242,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-269",
+      "id": "mov-268",
       "brother": "henry",
       "date": "1862-05-07",
       "endDate": "1862-05-08",
@@ -2354,7 +2354,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-289",
+      "id": "mov-288",
       "brother": "alexander",
       "date": "1862-05-20",
       "endDate": "1862-05-25",
@@ -2374,7 +2374,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-270",
+      "id": "mov-269",
       "brother": "henry",
       "date": "1862-05-20",
       "endDate": "1862-05-30",
@@ -2440,7 +2440,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-271",
+      "id": "mov-270",
       "brother": "henry",
       "date": "1862-05-31",
       "endDate": "1862-06-01",
@@ -2460,7 +2460,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-290",
+      "id": "mov-289",
       "brother": "alexander",
       "date": "1862-06-01",
       "endDate": "1862-06-15",
@@ -2572,7 +2572,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-291",
+      "id": "mov-290",
       "brother": "alexander",
       "date": "1862-06-16",
       "endDate": "1862-07-10",
@@ -2684,7 +2684,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-272",
+      "id": "mov-271",
       "brother": "henry",
       "date": "1862-06-25",
       "endDate": "1862-06-25",
@@ -2704,7 +2704,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-273",
+      "id": "mov-272",
       "brother": "henry",
       "date": "1862-06-27",
       "endDate": "1862-06-27",
@@ -2724,7 +2724,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-274",
+      "id": "mov-273",
       "brother": "henry",
       "date": "1862-06-29",
       "endDate": "1862-06-29",
@@ -2744,7 +2744,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-275",
+      "id": "mov-274",
       "brother": "henry",
       "date": "1862-06-30",
       "endDate": "1862-06-30",
@@ -2787,7 +2787,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-276",
+      "id": "mov-275",
       "brother": "henry",
       "date": "1862-07-01",
       "endDate": "1862-07-01",
@@ -2807,7 +2807,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-369",
+      "id": "mov-368",
       "brother": "james",
       "date": "1862-07-01",
       "endDate": "1862-12-31",
@@ -2827,7 +2827,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-277",
+      "id": "mov-276",
       "brother": "henry",
       "date": "1862-07-02",
       "endDate": "1862-08-15",
@@ -2916,7 +2916,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-292",
+      "id": "mov-291",
       "brother": "alexander",
       "date": "1862-07-11",
       "endDate": "1862-07-25",
@@ -3051,7 +3051,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-278",
+      "id": "mov-277",
       "brother": "henry",
       "date": "1862-08-15",
       "endDate": "1862-08-21",
@@ -3071,7 +3071,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-279",
+      "id": "mov-278",
       "brother": "henry",
       "date": "1862-08-23",
       "endDate": "1862-08-25",
@@ -3091,7 +3091,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-280",
+      "id": "mov-279",
       "brother": "henry",
       "date": "1862-08-26",
       "endDate": "1862-09-01",
@@ -3111,7 +3111,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-293",
+      "id": "mov-292",
       "brother": "alexander",
       "date": "1862-09-01",
       "endDate": "1862-09-06",
@@ -3131,7 +3131,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-281",
+      "id": "mov-280",
       "brother": "henry",
       "date": "1862-09-04",
       "endDate": "1862-09-07",
@@ -3151,7 +3151,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-294",
+      "id": "mov-293",
       "brother": "alexander",
       "date": "1862-09-07",
       "endDate": "1862-09-13",
@@ -3171,7 +3171,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-282",
+      "id": "mov-281",
       "brother": "henry",
       "date": "1862-09-07",
       "endDate": "1862-09-13",
@@ -3214,7 +3214,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-295",
+      "id": "mov-294",
       "brother": "alexander",
       "date": "1862-09-14",
       "endDate": "1862-09-14",
@@ -3234,7 +3234,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-283",
+      "id": "mov-282",
       "brother": "henry",
       "date": "1862-09-14",
       "endDate": "1862-09-14",
@@ -3254,7 +3254,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-284",
+      "id": "mov-283",
       "brother": "henry",
       "date": "1862-09-15",
       "endDate": "1862-09-16",
@@ -3274,7 +3274,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-296",
+      "id": "mov-295",
       "brother": "alexander",
       "date": "1862-09-17",
       "endDate": "1862-09-17",
@@ -3294,7 +3294,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-341",
+      "id": "mov-340",
       "brother": "charles",
       "date": "1862-09-17",
       "endDate": "1862-10-10",
@@ -3314,7 +3314,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-285",
+      "id": "mov-284",
       "brother": "henry",
       "date": "1862-09-17",
       "endDate": "1862-09-17",
@@ -3334,7 +3334,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-377",
+      "id": "mov-376",
       "brother": "james",
       "date": "1862-09-17",
       "endDate": "1862-10-10",
@@ -3354,7 +3354,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-297",
+      "id": "mov-296",
       "brother": "alexander",
       "date": "1862-09-18",
       "endDate": "1862-11-15",
@@ -3512,7 +3512,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-342",
+      "id": "mov-341",
       "brother": "charles",
       "date": "1862-10-10",
       "endDate": "1862-10-15",
@@ -3532,7 +3532,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-378",
+      "id": "mov-377",
       "brother": "james",
       "date": "1862-10-10",
       "endDate": "1862-10-15",
@@ -3575,7 +3575,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-343",
+      "id": "mov-342",
       "brother": "charles",
       "date": "1862-10-16",
       "endDate": "1862-11-15",
@@ -3595,7 +3595,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-379",
+      "id": "mov-378",
       "brother": "james",
       "date": "1862-10-16",
       "endDate": "1862-11-15",
@@ -3638,7 +3638,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-298",
+      "id": "mov-297",
       "brother": "alexander",
       "date": "1862-11-16",
       "endDate": "1862-12-12",
@@ -3658,7 +3658,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-344",
+      "id": "mov-343",
       "brother": "charles",
       "date": "1862-11-16",
       "endDate": "1863-06-25",
@@ -3678,7 +3678,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-380",
+      "id": "mov-379",
       "brother": "james",
       "date": "1862-11-16",
       "endDate": "1863-06-25",
@@ -3836,7 +3836,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-299",
+      "id": "mov-298",
       "brother": "alexander",
       "date": "1862-12-13",
       "endDate": "1862-12-15",
@@ -3856,7 +3856,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-300",
+      "id": "mov-299",
       "brother": "alexander",
       "date": "1862-12-16",
       "endDate": "1863-01-12",
@@ -3922,7 +3922,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-370",
+      "id": "mov-369",
       "brother": "james",
       "date": "1863-01-01",
       "endDate": "1863-01-13",
@@ -4011,7 +4011,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-371",
+      "id": "mov-370",
       "brother": "james",
       "date": "1863-01-15",
       "endDate": "1864-02-28",
@@ -4031,7 +4031,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-301",
+      "id": "mov-300",
       "brother": "alexander",
       "date": "1863-01-20",
       "endDate": "1863-01-24",
@@ -4074,7 +4074,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-302",
+      "id": "mov-301",
       "brother": "alexander",
       "date": "1863-02-01",
       "endDate": "1863-04-27",
@@ -4485,7 +4485,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-303",
+      "id": "mov-302",
       "brother": "alexander",
       "date": "1863-04-27",
       "endDate": "1863-04-30",
@@ -4528,7 +4528,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-304",
+      "id": "mov-303",
       "brother": "alexander",
       "date": "1863-05-01",
       "endDate": "1863-05-06",
@@ -4709,7 +4709,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-305",
+      "id": "mov-304",
       "brother": "alexander",
       "date": "1863-06-11",
       "endDate": "1863-06-30",
@@ -4729,7 +4729,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-345",
+      "id": "mov-344",
       "brother": "charles",
       "date": "1863-06-26",
       "endDate": "1863-07-03",
@@ -4749,7 +4749,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-381",
+      "id": "mov-380",
       "brother": "james",
       "date": "1863-06-26",
       "endDate": "1863-07-03",
@@ -4792,7 +4792,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-306",
+      "id": "mov-305",
       "brother": "alexander",
       "date": "1863-07-01",
       "endDate": "1863-07-03",
@@ -4835,7 +4835,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-307",
+      "id": "mov-306",
       "brother": "alexander",
       "date": "1863-07-04",
       "endDate": "1863-07-10",
@@ -4855,7 +4855,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-346",
+      "id": "mov-345",
       "brother": "charles",
       "date": "1863-07-04",
       "endDate": "1864-02-14",
@@ -4875,7 +4875,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-382",
+      "id": "mov-381",
       "brother": "james",
       "date": "1863-07-04",
       "endDate": "1864-02-14",
@@ -4941,7 +4941,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-308",
+      "id": "mov-307",
       "brother": "alexander",
       "date": "1863-07-11",
       "endDate": "1863-07-14",
@@ -4961,7 +4961,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-309",
+      "id": "mov-308",
       "brother": "alexander",
       "date": "1863-07-15",
       "endDate": "1863-07-29",
@@ -5050,7 +5050,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-310",
+      "id": "mov-309",
       "brother": "alexander",
       "date": "1863-08-01",
       "endDate": "1863-08-15",
@@ -5231,7 +5231,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-311",
+      "id": "mov-310",
       "brother": "alexander",
       "date": "1863-09-25",
       "endDate": "1863-10-03",
@@ -5297,7 +5297,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-312",
+      "id": "mov-311",
       "brother": "alexander",
       "date": "1863-10-04",
       "endDate": "1863-10-10",
@@ -5317,7 +5317,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-313",
+      "id": "mov-312",
       "brother": "alexander",
       "date": "1863-10-10",
       "endDate": "1863-10-28",
@@ -5406,7 +5406,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-314",
+      "id": "mov-313",
       "brother": "alexander",
       "date": "1863-10-28",
       "endDate": "1863-10-29",
@@ -5472,7 +5472,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-315",
+      "id": "mov-314",
       "brother": "alexander",
       "date": "1863-11-01",
       "endDate": "1863-11-22",
@@ -5561,7 +5561,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-316",
+      "id": "mov-315",
       "brother": "alexander",
       "date": "1863-11-23",
       "endDate": "1863-11-23",
@@ -5581,7 +5581,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-317",
+      "id": "mov-316",
       "brother": "alexander",
       "date": "1863-11-25",
       "endDate": "1863-11-25",
@@ -5601,7 +5601,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-318",
+      "id": "mov-317",
       "brother": "alexander",
       "date": "1863-11-26",
       "endDate": "1863-11-28",
@@ -5644,7 +5644,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-319",
+      "id": "mov-318",
       "brother": "alexander",
       "date": "1863-12-01",
       "endDate": "1864-01-07",
@@ -5871,7 +5871,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-383",
+      "id": "mov-382",
       "brother": "james",
       "date": "1864-02-15",
       "endDate": "1864-02-28",
@@ -5937,7 +5937,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-320",
+      "id": "mov-319",
       "brother": "alexander",
       "date": "1864-02-18",
       "endDate": "1864-04-30",
@@ -6026,7 +6026,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-372",
+      "id": "mov-371",
       "brother": "james",
       "date": "1864-03-01",
       "endDate": "1864-06-20",
@@ -6069,7 +6069,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-384",
+      "id": "mov-383",
       "brother": "james",
       "date": "1864-03-06",
       "endDate": "1864-03-20",
@@ -6158,7 +6158,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-347",
+      "id": "mov-346",
       "brother": "charles",
       "date": "1864-03-21",
       "endDate": "1864-04-07",
@@ -6178,7 +6178,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-385",
+      "id": "mov-384",
       "brother": "james",
       "date": "1864-03-21",
       "endDate": "1864-04-07",
@@ -6313,7 +6313,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-348",
+      "id": "mov-347",
       "brother": "charles",
       "date": "1864-04-08",
       "endDate": "1864-04-08",
@@ -6333,7 +6333,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-386",
+      "id": "mov-385",
       "brother": "james",
       "date": "1864-04-08",
       "endDate": "1864-04-08",
@@ -6353,7 +6353,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-349",
+      "id": "mov-348",
       "brother": "charles",
       "date": "1864-04-09",
       "endDate": "1864-04-09",
@@ -6373,7 +6373,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-387",
+      "id": "mov-386",
       "brother": "james",
       "date": "1864-04-09",
       "endDate": "1864-04-09",
@@ -6485,7 +6485,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-350",
+      "id": "mov-349",
       "brother": "charles",
       "date": "1864-04-23",
       "endDate": "1864-04-23",
@@ -6505,7 +6505,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-388",
+      "id": "mov-387",
       "brother": "james",
       "date": "1864-04-23",
       "endDate": "1864-04-23",
@@ -6548,7 +6548,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-351",
+      "id": "mov-350",
       "brother": "charles",
       "date": "1864-04-26",
       "endDate": "1864-05-13",
@@ -6568,7 +6568,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-389",
+      "id": "mov-388",
       "brother": "james",
       "date": "1864-04-26",
       "endDate": "1864-05-13",
@@ -6611,7 +6611,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-321",
+      "id": "mov-320",
       "brother": "alexander",
       "date": "1864-05-01",
       "endDate": "1864-05-06",
@@ -6677,7 +6677,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-322",
+      "id": "mov-321",
       "brother": "alexander",
       "date": "1864-05-07",
       "endDate": "1864-05-09",
@@ -6743,7 +6743,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-323",
+      "id": "mov-322",
       "brother": "alexander",
       "date": "1864-05-13",
       "endDate": "1864-05-15",
@@ -6763,7 +6763,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-324",
+      "id": "mov-323",
       "brother": "alexander",
       "date": "1864-05-16",
       "endDate": "1864-05-19",
@@ -6783,7 +6783,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-352",
+      "id": "mov-351",
       "brother": "charles",
       "date": "1864-05-16",
       "endDate": "1864-05-16",
@@ -6803,7 +6803,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-390",
+      "id": "mov-389",
       "brother": "james",
       "date": "1864-05-16",
       "endDate": "1864-05-16",
@@ -6846,7 +6846,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-353",
+      "id": "mov-352",
       "brother": "charles",
       "date": "1864-05-17",
       "endDate": "1864-05-22",
@@ -6866,7 +6866,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-391",
+      "id": "mov-390",
       "brother": "james",
       "date": "1864-05-17",
       "endDate": "1864-05-22",
@@ -6932,7 +6932,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-392",
+      "id": "mov-391",
       "brother": "james",
       "date": "1864-05-23",
       "endDate": "1864-07-01",
@@ -6952,7 +6952,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-325",
+      "id": "mov-324",
       "brother": "alexander",
       "date": "1864-05-25",
       "endDate": "1864-06-05",
@@ -7041,7 +7041,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-326",
+      "id": "mov-325",
       "brother": "alexander",
       "date": "1864-06-10",
       "endDate": "1864-06-26",
@@ -7130,7 +7130,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-373",
+      "id": "mov-372",
       "brother": "james",
       "date": "1864-06-21",
       "endDate": "1864-08-14",
@@ -7173,7 +7173,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-327",
+      "id": "mov-326",
       "brother": "alexander",
       "date": "1864-06-27",
       "endDate": "1864-06-27",
@@ -7239,7 +7239,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-354",
+      "id": "mov-353",
       "brother": "charles",
       "date": "1864-07-01",
       "endDate": "1864-07-11",
@@ -7259,7 +7259,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-393",
+      "id": "mov-392",
       "brother": "james",
       "date": "1864-07-01",
       "endDate": "1864-07-11",
@@ -7302,7 +7302,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-328",
+      "id": "mov-327",
       "brother": "alexander",
       "date": "1864-07-04",
       "endDate": "1864-07-09",
@@ -7345,7 +7345,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-355",
+      "id": "mov-354",
       "brother": "charles",
       "date": "1864-07-12",
       "endDate": "1864-07-13",
@@ -7360,6 +7360,46 @@ window.__MAP_MOVEMENTS__ = {
       "notes": "Repulse of Early's Attack on Washington! XIX Corps arrived just in time to help defend the capital at Fort Stevens.",
       "significance": "routine",
       "hasBattle": true,
+      "hasIllness": false,
+      "hasDeath": false,
+      "hasWound": false
+    },
+    {
+      "id": "mov-393",
+      "brother": "james",
+      "date": "1864-07-12",
+      "endDate": "1864-07-13",
+      "lat": 38.9072,
+      "lon": -77.0369,
+      "placeName": "Washington, D.C.",
+      "source": "unit_history",
+      "letterId": null,
+      "letterExcerpt": null,
+      "citation": "NPS: 'XIX Corps arrived July 12 to defend Washington'; 153rd NY regimental history",
+      "status": "in_battle",
+      "notes": "Repulse of Early's Attack on Washington! XIX Corps arrived just in time to help defend the capital at Fort Stevens.",
+      "significance": "routine",
+      "hasBattle": true,
+      "hasIllness": false,
+      "hasDeath": false,
+      "hasWound": false
+    },
+    {
+      "id": "mov-355",
+      "brother": "charles",
+      "date": "1864-07-14",
+      "endDate": "1864-07-23",
+      "lat": 39.11,
+      "lon": -77.82,
+      "placeName": "Snicker's Gap, VA",
+      "source": "unit_history",
+      "letterId": null,
+      "letterExcerpt": null,
+      "citation": "153rd NY regimental history",
+      "status": "on_march",
+      "notes": "Snicker's Gap Expedition. Pursuit of Early after his withdrawal from DC.",
+      "significance": "routine",
+      "hasBattle": false,
       "hasIllness": false,
       "hasDeath": false,
       "hasWound": false
@@ -7367,26 +7407,6 @@ window.__MAP_MOVEMENTS__ = {
     {
       "id": "mov-394",
       "brother": "james",
-      "date": "1864-07-12",
-      "endDate": "1864-07-13",
-      "lat": 38.9072,
-      "lon": -77.0369,
-      "placeName": "Washington, D.C.",
-      "source": "unit_history",
-      "letterId": null,
-      "letterExcerpt": null,
-      "citation": "NPS: 'XIX Corps arrived July 12 to defend Washington'; 153rd NY regimental history",
-      "status": "in_battle",
-      "notes": "Repulse of Early's Attack on Washington! XIX Corps arrived just in time to help defend the capital at Fort Stevens.",
-      "significance": "routine",
-      "hasBattle": true,
-      "hasIllness": false,
-      "hasDeath": false,
-      "hasWound": false
-    },
-    {
-      "id": "mov-356",
-      "brother": "charles",
       "date": "1864-07-14",
       "endDate": "1864-07-23",
       "lat": 39.11,
@@ -7405,27 +7425,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-395",
-      "brother": "james",
-      "date": "1864-07-14",
-      "endDate": "1864-07-23",
-      "lat": 39.11,
-      "lon": -77.82,
-      "placeName": "Snicker's Gap, VA",
-      "source": "unit_history",
-      "letterId": null,
-      "letterExcerpt": null,
-      "citation": "153rd NY regimental history",
-      "status": "on_march",
-      "notes": "Snicker's Gap Expedition. Pursuit of Early after his withdrawal from DC.",
-      "significance": "routine",
-      "hasBattle": false,
-      "hasIllness": false,
-      "hasDeath": false,
-      "hasWound": false
-    },
-    {
-      "id": "mov-329",
+      "id": "mov-328",
       "brother": "alexander",
       "date": "1864-07-20",
       "endDate": "1864-07-20",
@@ -7445,7 +7445,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-330",
+      "id": "mov-329",
       "brother": "alexander",
       "date": "1864-07-22",
       "endDate": "1864-07-22",
@@ -7465,7 +7465,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-331",
+      "id": "mov-330",
       "brother": "alexander",
       "date": "1864-07-23",
       "endDate": "1864-08-20",
@@ -7508,7 +7508,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-357",
+      "id": "mov-356",
       "brother": "charles",
       "date": "1864-07-24",
       "endDate": "1864-08-06",
@@ -7528,7 +7528,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-396",
+      "id": "mov-395",
       "brother": "james",
       "date": "1864-07-24",
       "endDate": "1864-08-06",
@@ -7594,7 +7594,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-358",
+      "id": "mov-357",
       "brother": "charles",
       "date": "1864-08-07",
       "endDate": "1864-09-18",
@@ -7614,7 +7614,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-397",
+      "id": "mov-396",
       "brother": "james",
       "date": "1864-08-07",
       "endDate": "1864-09-18",
@@ -7818,7 +7818,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-359",
+      "id": "mov-358",
       "brother": "charles",
       "date": "1864-09-19",
       "endDate": "1864-09-19",
@@ -7838,7 +7838,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-398",
+      "id": "mov-397",
       "brother": "james",
       "date": "1864-09-19",
       "endDate": "1864-09-19",
@@ -7927,7 +7927,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-360",
+      "id": "mov-359",
       "brother": "charles",
       "date": "1864-09-22",
       "endDate": "1864-09-22",
@@ -7942,6 +7942,46 @@ window.__MAP_MOVEMENTS__ = {
       "notes": "Battle of Fisher's Hill. Sheridan routs Early.",
       "significance": "routine",
       "hasBattle": true,
+      "hasIllness": false,
+      "hasDeath": false,
+      "hasWound": false
+    },
+    {
+      "id": "mov-398",
+      "brother": "james",
+      "date": "1864-09-22",
+      "endDate": "1864-09-22",
+      "lat": 38.995,
+      "lon": -78.37,
+      "placeName": "Fisher's Hill, VA",
+      "source": "unit_history",
+      "letterId": null,
+      "letterExcerpt": null,
+      "citation": "Dyer's Compendium: 'Battle of Fisher's Hill Sept. 22'",
+      "status": "in_battle",
+      "notes": "Battle of Fisher's Hill. Sheridan routs Early.",
+      "significance": "routine",
+      "hasBattle": true,
+      "hasIllness": false,
+      "hasDeath": false,
+      "hasWound": false
+    },
+    {
+      "id": "mov-360",
+      "brother": "charles",
+      "date": "1864-09-23",
+      "endDate": "1864-10-18",
+      "lat": 38.4496,
+      "lon": -78.8689,
+      "placeName": "Harrisonburg, VA",
+      "source": "unit_history",
+      "letterId": null,
+      "letterExcerpt": null,
+      "citation": "Dyer's Compendium, 153rd NY Infantry",
+      "status": "on_march",
+      "notes": "Pursuit up the Valley to Harrisonburg. 'The Burning' — devastation of Valley.",
+      "significance": "routine",
+      "hasBattle": false,
       "hasIllness": false,
       "hasDeath": false,
       "hasWound": false
@@ -7949,26 +7989,6 @@ window.__MAP_MOVEMENTS__ = {
     {
       "id": "mov-399",
       "brother": "james",
-      "date": "1864-09-22",
-      "endDate": "1864-09-22",
-      "lat": 38.995,
-      "lon": -78.37,
-      "placeName": "Fisher's Hill, VA",
-      "source": "unit_history",
-      "letterId": null,
-      "letterExcerpt": null,
-      "citation": "Dyer's Compendium: 'Battle of Fisher's Hill Sept. 22'",
-      "status": "in_battle",
-      "notes": "Battle of Fisher's Hill. Sheridan routs Early.",
-      "significance": "routine",
-      "hasBattle": true,
-      "hasIllness": false,
-      "hasDeath": false,
-      "hasWound": false
-    },
-    {
-      "id": "mov-361",
-      "brother": "charles",
       "date": "1864-09-23",
       "endDate": "1864-10-18",
       "lat": 38.4496,
@@ -7987,50 +8007,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-400",
-      "brother": "james",
-      "date": "1864-09-23",
-      "endDate": "1864-10-18",
-      "lat": 38.4496,
-      "lon": -78.8689,
-      "placeName": "Harrisonburg, VA",
-      "source": "unit_history",
-      "letterId": null,
-      "letterExcerpt": null,
-      "citation": "Dyer's Compendium, 153rd NY Infantry",
-      "status": "on_march",
-      "notes": "Pursuit up the Valley to Harrisonburg. 'The Burning' — devastation of Valley.",
-      "significance": "routine",
-      "hasBattle": false,
-      "hasIllness": false,
-      "hasDeath": false,
-      "hasWound": false
-    },
-    {
-      "id": "mov-238",
-      "brother": "alexander",
-      "date": "1864-09-25",
-      "endDate": null,
-      "lat": 35.0456,
-      "lon": -85.3097,
-      "placeName": "Chattanooga, TN",
-      "source": "letter",
-      "letterId": "LTR-1864-09-25-001",
-      "letterExcerpt": "Now for the long promised letter. You perceive I am still in the same place, but I am unable to say how long I may remain here. I am getting along very well, I think, and will doubtless be able to joi...",
-      "recipient": "Frances (Fannie)",
-      "sigSummary": "Border-state men and the \"Hibernians\" will vote McClellan, Alexander tells his sister Fannie from a Chattanooga hospital bed — they would free the slaves only to ship them out of the country, never accept equality. And from three years' service he agrees: \"I could never consent to see these black men mingled with our white.\" Then the soldier-philosopher turns homesick boy, longing for Mother's steamed apple dumplings in the September rain.",
-      "transcription": "Sept. 25, 1864\nU.S. Field Hospital No. 2\nChattanooga, Tenn.\n\nDear Fannie:\n\nNow for the long promised letter. You perceive I am still in the same place, but I am unable to say how long I may remain here. I am getting along very well, I think, and will doubtless be able to join the regt. before a very great while. I still continue to be blind at night. The Dr. thinks it will wear off in time. Others tell me I will never get over it, but then I think I shall.\n\nHow runs the political excitement in C? Pretty high I expect. It will be a very closely contested election, I think. A good many soldiers will vote for McClellan. A majority of the border state men, I think, will, and a large number of the \"Hibernians.\" They don't like the \"nigger\" nor any man that favors them. The border men get quite wrathy over the idea of \"nigger equality.\" They say they would rejoice to see the niggers free if they would be sent out of the country, lest to have the nection among them on an equality with the white man they never would agree to it. They say if they would be sent out of the country, they say they have talked with men from all the Northern states and none are willing to have them settle among them. They say the Northern states and none are willing to have them settle there, and are even more hostile to it than they are. \"And now,\" said one, \"what are you going to have packed on us what none of you are willing to receive! Never!!!\"\n\nI must confess, dear Fannie, that I sympathize strongly with these \"border men\" in this matter of what they call \"nigger equality.\" I could never consent to see these black men mingled with our white and form a part of the people of the United States. I do not think it was ever the design of Providence that the two races should be mingled and I doubt not the Government will make some wise provision in this case. We have got enough on hand now to put down this rebellion. It will do to talk about this \"equality\" matter when the war is over.\n\nHave you taken a realizing sense that I am now according to the laws of the United States twenty-one years of age and am privileged to vote at the coming elections. You know I have now been in the U. S. service a little over three years.\n\nSept. 27 — This morning the weather is quite chilly and threatens rain. It is very much like Sept. weather at home and makes me think of ripe apples and a thousand other good things. I should like tremendously to get hold of one of Mother's steamed apple dumplings. Perhaps before another year rolls round I shall be there to enjoy these good things.\n\nThe last letter I received from home was dated in August and I am very anxious to hear from you all, but I dare not have my mail sent here. I may be with the regt. soon. If not I believe I shall risk having it sent here. Continue to direct as before. Give my regards to Mrs. B. and all friends. Give much love to Mother.\n\nYour aff. Brother,\n\nAlex F. Hubbell",
-      "citation": null,
-      "status": "hospitalized",
-      "notes": "U.S. Field Hospital No. 2, Chattanooga, Tenn. Long political letter. Still in hospital — continues to be blind at night. **SOLDIERS WILL VOTE FOR McCLELLAN.** \"A majority of the border state men, I thin, will, and a large number of the 'Hibernians.'\" They don't like the \"nigger\" nor any man that favors them. **\"NIGGER EQUALITY\"** — border men get quite wrathy. \"They say they would rejoice to see the niggers free if they would be sent out of the country, lest to have the nection among them on an equality with the white man they never would agree to it.\" **ALEXANDER SYMPATHIZES WITH BORDER MEN** — \"I could never consent to see these black men mingled with our white and form a part of the people of the United States.\" \"I do not think it was ever the design of Providence that the two races should be mingled.\" \"It will do to talk about this 'equality' matter when the war is over.\" **VOTING AGE** — now over 21 by U.S. service laws. Sept 27 — weather chilly, rain. Would like ripe apples, steamed apple dumplings. Last letter received from home dated August — very anxious. May be with regt. soon.",
-      "significance": "major",
-      "hasBattle": false,
-      "hasIllness": true,
-      "hasDeath": false,
-      "hasWound": false
-    },
-    {
-      "id": "mov-240",
+      "id": "mov-239",
       "brother": "charles",
       "date": "1864-10-04",
       "endDate": null,
@@ -8053,7 +8030,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-239",
+      "id": "mov-238",
       "brother": "james",
       "date": "1864-10-04",
       "endDate": null,
@@ -8076,7 +8053,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-374",
+      "id": "mov-373",
       "brother": "james",
       "date": "1864-10-04",
       "endDate": "1864-10-19",
@@ -8096,7 +8073,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-241",
+      "id": "mov-240",
       "brother": "alexander",
       "date": "1864-10-10",
       "endDate": null,
@@ -8119,7 +8096,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-362",
+      "id": "mov-361",
       "brother": "charles",
       "date": "1864-10-19",
       "endDate": "1864-10-19",
@@ -8139,7 +8116,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-375",
+      "id": "mov-374",
       "brother": "james",
       "date": "1864-10-19",
       "endDate": "1864-10-28",
@@ -8159,7 +8136,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-363",
+      "id": "mov-362",
       "brother": "charles",
       "date": "1864-10-20",
       "endDate": "1864-12-31",
@@ -8179,7 +8156,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-401",
+      "id": "mov-400",
       "brother": "james",
       "date": "1864-10-20",
       "endDate": "1864-12-31",
@@ -8199,7 +8176,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-242",
+      "id": "mov-241",
       "brother": "charles",
       "date": "1864-10-22",
       "endDate": null,
@@ -8222,7 +8199,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-243",
+      "id": "mov-242",
       "brother": "alexander",
       "date": "1864-10-26",
       "endDate": null,
@@ -8245,7 +8222,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-244",
+      "id": "mov-243",
       "brother": "james",
       "date": "1864-10-29",
       "endDate": null,
@@ -8268,7 +8245,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-245",
+      "id": "mov-244",
       "brother": "charles",
       "date": "1864-11-04",
       "endDate": null,
@@ -8291,7 +8268,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-332",
+      "id": "mov-331",
       "brother": "alexander",
       "date": "1864-11-15",
       "endDate": "1864-12-04",
@@ -8311,7 +8288,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-246",
+      "id": "mov-245",
       "brother": "charles",
       "date": "1864-11-30",
       "endDate": null,
@@ -8334,7 +8311,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-247",
+      "id": "mov-246",
       "brother": "alexander",
       "date": "1864-12-05",
       "endDate": null,
@@ -8357,7 +8334,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-248",
+      "id": "mov-247",
       "brother": "james",
       "date": "1864-12-09",
       "endDate": null,
@@ -8380,7 +8357,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-250",
+      "id": "mov-249",
       "brother": "alexander",
       "date": "1864-12-12",
       "endDate": null,
@@ -8403,7 +8380,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-249",
+      "id": "mov-248",
       "brother": "charles",
       "date": "1864-12-12",
       "endDate": null,
@@ -8426,7 +8403,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-333",
+      "id": "mov-332",
       "brother": "alexander",
       "date": "1864-12-15",
       "endDate": "1864-12-16",
@@ -8446,7 +8423,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-334",
+      "id": "mov-333",
       "brother": "alexander",
       "date": "1864-12-17",
       "endDate": "1865-01-15",
@@ -8466,7 +8443,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-251",
+      "id": "mov-250",
       "brother": "charles",
       "date": "1864-12-27",
       "endDate": null,
@@ -8489,7 +8466,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-364",
+      "id": "mov-363",
       "brother": "charles",
       "date": "1865-01-01",
       "endDate": "1865-02-28",
@@ -8509,7 +8486,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-402",
+      "id": "mov-401",
       "brother": "james",
       "date": "1865-01-01",
       "endDate": "1865-02-28",
@@ -8529,7 +8506,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-335",
+      "id": "mov-334",
       "brother": "alexander",
       "date": "1865-01-16",
       "endDate": "1865-03-15",
@@ -8549,7 +8526,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-365",
+      "id": "mov-364",
       "brother": "charles",
       "date": "1865-03-01",
       "endDate": "1865-03-20",
@@ -8569,7 +8546,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-376",
+      "id": "mov-375",
       "brother": "james",
       "date": "1865-03-01",
       "endDate": "1865-06-15",
@@ -8589,7 +8566,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-336",
+      "id": "mov-335",
       "brother": "alexander",
       "date": "1865-03-16",
       "endDate": "1865-04-30",
@@ -8609,7 +8586,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-366",
+      "id": "mov-365",
       "brother": "charles",
       "date": "1865-03-21",
       "endDate": "1865-04-15",
@@ -8622,6 +8599,46 @@ window.__MAP_MOVEMENTS__ = {
       "citation": "Dyer's Compendium, 153rd NY Infantry",
       "status": "in_transit",
       "notes": "Transit through Fort Monroe. Ship transport to Savannah.",
+      "significance": "routine",
+      "hasBattle": false,
+      "hasIllness": false,
+      "hasDeath": false,
+      "hasWound": false
+    },
+    {
+      "id": "mov-402",
+      "brother": "james",
+      "date": "1865-03-21",
+      "endDate": "1865-04-15",
+      "lat": 37.0049,
+      "lon": -76.3062,
+      "placeName": "Fort Monroe, VA",
+      "source": "unit_history",
+      "letterId": null,
+      "letterExcerpt": null,
+      "citation": "Dyer's Compendium, 153rd NY Infantry",
+      "status": "in_transit",
+      "notes": "Transit through Fort Monroe. Ship transport to Savannah.",
+      "significance": "routine",
+      "hasBattle": false,
+      "hasIllness": false,
+      "hasDeath": false,
+      "hasWound": false
+    },
+    {
+      "id": "mov-366",
+      "brother": "charles",
+      "date": "1865-04-16",
+      "endDate": "1865-10-02",
+      "lat": 32.0809,
+      "lon": -81.0912,
+      "placeName": "Savannah, GA",
+      "source": "unit_history",
+      "letterId": null,
+      "letterExcerpt": null,
+      "citation": "Dyer's Compendium: 'Duty at Savannah till Oct. Mustered out Oct. 2, 1865'",
+      "status": "in_camp",
+      "notes": "Garrison duty at Savannah. Occupation/reconstruction. Mustered out Oct 2, 1865.",
       "significance": "routine",
       "hasBattle": false,
       "hasIllness": false,
@@ -8631,26 +8648,6 @@ window.__MAP_MOVEMENTS__ = {
     {
       "id": "mov-403",
       "brother": "james",
-      "date": "1865-03-21",
-      "endDate": "1865-04-15",
-      "lat": 37.0049,
-      "lon": -76.3062,
-      "placeName": "Fort Monroe, VA",
-      "source": "unit_history",
-      "letterId": null,
-      "letterExcerpt": null,
-      "citation": "Dyer's Compendium, 153rd NY Infantry",
-      "status": "in_transit",
-      "notes": "Transit through Fort Monroe. Ship transport to Savannah.",
-      "significance": "routine",
-      "hasBattle": false,
-      "hasIllness": false,
-      "hasDeath": false,
-      "hasWound": false
-    },
-    {
-      "id": "mov-367",
-      "brother": "charles",
       "date": "1865-04-16",
       "endDate": "1865-10-02",
       "lat": 32.0809,
@@ -8669,27 +8666,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-404",
-      "brother": "james",
-      "date": "1865-04-16",
-      "endDate": "1865-10-02",
-      "lat": 32.0809,
-      "lon": -81.0912,
-      "placeName": "Savannah, GA",
-      "source": "unit_history",
-      "letterId": null,
-      "letterExcerpt": null,
-      "citation": "Dyer's Compendium: 'Duty at Savannah till Oct. Mustered out Oct. 2, 1865'",
-      "status": "in_camp",
-      "notes": "Garrison duty at Savannah. Occupation/reconstruction. Mustered out Oct 2, 1865.",
-      "significance": "routine",
-      "hasBattle": false,
-      "hasIllness": false,
-      "hasDeath": false,
-      "hasWound": false
-    },
-    {
-      "id": "mov-337",
+      "id": "mov-336",
       "brother": "alexander",
       "date": "1865-05-01",
       "endDate": "1865-06-10",
@@ -8709,7 +8686,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-338",
+      "id": "mov-337",
       "brother": "alexander",
       "date": "1865-06-11",
       "endDate": "1865-06-20",
@@ -8729,7 +8706,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-252",
+      "id": "mov-251",
       "brother": "charles",
       "date": "1865-06-12",
       "endDate": null,
@@ -8752,7 +8729,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-253",
+      "id": "mov-252",
       "brother": "alexander",
       "date": "1865-06-16",
       "endDate": null,
@@ -8775,7 +8752,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": true
     },
     {
-      "id": "mov-254",
+      "id": "mov-253",
       "brother": "alexander",
       "date": "1865-06-27",
       "endDate": null,
@@ -8798,7 +8775,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-339",
+      "id": "mov-338",
       "brother": "alexander",
       "date": "1865-07-01",
       "endDate": "1865-07-17",
@@ -8818,7 +8795,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-255",
+      "id": "mov-254",
       "brother": "charles",
       "date": "1865-07-13",
       "endDate": null,
@@ -8841,7 +8818,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-340",
+      "id": "mov-339",
       "brother": "alexander",
       "date": "1865-07-18",
       "endDate": "1865-07-27",
@@ -8861,7 +8838,7 @@ window.__MAP_MOVEMENTS__ = {
       "hasWound": false
     },
     {
-      "id": "mov-256",
+      "id": "mov-255",
       "brother": "alexander",
       "date": "1865-07-27",
       "endDate": null,
@@ -9183,8 +9160,8 @@ window.__MAP_MOVEMENTS__ = {
   ],
   "metadata": {
     "generated": "2026-03-30",
-    "totalMovements": 404,
-    "letterCount": 256,
+    "totalMovements": 403,
+    "letterCount": 255,
     "unitHistoryCount": 148,
     "unmappedLocations": [],
     "dateRange": {

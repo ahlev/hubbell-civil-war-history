@@ -1,21 +1,27 @@
 {
   "schema_violations": {},
-  "json_issues": [],
+  "json_issues": [
+    [
+      "MISSING_FROM_JSON",
+      "LTR-1863-05-06-001",
+      "Letter exists in markdown but not in JSON"
+    ]
+  ],
   "json_missing_fields": {
     "Camp movement/march": 84,
     "Eyewitness to named event": 37,
     "Recipient Location": 45,
     "Cross-references": 25,
-    "Temporal Context": 274,
+    "Temporal Context": 272,
     "Health & Condition": 37,
     "Domestic/Home Front": 54,
-    "Military References": 197,
+    "Military References": 196,
     "Objects & Material Culture": 64,
-    "Place Coordinates": 135,
-    "Confidence Metadata": 274,
+    "Place Coordinates": 200,
+    "Confidence Metadata": 272,
     "Receipt of package/letter": 118,
     "Request for supplies/money": 64,
-    "Political commentary": 62,
+    "Political commentary": 61,
     "Major news from home": 12,
     "Promotion/demotion": 32,
     "Desertion mentioned": 15,
@@ -70,8 +76,6 @@
     "Shooting in Champlain": 1,
     "Carter testimony": 1,
     "McDonald vs McKee": 1,
-    "Active campaign": 1,
-    "Troop strength": 1,
     "Search for Alexander": 1,
     "Ambrotype": 1,
     "Henry definitive": 1,
@@ -591,69 +595,68 @@
   },
   "place_inconsistencies": {
     "albany": [
-      "`stated`",
       "albany, new york",
       "albany, ny",
       "albany, ny — destination of deserters",
-      "albany, ny — reference to mustering experience"
+      "albany, ny — reference to mustering experience",
+      "—"
     ],
     "new york": [
-      "`stated`",
       "new york (city)",
       "new york (state/city)",
       "new york city",
-      "new york, ny"
+      "new york, ny",
+      "—"
     ],
     "baltimore": [
-      "`stated`",
       "baltimore",
       "baltimore, maryland",
       "baltimore, md",
       "baltimore, md (went to church)",
       "baltimore, md — band serenaded there",
       "baltimore, md — new location",
-      "baltimore, md — two photography galleries"
+      "baltimore, md — two photography galleries",
+      "—"
     ],
     "washington d.c.": [
       "defenses — rifle pits",
       "washington, d.c."
     ],
     "charlotte": [
-      "`stated`",
       "charlotte, ny (clinton county) — suggested summer visit for mother",
       "charlotte, ny (likely charlotte, vt or charlotte, nc — uncertain)",
       "charlotte, ny (now part of rochester)",
       "charlotte, ny -- mother's planned trip destination",
-      "likely charlotte, clinton county, ny (or charlotte, vt)"
+      "likely charlotte, clinton county, ny (or charlotte, vt)",
+      "—"
     ],
     "west point": [
-      "`stated`",
       "u.s. military academy — james's goal",
       "u.s. military academy, west point, ny",
       "united states military academy, west point, new york",
       "united states military academy, west point, ny",
       "west point, orange county, ny",
-      "west point, va — on york river; eltham's landing nearby"
+      "west point, va — on york river; eltham's landing nearby",
+      "—"
     ],
     "champlain": [
-      "`inferred`",
-      "`stated`",
       "champlain, clinton county, ny",
       "champlain, clinton county, ny — to be occupied by u.s. troops",
       "champlain, new york",
       "champlain, ny — s.p. hubbell's law practice",
       "family home, new york",
-      "home — chay river reference"
+      "home — chay river reference",
+      "—"
     ],
     "\"the river\"": [
       "hudson river",
       "potomac river"
     ],
     "virginia": [
-      "`stated`",
       "anticipated movement",
       "virginia",
-      "virginia (across potomac)"
+      "virginia (across potomac)",
+      "—"
     ],
     "ogdensburgh": [
       "ogdensburg, ny",
@@ -669,7 +672,6 @@
       "ogdensburg, ny — departed nov 1"
     ],
     "richmond": [
-      "`stated`",
       "confederate capital — misner returned from",
       "richmond, va",
       "richmond, va (confederate capital / prison)",
@@ -678,7 +680,8 @@
       "richmond, va — expected movement toward",
       "richmond, va — union target",
       "richmond, va — where charles thinks henry is held",
-      "richmond, virginia (confederate capital)"
+      "richmond, virginia (confederate capital)",
+      "—"
     ],
     "poolsville": [
       "poolesville, md — excess clothes sent there",
@@ -695,13 +698,14 @@
       "whitehall, washington county, ny"
     ],
     "washington": [
-      "`stated`",
+      "`stated · clear · definite`",
       "possible next posting",
       "washington, d.c.",
       "washington, d.c. — 8 miles, difficult to get pass",
       "washington, d.c. — arrived by freight train",
       "washington, d.c. — mother's assumed destination to find henry",
-      "where box of socks likely held up"
+      "where box of socks likely held up",
+      "—"
     ],
     "relay house": [
       "relay, md (b&o railroad junction)",
@@ -730,15 +734,15 @@
       "camden station, baltimore, md -- railroad station where alexander was posted"
     ],
     "canada": [
-      "`stated`",
       "canada",
       "frances going there",
-      "where frances had been teaching"
+      "where frances had been teaching",
+      "—"
     ],
     "montreal": [
-      "`stated`",
       "frances's location — comparison to harpers ferry",
-      "where frances teaching this winter"
+      "where frances teaching this winter",
+      "—"
     ],
     "harpers ferry": [
       "harpers ferry",
@@ -763,57 +767,56 @@
       "state; target of railroad brigade expedition"
     ],
     "tennessee": [
-      "`stated`",
-      "state; site of union victory mentioned"
+      "state; site of union victory mentioned",
+      "—"
     ],
     "plattsburgh": [
-      "`stated`",
       "plattsburgh, new york",
-      "plattsburgh, ny"
+      "plattsburgh, ny",
+      "—"
     ],
     "fortress monroe": [
-      "`stated`",
       "fort monroe — possible destination",
       "fort monroe, va",
       "fort monroe, va — 4 miles from camp",
       "fort monroe, va — capt. ransom visited",
       "fort monroe, va — rumored destination",
-      "fort monroe, va — troop destination"
+      "fort monroe, va — troop destination",
+      "—"
     ],
     "manassas": [
       "manassas, va — confederate evacuation",
       "manassas, va — confederate evacuation mocked"
     ],
     "winchester": [
-      "`stated`",
       "winchester, va — 30 miles from harpers ferry",
       "winchester, va — academy hospital",
       "winchester, va — departed",
       "winchester, va — henry's march described",
-      "winchester, va — road described, bridge repaired"
+      "winchester, va — road described, bridge repaired",
+      "—"
     ],
     "berryville": [
-      "`stated`",
-      "berryville, va — 10 miles from winchester; rebel flag torn down"
+      "berryville, va — 10 miles from winchester; rebel flag torn down",
+      "—"
     ],
     "shenandoah river": [
       "bridge repaired; cars running",
       "shenandoah river -- onikers ferry is located on this river"
     ],
     "new orleans": [
-      "`stated`",
       "new orleans, la — 34th ny rumored there (false)",
       "new orleans, la — captured by union",
       "new orleans, la.",
       "new orleans, la. — \"crescent city\"",
-      "new orleans, louisiana"
+      "new orleans, louisiana",
+      "—"
     ],
     "hampton, va.": [
       "hampton, va.",
       "hampton, virginia — burnt by confederates aug 1861"
     ],
     "alexandria": [
-      "`stated`",
       "alexandria",
       "alexandria, louisiana",
       "alexandria, louisiana — captured",
@@ -821,7 +824,8 @@
       "alexandria, va — camp 2 days; 8 miles from washington",
       "alexandria, va — charles now stationed in city",
       "alexandria, va — city under military occupation",
-      "alexandria, va — embarked by boat"
+      "alexandria, va — embarked by boat",
+      "—"
     ],
     "hampton": [
       "hampton, va",
@@ -854,7 +858,7 @@
       "the south / confederacy (colloquial)"
     ],
     "burlington": [
-      "`stated`",
+      "`stated · clear · definite`",
       "burlington, vt",
       "burlington, vt — where holcomb boarded"
     ],
@@ -863,17 +867,17 @@
       "champlain, n.y."
     ],
     "antietam": [
-      "`stated`",
       "antietam battlefield, near sharpsburg, md",
-      "battle of antietam, sharpsburg, md"
+      "battle of antietam, sharpsburg, md",
+      "—"
     ],
     "frederick": [
-      "`stated`",
-      "frederick, md — major hospital center after antietam"
+      "frederick, md — major hospital center after antietam",
+      "—"
     ],
     "fonda": [
-      "`stated`",
-      "fonda, montgomery county, ny"
+      "fonda, montgomery county, ny",
+      "—"
     ],
     "north carolina": [
       "destination of 153rd ny",
@@ -884,9 +888,9 @@
       "where albert cook was (paroled prisoner)"
     ],
     "georgetown": [
-      "`stated`",
       "georgetown, d.c. — parole camp where albert cook is",
-      "georgetown, washington, d.c."
+      "georgetown, washington, d.c.",
+      "—"
     ],
     "fairfax station": [
       "fairfax station, va",
@@ -898,20 +902,34 @@
       "aquia creek, va — straggler transport destination"
     ],
     "stevenson": [
-      "`stated`",
-      "stevenson, alabama (railroad junction)"
+      "stevenson, alabama (railroad junction)",
+      "—"
+    ],
+    "chicago": [
+      "`stated · clear · definite`",
+      "—"
     ],
     "nashville": [
-      "`stated`",
-      "nashville, tn"
+      "`stated · clear · definite`",
+      "nashville, tn",
+      "—"
     ],
     "chattanooga": [
-      "`stated`",
-      "chattanooga, tn"
+      "`stated · clear · definite`",
+      "chattanooga, tn",
+      "—"
     ],
     "ringgold": [
-      "`stated`",
-      "ringgold, ga"
+      "ringgold, ga",
+      "—"
+    ],
+    "texas": [
+      "`stated · clear · definite`",
+      "—"
+    ],
+    "mississippi": [
+      "`stated · clear · definite`",
+      "—"
     ],
     "fort derussy": [
       "fort derussy, louisiana",
@@ -923,12 +941,24 @@
       "red river, western louisiana"
     ],
     "atlanta": [
-      "`stated`",
-      "atlanta, georgia — visible from ridge"
+      "atlanta, georgia — visible from ridge",
+      "—"
     ],
     "harper's ferry": [
-      "`stated`",
-      "two miles beyond — camped"
+      "two miles beyond — camped",
+      "—"
+    ],
+    "louisiana": [
+      "`stated · clear · definite`",
+      "—"
+    ],
+    "strasburg": [
+      "`stated · clear · definite`",
+      "—"
+    ],
+    "cedar creek": [
+      "`stated · clear · definite`",
+      "—"
     ]
   },
   "chain_issues": [],
@@ -968,7 +998,6 @@
     "albert": 5,
     "lieut. scott": 5,
     "gen. mcclellan": 5,
-    "mcclellan": 5,
     "grandmother": 5,
     "uncle henry": 5,
     "mcdonald": 5,
@@ -982,6 +1011,7 @@
     "gen. gorman": 4,
     "plummer": 4,
     "cousin nellie": 4,
+    "mcclellan": 4,
     "uncle john": 4,
     "cyrus kellogg": 4,
     "mr. simons": 4,

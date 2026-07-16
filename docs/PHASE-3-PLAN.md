@@ -54,7 +54,7 @@ Every source produces structured JSON. Negative results are first-class: a `cwss
 
 - **Ancestry.com**, **Fold3** — subscription. Revisit only after 3a proves substance.
 - **Pension files (NARA NATF Form 86)** — manual postal retrieval. Henry's claim number (`Mo C 58119`) is known; this is the single highest-value subscription/manual source. Defer to a Phase 3b decision point.
-- **Per-letter location-vs-regiment-position verification** for all 273 letters. Defer until per-person work surfaces specific dates worth checking.
+- **Per-letter location-vs-regiment-position verification** for all 272 letters. Defer until per-person work surfaces specific dates worth checking.
 - **Live (in-browser) external lookups** from the public site. The current scope is backstage data work; site integration is a later phase.
 
 ---
@@ -271,7 +271,7 @@ A 3,000–5,000 word piece, working title:
 
 **Structure (working outline):**
 
-1. Background — the Hubbell collection in one page (273 letters, four brothers, the gap problem)
+1. Background — the Hubbell collection in one page (272 letters, four brothers, the gap problem)
 2. Architecture — the three-layer / three-axis schema (lifted from `docs/DATA-ARCHITECTURE.md`)
 3. The disambiguation problem — concrete examples of noisy returns from CWSS and Chronicling America
 4. Method — Claude as filter, the rubric, the verification log

@@ -784,13 +784,6 @@ Location: U.S. Field Hospital No. 2, Chattanooga, Tennessee
 Significance: routine
 Emotion: low
 --------------------------------------------------------------------------------
-Date: 1864-09-25
-ID: LTR-1864-09-25-001
-Recipient: Frances (Fannie)
-Location: U.S. Field Hospital No. 2, Chattanooga, Tennessee
-Significance: major
-Emotion: moderate
---------------------------------------------------------------------------------
 Date: 1864-10-10
 ID: LTR-1864-10-10-001
 Recipient: Mrs. Hubbell (Mother)

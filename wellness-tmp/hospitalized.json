@@ -1,312 +1,307 @@
 [
- {
-  "id": "LTR-1861-09-05-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1861-09-27-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1861-12-16-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1861-12-19-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-01-28-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-06-06-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-06-13-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-06-13-002",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-06-16-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-06-22-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-06-30-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-07-12-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-07-26-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-09-21-002",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-09-27-001",
-  "hospitalized": true,
-  "quote": "I suppose you will be both surprised and grieved to hear that I am in a hospital."
- },
- {
-  "id": "LTR-1862-09-28-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-10-01-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-10-12-001",
-  "hospitalized": true,
-  "quote": "I have had a pretty long pull off sickness but am getting well now fast. I expect to be able to return to the company before long."
- },
- {
-  "id": "LTR-1862-10-29-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-11-12-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-11-18-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-12-08-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-12-21-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1862-12-26-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1863-03-19-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1863-04-11-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1863-04-27-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1863-04-30-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1863-05-16-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1863-08-16-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1863-09-15-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1863-10-31-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1863-11-15-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1863-12-01-001",
-  "hospitalized": true,
-  "quote": "Well here I am in the hospital. I was wounded at the storming of Lookout Mountain."
- },
- {
-  "id": "LTR-1863-12-09-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1863-12-13-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1863-12-16-001",
-  "hospitalized": true,
-  "quote": "I did not like the way things worked at the hospital and told the surgeon I was ready to go back to the regt."
- },
- {
-  "id": "LTR-1864-01-03-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1864-02-18-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1864-02-21-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1864-04-25-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1864-08-15-001",
-  "hospitalized": true,
-  "quote": "At Frederick City I was taken to a hospital where I am now and have been two weeks."
- },
- {
-  "id": "LTR-1864-08-22-001",
-  "hospitalized": true,
-  "quote": "You perceive that I am again in the hospital. I am not wounded but am afflicted with what the surgeon calls genuine scurvy."
- },
- {
-  "id": "LTR-1864-08-26-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1864-08-30-001",
-  "hospitalized": true,
-  "quote": "Now that I am in a hospital I know you will be anxious to hear from me often"
- },
- {
-  "id": "LTR-1864-09-02-001",
-  "hospitalized": true,
-  "quote": "I with a large number of other sick and wounded was put on board a hospital train and sent to this place."
- },
- {
-  "id": "LTR-1864-09-18-001",
-  "hospitalized": true,
-  "quote": "how soon I shall be fit for duty I am unable to say. I may be well soon and it may take a long time to get this misnamed scurvy out of my blood."
- },
- {
-  "id": "LTR-1864-09-21-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1864-09-21-002",
-  "hospitalized": true,
-  "quote": "This is the first time since I have been in the service that I have been in a general hospital sick."
- },
- {
-  "id": "LTR-1864-09-21-003",
-  "hospitalized": true,
-  "quote": "U.S. Field Hospital No. 2 Chattanooga, Tenn. Dear Fannie:"
- },
- {
-  "id": "LTR-1864-09-25-001",
-  "hospitalized": true,
-  "quote": "You perceive I am still in the same place, but I am unable to say how long I may remain here. I am getting along very well"
- },
- {
-  "id": "LTR-1864-10-04-001",
-  "hospitalized": true,
-  "quote": "I have seen one month in the hospital since I enlisted."
- },
- {
-  "id": "LTR-1864-10-04-002",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1864-10-10-001",
-  "hospitalized": true,
-  "quote": "The hospital I am now in is a very good one and I am getting along famously."
- },
- {
-  "id": "LTR-1864-10-22-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1864-10-26-001",
-  "hospitalized": true,
-  "quote": "I think I shall be here ten (and perhaps more) days longer."
- },
- {
-  "id": "LTR-1864-10-29-001",
-  "hospitalized": true,
-  "quote": "Three fellows assisted me to the hospital which was situated in a barn several miles back."
- },
- {
-  "id": "LTR-1864-11-04-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1864-11-30-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1864-12-09-001",
-  "hospitalized": true,
-  "quote": "I can now walk around very well. My wound has nearly healed. I feel like getting back to my regiment again."
- },
- {
-  "id": "LTR-1865-01-11-001",
-  "hospitalized": false,
-  "quote": ""
- },
- {
-  "id": "LTR-1865-07-13-001",
-  "hospitalized": false,
-  "quote": ""
- }
+  {
+    "id": "LTR-1861-09-05-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1861-09-27-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1861-12-16-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1861-12-19-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-01-28-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-06-06-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-06-13-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-06-13-002",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-06-16-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-06-22-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-06-30-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-07-12-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-07-26-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-09-21-002",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-09-27-001",
+    "hospitalized": true,
+    "quote": "I suppose you will be both surprised and grieved to hear that I am in a hospital."
+  },
+  {
+    "id": "LTR-1862-09-28-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-10-01-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-10-12-001",
+    "hospitalized": true,
+    "quote": "I have had a pretty long pull off sickness but am getting well now fast. I expect to be able to return to the company before long."
+  },
+  {
+    "id": "LTR-1862-10-29-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-11-12-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-11-18-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-12-08-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-12-21-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1862-12-26-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1863-03-19-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1863-04-11-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1863-04-27-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1863-04-30-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1863-05-16-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1863-08-16-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1863-09-15-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1863-10-31-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1863-11-15-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1863-12-01-001",
+    "hospitalized": true,
+    "quote": "Well here I am in the hospital. I was wounded at the storming of Lookout Mountain."
+  },
+  {
+    "id": "LTR-1863-12-09-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1863-12-13-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1863-12-16-001",
+    "hospitalized": true,
+    "quote": "I did not like the way things worked at the hospital and told the surgeon I was ready to go back to the regt."
+  },
+  {
+    "id": "LTR-1864-01-03-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1864-02-18-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1864-02-21-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1864-04-25-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1864-08-15-001",
+    "hospitalized": true,
+    "quote": "At Frederick City I was taken to a hospital where I am now and have been two weeks."
+  },
+  {
+    "id": "LTR-1864-08-22-001",
+    "hospitalized": true,
+    "quote": "You perceive that I am again in the hospital. I am not wounded but am afflicted with what the surgeon calls genuine scurvy."
+  },
+  {
+    "id": "LTR-1864-08-26-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1864-08-30-001",
+    "hospitalized": true,
+    "quote": "Now that I am in a hospital I know you will be anxious to hear from me often"
+  },
+  {
+    "id": "LTR-1864-09-02-001",
+    "hospitalized": true,
+    "quote": "I with a large number of other sick and wounded was put on board a hospital train and sent to this place."
+  },
+  {
+    "id": "LTR-1864-09-18-001",
+    "hospitalized": true,
+    "quote": "how soon I shall be fit for duty I am unable to say. I may be well soon and it may take a long time to get this misnamed scurvy out of my blood."
+  },
+  {
+    "id": "LTR-1864-09-21-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1864-09-21-002",
+    "hospitalized": true,
+    "quote": "This is the first time since I have been in the service that I have been in a general hospital sick."
+  },
+  {
+    "id": "LTR-1864-09-21-003",
+    "hospitalized": true,
+    "quote": "U.S. Field Hospital No. 2 Chattanooga, Tenn. Dear Fannie:"
+  },
+  {
+    "id": "LTR-1864-10-04-001",
+    "hospitalized": true,
+    "quote": "I have seen one month in the hospital since I enlisted."
+  },
+  {
+    "id": "LTR-1864-10-04-002",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1864-10-10-001",
+    "hospitalized": true,
+    "quote": "The hospital I am now in is a very good one and I am getting along famously."
+  },
+  {
+    "id": "LTR-1864-10-22-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1864-10-26-001",
+    "hospitalized": true,
+    "quote": "I think I shall be here ten (and perhaps more) days longer."
+  },
+  {
+    "id": "LTR-1864-10-29-001",
+    "hospitalized": true,
+    "quote": "Three fellows assisted me to the hospital which was situated in a barn several miles back."
+  },
+  {
+    "id": "LTR-1864-11-04-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1864-11-30-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1864-12-09-001",
+    "hospitalized": true,
+    "quote": "I can now walk around very well. My wound has nearly healed. I feel like getting back to my regiment again."
+  },
+  {
+    "id": "LTR-1865-01-11-001",
+    "hospitalized": false,
+    "quote": ""
+  },
+  {
+    "id": "LTR-1865-07-13-001",
+    "hospitalized": false,
+    "quote": ""
+  }
 ]
