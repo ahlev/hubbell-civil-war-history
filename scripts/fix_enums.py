@@ -12,7 +12,7 @@ import os
 import re
 import glob
 
-LETTERS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+LETTERS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                            "02-transcribed-markdown", "letters")
 
 SIG_MAP = {

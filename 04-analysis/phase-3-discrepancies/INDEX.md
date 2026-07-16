@@ -2,7 +2,7 @@
 
 Cumulative log of discrepancies between Hubbell family letters and the external historical record.
 
-**Scope:** see [`PHASE-3-PLAN.md`](../../PHASE-3-PLAN.md) §9 for severity definitions and the `DSC-*.md` structure.
+**Scope:** see [`docs/PHASE-3-PLAN.md`](../../docs/PHASE-3-PLAN.md) §9 for severity definitions and the `DSC-*.md` structure.
 
 ---
 

@@ -61,7 +61,7 @@ css), `experience-v2/landing.html` (cache-bust bumped to `rv=3`). No changes to 
   errors beyond the harmless favicon.
 - **Isolation:** the-collection / hubbell-dashboard / viz-people-web readers load 0 references to the era
   CSS — they look and work exactly as before.
-- **Gate intact:** internal files (`PHASE-3-PLAN.md`, `04-analysis/*`) still return 404 after deploy.
+- **Gate intact:** internal files (`docs/PHASE-3-PLAN.md`, `04-analysis/*`) still return 404 after deploy.
 
 ---
 

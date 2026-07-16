@@ -12,7 +12,7 @@ import re
 import json
 from collections import defaultdict, Counter
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JSON_FILE = os.path.join(BASE_DIR, "03-data", "all-letters.json")
 PEOPLE_DIR = os.path.join(BASE_DIR, "03-data", "people")
 PLACES_DIR = os.path.join(BASE_DIR, "03-data", "places")

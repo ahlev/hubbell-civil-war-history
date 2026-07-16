@@ -7,7 +7,7 @@ so we need to INSERT rows, not update existing ones.
 """
 import os, re, glob
 
-LETTERS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+LETTERS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                            "02-transcribed-markdown", "letters")
 
 SOLDIER_AUTHORS = {"henry", "alexander", "james", "charles"}

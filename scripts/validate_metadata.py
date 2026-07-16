@@ -17,7 +17,7 @@ import glob
 from collections import defaultdict, Counter
 from datetime import date, timedelta
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LETTERS_DIR = os.path.join(BASE_DIR, "02-transcribed-markdown", "letters")
 JSON_FILE = os.path.join(BASE_DIR, "03-data", "all-letters.json")
 REPORT_FILE = os.path.join(BASE_DIR, "04-analysis", "validation-report.md")
@@ -846,7 +846,7 @@ def generate_report(schema_violations, json_issues, json_missing, json_drifts, c
     lines.append("## Recommendations\n")
     lines.append("### HIGH Priority\n")
     if json_missing:
-        lines.append("1. **Expand `parse_all_letters.py`** to extract all missing field categories listed above")
+        lines.append("1. **Expand `scripts/parse_all_letters.py`** to extract all missing field categories listed above")
         lines.append("   - All 15 event flags (not just 4)")
         lines.append("   - Confidence metadata")
         lines.append("   - Place coordinates")

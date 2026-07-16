@@ -9,8 +9,8 @@ v2: Expanded to extract all 15 event flags, confidence metadata, coordinates,
 """
 import os, re, json, glob
 
-LETTERS_DIR = os.path.join(os.path.dirname(__file__), "02-transcribed-markdown", "letters")
-OUTPUT_FILE = os.path.join(os.path.dirname(__file__), "03-data", "all-letters.json")
+LETTERS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "02-transcribed-markdown", "letters")
+OUTPUT_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "03-data", "all-letters.json")
 
 # Author name normalization
 AUTHOR_MAP = {

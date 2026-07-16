@@ -169,7 +169,7 @@ Suggested default: **(a)**.
 
 ### TODO-4: Source-quality grading
 
-For each source listed in `PHASE-3-PLAN.md` §3, your initial `source-certainty` grade (`definite` / `secondhand` / `rumor`) — your prior assumption, before we see real data. We'll revise as we hit each source's failure modes.
+For each source listed in `docs/PHASE-3-PLAN.md` §3, your initial `source-certainty` grade (`definite` / `secondhand` / `rumor`) — your prior assumption, before we see real data. We'll revise as we hit each source's failure modes.
 
 ---
 

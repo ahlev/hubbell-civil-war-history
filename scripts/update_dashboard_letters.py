@@ -4,7 +4,7 @@ Update hubbell-dashboard.html with all 274 letters and add Mother as a tracked i
 """
 import json, re, os
 
-BASE = os.path.dirname(__file__)
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DASHBOARD = os.path.join(BASE, "hubbell-dashboard.html")
 LETTERS_JSON = os.path.join(BASE, "03-data", "all-letters.json")
 

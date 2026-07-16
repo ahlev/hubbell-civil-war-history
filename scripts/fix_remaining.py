@@ -2,7 +2,7 @@
 """Fix 20 over-corrected people rows and 1 remaining slash confidence."""
 import re, glob, os
 
-LETTERS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+LETTERS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                            "02-transcribed-markdown", "letters")
 
 MIDDLE_DOT = "\u00b7"

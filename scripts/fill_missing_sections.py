@@ -8,7 +8,7 @@ Temporal: Computes War Year, Campaign Period, and Days Since/Until from letter d
 import os, re, glob, json
 from datetime import date
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LETTERS_DIR = os.path.join(BASE_DIR, "02-transcribed-markdown", "letters")
 
 # ─── Known campaign periods ───────────────────────────────────────────────────

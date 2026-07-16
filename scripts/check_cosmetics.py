@@ -2,7 +2,7 @@
 """Check remaining cosmetic inconsistencies in patched files."""
 import re, glob, os
 
-LETTERS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+LETTERS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                            "02-transcribed-markdown", "letters")
 
 em_dash = 0

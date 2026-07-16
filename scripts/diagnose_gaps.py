@@ -9,9 +9,9 @@ Outputs candidate gaps as JSON for subagent verification.
 import os, re, json, glob
 from collections import defaultdict
 
-LETTERS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+LETTERS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                            "02-transcribed-markdown", "letters")
-OUTPUT_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+OUTPUT_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                            "04-analysis", "gap-candidates.json")
 
 # --- Event flag keyword patterns ---

@@ -10,9 +10,9 @@ Run with --dry-run to preview changes without writing.
 """
 import os, re, json, glob, sys
 
-LETTERS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+LETTERS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                            "02-transcribed-markdown", "letters")
-ANALYSIS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+ANALYSIS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                             "04-analysis")
 
 DRY_RUN = '--dry-run' in sys.argv

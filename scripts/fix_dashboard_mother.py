@@ -2,7 +2,7 @@
 """Fix Mother's display name, legend, and timeline scale issues."""
 import re, os
 
-BASE = os.path.dirname(__file__)
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DASHBOARD = os.path.join(BASE, "hubbell-dashboard.html")
 
 with open(DASHBOARD, 'r', encoding='utf-8') as f:

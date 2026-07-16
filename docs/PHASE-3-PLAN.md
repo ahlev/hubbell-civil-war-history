@@ -2,7 +2,7 @@
 
 > Operational plan for enriching the Hubbell collection with verified data from public Civil War archives, detecting discrepancies between family letters and the historical record, and producing a publishable methodology for LLM-assisted historical research.
 
-**Status:** Active planning, drafted 2026-05-19. Supersedes the Phase 3 section of `PROJECT-PLAN.md`.
+**Status:** Active planning, drafted 2026-05-19. Supersedes the Phase 3 section of `docs/PROJECT-PLAN.md`.
 
 ---
 
@@ -99,7 +99,7 @@ This grading lives in `methodology/source-quality-notes.md` and is refined as we
 ## 7. File Layout
 
 ```
-PHASE-3-PLAN.md                              ← this document
+docs/PHASE-3-PLAN.md                              ← this document
 03-data/
   external-sources/
     civil-war-source-catalog.md              ← existing, the canonical source list
@@ -272,7 +272,7 @@ A 3,000–5,000 word piece, working title:
 **Structure (working outline):**
 
 1. Background — the Hubbell collection in one page (273 letters, four brothers, the gap problem)
-2. Architecture — the three-layer / three-axis schema (lifted from `DATA-ARCHITECTURE.md`)
+2. Architecture — the three-layer / three-axis schema (lifted from `docs/DATA-ARCHITECTURE.md`)
 3. The disambiguation problem — concrete examples of noisy returns from CWSS and Chronicling America
 4. Method — Claude as filter, the rubric, the verification log
 5. Results — discrepancies found, gaps closed, surprises encountered
@@ -328,7 +328,7 @@ Phase 3a is complete when:
 
 ## Appendix A: Connection to Existing Principles
 
-This plan inherits and respects the foundational discipline established in `DATA-ARCHITECTURE.md` and `CLAUDE.md`:
+This plan inherits and respects the foundational discipline established in `docs/DATA-ARCHITECTURE.md` and `CLAUDE.md`:
 
 - **Provenance preservation** — external findings live in their own files, never modify source letters or person profiles' factual layer. Person profiles' `External Source Records` table *references* the artifacts but doesn't replace them.
 - **No fuzzy name matching** — `PERSON_ALIASES` remains the curated truth for identity. External hits that mention a new name variant get evaluated for inclusion in the alias table, but only after researcher review.

@@ -347,7 +347,7 @@
 
 ### HIGH Priority
 
-1. **Expand `parse_all_letters.py`** to extract all missing field categories listed above
+1. **Expand `scripts/parse_all_letters.py`** to extract all missing field categories listed above
    - All 15 event flags (not just 4)
    - Confidence metadata
    - Place coordinates

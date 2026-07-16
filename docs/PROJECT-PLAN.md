@@ -49,7 +49,7 @@ Transform a collection of family Civil War letters and documents into a richly i
 
 ## Phase 3: External Source Cross-Referencing
 
-> **Status (2026-05-19):** Operational plan drafted — see [`PHASE-3-PLAN.md`](PHASE-3-PLAN.md). Phase 3a (four brothers, free public sources, LLM-mediated verification, discrepancy detection) is scaffolded and ready to execute. Phase 3 is the **technical/research plan that delivers the "cross-reference engine v1"** referenced in [`tasks/outreach-plan.md`](tasks/outreach-plan.md).
+> **Status (2026-05-19):** Operational plan drafted — see [`docs/PHASE-3-PLAN.md`](PHASE-3-PLAN.md). Phase 3a (four brothers, free public sources, LLM-mediated verification, discrepancy detection) is scaffolded and ready to execute. Phase 3 is the **technical/research plan that delivers the "cross-reference engine v1"** referenced in [`tasks/outreach-plan.md`](../tasks/outreach-plan.md).
 
 **Goal:** Enrich family records with verified historical data from public archives.
 
@@ -135,7 +135,7 @@ Hubbell Civil War Ancestry/
 │   └── external-sources/
 ├── 04-analysis/                  ← Narratives, reports, visualizations
 ├── 05-web-app/                   ← Application code
-└── PROJECT-PLAN.md               ← This file
+└── docs/PROJECT-PLAN.md               ← This file
 ```
 
 ---
@@ -148,7 +148,7 @@ Hubbell Civil War Ancestry/
 - [x] External source catalog compiled (50+ sources)
 - [x] **Phase 1: Document Ingestion** — 273 letters + 21 supporting documents transcribed
 - [x] **Phase 2: Entity Extraction** — 596 people, 513 places, 15 event flags, 0 schema violations
-- [~] **Phase 3: External Cross-Referencing** — Operational plan drafted 2026-05-19 (`PHASE-3-PLAN.md` spec, `tasks/phase-3-plan.md` execution playbook, scaffolding under `03-data/external-sources/` and `04-analysis/phase-3-discrepancies/`). Phase 3a (four brothers, free public sources) ready to execute. Delivers the cross-reference engine v1 for the outreach phase.
+- [~] **Phase 3: External Cross-Referencing** — Operational plan drafted 2026-05-19 (`docs/PHASE-3-PLAN.md` spec, `tasks/phase-3-plan.md` execution playbook, scaffolding under `03-data/external-sources/` and `04-analysis/phase-3-discrepancies/`). Phase 3a (four brothers, free public sources) ready to execute. Delivers the cross-reference engine v1 for the outreach phase.
 - [x] **Phase 4: Narrative Synthesis** — EXCEEDED: 18-chapter novel + epilogue (3,334 lines)
 - [x] **Phase 5: Web Application (Core)** — 9 interactive visualizations, full-text search, deep linking, story pages, OG sharing
 - [ ] **Phase 5: Web Application (Advanced)** — Upload-your-own, ML tagging, collaboration, export NOT STARTED (descoped)
@@ -171,5 +171,5 @@ Hubbell Civil War Ancestry/
 5. Entity disambiguation (97 people groups, 60 place inconsistencies)
 6. Novel editorial review
 7. Tier 2 documents: G07, G08, R07, W03
-8. External cross-referencing (Phase 3) — scaffolded; execute per [`PHASE-3-PLAN.md`](PHASE-3-PLAN.md) + [`tasks/phase-3-plan.md`](tasks/phase-3-plan.md)
+8. External cross-referencing (Phase 3) — scaffolded; execute per [`docs/PHASE-3-PLAN.md`](PHASE-3-PLAN.md) + [`tasks/phase-3-plan.md`](../tasks/phase-3-plan.md)
 9. Mobile/touch optimization & accessibility audit

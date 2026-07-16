@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Fix structural inconsistencies introduced by apply_verified_patches.py:
+Fix structural inconsistencies introduced by scripts/apply_verified_patches.py:
 
 1. PLACES_COL_MISMATCH: Added rows have 3 columns but header has 4 (missing Coordinates)
 2. PEOPLE_COL_MISMATCH: Added rows have 3 columns but header has 4
@@ -10,7 +10,7 @@ This script reads each file, detects mismatches, and fixes them in place.
 """
 import os, re, glob
 
-LETTERS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+LETTERS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                            "02-transcribed-markdown", "letters")
 
 MIDDLE_DOT = "\u00b7"  # The project standard separator

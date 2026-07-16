@@ -7,7 +7,7 @@ and other issues introduced by the patch applicator.
 import re, glob, os
 from collections import Counter
 
-LETTERS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+LETTERS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                            "02-transcribed-markdown", "letters")
 
 issues = []

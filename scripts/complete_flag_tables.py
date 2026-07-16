@@ -7,7 +7,7 @@ This script adds the missing rows so all 15 flags are present.
 """
 import os, re, glob
 
-LETTERS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+LETTERS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                            "02-transcribed-markdown", "letters")
 
 ALL_FLAGS = [

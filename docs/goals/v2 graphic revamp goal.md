@@ -2,9 +2,9 @@
 
 > **What this is:** A ready-to-run, one-shot `/goal` prompt that produces a complete PLAN + a higgsfield prompt library for extending the v2 landing page's impressionist-oil-painting + selective-motion style across the rest of the site. **It plans and writes prompts only — it generates no media and edits no live pages.**
 >
-> **Source brief it builds on:** [`site v2 graphic revamp prompting jump off.md`](./site%20v2%20graphic%20revamp%20prompting%20jump%20off.md) (project root) — the full ask this goal is scoped from.
+> **Source brief it builds on:** [`docs/goals/site v2 graphic revamp prompting jump off.md`](./site%20v2%20graphic%20revamp%20prompting%20jump%20off.md) (sibling file) — the full ask this goal is scoped from.
 >
-> **What it will output:** [`tasks/site-v2-graphic-revamp-PLAN.md`](./tasks/site-v2-graphic-revamp-PLAN.md) (created when the goal runs) — the plan, prompt library, research register, per-page UX recommendations, and production/QA roadmap. Review the editorial recap at the top of that file when the run finishes.
+> **What it will output:** [`tasks/site-v2-graphic-revamp-PLAN.md`](../../tasks/site-v2-graphic-revamp-PLAN.md) (created when the goal runs) — the plan, prompt library, research register, per-page UX recommendations, and production/QA roadmap. Review the editorial recap at the top of that file when the run finishes.
 >
 > **How to run:** copy the block below into `/goal`.
 
@@ -25,7 +25,7 @@
 /goal Produce a comprehensive, prioritized PLAN + a ready-to-run higgsfield prompt library for extending the v2 landing page's impressionist-oil-painting + selective-motion visual language across the rest of the Hubbell Civil War Ancestry site (the Brothers, the Preservation Narrative, and the data pages), while keeping each page's data substance the focus. This run PLANS and WRITES PROMPTS ONLY — it generates NO media and edits NO live pages. Work on the current branch `outreach-engine`; do not touch `main`.
 
 === GROUNDING (read/verify these first; they are the load-bearing seams) ===
-- `site v2 graphic revamp prompting jump off.md` (project root) — THE source brief. Read it in full; it defines the ask (style consistency, selective animation, preservation chain, brother scenes, data-page imagery). The plan must satisfy every part of it.
+- `docs/goals/site v2 graphic revamp prompting jump off.md` (project root) — THE source brief. Read it in full; it defines the ask (style consistency, selective animation, preservation chain, brother scenes, data-page imagery). The plan must satisfy every part of it.
 - `experience-v2/landing.html` — the live v2 reference implementation. The "style" is a VIDEO-LOOP pipeline, not CSS animation: each scene is a baked `.webm` loop + `.webp` poster, scroll-driven by vanilla JS (no animation libraries). Motion is selective — hero figures / certain textures / light / wind move; everything else is a still oil painting. New media MUST follow this still→loop pattern and this motion depth.
 - Existing reference assets (REUSE as higgsfield reference images — non-negotiable for consistency):
   - Brothers stills: `experience-v2/assets/brothers/web/window-{alexander-fav,henry-v1,james-v2-wide,charles-v1}.webp` (+ v1/v2 variants in same dir and `/thumbs/`).

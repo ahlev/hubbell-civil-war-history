@@ -6,7 +6,7 @@ Standardize cosmetic inconsistencies in Places Mentioned tables:
 """
 import re, glob, os
 
-LETTERS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+LETTERS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                            "02-transcribed-markdown", "letters")
 
 # Confidence expansion map

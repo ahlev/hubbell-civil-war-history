@@ -2,7 +2,7 @@
 
 > **What this is:** A ready-to-run `/goal` that BUILDS the real Preservation-sequence MVP — the proof-of-concept for the whole v2 graphic revamp pipeline — on the `outreach-engine` branch. Unlike the planning goals, this one ships code and generates media. It does **not** deploy to production.
 >
-> **Plan it executes:** [`tasks/site-v2-graphic-revamp-PLAN.md`](./tasks/site-v2-graphic-revamp-PLAN.md) §6.3 (preservation sequence), §4 P1-PRES-1…5 (image prompts), §6.1 (reusable hero/loop component), §7 (production + QA), §9 step 2 (this is the recommended first build).
+> **Plan it executes:** [`tasks/site-v2-graphic-revamp-PLAN.md`](../../tasks/site-v2-graphic-revamp-PLAN.md) §6.3 (preservation sequence), §4 P1-PRES-1…5 (image prompts), §6.1 (reusable hero/loop component), §7 (production + QA), §9 step 2 (this is the recommended first build).
 >
 > **How to run:** copy the block below into `/goal`.
 

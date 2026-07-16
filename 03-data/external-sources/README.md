@@ -1,6 +1,6 @@
 # External Sources — Directory Map
 
-Operational scope: see [`PHASE-3-PLAN.md`](../../PHASE-3-PLAN.md) at project root.
+Operational scope: see [`docs/PHASE-3-PLAN.md`](../../docs/PHASE-3-PLAN.md) at project root.
 Source catalog (canonical list of databases and archives): [`civil-war-source-catalog.md`](civil-war-source-catalog.md)
 
 ---
@@ -39,5 +39,5 @@ Folders materialize as work fills them — do not pre-create empty dirs.
 
 - **Negative results are recorded explicitly.** A `cwss.json` with `null_result: true` is as important as one with a verified hit.
 - **External findings never modify letter or person source data.** They reference IDs and live alongside.
-- **Per-source JSON uses the uniform schema** documented in `PHASE-3-PLAN.md` §7.
+- **Per-source JSON uses the uniform schema** documented in `docs/PHASE-3-PLAN.md` §7.
 - **Every Claude verdict is logged** to `methodology/verification-log.jsonl` with its full reasoning. Append-only.
