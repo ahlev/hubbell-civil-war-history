@@ -1017,7 +1017,7 @@
     }
 
     fetchingLetters = true;
-    fetch('03-data/all-letters.json')
+    fetch('03-data/all-letters.json?v=2')
       .then(function (r) { return r.json(); })
       .then(function (data) {
         cachedLetters = data;

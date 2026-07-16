@@ -3824,7 +3824,7 @@ function formatDate(d) {
 // ============================================================
 const FULL_LETTERS = {};
 let lettersLoaded = false;
-const lettersPromise = fetch('03-data/all-letters.json')
+const lettersPromise = fetch('03-data/all-letters.json?v=2')
   .then(r => r.json())
   .then(data => {
     for (const letter of data) FULL_LETTERS[letter.id] = letter;
@@ -4211,12 +4211,12 @@ function _pwSyncUrl() {
 </script>
 <script src="_design-data.js"></script>
 <script src="_design-ui.js?v=11"></script>
-<script src="_search-data.js?v=2"></script>
+<script src="_search-data.js?v=3"></script>
 <script src="_letter-nav.js"></script>
 <script src="_reader.js?v=25"></script>
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=16"></script>
-<script src="_overlay.js?v=28"></script>
+<script src="_overlay.js?v=29"></script>
 <script>HubbellOverlay.bindPage({ tags: true });</script>
 <script>
 HubbellDeepLink.injectShareButton();
