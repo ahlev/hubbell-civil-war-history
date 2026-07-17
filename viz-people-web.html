@@ -1371,6 +1371,60 @@ canvas.grabbing {
 @media (max-width: 900px) {  /* matches the list-view breakpoint (768→900 in Phase 1) */
   #pw-info-mobile { display: flex; top: 12px; right: 12px; }
 }
+
+/* ── C2: single Filters popover ─────────────────────────────────────── */
+#pw-filters-pop {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 62px;
+  z-index: 90;
+  width: 320px;
+  max-height: calc(100% - 92px);
+  overflow-y: auto;
+  background: #FDFBF7;
+  border: 1px solid #DDD5C8;
+  border-radius: 12px;
+  box-shadow: 0 14px 40px rgba(40, 32, 20, 0.16);
+  padding: 16px;
+}
+#pw-filters-pop.open { display: block; }
+.pwf-title {
+  font-family: Inter, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8A8073;
+  margin: 0 0 12px;
+}
+/* neutralize the absolute overlay positioning the originals carried */
+#pw-filters-pop #temporal-filter,
+#pw-filters-pop #canvas-overlay,
+#pw-filters-pop #legend,
+#pw-filters-pop #strength-slider-wrap,
+#pw-filters-pop #canvas-filters {
+  position: static !important;
+  left: auto !important; right: auto !important;
+  top: auto !important; bottom: auto !important;
+  width: auto !important;
+  max-width: none !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+#pw-filters-pop #temporal-filter { display: block; margin-bottom: 16px !important; }
+#pw-filters-pop #temporal-filter .temporal-range-wrap { display: block !important; }
+#pw-filters-pop #canvas-overlay { display: block; }
+#pw-filters-pop #canvas-filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px !important; }
+#pw-filters-pop #strength-slider-wrap { display: flex; align-items: center; gap: 8px; margin-bottom: 16px !important; }
+#pw-filters-pop #legend { border-top: 1px solid #EAE4D9 !important; padding-top: 12px !important; }
+@media (max-width: 900px) {
+  #pw-filters-pop, #pw-filters-btn { display: none !important; }
+}
 .onboard-title {
   font-family: 'Source Serif 4', Georgia, serif;
   font-size: 1.4rem;
@@ -1517,30 +1571,38 @@ canvas.grabbing {
         <div class="link-btn-sub">Pick any person to begin</div>
       </div>
     </button>
-    <div id="temporal-filter">
-      <div class="tf-head">
-        <div class="filter-label" onclick="this.closest('#temporal-filter').classList.toggle('tf-open')">Date Range</div>
-        <button class="temporal-reset-btn" onclick="resetTemporalFilter()">Reset</button>
-      </div>
-      <div class="temporal-range-wrap">
-        <div class="temporal-range-track"></div>
-        <div class="temporal-range-fill" id="temporal-fill"></div>
-        <input type="range" id="temporal-start" min="0" max="100" value="0" oninput="updateTemporalFilter()">
-        <input type="range" id="temporal-end" min="0" max="100" value="100" oninput="updateTemporalFilter()">
-        <div class="temporal-labels">
-          <span>Jun 1861</span>
-          <span class="temporal-current" id="temporal-label">All dates</span>
-          <span>Jul 1865</span>
-        </div>
-      </div>
-    </div>
     <canvas id="graph" role="img" aria-label="Network visualization showing relationships between people mentioned in the letters"></canvas>
     <div id="stats-bar"></div>
     <div id="controls">
       <button class="ctrl-btn" onclick="zoomIn()" title="Zoom in">+</button>
       <button class="ctrl-btn" onclick="zoomOut()" title="Zoom out">&minus;</button>
       <button class="ctrl-btn" onclick="resetView()" title="Reset view">&#8634;</button>
+      <button class="ctrl-btn" id="pw-filters-btn" onclick="togglePwFilters()" title="Filters" aria-expanded="false" aria-controls="pw-filters-pop">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+      </button>
     </div>
+    <!-- C2: ALL graph filters live in one popover — category chips, minimum
+         mentions, date range, and the color legend. The originals were four
+         separate always-on overlays competing for canvas space. -->
+    <div id="pw-filters-pop" role="group" aria-label="Graph filters">
+      <div class="pwf-title">Filters</div>
+      <div id="temporal-filter" class="tf-open">
+        <div class="tf-head">
+          <div class="filter-label">Date Range</div>
+          <button class="temporal-reset-btn" onclick="resetTemporalFilter()">Reset</button>
+        </div>
+        <div class="temporal-range-wrap">
+          <div class="temporal-range-track"></div>
+          <div class="temporal-range-fill" id="temporal-fill"></div>
+          <input type="range" id="temporal-start" min="0" max="100" value="0" oninput="updateTemporalFilter()">
+          <input type="range" id="temporal-end" min="0" max="100" value="100" oninput="updateTemporalFilter()">
+          <div class="temporal-labels">
+            <span>Jun 1861</span>
+            <span class="temporal-current" id="temporal-label">All dates</span>
+            <span>Jul 1865</span>
+          </div>
+        </div>
+      </div>
     <div id="canvas-overlay">
       <div id="legend"></div>
       <div id="strength-slider-wrap">
@@ -1565,6 +1627,7 @@ canvas.grabbing {
         </div>
       </div>
     </div>
+    </div><!-- /pw-filters-pop -->
     <div id="tooltip">
       <div class="tt-category"></div>
       <div class="tt-name"></div>
@@ -4045,17 +4108,32 @@ function buildSidebar() {
 // Legend
 function buildLegend() {
   const legend = document.getElementById('legend');
+  // Everyone renders as a ringed medallion now — the legend keys COLOR only
   const brothers = [
-    { label: 'Henry', color: BROTHER_COLORS.henry, shape: '◆' },
-    { label: 'Alexander', color: BROTHER_COLORS.alexander, shape: '■' },
-    { label: 'James', color: BROTHER_COLORS.james, shape: '▲' },
-    { label: 'Charles', color: BROTHER_COLORS.charles, shape: '⬡' },
+    { label: 'Henry', color: BROTHER_COLORS.henry, shape: '●' },
+    { label: 'Alexander', color: BROTHER_COLORS.alexander, shape: '●' },
+    { label: 'James', color: BROTHER_COLORS.james, shape: '●' },
+    { label: 'Charles', color: BROTHER_COLORS.charles, shape: '●' },
     { label: 'Frances (Mother)', color: '#7B5EA7', shape: '●' },
   ];
   const item = (b) => `<div class="legend-item"><span style="color:${b.color};font-size:13px;line-height:1">${b.shape}</span>${b.label}</div>`;
   legend.innerHTML =
     `<div class="legend-row">${brothers.map(item).join('')}</div>`;
 }
+
+// C2: Filters popover toggle + click-outside dismiss
+function togglePwFilters() {
+  const pop = document.getElementById('pw-filters-pop');
+  const open = pop.classList.toggle('open');
+  document.getElementById('pw-filters-btn').setAttribute('aria-expanded', String(open));
+}
+document.addEventListener('click', function (e) {
+  const pop = document.getElementById('pw-filters-pop');
+  if (!pop || !pop.classList.contains('open')) return;
+  if (e.target.closest('#pw-filters-pop') || e.target.closest('#pw-filters-btn')) return;
+  pop.classList.remove('open');
+  document.getElementById('pw-filters-btn').setAttribute('aria-expanded', 'false');
+});
 
 // Stats bar
 function buildStatsBar() {
