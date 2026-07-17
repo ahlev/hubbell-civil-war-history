@@ -1372,6 +1372,18 @@ canvas.grabbing {
   #pw-info-mobile { display: flex; top: 12px; right: 12px; }
 }
 
+/* ── C4: panel conventions — eyebrow kicker (matches the site's reader/
+   drawer language: small caps, letterspaced, accent-toned) ── */
+.pw-eyebrow {
+  font-family: Inter, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rail-accent, #8A6D3B);
+  margin: 10px 0 4px;
+}
+
 /* ── C2: single Filters popover ─────────────────────────────────────── */
 #pw-filters-pop {
   display: none;
@@ -1555,6 +1567,7 @@ canvas.grabbing {
     </div>
     <div id="detail-panel">
       <button id="detail-back" onclick="closeDetail()">← Back</button>
+      <div class="pw-eyebrow" id="pw-eyebrow">People Web</div>
       <h3 id="detail-name"></h3>
       <div class="role-text" id="detail-role"></div>
       <div class="mention-list" id="detail-mentions"></div>
@@ -3100,6 +3113,7 @@ function selectNode(idx) {
 
 function showPersonDetail(node) {
   const panel = document.getElementById('detail-panel');
+  document.getElementById('pw-eyebrow').textContent = 'People Web · Person';
   selectedNode = nodes.indexOf(node);   // keep state in sync for the mobile connect picker
   panel.classList.add('show-connect');  // single-person view → reveal "connect" button (mobile CSS only)
 
@@ -3292,6 +3306,7 @@ function buildMiniTimeline(sortedLetters) {
 
 function showBrotherDetail(node) {
   const panel = document.getElementById('detail-panel');
+  document.getElementById('pw-eyebrow').textContent = 'People Web · Family';
   selectedNode = nodes.indexOf(node);   // keep state in sync for the mobile connect picker
   panel.classList.add('show-connect');  // single-person view → reveal "connect" button (mobile CSS only)
   const key = node.brotherKey;
@@ -3522,6 +3537,26 @@ function lookupProfile(node) {
   return idx !== undefined ? OVERLAY_PEOPLE_PROFILES[idx] : null;
 }
 
+// C4: shared-letters evidence uses the site-wide .rc collapsible contract
+// (_overlay.css styles + _overlay.js document-level toggle + the sticky
+// hubReaderCollapse pref). Defaults EXPANDED here — the letters are the
+// payoff of a comparison, unlike the ledger's supplementary sections.
+function pwRcWrap(sec, label, inner, count) {
+  if (!inner) return '';
+  let c = false;
+  try {
+    const p = JSON.parse(localStorage.getItem('hubReaderCollapse')) || {};
+    c = (sec in p) ? !!p[sec] : false;
+  } catch (e) {}
+  return `<div class="rc${c ? ' rc-collapsed' : ''}" data-rc="${sec}">` +
+    `<button class="rc-h" type="button" aria-expanded="${!c}">` +
+      `<svg class="rc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>` +
+      `<span class="rc-t">${label}</span>` +
+      (count ? `<span class="rc-n">${count}</span>` : '') +
+      `<span class="rc-cta">show</span>` +
+    `</button><div class="rc-b">${inner}</div></div>`;
+}
+
 function buildPortraitCard(node, profile, tag) {
   const catLabel = node.isBrother ? 'Brother' : (node.category || 'Unknown');
   const catColor = node.isBrother ? BROTHER_COLORS[node.brotherKey] || '#2D5F8A'
@@ -3669,24 +3704,20 @@ async function showLinkedPairDetail(idxA, idxB) {
   });
   sharedLetters.sort((a, b) => a.date.localeCompare(b.date));
 
-  // Portrait cards
+  // C4 order: the relationship band leads — WHAT connects them is the
+  // payoff — then the two compact bio cards; the evidence (timeline +
+  // excerpts) follows in a collapsible section.
+  document.getElementById('pw-eyebrow').textContent = 'People Web · Connection';
   const profA = lookupProfile(nodeA);
   const profB = lookupProfile(nodeB);
-  let html = buildPortraitCard(nodeA, profA, 'a');
+  let html = buildRelationshipContext(nodeA, nodeB, sharedLetters);
+  html += buildPortraitCard(nodeA, profA, 'a');
   html += buildPortraitCard(nodeB, profB, 'b');
 
-  // Relationship context band
-  html += buildRelationshipContext(nodeA, nodeB, sharedLetters);
+  let evidenceHtml = sharedLetters.length > 0
+    ? '<div class="detail-timeline-wrap">' + buildMiniTimeline(sharedLetters) + '</div>'
+    : '';
 
-  // Mini timeline of shared letters
-  if (sharedLetters.length > 0) {
-    html += '<div class="detail-timeline-wrap">' + buildMiniTimeline(sharedLetters) + '</div>';
-  }
-
-  html += `<div class="pw-mentions-title">${sharedLetters.length} letter${sharedLetters.length !== 1 ? 's' : ''} connecting them</div>`;
-
-  // Await transcription data
-  
   // Build excerpt cards
   for (const l of sharedLetters) {
     const color = BROTHER_COLORS[l.author] || '#9B9B9B';
@@ -3729,7 +3760,7 @@ async function showLinkedPairDetail(idxA, idxB) {
       }
     }
 
-    html += `<div class="excerpt-card" data-letter-id="${l.id}">
+    evidenceHtml += `<div class="excerpt-card" data-letter-id="${l.id}">
       <span class="excerpt-view-link">View full letter ›</span>
       <div class="excerpt-meta">
         <span class="excerpt-type ${typeClass}">${typeLabel}</span>
@@ -3740,6 +3771,8 @@ async function showLinkedPairDetail(idxA, idxB) {
       ${excerptHtml}
     </div>`;
   }
+
+  html += pwRcWrap('pw-shared', 'Letters connecting them', evidenceHtml, sharedLetters.length);
 
   document.getElementById('detail-mentions').innerHTML = html;
   panel.classList.add('visible');
