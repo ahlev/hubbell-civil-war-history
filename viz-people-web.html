@@ -2390,6 +2390,24 @@ function isVisible(node) {
   return true;
 }
 
+// Family medallions — the five window portraits (landing-locked variants)
+// drawn inside the family nodes. Colored disc fallback until each decodes.
+const PORTRAITS = {};
+(function () {
+  const srcs = {
+    henry: 'experience-v2/assets/brothers/web/window-henry-v1.webp',
+    alexander: 'experience-v2/assets/brothers/web/window-alexander-fav.webp',
+    james: 'experience-v2/assets/brothers/web/window-james-v2.webp',
+    charles: 'experience-v2/assets/brothers/web/window-charles-v1.webp',
+    mother: 'experience-v2/assets/brothers/web/window-frances.webp'
+  };
+  for (const k in srcs) {
+    const img = new Image();
+    img.onload = function () { PORTRAITS[k] = img; };
+    img.src = srcs[k];
+  }
+})();
+
 function draw() {
   ctx.clearRect(0, 0, W, H);
   ctx.save();
@@ -2493,61 +2511,24 @@ function draw() {
       // Skip normal stroke for this edge
       continue;
     } else if (highlighted) {
+      // Connection strength carries the line: opacity and width both scale
+      const wgt = Math.min(e.weight, 8) / 8;
       if (e.isBrotherEdge) {
-        ctx.strokeStyle = hexToRgba(BROTHER_COLORS[e.brotherKey], 0.7);
+        ctx.strokeStyle = hexToRgba(BROTHER_COLORS[e.brotherKey], 0.5 + wgt * 0.3);
       } else {
-        ctx.strokeStyle = 'rgba(100,100,100,0.5)';
+        ctx.strokeStyle = 'rgba(90,85,78,' + (0.35 + wgt * 0.3).toFixed(3) + ')';
       }
-      ctx.lineWidth = Math.min(e.weight * 0.8, 3);
+      ctx.lineWidth = 0.8 + wgt * 2.2;
     } else {
+      const wgt = Math.min(e.weight, 8) / 8;
       if (e.isBrotherEdge) {
-        ctx.strokeStyle = hexToRgba(BROTHER_COLORS[e.brotherKey], 0.12);
+        ctx.strokeStyle = hexToRgba(BROTHER_COLORS[e.brotherKey], 0.05 + wgt * 0.13);
       } else {
-        ctx.strokeStyle = 'rgba(180,175,168,0.1)';
+        ctx.strokeStyle = 'rgba(160,152,140,' + (0.05 + wgt * 0.1).toFixed(3) + ')';
       }
-      ctx.lineWidth = Math.min(e.weight * 0.35, 1.2);
+      ctx.lineWidth = 0.4 + wgt * 1.4;
     }
     ctx.stroke();
-  }
-
-  // Helper: draw brother-specific shapes
-  function drawBrotherShape(ctx, x, y, r, key) {
-    ctx.beginPath();
-    if (key === 'henry') {
-      // Diamond
-      ctx.moveTo(x, y - r);
-      ctx.lineTo(x + r, y);
-      ctx.lineTo(x, y + r);
-      ctx.lineTo(x - r, y);
-      ctx.closePath();
-    } else if (key === 'alexander') {
-      // Rounded square
-      var s = r * 0.82;
-      ctx.moveTo(x - s, y - s + 3);
-      ctx.arcTo(x - s, y - s, x - s + 3, y - s, 3);
-      ctx.lineTo(x + s - 3, y - s);
-      ctx.arcTo(x + s, y - s, x + s, y - s + 3, 3);
-      ctx.lineTo(x + s, y + s - 3);
-      ctx.arcTo(x + s, y + s, x + s - 3, y + s, 3);
-      ctx.lineTo(x - s + 3, y + s);
-      ctx.arcTo(x - s, y + s, x - s, y + s - 3, 3);
-      ctx.closePath();
-    } else if (key === 'james') {
-      // Triangle (pointing up)
-      ctx.moveTo(x, y - r);
-      ctx.lineTo(x + r * 0.95, y + r * 0.7);
-      ctx.lineTo(x - r * 0.95, y + r * 0.7);
-      ctx.closePath();
-    } else if (key === 'charles') {
-      // Hexagon
-      for (var a = 0; a < 6; a++) {
-        var angle = Math.PI / 6 + a * Math.PI / 3;
-        var px = x + r * Math.cos(angle);
-        var py = y + r * Math.sin(angle);
-        if (a === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
-      }
-      ctx.closePath();
-    }
   }
 
   // Draw nodes
@@ -2557,25 +2538,64 @@ function draw() {
 
     const highlighted = highlightSet.has(i);
     const dimmed = hasFocus && !highlighted;
+    const isLinkedNode = linkedPair && (i === linkedPair.a || i === linkedPair.b);
 
-    // Draw shape: all nodes are circles
-    ctx.beginPath();
-    ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+    if (node.isBrother || node.isMother) {
+      // ── Family node: soft halo + portrait medallion + brother-color ring ──
+      ctx.save();
+      if (dimmed) ctx.globalAlpha = 0.28;
 
-    if (dimmed) {
-      ctx.fillStyle = hexToRgba(node.color, 0.1);
+      const hr = node.radius * 1.9;
+      const grad = ctx.createRadialGradient(node.x, node.y, node.radius * 0.85, node.x, node.y, hr);
+      grad.addColorStop(0, hexToRgba(node.color, isLinkedNode || highlighted ? 0.34 : 0.22));
+      grad.addColorStop(1, hexToRgba(node.color, 0));
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, hr, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
       ctx.fill();
+
+      const img = PORTRAITS[node.brotherKey];
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      if (img) {
+        ctx.save();
+        ctx.clip();
+        // face-biased square crop from the 3:4 window portrait
+        const s = Math.min(img.width, img.height);
+        const sy = Math.max(0, (img.height - s) * 0.18);
+        ctx.drawImage(img, (img.width - s) / 2, sy, s, s,
+          node.x - node.radius, node.y - node.radius, node.radius * 2, node.radius * 2);
+        ctx.restore();
+      } else {
+        ctx.fillStyle = node.color;
+        ctx.fill();
+      }
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = isLinkedNode ? '#B8860B' : node.color;
+      ctx.lineWidth = isLinkedNode ? 3.2 : 2.4;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, Math.max(1, node.radius - 2), 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(255,255,255,0.85)';
+      ctx.lineWidth = 1.1;
+      ctx.stroke();
+      ctx.restore();
     } else {
-      // Glow for highlighted
-      const isLinkedNode = linkedPair && (i === linkedPair.a || i === linkedPair.b);
-      if (isLinkedNode) {
+      // ── Person node: filled disc; halo glow when it matters ──
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      if (dimmed) {
+        ctx.fillStyle = hexToRgba(node.color, 0.1);
+        ctx.fill();
+      } else if (isLinkedNode) {
         ctx.save();
         ctx.shadowColor = '#B8860B';
         ctx.shadowBlur = 18;
         ctx.fillStyle = node.color;
         ctx.fill();
         ctx.restore();
-      } else if (highlighted && !node.isBrother) {
+      } else if (highlighted) {
         ctx.save();
         ctx.shadowColor = node.color;
         ctx.shadowBlur = 12;
@@ -2587,11 +2607,7 @@ function draw() {
         ctx.fill();
       }
 
-      if (node.isBrother || node.isMother) {
-        ctx.strokeStyle = '#FFFFFF';
-        ctx.lineWidth = 3;
-        ctx.stroke();
-      } else if (i === selectedNode) {
+      if (!dimmed && i === selectedNode) {
         // Prominent selection ring — visible even on tiny nodes
         ctx.save();
         ctx.strokeStyle = '#FFFFFF';
@@ -2605,31 +2621,52 @@ function draw() {
         ctx.stroke();
         ctx.setLineDash([]);
         ctx.restore();
-      } else if (highlighted) {
-        ctx.strokeStyle = '#FFFFFF';
-        ctx.lineWidth = 2;
+      } else if (!dimmed && highlighted) {
+        ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+        ctx.lineWidth = 1.6;
         ctx.stroke();
       }
     }
 
-    // Labels
+    // ── Labels ──
     if (node.isBrother || node.isMother) {
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 14px Inter';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(node.isMother ? 'Frances' : BROTHER_NAMES[node.brotherKey], node.x, node.y);
-    } else if ((highlighted || i === selectedNode || scale > 1.2) && !dimmed) {
-      const labelScale = Math.max(0.7, 1 / scale);
+      // Name sits under the medallion on a soft paper halo
+      const name = node.isMother ? 'Frances' : BROTHER_NAMES[node.brotherKey];
+      const ls = Math.max(0.75, 1 / scale);
       ctx.save();
-      ctx.translate(node.x, node.y - node.radius - 5);
-      ctx.scale(labelScale, labelScale);
-      ctx.fillStyle = dimmed ? 'rgba(44,44,44,0.15)' : 'rgba(44,44,44,0.85)';
-      ctx.font = '500 10px Inter';
+      ctx.globalAlpha = dimmed ? 0.3 : 1;
+      ctx.translate(node.x, node.y + node.radius + 5);
+      ctx.scale(ls, ls);
+      ctx.font = '700 12px Inter';
       ctx.textAlign = 'center';
-      ctx.textBaseline = 'bottom';
-      ctx.fillText(node.id, 0, 0);
+      ctx.textBaseline = 'top';
+      ctx.lineWidth = 3.5;
+      ctx.strokeStyle = 'rgba(250,247,242,0.9)';
+      ctx.strokeText(name, 0, 0);
+      ctx.fillStyle = 'rgba(44,42,38,0.95)';
+      ctx.fillText(name, 0, 0);
       ctx.restore();
+    } else if (!dimmed) {
+      // Person labels FADE in over a zoom range (no threshold pop);
+      // highlighted/selected names are always fully present.
+      const zoomAlpha = Math.max(0, Math.min(1, (scale - 0.85) / 0.5));
+      const alpha = (highlighted || i === selectedNode) ? 1 : zoomAlpha;
+      if (alpha > 0.02) {
+        const labelScale = Math.max(0.7, 1 / scale);
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.translate(node.x, node.y - node.radius - 5);
+        ctx.scale(labelScale, labelScale);
+        ctx.font = '500 10px Inter';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = 'rgba(250,247,242,0.85)';
+        ctx.strokeText(node.id, 0, 0);
+        ctx.fillStyle = 'rgba(44,44,44,0.9)';
+        ctx.fillText(node.id, 0, 0);
+        ctx.restore();
+      }
     }
   }
 
