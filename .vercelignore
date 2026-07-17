@@ -24,6 +24,11 @@
 !/logo.svg
 !/viz-data-compact.json
 
+# --- Vendored third-party libs (self-contained, no CDN at runtime) ---
+!/_vendor
+/_vendor/*
+!/_vendor/d3-force-bundle.min.js
+
 # --- Immersive landing: ONLY the landing + its media (prototypes/review shots stay private) ---
 !/experience-v2
 /experience-v2/*

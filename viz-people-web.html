@@ -1586,6 +1586,7 @@ canvas.grabbing {
   Based on 272 transcribed letters from the Hubbell family collection, 1861–1865. Health, emotion, and significance assessments are editorial judgments by the researcher. Financial figures are extracted from letter text via pattern matching.
 </footer>
 
+<script src="_vendor/d3-force-bundle.min.js?v=1"></script>
 <script>
 // ============================================================
 // EMBEDDED DATA
@@ -2150,8 +2151,10 @@ let linkMode = false;       // waiting for second node pick
 let linkSourceNode = null;  // index of first selected node
 let linkedPair = null;      // {a: idx, b: idx} when two nodes are linked
 let linkPulsePhase = 0;     // animation phase for edge pulse
-let simRunning = true;
-let simAlpha = 1.0;
+// Layout is pre-converged synchronously at init (see runLayout) — these
+// stay false/0 so anything that used to wait for settling proceeds at once.
+let simRunning = false;
+let simAlpha = 0;
 let frameCount = 0;
 
 function resize() {
@@ -2201,79 +2204,58 @@ function initPositions() {
   }
 }
 
-function simulate() {
-  if (!simRunning || simAlpha < 0.001) {
-    simRunning = false;
-    return;
-  }
+// d3-force layout, pre-converged before first paint (vendored bundle:
+// _vendor/d3-force-bundle.min.js — forceSimulation with Barnes-Hut
+// many-body, proper link forces, and collision). Replaces the hand-rolled
+// O(N²) loop that kept running visibly warm after load. The five family
+// anchors are hard-pinned (fx/fy) to their quadrant positions; everyone
+// else settles around them. After runLayout() the graph is STATIC — zero
+// drift by construction; filters/zoom never re-heat it.
+let simulation = null;
 
-  const alpha = simAlpha;
-  const N = nodes.length;
-
-  // Repulsion (Barnes-Hut would be better, but brute-force is fine for ~200 nodes)
-  const repStrength = 800;
-  for (let i = 0; i < N; i++) {
-    for (let j = i + 1; j < N; j++) {
-      let dx = nodes[j].x - nodes[i].x;
-      let dy = nodes[j].y - nodes[i].y;
-      let dist = Math.sqrt(dx * dx + dy * dy) || 1;
-      let minDist = nodes[i].radius + nodes[j].radius + 12;
-      let force = repStrength / (dist * dist);
-      // Extra repulsion when overlapping
-      if (dist < minDist) force += (minDist - dist) * 2;
-      let fx = (dx / dist) * force * alpha;
-      let fy = (dy / dist) * force * alpha;
-      nodes[i].vx -= fx;
-      nodes[i].vy -= fy;
-      nodes[j].vx += fx;
-      nodes[j].vy += fy;
-    }
-  }
-
-  // Attraction along edges
-  const attrStrength = 0.04;
-  for (const edge of edges) {
-    const a = nodes[edge.source], b = nodes[edge.target];
-    let dx = b.x - a.x;
-    let dy = b.y - a.y;
-    let dist = Math.sqrt(dx * dx + dy * dy) || 1;
-    let idealDist = edge.isBrotherEdge ? 120 : 80;
-    let force = (dist - idealDist) * attrStrength * Math.min(edge.weight, 4) * alpha;
-    let fx = (dx / dist) * force;
-    let fy = (dy / dist) * force;
-    if (!a.isBrother && !a.isMother) { a.vx += fx; a.vy += fy; }
-    if (!b.isBrother && !b.isMother) { b.vx -= fx; b.vy -= fy; }
-  }
-
-  // Center gravity
-  const gravStrength = 0.02;
-  for (const node of nodes) {
-    if (node.isBrother || node.isMother) continue;
-    node.vx -= node.x * gravStrength * alpha;
-    node.vy -= node.y * gravStrength * alpha;
-  }
-
-  // Brother anchor force (Frances is anchored too — she is a hub)
+function runLayout() {
   for (const node of nodes) {
     if (node.isBrother || node.isMother) {
-      node.vx += (node.anchorX - node.x) * 0.1;
-      node.vy += (node.anchorY - node.y) * 0.1;
+      node.fx = node.anchorX;
+      node.fy = node.anchorY;
     }
   }
+  // d3.forceLink rewrites source/target into node references, so feed it a
+  // shadow copy — the renderer keeps reading numeric indices off `edges`.
+  const links = edges.map(e => ({
+    source: e.source, target: e.target,
+    weight: e.weight, isBrotherEdge: e.isBrotherEdge
+  }));
+  simulation = d3.forceSimulation(nodes)
+    .force('charge', d3.forceManyBody()
+      .strength(n => (n.isBrother || n.isMother) ? -600 : -(60 + n.radius * 8))
+      .theta(0.9))
+    .force('link', d3.forceLink(links)
+      .distance(l => l.isBrotherEdge ? 130 : 70)
+      .strength(l => Math.min(1, 0.2 + Math.min(l.weight, 4) * 0.12)))
+    .force('collide', d3.forceCollide().radius(n => n.radius + 6).iterations(2))
+    .force('x', d3.forceX(0).strength(0.055))
+    .force('y', d3.forceY(0).strength(0.055))
+    .stop();
+  for (let i = 0; i < 320; i++) simulation.tick();
+}
 
-  // Velocity damping + position update
-  const damping = 0.6;
-  for (const node of nodes) {
-    node.vx *= damping;
-    node.vy *= damping;
-    const maxV = 15;
-    node.vx = Math.max(-maxV, Math.min(maxV, node.vx));
-    node.vy = Math.max(-maxV, Math.min(maxV, node.vy));
-    node.x += node.vx;
-    node.y += node.vy;
+// Frame the settled layout: fit the whole web into the viewport on load
+// (the old warm sim happened to start compact; the settled d3 layout is
+// wider, so fit deliberately instead of hoping).
+function fitView() {
+  if (!nodes.length || !W || !H) return;
+  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+  for (const n of nodes) {
+    if (n.x < minX) minX = n.x;
+    if (n.x > maxX) maxX = n.x;
+    if (n.y < minY) minY = n.y;
+    if (n.y > maxY) maxY = n.y;
   }
-
-  simAlpha *= 0.995;
+  const bw = Math.max(1, maxX - minX), bh = Math.max(1, maxY - minY);
+  scale = Math.max(0.35, Math.min(1.1, Math.min(W / bw, H / bh) * 0.92));
+  panX = -((minX + maxX) / 2) * scale;
+  panY = -((minY + maxY) / 2) * scale;
 }
 
 // ============================================================
@@ -4054,17 +4036,12 @@ function buildStatsBar() {
 
 function frame() {
   frameCount++;
-  if (simRunning) {
-    // Run multiple sim steps per frame for faster convergence
-    const steps = frameCount < 60 ? 5 : 2;
-    for (let i = 0; i < steps; i++) simulate();
-  }
-
-  // Skip the canvas redraw on phones, where the graph is hidden behind the
-  // list-first view — avoids a perpetual ~60fps no-op redraw draining battery.
+  // Layout is already converged — this loop only paints (hover, selection,
+  // pair-pulse animation, zoom/pan). Skip the redraw on phones, where the
+  // graph is hidden behind the list-first view.
   if (window.innerWidth > 900) draw();
 
-  if (frameCount === 120) {
+  if (frameCount === 10) {
     document.getElementById('loading').classList.add('hidden');
   }
 
@@ -4074,6 +4051,8 @@ function frame() {
 // Init
 resize();
 initPositions();
+runLayout();   // synchronous pre-convergence — first paint is the final layout
+fitView();
 buildSidebar();
 buildLegend();
 buildMobileList();
