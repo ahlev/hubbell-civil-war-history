@@ -1564,13 +1564,6 @@ canvas.grabbing {
   <div id="canvas-wrap">
     <button id="sidebar-toggle" onclick="toggleSidebar()" title="Toggle sidebar">&#9776;</button>
     <button class="page-info-btn" id="pw-info-desktop" aria-label="How the People Web works" title="How the People Web works">i</button>
-    <button id="link-explore-btn" class="visible" onclick="toggleLinkMode()">
-      <svg class="link-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="12" r="3.5"/><circle cx="17" cy="12" r="3.5"/><line x1="10.5" y1="12" x2="13.5" y2="12"/></svg>
-      <div>
-        <div class="link-btn-label">Link &amp; Explore</div>
-        <div class="link-btn-sub">Pick any person to begin</div>
-      </div>
-    </button>
     <canvas id="graph" role="img" aria-label="Network visualization showing relationships between people mentioned in the letters"></canvas>
     <div id="stats-bar"></div>
     <div id="controls">
@@ -3074,9 +3067,10 @@ function hideTooltip() {
 
 // Selection detail
 function selectNode(idx) {
-  // Link mode: second click completes the link
-  if (linkMode && linkSourceNode !== null) {
-    completeLinkMode(idx);
+  // Compare flow (C3): while the person picker is open, clicking a node on
+  // the canvas completes the pair — same outcome as choosing from the list.
+  if (window._pwPicker && _pwPicker.isOpen()) {
+    _pwPicker.choose(idx);
     return;
   }
 
@@ -3142,7 +3136,6 @@ function showPersonDetail(node) {
   const nodeIdx = nodes.indexOf(node);
   let html = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
     <div class="pw-mentions-title" style="margin:0">${nodeDeg(nodeIdx)} connection${nodeDeg(nodeIdx) !== 1 ? 's' : ''} · mentioned in ${sorted.length} letter${sorted.length !== 1 ? 's' : ''}</div>
-    <button class="detail-link-btn" data-link-source="${nodeIdx}" style="background:none;border:1px solid #2D5F8A;border-radius:4px;padding:3px 8px;font-size:11px;color:#2D5F8A;cursor:pointer;font-family:Inter,sans-serif">Link &amp; Explore</button>
   </div>`;
 
   // Mentioned by brothers — chips
@@ -3187,22 +3180,6 @@ function showPersonDetail(node) {
   attachLetterClickHandlers(panel, node.id);
 
   // Wire in-panel Link & Explore button
-  const linkBtn = panel.querySelector('.detail-link-btn');
-  if (linkBtn) {
-    linkBtn.addEventListener('click', () => {
-      const srcIdx = parseInt(linkBtn.dataset.linkSource);
-      if (!isNaN(srcIdx)) {
-        // Hide panel without full closeDetail (which would cancel link mode)
-        document.getElementById('detail-panel').classList.remove('visible');
-        selectedNode = srcIdx;
-        linkSourceNode = srcIdx;
-        linkMode = true;
-        linkedPair = null;
-        canvas.style.cursor = 'crosshair';
-        updateLinkButton();
-      }
-    });
-  }
 }
 
 function showPersonDetailByName(name) {
@@ -3367,7 +3344,6 @@ function showBrotherDetail(node) {
   const brotherIdx = nodes.indexOf(node);
   let html = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
     <div class="pw-mentions-title" style="margin:0">${nodeDeg(brotherIdx)} connection${nodeDeg(brotherIdx) !== 1 ? 's' : ''} · ${_isMother ? `received ${RAW_LETTERS.filter(l => getCanonName(l.recipient||'')==='Mother').length} letters · wrote ${RAW_LETTERS.filter(l => l.author==='mother').length} · named ${peopleMentioned.length} people` : `${peopleMentioned.length} people mentioned across ${RAW_LETTERS.filter(l => l.author === key).length} letters`}</div>
-    <button class="detail-link-btn" data-link-source="${brotherIdx}" style="background:none;border:1px solid #2D5F8A;border-radius:4px;padding:3px 8px;font-size:11px;color:#2D5F8A;cursor:pointer;font-family:Inter,sans-serif">Link &amp; Explore</button>
   </div>`;
   peopleMentioned.forEach((p, _i) => {
     // After the first 20, fold the rest behind a tappable "+ N more" — on mobile
@@ -3391,22 +3367,6 @@ function showBrotherDetail(node) {
   });
 
   // Wire in-panel Link & Explore button
-  const linkBtn = panel.querySelector('.detail-link-btn');
-  if (linkBtn) {
-    linkBtn.addEventListener('click', () => {
-      const srcIdx = parseInt(linkBtn.dataset.linkSource);
-      if (!isNaN(srcIdx)) {
-        // Hide panel without full closeDetail (which would cancel link mode)
-        document.getElementById('detail-panel').classList.remove('visible');
-        selectedNode = srcIdx;
-        linkSourceNode = srcIdx;
-        linkMode = true;
-        linkedPair = null;
-        canvas.style.cursor = 'crosshair';
-        updateLinkButton();
-      }
-    });
-  }
 }
 
 function closeDetail() {
@@ -3482,37 +3442,11 @@ document.addEventListener('click', (e) => {
 // ============================================================
 // LINK & EXPLORE
 // ============================================================
-function updateLinkButton() {
-  const btn = document.getElementById('link-explore-btn');
-  const sub = btn.querySelector('.link-btn-sub');
-  if (linkedPair) { btn.classList.remove('visible', 'active', 'ready'); return; }
-  btn.classList.add('visible');
-  if (linkMode) {
-    const src = nodes[linkSourceNode];
-    btn.classList.add('active');
-    btn.classList.remove('ready');
-    sub.textContent = 'Linking ON — click a second person to connect ' + (src ? src.id.split(' ')[0] : 'them');
-  } else if (selectedNode !== null) {
-    const n = nodes[selectedNode];
-    btn.classList.add('ready');
-    btn.classList.remove('active');
-    sub.textContent = (n ? n.id.split(' ')[0] : 'One') + ' selected — turn this on, then click a second person';
-  } else {
-    btn.classList.remove('active', 'ready');
-    sub.textContent = 'Pick any person to begin';
-  }
-}
-
-function toggleLinkMode() {
-  if (linkMode) {
-    cancelLinkMode();
-  } else if (selectedNode !== null) {
-    linkMode = true;
-    linkSourceNode = selectedNode;
-    canvas.style.cursor = 'crosshair';
-    updateLinkButton();
-  }
-}
+// C3: the hidden link MODE is gone — comparing runs through the person
+// picker ("⇄ Compare with…" in every profile), identical on desktop and
+// mobile; a canvas click while the picker is open also completes the pair.
+// updateLinkButton stays as a no-op shell because legacy call sites remain.
+function updateLinkButton() {}
 
 function cancelLinkMode() {
   linkMode = false;
@@ -3520,18 +3454,6 @@ function cancelLinkMode() {
   linkedPair = null;
   linkPulsePhase = 0;
   canvas.style.cursor = 'grab';
-  updateLinkButton();
-}
-
-function completeLinkMode(targetIdx) {
-  if (targetIdx === linkSourceNode) return; // can't link to self
-  linkMode = false;
-  linkedPair = { a: linkSourceNode, b: targetIdx };
-  selectedNode = null;
-  canvas.style.cursor = 'grab';
-  updateLinkButton();
-  showLinkedPairDetail(linkedPair.a, linkedPair.b);
-  _pwSyncUrl();
 }
 
 function getNameAliases(canonName) {
@@ -4292,21 +4214,29 @@ HubbellDeepLink.enableHistory();
    showLinkedPairDetail() to render the shared-letters relationship view (whose
    letter taps already open the reader). Reuses .mpl-row styling + nodeDeg().    */
 (function () {
-  // 1 — styles (button + picker), scoped to the <=900px experience
+  // 1 — styles. C3: the picker is the UNIVERSAL compare flow now — a
+  // centered dialog + scrim on desktop, a full-screen sheet on phones.
   var css = ''
     + '#mobile-connect-btn{display:none}'
     + '#connect-picker{display:none}'
+    + '#detail-panel.show-connect #mobile-connect-btn{display:block;width:100%;margin:2px 0 12px;padding:11px 14px;'
+    + '  border:1px solid #2D5F8A;border-radius:8px;background:rgba(45,95,138,0.06);color:#2D5F8A;'
+    + '  font:600 13px var(--font-sans,Inter,sans-serif);cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}'
+    + '#detail-panel.show-connect #mobile-connect-btn:hover{background:rgba(45,95,138,0.12)}'
+    + '#detail-panel.show-connect #mobile-connect-btn:active{background:rgba(45,95,138,0.16)}'
+    + '#connect-picker.open{display:flex;flex-direction:column;position:fixed;z-index:3500;'
+    + '  top:50%;left:50%;transform:translate(-50%,-50%);width:400px;max-width:calc(100vw - 32px);max-height:72vh;'
+    + '  background:#FDFBF7;border:1px solid #DDD5C8;border-radius:12px;box-shadow:0 24px 64px rgba(40,32,20,0.32);overflow:hidden}'
+    + '#connect-picker-head{position:sticky;top:0;background:#FDFBF7;border-bottom:1px solid #E5DFD4;padding:10px 14px 12px}'
+    + '#connect-picker-close{background:none;border:none;font:600 14px var(--font-sans,Inter,sans-serif);color:#b06a3b;padding:4px 0;cursor:pointer}'
+    + '#connect-picker-title{font:600 16px var(--font-display,Georgia,serif);margin:6px 0 10px;color:#2C2A26}'
+    + '#connect-picker-search{width:100%;padding:10px 14px;border:1px solid #DDD5C8;border-radius:8px;font-size:14px;background:#FFF;color:#2C2A26}'
+    + '#connect-picker-rows{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}'
+    + '#connect-scrim{display:none;position:fixed;inset:0;z-index:3400;background:rgba(30,24,16,0.35)}'
+    + '#connect-scrim.open{display:block}'
     + '@media (max-width:900px){'
-    + '  #detail-panel.show-connect #mobile-connect-btn{display:block;width:100%;margin:2px 0 12px;padding:12px 14px;'
-    + '    border:1px solid #2D5F8A;border-radius:8px;background:rgba(45,95,138,0.06);color:#2D5F8A;'
-    + '    font:600 14px var(--font-sans);cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}'
-    + '  #detail-panel.show-connect #mobile-connect-btn:active{background:rgba(45,95,138,0.14)}'
-    + '  #connect-picker.open{display:flex;flex-direction:column;position:fixed;inset:0;z-index:3500;background:var(--bg-elev)}'
-    + '  #connect-picker-head{position:sticky;top:0;background:var(--bg-elev);border-bottom:1px solid var(--rule);padding:10px 14px 12px}'
-    + '  #connect-picker-close{background:none;border:none;font:600 15px var(--font-sans);color:var(--accent,#b06a3b);padding:4px 0;cursor:pointer}'
-    + '  #connect-picker-title{font:600 16px var(--font-display,var(--font-serif));margin:6px 0 10px;color:var(--ink)}'
-    + '  #connect-picker-search{width:100%;padding:11px 14px;border:1px solid var(--rule);border-radius:8px;font-size:15px;background:var(--bg);color:var(--ink)}'
-    + '  #connect-picker-rows{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}'
+    + '  #connect-picker.open{top:0;left:0;transform:none;width:100%;max-width:none;max-height:none;height:100%;border-radius:0;border:none}'
+    + '  #detail-panel.show-connect #mobile-connect-btn{font-size:14px;padding:12px 14px}'
     + '}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
@@ -4316,8 +4246,11 @@ HubbellDeepLink.enableHistory();
   if (!panel || !nameEl) return;
   var btn = document.createElement('button');
   btn.id = 'mobile-connect-btn'; btn.type = 'button';
-  btn.textContent = '⇄  See how they connect to…';
+  btn.textContent = '⇄  Compare with…';
   nameEl.insertAdjacentElement('afterend', btn);
+  var scrim = document.createElement('div');
+  scrim.id = 'connect-scrim';
+  document.body.appendChild(scrim);
 
   // 3 — picker overlay (built with DOM methods, no innerHTML)
   var picker = document.createElement('div');
@@ -4365,29 +4298,57 @@ HubbellDeepLink.enableHistory();
   function openPicker(fromIdx) {
     _fromIdx = fromIdx;
     buildRows();
-    titleEl.textContent = 'Connect ' + nodes[fromIdx].id + ' with…';
+    titleEl.textContent = 'Compare ' + nodes[fromIdx].id + ' with…';
     searchEl.value = '';
     filterRows('');
     picker.classList.add('open');
+    scrim.classList.add('open');
     rowsEl.scrollTop = 0;
     setTimeout(function () { try { searchEl.focus(); } catch (e) {} }, 50);
   }
-  function closePicker() { picker.classList.remove('open'); }
+  function closePicker() { picker.classList.remove('open'); scrim.classList.remove('open'); }
   function choose(idx) {
+    if (idx === _fromIdx) return;
     closePicker();
-    selectedNode = idx;
-    showLinkedPairDetail(_fromIdx, idx);   // existing shared-letters view; renders full-screen on mobile
+    // Full pair state so the canvas shows the golden pulse edge + halo pair
+    linkedPair = { a: _fromIdx, b: idx };
+    linkPulsePhase = 0;
+    selectedNode = null;
+    showLinkedPairDetail(_fromIdx, idx);   // existing shared-letters view
+    if (typeof _pwSyncUrl === 'function') _pwSyncUrl();
     if (panel) panel.scrollTop = 0;
   }
 
   searchEl.addEventListener('input', function () { filterRows(searchEl.value); });
   closeBtn.addEventListener('click', closePicker);
+  // Desktop: a click on the scrim that lands on a graph node completes the
+  // pair (the promised "or just click them on the web"); empty space closes.
+  scrim.addEventListener('click', function (e) {
+    try {
+      var cr = canvas.getBoundingClientRect();
+      var mx = e.clientX - cr.left, my = e.clientY - cr.top;
+      if (mx >= 0 && my >= 0 && mx <= cr.width && my <= cr.height) {
+        var hit = getNodeAtPos(mx, my);
+        if (hit !== null && hit !== undefined && hit !== -1) { choose(hit); return; }
+      }
+    } catch (err) {}
+    closePicker();
+  });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && picker.classList.contains('open')) { closePicker(); e.stopPropagation(); }
   });
   btn.addEventListener('click', function () {
     if (selectedNode !== null && selectedNode !== undefined && nodes[selectedNode]) openPicker(selectedNode);
   });
+
+  // Shared surface for the rest of the page: canvas clicks complete the
+  // pair while the picker is open (see selectNode), and future callers can
+  // open the picker for any node.
+  window._pwPicker = {
+    isOpen: function () { return picker.classList.contains('open'); },
+    choose: choose,
+    openFor: openPicker
+  };
 })();
 </script>
 <script>
