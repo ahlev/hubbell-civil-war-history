@@ -554,7 +554,17 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
       </div>
     </div>
   </div>
-  <div class="pv flip" id="pv-web">
+  <div class="pv flip" id="pv-parallel">
+    <div class="pv-grid">
+      <div class="pv-frame"><video src="/experience-v2/assets/teasers/teaser-parallel.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+      <div class="pv-copy" style="--acc:#3E86C4">
+        <div class="pv-ey">Parallel Lives</div>
+        <div class="pv-line">Four lives, one timeline &mdash; every letter in its place.</div>
+        <a class="pv-go" href="/hubbell-dashboard.html">Line up their lives &rarr;</a>
+      </div>
+    </div>
+  </div>
+  <div class="pv" id="pv-web">
     <div class="pv-grid">
       <div class="pv-frame"><video src="/experience-v2/assets/teasers/teaser-web.mp4?v=2" autoplay muted loop playsinline preload="auto"></video></div>
       <div class="pv-copy" style="--acc:#D4A843">
@@ -564,7 +574,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
       </div>
     </div>
   </div>
-  <div class="pv" id="pv-ledger">
+  <div class="pv flip" id="pv-ledger">
     <div class="pv-grid">
       <div class="pv-frame"><video src="/experience-v2/assets/teasers/teaser-ledger.mp4" autoplay muted loop playsinline preload="auto"></video></div>
       <div class="pv-copy" style="--acc:#6BA6B5">
@@ -668,8 +678,8 @@ if(reduced){
   // …,bare-brothers(headline auto-reveals ~3.5s after landing),+alex,+henry,+james,+charles,explore,letters,…,preserve(0.99: glides PAST the text fade-in so a single advance lands on full contrast).
   // MOBILE inserts a 'voices' hold (0.905) inside the Letters scene — on phones it's two-phase (editorial → four voices),
   // so the four voices get their own stop to be read/tapped; desktop shows editorial+voices together and skips that stop.
-  const ANCHORS_D=[0.0,0.056,0.102,0.148,0.191,0.255,0.40,0.535,0.59,0.612,0.634,0.655,0.785,0.885,0.99];  /* +3 preview holds; vista anchor re-seated */
-  const ANCHORS_M=[0.0,0.056,0.102,0.148,0.191,0.255,0.40,0.535,0.59,0.612,0.634,0.655,0.785,0.885,0.905,0.99];
+  const ANCHORS_D=[0.0,0.062,0.101,0.139,0.178,0.218,0.255,0.40,0.535,0.59,0.612,0.634,0.655,0.785,0.885,0.99];  /* 4 preview holds + vista */
+  const ANCHORS_M=[0.0,0.062,0.101,0.139,0.178,0.218,0.255,0.40,0.535,0.59,0.612,0.634,0.655,0.785,0.885,0.905,0.99];
   let ANCHORS=isMobile?ANCHORS_M:ANCHORS_D;
   addEventListener('resize',()=>{ANCHORS=matchMedia('(max-width:760px)').matches?ANCHORS_M:ANCHORS_D;},{passive:true});
   const TRANS=[[0.07,0.095],[0.295,0.345],[0.447,0.489],[0.797,0.855],[0.925,0.946]]; // dawn · cannon-smoke · rain-wash (trimmed dwell) · dusk-embers · fog
@@ -929,7 +939,7 @@ if(reduced){
     const introTitle=clamp((el-2000)/1400,0,1);
     beat(S('b-title'),introTitle*(1-seg(p,0.030,0.042)),18);   /* title fully gone before the preview runway begins */
     S('b-thesis').style.opacity=clamp((el-3600)/1500,0,1).toFixed(3);   // second layer settles ~1.2s after the title (parent opacity fades it on scroll)
-    beat(S('b-vista'),seg(p,0.182,0.200)*(1-seg(p,0.202,0.216)),16);   /* re-seated after the preview runway */     // editorial pre-headline over the sunny vista, BEFORE Alex Pt1 (then a pause)
+    beat(S('b-vista'),seg(p,0.200,0.216)*(1-seg(p,0.220,0.234)),16);   /* re-seated after the 4-panel preview runway */     // editorial pre-headline over the sunny vista, BEFORE Alex Pt1 (then a pause)
     beat(S('b-painting'),seg(p,0.21,0.235)*(1-seg(p,0.285,0.305)),14);  // Alex Part 1 (after the pause)
     beat(S('b-rock'),seg(p,0.35,0.375)*(1-seg(p,0.425,0.44)),14);       // Alex Part 2 over the battle
     brothersSeq(now);
@@ -1027,7 +1037,7 @@ if(reduced){
 (function(){
   var track=document.querySelector('.track');
   if(!track) return;
-  var wins={ 'pv-map':[0.042,0.090], 'pv-web':[0.088,0.136], 'pv-ledger':[0.134,0.182] };
+  var wins={ 'pv-map':[0.042,0.0825], 'pv-parallel':[0.0805,0.121], 'pv-web':[0.119,0.1595], 'pv-ledger':[0.1575,0.198] };
   var IN=0.24, OUT=0.76;
   function off(t){
     if(t<IN){ var u=1-(t/IN); return -64*Math.pow(u,1.7); }
@@ -1065,9 +1075,9 @@ if(reduced){
       var max=track.offsetHeight-window.innerHeight;
       if(max<=0) return;
       var p=(window.scrollY||document.documentElement.scrollTop)/max;
-      if(p<0.034||p>0.190) return;
+      if(p<0.034||p>0.204) return;
       e.preventDefault();
-      var edge=Math.max(0,Math.min((p-0.034)/0.008,(0.190-p)/0.008,1));
+      var edge=Math.max(0,Math.min((p-0.034)/0.008,(0.204-p)/0.008,1));
       var cap=36+(1-edge)*344;
       var mag=Math.min(Math.abs(e.deltaY)*0.85,cap);
       window.scrollBy(0,(e.deltaY<0?-mag:mag));
