@@ -456,7 +456,13 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
         <h1>The Hubbell <em>Brothers</em></h1>
         <p class="distance">Four brothers. Four years of war. Two hundred and seventy-two letters across the distance between them.</p>
         <div class="hero-thesis" id="b-thesis">
-          <h3 class="identity">This rare family collection has been brought to life by a descendant, using modern data science and interactive technology. Their words, their connections, and the humanity of experiencing the war, <em>brought to life in ways the letters alone never could before&hellip;</em></h3>
+          <div class="ring-row">
+            <span class="pring" style="--c:#5A8BC4"><img src="/experience-v2/assets/brothers/web/window-henry-v1.webp" alt="Henry"></span>
+            <span class="pring" style="--c:#D4A843"><img src="/experience-v2/assets/brothers/web/window-alexander-fav.webp" alt="Alexander"></span>
+            <span class="pring" style="--c:#6BAF6B"><img src="/experience-v2/assets/brothers/web/window-james-v2.webp" alt="James"></span>
+            <span class="pring" style="--c:#C46A5A"><img src="/experience-v2/assets/brothers/web/window-charles-v1.webp" alt="Charles"></span>
+          </div>
+          <h3 class="identity ring-line">Two came home. Their words became an archive &mdash;<br><em>and the archive became something you can walk through.</em></h3>
         </div>
       </div>
       <!-- editorial pre-headline over the sunny vista, before Alexander's Part 1 -->
@@ -533,6 +539,42 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 </div>
 
 <!-- progress indicator + persistent CTA -->
+<!-- ===== Preview runway: living teasers of the three signature interactives,
+     locally screen-recorded. Scroll carries each panel through the frame
+     (left-right on desktop, rising on phones) with a held center beat; the
+     footage loops on its own clock at any scroll speed. ===== -->
+<div class="pv-runway" id="pvrunway">
+  <div class="pv" id="pv-map">
+    <div class="pv-grid">
+      <div class="pv-frame"><video src="/experience-v2/assets/teasers/teaser-map.mp4?v=2" autoplay muted loop playsinline preload="auto"></video></div>
+      <div class="pv-copy" style="--acc:#52A86E">
+        <div class="pv-ey">A Map That Moves</div>
+        <div class="pv-line">Follow them day by day, across the whole war.</div>
+        <a class="pv-go" href="/viz-map-fullwar.html">Press play on their war &rarr;</a>
+      </div>
+    </div>
+  </div>
+  <div class="pv flip" id="pv-web">
+    <div class="pv-grid">
+      <div class="pv-frame"><video src="/experience-v2/assets/teasers/teaser-web.mp4?v=2" autoplay muted loop playsinline preload="auto"></video></div>
+      <div class="pv-copy" style="--acc:#D4A843">
+        <div class="pv-ey">The People Web</div>
+        <div class="pv-line">Everyone they ever named &mdash; and how they connect.</div>
+        <a class="pv-go" href="/viz-people-web.html">See who they knew &rarr;</a>
+      </div>
+    </div>
+  </div>
+  <div class="pv" id="pv-ledger">
+    <div class="pv-grid">
+      <div class="pv-frame"><video src="/experience-v2/assets/teasers/teaser-ledger.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+      <div class="pv-copy" style="--acc:#6BA6B5">
+        <div class="pv-ey">The Wellness Ledger</div>
+        <div class="pv-line">What the war did to their bodies &mdash; in their own words.</div>
+        <a class="pv-go" href="/viz-health-ledger.html">Open the ledger &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="scrollind" id="ind">
   <!-- one compact horizontal cluster: mouse (slightly left, a touch bigger)
        with the up/down affordances small and in line — was a tall stack that
@@ -608,7 +650,7 @@ const SEG={tent:[0,0.07],dawn:[0.07,0.095],valley:[0.095,0.30],smoke:[0.30,0.34]
 const scenes={'s-tent':[0,0.10],'s-valley':[0.07,0.34],'s-battle':[0.30,0.495],'s-brothers':[0.46,0.725],
   's-explore':[0.69,0.86],'s-letters':[0.83,0.945],'s-preserve':[0.925,1.00]};
 /* beat boundaries for the progress ring (start of each major beat) */
-const BEATS=[0,0.095,0.34,0.495,0.725,0.855,0.945,1.0];
+const BEATS=[0,0.102,0.34,0.495,0.725,0.855,0.945,1.0];  /* checkpoint 2 = the preview runway */
 
 if(reduced){
   document.querySelectorAll('.scene video').forEach(v=>{v.src=v.dataset.src;v.play().catch(()=>{});});
@@ -626,8 +668,8 @@ if(reduced){
   // …,bare-brothers(headline auto-reveals ~3.5s after landing),+alex,+henry,+james,+charles,explore,letters,…,preserve(0.99: glides PAST the text fade-in so a single advance lands on full contrast).
   // MOBILE inserts a 'voices' hold (0.905) inside the Letters scene — on phones it's two-phase (editorial → four voices),
   // so the four voices get their own stop to be read/tapped; desktop shows editorial+voices together and skips that stop.
-  const ANCHORS_D=[0.0,0.155,0.255,0.40,0.535,0.59,0.612,0.634,0.655,0.785,0.885,0.99];
-  const ANCHORS_M=[0.0,0.155,0.255,0.40,0.535,0.59,0.612,0.634,0.655,0.785,0.885,0.905,0.99];
+  const ANCHORS_D=[0.0,0.056,0.102,0.148,0.191,0.255,0.40,0.535,0.59,0.612,0.634,0.655,0.785,0.885,0.99];  /* +3 preview holds; vista anchor re-seated */
+  const ANCHORS_M=[0.0,0.056,0.102,0.148,0.191,0.255,0.40,0.535,0.59,0.612,0.634,0.655,0.785,0.885,0.905,0.99];
   let ANCHORS=isMobile?ANCHORS_M:ANCHORS_D;
   addEventListener('resize',()=>{ANCHORS=matchMedia('(max-width:760px)').matches?ANCHORS_M:ANCHORS_D;},{passive:true});
   const TRANS=[[0.07,0.095],[0.295,0.345],[0.447,0.489],[0.797,0.855],[0.925,0.946]]; // dawn · cannon-smoke · rain-wash (trimmed dwell) · dusk-embers · fog
@@ -885,9 +927,9 @@ if(reduced){
 
     // text beats — wide windows so each settles & reads
     const introTitle=clamp((el-2000)/1400,0,1);
-    beat(S('b-title'),introTitle*(1-seg(p,0.055,0.085)),18);
+    beat(S('b-title'),introTitle*(1-seg(p,0.030,0.042)),18);   /* title fully gone before the preview runway begins */
     S('b-thesis').style.opacity=clamp((el-3600)/1500,0,1).toFixed(3);   // second layer settles ~1.2s after the title (parent opacity fades it on scroll)
-    beat(S('b-vista'),seg(p,0.115,0.14)*(1-seg(p,0.175,0.195)),16);     // editorial pre-headline over the sunny vista, BEFORE Alex Pt1 (then a pause)
+    beat(S('b-vista'),seg(p,0.182,0.200)*(1-seg(p,0.202,0.216)),16);   /* re-seated after the preview runway */     // editorial pre-headline over the sunny vista, BEFORE Alex Pt1 (then a pause)
     beat(S('b-painting'),seg(p,0.21,0.235)*(1-seg(p,0.285,0.305)),14);  // Alex Part 1 (after the pause)
     beat(S('b-rock'),seg(p,0.35,0.375)*(1-seg(p,0.425,0.44)),14);       // Alex Part 2 over the battle
     brothersSeq(now);
@@ -936,6 +978,102 @@ if(reduced){
     t+=0.016;p+=(target-p)*(isMobile?0.12:0.085);mx+=(tmx-mx)*0.06;my+=(tmy-my)*0.06;lazy();apply(now);drawEmbers();updateBeatRail();requestAnimationFrame(frame);}
   lazy();apply(performance.now());requestAnimationFrame(frame);
 }
+</script>
+<style>
+/* ===== Scene-1 additions: portrait rings + preview runway ===== */
+.ring-row{display:flex;gap:clamp(10px,2.6vw,26px);justify-content:center;margin-bottom:18px}
+.pring{width:clamp(58px,7.5vw,92px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:2px solid var(--c);box-shadow:0 0 26px color-mix(in srgb,var(--c) 38%,transparent),inset 0 0 0 1.5px rgba(255,255,255,.16);opacity:0;transform:translateY(16px);animation:pring-in .8s ease forwards}
+.pring:nth-child(1){animation-delay:.15s}.pring:nth-child(2){animation-delay:.3s}.pring:nth-child(3){animation-delay:.45s}.pring:nth-child(4){animation-delay:.6s}
+@keyframes pring-in{to{opacity:1;transform:none}}
+.pring img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;filter:saturate(.92)}
+.ring-line{margin-top:2px}
+.pv-runway{position:fixed;inset:0;z-index:30;pointer-events:none}
+.pv{position:absolute;left:50%;top:50%;width:min(81vw,1165px);opacity:0;transform:translate(-50%,-50%)}
+.pv-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,1fr);gap:clamp(24px,4.4vw,60px);align-items:center}
+.pv.flip .pv-grid{grid-template-columns:minmax(260px,1fr) minmax(0,1.35fr)}
+.pv.flip .pv-frame{order:2}
+.pv-frame{border-radius:11px;overflow:hidden;box-shadow:0 34px 100px rgba(0,0,0,.62),0 0 0 1px rgba(245,240,232,.10);transition:box-shadow .4s ease}
+.pv-frame video{width:100%;display:block}
+.pv-ey{font:800 12px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--acc,#D4A843);margin-bottom:11px}
+.pv-line{font-family:'Source Serif 4',Georgia,serif;font-weight:600;font-size:clamp(1.2rem,2.4vw,1.75rem);line-height:1.3;color:#F7F0E2;text-shadow:0 2px 14px rgba(8,9,12,.85);max-width:24ch}
+.pv-go{display:inline-flex;align-items:center;gap:8px;margin-top:20px;color:#F5F0E8;text-decoration:none;font:600 14px Inter,sans-serif;letter-spacing:.06em;border:1px solid rgba(245,240,232,.32);border-radius:999px;padding:11px 22px;background:rgba(10,11,15,.42);backdrop-filter:blur(2px);transition:border-color .2s,color .2s,background .2s,transform .2s;pointer-events:auto}
+.pv-go:hover{background:var(--acc,#D4A843);border-color:var(--acc,#D4A843);color:#141210;transform:translateX(3px)}
+.pv.hold .pv-go{animation:ctaglow 2.6s ease-in-out infinite;
+  border-color:color-mix(in srgb,var(--acc,#D4A843) 75%,rgba(245,240,232,.32));
+  color:#FFF;background:color-mix(in srgb,var(--acc,#D4A843) 14%,rgba(10,11,15,.42))}
+.pv.hold .pv-go:hover{background:var(--acc,#D4A843);color:#141210}
+@keyframes ctaglow{
+  0%,100%{box-shadow:0 0 10px 1px color-mix(in srgb,var(--acc,#D4A843) 25%,transparent),0 3px 14px rgba(0,0,0,.4)}
+  50%{box-shadow:0 0 34px 7px color-mix(in srgb,var(--acc,#D4A843) 62%,transparent),0 0 70px 16px color-mix(in srgb,var(--acc,#D4A843) 24%,transparent),0 3px 14px rgba(0,0,0,.4)}}
+.pv.hold .pv-frame{box-shadow:0 40px 120px rgba(0,0,0,.68),0 0 0 1px rgba(245,240,232,.16)}
+/* Phones/portrait tablets: panels become full-width stacked cards that RISE
+   through the frame — footage on top, centered copy + CTA beneath */
+@media (max-width:880px){
+  .pv{width:min(92vw,560px);top:47%}
+  .pv-grid,.pv.flip .pv-grid{display:flex;flex-direction:column;gap:14px}
+  .pv.flip .pv-frame{order:0}
+  .pv-copy{display:flex;flex-direction:column;align-items:center;text-align:center}
+  .pv-ey{font-size:11px;margin-bottom:7px}
+  .pv-line{font-size:1.08rem;max-width:30ch}
+  .pv-go{margin-top:13px;padding:11px 20px;font-size:13px;min-height:44px;align-items:center}
+}
+</style>
+<script>
+/* Preview runway drive: each panel owns a scroll window between the title
+   beat's exit and the vista's entrance. Position comes from SCROLL, motion
+   inside the footage comes from TIME. Desktop slides left-to-right with a
+   wheel-normalized runway (30-36px per click); phones rise vertically and
+   pace via the swipe-snap anchors instead. */
+(function(){
+  var track=document.querySelector('.track');
+  if(!track) return;
+  var wins={ 'pv-map':[0.042,0.090], 'pv-web':[0.088,0.136], 'pv-ledger':[0.134,0.182] };
+  var IN=0.24, OUT=0.76;
+  function off(t){
+    if(t<IN){ var u=1-(t/IN); return -64*Math.pow(u,1.7); }
+    if(t>OUT){ var u=(t-OUT)/(1-OUT); return 64*Math.pow(u,1.7); }
+    return 0;
+  }
+  function drive(){
+    var narrow=window.innerWidth<=880;
+    var max=track.offsetHeight-window.innerHeight;
+    var p=max>0?Math.max(0,Math.min(1,(window.scrollY||document.documentElement.scrollTop)/max)):0;
+    for(var id in wins){
+      var el=document.getElementById(id); if(!el) continue;
+      var w=wins[id], t=(p-w[0])/(w[1]-w[0]);
+      if(t<=0||t>=1){ el.style.opacity=0; el.style.pointerEvents='none'; el.classList.remove('hold'); el.style.filter=''; continue; }
+      var o=off(t);
+      var h=Math.min(1, Math.max(0,(t-(IN-0.10))/0.10), Math.max(0,((OUT+0.10)-t)/0.10));
+      var fade=Math.min(t/0.14,(1-t)/0.14,1);
+      el.classList.toggle('hold', t>=IN-0.02 && t<=OUT+0.02);
+      el.style.opacity=fade.toFixed(3);
+      el.style.pointerEvents=h>0.5?'auto':'none';
+      el.style.filter=(!narrow&&h<0.98)?('blur('+((1-h)*3.2).toFixed(2)+'px)'):'';
+      var move=narrow?('translateY('+(o*0.55).toFixed(2)+'vh)'):('translateX('+o.toFixed(2)+'vw)');
+      el.style.transform='translate(-50%,-50%) '+move+' scale('+(0.94+0.09*h).toFixed(3)+')';
+    }
+    requestAnimationFrame(drive);
+  }
+  requestAnimationFrame(drive);
+
+  /* Wheel normalization inside the runway (fine-pointer devices only):
+     capped advance per click so every mouse takes ~30+ deliberate clicks
+     per panel; native scroll resumes outside with softened edges. */
+  if(matchMedia('(pointer:fine)').matches){
+    addEventListener('wheel', function (e) {
+      if(window.innerWidth<=880) return;
+      var max=track.offsetHeight-window.innerHeight;
+      if(max<=0) return;
+      var p=(window.scrollY||document.documentElement.scrollTop)/max;
+      if(p<0.034||p>0.190) return;
+      e.preventDefault();
+      var edge=Math.max(0,Math.min((p-0.034)/0.008,(0.190-p)/0.008,1));
+      var cap=36+(1-edge)*344;
+      var mag=Math.min(Math.abs(e.deltaY)*0.85,cap);
+      window.scrollBy(0,(e.deltaY<0?-mag:mag));
+    }, { passive:false });
+  }
+})();
 </script>
 </body>
 </html>
