@@ -1492,6 +1492,39 @@ canvas.grabbing {
   margin-top: 6px;
 }
 
+/* ── On-graph compare CTA: glowing invitation once a person is selected;
+   armed state = candidate nodes pulse gold on the web ── */
+#pw-connect-cta {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 70;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(184, 134, 11, 0.6);
+  background: rgba(253, 251, 247, 0.88);
+  color: #7A5B10;
+  font: 600 13px Inter, sans-serif;
+  letter-spacing: 0.02em;
+  padding: 11px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 4px 18px rgba(40, 32, 20, 0.16);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+#pw-connect-cta.show { display: inline-flex; animation: pwcta 2.4s ease-in-out infinite; }
+#pw-connect-cta:hover { background: rgba(184, 134, 11, 0.16); }
+#pw-connect-cta.armed { background: #2E2A26; color: #F5E9C8; border-color: #B8860B; animation-duration: 1.6s; }
+@keyframes pwcta {
+  0%, 100% { box-shadow: 0 0 8px 1px rgba(184, 134, 11, 0.22), 0 4px 18px rgba(40, 32, 20, 0.16); }
+  50% { box-shadow: 0 0 26px 6px rgba(184, 134, 11, 0.5), 0 4px 18px rgba(40, 32, 20, 0.16); }
+}
+@media (max-width: 900px) { #pw-connect-cta { display: none !important; } }
+
 /* ── C2: single Filters popover ─────────────────────────────────────── */
 #pw-filters-pop {
   display: none;
@@ -1695,6 +1728,10 @@ canvas.grabbing {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
       </button>
     </div>
+    <!-- Visual compare flow: appears when one person is selected; arming it
+         makes every valid partner glow on the web — click one to connect.
+         (The in-panel "Compare with…" picker remains the other path.) -->
+    <button id="pw-connect-cta" type="button" aria-live="polite"></button>
     <!-- C2: ALL graph filters live in one popover — category chips, minimum
          mentions, date range, and the color legend. The originals were four
          separate always-on overlays competing for canvas space. -->
@@ -2328,6 +2365,10 @@ let linkMode = false;       // waiting for second node pick
 let linkSourceNode = null;  // index of first selected node
 let linkedPair = null;      // {a: idx, b: idx} when two nodes are linked
 let linkPulsePhase = 0;     // animation phase for edge pulse
+// On-graph compare flow: armed via the glowing CTA; valid partners pulse
+let connectSelectMode = false;
+let connectSource = null;
+let connectCandidates = null;  // Set of node indices sharing >=1 letter with the source
 // Layout is pre-converged synchronously at init (see runLayout) — these
 // stay false/0 so anything that used to wait for settling proceeds at once.
 let simRunning = false;
@@ -2617,6 +2658,16 @@ function draw() {
       }
     }
     linkPulsePhase += 0.03;
+  } else if (connectSelectMode && connectSource !== null) {
+    // Armed compare mode: the source + every valid partner light up;
+    // everything else recedes. Candidates get a pulsing gold ring below.
+    highlightSet.add(connectSource);
+    if (connectCandidates) connectCandidates.forEach(ci => highlightSet.add(ci));
+    for (let i = 0; i < edges.length; i++) {
+      const e = edges[i];
+      if (e.source === connectSource || e.target === connectSource) highlightEdges.add(i);
+    }
+    linkPulsePhase += 0.045;
   } else if (searchQuery && searchMatchSet.size > 0) {
     // Add all search matches to highlight set
     for (const idx of searchMatchSet) {
@@ -2803,6 +2854,16 @@ function draw() {
         ctx.lineWidth = 1.6;
         ctx.stroke();
       }
+    }
+
+    // Armed compare mode: valid partners wear a gently pulsing gold ring
+    if (!dimmed && connectSelectMode && connectCandidates && connectCandidates.has(i) && i !== connectSource) {
+      const ph = linkPulsePhase * 2 + i * 0.7;
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius + 4.5 + Math.sin(ph) * 1.6, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(184,134,11,' + (0.45 + 0.25 * Math.sin(ph)).toFixed(3) + ')';
+      ctx.lineWidth = 1.7;
+      ctx.stroke();
     }
 
     // ── Labels ──
@@ -3188,6 +3249,16 @@ function hideTooltip() {
 
 // Selection detail
 function selectNode(idx) {
+  // On-graph compare: armed mode — clicking a glowing candidate completes
+  // the pair; clicks elsewhere keep the mode (Escape / the CTA cancel it).
+  if (connectSelectMode) {
+    if (idx !== connectSource && connectCandidates && connectCandidates.has(idx)) {
+      const src = connectSource;
+      exitConnectMode();
+      _pwPicker.pair(src, idx);
+    }
+    return;
+  }
   // Compare flow (C3): while the person picker is open, clicking a node on
   // the canvas completes the pair — same outcome as choosing from the list.
   if (window._pwPicker && _pwPicker.isOpen()) {
@@ -3216,6 +3287,7 @@ function selectNode(idx) {
     showPersonDetail(node);
   }
   updateLinkButton();
+  updateConnectCta();
   _pwSyncUrl();
 }
 
@@ -3550,7 +3622,8 @@ function closeDetail() {
   document.getElementById('detail-panel').classList.remove('visible', 'show-connect');
   var _cp = document.getElementById('connect-picker'); if (_cp) _cp.classList.remove('open');  // mobile connect picker
   selectedNode = null;
-  cancelLinkMode();
+  cancelLinkMode();   // also exits on-graph compare mode + hides the CTA
+  updateConnectCta();
 }
 
 // ── Mobile list-first view (item 6) ──────────────────────────────────
@@ -3631,7 +3704,41 @@ function cancelLinkMode() {
   linkedPair = null;
   linkPulsePhase = 0;
   canvas.style.cursor = 'grab';
+  exitConnectMode();
 }
+
+// ── On-graph compare CTA ────────────────────────────────────────────
+function exitConnectMode() {
+  connectSelectMode = false;
+  connectSource = null;
+  connectCandidates = null;
+  updateConnectCta();
+}
+
+function updateConnectCta() {
+  const cta = document.getElementById('pw-connect-cta');
+  if (!cta) return;
+  const show = selectedNode !== null && selectedNode !== undefined && !linkedPair && nodes[selectedNode];
+  cta.classList.toggle('show', !!show);
+  cta.classList.toggle('armed', connectSelectMode);
+  if (show) {
+    const first = nodes[selectedNode !== null && connectSource !== null ? connectSource : selectedNode].id.split(' ')[0];
+    cta.textContent = connectSelectMode
+      ? '✕  Click anyone glowing to compare with ' + first + ' — or tap here to cancel'
+      : '⇄  Compare ' + first + ' with someone — right here on the web';
+  }
+}
+
+document.getElementById('pw-connect-cta').addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (connectSelectMode) { exitConnectMode(); return; }
+  if (selectedNode === null || linkedPair) return;
+  connectSelectMode = true;
+  connectSource = selectedNode;
+  const counts = computeSharedCounts(connectSource);
+  connectCandidates = new Set(Object.keys(counts).map(Number).filter(i => counts[i] > 0));
+  updateConnectCta();
+});
 
 function getNameAliases(canonName) {
   const SKIP_WORDS = new Set(['hubbell', 'mrs', 'gen', 'capt', 'lieut', 'colonel', 'uncle', 'aunt', 'cousin']);
@@ -4077,10 +4184,16 @@ document.addEventListener('keydown', (e) => {
     if (HubbellReader.isOpen()) {
       HubbellReader.close();
       e.stopPropagation();
+    } else if (connectSelectMode) {
+      // armed on-graph compare: Escape backs out of the mode only —
+      // the person stays selected with their panel open
+      exitConnectMode();
+      e.stopPropagation();
     } else if (linkMode || linkedPair) {
       cancelLinkMode();
       document.getElementById('detail-panel').classList.remove('visible');
       selectedNode = null;
+      updateConnectCta();
       e.stopPropagation();
     }
   }
@@ -4467,11 +4580,12 @@ HubbellDeepLink.enableHistory();
   var css = ''
     + '#mobile-connect-btn{display:none}'
     + '#connect-picker{display:none}'
-    + '#detail-panel.show-connect #mobile-connect-btn{display:block;width:100%;margin:2px 0 12px;padding:11px 14px;'
-    + '  border:1px solid #2D5F8A;border-radius:8px;background:rgba(45,95,138,0.06);color:#2D5F8A;'
-    + '  font:600 13px var(--font-sans,Inter,sans-serif);cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}'
-    + '#detail-panel.show-connect #mobile-connect-btn:hover{background:rgba(45,95,138,0.12)}'
-    + '#detail-panel.show-connect #mobile-connect-btn:active{background:rgba(45,95,138,0.16)}'
+    + '#detail-panel.show-connect #mobile-connect-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin:6px 0 14px;padding:11px 16px;'
+    + '  border:1px solid rgba(184,134,11,0.55);border-radius:999px;background:rgba(184,134,11,0.10);color:#7A5B10;'
+    + '  font:600 13px var(--font-sans,Inter,sans-serif);cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;'
+    + '  box-shadow:0 2px 10px rgba(40,32,20,0.08);transition:background .2s,border-color .2s}'
+    + '#detail-panel.show-connect #mobile-connect-btn:hover{background:rgba(184,134,11,0.18);border-color:rgba(184,134,11,0.8)}'
+    + '#detail-panel.show-connect #mobile-connect-btn:active{background:rgba(184,134,11,0.24)}'
     + '#connect-picker.open{display:flex;flex-direction:column;position:fixed;z-index:3500;'
     + '  top:50%;left:50%;transform:translate(-50%,-50%);width:400px;max-width:calc(100vw - 32px);max-height:72vh;'
     + '  background:#FDFBF7;border:1px solid #DDD5C8;border-radius:12px;box-shadow:0 24px 64px rgba(40,32,20,0.32);overflow:hidden}'
@@ -4571,6 +4685,7 @@ HubbellDeepLink.enableHistory();
     selectedNode = null;
     showLinkedPairDetail(_fromIdx, idx);   // existing shared-letters view
     if (typeof _pwSyncUrl === 'function') _pwSyncUrl();
+    if (typeof updateConnectCta === 'function') updateConnectCta();
     if (panel) panel.scrollTop = 0;
   }
 
@@ -4602,7 +4717,9 @@ HubbellDeepLink.enableHistory();
   window._pwPicker = {
     isOpen: function () { return picker.classList.contains('open'); },
     choose: choose,
-    openFor: openPicker
+    openFor: openPicker,
+    // Direct pairing for the on-graph compare flow (no picker UI involved)
+    pair: function (fromIdx, idx) { _fromIdx = fromIdx; choose(idx); }
   };
 })();
 </script>
