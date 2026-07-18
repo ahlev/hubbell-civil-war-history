@@ -1384,6 +1384,77 @@ canvas.grabbing {
   margin: 10px 0 4px;
 }
 
+/* ── Pair-view refinements (user notes 2026-07-17) ─────────────────── */
+/* Relationship band freezes to the top of the panel while the feed scrolls */
+.link-context {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  background: #FDFBF7;
+  box-shadow: 0 6px 14px -8px rgba(40, 32, 20, 0.25);
+}
+/* Via chips are toggles now */
+.via-chip { cursor: pointer; font: inherit; transition: opacity 0.15s, filter 0.15s; }
+.via-chip:not(.active) { opacity: 0.32; filter: saturate(0.3); }
+.via-chip:hover { filter: brightness(0.95); }
+/* Correspondence / Co-mentions toggles */
+.pair-type-toggles { display: flex; gap: 6px; margin: 2px 0 10px; }
+.ptt {
+  border: 1px solid #D8D2C6;
+  border-radius: 999px;
+  background: #F6F2EA;
+  color: #6B6358;
+  font: 600 11px Inter, sans-serif;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.ptt span { opacity: 0.65; font-weight: 700; margin-left: 3px; }
+.ptt.active { background: #2E2A26; border-color: #2E2A26; color: #F5F0E8; }
+.ptt:not(.active):hover { border-color: #B8A88E; }
+/* Condensed, uniform letter cards with a real hover affordance */
+.pair-letter { cursor: pointer; padding: 9px 11px; transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s; }
+.pair-letter:hover {
+  border-color: var(--rail-accent, #8A6D3B);
+  box-shadow: 0 3px 12px rgba(40, 32, 20, 0.10);
+  transform: translateY(-1px);
+}
+.pair-letter .excerpt-view-link { margin-left: auto; opacity: 0.45; transition: opacity 0.15s; white-space: nowrap; }
+.pair-letter:hover .excerpt-view-link { opacity: 1; text-decoration: underline; }
+.pair-letter .excerpt-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.pair-letter-summary {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #4A4640;
+  margin-top: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* Bios read prominently — single view and compare cards */
+.pw-person-summary {
+  font-family: 'Source Serif 4', Georgia, serif !important;
+  font-size: 0.88rem !important;
+  line-height: 1.55 !important;
+  color: #3D3935 !important;
+  border-left: 3px solid var(--rail-accent, #C9B48A);
+  padding-left: 10px;
+  margin: 10px 0 12px;
+}
+.link-portrait-summary {
+  font-family: 'Source Serif 4', Georgia, serif !important;
+  font-size: 0.82rem !important;
+  line-height: 1.5 !important;
+  color: #3D3935 !important;
+  display: block !important;
+  max-height: none !important;
+  -webkit-line-clamp: unset !important;
+  overflow: visible !important;
+  margin-top: 6px;
+}
+
 /* ── C2: single Filters popover ─────────────────────────────────────── */
 #pw-filters-pop {
   display: none;
@@ -3537,6 +3608,43 @@ function lookupProfile(node) {
   return idx !== undefined ? OVERLAY_PEOPLE_PROFILES[idx] : null;
 }
 
+// A node "appears" in a letter if it's mentioned, is the brother who wrote
+// or received it, or — for Frances — she authored it or it resolves to her
+// as recipient ('Mother'). People-less letters still count: a son's letter
+// home connects him to Frances even when it names no one.
+function nodePresentInLetter(node, letter) {
+  const pNames = (letter.people || []).map(p => getCanonName(p.name));
+  const recipCanon = getCanonName(letter.recipient || '');
+  if (pNames.includes(node.id)) return true;
+  if (node.isBrother) return letter.author === node.brotherKey || recipCanon === node.id;
+  if (node.isMother) return letter.author === 'mother' || recipCanon === 'Mother';
+  return recipCanon === node.id;
+}
+
+// For the compare picker: how many letters connect `fromIdx` to every other
+// node — the same "shared letters" number the pair view reports, so the
+// picker's counts and the destination view always agree.
+function computeSharedCounts(fromIdx) {
+  const from = nodes[fromIdx];
+  const counts = {};
+  RAW_LETTERS.forEach(letter => {
+    if (!nodePresentInLetter(from, letter)) return;
+    const present = new Set();
+    (letter.people || []).forEach(p => {
+      const i = nodeIndex[getCanonName(p.name)];
+      if (i !== undefined) present.add(i);
+    });
+    const bCanon = BROTHER_CANON[letter.author];
+    if (bCanon && nodeIndex[bCanon] !== undefined) present.add(nodeIndex[bCanon]);
+    if (letter.author === 'mother') present.add(motherIdx);
+    const rc = getCanonName(letter.recipient || '');
+    const rIdx = rc === 'Mother' ? motherIdx : nodeIndex[rc];
+    if (rIdx !== undefined) present.add(rIdx);
+    present.forEach(i => { if (i !== fromIdx) counts[i] = (counts[i] || 0) + 1; });
+  });
+  return counts;
+}
+
 // C4: shared-letters evidence uses the site-wide .rc collapsible contract
 // (_overlay.css styles + _overlay.js document-level toggle + the sticky
 // hubReaderCollapse pref). Defaults EXPANDED here — the letters are the
@@ -3611,7 +3719,8 @@ function buildRelationshipContext(nodeA, nodeB, sharedLetters) {
       const isMom = key === 'mother';
       const color = isMom ? '#7B5EA7' : (BROTHER_COLORS[key] || '#9B9B9B');
       const label = isMom ? 'Frances' : BROTHER_NAMES[key];
-      chips += `<span class="detail-brother-chip" style="background:${hexToRgba(color, 0.12)};color:${color}">${label}: ${c}</span> `;
+      // Clickable filter: toggling a via-chip narrows the letter feed below
+      chips += `<button type="button" class="detail-brother-chip via-chip active" data-via="${key}" style="background:${hexToRgba(color, 0.12)};color:${color};border:1px solid ${hexToRgba(color, 0.3)}" title="Show/hide the letters ${label} wrote">${label}: ${c}</button> `;
     }
     html += `<div class="link-context-row">
       <span class="link-context-label">Via</span>
@@ -3681,23 +3790,12 @@ async function showLinkedPairDetail(idxA, idxB) {
   const _prevSummaryLink = panel.querySelector('.pw-person-summary');
   if (_prevSummaryLink) _prevSummaryLink.remove();
 
-  // Find shared letters (where both appear). A node "appears" if it's mentioned,
-  // is the brother who wrote/received it, or — for Frances — she authored it or
-  // it resolves to her as recipient ('Mother'). Don't skip people-less letters:
-  // a son's letter home connects him to Frances even if it names no one.
+  // Find shared letters (where both appear) — see nodePresentInLetter for
+  // the "appears" rules (mention / brother wrote-received / Frances rules).
   const sharedLetters = [];
   const seen = new Set();
   RAW_LETTERS.forEach(letter => {
-    const author = letter.author;
-    const pNames = (letter.people || []).map(p => getCanonName(p.name));
-    const recipCanon = getCanonName(letter.recipient || '');
-    const present = (node, name) => {
-      if (pNames.includes(name)) return true;
-      if (node.isBrother) return author === node.brotherKey || recipCanon === name;
-      if (node.isMother) return author === 'mother' || recipCanon === 'Mother';
-      return recipCanon === name;
-    };
-    if (present(nodeA, nameA) && present(nodeB, nameB) && !seen.has(letter.id)) {
+    if (nodePresentInLetter(nodeA, letter) && nodePresentInLetter(nodeB, letter) && !seen.has(letter.id)) {
       seen.add(letter.id);
       sharedLetters.push(letter);
     }
@@ -3718,7 +3816,8 @@ async function showLinkedPairDetail(idxA, idxB) {
     ? '<div class="detail-timeline-wrap">' + buildMiniTimeline(sharedLetters) + '</div>'
     : '';
 
-  // Build excerpt cards
+  // Build letter cards
+  let _corrCount = 0, _mentCount = 0;
   for (const l of sharedLetters) {
     const color = BROTHER_COLORS[l.author] || '#9B9B9B';
     const authorFirst = l.authorName || l.author;
@@ -3735,44 +3834,40 @@ async function showLinkedPairDetail(idxA, idxB) {
     const typeLabel = isCorrespondence ? 'Correspondent' : 'Mentioned';
     const typeClass = isCorrespondence ? 'correspondent' : 'mentioned';
 
-    // Extract relevant excerpts from transcription
+    // Uniform context (user notes 2026-07-17): every letter shows its
+    // editorial summary — a consistent card rhythm instead of the old mix of
+    // zero-to-three variable excerpts. Excerpt fallback only when a letter
+    // has no summary; the full letter is one click away in the reader.
     const full = FULL_LETTERS[l.id];
-    const searchName = nodeA.isBrother ? nameB : (nodeB.isBrother ? nameA :
-      // For two non-brothers, search for both
-      null);
-
-    let excerptHtml = '';
-    if (full && full.transcription) {
-      let excerpts = [];
-      if (searchName) {
-        excerpts = extractExcerpts(full.transcription, searchName);
-      } else {
-        // Two non-brothers: search for both, deduplicate
-        const exA = extractExcerpts(full.transcription, nameA);
-        const exB = extractExcerpts(full.transcription, nameB);
-        const combined = new Set([...exA, ...exB]);
-        excerpts = [...combined].slice(0, 3);
-      }
-      for (const ex of excerpts) {
-        const highlighted = searchName ? highlightName(ex, searchName) :
-          highlightName(highlightName(ex, nameA), nameB, true);
-        excerptHtml += `<div class="excerpt-text">${highlighted}</div>`;
-      }
+    const summary = full ? (full.sigSummary || full.significance || '') : '';
+    let contextHtml = '';
+    if (summary && summary.length > 8) {
+      contextHtml = `<div class="pair-letter-summary">${escapeHtml(summary)}</div>`;
+    } else if (full && full.transcription) {
+      const searchName = nodeA.isBrother ? nameB : (nodeB.isBrother ? nameA : nameA);
+      const ex = extractExcerpts(full.transcription, searchName);
+      if (ex.length) contextHtml = `<div class="pair-letter-summary">“${highlightName(ex[0], searchName)}”</div>`;
     }
 
-    evidenceHtml += `<div class="excerpt-card" data-letter-id="${l.id}">
-      <span class="excerpt-view-link">View full letter ›</span>
+    if (isCorrespondence) _corrCount++; else _mentCount++;
+    evidenceHtml += `<div class="excerpt-card pair-letter" data-letter-id="${l.id}" data-author="${l.author}" data-type="${typeClass}">
       <div class="excerpt-meta">
         <span class="excerpt-type ${typeClass}">${typeLabel}</span>
         <span class="mention-date">${formatDate(l.date)}</span>
         <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${authorFirst}</span>
         <span class="mention-to">to ${displayRecipient(l.recipient)}</span>
+        <span class="excerpt-view-link">Read&nbsp;›</span>
       </div>
-      ${excerptHtml}
+      ${contextHtml}
     </div>`;
   }
 
-  html += pwRcWrap('pw-shared', 'Letters connecting them', evidenceHtml, sharedLetters.length);
+  // Correspondence / Co-mentions toggles — both on by default
+  const typeToggles = `<div class="pair-type-toggles">
+    <button type="button" class="ptt active" data-type="correspondent">Correspondence <span>${_corrCount}</span></button>
+    <button type="button" class="ptt active" data-type="mentioned">Co-mentions <span>${_mentCount}</span></button>
+  </div>`;
+  html += pwRcWrap('pw-shared', 'Letters connecting them', typeToggles + evidenceHtml, sharedLetters.length);
 
   document.getElementById('detail-mentions').innerHTML = html;
   panel.classList.add('visible');
@@ -3781,6 +3876,28 @@ async function showLinkedPairDetail(idxA, idxB) {
   const linkHighlight = !nodeA.isBrother ? nameA : (!nodeB.isBrother ? nameB : nameA);
   panel.querySelectorAll('.excerpt-card[data-letter-id]').forEach(el => {
     el.addEventListener('click', () => openLetterOverlay(el.dataset.letterId, linkHighlight));
+  });
+
+  // Via-chip + type-toggle filtering over the letter feed. All start active;
+  // clicking narrows. The collapsible's count badge reflects the filter.
+  const applyPairFilters = () => {
+    const viaOff = new Set(Array.from(panel.querySelectorAll('.via-chip:not(.active)')).map(b => b.dataset.via));
+    const typesOn = new Set(Array.from(panel.querySelectorAll('.ptt.active')).map(b => b.dataset.type));
+    let visible = 0;
+    panel.querySelectorAll('.pair-letter[data-letter-id]').forEach(card => {
+      const ok = !viaOff.has(card.dataset.author) && typesOn.has(card.dataset.type);
+      card.style.display = ok ? '' : 'none';
+      if (ok) visible++;
+    });
+    const nEl = panel.querySelector('.rc[data-rc="pw-shared"] .rc-n');
+    if (nEl) nEl.textContent = visible === sharedLetters.length ? String(sharedLetters.length) : visible + ' / ' + sharedLetters.length;
+  };
+  panel.querySelectorAll('.via-chip, .ptt').forEach(b => {
+    b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      b.classList.toggle('active');
+      applyPairFilters();
+    });
   });
 
   // Wire portrait card clicks to navigate to individual views
@@ -4214,7 +4331,7 @@ function _pwSyncUrl() {
 <script src="_letter-nav.js"></script>
 <script src="_reader.js?v=25"></script>
 <script src="_deeplink.js"></script>
-<script src="_overlay-data.js?v=16"></script>
+<script src="_overlay-data.js?v=17"></script>
 <script src="_overlay.js?v=29"></script>
 <script>HubbellOverlay.bindPage({ tags: true });</script>
 <script>
@@ -4302,10 +4419,16 @@ HubbellDeepLink.enableHistory();
   var _rows = [];
   var _fromIdx = null;
 
-  function buildRows() {
-    if (_rows.length) return;
-    var order = nodes.map(function (n, i) { return i; })
-      .sort(function (a, b) { return nodeDeg(b) - nodeDeg(a) || nodes[a].id.localeCompare(nodes[b].id); });
+  // Rows are rebuilt per open: only people who actually SHARE letters with
+  // the source appear, ranked by that shared count — the same number the
+  // pair view will report, so the picker never promises an empty result.
+  function buildRows(fromIdx) {
+    rowsEl.textContent = '';
+    _rows = [];
+    var counts = computeSharedCounts(fromIdx);
+    var order = Object.keys(counts).map(Number)
+      .filter(function (i) { return counts[i] > 0; })
+      .sort(function (a, b) { return counts[b] - counts[a] || nodes[a].id.localeCompare(nodes[b].id); });
     order.forEach(function (i) {
       var n = nodes[i];
       var row = document.createElement('button'); row.className = 'mpl-row'; row.type = 'button'; row.dataset.idx = i;
@@ -4313,8 +4436,9 @@ HubbellDeepLink.enableHistory();
       var nm = document.createElement('span'); nm.className = 'mpl-name'; nm.textContent = n.id;
       var cat = document.createElement('span'); cat.className = 'mpl-cat';
       cat.textContent = n.isBrother ? 'Brother' : (n.isMother ? 'Mother' : String(n.category || '').replace(/_/g, ' ').toLowerCase());
-      var cnt = document.createElement('span'); cnt.className = 'mpl-count'; cnt.textContent = String(nodeDeg(i));
-      cnt.setAttribute('aria-label', nodeDeg(i) + ' connections');
+      var cnt = document.createElement('span'); cnt.className = 'mpl-count'; cnt.textContent = String(counts[i]);
+      cnt.title = counts[i] + ' shared letter' + (counts[i] !== 1 ? 's' : '');
+      cnt.setAttribute('aria-label', counts[i] + ' shared letters');
       row.append(dot, nm, cat, cnt);
       row.addEventListener('click', function () { choose(i); });
       rowsEl.appendChild(row);
@@ -4330,7 +4454,7 @@ HubbellDeepLink.enableHistory();
   }
   function openPicker(fromIdx) {
     _fromIdx = fromIdx;
-    buildRows();
+    buildRows(fromIdx);
     titleEl.textContent = 'Compare ' + nodes[fromIdx].id + ' with…';
     searchEl.value = '';
     filterRows('');
