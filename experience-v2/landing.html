@@ -227,11 +227,13 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 .scrollind .adv.down.ready{animation:thumbpulse 1.6s ease-in-out infinite}    /* full → "complete emphasis" */
 .scrollind .adv.down:hover{transform:scale(1.08);filter:brightness(1.1)}
 .scrollind .adv.down:active{transform:scale(.94)}
-/* BACK = small subordinate chevron, inline before the forward button */
-.scrollind .adv.up{width:16px;height:10px;opacity:0;pointer-events:none;transition:opacity .35s ease,transform .18s cubic-bezier(.34,1.56,.64,1)}
-.scrollind .adv.up svg{width:15px;height:9px;animation-name:chevbobup}
-.scrollind .adv.up.show{opacity:.8;pointer-events:auto}
-.scrollind .adv.up:hover{opacity:1;transform:scale(1.18)}
+/* BACK = quiet, indistinct chevron hovering JUST above the forward button —
+   visible if you look for it, never competing with the fill cue below */
+.scrollind .adv.up{position:absolute;left:50%;top:-13px;transform:translateX(-50%);width:14px;height:8px;opacity:0;pointer-events:none;transition:opacity .35s ease,transform .18s cubic-bezier(.34,1.56,.64,1)}
+.scrollind .adv.up svg{width:13px;height:8px;animation-name:chevbobup}
+.scrollind .adv.up path{stroke-width:2;opacity:.85}
+.scrollind .adv.up.show{opacity:.4;pointer-events:auto}
+.scrollind .adv.up:hover{opacity:.9;transform:translateX(-50%) scale(1.18)}
 /* sparkle — a brief gold twinkle the moment readiness completes; sits over the forward button (last in the row) */
 .scrollind .spark{position:absolute;right:0;top:50%;width:32px;height:32px;margin:-16px 0 0 0;pointer-events:none;opacity:0;z-index:3;
   background:radial-gradient(circle,rgba(255,244,214,.95) 0,transparent 13%),
