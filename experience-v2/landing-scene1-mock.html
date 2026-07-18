@@ -1070,7 +1070,7 @@ if(reduced){
     if (p < 0.034 || p > 0.190) return;                   // free scroll outside the runway
     e.preventDefault();
     var edge = Math.max(0, Math.min((p - 0.034) / 0.008, (0.190 - p) / 0.008, 1));
-    var cap = 120 + (1 - edge) * 260;                     // soften toward full speed at the borders
+    var cap = 30 + (1 - edge) * 350;   /* 4x slower: 30px per click deep inside the runway */                     // soften toward full speed at the borders
     var mag = Math.min(Math.abs(e.deltaY) * 0.85, cap);
     window.scrollBy(0, (e.deltaY < 0 ? -mag : mag));
   }, { passive: false });
