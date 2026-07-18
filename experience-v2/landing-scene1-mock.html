@@ -545,7 +545,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 <div class="pv-runway" id="pvrunway">
   <div class="pv" id="pv-map">
     <div class="pv-grid">
-      <div class="pv-frame"><video src="/experience-v2/assets/teasers/teaser-map.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+      <div class="pv-frame"><video src="/experience-v2/assets/teasers/teaser-map.mp4?v=2" autoplay muted loop playsinline preload="auto"></video></div>
       <div class="pv-copy" style="--acc:#52A86E">
         <div class="pv-ey">A Map That Moves</div>
         <div class="pv-line">Follow them day by day, across the whole war.</div>
@@ -555,7 +555,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
   </div>
   <div class="pv flip" id="pv-web">
     <div class="pv-grid">
-      <div class="pv-frame"><video src="/experience-v2/assets/teasers/teaser-web.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+      <div class="pv-frame"><video src="/experience-v2/assets/teasers/teaser-web.mp4?v=2" autoplay muted loop playsinline preload="auto"></video></div>
       <div class="pv-copy" style="--acc:#D4A843">
         <div class="pv-ey">The People Web</div>
         <div class="pv-line">Everyone they ever named &mdash; and how they connect.</div>
@@ -997,10 +997,10 @@ if(reduced){
 .pv.flip .pv-frame{order:2}
 .pv-frame{border-radius:11px;overflow:hidden;box-shadow:0 34px 100px rgba(0,0,0,.62),0 0 0 1px rgba(245,240,232,.10)}
 .pv-frame video{width:100%;display:block}
-.pv-ey{font:700 12px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--acc,#D4A843);margin-bottom:11px}
-.pv-line{font-family:'Source Serif 4',Georgia,serif;font-weight:300;font-size:clamp(1.2rem,2.4vw,1.75rem);line-height:1.3;color:#F0E8DA;text-shadow:0 2px 14px rgba(8,9,12,.8);max-width:24ch}
+.pv-ey{font:800 12px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--acc,#D4A843);margin-bottom:11px}
+.pv-line{font-family:'Source Serif 4',Georgia,serif;font-weight:600;font-size:clamp(1.2rem,2.4vw,1.75rem);line-height:1.3;color:#F7F0E2;text-shadow:0 2px 14px rgba(8,9,12,.85);max-width:24ch}
 .pv-go{display:inline-flex;align-items:center;gap:8px;margin-top:20px;color:#F5F0E8;text-decoration:none;font:600 14px Inter,sans-serif;letter-spacing:.06em;border:1px solid rgba(245,240,232,.32);border-radius:999px;padding:11px 22px;background:rgba(10,11,15,.42);backdrop-filter:blur(2px);transition:border-color .2s,color .2s,transform .2s;pointer-events:auto}
-.pv-go:hover{border-color:var(--acc,#D4A843);color:var(--acc,#D4A843);transform:translateX(3px)}
+.pv-go:hover{background:var(--acc,#D4A843);border-color:var(--acc,#D4A843);color:#141210;transform:translateX(3px)}
 /* central pause: while the panel HOLDS the frame, the CTA glows — slower,
    far more prominent; the unmistakable invitation of the held beat */
 .pv.hold .pv-go{animation:ctaglow 2.6s ease-in-out infinite;
@@ -1070,7 +1070,7 @@ if(reduced){
     if (p < 0.034 || p > 0.190) return;                   // free scroll outside the runway
     e.preventDefault();
     var edge = Math.max(0, Math.min((p - 0.034) / 0.008, (0.190 - p) / 0.008, 1));
-    var cap = 30 + (1 - edge) * 350;   /* 4x slower: 30px per click deep inside the runway */                     // soften toward full speed at the borders
+    var cap = 36 + (1 - edge) * 344;   /* v8: +20% vs the 30px cap per user */                     // soften toward full speed at the borders
     var mag = Math.min(Math.abs(e.deltaY) * 0.85, cap);
     window.scrollBy(0, (e.deltaY < 0 ? -mag : mag));
   }, { passive: false });
