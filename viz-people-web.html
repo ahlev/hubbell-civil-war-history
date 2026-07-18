@@ -1389,17 +1389,31 @@ canvas.grabbing {
    away normally (user note 2026-07-18: the full frozen band was too much) */
 .pair-filter-bar {
   position: sticky;
-  top: 0;
+  top: -20px;                     /* cancel the panel's 20px top padding — pin FLUSH to the frame */
   z-index: 6;
-  background: #FDFBF7;
+  background: #FDFCFA;            /* EXACT panel background — nothing shows through */
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 6px;
-  padding: 8px 0;
-  margin: 0 0 10px;
+  padding: 12px 24px 10px;
+  margin: 0 -24px 10px;           /* full-bleed across the panel's side padding */
   border-bottom: 1px solid #EAE4D9;
   box-shadow: 0 6px 14px -8px rgba(40, 32, 20, 0.22);
+}
+/* Static cards on the individual view: full content is in the base card,
+   so the hover lift/brighten is redundant there — off. */
+.pair-letter.pl-static:hover { transform: none; box-shadow: none; border-color: #E2DBCE; }
+.pair-letter.pl-static .excerpt-view-link,
+.pair-letter.pl-static:hover .excerpt-view-link { opacity: 0.45; text-decoration: none; }
+/* Succinct location in the meta row */
+.pl-loc {
+  font: 400 10px Inter, sans-serif;
+  color: #9A9184;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
 }
 .pfb-sep { width: 1px; height: 18px; background: #E0D8C8; margin: 0 4px; }
 /* Via chips are toggles now */
@@ -3205,7 +3219,8 @@ function selectNode(idx) {
   _pwSyncUrl();
 }
 
-function showPersonDetail(node) {
+async function showPersonDetail(node) {
+  if (!lettersLoaded) await lettersPromise;   // summaries/excerpts/locations come from the full letters
   const panel = document.getElementById('detail-panel');
   document.getElementById('pw-eyebrow').textContent = 'People Web · Person';
   selectedNode = nodes.indexOf(node);   // keep state in sync for the mobile connect picker
@@ -3250,12 +3265,20 @@ function showPersonDetail(node) {
   // view uses: pills freeze at the top of the scroll and narrow the letter
   // list + mini timeline to the selected writers. All on by default.
   const authorEntries = Object.entries(node.authors || {}).filter(([a]) => BROTHER_NAMES[a]).sort((a, b) => b[1] - a[1]);
-  if (authorEntries.length > 0) {
+  // Correspondent = the letter is addressed to this person; Mentioned = named inside
+  const typeOf = (l) => getCanonName(l.recipient || '') === node.id ? 'correspondent' : 'mentioned';
+  const pCorr = sorted.filter(l => typeOf(l) === 'correspondent').length;
+  const pMent = sorted.length - pCorr;
+  if (authorEntries.length > 0 || sorted.length > 0) {
     html += '<div class="pair-filter-bar person-filter-bar">';
     for (const [a, c] of authorEntries) {
       const color = BROTHER_COLORS[a] || '#9B9B9B';
       html += `<button type="button" class="detail-brother-chip via-chip active" data-via="${a}" style="background:${hexToRgba(color, 0.12)};color:${color};border:1px solid ${hexToRgba(color, 0.3)}" title="Show/hide letters ${BROTHER_NAMES[a]} wrote">${BROTHER_NAMES[a]}: ${c}</button>`;
     }
+    html += `<span class="pfb-sep"></span><div class="pair-type-toggles">
+      <button type="button" class="ptt active" data-type="correspondent">Correspondence <span>${pCorr}</span></button>
+      <button type="button" class="ptt active" data-type="mentioned">Mentions <span>${pMent}</span></button>
+    </div>`;
     html += '</div>';
   }
 
@@ -3274,14 +3297,31 @@ function showPersonDetail(node) {
     html += '<div class="detail-timeline-wrap" id="person-tl-wrap">' + buildMiniTimeline(sorted) + '</div>';
   }
 
-  // Letter list
+  // Letter list — same card format as the comparison view (meta row +
+  // editorial summary + name-highlighted excerpt), statically shown (no
+  // hover reveal — it would be redundant), with a succinct location.
   for (const l of sorted) {
     const color = BROTHER_COLORS[l.author] || '#9B9B9B';
-    html += `<div class="pw-mention" data-letter-id="${l.id}" data-author="${l.author}">
-      <span class="pw-arrow">View letter ›</span>
-      <span class="mention-date">${formatDate(l.date)}</span>
-      <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${l.authorName}</span>
-      <span class="mention-to">to ${displayRecipient(l.recipient)}</span>
+    const full = FULL_LETTERS[l.id];
+    const lType = typeOf(l);
+    const summary = full ? (full.sigSummary || full.significance || '') : '';
+    let contextHtml = '';
+    if (summary && summary.length > 8) contextHtml = `<div class="pair-letter-summary">${escapeHtml(summary)}</div>`;
+    if (full && full.transcription) {
+      const ex = extractExcerpts(full.transcription, node.id);
+      if (ex.length) contextHtml += `<div class="pair-letter-excerpt">“${highlightName(ex[0], node.id)}”</div>`;
+    }
+    const loc = (full && full.location) ? `<span class="pl-loc" title="${escapeHtml(full.location)}">${escapeHtml(full.location)}</span>` : '';
+    html += `<div class="excerpt-card pair-letter pl-static pw-mention" data-letter-id="${l.id}" data-author="${l.author}" data-type="${lType}">
+      <div class="excerpt-meta">
+        <span class="excerpt-type ${lType}">${lType === 'correspondent' ? 'Correspondent' : 'Mentioned'}</span>
+        <span class="mention-date">${formatDate(l.date)}</span>
+        <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${l.authorName}</span>
+        <span class="mention-to">to ${displayRecipient(l.recipient)}</span>
+        ${loc}
+        <span class="excerpt-view-link">Read&nbsp;›</span>
+      </div>
+      ${contextHtml}
     </div>`;
   }
 
@@ -3294,10 +3334,11 @@ function showPersonDetail(node) {
   const chipAuthors = new Set(authorEntries.map(([a]) => a));
   const applyPersonFilters = () => {
     const off = new Set(Array.from(panel.querySelectorAll('.person-filter-bar .via-chip:not(.active)')).map(b => b.dataset.via));
+    const typesOn = new Set(Array.from(panel.querySelectorAll('.person-filter-bar .ptt.active')).map(b => b.dataset.type));
     const visibleIds = new Set();
     panel.querySelectorAll('.pw-mention[data-letter-id]').forEach(row => {
       const a = row.dataset.author;
-      const ok = !chipAuthors.has(a) || !off.has(a);
+      const ok = (!chipAuthors.has(a) || !off.has(a)) && typesOn.has(row.dataset.type);
       row.style.display = ok ? '' : 'none';
       if (ok) visibleIds.add(row.dataset.letterId);
     });
@@ -3308,7 +3349,7 @@ function showPersonDetail(node) {
         : '<div style="font:italic 12px \'Source Serif 4\',serif;color:#998C7C;padding:8px 0">No letters match the current filters.</div>';
     }
   };
-  panel.querySelectorAll('.person-filter-bar .via-chip').forEach(b => {
+  panel.querySelectorAll('.person-filter-bar .via-chip, .person-filter-bar .ptt').forEach(b => {
     b.addEventListener('click', (e) => {
       e.stopPropagation();
       b.classList.toggle('active');
@@ -3898,12 +3939,14 @@ async function showLinkedPairDetail(idxA, idxB) {
     }
 
     if (isCorrespondence) _corrCount++; else _mentCount++;
+    const pairLoc = (full && full.location) ? `<span class="pl-loc" title="${escapeHtml(full.location)}">${escapeHtml(full.location)}</span>` : '';
     evidenceHtml += `<div class="excerpt-card pair-letter" data-letter-id="${l.id}" data-author="${l.author}" data-type="${typeClass}">
       <div class="excerpt-meta">
         <span class="excerpt-type ${typeClass}">${typeLabel}</span>
         <span class="mention-date">${formatDate(l.date)}</span>
         <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${authorFirst}</span>
         <span class="mention-to">to ${displayRecipient(l.recipient)}</span>
+        ${pairLoc}
         <span class="excerpt-view-link">Read&nbsp;›</span>
       </div>
       ${contextHtml}
