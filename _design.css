@@ -43,9 +43,11 @@
 /* ───── Light (default, paper) ───── */
 :root,
 [data-theme="light"] {
-  --bg: oklch(98.2% 0.008 85);
-  --bg-elev: oklch(99% 0.005 85);
-  --bg-sunken: oklch(96% 0.012 85);
+  /* Page background sits a whisper off white toward parchment (2026-07-18):
+     slightly deeper + warmer than the old near-white, still unmistakably light */
+  --bg: oklch(97.6% 0.013 87);
+  --bg-elev: oklch(98.6% 0.009 87);
+  --bg-sunken: oklch(95.6% 0.016 87);
   --ink: oklch(22% 0.012 65);
   --ink-2: oklch(38% 0.012 65);
   --ink-3: oklch(56% 0.012 65);
