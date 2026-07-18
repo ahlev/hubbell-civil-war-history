@@ -1385,20 +1385,29 @@ canvas.grabbing {
 }
 
 /* ── Pair-view refinements (user notes 2026-07-17) ─────────────────── */
-/* Relationship band freezes to the top of the panel while the feed scrolls */
-.link-context {
+/* ONLY the filter pills freeze — a slim sticky bar; the info band scrolls
+   away normally (user note 2026-07-18: the full frozen band was too much) */
+.pair-filter-bar {
   position: sticky;
   top: 0;
   z-index: 6;
   background: #FDFBF7;
-  box-shadow: 0 6px 14px -8px rgba(40, 32, 20, 0.25);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0;
+  margin: 0 0 10px;
+  border-bottom: 1px solid #EAE4D9;
+  box-shadow: 0 6px 14px -8px rgba(40, 32, 20, 0.22);
 }
+.pfb-sep { width: 1px; height: 18px; background: #E0D8C8; margin: 0 4px; }
 /* Via chips are toggles now */
 .via-chip { cursor: pointer; font: inherit; transition: opacity 0.15s, filter 0.15s; }
 .via-chip:not(.active) { opacity: 0.32; filter: saturate(0.3); }
 .via-chip:hover { filter: brightness(0.95); }
 /* Correspondence / Co-mentions toggles */
-.pair-type-toggles { display: flex; gap: 6px; margin: 2px 0 10px; }
+.pair-type-toggles { display: flex; gap: 6px; }
 .ptt {
   border: 1px solid #D8D2C6;
   border-radius: 999px;
@@ -3237,13 +3246,15 @@ function showPersonDetail(node) {
     <div class="pw-mentions-title" style="margin:0">${nodeDeg(nodeIdx)} connection${nodeDeg(nodeIdx) !== 1 ? 's' : ''} · mentioned in ${sorted.length} letter${sorted.length !== 1 ? 's' : ''}</div>
   </div>`;
 
-  // Mentioned by brothers — chips
+  // Mentioned by brothers — the same sticky toggle-filter bar the pair
+  // view uses: pills freeze at the top of the scroll and narrow the letter
+  // list + mini timeline to the selected writers. All on by default.
   const authorEntries = Object.entries(node.authors || {}).filter(([a]) => BROTHER_NAMES[a]).sort((a, b) => b[1] - a[1]);
   if (authorEntries.length > 0) {
-    html += '<div class="detail-brother-mentions" style="margin-bottom:12px">';
+    html += '<div class="pair-filter-bar person-filter-bar">';
     for (const [a, c] of authorEntries) {
       const color = BROTHER_COLORS[a] || '#9B9B9B';
-      html += `<span class="detail-brother-chip" style="background:${hexToRgba(color, 0.12)};color:${color}">${BROTHER_NAMES[a]}: ${c}</span>`;
+      html += `<button type="button" class="detail-brother-chip via-chip active" data-via="${a}" style="background:${hexToRgba(color, 0.12)};color:${color};border:1px solid ${hexToRgba(color, 0.3)}" title="Show/hide letters ${BROTHER_NAMES[a]} wrote">${BROTHER_NAMES[a]}: ${c}</button>`;
     }
     html += '</div>';
   }
@@ -3260,13 +3271,13 @@ function showPersonDetail(node) {
 
   // Mini timeline
   if (sorted.length > 0) {
-    html += '<div class="detail-timeline-wrap">' + buildMiniTimeline(sorted) + '</div>';
+    html += '<div class="detail-timeline-wrap" id="person-tl-wrap">' + buildMiniTimeline(sorted) + '</div>';
   }
 
   // Letter list
   for (const l of sorted) {
     const color = BROTHER_COLORS[l.author] || '#9B9B9B';
-    html += `<div class="pw-mention" data-letter-id="${l.id}">
+    html += `<div class="pw-mention" data-letter-id="${l.id}" data-author="${l.author}">
       <span class="pw-arrow">View letter ›</span>
       <span class="mention-date">${formatDate(l.date)}</span>
       <span class="mention-author" style="background:${hexToRgba(color, 0.12)};color:${color}">${l.authorName}</span>
@@ -3278,7 +3289,32 @@ function showPersonDetail(node) {
   panel.classList.add('visible');
   attachLetterClickHandlers(panel, node.id);
 
-  // Wire in-panel Link & Explore button
+  // Writer-pill filtering: narrows the list AND the timeline. Authors with
+  // no pill (e.g. Frances when only brother pills exist) always stay shown.
+  const chipAuthors = new Set(authorEntries.map(([a]) => a));
+  const applyPersonFilters = () => {
+    const off = new Set(Array.from(panel.querySelectorAll('.person-filter-bar .via-chip:not(.active)')).map(b => b.dataset.via));
+    const visibleIds = new Set();
+    panel.querySelectorAll('.pw-mention[data-letter-id]').forEach(row => {
+      const a = row.dataset.author;
+      const ok = !chipAuthors.has(a) || !off.has(a);
+      row.style.display = ok ? '' : 'none';
+      if (ok) visibleIds.add(row.dataset.letterId);
+    });
+    const tlWrap = panel.querySelector('#person-tl-wrap');
+    if (tlWrap) {
+      const filtered = sorted.filter(l => visibleIds.has(l.id));
+      tlWrap.innerHTML = filtered.length ? buildMiniTimeline(filtered)
+        : '<div style="font:italic 12px \'Source Serif 4\',serif;color:#998C7C;padding:8px 0">No letters match the current filters.</div>';
+    }
+  };
+  panel.querySelectorAll('.person-filter-bar .via-chip').forEach(b => {
+    b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      b.classList.toggle('active');
+      applyPersonFilters();
+    });
+  });
 }
 
 function showPersonDetailByName(name) {
@@ -3720,27 +3756,8 @@ function buildRelationshipContext(nodeA, nodeB, sharedLetters) {
     </div>`;
   }
 
-  // Author chips with counts — brothers AND Frances (she authored letters too).
-  const brotherCounts = {};
-  for (const l of sharedLetters) {
-    const key = l.author;
-    if (BROTHER_NAMES[key] || key === 'mother') brotherCounts[key] = (brotherCounts[key] || 0) + 1;
-  }
-  const brotherEntries = Object.entries(brotherCounts).sort((a, b) => b[1] - a[1]);
-  if (brotherEntries.length > 0) {
-    let chips = '';
-    for (const [key, c] of brotherEntries) {
-      const isMom = key === 'mother';
-      const color = isMom ? '#7B5EA7' : (BROTHER_COLORS[key] || '#9B9B9B');
-      const label = isMom ? 'Frances' : BROTHER_NAMES[key];
-      // Clickable filter: toggling a via-chip narrows the letter feed below
-      chips += `<button type="button" class="detail-brother-chip via-chip active" data-via="${key}" style="background:${hexToRgba(color, 0.12)};color:${color};border:1px solid ${hexToRgba(color, 0.3)}" title="Show/hide the letters ${label} wrote">${label}: ${c}</button> `;
-    }
-    html += `<div class="link-context-row">
-      <span class="link-context-label">Via</span>
-      <span class="link-context-value" style="display:flex;flex-wrap:wrap;gap:4px">${chips}</span>
-    </div>`;
-  }
+  // (Via chips moved out of this band — they live in the sticky
+  // .pair-filter-bar so only the FILTERS freeze while the feed scrolls.)
 
   // Connection type
   let hasCorrespondence = false, hasCoMention = false;
@@ -3826,8 +3843,22 @@ async function showLinkedPairDetail(idxA, idxB) {
   html += buildPortraitCard(nodeA, profA, 'a');
   html += buildPortraitCard(nodeB, profB, 'b');
 
+  // Sticky filter bar: via pills + type toggles — the ONLY thing that
+  // freezes while the letter feed scrolls. All on by default.
+  const viaCounts = {};
+  for (const l of sharedLetters) {
+    if (BROTHER_NAMES[l.author] || l.author === 'mother') viaCounts[l.author] = (viaCounts[l.author] || 0) + 1;
+  }
+  let viaChips = '';
+  Object.entries(viaCounts).sort((a, b) => b[1] - a[1]).forEach(([key, c]) => {
+    const isMom = key === 'mother';
+    const color = isMom ? '#7B5EA7' : (BROTHER_COLORS[key] || '#9B9B9B');
+    const label = isMom ? 'Frances' : BROTHER_NAMES[key];
+    viaChips += `<button type="button" class="detail-brother-chip via-chip active" data-via="${key}" style="background:${hexToRgba(color, 0.12)};color:${color};border:1px solid ${hexToRgba(color, 0.3)}" title="Show/hide the letters ${label} wrote">${label}: ${c}</button>`;
+  });
+
   let evidenceHtml = sharedLetters.length > 0
-    ? '<div class="detail-timeline-wrap">' + buildMiniTimeline(sharedLetters) + '</div>'
+    ? '<div class="detail-timeline-wrap" id="pair-tl-wrap">' + buildMiniTimeline(sharedLetters) + '</div>'
     : '';
 
   // Build letter cards
@@ -3879,12 +3910,13 @@ async function showLinkedPairDetail(idxA, idxB) {
     </div>`;
   }
 
-  // Correspondence / Co-mentions toggles — both on by default
-  const typeToggles = `<div class="pair-type-toggles">
+  // Correspondence / Co-mentions toggles — both on by default; they join
+  // the via pills in the one sticky bar above the collapsible feed.
+  html += `<div class="pair-filter-bar">${viaChips}<span class="pfb-sep"></span><div class="pair-type-toggles">
     <button type="button" class="ptt active" data-type="correspondent">Correspondence <span>${_corrCount}</span></button>
     <button type="button" class="ptt active" data-type="mentioned">Co-mentions <span>${_mentCount}</span></button>
-  </div>`;
-  html += pwRcWrap('pw-shared', 'Letters connecting them', typeToggles + evidenceHtml, sharedLetters.length);
+  </div></div>`;
+  html += pwRcWrap('pw-shared', 'Letters connecting them', evidenceHtml, sharedLetters.length);
 
   document.getElementById('detail-mentions').innerHTML = html;
   panel.classList.add('visible');
@@ -3895,19 +3927,25 @@ async function showLinkedPairDetail(idxA, idxB) {
     el.addEventListener('click', () => openLetterOverlay(el.dataset.letterId, linkHighlight));
   });
 
-  // Via-chip + type-toggle filtering over the letter feed. All start active;
-  // clicking narrows. The collapsible's count badge reflects the filter.
+  // Via-chip + type-toggle filtering over the letter feed AND its mini
+  // timeline. All start active; clicking narrows every layer together.
   const applyPairFilters = () => {
     const viaOff = new Set(Array.from(panel.querySelectorAll('.via-chip:not(.active)')).map(b => b.dataset.via));
     const typesOn = new Set(Array.from(panel.querySelectorAll('.ptt.active')).map(b => b.dataset.type));
-    let visible = 0;
+    const visibleIds = new Set();
     panel.querySelectorAll('.pair-letter[data-letter-id]').forEach(card => {
       const ok = !viaOff.has(card.dataset.author) && typesOn.has(card.dataset.type);
       card.style.display = ok ? '' : 'none';
-      if (ok) visible++;
+      if (ok) visibleIds.add(card.dataset.letterId);
     });
     const nEl = panel.querySelector('.rc[data-rc="pw-shared"] .rc-n');
-    if (nEl) nEl.textContent = visible === sharedLetters.length ? String(sharedLetters.length) : visible + ' / ' + sharedLetters.length;
+    if (nEl) nEl.textContent = visibleIds.size === sharedLetters.length ? String(sharedLetters.length) : visibleIds.size + ' / ' + sharedLetters.length;
+    const tlWrap = panel.querySelector('#pair-tl-wrap');
+    if (tlWrap) {
+      const filtered = sharedLetters.filter(l => visibleIds.has(l.id));
+      tlWrap.innerHTML = filtered.length ? buildMiniTimeline(filtered)
+        : '<div style="font:italic 12px \'Source Serif 4\',serif;color:#998C7C;padding:8px 0">No letters match the current filters.</div>';
+    }
   };
   panel.querySelectorAll('.via-chip, .ptt').forEach(b => {
     b.addEventListener('click', (e) => {
