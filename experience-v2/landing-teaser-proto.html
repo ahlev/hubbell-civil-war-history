@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Scene-1 Teaser Prototype — safe space, not linked anywhere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── PROTOTYPE ONLY — exploring the "earlier payoff" direction for the v2
+   landing's opening: faces arrive early, then living teasers of the real
+   interactives (local screen recordings, not mockups) on a scroll runway. ── */
+:root {
+  --ink-cream: #F5F0E8;
+  --ink-warm: #D8D0C4;
+  --ink-dim: #998C7C;
+  --gold: #B8860B;
+  --bg: #0F0D0B;
+  --bg-2: #16130F;
+  --henry: #5A8BC4; --alexander: #D4A843; --james: #6BAF6B; --charles: #C46A5A;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink-cream);
+  font-family: 'Source Serif 4', Georgia, serif;
+  overflow-x: hidden;
+}
+.proto-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 99;
+  background: rgba(184,134,11,0.12); border-bottom: 1px solid rgba(184,134,11,0.3);
+  color: #D4A843; font: 600 10px Inter, sans-serif; letter-spacing: 0.14em;
+  text-transform: uppercase; text-align: center; padding: 6px;
+}
+section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 12vh 24px; position: relative; }
+
+/* reveal choreography */
+.rv { opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.rv.in { opacity: 1; transform: none; }
+.rv.d1 { transition-delay: 0.15s; } .rv.d2 { transition-delay: 0.3s; }
+.rv.d3 { transition-delay: 0.45s; } .rv.d4 { transition-delay: 0.6s; }
+
+/* ── Scene A: title beat ── */
+.sceneA { text-align: center; background: radial-gradient(ellipse at 50% 70%, #1C1712 0%, var(--bg) 65%); }
+.sceneA h1 { font-size: clamp(2.2rem, 6vw, 4.2rem); font-weight: 300; letter-spacing: 0.01em; line-height: 1.15; }
+.sceneA h1 b { font-weight: 600; }
+.sceneA .sub { margin-top: 18px; color: var(--ink-dim); font-size: clamp(0.95rem, 2vw, 1.15rem); font-style: italic; }
+.scroll-cue { position: absolute; bottom: 34px; color: var(--ink-dim); font: 500 11px Inter, sans-serif; letter-spacing: 0.18em; text-transform: uppercase; animation: cue 2.4s ease-in-out infinite; }
+@keyframes cue { 0%,100% { transform: translateY(0); opacity: 0.55; } 50% { transform: translateY(7px); opacity: 1; } }
+
+/* ── Scene B: the faces ── */
+.sceneB { background: var(--bg); text-align: center; }
+.faces { display: flex; gap: clamp(14px, 4vw, 44px); justify-content: center; flex-wrap: wrap; margin: 40px 0 30px; }
+.face { width: clamp(96px, 15vw, 150px); text-align: center; }
+.face .ring { width: 100%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 2.5px solid var(--c); box-shadow: 0 0 34px color-mix(in srgb, var(--c) 34%, transparent), inset 0 0 0 2px rgba(255,255,255,0.14); }
+.face img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; display: block; filter: saturate(0.92); }
+.face .nm { margin-top: 12px; font: 600 13px Inter, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-warm); }
+.face .rg { font: 400 11px Inter, sans-serif; color: var(--ink-dim); margin-top: 2px; }
+.sceneB .line { max-width: 620px; font-size: clamp(1.05rem, 2.4vw, 1.35rem); font-weight: 300; line-height: 1.55; color: var(--ink-warm); }
+.sceneB .line b { color: var(--ink-cream); font-weight: 600; }
+
+/* ── Vignettes: the living teasers ── */
+.vig { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 50%, var(--bg) 100%); }
+.vig-inner { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(260px, 1fr); gap: clamp(24px, 5vw, 64px); align-items: center; max-width: 1180px; width: 100%; }
+.vig.flip .vig-inner { grid-template-columns: minmax(260px, 1fr) minmax(0, 1.35fr); }
+.vig.flip .vig-media { order: 2; }
+.vig-media { position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(245,240,232,0.09); transform: perspective(1200px) rotateY(var(--tilt, -3deg)); }
+.vig.flip .vig-media { --tilt: 3deg; }
+.vig-media video { width: 100%; display: block; }
+.vig-media::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 60px rgba(15,13,11,0.35); pointer-events: none; }
+.vig-copy .eyebrow { font: 700 11px Inter, sans-serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acc, var(--gold)); margin-bottom: 14px; }
+.vig-copy h2 { font-size: clamp(1.5rem, 3.2vw, 2.2rem); font-weight: 600; line-height: 1.2; margin-bottom: 14px; }
+.vig-copy p { color: var(--ink-warm); font-size: clamp(0.95rem, 1.8vw, 1.08rem); line-height: 1.65; font-weight: 300; max-width: 42ch; }
+.vig-copy .go { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; color: var(--ink-cream); text-decoration: none; font: 600 13px Inter, sans-serif; letter-spacing: 0.06em; border: 1px solid rgba(245,240,232,0.28); border-radius: 999px; padding: 10px 20px; transition: all 0.2s; }
+.vig-copy .go:hover { border-color: var(--acc, var(--gold)); color: var(--acc, var(--gold)); transform: translateX(2px); }
+
+/* ── CTA ── */
+.sceneZ { text-align: center; background: radial-gradient(ellipse at 50% 30%, #1C1712 0%, var(--bg) 60%); }
+.sceneZ h2 { font-size: clamp(1.7rem, 4vw, 2.7rem); font-weight: 300; max-width: 700px; line-height: 1.3; }
+.sceneZ .go-big { display: inline-block; margin-top: 34px; background: var(--ink-cream); color: #171310; font: 600 14px Inter, sans-serif; letter-spacing: 0.05em; padding: 15px 36px; border-radius: 999px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+.sceneZ .go-big:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(245,240,232,0.18); }
+
+@media (max-width: 820px) {
+  .vig-inner, .vig.flip .vig-inner { grid-template-columns: 1fr; }
+  .vig.flip .vig-media { order: 0; }
+  .vig-media { transform: none; }
+  section { padding: 10vh 18px; }
+}
+</style>
+</head>
+<body>
+<div class="proto-banner">Prototype — scene-1 teaser direction · not linked from the site</div>
+
+<!-- Scene A — the title beat (stand-in for the current cold open) -->
+<section class="sceneA">
+  <h1 class="rv">Four brothers wrote home.<br><b>Every letter survived.</b></h1>
+  <div class="sub rv d1">272 letters, 1861–1865 — kept by the family for five generations.</div>
+  <div class="scroll-cue">Scroll</div>
+</section>
+
+<!-- Scene B — faces arrive early -->
+<section class="sceneB">
+  <div class="faces">
+    <div class="face rv" style="--c: var(--henry)"><div class="ring"><img src="assets/brothers/web/window-henry-v1.webp" alt="Henry Hubbell"></div><div class="nm">Henry</div><div class="rg">34th New York</div></div>
+    <div class="face rv d1" style="--c: var(--alexander)"><div class="ring"><img src="assets/brothers/web/window-alexander-fav.webp" alt="Alexander Hubbell"></div><div class="nm">Alexander</div><div class="rg">60th New York</div></div>
+    <div class="face rv d2" style="--c: var(--james)"><div class="ring"><img src="assets/brothers/web/window-james-v2.webp" alt="James Hubbell"></div><div class="nm">James</div><div class="rg">153rd New York</div></div>
+    <div class="face rv d3" style="--c: var(--charles)"><div class="ring"><img src="assets/brothers/web/window-charles-v1.webp" alt="Charles Hubbell"></div><div class="nm">Charles</div><div class="rg">153rd New York</div></div>
+  </div>
+  <div class="line rv d4">Two came home. Their words became an archive —<br><b>and the archive became something you can walk through.</b></div>
+</section>
+
+<!-- Vignette 1 — the map, actually moving -->
+<section class="vig">
+  <div class="vig-inner">
+    <div class="vig-media rv"><video src="assets/teasers/teaser-map.mp4" autoplay muted loop playsinline></video></div>
+    <div class="vig-copy" style="--acc: #52A86E">
+      <div class="eyebrow rv d1">A Map That Moves</div>
+      <h2 class="rv d1">Follow them day by day, across the whole war.</h2>
+      <p class="rv d2">Watch the brothers march, camp, and ride the rails west — every position drawn from the letters themselves, one day at a time.</p>
+      <a class="go rv d3" href="../viz-map-fullwar.html">Press play on the war →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Vignette 2 — the people web lighting up -->
+<section class="vig flip">
+  <div class="vig-inner">
+    <div class="vig-media rv"><video src="assets/teasers/teaser-web.mp4" autoplay muted loop playsinline></video></div>
+    <div class="vig-copy" style="--acc: #D4A843">
+      <div class="eyebrow rv d1">The People Web</div>
+      <h2 class="rv d1">Everyone they ever named — and how they connect.</h2>
+      <p class="rv d2">Four hundred people surface in the letters. Touch one and their whole world lights up; pick two and read every letter that binds them.</p>
+      <a class="go rv d3" href="../viz-people-web.html">Light up a life →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Vignette 3 — the health record -->
+<section class="vig">
+  <div class="vig-inner">
+    <div class="vig-media rv"><video src="assets/teasers/teaser-ledger.mp4" autoplay muted loop playsinline></video></div>
+    <div class="vig-copy" style="--acc: #6BA6B5">
+      <div class="eyebrow rv d1">The Wellness Ledger</div><!-- naming under review -->
+      <h2 class="rv d1">What the war did to their bodies — in their own words.</h2>
+      <p class="rv d2">Fevers, wounds, night blindness, scurvy — and the gentle lies they told their mother about all of it. Every claim traces to a dated letter.</p>
+      <a class="go rv d3" href="../viz-health-ledger.html">Read the record →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Scene Z — hand off to the real experience -->
+<section class="sceneZ">
+  <h2 class="rv">A family's war, kept on paper —<br>rebuilt as something alive.</h2>
+  <a class="go-big rv d1" href="landing.html">Explore the archive</a>
+</section>
+
+<script>
+// Reveal-on-scroll choreography
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.25 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+// Pause offscreen loops (battery courtesy)
+const vio = new IntersectionObserver((entries) => {
+  entries.forEach(e => { const v = e.target; if (e.isIntersecting) { v.play().catch(()=>{}); } else { v.pause(); } });
+}, { threshold: 0.15 });
+document.querySelectorAll('video').forEach(v => vio.observe(v));
+</script>
+</body>
+</html>
