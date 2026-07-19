@@ -60,6 +60,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
 .beat h1{font-weight:300;font-size:clamp(38px,7vw,84px);line-height:1.03;letter-spacing:-.01em}
 .beat h1 em{font-style:italic;color:var(--lantern)}
 #b-title h1{font-weight:700}   /* cold-open title bolded; the em "Brothers" keeps its italic + lantern gold (now bold-italic) */
+#b-title{top:46%}   /* whole title frame rides high so the enlarged portrait rings gain presence without crowding the fold; beat() only writes transform, so top survives the scroll engine */
 .vista{width:min(92vw,820px)}
 .vista h1{font-weight:700;font-size:clamp(30px,5.2vw,62px);line-height:1.08;max-width:18ch;margin:0 auto}
 .distance{margin-top:20px;font-style:italic;font-size:clamp(16px,2.1vw,22px);color:#e6dcc9;max-width:32ch;margin-inline:auto;line-height:1.5}
@@ -992,7 +993,7 @@ if(reduced){
 <style>
 /* ===== Scene-1 additions: portrait rings + preview runway ===== */
 .ring-row{display:flex;gap:clamp(10px,2.6vw,26px);justify-content:center;margin-bottom:18px}
-.pring{width:clamp(58px,7.5vw,92px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:2px solid var(--c);box-shadow:0 0 26px color-mix(in srgb,var(--c) 38%,transparent),inset 0 0 0 1.5px rgba(255,255,255,.16);opacity:0;transform:translateY(16px);animation:pring-in .8s ease forwards}
+.pring{width:min(clamp(87px,11.25vw,138px),calc(23vw - 20px));aspect-ratio:1;border-radius:50%;overflow:hidden;border:2px solid var(--c);box-shadow:0 0 26px color-mix(in srgb,var(--c) 38%,transparent),inset 0 0 0 1.5px rgba(255,255,255,.16);opacity:0;transform:translateY(16px);animation:pring-in .8s ease forwards}
 .pring:nth-child(1){animation-delay:.15s}.pring:nth-child(2){animation-delay:.3s}.pring:nth-child(3){animation-delay:.45s}.pring:nth-child(4){animation-delay:.6s}
 @keyframes pring-in{to{opacity:1;transform:none}}
 .pring img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;filter:saturate(.92)}
