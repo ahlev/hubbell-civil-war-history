@@ -1,4 +1,4 @@
-# The Brain Engine: How 273 Civil War Letters Became a Living Dataset
+# The Brain Engine: How 272 Civil War Letters Became a Living Dataset
 
 *The architecture that turned a box of handwriting into something you can query, visualize, and cross-reference — and the design decisions that make it trustworthy.*
 
@@ -10,7 +10,7 @@ Pick up a single Hubbell letter — say, one Henry wrote from a camp outside Was
 
 No single database field can hold all four. The naïve move — the one most digital-humanities projects make — is to flatten them: dump everything into one record and tag it. The problem is that once you've flattened, you can never again tell whether a given data point is bedrock or opinion. Was that date *written by Henry*, or *corrected by a researcher*? Is "significant" something the letter says, or something someone decided? Flattening destroys exactly the distinction that makes historical data trustworthy.
 
-The "brain engine" of this project is the set of architectural choices that refuse to flatten. Four moves, in order: **structure, derive, supplement, connect.**
+The "brain engine" of this project is the set of architectural choices that refuse to flatten. Four moves, in order: **structure, derive, complete, connect.**
 
 ## Structure: keep fact, judgment, and computation in separate rooms
 
@@ -30,13 +30,13 @@ Structure gives you somewhere to put things. The next move is pulling *queryable
 
 The workhorse here is a set of **fifteen boolean event flags** — `hasBattle`, `hasIllness`, `hasDeath`, `hasWound`, `hasPromotion`, and eleven more — each paired with a `flagDetails` string that explains, in a human sentence, *how* that flag is true for that letter. The two-tier design is deliberate: the boolean lets a visualization **filter fast** ("show me every letter touching illness"), and the detail string lets it **display meaningfully** once filtered. The flags are intentionally conservative — someone "feeling poorly" trips `hasIllness` even if they recover a paragraph later. The flag opens a door; the transcription and the detail supply the nuance.
 
-There's an honest footnote built into this layer: of the fifteen flags, **only four are currently consumed by any visualization.** Eleven — promotion, capture, desertion, discharge, and more — are fully populated across all 273 letters but not yet surfaced anywhere. The architecture documents this as untapped opportunity rather than quietly pretending the data is all in use. That candor is itself part of the engine's design.
+There's an honest footnote built into this layer: of the fifteen flags, **only five are currently consumed by any visualization** — battle, illness, death, and wound drive the maps, the emotional arcs, and the dramatic-irony view, and the receipt flag surfaces in the timeline's tooltips. Ten more — promotion, capture, desertion, discharge, and others — are fully populated across all 272 letters but not yet surfaced anywhere. The architecture documents this as untapped opportunity rather than quietly pretending the data is all in use. That candor is itself part of the engine's design.
 
-## Supplement: enrich the record — and reject most of what you find
+## Complete: audit the index against the letters themselves — and reject most of what you find
 
-A structured corpus is only as good as it is complete, and the first pass is never complete. The supplement step is where the dataset was systematically audited and filled — and it is the step that best shows the project's discipline, because *most proposed additions were thrown away.*
+A structured corpus is only as good as it is complete, and a first pass is never complete. The completion step is where the index was systematically audited against the letters — and one thing must be unmistakable about it: **nothing was added to the record.** Every candidate this pass produced was a possible person, place, or event flag *already present in a letter's own text* and simply missing from that letter's index entry. The letters say what they say; this step's only job was to make sure the index said no less — and claimed no more.
 
-A metadata audit drove schema violations from **806 to zero** and temporal coverage from **83% to 100%**, so that every one of the 273 letters carries all fifteen event flags and a place in the war's chronology. Then a corpus-wide gap-fix pass scanned the collection and generated **2,072 candidate additions** — possible missing people, places, and flags. Crucially, roughly **80% were rejected** on review as false positives; only **427 verified additions across 172 files** survived. That ratio is the point. An enrichment process that accepts everything it proposes is a hallucination machine. One that rejects four out of five is doing the slow, skeptical work that keeps a dataset honest — the same "filter, never a source" discipline the cross-reference method applies to the outside world, turned inward on the corpus itself.
+A metadata audit drove schema violations from **806 to zero** and temporal coverage from **83% to 100%**, so that every letter carries all fifteen event flags and a place in the war's chronology. Then a corpus-wide pass re-read the collection and generated **2,072 candidates** — passages where the index might have missed something a letter says. Crucially, roughly **80% were rejected** on human review as false positives; only **427 verified index corrections across 172 files** survived. That ratio is the point. An indexing pass that accepts everything it proposes is a hallucination machine. One that rejects four out of five is doing the slow, skeptical work that keeps a dataset honest — the same "filter, never a source" discipline the cross-reference method applies to the outside world, turned inward on the corpus itself.
 
 ## Connect: curated identity, not fuzzy matching
 
@@ -48,7 +48,7 @@ That curated identity feeds entity registries — a canonical roster that curren
 
 ## Why the engine matters
 
-The visible artifacts of this project — the timeline, the map, the social web, the novel, and the [cross-reference work](./PHASE-3-METHODOLOGY-BLOG.md) that binds the family to the national record — are all *downstream* of the architecture described here. They are powerful because the data beneath them is layered (so you always know fact from judgment), confidence-rated on three axes (so uncertainty survives into the visuals), honestly supplemented (so additions were earned, not invented), and connected through curated identity (so the network is real, not approximate).
+The visible artifacts of this project — the timeline, the map, the social web, the wellness ledger, and the [cross-reference work](./PHASE-3-METHODOLOGY-BLOG.md) that binds the family to the national record — are all *downstream* of the architecture described here. They are powerful because the data beneath them is layered (so you always know fact from judgment), confidence-rated on three axes (so uncertainty survives into the visuals), honestly completed (so the index was audited against the letters, and every correction was earned, not invented), and connected through curated identity (so the network is real, not approximate).
 
 A flat dataset would have produced flat visualizations — pretty, but unfalsifiable. This one was built so that every dot on every chart can be traced back to a letter a human can go read. That traceability is not a feature bolted on at the end. It is the engine. It is what made the whole project operational, and it is what makes it worth trusting.
 

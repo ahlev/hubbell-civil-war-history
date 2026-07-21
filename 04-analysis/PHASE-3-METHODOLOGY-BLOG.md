@@ -4,6 +4,8 @@
 
 > Companion to the methodology paper [`PHASE-3-METHODOLOGY-PAPER.md`](./PHASE-3-METHODOLOGY-PAPER.md), which carries the full evidence base, citations, and the per-verdict log. This piece is the readable version: it explains *how the method works* and uses four soldier-brothers to show it working. Every fact here is drawn from that paper and the repository artifacts behind it.
 
+*Written June 2026, revised July 2026. The work described was executed with the Claude models and agentic tooling of that period — see the paper's implementation note (§2.6). The method is written to outlive any particular model generation.*
+
 ## The temptation and the trap
 
 If you have a box of old family letters, an AI language model looks like a miracle. It reads 1860s handwriting-as-text without complaint. It untangles phonetic spelling — the way a soldier wrote a captain's name "by ear." It can hold a regiment, a battle, and a burial record in mind at once and reason across them. For the slow, squinting work of family history, that is genuinely powerful.
@@ -42,7 +44,7 @@ The real test of a method is not whether it works on the easy case. It is whethe
 
 **Charles — the disambiguation problem.** His regiment held four Hubbells, two of them named Charles. Uniqueness was off the table; identity had to be built from criteria working *jointly* — company, hometown, and rank lining up on one man and not the others. (Age, notably, was *not* a usable disambiguator here: the roster's age disagrees with the family's record, and that disagreement became one of the discrepancies the method flagged rather than something it leaned on.) This sweep also surfaced a thread no per-person search could ever see: Charles's company captain, Davis J. Rich, was the very same officer who had commanded Henry's company in a different regiment — a connection visible only because the brothers were modeled as one family at once.
 
-**James — the claim that isn't in any roster.** The youngest brother's defining family story is that he was appointed to West Point — and a military muster roll has nothing to say about a military academy. So the claim was verified sideways, again by cross-binding: James's 1862 cadet letters name two contemporaries — a cadet officer and a chaplain-professor — who are independently confirmable figures at the Academy in exactly that period. The verdict the method returned is the honest one, and the interesting one: *present as a cadet, not a graduate, formal admission terms unverified.* It neither inflated the family's pride into a diploma nor dismissed a true story for lack of a perfect document.
+**James — the claim that isn't in any roster.** The third-born brother's defining family story is that he was appointed to West Point — and a military muster roll has nothing to say about a military academy. So the claim was verified sideways, again by cross-binding: James's 1862 cadet letters name two contemporaries — a cadet officer and a chaplain-professor — who are independently confirmable figures at the Academy in exactly that period. The verdict the method returned is the honest one, and the interesting one: *present as a cadet, not a graduate, formal admission terms unverified.* It neither inflated the family's pride into a diploma nor dismissed a true story for lack of a perfect document.
 
 One process, four shapes of difficulty — faintest-trail, survivor, namesake collision, non-military claim — and the only planned variation was rotating a single lane through time for the survivor. That is the case for the method generalizing.
 
