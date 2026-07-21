@@ -56,7 +56,15 @@
       { href: 'viz-map-fullwar.html',             label: 'Map That Moves', acc: '#52A86E' },
       { href: 'viz-health-ledger.html',           label: 'Wellness Ledger',acc: '#CB5C5C' },
       { href: 'viz-people-web.html',              label: 'People Web',     acc: '#9A78C7' },
-      { href: 'who-they-were.html',               label: 'Who They Were',  acc: '#6FB0A6' }
+      { href: 'who-they-were.html',               label: 'Who They Were',  acc: '#6FB0A6' },
+      { href: 'about.html',                       label: 'The Project',    acc: '#CE8A46' }
+    ];
+    // Ownership / credibility surfaces under "The Project" — same dropdown
+    // mechanics as the family menu. The parent link lands on About.
+    var PROJECT = [
+      { href: 'about.html', label: 'About the Project',      dot: '#CE8A46', note: 'Who made this & how' },
+      { href: 'faq.html',   label: 'Questions Worth Asking', dot: '#CE8A46', note: 'The FAQ' },
+      { href: 'press.html', label: 'Press & Media',          dot: '#CE8A46', note: 'For writers & producers' }
     ];
     // Family members surfaced as a hover dropdown under "Who They Were" — each
     // color-dotted (brother/mother hue), linking to the ONE canonical bio view:
@@ -72,9 +80,9 @@
       { href: 'who-they-were.html#james',     label: 'James',     dot: '#4A7C59', note: 'The scholar' },
       { href: 'who-they-were.html#mother',    label: 'Frances',   dot: '#7B5EA7', note: 'The mother' }
     ];
-    function familyDD(cls, withNote) {
+    function ddHTML(items, cls, withNote) {
       return '<div class="' + cls + '" role="menu">' +
-        FAMILY.map(function (f) {
+        items.map(function (f) {
           return '<a class="nav-dd-item" role="menuitem" style="--acc:' + f.dot + '" href="' + f.href + '">' +
             '<span class="nav-dd-dot" style="background:' + f.dot + '"></span>' +
             '<span class="nav-dd-name">' + f.label + '</span>' +
@@ -109,11 +117,15 @@
           '</div>' +
           '<div class="nav-links" role="menubar">' +
             links.map(function (l) {
-              var active = (l.href.toLowerCase() === here) || (here === '' && l.href === 'index.html');
               var isFamily = (l.href === 'who-they-were.html');
-              var a = '<a role="menuitem" class="nav-link ' + (active ? 'active' : '') + '" style="--acc:' + l.acc + '" href="' + l.href + '"' + (isFamily ? ' aria-haspopup="true"' : '') + '>' + l.label + '</a>';
-              if (!isFamily) return a;
-              return '<div class="nav-item nav-has-dd">' + a + familyDD('nav-dd', true) + '</div>';
+              var isProject = (l.href === 'about.html');
+              // "The Project" highlights on any of its child pages, not just About.
+              var active = (l.href.toLowerCase() === here) || (here === '' && l.href === 'index.html') ||
+                (isProject && (here === 'faq.html' || here === 'press.html'));
+              var hasDD = isFamily || isProject;
+              var a = '<a role="menuitem" class="nav-link ' + (active ? 'active' : '') + '" style="--acc:' + l.acc + '" href="' + l.href + '"' + (hasDD ? ' aria-haspopup="true"' : '') + '>' + l.label + '</a>';
+              if (!hasDD) return a;
+              return '<div class="nav-item nav-has-dd">' + a + ddHTML(isFamily ? FAMILY : PROJECT, 'nav-dd', true) + '</div>';
             }).join('') +
           '</div>' +
           '<button class="nav-menu-btn" id="menuBtn" aria-label="Menu">' +
@@ -131,8 +143,9 @@
           links.map(function (l) {
             var active = (l.href.toLowerCase() === here);
             var a = '<a class="nav-link ' + (active ? 'active' : '') + '" style="--acc:' + l.acc + '" href="' + l.href + '">' + l.label + '</a>';
-            if (l.href !== 'who-they-were.html') return a;
-            return a + familyDD('nav-sublinks', false);
+            if (l.href === 'who-they-were.html') return a + ddHTML(FAMILY, 'nav-sublinks', false);
+            if (l.href === 'about.html') return a + ddHTML(PROJECT, 'nav-sublinks', false);
+            return a;
           }).join('') +
         '</div>' +
       '</nav>';
@@ -551,6 +564,7 @@
     row.appendChild(credit);
     [
       { href: 'about.html', label: 'About the Project' },
+      { href: 'faq.html',  label: 'FAQ' },
       { href: 'press.html', label: 'Press & Media' },
       /* TODO: swap mailto for the new project email once created */
       { href: 'mailto:theaihubops@gmail.com', label: 'Contact' }
