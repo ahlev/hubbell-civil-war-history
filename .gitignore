@@ -1,5 +1,7 @@
 # Screenshots (development artifacts)
 *.png
+# ...except the deliberate public press-kit screenshot library
+!press-assets/*.png
 
 # Python
 __pycache__/
