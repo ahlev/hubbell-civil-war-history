@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Their Own Words &mdash; The War in Five Acts</title>
+<meta name="description" content="A learning game built from 25 verbatim sentences of the Hubbell family's Civil War letters — five acts, five lenses, one war as they lived it."/>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="logo.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="_design.css?v=11">
+<link rel="stylesheet" href="_overlay.css?v=13">
+<link rel="stylesheet" href="_reader-era.css?v=19">
+<link rel="stylesheet" href="_scrollrail.css?v=12">
+<style>:root{ --rail-accent:#B8860B; }</style>
+<script src="_scrollrail.js?v=12"></script>
+<style>
+/* ═══════════ THEIR OWN WORDS (page-local, .tow-*) ═══════════ */
+.tow-wrap { max-width: 1060px; margin: 0 auto; padding: 0 20px 90px; }
+.tow-screen { display: none; }
+.tow-screen.on { display: block; }
+
+/* shared ring-portrait grammar (crop values mirror the landing rings) */
+.tow-ring {
+  position: relative; display: inline-block; aspect-ratio: 1;
+  border-radius: 50%; overflow: hidden; flex: none;
+  border: 2px solid var(--c, #B8860B);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--c, #B8860B) 34%, transparent);
+}
+.tow-ring img, .tow-ring video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% var(--opy, 18%);
+  filter: saturate(0.92); display: block;
+  transform: scale(var(--pz, 1)); transform-origin: var(--px, 50%) var(--py, 55%);
+}
+.tow-ring--hero { width: clamp(64px, 9vw, 104px); }
+.tow-ring--attr { width: 46px; }
+.tow-ring--chip { width: 40px; }
+.tow-ring--mem  { width: 92px; filter: grayscale(0.55) brightness(0.85); }
+.tow-ring--fin  { width: 68px; }
+
+/* ── overture ── */
+.tow-hero { text-align: center; padding: 68px 0 30px; }
+.tow-kicker {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em;
+  color: #B8860B; margin-bottom: 16px;
+}
+.tow-title {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(40px, 6.4vw, 72px); letter-spacing: -0.02em;
+  margin: 0 0 14px; color: var(--ink);
+}
+.tow-sub {
+  font-family: var(--font-serif); font-size: 1.12rem; line-height: 1.7;
+  color: var(--ink-2); max-width: 46em; margin: 0 auto 30px;
+}
+.tow-ringrow { display: flex; justify-content: center; gap: clamp(10px, 2.4vw, 22px); margin-bottom: 24px; }
+.tow-note {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em;
+  color: var(--ink-3); max-width: 52em; margin: 0 auto;
+}
+.tow-actrail { display: grid; gap: 14px; margin-top: 38px; }
+.tow-act {
+  display: grid; grid-template-columns: 130px 1fr auto; align-items: center;
+  gap: 6px 22px; text-align: left; width: 100%;
+  background: var(--bg-card, #fff); border: 1px solid var(--rule);
+  border-left: 3px solid #B8860B; border-radius: 6px;
+  padding: 18px 22px; cursor: pointer; font: inherit; color: inherit;
+  transition: background 0.16s, transform 0.16s, box-shadow 0.16s;
+}
+.tow-act:hover:not(.locked) { transform: translateY(-2px); box-shadow: 0 10px 26px -18px rgba(0,0,0,0.4); background: oklch(96.5% 0.02 85); }
+.tow-act.locked { opacity: 0.5; cursor: default; border-left-color: var(--ink-3); }
+.tow-act-years { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--ink-3); grid-row: span 2; }
+.tow-act-title { font-family: var(--font-display); font-weight: 600; font-size: 1.18rem; }
+.tow-act-scene { font-family: var(--font-serif); font-style: italic; font-size: 0.94rem; color: var(--ink-2); grid-column: 2; }
+.tow-act-dots { display: flex; gap: 7px; grid-column: 3; grid-row: 1; }
+.tow-tdot {
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 12px; color: var(--ink-3); border: 1.5px solid var(--rule); background: transparent;
+}
+.tow-tdot.done { background: #B8860B; border-color: #B8860B; color: #fff; }
+.tow-tdot.seen { border-color: #B8860B; color: #B8860B; }
+.tow-act-go, .tow-act-lock {
+  grid-column: 3; grid-row: 2; font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.06em; color: #B8860B; justify-self: end;
+}
+.tow-act-lock { color: var(--ink-3); }
+.tow-reset-row { text-align: center; margin-top: 26px; }
+.tow-reset, .tow-quiet {
+  background: none; border: none; font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.06em; color: var(--ink-3); cursor: pointer;
+  border-bottom: 1px solid transparent; padding: 4px 2px;
+}
+.tow-reset:hover, .tow-quiet:hover { color: var(--ink); border-bottom-color: var(--ink-3); }
+
+/* ── question stage ── */
+.tow-banner {
+  display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline;
+  border-bottom: 2px solid var(--acc, #B8860B);
+  padding: 26px 2px 10px; margin-bottom: 26px;
+}
+.tow-banner-act { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-2); }
+.tow-banner-q   { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--acc, #B8860B); }
+.tow-banner-score { margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); }
+.tow-stagegrid { display: grid; grid-template-columns: 1fr 108px; gap: 30px; }
+.tow-stagemain { min-width: 0; }
+
+.tow-quote {
+  margin: 0 0 6px; background: oklch(97% 0.02 90);
+  border: 1px solid oklch(88% 0.03 85); border-radius: 8px;
+  padding: 34px 38px 24px; box-shadow: 0 16px 40px -30px rgba(60,40,10,0.5);
+}
+.tow-quote blockquote {
+  margin: 0; font-family: var(--font-serif); font-style: italic;
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem); line-height: 1.55; color: #2A2115;
+  text-indent: -0.42em;
+}
+.tow-quote blockquote::before { content: '\201C'; margin-right: 0.06em; color: #B8860B; }
+.tow-quote blockquote::after  { content: '\201D'; margin-left: 0.05em; color: #B8860B; }
+.tow-quote figcaption {
+  display: flex; align-items: center; gap: 12px; margin-top: 20px;
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em; color: #6B5B40;
+}
+.tow-qblock { opacity: 0; transform: translateY(10px); transition: opacity 0.55s ease, transform 0.55s ease; margin-top: 26px; }
+.tow-qblock.on { opacity: 1; transform: none; }
+.tow-stem {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(1.1rem, 2vw, 1.3rem); margin: 0 0 16px; color: var(--ink);
+}
+.tow-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tow-choice {
+  display: flex; gap: 12px; align-items: flex-start; text-align: left;
+  background: var(--bg-card, #fff); border: 1.5px solid var(--rule);
+  border-radius: 6px; padding: 14px 16px; min-height: 44px;
+  font-family: var(--font-serif); font-size: 1rem; line-height: 1.5; color: var(--ink);
+  cursor: pointer; transition: border-color 0.14s, background 0.14s, transform 0.14s;
+}
+.tow-choice:hover:not(:disabled) { border-color: #B8860B; transform: translateY(-1px); }
+.tow-choice-key {
+  font-family: var(--font-mono); font-size: 11px; color: var(--ink-3);
+  border: 1px solid var(--rule); border-radius: 4px; padding: 2px 7px; flex: none; margin-top: 2px;
+}
+.tow-choice.is-right { border-color: #B8860B; background: oklch(96% 0.045 85); }
+.tow-choice.is-right .tow-choice-key { background: #B8860B; color: #fff; border-color: #B8860B; }
+.tow-choice.is-chosen:not(.is-right) { border-color: oklch(60% 0.09 30); background: oklch(97% 0.02 30); }
+.tow-choice.is-dim { opacity: 0.45; }
+.tow-choice:disabled { cursor: default; }
+
+.tow-feedback { display: none; margin-top: 22px; }
+.tow-feedback.on { display: block; animation: tow-fb-in 0.4s ease; }
+@keyframes tow-fb-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.tow-fb-lead {
+  font-family: var(--font-display); font-weight: 600; font-size: 1.12rem; margin-bottom: 10px;
+  padding-top: 14px; border-top: 2px solid #B8860B;
+}
+.tow-fb-lead.wrong { border-top-color: oklch(60% 0.09 30); }
+.tow-feedback p { font-family: var(--font-serif); font-size: 1rem; line-height: 1.7; color: var(--ink-2); margin: 0 0 12px; }
+.tow-fb-right strong { color: var(--ink); }
+.tow-expand {
+  background: oklch(96.5% 0.015 85); border-left: 3px solid #B8860B;
+  border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 16px 0;
+}
+.tow-expand-k { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; color: #8a6d1f; display: block; margin-bottom: 8px; }
+.tow-expand p { margin: 0; }
+.tow-spokes { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 6px; }
+.tow-spoke {
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em;
+  color: var(--ink-2); background: none; border: 1.5px solid var(--rule);
+  border-radius: 999px; padding: 9px 16px; min-height: 38px; cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center;
+  transition: border-color 0.14s, color 0.14s, background 0.14s;
+}
+.tow-spoke:hover { border-color: #B8860B; color: #7a5c10; background: oklch(97% 0.03 85); }
+.tow-next {
+  display: inline-block; margin-top: 16px;
+  font-family: var(--font-display); font-weight: 600; font-size: 1rem;
+  color: #fff; background: #B8860B; border: none; border-radius: 6px;
+  padding: 12px 26px; min-height: 44px; cursor: pointer;
+  transition: background 0.15s, transform 0.12s;
+}
+.tow-next:hover { background: #9c7109; transform: translateY(-1px); }
+
+/* bond rail */
+.tow-stageside { padding-top: 6px; }
+.tow-bonds { position: sticky; top: 84px; display: grid; gap: 14px; justify-items: center; }
+.tow-bond { position: relative; display: grid; justify-items: center; gap: 4px; }
+.tow-bond::before {
+  content: ''; position: absolute; top: -4px; left: 50%; transform: translateX(-50%);
+  width: 48px; height: 48px; border-radius: 50%;
+  background: conic-gradient(var(--c) calc(var(--p) * 1%), color-mix(in srgb, var(--c) 16%, transparent) 0);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 calc(100% - 3px));
+}
+.tow-bond-name { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.06em; color: var(--ink-3); }
+.tow-bond.pulse .tow-ring { animation: tow-pulse 0.7s ease; }
+@keyframes tow-pulse { 40% { transform: scale(1.14); } }
+
+/* ── interlude / finale ── */
+.tow-inter, .tow-fin {
+  max-width: 720px; margin: 60px auto 0; text-align: center;
+  background: #16130d; color: #E8DFC9; border-radius: 10px;
+  padding: 52px 44px 44px; box-shadow: 0 30px 70px -40px rgba(0,0,0,0.7);
+}
+.tow-fin { max-width: 860px; }
+.tow-inter-k { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.24em; color: #B8860B; }
+.tow-inter h2, .tow-fin h2 {
+  font-family: var(--font-display); font-weight: 500; font-size: clamp(1.7rem, 4vw, 2.4rem);
+  margin: 12px 0 6px; color: #F4EDDC;
+}
+.tow-inter-score, .tow-fin-score { font-family: var(--font-mono); font-size: 12px; color: #B9A97F; margin: 0 0 22px; }
+.tow-inter-bridge {
+  font-family: var(--font-serif); font-style: italic; font-size: 1.12rem; line-height: 1.75;
+  color: #DCD2BC; max-width: 36em; margin: 0 auto 28px;
+}
+.tow-memorial { display: grid; justify-items: center; gap: 6px; margin: 8px 0 24px; }
+.tow-mem-name { font-family: var(--font-display); font-size: 1.05rem; color: #F4EDDC; }
+.tow-mem-dates { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; color: #9C8F72; }
+.tow-inter .tow-quiet { display: block; margin: 14px auto 0; color: #9C8F72; }
+.tow-inter .tow-quiet:hover { color: #E8DFC9; border-bottom-color: #9C8F72; }
+.tow-fin .tow-quiet { color: #9C8F72; }
+.tow-fin .tow-quiet:hover { color: #E8DFC9; border-bottom-color: #9C8F72; }
+
+.tow-fin-h { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; color: #B8860B; margin: 34px 0 14px; }
+.tow-matrix { display: inline-grid; gap: 7px; }
+.tow-mx-row { display: grid; grid-template-columns: 92px repeat(5, 34px); gap: 7px; align-items: center; }
+.tow-mx-head span { font-size: 13px; color: #B9A97F; text-align: center; }
+.tow-mx-act { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.05em; color: #9C8F72; text-align: right; padding-right: 4px; }
+.tow-mx-cell { width: 34px; height: 34px; border-radius: 7px; border: 2px solid var(--c, #666); }
+.tow-mx-cell.solid { background: var(--c); }
+.tow-mx-cell.hollow { background: color-mix(in srgb, var(--c) 18%, transparent); }
+.tow-mx-cell.empty { opacity: 0.25; border-style: dashed; }
+.tow-fin-note { font-family: var(--font-serif); font-style: italic; font-size: 0.9rem; color: #9C8F72; margin-top: 14px; }
+.tow-fin-bonds { display: flex; justify-content: center; gap: 26px; flex-wrap: wrap; }
+.tow-fin-bond { display: grid; justify-items: center; gap: 5px; }
+.tow-fin-name { font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; }
+.tow-fin-title { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.14em; color: #9C8F72; text-transform: uppercase; }
+.tow-doors { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 6px; }
+.tow-door {
+  display: grid; gap: 3px; text-align: left; text-decoration: none;
+  background: #211c13; border: 1px solid #3a3222; border-radius: 8px; padding: 14px 16px;
+  font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: #E8DFC9;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.tow-door:hover { border-color: #B8860B; transform: translateY(-2px); }
+.tow-door span { font-family: var(--font-mono); font-weight: 400; font-size: 10px; letter-spacing: 0.05em; color: #9C8F72; }
+
+/* ── responsive ── */
+@media (max-width: 860px) {
+  .tow-stagegrid { grid-template-columns: 1fr; }
+  .tow-stageside { order: -1; padding: 0; }
+  .tow-bonds { position: static; display: flex; justify-content: center; gap: 16px; }
+  .tow-bond::before { width: 44px; height: 44px; }
+  .tow-act { grid-template-columns: 1fr; gap: 8px; }
+  .tow-act-years, .tow-act-dots, .tow-act-go, .tow-act-lock { grid-column: 1; grid-row: auto; justify-self: start; }
+  .tow-choices { grid-template-columns: 1fr; }
+  .tow-quote { padding: 24px 22px 18px; }
+  .tow-inter, .tow-fin { padding: 38px 22px 34px; }
+  .tow-mx-row { grid-template-columns: 72px repeat(5, 30px); }
+  .tow-mx-cell { width: 30px; height: 30px; }
+}
+@media (pointer: coarse) {
+  .tow-spoke { min-height: 44px; padding: 11px 18px; }
+  .tow-tdot { width: 30px; height: 30px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tow-qblock { transition: none; }
+  .tow-feedback.on { animation: none; }
+  .tow-bond.pulse .tow-ring { animation: none; }
+  .tow-act:hover:not(.locked), .tow-next:hover, .tow-door:hover, .tow-choice:hover:not(:disabled) { transform: none; }
+}
+</style>
+</head>
+<body>
+<div id="site-nav"></div>
+
+<main class="tow-wrap" id="tow-root">
+  <section class="tow-screen on" data-screen="overture" aria-label="Their Own Words — start"></section>
+  <section class="tow-screen" data-screen="stage" aria-label="Question"></section>
+  <section class="tow-screen" data-screen="interlude" aria-label="Act interlude"></section>
+  <section class="tow-screen" data-screen="finale" aria-label="Finale"></section>
+  <noscript>
+    <div style="max-width:640px;margin:80px auto;font-family:serif;line-height:1.7">
+      <h1>Their Own Words</h1>
+      <p>This learning game needs JavaScript. The letters themselves don&rsquo;t:
+      you can read all 272 of them in <a href="the-collection.html">the archive</a>.</p>
+    </div>
+  </noscript>
+</main>
+
+<script src="_design-data.js"></script>
+<script src="_design-ui.js?v=12"></script>
+<script src="_search-data.js?v=3"></script>
+<script src="_letter-nav.js"></script>
+<script src="_reader.js?v=25"></script>
+<script src="_deeplink.js"></script>
+<script src="_overlay-data.js?v=17"></script>
+<script src="_overlay.js?v=29"></script>
+<script src="_learn-data.js?v=1"></script>
+<script src="_learn.js?v=1"></script>
+</body>
+</html>

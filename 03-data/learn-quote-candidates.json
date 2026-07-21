@@ -1,0 +1,1025 @@
+[
+  {
+    "id": "LTR-1861-07-21-001",
+    "date": "1861-07-21",
+    "author": "henry",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Washington, D.C.",
+    "excerpt": "While I am writing there is a battle going on. Can here cannons firing not over twenty-eight miles from here.",
+    "themes": [
+      "battle",
+      "first bull run",
+      "home front communication"
+    ],
+    "hook": "He writes his mother mid-letter while First Bull Run is audibly raging 28 miles away.",
+    "concept": "First Battle of Bull Run (July 21, 1861) -- how close the war's first great battle came to Washington.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1861-09-22-001",
+    "date": "1861-09-22",
+    "author": "henry",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Washington, D.C. area",
+    "excerpt": "I can say for one that I would rather be where I am now than to be any place, for I have gone all through the drilling and that I consider the worst of it.",
+    "themes": [
+      "drill",
+      "training",
+      "camp life"
+    ],
+    "hook": "A volunteer declares drill -- not battle -- the worst part of soldiering.",
+    "concept": "Camp life and drill -- the 1861 volunteer armies had to be trained from scratch.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1861-11-30-003",
+    "date": "1861-11-30",
+    "author": "henry",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Camp McClellan",
+    "excerpt": "When we go into winter quarters we shall probably have log houses, but we shall have to build them.",
+    "themes": [
+      "winter quarters",
+      "camp life"
+    ],
+    "hook": "Soldiers had to build their own winter housing with their own hands.",
+    "concept": "Winter quarters -- armies stopped campaigning and built log-hut cities each winter.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-02-04-001",
+    "date": "1862-02-04",
+    "author": "henry",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Camp McClellan",
+    "excerpt": "In regard to the Sutler's: I mean to keep clear of them the next two months and come out with $26.00 on next pay day.",
+    "themes": [
+      "sutlers",
+      "pay",
+      "soldier economy"
+    ],
+    "hook": "A private budgets his whole $13-a-month world around dodging the sutler's tent.",
+    "concept": "Army pay and sutlers -- private vendors who could swallow a soldier's entire paycheck.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-02-05-001",
+    "date": "1862-02-05",
+    "author": "henry",
+    "recipient": "Frances Hubbell (Sister)",
+    "location": "Camp Gormon, Bolivar Heights",
+    "excerpt": "The first night we camped out with nothing but the sky for a covering except our blankets. Sleep was of course out of the question for it was very cold.",
+    "themes": [
+      "weather",
+      "marches",
+      "hardship"
+    ],
+    "hook": "First bivouac: nothing but the sky for a roof and no sleep for the cold.",
+    "concept": "Campaigning exposure -- soldiers slept in the open in winter with only a blanket.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-02-05-001",
+    "date": "1862-02-05",
+    "author": "henry",
+    "recipient": "Frances Hubbell (Sister)",
+    "location": "Camp Gormon, Bolivar Heights",
+    "excerpt": "We marched till about noon when we arrived at Adams Town. We took the cars there for Harpers Ferry, a ride of thirty miles in a freight train.",
+    "themes": [
+      "railroads",
+      "logistics"
+    ],
+    "hook": "Troops march all morning, then ride to the front packed in a freight train.",
+    "concept": "Railroads and Civil War logistics -- the first war moved largely by rail.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-06-13-001",
+    "date": "1862-06-13",
+    "author": "henry",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Camp within five miles of Richmond",
+    "excerpt": "How I long to have one good meal at home, even if it wasn't anything but potatoes and salt, anything but hard crackers. I can not bear to look at them.",
+    "themes": [
+      "food",
+      "hardtack",
+      "rations"
+    ],
+    "hook": "He'd trade anything for plain potatoes and salt -- he can't even look at hardtack anymore.",
+    "concept": "Army rations -- hardtack was so despised soldiers dreamed of the plainest home food.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-06-13-002",
+    "date": "1862-06-13",
+    "author": "henry",
+    "recipient": "Charles Hubbell (Brother)",
+    "location": "Camp within five miles of Richmond",
+    "excerpt": "I did not go over the battle ground afterwards, but the ground was covered with the dead.",
+    "themes": [
+      "battle",
+      "aftermath",
+      "death"
+    ],
+    "hook": "One flat sentence: the ground was covered with the dead.",
+    "concept": "The scale of Civil War battle deaths -- Fair Oaks/Seven Pines cost over 11,000 casualties.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-06-13-002",
+    "date": "1862-06-13",
+    "author": "henry",
+    "recipient": "Charles Hubbell (Brother)",
+    "location": "Camp within five miles of Richmond",
+    "excerpt": "I never knew till after we came out of the woods that any one was wounded or killed.",
+    "themes": [
+      "battle experience",
+      "fog of war"
+    ],
+    "hook": "In the smoke and woods he fought a whole battle without knowing anyone had fallen.",
+    "concept": "The 'fog of war' -- black-powder smoke and terrain meant soldiers saw only their own few yards.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-07-12-001",
+    "date": "1862-07-12",
+    "author": "henry",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Camp near Harrison's Landing, James River",
+    "excerpt": "If I serve my full time I shall receive one hundred dollars bounty and a land warrant.",
+    "themes": [
+      "bounty",
+      "enlistment",
+      "soldier economy"
+    ],
+    "hook": "His reward for surviving a full enlistment: $100 and a claim to public land.",
+    "concept": "Enlistment incentives -- cash bounties and land warrants recruited the volunteer army.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-07-12-001",
+    "date": "1862-07-12",
+    "author": "henry",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Camp near Harrison's Landing, James River",
+    "excerpt": "The Irish Brigade charged a rebel battery — it was a splendid sight, shouting at the top of their voices.",
+    "themes": [
+      "immigrant soldiers",
+      "battle"
+    ],
+    "hook": "He watches the famous Irish Brigade charge, cheering at the top of their voices.",
+    "concept": "Immigrant soldiers in the Union army -- ethnic units like the Irish Brigade.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-07-28-001",
+    "date": "1862-07-28",
+    "author": "henry",
+    "recipient": "Frances Hubbell (Sister)",
+    "location": "Camp, near Harrison's Landing, James River, Va.",
+    "excerpt": "The Sutler charges a great deal for his goods, or is very extortionate, but I suppose he has a right, as it is some trouble for him to bring his goods from the river.",
+    "themes": [
+      "sutlers",
+      "soldier economy",
+      "inflation"
+    ],
+    "hook": "He calls the sutler extortionate -- then talks himself into excusing the prices.",
+    "concept": "The sutler system -- monopoly camp merchants and wartime price gouging.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-07-08-002",
+    "date": "1862-07-08",
+    "author": "henry",
+    "recipient": "Frances Hubbell (Sister)",
+    "location": "Camp near James River",
+    "excerpt": "One night I shall never forget for we were obliged to march about all night in deep mud and rain.",
+    "themes": [
+      "marches",
+      "weather",
+      "hardship"
+    ],
+    "hook": "The night he can never forget wasn't a battle -- it was an all-night march through mud.",
+    "concept": "Marching and weather -- mud, not bullets, defined much of a soldier's misery.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-01-17-001",
+    "date": "1862-01-17",
+    "author": "alexander",
+    "recipient": "James Hubbell (Brother)",
+    "location": "Camden Station, Baltimore",
+    "excerpt": "I did not enlist only for the novelty of the thing as he did, but to try and take care of myself and to fight for my native land.",
+    "themes": [
+      "enlistment motivation",
+      "patriotism"
+    ],
+    "hook": "He draws a sharp line between thrill-seekers and men who enlisted for their country.",
+    "concept": "Why men enlisted -- motivations ranged from adventure to patriotism to self-support.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-01-24-001",
+    "date": "1862-01-24",
+    "author": "alexander",
+    "recipient": "Mrs. F. A. Hubbell (Mother)",
+    "location": "Baltimore",
+    "excerpt": "I charge you again write often, write often, often.",
+    "themes": [
+      "mail",
+      "morale"
+    ],
+    "hook": "He repeats 'write often' three times in one sentence -- mail was survival.",
+    "concept": "The mail and soldier morale -- letters from home were the army's emotional lifeline.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-03-06-001",
+    "date": "1862-03-06",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Baltimore",
+    "excerpt": "You tell Dodds Beaumont and Bowen that all the poetry will be taken out of them and their uniforms when they come down here and begin to drill through the mud and water as I saw some cavalry doing yesterday.",
+    "themes": [
+      "recruits vs veterans",
+      "drill",
+      "camp reality"
+    ],
+    "hook": "A veteran warns hometown boys the 'poetry' will be drilled out of them in the mud.",
+    "concept": "The gap between recruits' romantic expectations and veteran reality ('seeing the elephant').",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-06-08-001",
+    "date": "1862-06-08",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Winchester, Virginia",
+    "excerpt": "We left Harpers Ferry last Tuesday about dark and marched nearly all night, the mud — if I say knee deep I wont much stretch the truth.",
+    "themes": [
+      "marches",
+      "mud",
+      "valley campaign"
+    ],
+    "hook": "An all-night march where 'knee deep' mud is barely an exaggeration.",
+    "concept": "Forced marches -- the 1862 Valley Campaign was won and lost on soldiers' legs.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-06-17-001",
+    "date": "1862-06-17",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Onikers Ferry",
+    "excerpt": "Now, dear Mother, are you not horrified to think you have a hen roost robbing son; are you not shocked.",
+    "themes": [
+      "foraging",
+      "morality"
+    ],
+    "hook": "He teases his mother: are you horrified to have a hen-roost-robbing son?",
+    "concept": "Foraging -- armies lived off the countryside, and soldiers joked away the ethics of it.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-07-26-001",
+    "date": "1862-07-26",
+    "author": "alexander",
+    "recipient": "Mother, Sister, and Brother",
+    "location": "Camp near Washington, Va.",
+    "excerpt": "They are what I call fireside patriots. They are brave enough at home but let them come out here and you would see them whine.",
+    "themes": [
+      "home front",
+      "politics",
+      "soldier resentment"
+    ],
+    "hook": "He coins 'fireside patriots' for men brave only at home.",
+    "concept": "Soldier resentment of home-front men who cheered the war but wouldn't fight it.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-09-19-001",
+    "date": "1862-09-19",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Camp on the battle field, Va., Near Antietam / Camp below Maryland Heights",
+    "excerpt": "Thinks he is either a prisoner or missed the Regiment in the confusion (something that very often happens.)",
+    "themes": [
+      "missing soldiers",
+      "antietam",
+      "death notification"
+    ],
+    "hook": "Days after Antietam, the family's only news of Henry is a guess: prisoner, or lost in the confusion.",
+    "concept": "'Missing' after battle -- no dog tags or casualty system meant families waited in limbo.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-11-25-001",
+    "date": "1862-11-25",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother) & Fannie (Sister)",
+    "location": "Harpers Ferry",
+    "excerpt": "So Mr. A. Whiteside and E. Doolittle are \"paying and hoarding substitutes\", eh! I hope they will give them the slip just when wanted.",
+    "themes": [
+      "substitutes",
+      "draft",
+      "class"
+    ],
+    "hook": "He sneers at rich neighbors 'paying and hoarding substitutes' and hopes the substitutes bolt.",
+    "concept": "Substitutes -- the wealthy could hire replacements, fueling 'rich man's war, poor man's fight.'",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-11-25-001",
+    "date": "1862-11-25",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother) & Fannie (Sister)",
+    "location": "Harpers Ferry",
+    "excerpt": "I felt when in the battle while the shot and shell were shrieking and whirring around me, as tho I had a Mother upon her knees praying for me and I took great comfort in the thought.",
+    "themes": [
+      "religion",
+      "battle",
+      "mother"
+    ],
+    "hook": "Under shrieking shot and shell, he imagines his mother on her knees praying for him.",
+    "concept": "Religion and fatalism under fire -- faith as soldiers' psychological armor.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1863-03-29-001",
+    "date": "1863-03-29",
+    "author": "alexander",
+    "recipient": "Mother and Sister",
+    "location": "Aquia Landing",
+    "excerpt": "Do you think, Mother, — really think that I could let my company go into battle without my being with them to bear my part of the danger?",
+    "themes": [
+      "honor",
+      "courage",
+      "officers and men"
+    ],
+    "hook": "He explodes at his mother's plea to keep him safe: how could he let his company fight without him?",
+    "concept": "Victorian honor culture -- courage and shame bound soldiers to the firing line.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1863-07-04-001",
+    "date": "1863-07-04",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Near Gettysburg, Pennsylvania",
+    "excerpt": "God has again in his great kindness preserved my life through another most terrific battle. I have not received a scratch.",
+    "themes": [
+      "gettysburg",
+      "battle",
+      "religion"
+    ],
+    "hook": "Written July 4th from Gettysburg itself: alive, unscratched, thanking God.",
+    "concept": "The Battle of Gettysburg -- a survivor writes home the morning after the Union victory.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1863-07-04-001",
+    "date": "1863-07-04",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Near Gettysburg, Pennsylvania",
+    "excerpt": "We are burying our and the rebel's dead today.",
+    "themes": [
+      "gettysburg",
+      "death",
+      "aftermath"
+    ],
+    "hook": "Nine words from Gettysburg: burying our dead and theirs together.",
+    "concept": "Gettysburg's aftermath -- burying 7,000+ dead led to the National Cemetery and Lincoln's Address.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1863-08-16-001",
+    "date": "1863-08-16",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Capitol Hill Barracks, Washington, D.C.",
+    "excerpt": "A good many citizens are caught at the R.R. Depot trying to run away from the draft.",
+    "themes": [
+      "draft",
+      "evasion"
+    ],
+    "hook": "Citizens caught at the railroad depot literally running from the draft.",
+    "concept": "Draft evasion -- after the 1863 Enrollment Act, men fled, hid, and rioted to escape conscription.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1863-09-18-001",
+    "date": "1863-09-18",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Raccoon Ford, Rapidan River, VA",
+    "excerpt": "I have just witnessed the execution of two deserters.",
+    "themes": [
+      "desertion",
+      "military discipline",
+      "execution"
+    ],
+    "hook": "The letter opens cold: he has just watched two deserters shot.",
+    "concept": "Desertion and discipline -- public executions were staged as warnings to the ranks.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1863-09-18-001",
+    "date": "1863-09-18",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Raccoon Ford, Rapidan River, VA",
+    "excerpt": "After the execution we were all marched by the coffins that we might see them and learn a lesson. I think these examples will have a very salutary effect upon the army.",
+    "themes": [
+      "desertion",
+      "discipline",
+      "execution"
+    ],
+    "hook": "Every man was marched past the coffins 'to learn a lesson' -- and he thinks it worked.",
+    "concept": "Exemplary punishment -- the army deliberately made deserters' deaths a spectacle.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-07-08-001",
+    "date": "1864-07-08",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "In the Field near Chattahoochee, Georgia",
+    "excerpt": "Day before yesterday we were upon a high ridge from which by climbing a tree we could see the city with its tall spires and chimneys — and a great smoke going up — from its numerous furnaces, I suppose.",
+    "themes": [
+      "atlanta campaign",
+      "sherman"
+    ],
+    "hook": "He climbs a tree and sees the campaign's prize -- Atlanta's spires and smoking furnaces.",
+    "concept": "The Atlanta Campaign -- Sherman's 1864 drive on the South's rail and industrial hub.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-08-22-001",
+    "date": "1864-08-22",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "2d Div. Hospital, 20th Corps, near Atlanta, Ga.",
+    "excerpt": "I am not wounded but am afflicted with what the surgeon calls genuine scurvy.",
+    "themes": [
+      "disease",
+      "diet",
+      "medicine"
+    ],
+    "hook": "Not a bullet but scurvy -- a diet disease -- puts the veteran in the hospital.",
+    "concept": "Disease killed more soldiers than battle; scurvy revealed the army diet's failures.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-08-30-001",
+    "date": "1864-08-30",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "2d Div. Hospital, 20th A.C.",
+    "excerpt": "Please excuse me, Mother, but I did have a hearty laugh when I took in the idea of your three hopeful sons being in the hospital at the one and same time.",
+    "themes": [
+      "disease",
+      "hospitals",
+      "brothers"
+    ],
+    "hook": "He laughs out loud at the absurdity: all three brothers hospitalized at once.",
+    "concept": "Disease and hospitals -- sickness, not combat, was the most common soldier experience.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-09-02-001",
+    "date": "1864-09-02",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "U.S. General Hospital, Chattanooga, Tennessee",
+    "excerpt": "The evening of the day I wrote you my last letter, I with a large number of other sick and wounded was put on board a hospital train and sent to this place.",
+    "themes": [
+      "hospital trains",
+      "medicine",
+      "railroads"
+    ],
+    "hook": "The sick and wounded move by dedicated hospital train -- a new invention of this war.",
+    "concept": "Civil War medical evacuation -- hospital trains and a tiered general-hospital system.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-09-18-001",
+    "date": "1864-09-18",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "U.S. Field Hospital No. 2, Chattanooga, Tennessee",
+    "excerpt": "I am glad to see the copper heads don't like McClellan. It speaks well for him.",
+    "themes": [
+      "copperheads",
+      "election of 1864",
+      "politics"
+    ],
+    "hook": "A soldier's logic: if the Copperheads hate McClellan, McClellan can't be all bad.",
+    "concept": "Copperheads -- Peace Democrats whom most soldiers despised as traitors to the war effort.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-10-10-001",
+    "date": "1864-10-10",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "U.S.A. Hospital No. 3, Nashville, Tennessee",
+    "excerpt": "When we were coming from Chattanooga a vote was taken in the car I was in. Thirty-seven voted for Lincoln and five for McClellan.",
+    "themes": [
+      "election of 1864",
+      "soldier vote"
+    ],
+    "hook": "A straw poll in a railroad car: Lincoln 37, McClellan 5.",
+    "concept": "The soldier vote of 1864 -- troops overwhelmingly backed Lincoln over their old general.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-09-21-002",
+    "date": "1864-09-21",
+    "author": "alexander",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "U.S. Hospital No. 2, Chattanooga, Tennessee",
+    "excerpt": "Have you taken a realizing sense that I have now been in the U. S. Service as a soldier three years — three long — long — weary years!",
+    "themes": [
+      "enlistment terms",
+      "war weariness"
+    ],
+    "hook": "Three years to the day since his oath -- 'three long -- long -- weary years!'",
+    "concept": "Three-year enlistments -- the 1861 volunteers' terms expired in the war's bloodiest year.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1865-06-27-001",
+    "date": "1865-06-27",
+    "author": "alexander",
+    "recipient": "Frances (Fannie)",
+    "location": "Near Alexandria, Virginia",
+    "excerpt": "Now by the providence of God, after four years of unparalleled struggling we stand a free and united nation, than which in point of honor we have no superior and in point of freedom, no equal.",
+    "themes": [
+      "union victory",
+      "nationalism"
+    ],
+    "hook": "A veteran's summing-up: four years of struggle ended in 'a free and united nation.'",
+    "concept": "The meaning of Union victory -- emancipation and reunion as soldiers themselves framed it.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1865-06-27-001",
+    "date": "1865-06-27",
+    "author": "alexander",
+    "recipient": "Frances (Fannie)",
+    "location": "Near Alexandria, Virginia",
+    "excerpt": "Therefore just as soon as we can make out our papers and get transportation we shall come to Ogdensburgh, and there be discharged and paid off.",
+    "themes": [
+      "demobilization",
+      "muster out",
+      "veterans"
+    ],
+    "hook": "The long-awaited order arrives: muster out, transportation home, final pay.",
+    "concept": "Demobilization 1865 -- dissolving a million-man army back into civilian life.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-10-15-001",
+    "date": "1862-10-15",
+    "author": "charles",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Camp Mohawk, near Fonda, NY",
+    "excerpt": "On our journey here we had hard crackers & cheese which went well enough, but we could get no water at supper time & could not get out of the cars to get any as the doors were guarded.",
+    "themes": [
+      "railroads",
+      "troop transport",
+      "rations"
+    ],
+    "hook": "New recruits locked in guarded rail cars, no water at supper.",
+    "concept": "Troop trains -- mass rail movement of recruits, under guard to prevent desertion en route.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1863-01-02-001",
+    "date": "1863-01-02",
+    "author": "charles",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Alexandria, VA",
+    "excerpt": "Alex told me that they did not have enough to eat on a march, but were compelled to buy of the sutler. Told me he had had no pay for six months and he owed the sutler $11.00.",
+    "themes": [
+      "sutlers",
+      "pay",
+      "debt"
+    ],
+    "hook": "Six months without pay and $11 in debt to the sutler just to eat.",
+    "concept": "The soldier debt cycle -- late pay plus short rations drove men into sutlers' ledgers.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-11-28-001",
+    "date": "1862-11-28",
+    "author": "charles",
+    "recipient": "Frances/Fannie Hubbell (Sister)",
+    "location": "Camp near Alexandria, VA",
+    "excerpt": "We have been guarding the parole camp also, but do not now. The men in the parole camp have no arms at all, but have a guard from another reg.",
+    "themes": [
+      "prisoners",
+      "parole",
+      "exchange"
+    ],
+    "hook": "Disarmed paroled prisoners sit in camp under guard, waiting to be exchanged.",
+    "concept": "The parole and exchange system -- captured men swore not to fight until formally traded.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1863-02-22-001",
+    "date": "1863-02-22",
+    "author": "charles",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Alexandria, VA",
+    "excerpt": "I would prefer greenbacks as Uncle Sam's money passes the best here.",
+    "themes": [
+      "greenbacks",
+      "currency",
+      "economics"
+    ],
+    "hook": "A soldier asks for greenbacks because 'Uncle Sam's money passes the best.'",
+    "concept": "Greenbacks -- the 1862 Legal Tender Act created a national paper currency.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1863-06-10-001",
+    "date": "1863-06-10",
+    "author": "charles",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Alexandria",
+    "excerpt": "I think that you ought to apply at once for Henry's back pay and bounty.",
+    "themes": [
+      "death benefits",
+      "bureaucracy",
+      "family economy"
+    ],
+    "hook": "Months after Henry fell at Antietam, the family must file to claim what the army owed him.",
+    "concept": "Death benefits -- families of the fallen had to petition for back pay, bounty, and pensions.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1863-07-20-001",
+    "date": "1863-07-20",
+    "author": "charles",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Alexandria, VA",
+    "excerpt": "Sid and Silas are lucky to escape, for $300 doesn't grow on every bush.",
+    "themes": [
+      "commutation",
+      "draft",
+      "class"
+    ],
+    "hook": "$300 'doesn't grow on every bush' -- the commutation fee in one soldier's phrase.",
+    "concept": "The $300 commutation clause -- buying out of the draft, and why it looked like a rich man's escape.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1863-07-20-001",
+    "date": "1863-07-20",
+    "author": "charles",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Alexandria, VA",
+    "excerpt": "Nothing has pleased the soldiers so for a long time as the draft.",
+    "themes": [
+      "draft",
+      "soldier opinion"
+    ],
+    "hook": "Veterans were delighted the draft would finally force stay-at-homes into the ranks.",
+    "concept": "Soldiers' support for conscription -- the 1863 draft as justice to men already serving.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1863-09-15-001",
+    "date": "1863-09-15",
+    "author": "charles",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Camp Davis, Capitol Hill, Washington, D.C.",
+    "excerpt": "It seems he was engaged to a girl before he enlisted and he has sent her pay, bounty, and other money to the amount of $200. A few days since he heard that she was married and had spent all the money.",
+    "themes": [
+      "soldier economy",
+      "home ties",
+      "remittances"
+    ],
+    "hook": "He mailed his fiancee $200 of army money; she married someone else and spent it all.",
+    "concept": "Soldiers' remittances -- pay and bounty money flowed home on trust, sometimes badly placed.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-01-03-001",
+    "date": "1864-01-03",
+    "author": "charles",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Capitol Hill, Washington, D.C.",
+    "excerpt": "I think Alex had better not reenlist although he can get $1,000 bounty.",
+    "themes": [
+      "veteran reenlistment",
+      "bounty"
+    ],
+    "hook": "A brother weighs $1,000 against Alexander's life -- and votes no.",
+    "concept": "Veteran reenlistment bounties of 1864 -- huge sums offered to keep experienced men in.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-04-15-001",
+    "date": "1864-04-15",
+    "author": "charles",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "New Orleans, Louisiana",
+    "excerpt": "The ladies here, with Mrs. Banks as president, have held a tableaux, etc. for the benefit of the soldiers. The Sanitary Commission receive the funds.",
+    "themes": [
+      "sanitary commission",
+      "women",
+      "home front"
+    ],
+    "hook": "Officers' wives stage benefit shows and hand the box office to the Sanitary Commission.",
+    "concept": "The U.S. Sanitary Commission -- civilian (largely women's) relief organized for soldiers.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-05-23-001",
+    "date": "1864-05-23",
+    "author": "charles",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Camp on the Bank of the Mississippi River",
+    "excerpt": "Our Col. told his regt. when drawn up in line that he had news that Richmond was taken and he believed it to be authentic. We gave some lusty cheering them.",
+    "themes": [
+      "rumor",
+      "information",
+      "morale"
+    ],
+    "hook": "A colonel announces Richmond has fallen -- a year early -- and the regiment cheers wildly.",
+    "concept": "Camp rumor -- soldiers lived on unreliable news; Richmond actually fell in April 1865.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-11-30-001",
+    "date": "1864-11-30",
+    "author": "charles",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Camp near Newtown, Virginia",
+    "excerpt": "We are in good winter quarters, but some distance from wood & water. Our cabins are quite large & have a stone fireplace & chimney.",
+    "themes": [
+      "winter quarters",
+      "camp life"
+    ],
+    "hook": "Soldiers upgrade to log cabins with stone fireplaces for the winter.",
+    "concept": "Winter quarters -- hut cities with fireplaces and chimneys built by the men themselves.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-11-04-001",
+    "date": "1864-11-04",
+    "author": "charles",
+    "recipient": "Mrs. Hubbell (Mother)",
+    "location": "Camp at Cedar Creek, Virginia",
+    "excerpt": "I sent my vote to Silas, voted for Lincoln. Only two votes for Lincoln in our Co.",
+    "themes": [
+      "election of 1864",
+      "soldier vote",
+      "absentee ballot"
+    ],
+    "hook": "He mails his ballot home -- and admits only two men in his company voted Lincoln.",
+    "concept": "Absentee soldier voting in 1864 -- and proof that not every unit was a Lincoln landslide.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-07-27-001",
+    "date": "1862-07-27",
+    "author": "james",
+    "recipient": "Charles Hubbell (Brother)",
+    "location": "West Point Military Academy",
+    "excerpt": "A number of the Cadets take the Herald of which I can have the reading when ever I choose, so that I am enabled to keep myself pretty well posted on the movements of McClellan.",
+    "themes": [
+      "newspapers",
+      "information",
+      "home front"
+    ],
+    "hook": "A teenager tracks his brothers' war by borrowing the New York Herald.",
+    "concept": "Newspapers -- the Civil War was America's first mass-media war, followed daily in print.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-06-21-001",
+    "date": "1864-06-21",
+    "author": "james",
+    "recipient": "Frances Hubbell (sister)",
+    "location": "Morganza, Louisiana",
+    "excerpt": "At night I sprawled out on my tent floor feeling that I had done a pretty hard day's work. I stood it pretty well considering I had used my legs so little since I have entered the service.",
+    "themes": [
+      "recruits vs veterans",
+      "marching"
+    ],
+    "hook": "The new recruit is wrecked by his very first day of real marching.",
+    "concept": "Green troops vs. veterans -- physical hardening was a soldier's first campaign.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-06-21-001",
+    "date": "1864-06-21",
+    "author": "james",
+    "recipient": "Frances Hubbell (sister)",
+    "location": "Morganza, Louisiana",
+    "excerpt": "We saw numbers of great and little pigs, chickens and vegetable gardens, pretty well filled, all of which tempted our soldiers very much, but foraging was strictly forbidden.",
+    "themes": [
+      "foraging",
+      "discipline"
+    ],
+    "hook": "Pigs and gardens everywhere, hungry soldiers tempted -- and foraging strictly banned.",
+    "concept": "Foraging policy varied by commander and theater -- discipline versus living off the land.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-06-21-001",
+    "date": "1864-06-21",
+    "author": "james",
+    "recipient": "Frances Hubbell (sister)",
+    "location": "Morganza, Louisiana",
+    "excerpt": "Negroes were quite plenty in the town. All spoke French like their masters.",
+    "themes": [
+      "slavery",
+      "louisiana",
+      "emancipation"
+    ],
+    "hook": "A New York farm boy sees plantation slavery firsthand -- enslaved people speaking French.",
+    "concept": "Slavery encountered by Union soldiers -- Louisiana's French Creole slave society.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-10-04-001",
+    "date": "1864-10-04",
+    "author": "james",
+    "recipient": "Alexander F. Hubbell",
+    "location": "Harrisonburg / Cedar Creek, Shenandoah Valley",
+    "excerpt": "Since I commenced this we have fallen back to Cedar Creek near Strasburg — burning barns and forage as we went.",
+    "themes": [
+      "the burning",
+      "shenandoah",
+      "hard war"
+    ],
+    "hook": "Retreating down the Valley, his army burns the barns behind it.",
+    "concept": "'The Burning' -- Sheridan's 1864 destruction of the Shenandoah Valley's resources (hard war).",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-10-29-001",
+    "date": "1864-10-29",
+    "author": "james",
+    "recipient": "Alexander F. Hubbell",
+    "location": "Patterson Park Hospital, Baltimore, Maryland",
+    "excerpt": "I walked several miles after being hit in order not to fall into the Johnnies hands.",
+    "themes": [
+      "wounds",
+      "capture",
+      "cedar creek"
+    ],
+    "hook": "Shot through the thigh, he walks miles on it rather than risk capture.",
+    "concept": "Wounded soldiers' fate -- falling into enemy hands could mean prison camps like Andersonville.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1864-10-29-001",
+    "date": "1864-10-29",
+    "author": "james",
+    "recipient": "Alexander F. Hubbell",
+    "location": "Patterson Park Hospital, Baltimore, Maryland",
+    "excerpt": "I had thirty miles to ride in an army wagon to get to a railroad station, and then one hundred and twenty in a freight car. That journey was a hard one.",
+    "themes": [
+      "medical evacuation",
+      "railroads",
+      "hospitals"
+    ],
+    "hook": "Thirty jolting wagon miles, then 120 more in a freight car -- the wounded man's road to a hospital.",
+    "concept": "Medical evacuation chains -- wagon to railhead to city general hospital.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-10-02-001",
+    "date": "1862-10-02",
+    "author": "mother",
+    "recipient": "Alexander Hubbell",
+    "location": "Champlain, NY",
+    "excerpt": "I have been to the post office every morning this week — with the faint hope of some tidings from Henry, I discard — and have no heart to go again.",
+    "themes": [
+      "grief",
+      "death notification",
+      "home front"
+    ],
+    "hook": "A mother walks to the post office every morning for word of her missing son, until she can't.",
+    "concept": "Death notification -- there was no official telegram; families waited on letters and rumor.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-10-29-001",
+    "date": "1862-10-29",
+    "author": "mother",
+    "recipient": "Alexander Hubbell",
+    "location": "Champlain, NY",
+    "excerpt": "O, I fear that he was one of the \"unknown\" buried, or one of the number found in the bushes, who had died of their wounds and could not be identified.",
+    "themes": [
+      "unknown dead",
+      "antietam",
+      "grief"
+    ],
+    "hook": "She forces herself to imagine her son among the unidentifiable dead in the bushes.",
+    "concept": "The unknown dead -- no dog tags meant thousands of graves marked 'unknown' after Antietam.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-10-29-001",
+    "date": "1862-10-29",
+    "author": "mother",
+    "recipient": "Alexander Hubbell",
+    "location": "Champlain, NY",
+    "excerpt": "Says there is not the least reliance to be placed upon the papers — the reporters are all liars!",
+    "themes": [
+      "newspapers",
+      "information",
+      "home front"
+    ],
+    "hook": "A returned prisoner tells her flatly: the war reporters are all liars.",
+    "concept": "Wartime journalism -- sensationalism and unreliable casualty reporting tormented families.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1862-12-09-001",
+    "date": "1862-12-09",
+    "author": "mother",
+    "recipient": "Alexander Hubbell",
+    "location": "Champlain, NY",
+    "excerpt": "Oh — Alex — can you get a discharge and come home. I cant live alone — I must have one of you.",
+    "themes": [
+      "family",
+      "dependence",
+      "discharge"
+    ],
+    "hook": "A widow with every son at war begs for one of them back.",
+    "concept": "Soldiers' dependent families -- widowed mothers' pleas drove discharge and pension politics.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1863-11-15-001",
+    "date": "1863-11-15",
+    "author": "mother",
+    "recipient": "Alexander F. Hubbell",
+    "location": "Champlain, N.Y.",
+    "excerpt": "Sometimes we had you in Libby prison, sometimes all mangled in a field hospital, and at others, with our blessed lamented Henry among the \"unknown\" dead.",
+    "themes": [
+      "home front anxiety",
+      "prisons",
+      "imagination"
+    ],
+    "hook": "When letters stop, her imagination cycles him through Libby Prison, a field hospital, and an unknown grave.",
+    "concept": "Home-front anxiety -- slow mail let families imagine every fate, including infamous Libby Prison.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1865-01-11-001",
+    "date": "1865-01-11",
+    "author": "mother",
+    "recipient": "Alexander F. Hubbell",
+    "location": "Champlain, New York",
+    "excerpt": "Our streets are blue with soldiers. We have reveille in the morning & tattoo at night.",
+    "themes": [
+      "home front",
+      "border defense",
+      "st. albans raid"
+    ],
+    "hook": "Her small New York village now wakes to reveille -- the war has garrisoned Main Street.",
+    "concept": "The northern border scare -- after the 1864 St. Albans raid from Canada, border towns were garrisoned.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1865-01-11-001",
+    "date": "1865-01-11",
+    "author": "mother",
+    "recipient": "Alexander F. Hubbell",
+    "location": "Champlain, New York",
+    "excerpt": "You are among the living while my fears had numbered you with the dead.",
+    "themes": [
+      "mail",
+      "anxiety",
+      "casualty news"
+    ],
+    "hook": "Weeks of postal silence after Nashville had already buried him in her mind.",
+    "concept": "Mail lag and casualty anxiety -- families often mourned sons who were still alive.",
+    "verified": true
+  },
+  {
+    "id": "LTR-1865-01-11-001",
+    "date": "1865-01-11",
+    "author": "mother",
+    "recipient": "Alexander F. Hubbell",
+    "location": "Champlain, New York",
+    "excerpt": "I know our enemies are about sending two hundred thousand more slaves South — that appalls me.",
+    "themes": [
+      "slavery",
+      "refugeeing",
+      "emancipation"
+    ],
+    "hook": "News that 200,000 enslaved people are being moved deeper South appalls her.",
+    "concept": "'Refugeeing' -- Confederates forcibly moved enslaved people farther south, away from advancing freedom.",
+    "verified": true
+  }
+]
