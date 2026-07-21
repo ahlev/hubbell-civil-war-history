@@ -406,6 +406,22 @@
   margin-top: 8px;
 }
 
+/* Bios card: circular family portraits cycling one at a time (posters from
+   the landing ring row; the four brother slides swap in their hero loops) */
+.ei-bio-carousel { position: relative; width: 64px; height: 64px; margin: 0 auto; }
+.ei-bport {
+  position: absolute; inset: 0; border-radius: 50%; overflow: hidden;
+  border: 2px solid var(--c, #B8860B);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--c, #B8860B) 32%, transparent);
+  opacity: 0; transition: opacity 0.7s ease;
+}
+.ei-bport.on { opacity: 1; }
+.ei-bport img, .ei-bport video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 18%; display: block;
+  filter: saturate(0.92);
+}
+
 /* ===== Exploration Icon Animations ===== */
 .ei-lane { stroke: var(--rule); stroke-width: 0.7; }
 .ei-dot { opacity: 0; animation: eiDotIn 12s ease infinite; }
@@ -915,8 +931,23 @@
       </div>
       <div class="ei-icon"><svg viewBox="0 0 120 56"><path class="ei-pulse" d="M4,30 L24,30 L30,30 L33,14 L36,42 L39,22 L42,34 L45,28 L56,28 L68,28 L72,28 L75,12 L78,44 L81,22 L84,32 L87,28 L98,28 L116,28" stroke="#4A7C59"/></svg></div>
     </a>
-    <a class="explore-item" href="viz-people-web.html">
+    <a class="explore-item" href="who-they-were.html">
       <div class="ei-num">04</div>
+      <div>
+        <h3>Who They Were</h3>
+        <p>Four brothers and the mother who kept every letter. Animated portraits, service records, wartime footprints, and the arc of each life &mdash; the people behind the handwriting.</p>
+        <div class="ei-meta">Five lives &middot; Portraits, service &amp; story</div>
+      </div>
+      <div class="ei-icon ei-bio-carousel" id="eiBioCarousel" aria-hidden="true">
+        <span class="ei-bport on" style="--c:#5A8BC4" data-loop="/experience-v2/assets/brothers/loops/loop-henry"><img src="/experience-v2/assets/brothers/web/window-henry-v1.webp" alt=""></span>
+        <span class="ei-bport" style="--c:#D4A843" data-loop="/experience-v2/assets/brothers/loops/loop-alexander-fav"><img src="/experience-v2/assets/brothers/web/window-alexander-fav.webp" alt=""></span>
+        <span class="ei-bport" style="--c:#6BAF6B" data-loop="/experience-v2/assets/brothers/loops/loop-james-wide"><img src="/experience-v2/assets/brothers/web/window-james-v2.webp" alt=""></span>
+        <span class="ei-bport" style="--c:#C46A5A" data-loop="/experience-v2/assets/brothers/loops/loop-charles"><img src="/experience-v2/assets/brothers/web/window-charles-v1.webp" alt=""></span>
+        <span class="ei-bport" style="--c:#7B5EA7"><img src="/experience-v2/assets/brothers/web/window-frances.webp" alt=""></span>
+      </div>
+    </a>
+    <a class="explore-item" href="viz-people-web.html">
+      <div class="ei-num">05</div>
       <div>
         <h3>The People Web</h3>
         <p>Officers, comrades, family, strangers &mdash; nearly 600 people mentioned across the letters. A network graph of who knew whom, who appeared together, and who connected the brothers to the wider war.</p>
@@ -981,6 +1012,49 @@ function openCollectionDoc() {
 </script>
 <script>if (window.HubbellOverlay) HubbellOverlay.bindPage({ tags: true, locations: true, prose: '.coll-intro p, .era-body p, .approach-section p' });</script>
 <script>if (window.HubbellDeepLink) HubbellDeepLink.injectShareButton();</script>
+<script>
+/* Bios-card portrait carousel: cycle the family, one circle at a time.
+   Videos are created lazily for the active slide only and never before the
+   card scrolls into view; reduced-motion visitors get the posters alone. */
+(function () {
+  var wrap = document.getElementById('eiBioCarousel');
+  if (!wrap) return;
+  var slides = Array.prototype.slice.call(wrap.querySelectorAll('.ei-bport'));
+  if (!slides.length) return;
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var idx = 0, timer = null;
+  function ensureVideo(slide) {
+    if (reduced || slide.querySelector('video') || !slide.dataset.loop) return;
+    var v = document.createElement('video');
+    v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', '');
+    v.preload = 'none';
+    ['webm', 'mp4'].forEach(function (ext) {
+      var s = document.createElement('source');
+      s.src = slide.dataset.loop + '.' + ext;
+      s.type = 'video/' + ext;
+      v.appendChild(s);
+    });
+    slide.appendChild(v);
+  }
+  function show(i) {
+    slides.forEach(function (s, j) {
+      s.classList.toggle('on', j === i);
+      var v = s.querySelector('video');
+      if (v && j !== i) v.pause();
+    });
+    ensureVideo(slides[i]);
+    var av = slides[i].querySelector('video');
+    if (av) { var p = av.play(); if (p && p.catch) p.catch(function () {}); }
+  }
+  function start() { if (!timer) { show(idx); timer = setInterval(function () { idx = (idx + 1) % slides.length; show(idx); }, 2800); } }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } slides.forEach(function (s) { var v = s.querySelector('video'); if (v) v.pause(); }); }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.isIntersecting ? start() : stop(); });
+    }, { threshold: 0.15 }).observe(wrap);
+  } else { start(); }
+})();
+</script>
 <script src="_hero.js?v=2"></script>
 <script src="_reveal.js"></script>
 </body>
