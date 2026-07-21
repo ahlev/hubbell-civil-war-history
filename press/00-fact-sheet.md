@@ -4,17 +4,17 @@
 
 **Project:** The Hubbell Civil War Ancestry Project — an interactive digital archive of one family's Civil War correspondence.
 
-**One line:** 273 letters from five members of the Hubbell family of Champlain, New York (1861–1870), recovered, transcribed, structured into data, and made explorable — then cross-referenced against the public historical record using modern AI.
+**One line:** 272 letters from five members of the Hubbell family of Champlain, New York (1861–1870), recovered, transcribed, structured into data, and made explorable — then cross-referenced against the public historical record using modern AI.
 
 **The numbers:**
-- **273 letters**, 1861–1870
+- **272 letters**, 1861–1870
 - **5 family members** writing: four soldier-brothers (Henry, Alexander, James, Charles) and their mother, Frances
 - **Four theaters of war** — Virginia, Maryland, Tennessee, Georgia, Louisiana
 - **9 interactive visualizations** (timeline, animated map, social network, health ledger, money story, and more)
 - **486 distinct people** and **353 places** resolved into curated registries
 - **4 verified "hero" cross-references** binding the brothers to the national archival record (see `04-key-discoveries`)
 
-**Who made it:** Alexander Hubbell Levitt — great-great-grandson and namesake of Alexander F. Hubbell, the one brother who survived the war. He works in technology research and lives in Athens, Georgia, a short drive from where his namesake fought in the Atlanta Campaign. He describes himself as "an amateur historian who used modern AI to recover, structure, and publish 273 family letters."
+**Who made it:** Alexander Hubbell Levitt — great-great-grandson and namesake of Alexander F. Hubbell, the one brother who survived the war. He works in technology research and lives in Athens, Georgia, a short drive from where his namesake fought in the Atlanta Campaign. He describes himself as "an amateur historian who used modern AI to recover, structure, and publish 272 family letters."
 
 **How it was made (tech at a glance):** Letters transcribed via AI vision + human review; each structured into a multi-field schema separating fact, editorial judgment, and computed analysis; identities resolved by curated alias tables (never fuzzy matching); brothers cross-referenced against public archives with an AI used strictly as a *disciplined judge over real records, never a source*.
 

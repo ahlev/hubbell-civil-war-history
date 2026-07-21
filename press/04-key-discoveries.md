@@ -24,4 +24,4 @@ James Hubbell (153rd NY) was wounded at Cedar Creek on October 19, 1864 — *"I 
 
 ## 4. Five generations, one archive
 
-Frances saved the letters. Gladys Sands Hubbell typed all 273 of them, 1947–49, on a typewriter. Fred Alexander Hubbell Jr. wrote the collection's introduction in 1996. Bruce Levitt digitized the typescripts in the 2010s. Alexander Hubbell Levitt structured and published them in 2026 — with AI doing the labor a research team once would have, under a documented rule that the model is a filter, never a source. Every generation used the tools it had; the archive is the fifth act.
+Frances saved the letters. Gladys Sands Hubbell typed all 272 of them, 1947–49, on a typewriter. Fred Alexander Hubbell Jr. wrote the collection's introduction in 1996. Bruce Levitt digitized the typescripts in the 2010s. Alexander Hubbell Levitt structured and published them in 2026 — with AI doing the labor a research team once would have, under a documented rule that the model is a filter, never a source. Every generation used the tools it had; the archive is the fifth act.

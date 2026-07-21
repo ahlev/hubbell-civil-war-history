@@ -16,24 +16,24 @@
 - [x] **A5. Key discoveries & story starters** (`04-key-discoveries.md`) — the hero assets written as 150–250-word stories with verbatim letter quotes, dates, and deep links: (1) Antietam triptych — Henry KIA, mother writing to a dead son; (2) July 4, 1863 Culp's Hill letter; (3) James death-date correction; (4) the stewardship chain incl. Gladys's 1947–49 typescripts. *(The asymmetry-of-register finding was RETIRED from press use 2026-07-08 — user call, not robust enough under scrutiny; the information-lag story serves as the data angle instead.)*
 - [ ] **A6. Story angles by audience** (`03-story-angles.md`) — exists; REWRITE to v2: one story per audience keyed to the asset map in `targets-v2/SHORTLIST.md`, replacing the generic 12-angle taxonomy.
 - [ ] **A7. Quotes & soundbites** (`05-quotes-and-soundbites.md`) — 6–8 creator quotes journalists can lift verbatim (drafted for user's voice pass) + 8–10 sourced pull-quotes from the letters with letter IDs.
-- [ ] **A8. FAQ** (`06-faq.md`) — the questions every journalist asks: How accurate is AI transcription and how do you know? Are you a professional historian? What did AI actually do vs humans? Is the data open / how licensed? Can other families do this? What surprised you most? What's next? Rights to reproduce letter text/images?
+- [~] **A8. FAQ** (`06-faq.md`) — PUBLIC PAGE LIVE `/faq` 2026-07-20 (curiosity arc, payoff deep links, FAQPage JSON-LD); kit master retains 3 user-voice gaps — — the questions every journalist asks: How accurate is AI transcription and how do you know? Are you a professional historian? What did AI actually do vs humans? Is the data open / how licensed? Can other families do this? What surprised you most? What's next? Rights to reproduce letter text/images?
 - [ ] **A9. Methods one-pager** — for technical/scholarly audiences: schema, three-layer architecture, alias tables, confidence model, verification workflow, links to methodology paper + discrepancy registry.
-- [ ] **A10. Citation guide** — "How to cite this archive" (site-wide + per-letter formats). Signals resource-grade seriousness; educators and journal reviewers look for it.
-- [ ] **A11. Rights & permissions statement** — what press may reproduce (letter text, screenshots, images), required credit line, and the license on the data.
+- [x] **A10. Citation guide** — ON-PAGE at press.html 2026-07-21 (archive + single-letter formats). — "How to cite this archive" (site-wide + per-letter formats). Signals resource-grade seriousness; educators and journal reviewers look for it.
+- [x] **A11. Rights & permissions statement** — ON-PAGE at press.html 2026-07-21. — what press may reproduce (letter text, screenshots, images), required credit line, and the license on the data.
 
 ### B. Visual & media assets
-- [ ] **B1. Screenshot library** — 6–10 hi-res captures (dashboard, campaign map, a letter in the reader, People Web, health ledger, landing) in 16:9 + vertical crops, each with a caption + credit, consistent filenames.
+- [x] **B1. Screenshot library** — 10 captioned captures in `press-assets/` 2026-07-21 (8 desktop 1920x1080 + 2 mobile; People Web re-shoot due after Wave 3 rebuild). — 6–10 hi-res captures (dashboard, campaign map, a letter in the reader, People Web, health ledger, landing) in 16:9 + vertical crops, each with a caption + credit, consistent filenames.
 - [ ] **B2. Document imagery** — Gladys's typescript pages (the July 4 letter and triptych letters first), any family-held originals/photos as rights allow. These are what history editors actually print.
 - [ ] **B3. Headshot** — user to supply/choose; 2 crops, hi-res.
 - [ ] **B4. Project wordmark** — simple title treatment consistent with site aesthetic (nice-to-have).
 - [ ] **B5. 90-second demo video** — screen capture with voiceover, YouTube unlisted; podcast/TV producers use it to pre-screen guests.
-- [ ] **B6. Media kit ZIP** — all of the above + PDF fact sheet, one download link on the press page.
+- [ ] **B6. Media kit ZIP** — GATED on dedicated contact address (domain decision; see faq-presskit plan Key Action Items). — all of the above + PDF fact sheet, one download link on the press page.
 
 ### C. Site surfaces (visible ownership — user-flagged)
-- [ ] **C1. About page** (`about.html` → `/about`): the creator, the five-generation chain, the method in plain language (link to methodology paper), contact, how to cite. v2 aesthetic; matches the site's oil-painting/lamplight language.
-- [ ] **C2. Press page** (`press.html` → `/press`): kit-as-webpage + ZIP + contact + "as seen in" section (grows with coverage).
-- [ ] **C3. Sitewide footer attribution** — "Created by Alexander Hubbell Levitt · About · Press · Contact" on every page.
-- [ ] **C4. Metadata** — schema.org author/creator markup + OpenGraph images so shared links preview properly.
+- [x] **C1. About page** — LIVE (built 2026-07-07; 2026-07-21: methodology line -> available-on-request, FAQ cross-link, schema.org). (`about.html` → `/about`): the creator, the five-generation chain, the method in plain language (link to methodology paper), contact, how to cite. v2 aesthetic; matches the site's oil-painting/lamplight language.
+- [x] **C2. Press page** — LIVE (2026-07-21: screenshot library links, cite + rights sections, honest ZIP gate, schema.org). (`press.html` → `/press`): kit-as-webpage + ZIP + contact + "as seen in" section (grows with coverage).
+- [x] **C3. Sitewide footer attribution** — LIVE via _design-ui.js ownership row (FAQ added 2026-07-20). — "Created by Alexander Hubbell Levitt · About · Press · Contact" on every page.
+- [x] **C4. Metadata** — OG/Twitter + schema.org on About/Press/FAQ 2026-07-21. — schema.org author/creator markup + OpenGraph images so shared links preview properly.
 - [ ] **C5. Deep-link check** — stable URLs to individual letters for pitch use.
 
 ### D. Operations

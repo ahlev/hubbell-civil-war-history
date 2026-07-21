@@ -17,13 +17,13 @@ The archive computes the gap between when things happened and when each writer c
 > **Retired as a standalone angle (2026-07-08, user call):** the quantified "asymmetry of register" finding (24% vs 2%, 17 matched pairs) is held back from press-facing use — not robust enough under scrutiny to lead with. The *qualitative* contrast between specific letters (James's plain-spoken wound account to his brother vs. reassurance in letters home) may still be used inside other stories, since it rests on verbatim documents, not codings.
 
 ## 5. The stewardship chain → genealogy, local press, human-interest
-Frances saved the letters. Gladys typed all 273 on a typewriter, 1947–49. Fred wrote the introduction, 1996. Bruce scanned them, 2010s. Alexander structured and published them with AI, 2026. *"Every generation used the tools it had" — a 160-year family relay ending in an archive anyone can read.*
+Frances saved the letters. Gladys typed all 272 on a typewriter, 1947–49. Fred wrote the introduction, 1996. Bruce scanned them, 2010s. Alexander structured and published them with AI, 2026. *"Every generation used the tools it had" — a 160-year family relay ending in an archive anyone can read.*
 
 ## 6. The discipline → AI/tech, digital humanities, archives, genealogy-AI
 One person + AI did what used to take a research team — under a published rule ("the AI is a filter, never a source"), with curated identity tables instead of fuzzy matching, a confidence model, and a public registry of everything that didn't line up. *The counter-example to AI slop: receipts included.*
 
 ## 7. The resource → educators, institutions, historians
-273 letters, both directions, all four years and after; four regiments across every major theater; searchable, visualized, free, citable (stable letter IDs, citation guide, documented method). *Not a story about the archive — the archive as infrastructure for other people's work.*
+272 letters, both directions, all four years and after; four regiments across every major theater; searchable, visualized, free, citable (stable letter IDs, citation guide, documented method). *Not a story about the archive — the archive as infrastructure for other people's work.*
 
 ## 8. The homefront / the mother's war → women's history, religious history, features
 Frances's letters are the war from the kitchen table: casualty lists, prayer, farm economics, four sons away. Her faith — "commit your all into His hands" — is the collection's connective tissue, and the brothers' memorial was raised by her church's Sabbath School. *The war as a mother lived it, in her own hand.*

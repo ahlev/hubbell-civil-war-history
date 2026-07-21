@@ -21,7 +21,7 @@
 A pitch should carry **one** primary link (the dashboard) and, where the recipient is methodology-minded, **one** supporting link. Never a pile of attachments.
 
 - **Primary:** the live dashboard — [DASHBOARD URL — creator to confirm]
-- **Construction story (how the data was built):** `04-analysis/DATA-ARCHITECTURE-BLOG.md` — "The Brain Engine: How 273 Civil War Letters Became a Living Dataset"
+- **Construction story (how the data was built):** `04-analysis/DATA-ARCHITECTURE-BLOG.md` — "The Brain Engine: How 272 Civil War Letters Became a Living Dataset"
 - **Connection story (how the brothers were verified against archives):** `04-analysis/PHASE-3-METHODOLOGY-BLOG.md` — "How to Use an AI on Family History Without Letting It Lie to You"
 - **Full methodology (citable):** `04-analysis/PHASE-3-METHODOLOGY-PAPER.md` (v1)
 

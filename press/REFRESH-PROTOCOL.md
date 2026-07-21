@@ -10,7 +10,7 @@ The v2 dossiers and pitches are good enough to use — but they were written aga
 ---
 
 ## Pass 1 — Site facts (run once, produces the master fact sheet all records check against)
-- [ ] **Corpus count is 272** everywhere (the 07-16 sweep fixed user-facing surfaces; internal kit masters still carry 273 — e.g. `06-faq.md`. Fix all `press/` masters).
+- [x] **Corpus count is 272** everywhere — kit masters (00–09, MEDIA-KIT) swept 2026-07-21; dossiers/pitches still due their Pass-3 check.
 - [ ] **No reference to the removed letter** (`LTR-1864-09-25-001`) survives in any dossier, pitch, angle, or kit file. Grep, don't trust.
 - [ ] **Feature list is current**: everything shipped since 2026-07-07 — canonical bio stage view, map hybrid playback + camera, ledger push drawer, people-web rebuild (when Wave 3 lands), landing scene 1 + preview runway + teasers, `/faq`, "The Project" nav, per-page updates. Pitches that demo a surface must describe the surface as it exists at send time.
 - [ ] **URLs**: production URL confirmed (custom-domain decision resolved or explicitly deferred); every deep link in every pitch resolves (letters via `reader.html?id=LTR-…`; bios via `who-they-were.html#<id>`; the old `brother-*.html` pages are redirect stubs — never cite them).

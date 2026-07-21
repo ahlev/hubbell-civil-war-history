@@ -2,7 +2,7 @@
 
 **The rule:** *AI is a filter, never a source.* The model reads, sorts, proposes, and points; nothing enters the record without human verification against a document.
 
-**Corpus:** 273 letters, 1861–1870, five writers (four soldier-brothers + their mother), Champlain NY. Source materials: complete 1947–49 typescripts (Gladys Sands Hubbell) + scans of surviving originals. Transcription: AI vision + human review of every letter; single line breaks collapsed (paper-width artifacts), paragraph breaks preserved.
+**Corpus:** 272 letters, 1861–1870, five writers (four soldier-brothers + their mother), Champlain NY. Source materials: complete 1947–49 typescripts (Gladys Sands Hubbell) + scans of surviving originals. Transcription: AI vision + human review of every letter; single line breaks collapsed (paper-width artifacts), paragraph breaks preserved.
 
 **Three-layer data architecture** (each letter, ~dozens of fields):
 1. **Source facts** — date, writer, recipient, location, transcription. Never modified by enrichment.

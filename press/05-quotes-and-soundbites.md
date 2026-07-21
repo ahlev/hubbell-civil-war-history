@@ -4,7 +4,7 @@
 *Journalists lift these verbatim. Rewrite each until it sounds like you said it out loud; cut any you wouldn't say.*
 
 1. "The rule was simple: the AI is a filter, never a source. It could read, sort, and point — but nothing went into the record that a human hadn't verified against the document."
-2. "Five generations of my family kept these letters safe. My great-great-grandmother saved them from the mailbox; Gladys typed all 273 of them in the 1940s; I just used the tools my generation has."
+2. "Five generations of my family kept these letters safe. My great-great-grandmother saved them from the mailbox; Gladys typed all 272 of them in the 1940s; I just used the tools my generation has."
 3. "The strangest part wasn't what we learned about the war. It was what the public record knew about my family that my family never knew about itself."
 4. "We had James's death date wrong for a hundred and sixty years. The archive we built to honor the family's memory ended up correcting it."
 5. "I'm named for the brother who came home. My parents chose the name at Gettysburg, standing where he fought. This project is what I did with that."
