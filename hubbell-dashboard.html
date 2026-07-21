@@ -340,7 +340,9 @@
             gap: 24px;
             padding-top: 16px;
             border-top: 1px solid var(--border);
-            height: 620px;
+            /* as tall as the viewport allows: the letter itself gets the room,
+               so reading needs far less inner scrolling */
+            height: clamp(620px, 80vh, 1040px);
         }
 
         /* Left: pinned controls + scrollable content */
