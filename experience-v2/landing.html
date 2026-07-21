@@ -461,7 +461,7 @@ body{color:var(--paper);font-family:"Source Serif 4",Georgia,serif;-webkit-font-
           <div class="ring-row">
             <span class="pring" style="--c:#5A8BC4; --pz:1.6; --px:35%" data-loop="/experience-v2/assets/brothers/loops/loop-henry"><img src="/experience-v2/assets/brothers/web/window-henry-v1.webp" alt="Henry"></span>
             <span class="pring" style="--c:#D4A843" data-loop="/experience-v2/assets/brothers/loops/loop-alexander-fav"><img src="/experience-v2/assets/brothers/web/window-alexander-fav.webp" alt="Alexander"></span>
-            <span class="pring" style="--c:#6BAF6B; --pz:1.2; --py:72%" data-loop="/experience-v2/assets/brothers/loops/loop-james-wide"><img src="/experience-v2/assets/brothers/web/window-james-v2.webp" alt="James"></span>
+            <span class="pring" style="--c:#6BAF6B; --pz:1.3; --opy:62%; --py:74%" data-loop="/experience-v2/assets/brothers/loops/loop-james-wide"><img src="/experience-v2/assets/brothers/web/window-james-v2.webp" alt="James"></span>
             <span class="pring" style="--c:#C46A5A; --px:70%" data-loop="/experience-v2/assets/brothers/loops/loop-charles"><img src="/experience-v2/assets/brothers/web/window-charles-v1.webp" alt="Charles"></span>
           </div>
           <h3 class="identity ring-line">Two came home. Their words became an archive &mdash;<br><em>and the archive became something you can walk through.</em></h3>
@@ -997,7 +997,7 @@ if(reduced){
 .pring{position:relative;width:min(clamp(87px,11.25vw,138px),calc(23vw - 20px));aspect-ratio:1;border-radius:50%;overflow:hidden;border:2px solid var(--c);box-shadow:0 0 26px color-mix(in srgb,var(--c) 38%,transparent),inset 0 0 0 1.5px rgba(255,255,255,.16);opacity:0;transform:translateY(16px);animation:pring-in .8s ease forwards}
 .pring:nth-child(1){animation-delay:.15s}.pring:nth-child(2){animation-delay:.3s}.pring:nth-child(3){animation-delay:.45s}.pring:nth-child(4){animation-delay:.6s}
 @keyframes pring-in{to{opacity:1;transform:none}}
-.pring img,.pring video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;filter:saturate(.92);transform:scale(var(--pz,1.75));transform-origin:var(--px,50%) var(--py,55%)}
+.pring img,.pring video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% var(--opy,18%);filter:saturate(.92);transform:scale(var(--pz,1.75));transform-origin:var(--px,50%) var(--py,55%)}
 .ring-line{margin-top:2px}
 .pv-runway{position:fixed;inset:0;z-index:30;pointer-events:none}
 .pv{position:absolute;left:50%;top:50%;width:min(86vw,1290px);opacity:0;transform:translate(-50%,-50%)}
