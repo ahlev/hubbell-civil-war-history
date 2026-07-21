@@ -42,8 +42,8 @@ def attribution(author, recipient_note, location, date_str):
 
 def map_url(date, author, letter_id):
     if author == 'mother':
-        return f"viz-map-fullwar?date={date}&home=1"
-    return f"viz-map-fullwar?date={date}&brother={author}&letter={letter_id}"
+        return f"viz-map-fullwar.html?date={date}&home=1"
+    return f"viz-map-fullwar.html?date={date}&brother={author}&letter={letter_id}"
 
 
 def q(qid, act, theme, source, recipient_note, date_str, stem, choices,
@@ -333,7 +333,7 @@ x = q('a4-body', 4, 'body', s, 'to his mother', 'August 22, 1864',
       "Scurvy is a vitamin-C deficiency — a diet disease, in an army living on hardtack and salt pork at the end of a single rail line from Chattanooga. Within days Alexander was evacuated through three hospitals; at one point that same month, all three surviving brothers were hospitalized at once, in three different states. He laughed about it in a letter. The Wellness Ledger on this site tracks all of it.",
       {'0': "That's the war we see in paintings — but the hospitals tell the real story. Battle wounds killed about one soldier for every two that disease took.",
        '2': "The prison camps were lethal — Andersonville above all — but their toll sits far below the armies' own camps and hospitals."},
-      extra_spoke='viz-health-ledger')
+      extra_spoke='viz-health-ledger.html')
 x['curriculum'] = 'Disease > battle — Civil War medicine & supply'
 QS.append(x)
 

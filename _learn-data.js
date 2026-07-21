@@ -69,7 +69,7 @@ var TOW_QUESTIONS = [
   "expansion": "The Union defeat at Bull Run ended the summer's illusion of a ninety-day war. Congress authorized a million three-year volunteers within days. Henry's regiment, five hundred miles from home and barely a month into its service, was suddenly in a long war — and this letter catches the exact afternoon the country found out.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1861-07-21&brother=henry&letter=LTR-1861-07-21-001",
+   "map": "viz-map-fullwar.html?date=1861-07-21&brother=henry&letter=LTR-1861-07-21-001",
    "bio": "henry"
   },
   "curriculum": "First Bull Run & the end of the short-war illusion"
@@ -100,7 +100,7 @@ var TOW_QUESTIONS = [
   "expansion": "Soldiers called their first combat “seeing the elephant,” but the disillusionment started long before any battle: drill by the hour, mud, lice, bad water, and boredom. An army of farm boys had to be manufactured into soldiers — in 1862 McClellan's drillmasters were doing exactly that, and veterans of six months like Alexander already talked like old men.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1862-03-06&brother=alexander&letter=LTR-1862-03-06-001",
+   "map": "viz-map-fullwar.html?date=1862-03-06&brother=alexander&letter=LTR-1862-03-06-001",
    "bio": "alexander"
   },
   "curriculum": "Camp life, drill & the hardening of recruits"
@@ -131,7 +131,7 @@ var TOW_QUESTIONS = [
   "expansion": "Pneumonia, typhoid, dysentery, and measles swept armies of rural men who had never been exposed to crowd diseases. A night like Henry's — wet ground, one blanket, February air — was where it started. This family will live both sides of the statistic: the war killed three of the four brothers — one in battle, and two by what it did to their bodies.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1862-02-05&brother=henry&letter=LTR-1862-02-05-001",
+   "map": "viz-map-fullwar.html?date=1862-02-05&brother=henry&letter=LTR-1862-02-05-001",
    "bio": "henry"
   },
   "curriculum": "Exposure & disease — the war’s deadliest killer (2:1)"
@@ -162,7 +162,7 @@ var TOW_QUESTIONS = [
   "expansion": "The sutler was a licensed private merchant who followed each regiment selling pies, tobacco, and notions at legendary markups — on credit against payday. A careless private could owe his whole month before the paymaster ever arrived. Watch how often the brothers write about money: pay was late, prices doubled, and every spare dollar went home to the farm.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1862-02-04&brother=henry&letter=LTR-1862-02-04-001",
+   "map": "viz-map-fullwar.html?date=1862-02-04&brother=henry&letter=LTR-1862-02-04-001",
    "bio": "henry"
   },
   "curriculum": "Army pay, sutlers & the soldier economy"
@@ -193,7 +193,7 @@ var TOW_QUESTIONS = [
   "expansion": "The armies moved unprecedented volumes of mail — millions of letters a year through the U.S. Sanitary and Christian Commissions' free stationery and the field post. Generals treated mail as a morale weapon. For this family, the letters were everything: five correspondents, four years, 272 letters — the archive you're inside right now exists because Frances Hubbell obeyed this sentence.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1862-01-24&brother=alexander&letter=LTR-1862-01-24-001",
+   "map": "viz-map-fullwar.html?date=1862-01-24&brother=alexander&letter=LTR-1862-01-24-001",
    "bio": "alexander"
   },
   "curriculum": "The mail as morale infrastructure"
@@ -224,7 +224,7 @@ var TOW_QUESTIONS = [
   "expansion": "The Civil War was the first war moved by rail: entire regiments — a thousand men, baggage, and beef — shifted hundreds of miles in days instead of weeks. But the same trains that moved armies leaked deserters, especially among men who had pocketed enlistment bounties. Charles's guarded doors are logistics and human nature in one sentence.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1862-10-15&brother=charles&letter=LTR-1862-10-15-001",
+   "map": "viz-map-fullwar.html?date=1862-10-15&brother=charles&letter=LTR-1862-10-15-001",
    "bio": "charles"
   },
   "curriculum": "Railroads & mass mobilization"
@@ -255,7 +255,7 @@ var TOW_QUESTIONS = [
   "expansion": "Fair Oaks (Seven Pines) cost both armies about eleven thousand men in two days — and it was only a preview. Note what Henry does: he tells his BROTHER the ground was covered with the dead, plainly. To his mother, the same weeks sound careful and reassuring. The brothers kept a second, harder war for each other — historians of this collection call it an asymmetry of register.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1862-06-13&brother=henry&letter=LTR-1862-06-13-002",
+   "map": "viz-map-fullwar.html?date=1862-06-13&brother=henry&letter=LTR-1862-06-13-002",
    "bio": "henry"
   },
   "curriculum": "Rifled muskets vs. Napoleonic tactics — the scale of killing"
@@ -286,7 +286,7 @@ var TOW_QUESTIONS = [
   "expansion": "Alexander wrote this twelve days after leaving the Antietam campaign's hospitals, which sharpened his feelings about neighbors buying their way out. Substitution was legal, common, and legendarily resented by the men already in uniform — it fed the bitterest slogan of the war: “a rich man's war and a poor man's fight.”",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1862-11-25&brother=alexander&letter=LTR-1862-11-25-001",
+   "map": "viz-map-fullwar.html?date=1862-11-25&brother=alexander&letter=LTR-1862-11-25-001",
    "bio": "alexander"
   },
   "curriculum": "Substitutes & “rich man’s war, poor man’s fight”"
@@ -317,7 +317,7 @@ var TOW_QUESTIONS = [
   "expansion": "Immigration had remade the North in the 1840s and '50s, and the army showed it: entire regiments drilled in German; the Irish Brigade's charges at Antietam and Fredericksburg became legend. A farm boy from Champlain shared his war with men born an ocean away — and noticed them, 'shouting at the top of their voices,' with open admiration.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1862-07-12&brother=henry&letter=LTR-1862-07-12-001",
+   "map": "viz-map-fullwar.html?date=1862-07-12&brother=henry&letter=LTR-1862-07-12-001",
    "bio": "henry"
   },
   "curriculum": "Immigrant soldiers & ethnic regiments"
@@ -348,7 +348,7 @@ var TOW_QUESTIONS = [
   "expansion": "Nearly half the Union dead of the war lie under stones that say UNKNOWN. Families scanned newspaper casualty lists, wrote to colonels and chaplains, and waited. Frances did all three — this letter is her doing it. The interlude ahead carries what she eventually learned.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1862-10-29&home=1",
+   "map": "viz-map-fullwar.html?date=1862-10-29&home=1",
    "bio": "mother"
   },
   "curriculum": "The unknown dead & death in the Civil War"
@@ -379,7 +379,7 @@ var TOW_QUESTIONS = [
   "expansion": "Roughly two hundred thousand Union soldiers deserted during the war; 1863, after Fredericksburg's misery and the first drafts, was the crisis year. Executions were rare next to desertions — which is exactly why the army made theater of them: formed squares, slow march past the coffins, the full weight of example. Notice a farm boy writing 'salutary effect' — two years of war had changed what Alexander could watch.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1863-09-18&brother=alexander&letter=LTR-1863-09-18-001",
+   "map": "viz-map-fullwar.html?date=1863-09-18&brother=alexander&letter=LTR-1863-09-18-001",
    "bio": "alexander"
   },
   "curriculum": "Desertion & military discipline"
@@ -410,7 +410,7 @@ var TOW_QUESTIONS = [
   "expansion": "One sentence, nine words, and note the detail that swallows the rest: “our AND the rebel's dead.” The burial crisis at Gettysburg — shallow graves, summer heat, seven thousand bodies — is what led Pennsylvania to charter a National Cemetery on the field. At its dedication that November, Lincoln spoke for two minutes. Alexander was part of why the speech exists.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1863-07-04&brother=alexander&letter=LTR-1863-07-04-001",
+   "map": "viz-map-fullwar.html?date=1863-07-04&brother=alexander&letter=LTR-1863-07-04-001",
    "bio": "alexander"
   },
   "curriculum": "Gettysburg’s aftermath & the National Cemetery"
@@ -441,7 +441,7 @@ var TOW_QUESTIONS = [
   "expansion": "He wrote this days after the New York City draft riots, the bloodiest civil disorder in American history, in which that same $300 figure was chanted in the streets. From a private already serving for $13 a month, 'lucky to escape' carries an edge you can still feel a century and a half later.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1863-07-20&brother=charles&letter=LTR-1863-07-20-001",
+   "map": "viz-map-fullwar.html?date=1863-07-20&brother=charles&letter=LTR-1863-07-20-001",
    "bio": "charles"
   },
   "curriculum": "The $300 commutation clause & the draft riots"
@@ -472,7 +472,7 @@ var TOW_QUESTIONS = [
   "expansion": "The same law provoked riots in New York and satisfaction at the front — primary sources disagreeing is the lesson itself. Soldiers' letters across the Union armies echo Charles almost word for word that month. History rarely hands you one clean 'public opinion'; it hands you positions, and every position had a return address.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1863-07-20&brother=charles&letter=LTR-1863-07-20-001",
+   "map": "viz-map-fullwar.html?date=1863-07-20&brother=charles&letter=LTR-1863-07-20-001",
    "bio": "charles"
   },
   "curriculum": "Conscription — the view from the ranks vs. the home front"
@@ -503,7 +503,7 @@ var TOW_QUESTIONS = [
   "expansion": "Every silence between letters opened the same catalog of imagined fates. Libby Prison in Richmond was infamous enough by 1863 to reach a farm kitchen on the Canadian border. And notice “our blessed lamented Henry” — fourteen months on, grief has become part of the family's ordinary vocabulary. That, too, is what war does.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1863-11-15&home=1",
+   "map": "viz-map-fullwar.html?date=1863-11-15&home=1",
    "bio": "mother"
   },
   "curriculum": "The home front’s war — information, anxiety & grief"
@@ -534,7 +534,7 @@ var TOW_QUESTIONS = [
   "expansion": "James had spent two years at West Point as a cadet before the field caught up with him; his legs, as he admits, had 'been used so little.' Even in the war's fourth year every new man passed through the same forge his brothers had — there was no shortcut, not even a scholarly one. His brothers' letters from 1862 read almost identically; the war kept teaching the same first lesson.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1864-06-21&brother=james&letter=LTR-1864-06-21-001",
+   "map": "viz-map-fullwar.html?date=1864-06-21&brother=james&letter=LTR-1864-06-21-001",
    "bio": "james"
   },
   "curriculum": "The march — the soldier’s daily war"
@@ -565,9 +565,9 @@ var TOW_QUESTIONS = [
   "expansion": "Scurvy is a vitamin-C deficiency — a diet disease, in an army living on hardtack and salt pork at the end of a single rail line from Chattanooga. Within days Alexander was evacuated through three hospitals; at one point that same month, all three surviving brothers were hospitalized at once, in three different states. He laughed about it in a letter. The Wellness Ledger on this site tracks all of it.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1864-08-22&brother=alexander&letter=LTR-1864-08-22-001",
+   "map": "viz-map-fullwar.html?date=1864-08-22&brother=alexander&letter=LTR-1864-08-22-001",
    "bio": "alexander",
-   "extra": "viz-health-ledger"
+   "extra": "viz-health-ledger.html"
   },
   "curriculum": "Disease > battle — Civil War medicine & supply"
  },
@@ -597,7 +597,7 @@ var TOW_QUESTIONS = [
   "expansion": "A thousand dollars was roughly six YEARS of a private's pay — for men who knew exactly what Georgia and Virginia would cost. About 136,000 veterans took some version of the deal (Alexander stayed with his regiment to the war's end regardless). The bounty system also bred its parasite: the bounty jumper, enlisting and deserting town after town for the money. Note Charles's brotherly advice: he thought Alex had given enough.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1864-01-03&brother=charles&letter=LTR-1864-01-03-001",
+   "map": "viz-map-fullwar.html?date=1864-01-03&brother=charles&letter=LTR-1864-01-03-001",
    "bio": "charles"
   },
   "curriculum": "Bounties, veteran reenlistment & their abuses"
@@ -628,7 +628,7 @@ var TOW_QUESTIONS = [
   "expansion": "Lincoln won about 78% of the soldier vote against McClellan — the general the Army of the Potomac had once loved. And then there's Charles's company: two Lincoln votes. His regiment was raised in heavily Democratic Fulton and Montgomery counties, and it voted like home. Real history is lumpier than the averages — that lump is standing in a field at Cedar Creek, two weeks after the battle there, writing his mother.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1864-11-04&brother=charles&letter=LTR-1864-11-04-001",
+   "map": "viz-map-fullwar.html?date=1864-11-04&brother=charles&letter=LTR-1864-11-04-001",
    "bio": "charles"
   },
   "curriculum": "The election of 1864 & the soldier vote"
@@ -659,7 +659,7 @@ var TOW_QUESTIONS = [
   "expansion": "Sanitary Fairs in northern cities raised millions (Chicago's 1863 fair alone cleared ~$100,000; New York's 1864 fair over a million) — tableaux, raffles, donated relics. 'Mrs. Banks' is the wife of the occupying general, Nathaniel Banks — New Orleans society performing Union charity in a captured city, which is its own history lesson. The home front didn't just wait; it organized, and its organizers were mostly women.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1864-04-15&brother=charles&letter=LTR-1864-04-15-001",
+   "map": "viz-map-fullwar.html?date=1864-04-15&brother=charles&letter=LTR-1864-04-15-001",
    "bio": "charles"
   },
   "curriculum": "The Sanitary Commission & women’s war work"
@@ -690,7 +690,7 @@ var TOW_QUESTIONS = [
   "expansion": "The St. Albans Raid was the war's northernmost action, and it put army rhythms — reveille, tattoo — into Frances's kitchen window. After four years of sending sons TO the war, the war had come to her street. Her letters this winter carry a new tone: the home front and the front were never as separate as the maps pretended.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1865-01-11&home=1",
+   "map": "viz-map-fullwar.html?date=1865-01-11&home=1",
    "bio": "mother"
   },
   "curriculum": "The St. Albans Raid & the militarized border"
@@ -721,7 +721,7 @@ var TOW_QUESTIONS = [
   "expansion": "Read her arithmetic: my fears had NUMBERED you with the dead — grief run in advance, on spec. She had already lost Henry to a six-week silence in 1862; every later silence replayed it. The war's medical ledgers counted wounds and fevers. Nobody counted this — except, accidentally, the letters.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1865-01-11&home=1",
+   "map": "viz-map-fullwar.html?date=1865-01-11&home=1",
    "bio": "mother"
   },
   "curriculum": "The war’s psychological toll"
@@ -752,7 +752,7 @@ var TOW_QUESTIONS = [
   "expansion": "It was the largest, fastest demobilization in the country's history — run with ledgers and muster rolls. Alexander's regiment waited near Alexandria for weeks after the grand reviews; the army that had learned to move men by the hundred thousand now had to unmove them, one signature at a time. His destination — Ogdensburgh — is where his war began in 1861.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1865-06-27&brother=alexander&letter=LTR-1865-06-27-001",
+   "map": "viz-map-fullwar.html?date=1865-06-27&brother=alexander&letter=LTR-1865-06-27-001",
    "bio": "alexander"
   },
   "curriculum": "Demobilization — dissolving the citizen army"
@@ -783,7 +783,7 @@ var TOW_QUESTIONS = [
   "expansion": "Historians still debate when Union soldiers came to see emancipation as a war aim beside reunion — and here is one soldier's answer, unprompted, in a letter to his sister: by the end, HE counted both, and put freedom first. When you read a primary source this closely, you're doing exactly what historians do.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1865-06-27&brother=alexander&letter=LTR-1865-06-27-001",
+   "map": "viz-map-fullwar.html?date=1865-06-27&brother=alexander&letter=LTR-1865-06-27-001",
    "bio": "alexander"
   },
   "curriculum": "What victory meant — emancipation & Union"
@@ -814,7 +814,7 @@ var TOW_QUESTIONS = [
   "expansion": "This is a lesson about sources themselves: a letter collection is a map of separations. Four years, 272 letters — and the moment the family closes around one table, history goes quiet. What we know of them afterward comes from pensions, censuses, and gravestones. And one thing more: James, the youngest, never reached his tea table — he died that October, on the journey home. The finale will tell you the rest.",
   "spokes": {
    "letter": true,
-   "map": "viz-map-fullwar?date=1865-07-27&brother=alexander&letter=LTR-1865-07-27-001",
+   "map": "viz-map-fullwar.html?date=1865-07-27&brother=alexander&letter=LTR-1865-07-27-001",
    "bio": "alexander"
   },
   "curriculum": "Reading the archive itself — why the letters exist"
