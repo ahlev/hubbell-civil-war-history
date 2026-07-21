@@ -24,6 +24,10 @@
 !/logo.svg
 !/viz-data-compact.json
 
+# --- Press kit assets: the PUBLIC screenshot library + captions (press.html links here).
+#     Distinct from the internal /press directory, which stays private. ---
+!/press-assets
+
 # --- Vendored third-party libs (self-contained, no CDN at runtime) ---
 !/_vendor
 /_vendor/*
