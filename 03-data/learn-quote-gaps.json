@@ -1,0 +1,464 @@
+{
+  "I-body": [
+    {
+      "id": "LTR-1861-09-05-001",
+      "date": "1861-09-05",
+      "author": "henry",
+      "recipient": "Frances Hubbell (Sister)",
+      "location": "Washington, D.C.",
+      "excerpt": "As for myself, I have not been well, have not been able to drill for three days, but am some better now. The Dr. gave me medicine.",
+      "hook": "Three days too sick to drill, and the doctor's medicine is the only treatment named",
+      "concept": "Disease, not bullets, was the biggest killer of Civil War soldiers -- camp sickness began in the first months",
+      "verified": true
+    },
+    {
+      "id": "LTR-1862-01-28-001",
+      "date": "1862-02-04",
+      "author": "alexander",
+      "recipient": "Brother (Charles)",
+      "location": "Baltimore",
+      "excerpt": "There was a time when there was quite a number on the sick list although it was not quite so bad as Mrs. Upton represents it. There has not been one case of the black measles in the Co. and I do not think in the Regt. though there has been quite a number of the red measles.",
+      "hook": "A soldier reassures his family about the company 'sick list' -- while admitting a measles outbreak",
+      "concept": "Measles swept through Civil War training camps, striking rural recruits with no childhood immunity",
+      "verified": true
+    },
+    {
+      "id": "LTR-1861-12-16-001",
+      "date": "1861-12-16",
+      "author": "alexander",
+      "recipient": "Frances Hubbell (Sister)",
+      "location": "Camp Jackson, near Baltimore, MD",
+      "excerpt": "Capt. Ransom was very, very, very, very kind to me when I was sick. He came often to see me and brought me toast and tea a number of times.",
+      "hook": "An officer nurses a sick teenage private with toast and tea",
+      "concept": "With no organized nursing corps early in the war, care for sick soldiers depended on comrades and officers",
+      "verified": true
+    },
+    {
+      "id": "LTR-1862-04-21-001",
+      "date": "1862-04-21",
+      "author": "henry",
+      "recipient": "James Hubbell (Brother)",
+      "location": "Camp near York Town",
+      "excerpt": "I can lay out all night on the ground and not have a cold.",
+      "hook": "After ten months of soldiering, sleeping on bare ground no longer makes him sick",
+      "concept": "Soldiers' bodies hardened to exposure that would have sickened them as civilians",
+      "verified": true
+    }
+  ],
+  "I-purse": [
+    {
+      "id": "LTR-1861-06-06-001",
+      "date": "1861-07-06",
+      "author": "henry",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Washington, D.C.",
+      "excerpt": "I hope when you write you will let me know whether you received that money, was eight dollars.",
+      "hook": "Days after reaching Washington, his first worry is whether eight dollars made it home",
+      "concept": "Soldiers' pay was a vital income stream for families left behind",
+      "verified": true
+    },
+    {
+      "id": "LTR-1861-11-15-001",
+      "date": "1861-11-15",
+      "author": "henry",
+      "recipient": "Charles Hubbell (Brother)",
+      "location": "Camp McClellan",
+      "excerpt": "I have sent home $20.00 by express. I put it in a letter and directed it to Mother, and then gave it to the Adjutant.",
+      "hook": "Twenty dollars travels home by express, entrusted to the regimental adjutant",
+      "concept": "Without banks or money orders, soldiers improvised risky ways to move pay home",
+      "verified": true
+    },
+    {
+      "id": "LTR-1862-01-24-002",
+      "date": "1862-01-24",
+      "author": "henry",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Camp McClellan",
+      "excerpt": "We have been paid off and I shall send home $15.00 this time. I should like to send more but can not very well do so.",
+      "hook": "Fifteen dollars of his pay goes straight home -- and he apologizes it isn't more",
+      "concept": "A private's $13/month wage was budgeted down to the dollar between camp needs and family support",
+      "verified": true
+    },
+    {
+      "id": "LTR-1862-01-15-001",
+      "date": "1862-01-15",
+      "author": "alexander",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Camden Station, Baltimore",
+      "excerpt": "I hope you will not scruple to use my money. Every cent is yours.",
+      "hook": "A teenage soldier signs his whole army wage over to his widowed mother",
+      "concept": "Soldiers' remittances functioned as family survival income on the home front",
+      "verified": true
+    }
+  ],
+  "I-family": [
+    {
+      "id": "LTR-1861-06-06-001",
+      "date": "1861-07-06",
+      "author": "henry",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Washington, D.C.",
+      "excerpt": "I would have been very glad to have gone home for three or four days, and spoke to Brink about it, but he said it would cost me twelve dollars, thought it would not pay. If I had known it would have cost only five dollars I would have gone.",
+      "hook": "A twelve-dollar train fare is all that stands between a new recruit and home",
+      "concept": "Distance and cost cut soldiers off from home from the first week of service",
+      "verified": true
+    },
+    {
+      "id": "LTR-1861-11-30-002",
+      "date": "1861-11-30",
+      "author": "henry",
+      "recipient": "Frances Hubbell (Sister)",
+      "location": "Camp McClellan",
+      "excerpt": "I have been a little homesick lately, but I have got over it.",
+      "hook": "A rare plain admission of homesickness -- quickly retracted",
+      "concept": "Homesickness ('nostalgia') was so common the army treated it as a medical condition",
+      "verified": true
+    },
+    {
+      "id": "LTR-1862-01-24-001",
+      "date": "1862-01-24",
+      "author": "alexander",
+      "recipient": "Mrs. F. A. Hubbell (Mother)",
+      "location": "Baltimore",
+      "excerpt": "Wouldn't I like to be at home in your nice cozy sitting room this cold blustering evening. How pleasant it would be, wouldn't it?",
+      "hook": "From a Baltimore winter camp, he daydreams his mother's sitting room",
+      "concept": "Letters sustained the emotional tie between camp and the family fireside",
+      "verified": true
+    },
+    {
+      "id": "LTR-1862-02-12-002",
+      "date": "1862-02-12",
+      "author": "henry",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Camp McClellan",
+      "excerpt": "There is nothing that does us so much good as a letter from home.",
+      "hook": "One sentence sums up the entire wartime postal system",
+      "concept": "Mail from home was the army's most powerful morale technology",
+      "verified": true
+    }
+  ],
+  "III-camp": [
+    {
+      "id": "LTR-1863-11-21-001",
+      "date": "1863-11-21",
+      "author": "alexander",
+      "recipient": "Frances (Sister)",
+      "location": "Wauhatchie, East Tennessee",
+      "excerpt": "We were ordered to fall in last night under arms with knapsacks packed in ten minutes. We marched over to Division headquarters and a — and marched back again.",
+      "hook": "A midnight scramble, a march to headquarters -- and straight back again",
+      "concept": "Drills and readiness tests filled army life between battles; soldiers met them with dry humor",
+      "verified": true
+    },
+    {
+      "id": "LTR-1863-12-16-001",
+      "date": "1863-12-16",
+      "author": "alexander",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Wauhatchie, TN",
+      "excerpt": "We are back again in our old camp and we are pretty hard up for rations. The whole army is in the same way.",
+      "hook": "An entire army goes hungry while the railroad is down",
+      "concept": "After Chattanooga, supply-line breakdowns put whole Union armies on short rations",
+      "verified": true
+    },
+    {
+      "id": "LTR-1863-08-21-001",
+      "date": "1863-08-21",
+      "author": "charles",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Capitol Hill, Washington, D.C.",
+      "excerpt": "Tents, unless they are raised up to let in the air, are hot as an oven in summer. But there is one objection to our barracks, which is bed bugs.",
+      "hook": "Tents bake like ovens -- and the barracks have bed bugs",
+      "concept": "Everyday soldier life meant choosing between heat, vermin, and weather",
+      "verified": true
+    },
+    {
+      "id": "LTR-1863-07-30-001",
+      "date": "1863-07-30",
+      "author": "alexander",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Camp near Warrenton Junction",
+      "excerpt": "We are now having a few days of rest after our long and painful marching and much we need it. I was nearly worn out when we reached this place, but am now fast gaining strength.",
+      "hook": "Worn nearly to collapse by the march that followed Gettysburg",
+      "concept": "The pursuit of Lee after Gettysburg exhausted the victors as much as the defeated",
+      "verified": true
+    }
+  ],
+  "IV-purse": [
+    {
+      "id": "LTR-1864-10-04-002",
+      "date": "1864-10-04",
+      "author": "charles",
+      "recipient": "Alexander F. Hubbell",
+      "location": "Harrisonburg, Shenandoah Valley",
+      "excerpt": "A few days since a recruit from Fresseville came to our Co. He rec'd. $1202 bounty.",
+      "hook": "A one-year recruit arrives carrying a $1,202 bounty -- more than a private earned in five years",
+      "concept": "By 1864 enlistment bounties had inflated dramatically as the North struggled to fill quotas",
+      "verified": true
+    },
+    {
+      "id": "LTR-1864-06-29-001",
+      "date": "1864-06-29",
+      "author": "charles",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Morganza, Louisiana",
+      "excerpt": "He wanted sugar or molasses, but sugar costs too much, 50¢ or over at the sutlers.",
+      "hook": "Even sugar is priced out of a soldier's reach at the camp store",
+      "concept": "Wartime inflation and sutler markups ate into soldiers' fixed pay",
+      "verified": true
+    },
+    {
+      "id": "LTR-1864-11-30-001",
+      "date": "1864-11-30",
+      "author": "charles",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Camp near Newtown, Virginia",
+      "excerpt": "Seven months pay is now due us and we are daily expecting to be paid, but may not be, and that the dollar you sent me will be all I will need, I think.",
+      "hook": "Seven months without pay -- surviving on a dollar his mother mailed him",
+      "concept": "The Union pay system ran chronically in arrears; families bridged the gap",
+      "verified": true
+    },
+    {
+      "id": "LTR-1864-02-17-001",
+      "date": "1864-02-17",
+      "author": "charles",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Capitol Hill, Washington, D.C.",
+      "excerpt": "Enclosed is a $20 check and $10.60 in greenbacks. Please let me know soon when you receive it.",
+      "hook": "A check and a stack of greenbacks folded into a letter home",
+      "concept": "The new federal 'greenback' paper currency, created in 1862, moved through soldiers' mail",
+      "verified": true
+    }
+  ],
+  "IV-family": [
+    {
+      "id": "LTR-1864-06-08-001",
+      "date": "1864-06-08",
+      "author": "alexander",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Marietta, Georgia",
+      "excerpt": "I received no less than six letters from home. It did seem so good to hear from you all again.",
+      "hook": "Six letters arrive at once in the middle of the Atlanta campaign",
+      "concept": "Mail reached even armies on active campaign -- in bursts, after long silences",
+      "verified": true
+    },
+    {
+      "id": "LTR-1864-08-02-001",
+      "date": "1864-08-02",
+      "author": "alexander",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Near Atlanta, Georgia",
+      "excerpt": "Why does not James write! I feel quite neglected.",
+      "hook": "One brother scolds another for silence -- from the lines before Atlanta",
+      "concept": "Brothers in separate armies kept track of each other through their mother's letters",
+      "verified": true
+    },
+    {
+      "id": "LTR-1864-02-17-001",
+      "date": "1864-02-17",
+      "author": "charles",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Capitol Hill, Washington, D.C.",
+      "excerpt": "I hope you will not worry about us boys. Everything will come out all right.",
+      "hook": "Three sons in uniform, and one tells their mother not to worry",
+      "concept": "Soldiers' letters worked constantly to manage fear at home",
+      "verified": true
+    },
+    {
+      "id": "LTR-1864-12-09-001",
+      "date": "1864-12-09",
+      "author": "james",
+      "recipient": "Mrs. Hubbell (Mother) and Frances (Fannie)",
+      "location": "Chestnut Hill Hospital, Philadelphia",
+      "excerpt": "You speak of being anxious about Alex. I do not see why you should be if he has only been absent two weeks.",
+      "hook": "From an army hospital, James talks his mother down about his brother's silence",
+      "concept": "Slow and broken mail cycles kept home-front families in perpetual anxiety",
+      "verified": true
+    }
+  ],
+  "V-camp": [
+    {
+      "id": "LTR-1865-06-16-001",
+      "date": "1865-06-16",
+      "author": "alexander",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Near Washington, D.C.",
+      "excerpt": "Our corps and division has been broken up. Gen. Geary has issued his farewell order and gone.",
+      "hook": "The corps dissolves around him as generals say goodbye",
+      "concept": "In summer 1865 the million-man Union army demobilized piece by piece",
+      "verified": true
+    },
+    {
+      "id": "LTR-1865-06-12-001",
+      "date": "1865-06-12",
+      "author": "charles",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Savannah, Georgia",
+      "excerpt": "The city looks deserted not much business being done now. I don't know whether our regt. will stay here or go into the interior of the state, but I think it will stay here.",
+      "hook": "Occupied Savannah sits silent as a garrison regiment settles in",
+      "concept": "After Appomattox, Union regiments shifted to occupation duty across the defeated South",
+      "verified": true
+    },
+    {
+      "id": "LTR-1865-06-12-001",
+      "date": "1865-06-12",
+      "author": "charles",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Savannah, Georgia",
+      "excerpt": "Yesterday while lying at the mouth of the river & while in swimming one of our men was caught by the tide & was rapidly being carried out to sea. A life preserver was thrown him & a boat rowed by marines went to his rescue.",
+      "hook": "A swimming soldier is nearly swept out to sea while the regiment waits on the tide",
+      "concept": "Even after the fighting ended, army life produced its own dangers and rescues",
+      "verified": true
+    }
+  ],
+  "V-body": [
+    {
+      "id": "LTR-1865-06-16-001",
+      "date": "1865-06-16",
+      "author": "alexander",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Near Washington, D.C.",
+      "excerpt": "Perhaps I did not tell you I was obliged to sell my other watch to buy bread to keep life in me.",
+      "hook": "He sold his watch to buy bread -- and only mentions it in a postscript",
+      "concept": "Supply failures left even veteran soldiers hungry in the war's final months",
+      "verified": true
+    },
+    {
+      "id": "LTR-1865-01-11-001",
+      "date": "1865-01-11",
+      "author": "mother",
+      "recipient": "Alexander F. Hubbell",
+      "location": "Champlain, New York",
+      "excerpt": "You speak of being nearly starved. Dear child — how I do wish I could send you a box of good things.",
+      "hook": "A mother reads 'nearly starved' in her son's letter and aches to send food",
+      "concept": "Home-front families tried to fill the army's nutritional gaps with boxes from home",
+      "verified": true
+    },
+    {
+      "id": "LTR-1865-06-16-001",
+      "date": "1865-06-16",
+      "author": "alexander",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Near Washington, D.C.",
+      "excerpt": "His leg was taken off by a cannon shot. Two of our Regt. bandaged his leg (it hung by a few muscles and these they were obliged to sever with a pocket knife) and carried him from the field.",
+      "hook": "Comrades finish a cannon shot's work with a pocket knife to save an officer's son",
+      "concept": "Wounds and amputations remained living memory in the army of 1865",
+      "verified": true
+    }
+  ],
+  "V-purse": [
+    {
+      "id": "LTR-1865-07-27-001",
+      "date": "1865-07-27",
+      "author": "alexander",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Camp Wheeler, Ogdensburgh, N.Y.",
+      "excerpt": "We reached here last Sat. and have been waiting for the Paymaster ever since. He has not come yet and I have some doubts whether I shall be able to be home this week.",
+      "hook": "Discharged, back in New York -- and still stuck in camp waiting to be paid",
+      "concept": "Mustering out required a final settlement with the army paymaster before soldiers could go home",
+      "verified": true
+    },
+    {
+      "id": "LTR-1865-06-16-001",
+      "date": "1865-06-16",
+      "author": "alexander",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Near Washington, D.C.",
+      "excerpt": "We have been paid. I expressed home yesterday three hundred and fifty dollars.",
+      "hook": "A final wartime payday sends $350 home in coupon bonds",
+      "concept": "Discharge-time back pay was many families' largest single wartime windfall",
+      "verified": true
+    },
+    {
+      "id": "LTR-1865-06-12-001",
+      "date": "1865-06-12",
+      "author": "charles",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Savannah, Georgia",
+      "excerpt": "Have you paid Mrs. Joseph Martin twenty dollars as I requested. Please let me know.",
+      "hook": "Settling a comrade's twenty-dollar debt to his wife as the war closes",
+      "concept": "Soldiers used family at home as informal bankers for each other",
+      "verified": true
+    }
+  ],
+  "V-nation": [
+    {
+      "id": "LTR-1865-01-11-001",
+      "date": "1865-01-11",
+      "author": "mother",
+      "recipient": "Alexander F. Hubbell",
+      "location": "Champlain, New York",
+      "excerpt": "I can but hope that the rebellion is in its death throes. I have thought so many times before & am afraid to allow myself to hope too strongly.",
+      "hook": "January 1865: a mother dares not trust her hope that the war is ending",
+      "concept": "By early 1865 Northern civilians sensed victory but feared another false dawn",
+      "verified": true
+    },
+    {
+      "id": "LTR-1865-06-27-001",
+      "date": "1865-06-27",
+      "author": "alexander",
+      "recipient": "Frances (Fannie)",
+      "location": "Near Alexandria, Virginia",
+      "excerpt": "When I left home nearly four years since our country was racked from its base to its center by one of the most violent and gigantic rebellions recorded on the pages of history.",
+      "hook": "A four-year veteran measures the distance from 1861 as he musters out",
+      "concept": "Soldiers framed their service as saving the Union from an existential rebellion",
+      "verified": true
+    },
+    {
+      "id": "LTR-1865-06-27-001",
+      "date": "1865-06-27",
+      "author": "alexander",
+      "recipient": "Frances (Fannie)",
+      "location": "Near Alexandria, Virginia",
+      "excerpt": "We knew not friends from foes. Treason walked our legislative halls and had command of our armies.",
+      "hook": "His memory of 1861: treason inside the legislature and the army itself",
+      "concept": "The secession winter felt like internal collapse -- officers and officials defecting to the Confederacy",
+      "verified": true
+    }
+  ],
+  "V-family": [
+    {
+      "id": "LTR-1865-06-16-001",
+      "date": "1865-06-16",
+      "author": "alexander",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Near Washington, D.C.",
+      "excerpt": "You have doubtless wondered at my long silence. I have been waiting to see if there would not soon be some news of our going home,",
+      "hook": "Every letter delayed in hope the next news would be 'we're going home'",
+      "concept": "In summer 1865 soldiers' letters revolved around one question: when do we go home?",
+      "verified": true
+    },
+    {
+      "id": "LTR-1865-06-27-001",
+      "date": "1865-06-27",
+      "author": "alexander",
+      "recipient": "Frances (Fannie)",
+      "location": "Near Alexandria, Virginia",
+      "excerpt": "That's a happy day that will be, eh, Miss Fannie, agreed and a proud one for me. God spare my life to see the time.",
+      "hook": "Imagining the day of discharge with his sister -- 'God spare my life to see the time'",
+      "concept": "Homecoming anticipation dominated soldiers' letters after the armies disbanded",
+      "verified": true
+    },
+    {
+      "id": "LTR-1865-07-27-001",
+      "date": "1865-07-27",
+      "author": "alexander",
+      "recipient": "Mrs. Hubbell (Mother)",
+      "location": "Camp Wheeler, Ogdensburgh, N.Y.",
+      "excerpt": "I am very anxious to see you all again.",
+      "hook": "After four years, one plain sentence from the mustering-out camp",
+      "concept": "Reunion, not victory, was the emotional endpoint of most soldiers' letters",
+      "verified": true
+    },
+    {
+      "id": "LTR-1865-01-11-001",
+      "date": "1865-01-11",
+      "author": "mother",
+      "recipient": "Alexander F. Hubbell",
+      "location": "Champlain, New York",
+      "excerpt": "I think of you every day and hour, and dream of you at night.",
+      "hook": "A mother's plain confession: her soldier son fills her days and her dreams",
+      "concept": "The war's emotional cost at home was constant, sleepless worry",
+      "verified": true
+    }
+  ]
+}

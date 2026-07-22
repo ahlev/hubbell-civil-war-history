@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Their Own Words &mdash; The War in Five Acts</title>
-<meta name="description" content="A learning game built from 25 verbatim sentences of the Hubbell family's Civil War letters — five acts, five lenses, one war as they lived it."/>
+<meta name="description" content="A learning game built from 50 verbatim sentences of the Hubbell family's Civil War letters — five acts, five lenses, one war as they lived it."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -109,8 +109,17 @@
 .tow-quote {
   margin: 0 0 6px; background: oklch(97% 0.02 90);
   border: 1px solid oklch(88% 0.03 85); border-radius: 8px;
-  padding: 34px 38px 24px; box-shadow: 0 16px 40px -30px rgba(60,40,10,0.5);
+  padding: 30px 34px 24px; box-shadow: 0 16px 40px -30px rgba(60,40,10,0.5);
+  display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: start;
 }
+/* persona anchor: the writer stands beside his own words, animated + named */
+.tow-persona { display: grid; justify-items: center; gap: 8px; padding-top: 4px; }
+.tow-ring--persona { width: clamp(84px, 9vw, 112px); }
+.tow-persona-name {
+  font-family: var(--font-display); font-weight: 700; font-size: 1rem;
+  color: #4A3A1E; letter-spacing: 0.01em;
+}
+.tow-quote-body { min-width: 0; }
 .tow-quote blockquote {
   margin: 0; font-family: var(--font-serif); font-style: italic;
   font-size: clamp(1.25rem, 2.5vw, 1.6rem); line-height: 1.55; color: #2A2115;
@@ -119,9 +128,40 @@
 .tow-quote blockquote::before { content: '\201C'; margin-right: 0.06em; color: #B8860B; }
 .tow-quote blockquote::after  { content: '\201D'; margin-left: 0.05em; color: #B8860B; }
 .tow-quote figcaption {
-  display: flex; align-items: center; gap: 12px; margin-top: 20px;
+  display: flex; align-items: center; gap: 12px; margin-top: 18px;
   font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.04em; color: #6B5B40;
 }
+/* mode toggle — full (overture) and mini (stage banner) */
+.tow-modes { display: flex; justify-content: center; gap: 12px; margin: 26px auto 6px; max-width: 720px; }
+.tow-mode {
+  flex: 1; display: grid; gap: 5px; text-align: left; cursor: pointer;
+  background: var(--bg-card, #fff); border: 1.5px solid var(--rule); border-radius: 8px;
+  padding: 14px 18px; min-height: 44px; font: inherit; color: var(--ink-2);
+  transition: border-color 0.15s, background 0.15s;
+}
+.tow-mode:hover { border-color: #B8860B; }
+.tow-mode.on { border-color: #B8860B; background: oklch(96.5% 0.035 85); color: var(--ink); }
+.tow-mode-name { font-family: var(--font-display); font-weight: 600; font-size: 1.02rem; }
+.tow-mode.on .tow-mode-name { color: #7a5c10; }
+.tow-mode-desc { font-family: var(--font-serif); font-style: italic; font-size: 0.88rem; color: var(--ink-3); }
+.tow-modes--mini { margin: 0; gap: 0; max-width: none; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; }
+.tow-modes--mini .tow-mode {
+  flex: none; border: none; border-radius: 0; padding: 5px 12px; min-height: 28px;
+  background: transparent; display: block;
+}
+.tow-modes--mini .tow-mode-name { font-family: var(--font-mono); font-weight: 500; font-size: 10px; letter-spacing: 0.06em; }
+.tow-modes--mini .tow-mode.on { background: #B8860B; }
+.tow-modes--mini .tow-mode.on .tow-mode-name { color: #fff; }
+.tow-random-launch { text-align: center; margin-top: 30px; }
+.tow-random-line { font-family: var(--font-serif); font-style: italic; font-size: 1.02rem; color: var(--ink-2); margin: 0 0 14px; }
+/* editorial layer — this writer's war, keyed to his color */
+.tow-context {
+  background: color-mix(in srgb, var(--c, #B8860B) 7%, transparent);
+  border-left: 3px solid var(--c, #B8860B);
+  border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 0 0 16px;
+}
+.tow-context-k { color: color-mix(in srgb, var(--c, #B8860B) 72%, #333); }
+.tow-context p { margin: 0; }
 .tow-qblock { opacity: 0; transform: translateY(10px); transition: opacity 0.55s ease, transform 0.55s ease; margin-top: 26px; }
 .tow-qblock.on { opacity: 1; transform: none; }
 .tow-stem {
@@ -225,10 +265,15 @@
 .tow-mx-row { display: grid; grid-template-columns: 92px repeat(5, 34px); gap: 7px; align-items: center; }
 .tow-mx-head span { font-size: 13px; color: #B9A97F; text-align: center; }
 .tow-mx-act { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.05em; color: #9C8F72; text-align: right; padding-right: 4px; }
-.tow-mx-cell { width: 34px; height: 34px; border-radius: 7px; border: 2px solid var(--c, #666); }
-.tow-mx-cell.solid { background: var(--c); }
-.tow-mx-cell.hollow { background: color-mix(in srgb, var(--c) 18%, transparent); }
-.tow-mx-cell.empty { opacity: 0.25; border-style: dashed; }
+.tow-mx-cell {
+  width: 34px; height: 34px; border-radius: 7px; overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px; padding: 2px;
+  background: rgba(255,255,255,0.06); cursor: pointer;
+}
+.tow-mx-half { display: block; border-radius: 4px; border: 1.5px solid var(--c, #666); }
+.tow-mx-half.solid { background: var(--c); }
+.tow-mx-half.hollow { background: color-mix(in srgb, var(--c) 22%, transparent); }
+.tow-mx-half.empty { opacity: 0.3; border-style: dashed; }
 .tow-fin-note { font-family: var(--font-serif); font-style: italic; font-size: 0.9rem; color: #9C8F72; margin-top: 14px; }
 .tow-fin-bonds { display: flex; justify-content: center; gap: 26px; flex-wrap: wrap; }
 .tow-fin-bond { display: grid; justify-items: center; gap: 5px; }
@@ -253,7 +298,11 @@
   .tow-act { grid-template-columns: 1fr; gap: 8px; }
   .tow-act-years, .tow-act-dots, .tow-act-go, .tow-act-lock { grid-column: 1; grid-row: auto; justify-self: start; }
   .tow-choices { grid-template-columns: 1fr; }
-  .tow-quote { padding: 24px 22px 18px; }
+  .tow-quote { padding: 22px 20px 18px; grid-template-columns: 1fr; justify-items: center; }
+  .tow-quote-body { text-align: left; width: 100%; }
+  .tow-persona { padding-top: 0; }
+  .tow-modes { flex-direction: column; }
+  .tow-banner .tow-modes--mini { order: 5; }
   .tow-inter, .tow-fin { padding: 38px 22px 34px; }
   .tow-mx-row { grid-template-columns: 72px repeat(5, 30px); }
   .tow-mx-cell { width: 30px; height: 30px; }
@@ -288,14 +337,14 @@
 </main>
 
 <script src="_design-data.js"></script>
-<script src="_design-ui.js?v=13"></script>
+<script src="_design-ui.js?v=14"></script>
 <script src="_search-data.js?v=3"></script>
 <script src="_letter-nav.js"></script>
 <script src="_reader.js?v=25"></script>
 <script src="_deeplink.js"></script>
 <script src="_overlay-data.js?v=17"></script>
 <script src="_overlay.js?v=29"></script>
-<script src="_learn-data.js?v=1"></script>
-<script src="_learn.js?v=1"></script>
+<script src="_learn-data.js?v=2"></script>
+<script src="_learn.js?v=2"></script>
 </body>
 </html>

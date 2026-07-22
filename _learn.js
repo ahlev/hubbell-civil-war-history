@@ -1,10 +1,13 @@
-/* Their Own Words — game engine.
+/* Their Own Words — game engine v2.
    Data: _learn-data.js (TOW_ACTS, TOW_BONDS, TOW_QUESTIONS — generated,
-   validated by scripts/validate_learn_quotes.py). Reader: _reader.js
-   (HubbellReader.open(id, {excerpt}) — the lamplight overlay; closing it
-   leaves game state untouched because the game never unmounts).
+   validated by scripts/validate_learn_quotes.py; 50 questions, 2 per
+   act × theme cell, each with a `context` editorial layer).
+   Two play modes, swappable at any time:
+     story  — chronological acts of 10, sequential unlock, interludes.
+     random — any unanswered question from the whole bank, no act gating.
+   Reader: _reader.js lamplight overlay (state preserved on close).
    All dynamic text lands via textContent (no HTML injection anywhere).
-   State is exposed on window.TOW for the Playwright verification run. */
+   State exposed on window.TOW for the Playwright verification run. */
 (function () {
   'use strict';
 
@@ -30,12 +33,14 @@
 
   var QBY = {};
   TOW_QUESTIONS.forEach(function (q) { (QBY[q.act] = QBY[q.act] || []).push(q); });
+  var TOTAL = TOW_QUESTIONS.length;
+  var ACT_LEN = QBY[1] ? QBY[1].length : 10;
 
   // ── state ──
   var S = null;
   function freshState() {
-    return { screen: 'overture', act: 0, qi: 0, score: 0, streak: 0, bestStreak: 0,
-             unlocked: 1, finished: false,
+    return { screen: 'overture', mode: 'story', act: 0, qi: 0, rqid: null,
+             score: 0, streak: 0, bestStreak: 0, unlocked: 1, finished: false,
              bonds: { henry: 0, alexander: 0, james: 0, charles: 0, mother: 0 },
              answers: {} };
   }
@@ -48,6 +53,7 @@
       if (!raw) return null;
       var s = JSON.parse(raw);
       if (!s || typeof s.score !== 'number' || !s.bonds) return null;
+      if (!s.mode) s.mode = 'story';
       return s;
     } catch (e) { return null; }
   }
@@ -69,7 +75,6 @@
   }
   var root;
 
-  // Ring portrait — the shared circular-crop grammar from the landing rings.
   function ring(author, sizeCls) {
     var p = PEOPLE[author];
     var c = p.crop || {};
@@ -106,6 +111,7 @@
 
   function mult() { return S.streak >= 5 ? 1.5 : (S.streak >= 3 ? 1.25 : 1); }
   function clearEl(e) { while (e.firstChild) e.removeChild(e.firstChild); }
+  function answeredCount() { return Object.keys(S.answers).length; }
 
   // ── screens ──
   function show(screen) {
@@ -116,6 +122,38 @@
     window.scrollTo(0, 0);
   }
 
+  function modeToggle(compact) {
+    var w = h('div', 'tow-modes' + (compact ? ' tow-modes--mini' : ''));
+    w.setAttribute('role', 'group');
+    w.setAttribute('aria-label', 'Play mode');
+    [['story', 'The war in order', 'Five chronological acts — the letters tell the war as one unfolding story.'],
+     ['random', 'Shuffled', 'Any letter, any year — the war as it surfaces from the archive, one card at a time.']]
+      .forEach(function (m) {
+        var b = h('button', 'tow-mode' + (S.mode === m[0] ? ' on' : ''));
+        b.dataset.mode = m[0];
+        b.setAttribute('aria-pressed', S.mode === m[0] ? 'true' : 'false');
+        b.appendChild(h('span', 'tow-mode-name', m[1]));
+        if (!compact) b.appendChild(h('span', 'tow-mode-desc', m[2]));
+        b.addEventListener('click', function () { setMode(m[0]); });
+        w.appendChild(b);
+      });
+    return w;
+  }
+
+  function setMode(mode) {
+    if (S.mode === mode) return;
+    S.mode = mode;
+    save();
+    if (S.screen === 'stage') {
+      // swap mid-play: random deals a fresh card; story resumes its act flow
+      if (mode === 'random') dealRandom();
+      else startAct(Math.min(S.unlocked, 5));
+    } else {
+      renderOverture();
+      show('overture');
+    }
+  }
+
   function renderOverture() {
     var o = root.querySelector('[data-screen="overture"]');
     clearEl(o);
@@ -123,7 +161,7 @@
     add(hero,
       h('div', 'tow-kicker', 'HUBBELL FAMILY ARCHIVE · A LEARNING GAME'),
       h('h1', 'tow-title', 'Their Own Words'),
-      h('p', 'tow-sub', 'Four brothers wrote the Civil War as they lived it — and their mother wrote it from the kitchen window. Twenty-five of their sentences, five years of war. How much of their war do you know?'));
+      h('p', 'tow-sub', 'Four brothers wrote the Civil War as they lived it — and their mother wrote it from the kitchen window. Fifty of their sentences, five years of war. How much of their war do you know?'));
     var rr = h('div', 'tow-ringrow');
     ['henry', 'alexander', 'james', 'charles', 'mother'].forEach(function (a) {
       rr.appendChild(ring(a, 'tow-ring--hero'));
@@ -132,43 +170,62 @@
       h('p', 'tow-note', 'Every quotation is verbatim from the family’s 272 letters. Wrong answers teach too — and every question opens doors into the real archive.'));
     o.appendChild(hero);
 
-    var rail = h('div', 'tow-actrail');
-    TOW_ACTS.forEach(function (a) {
-      var locked = a.act > S.unlocked;
-      var qs = QBY[a.act] || [];
-      var b = h('button', 'tow-act' + (locked ? ' locked' : ''));
-      b.dataset.act = a.act;
-      if (locked) b.disabled = true;
-      add(b,
-        h('span', 'tow-act-years', a.years),
-        h('span', 'tow-act-title', 'Act ' + ROMAN[a.act - 1] + ' — ' + a.title),
-        h('span', 'tow-act-scene', a.scene));
-      var dots = h('span', 'tow-act-dots');
-      var answered = 0;
-      THEME_ORDER.forEach(function (t) {
-        var q = qs.filter(function (x) { return x.theme === t; })[0];
-        var ans = q && S.answers[q.qid];
-        if (ans) answered += 1;
-        var d = h('span', 'tow-tdot' + (ans ? (ans.correct ? ' done' : ' seen') : ''),
-                  THEME_META[t].icon);
-        d.title = THEME_META[t].label;
-        dots.appendChild(d);
-      });
-      add(b, dots,
-        locked ? h('span', 'tow-act-lock', 'Finish the act before it to unlock')
-               : h('span', 'tow-act-go', (answered >= 5 ? 'Replay this act' :
-                   answered > 0 ? 'Continue — ' + answered + ' of 5 answered' : 'Play this act') + ' →'));
-      if (!locked) b.addEventListener('click', function () { startAct(a.act); });
-      rail.appendChild(b);
-    });
-    o.appendChild(rail);
+    o.appendChild(modeToggle(false));
 
-    if (Object.keys(S.answers).length) {
+    if (S.mode === 'random') {
+      var done = answeredCount();
+      var rbox = h('div', 'tow-random-launch');
+      rbox.appendChild(h('p', 'tow-random-line', done >= TOTAL
+        ? 'All ' + TOTAL + ' answered. Deal again to revisit any of them.'
+        : done > 0
+          ? done + ' of ' + TOTAL + ' answered · the deck holds the rest.'
+          : 'Fifty questions, shuffled. The archive deals; the letters teach.'));
+      var deal = h('button', 'tow-next', 'Deal the next card →');
+      deal.addEventListener('click', function () { dealRandom(); });
+      rbox.appendChild(deal);
+      o.appendChild(rbox);
+    } else {
+      var rail = h('div', 'tow-actrail');
+      TOW_ACTS.forEach(function (a) {
+        var locked = a.act > S.unlocked;
+        var qs = QBY[a.act] || [];
+        var b = h('button', 'tow-act' + (locked ? ' locked' : ''));
+        b.dataset.act = a.act;
+        if (locked) b.disabled = true;
+        add(b,
+          h('span', 'tow-act-years', a.years),
+          h('span', 'tow-act-title', 'Act ' + ROMAN[a.act - 1] + ' — ' + a.title),
+          h('span', 'tow-act-scene', a.scene));
+        var dots = h('span', 'tow-act-dots');
+        var answered = 0;
+        THEME_ORDER.forEach(function (t) {
+          var cell = qs.filter(function (x) { return x.theme === t; });
+          var got = cell.filter(function (q) { return S.answers[q.qid]; }).length;
+          var right = cell.filter(function (q) { return S.answers[q.qid] && S.answers[q.qid].correct; }).length;
+          answered += got;
+          var cls = got === 0 ? '' : (right === cell.length ? ' done' : ' seen');
+          var d = h('span', 'tow-tdot' + cls, THEME_META[t].icon);
+          d.title = THEME_META[t].label + ' — ' + got + ' of ' + cell.length + ' answered';
+          dots.appendChild(d);
+        });
+        add(b, dots,
+          locked ? h('span', 'tow-act-lock', 'Finish the act before it to unlock')
+                 : h('span', 'tow-act-go', (answered >= qs.length ? 'Replay this act' :
+                     answered > 0 ? 'Continue — ' + answered + ' of ' + qs.length + ' answered' : 'Play this act') + ' →'));
+        if (!locked) b.addEventListener('click', function () { startAct(a.act); });
+        rail.appendChild(b);
+      });
+      o.appendChild(rail);
+    }
+
+    if (answeredCount()) {
       var row = h('div', 'tow-reset-row');
       var reset = h('button', 'tow-reset', 'Start over from the beginning');
       reset.addEventListener('click', function () {
         if (confirm('Erase your progress and start over?')) {
-          S = freshState(); save(); renderOverture(); show('overture');
+          var mode = S.mode;
+          S = freshState(); S.mode = mode; save();
+          renderOverture(); show('overture');
         }
       });
       row.appendChild(reset);
@@ -177,8 +234,10 @@
     animateRings(o);
   }
 
+  // ── question selection ──
   function startAct(act) {
     S.act = act;
+    S.rqid = null;
     var qs = QBY[act];
     S.qi = 0;
     for (var i = 0; i < qs.length; i++) {
@@ -190,7 +249,25 @@
     show('stage');
   }
 
-  function currentQ() { return QBY[S.act][S.qi]; }
+  function dealRandom() {
+    var pool = TOW_QUESTIONS.filter(function (q) { return !S.answers[q.qid]; });
+    if (!pool.length) pool = TOW_QUESTIONS;                    // full deck replay
+    var q = pool[Math.floor(Math.random() * pool.length)];
+    S.rqid = q.qid;
+    S.act = q.act;
+    S.qi = QBY[q.act].indexOf(q);
+    save();
+    renderQuestion();
+    show('stage');
+  }
+
+  function currentQ() {
+    if (S.mode === 'random' && S.rqid) {
+      var m = TOW_QUESTIONS.filter(function (q) { return q.qid === S.rqid; })[0];
+      if (m) return m;
+    }
+    return QBY[S.act][S.qi];
+  }
 
   function bondRail() {
     var w = h('div', 'tow-bonds');
@@ -212,17 +289,21 @@
 
   function renderQuestion() {
     var q = currentQ();
-    var actMeta = TOW_ACTS[S.act - 1];
+    var actMeta = TOW_ACTS[q.act - 1];
     var st = root.querySelector('[data-screen="stage"]');
     clearEl(st);
 
     var banner = h('div', 'tow-banner');
     banner.style.setProperty('--acc', PEOPLE[q.author].color);
+    var posText = S.mode === 'random'
+      ? answeredCount() + ' of ' + TOTAL + ' answered · ' + THEME_META[q.theme].label + ' · ' + actMeta.years
+      : (S.qi + 1) + ' of ' + ACT_LEN + ' · ' + THEME_META[q.theme].label + (S.answers[q.qid] ? ' · replay' : '');
     add(banner,
-      h('span', 'tow-banner-act', 'ACT ' + ROMAN[q.act - 1] + ' · ' + actMeta.years +
-        ' — ' + actMeta.title.toUpperCase()),
-      h('span', 'tow-banner-q', (S.qi + 1) + ' of 5 · ' + THEME_META[q.theme].label +
-        (S.answers[q.qid] ? ' · replay' : '')),
+      h('span', 'tow-banner-act', S.mode === 'random'
+        ? 'SHUFFLED FROM THE ARCHIVE'
+        : 'ACT ' + ROMAN[q.act - 1] + ' · ' + actMeta.years + ' — ' + actMeta.title.toUpperCase()),
+      h('span', 'tow-banner-q', posText),
+      modeToggle(true),
       h('span', 'tow-banner-score', 'Score ' + S.score +
         (S.streak >= 3 ? ' · streak ×' + mult() : '')));
     st.appendChild(banner);
@@ -230,11 +311,16 @@
     var grid = h('div', 'tow-stagegrid');
     var main = h('div', 'tow-stagemain');
 
+    // the quote card — the author stands beside his own words, animated
     var fig = h('figure', 'tow-quote');
+    var persona = h('div', 'tow-persona');
+    add(persona, ring(q.author, 'tow-ring--persona'),
+        h('span', 'tow-persona-name', PEOPLE[q.author].name));
+    var qwrap = h('div', 'tow-quote-body');
     var bq = h('blockquote', null, q.excerpt);
-    var cap = h('figcaption');
-    add(cap, ring(q.author, 'tow-ring--attr'), h('span', null, q.attribution));
-    add(fig, bq, cap);
+    var cap = h('figcaption', null, q.attribution);
+    add(qwrap, bq, cap);
+    add(fig, persona, qwrap);
     main.appendChild(fig);
 
     var qb = h('div', 'tow-qblock');
@@ -321,13 +407,22 @@
         h('p', null, q.expansion));
     fb.appendChild(ex);
 
+    // the editorial layer: this writer's war, and why these words
+    if (q.context) {
+      var cx = h('div', 'tow-context');
+      cx.style.setProperty('--c', PEOPLE[q.author].color);
+      var who = q.author === 'mother' ? 'FRANCES' : PEOPLE[q.author].name.toUpperCase();
+      add(cx,
+        h('span', 'tow-expand-k tow-context-k', who + '’S WAR · WHY THESE WORDS'),
+        h('p', null, q.context));
+      fb.appendChild(cx);
+    }
+
     var spokes = h('div', 'tow-spokes');
     var readBtn = h('button', 'tow-spoke', 'Read the whole letter');
     readBtn.addEventListener('click', function () {
       creditSpoke(q, 'letter');
       if (window.HubbellReader) {
-        // same wiring as the map page: the body flag suppresses game keys
-        // while the lamplight overlay is up; onClose restores them
         document.body.classList.add('letter-reader-open');
         HubbellReader.open(q.letterId, {
           excerpt: q.excerpt,
@@ -347,7 +442,11 @@
     });
     fb.appendChild(spokes);
 
-    var nextBtn = h('button', 'tow-next', S.qi < 4 ? 'Next question →' : 'Close the act →');
+    var isActEnd = S.mode === 'story' && S.qi >= ACT_LEN - 1;
+    var nextBtn = h('button', 'tow-next',
+      S.mode === 'random'
+        ? (answeredCount() >= TOTAL ? 'See what the war left →' : 'Deal the next card →')
+        : (isActEnd ? 'Close the act →' : 'Next question →'));
     nextBtn.id = 'towNext';
     nextBtn.addEventListener('click', next);
     fb.appendChild(nextBtn);
@@ -375,7 +474,12 @@
   }
 
   function next() {
-    if (S.qi < 4) { S.qi += 1; save(); renderQuestion(); }
+    if (S.mode === 'random') {
+      if (answeredCount() >= TOTAL) { S.finished = true; save(); renderFinale(); show('finale'); }
+      else dealRandom();
+      return;
+    }
+    if (S.qi < ACT_LEN - 1) { S.qi += 1; save(); renderQuestion(); }
     else renderInterlude();
   }
 
@@ -396,7 +500,7 @@
     add(box,
       h('span', 'tow-inter-k', 'ACT ' + ROMAN[S.act - 1] + ' · CLOSED'),
       h('h2', null, a.title),
-      h('p', 'tow-inter-score', right + ' of 5 first time through · score ' + S.score));
+      h('p', 'tow-inter-score', right + ' of ' + qs.length + ' first time through · score ' + S.score));
     if (a.memorial) {
       var mem = h('div', 'tow-memorial');
       add(mem, ring(a.memorial, 'tow-ring--mem'),
@@ -433,7 +537,7 @@
     add(fin,
       h('span', 'tow-inter-k', 'THE WAR IN FIVE ACTS · COMPLETE'),
       h('h2', null, 'Two came home. Their words became an archive.'),
-      h('p', 'tow-fin-score', right + ' of ' + TOW_QUESTIONS.length +
+      h('p', 'tow-fin-score', right + ' of ' + TOTAL +
         ' on the first try · final score ' + S.score +
         (S.bestStreak >= 3 ? ' · best streak ' + S.bestStreak : '')),
       h('h3', 'tow-fin-h', 'What you covered'));
@@ -448,29 +552,31 @@
       head.appendChild(s);
     });
     mx.appendChild(head);
+    var mxCaption = h('p', 'tow-fin-note tow-mx-caption', 'Tap any square for the lessons it carried. Each square holds two questions — hollow halves are the ones the letters had to teach you.');
     TOW_ACTS.forEach(function (a) {
       var row = h('div', 'tow-mx-row');
       row.appendChild(h('span', 'tow-mx-act', a.years));
       THEME_ORDER.forEach(function (t) {
-        var q = (QBY[a.act] || []).filter(function (x) { return x.theme === t; })[0];
-        var ans = q && S.answers[q.qid];
-        var cell = h('span', 'tow-mx-cell ' + (ans ? (ans.correct ? 'solid' : 'hollow') : 'empty'));
-        if (q) {
-          cell.style.setProperty('--c', PEOPLE[q.author].color);
-          cell.title = q.curriculum;
-        }
+        var pair = (QBY[a.act] || []).filter(function (x) { return x.theme === t; });
+        var cell = h('span', 'tow-mx-cell');
+        pair.forEach(function (q) {
+          var ans = S.answers[q.qid];
+          var half = h('i', 'tow-mx-half ' + (ans ? (ans.correct ? 'solid' : 'hollow') : 'empty'));
+          half.style.setProperty('--c', PEOPLE[q.author].color);
+          cell.appendChild(half);
+        });
+        cell.title = pair.map(function (q) { return q.curriculum; }).join('  ·  ');
+        cell.setAttribute('tabindex', '0');
+        (function (titles) {
+          function reveal() { if (titles) mxCaption.textContent = titles; }
+          cell.addEventListener('click', reveal);
+          cell.addEventListener('focus', reveal);
+        })(cell.title);
         row.appendChild(cell);
       });
       mx.appendChild(row);
     });
     fin.appendChild(mx);
-    var mxCaption = h('p', 'tow-fin-note tow-mx-caption', 'Tap any square for the lesson it carried. Hollow squares are ones the letters had to teach you — replay any act to make them solid.');
-    mx.querySelectorAll('.tow-mx-cell').forEach(function (cell) {
-      cell.setAttribute('tabindex', '0');
-      function reveal() { if (cell.title) mxCaption.textContent = cell.title; }
-      cell.addEventListener('click', reveal);
-      cell.addEventListener('focus', reveal);
-    });
     fin.appendChild(mxCaption);
 
     fin.appendChild(h('h3', 'tow-fin-h', 'Who you came to know'));
@@ -544,6 +650,9 @@
     startAct: startAct,
     answer: answer,
     next: next,
+    setMode: setMode,
+    dealRandom: dealRandom,
+    currentQ: function () { return currentQ().qid; },
     _reset: function () { S = freshState(); save(); renderOverture(); show('overture'); }
   };
 })();

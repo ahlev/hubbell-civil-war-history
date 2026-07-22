@@ -57,15 +57,15 @@
       { href: 'viz-health-ledger.html',           label: 'Wellness Ledger',acc: '#CB5C5C' },
       { href: 'viz-people-web.html',              label: 'People Web',     acc: '#9A78C7' },
       { href: 'who-they-were.html',               label: 'Who They Were',  acc: '#6FB0A6' },
+      { href: 'their-own-words.html',             label: 'Their Own Words', acc: '#B8860B' },
       { href: 'about.html',                       label: 'The Project',    acc: '#CE8A46' }
     ];
     // Ownership / credibility surfaces under "The Project" — same dropdown
     // mechanics as the family menu. The parent link lands on About.
     var PROJECT = [
-      { href: 'about.html',           label: 'About the Project',      dot: '#CE8A46', note: 'Who made this & how' },
-      { href: 'their-own-words.html', label: 'Their Own Words',        dot: '#B8860B', note: 'The learning game' },
-      { href: 'faq.html',             label: 'Questions Worth Asking', dot: '#CE8A46', note: 'The FAQ' },
-      { href: 'press.html',           label: 'Press & Media',          dot: '#CE8A46', note: 'For writers & producers' }
+      { href: 'about.html', label: 'About the Project',      dot: '#CE8A46', note: 'Who made this & how' },
+      { href: 'faq.html',   label: 'Questions Worth Asking', dot: '#CE8A46', note: 'The FAQ' },
+      { href: 'press.html', label: 'Press & Media',          dot: '#CE8A46', note: 'For writers & producers' }
     ];
     // Family members surfaced as a hover dropdown under "Who They Were" — each
     // color-dotted (brother/mother hue), linking to the ONE canonical bio view:

@@ -46,10 +46,11 @@ def main():
     qs = load_bank()
     errors = []
 
-    if len(qs) != 25:
-        errors.append(f'expected exactly 25 questions, found {len(qs)}')
+    if len(qs) != 50:
+        errors.append(f'expected exactly 50 questions, found {len(qs)}')
 
     cells = {}
+    per_letter = {}
     for q in qs:
         qid = q.get('qid', '?')
         letter = by_id.get(q.get('letterId'))
@@ -68,30 +69,34 @@ def main():
         if theme not in THEMES:
             errors.append(f'{qid}: bad theme {theme!r}')
         key = (act, theme)
-        if key in cells:
-            errors.append(f'{qid}: duplicate cell {key} (also {cells[key]})')
-        cells[key] = qid
+        cells.setdefault(key, []).append(qid)
+        per_letter[q.get('letterId')] = per_letter.get(q.get('letterId'), 0) + 1
         choices = q.get('choices', [])
         if len(choices) != 4:
             errors.append(f'{qid}: expected 4 choices, found {len(choices)}')
         ai = q.get('answerIdx')
         if not isinstance(ai, int) or not 0 <= ai <= 3:
             errors.append(f'{qid}: bad answerIdx {ai!r}')
-        for field in ('stem', 'expansion', 'whyRight'):
+        for field in ('stem', 'expansion', 'whyRight', 'context'):
             if not q.get(field, '').strip():
                 errors.append(f'{qid}: missing {field}')
 
-    missing = [(a, t) for a in ACTS for t in THEMES if (a, t) not in cells]
-    if missing:
-        errors.append(f'unfilled cells: {missing}')
+    for a in ACTS:
+        for t in THEMES:
+            n = len(cells.get((a, t), []))
+            if n != 2:
+                errors.append(f'cell (act {a}, {t}): expected exactly 2 questions, found {n}')
+    for lid, n in per_letter.items():
+        if n > 3:
+            errors.append(f'letter {lid} used {n} times (max 3)')
 
     if errors:
         print(f'FAIL ({len(errors)} problem(s)):')
         for e in errors:
             print('  -', e)
         sys.exit(1)
-    print(f'OK: 25/25 verbatim, all {len(cells)} act x theme cells filled, '
-          f'authors match, choices well-formed.')
+    print(f'OK: {len(qs)}/50 verbatim, every act x theme cell holds its pair, '
+          f'authors match, context present, choices well-formed.')
 
 
 if __name__ == '__main__':
