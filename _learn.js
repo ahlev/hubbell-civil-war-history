@@ -403,7 +403,7 @@
         h('span', 'tow-mem-name', PEOPLE[a.memorial].name + ' Hubbell'),
         h('span', 'tow-mem-dates', a.memorial === 'henry'
           ? '34th New York · killed at Antietam, September 17, 1862'
-          : '153rd New York · died October 19, 1865, on the journey home'));
+          : '153rd New York · died October 12, 1865, on the journey home'));
       box.appendChild(mem);
     }
     box.appendChild(h('p', 'tow-inter-bridge', a.bridge));

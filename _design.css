@@ -1763,11 +1763,13 @@ button, a, [onclick], [role="button"] {
   width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
   box-shadow: 0 0 0 2px rgba(255,255,255,.08);
 }
-.site-nav .nav-dd-name{ font-size: 13px; font-weight: 500; }
+.site-nav .nav-dd-name{ font-size: 13px; font-weight: 500; white-space: nowrap; }
 .site-nav .nav-dd-note{ font-size: 11px; color: #9aa3ab; white-space: nowrap; }
 /* desktop hover panel */
 .site-nav .nav-dd{
-  position: absolute; top: 100%; right: 0; margin-top: 6px; min-width: 216px; padding: 6px;
+  position: absolute; top: 100%; right: 0; margin-top: 6px; padding: 6px;
+  /* size to content so long section names never wrap into stacked lines */
+  min-width: 240px; width: max-content; max-width: min(360px, 92vw);
   background: #0d0f14; border: 1px solid rgba(236,227,210,.14); border-radius: 10px;
   box-shadow: 0 14px 40px rgba(0,0,0,.55);
   display: none; opacity: 0; transform: translateY(-4px);
