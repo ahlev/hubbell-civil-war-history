@@ -28,6 +28,9 @@
 #     Distinct from the internal /press directory, which stays private. ---
 !/press-assets
 
+# --- Open Graph link-preview cards (middleware.js + static og baseline reference these) ---
+!/og
+
 # --- Vendored third-party libs (self-contained, no CDN at runtime) ---
 !/_vendor
 /_vendor/*
