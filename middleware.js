@@ -266,7 +266,8 @@ export default async function middleware(request) {
 
   // Pick the image: animated GIF for platforms that play it, static JPG otherwise
   const wantsAnimated = ANIMATED_PATTERN.test(userAgent) && ANIMATED_CARDS.has(card);
-  const image = url.origin + (wantsAnimated ? `/og/anim-${card}.gif` : `/og/card-${card}.jpg`);
+  // ?v=2: anim-home regenerated text-free 2026-09-03 — new query busts platform scrape caches
+  const image = url.origin + (wantsAnimated ? `/og/anim-${card}.gif?v=2` : `/og/card-${card}.jpg`);
   const imageDims = wantsAnimated
     ? '' // GIFs may be re-scaled below 960x504 for size budgets — omit dims
     : `    <meta property="og:image:width" content="1200">

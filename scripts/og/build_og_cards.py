@@ -301,7 +301,9 @@ ANIM = [
     # slug, kind, src, (overline,title,sub,accent), kwargs
     ('home', 'landscape', f'{A}/loop-field-warm-v3.mp4',
      (SITE_OVER, 'The Hubbell Brothers', 'Four brothers, their mother, and 273 letters', 'site'),
-     {'speed': 2.0, 'fps': 11, 'darken': 0.10}),     # full 9 s loop compressed → seamless
+     {'speed': 2.0, 'fps': 11, 'darken': 0.10, 'plain': True}),  # full 9 s loop compressed → seamless;
+     # plain: no baked-in text — GIF palette washes it out and the platform's own
+     # og:title label already says it (looked like ghost text over the scene)
     ('parallel-lives', 'landscape', f'{A}/teasers/teaser-parallel.mp4',
      (SITE_OVER, 'Parallel Lives', '273 letters on one interactive timeline', 'site'),
      {'ss': 1, 't': 4, 'fps': 11}),
@@ -373,9 +375,12 @@ def main():
     for slug, kind, src, (over, title, sub, accent), kw in ANIM:
         if only and slug != only: continue
         ovl = os.path.join(tmpdir, f'ovl-{slug}.png')
-        block_w = round(GW * 0.62) if kind == 'portrait' else None
-        text_overlay(GW, GH, over, title, sub, COLORS[accent], scale=0.8, block_w=block_w,
-                     grad=245).save(ovl)
+        if kw.pop('plain', False):
+            Image.new('RGBA', (GW, GH), (0, 0, 0, 0)).save(ovl)
+        else:
+            block_w = round(GW * 0.62) if kind == 'portrait' else None
+            text_overlay(GW, GH, over, title, sub, COLORS[accent], scale=0.8, block_w=block_w,
+                         grad=245).save(ovl)
         out = os.path.join(OG, f'anim-{slug}.gif')
         ok = (gif_landscape(src, ovl, out, **kw) if kind == 'landscape' else
               gif_portrait(src, ovl, out, **kw)  if kind == 'portrait'  else
