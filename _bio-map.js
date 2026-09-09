@@ -44,9 +44,16 @@ window.HubbellBioMap = (function () {
       dragging: true
     });
     current = map;
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OSM &amp; CARTO',
-      maxZoom: 18
+    // Esri Light Gray Canvas (base + labels) — CARTO basemaps now watermark
+    // anonymous requests with "API KEY REQUIRED", so this must stay keyless Esri.
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri',
+      maxZoom: 18,
+      maxNativeZoom: 16
+    }).addTo(map);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18,
+      maxNativeZoom: 16
     }).addTo(map);
 
     // Draw movement path (chronological)

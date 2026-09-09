@@ -2243,10 +2243,18 @@ function initMap() {
     zoomSnap: 0   // fractional zoom — camera glides instead of jumping whole levels
   });
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-    subdomains: 'abcd',
+  // Esri Light Gray Canvas (base + labels) — CARTO basemaps now watermark
+  // anonymous requests with "API KEY REQUIRED", so this must stay keyless Esri.
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution: '&copy; <a href="https://www.esri.com/">Esri</a>',
     maxZoom: 19,
+    maxNativeZoom: 16,
+    keepBuffer: 6,
+    updateWhenZooming: false
+  }).addTo(map);
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 19,
+    maxNativeZoom: 16,
     keepBuffer: 6,
     updateWhenZooming: false
   }).addTo(map);
@@ -2656,13 +2664,14 @@ const TilePrefetcher = {
   MAX_INFLIGHT: 6,
   CAP: 6000, // absolute ceiling on tiles we will ever request
 
-  _url(z, x, y) {
-    // MUST mirror Leaflet's deterministic subdomain pick ((x+y) % 4) — the
-    // subdomain is part of the browser's cache key, so a tile warmed from
-    // the "wrong" host is a cache MISS when Leaflet later requests it.
-    const s = 'abcd'[Math.abs(x + y) % 4];
-    const r = (L.Browser && L.Browser.retina) ? '@2x' : '';
-    return 'https://' + s + '.basemaps.cartocdn.com/light_all/' + z + '/' + x + '/' + y + r + '.png';
+  _urls(z, x, y) {
+    // MUST mirror the L.tileLayer URLs exactly — the URL is the browser's
+    // cache key. Esri path order is {z}/{y}/{x}; base + label layers both warm.
+    const p = '/MapServer/tile/' + z + '/' + y + '/' + x;
+    return [
+      'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base' + p,
+      'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference' + p
+    ];
   },
 
   // Queue every tile a viewport at (lat, lon, zoom) would show, +ring margin
@@ -2691,12 +2700,14 @@ const TilePrefetcher = {
   _pump() {
     while (this._inflight < this.MAX_INFLIGHT && this._queue.length) {
       const t = this._queue.shift();
-      const img = new Image();
-      this._inflight++;
-      const done = () => { this._inflight--; this._pump(); };
-      img.onload = done;
-      img.onerror = done;
-      img.src = this._url(t[0], t[1], t[2]);
+      this._urls(t[0], t[1], t[2]).forEach(u => {
+        const img = new Image();
+        this._inflight++;
+        const done = () => { this._inflight--; this._pump(); };
+        img.onload = done;
+        img.onerror = done;
+        img.src = u;
+      });
     }
   },
 
